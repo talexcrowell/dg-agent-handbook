@@ -252,8 +252,6 @@ export const Stats: React.FC<{
     setPointPool(72);
   };
 
-  const handleSaveCharacterStats = () => {};
-
   return (
     <Grid>
       <Grid.Col span={12} ta="start">
@@ -402,8 +400,11 @@ export const Stats: React.FC<{
               })}
             </Table.Tbody>
           </Table>
-          <Button onClick={() => handleAgentStats({ ...stats })}>
-            Confirm Statistcs
+          <Button
+            onClick={() => handleAgentStats({ ...stats })}
+            disabled={Object.values(stats).includes(0)}
+          >
+            Confirm Statistics
           </Button>
         </Stack>
       </Grid.Col>

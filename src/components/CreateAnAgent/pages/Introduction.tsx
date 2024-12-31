@@ -1,4 +1,4 @@
-import { Button, Grid, List, Stack, Text, Title } from "@mantine/core";
+import { Button, Grid, Image, List, Stack, Text, Title } from "@mantine/core";
 import React from "react";
 
 export const Introduction: React.FC<{

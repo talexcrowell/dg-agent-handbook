@@ -1,15 +1,40 @@
 import { Box, Grid, Group, RingProgress, Text, Timeline } from "@mantine/core";
 import React, { useState } from "react";
-import { Stats } from "../Stats";
-import { Profession } from "../Profession";
-import { OtherProfessionalSkills } from "../OtherProfessionalSkills";
-import { PersonalDetails } from "../PersonalDetails";
-import { Introduction } from "../Introduction";
+import { Stats } from "./pages/Stats";
+import { Profession } from "./pages/Profession";
+import { OtherProfessionalSkills } from "./pages/OtherProfessionalSkills";
+import { PersonalDetails } from "./pages/PersonalDetails";
+import { Introduction } from "./pages/Introduction";
 import { defaultSkillValues } from "../../data";
+import { Bonds } from "./pages/Bonds";
+import { CharacterSheet } from "../CharacterSheet";
+import { useCharacterContext } from "../../contexts/CharacterContext";
 
 export const CreateAnAgent: React.FC = () => {
   const [progressValue, setProgressValue] = useState(0);
-  const [userAgent, setUserAgent] = useState({});
+  const [userAgent, setUserAgent] = useState({
+    name: "",
+    codename: "",
+    profession: "",
+    employer: "",
+    nationality: "",
+    sex: "",
+    age: "",
+    history: "",
+    personality: "",
+    motivations: "",
+    stats: {
+      strength: 0,
+      constitution: 0,
+      dexterity: 0,
+      intelligence: 0,
+      power: 0,
+      charisma: 0,
+    },
+    skills: { ...defaultSkillValues },
+    bonds: 0,
+  });
+  const [{}, actions] = useCharacterContext();
 
   const handleProgressValue = (value: number) => {
     setProgressValue(value);
@@ -51,6 +76,65 @@ export const CreateAnAgent: React.FC = () => {
     handleProgressValue(3);
   };
 
+  const isSkillChoice = (skill) => {
+    switch (skill) {
+      case "art":
+      case "craft":
+      case "foreignLanguage":
+      case "militaryScience":
+      case "pilot":
+      case "science":
+        return true;
+      default:
+        return false;
+    }
+  };
+
+  const handleAgentOtherSkills = (newSkills) => {
+    let newObj = { ...userAgent?.skills };
+    for (let i = 0; i < newSkills.length; i++) {
+      if (isSkillChoice(newSkills[i].name)) {
+        newObj[newSkills[i].name].length > 1
+          ? (newObj[newSkills[i].name] = [
+              ...newObj[newSkills[i].name],
+              {
+                label: newSkills[i].label,
+                skill: newSkills[i].value,
+              },
+            ])
+          : (newObj[newSkills[i].name] = [
+              {
+                label: newSkills[i].label,
+                skill: newSkills[i].value,
+              },
+            ]);
+      } else {
+        newObj[newSkills[i].name] =
+          newObj[newSkills[i].name] + newSkills[i].value;
+      }
+    }
+    setUserAgent({ ...userAgent, skills: newObj });
+    handleProgressValue(4);
+  };
+
+  const handleAgentBonds = (bonds) => {
+    let newObj = { ...userAgent };
+    newObj.bonds = [...bonds];
+    setUserAgent({ ...newObj });
+    handleProgressValue(5);
+  };
+
+  const handleAgentPersonalDetails = (value, key) => {
+    let newObj = { ...userAgent };
+    newObj[key] = key === "age" || key === "sex" ? value : value.target.value;
+    setUserAgent({ ...newObj });
+  };
+
+  const handleCreateAgent = () => {
+    let newObj = { ...userAgent };
+    actions.createCharacterObj({ ...newObj });
+  };
+
   let page;
   switch (progressValue) {
     case 0:
@@ -64,11 +148,25 @@ export const CreateAnAgent: React.FC = () => {
       break;
     case 3:
       page = (
-        <OtherProfessionalSkills handleProgressValue={handleProgressValue} userAgent={userAgent}/>
+        <OtherProfessionalSkills
+          handleAgentOtherSkills={handleAgentOtherSkills}
+          userAgent={userAgent}
+        />
       );
       break;
     case 4:
-      page = <PersonalDetails />;
+      page = (
+        <Bonds handleAgentBonds={handleAgentBonds} userAgent={userAgent} />
+      );
+      break;
+    case 5:
+      page = (
+        <PersonalDetails
+          handleAgentPersonalDetails={handleAgentPersonalDetails}
+          handleCreateAgent={handleCreateAgent}
+          userAgent={userAgent}
+        />
+      );
       break;
   }
   return (
@@ -87,6 +185,9 @@ export const CreateAnAgent: React.FC = () => {
             </Timeline.Item>
             <Timeline.Item>
               <Text>Skills</Text>
+            </Timeline.Item>
+            <Timeline.Item>
+              <Text>Bonds</Text>
             </Timeline.Item>
             <Timeline.Item>
               <Text>Personal Details</Text>

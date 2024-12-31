@@ -14,7 +14,7 @@ import {
   Title,
 } from "@mantine/core";
 import React, { useState } from "react";
-import { professions } from "../data";
+import { professions } from "../../../data";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
@@ -25,7 +25,9 @@ export const Profession: React.FC<{
   const [optionalSkillDetails, setOptionalSkillDetails] = useState<{
     [key: string]: any;
   }>({});
-  const [selectedOptionalSkills, setSelectedOptionalSkills] = useState([]);
+  const [selectedOptionalSkills, setSelectedOptionalSkills] = useState<any[]>(
+    []
+  );
   const [confirmedProfession, setConfirmedProfession] = useState(false);
 
   const handleSelectProfession = (profession: any) => {
@@ -91,6 +93,12 @@ export const Profession: React.FC<{
     console.log(optionalSkillDetails);
   };
 
+  const handleSetOptionalSkills = (skills) => {
+    if (skills.length <= selectedProfession.numberOfOptionalSkills) {
+      setSelectedOptionalSkills([...skills]);
+    }
+  };
+
   const confirmAdditionalSkills = () => {
     // Copy Profession
     let newObj = { ...selectedProfession };
@@ -133,6 +141,7 @@ export const Profession: React.FC<{
 
     handleAgentProfession({ ...newObj });
   };
+
   const professionCard = (profession) => (
     <Card withBorder ta="start">
       <Stack>
@@ -282,7 +291,7 @@ export const Profession: React.FC<{
               </Text>
               <CheckboxGroup
                 value={selectedOptionalSkills}
-                onChange={setSelectedOptionalSkills}
+                onChange={handleSetOptionalSkills}
               >
                 <Stack>
                   {selectedProfession.optionalSkills

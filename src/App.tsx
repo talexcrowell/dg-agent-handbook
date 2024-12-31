@@ -1,23 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import "@mantine/core/styles.css";
-import { Container, MantineProvider } from "@mantine/core";
-import { Stats } from "./components/Stats";
-import { Profession } from "./components/Profession";
-import { OtherProfessionalSkills } from "./components/OtherProfessionalSkills";
+import { AppShell, Container } from "@mantine/core";
 import { CreateAnAgent } from "./components/CreateAnAgent";
+import { Navbar } from "./components/Navbar";
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <MantineProvider defaultColorScheme="dark">
-      <Container size="lg">
-        <CreateAnAgent />
-      </Container>
-    </MantineProvider>
+    <AppShell padding="md">
+      <AppShell.Header>
+        <Navbar />
+      </AppShell.Header>
+      <AppShell.Main>
+        <Container size="xl">
+          <Outlet />
+        </Container>
+      </AppShell.Main>
+    </AppShell>
   );
 }
 
