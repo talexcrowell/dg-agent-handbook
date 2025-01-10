@@ -60,7 +60,8 @@ export const Profession: React.FC<{
         break;
     }
     skillDetails[index.toString()] = {
-      name: `${skillName} (${e})`,
+      type: e,
+      name: skillName,
       id: skill.id,
       value: skill.value,
     };
@@ -86,7 +87,8 @@ export const Profession: React.FC<{
         break;
     }
     optionalSkillDetails[index.toString()] = {
-      name: `${skillName} (${e})`,
+      type: e,
+      name: skillName,
       id: skill.id,
       value: skill.value,
     };
@@ -116,24 +118,24 @@ export const Profession: React.FC<{
     let additionalSkills = Object.keys(skillDetails).map(
       (item) => skillDetails[item]
     );
+    console.log(additionalSkills);
 
     let optionalAdditionalSkills = Object.keys(optionalSkillDetails).map(
       (item) => optionalSkillDetails[item]
     );
+    console.log(optionalAdditionalSkills);
 
     // Finalized and Organized Skills Object
     newObj.professionalSkills = [
-      ...newObj.professionalSkills
-        .filter((skill) => !isSkillChoice(skill))
-        .map((skill) => {
-          if (skill.id === "special") {
-            return selectedSpecial == "anthropology"
-              ? { id: "anthropology", name: "Anthropology", value: 50 }
-              : { id: "archeology", name: "Archeology", value: 50 };
-          } else {
-            return skill;
-          }
-        }),
+      ...newObj.professionalSkills.map((skill) => {
+        if (skill.id === "special") {
+          return selectedSpecial == "anthropology"
+            ? { id: "anthropology", name: "Anthropology", value: 50 }
+            : { id: "archeology", name: "Archeology", value: 50 };
+        } else {
+          return skill;
+        }
+      }),
       ...skillIdentities,
       ...additionalSkills,
       ...optionalAdditionalSkills,
@@ -158,22 +160,37 @@ export const Profession: React.FC<{
         <Group align="top">
           <List>
             <Text td="underline">Professional Skills:</Text>
-            {profession.professionalSkills.map((skill) => (
-              <List.Item>
-                {skill.name} {skill.value}%
-              </List.Item>
-            ))}
+            {profession.professionalSkills.map((skill) =>
+              isSkillChoice(skill) ? (
+                <List.Item>
+                  {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
+                  {skill.value}%
+                </List.Item>
+              ) : (
+                <List.Item>
+                  {skill.name} {skill.value}%
+                </List.Item>
+              )
+            )}
           </List>
           {profession.optionalSkills.length > 0 && (
             <List>
               <Text td="underline">
                 Choose {profession.numberOfOptionalSkills} of these:
               </Text>
-              {profession.optionalSkills.map((skill) => (
-                <List.Item>
-                  {skill.name} {skill.value}%
-                </List.Item>
-              ))}
+              {profession.optionalSkills.map((skill) =>
+                isSkillChoice(skill) ? (
+                  <List.Item>
+                    {skill.name} (
+                    {skill.type !== "" ? skill.type : "Choose One"}){" "}
+                    {skill.value}%
+                  </List.Item>
+                ) : (
+                  <List.Item>
+                    {skill.name} {skill.value}%
+                  </List.Item>
+                )
+              )}
             </List>
           )}
         </Group>
@@ -184,18 +201,16 @@ export const Profession: React.FC<{
   );
 
   const isSkillChoice = (skill) => {
-    if (skill.name.match(/\(Choose (One|Another)\)/gm)) {
-      switch (skill.id) {
-        case "art":
-        case "craft":
-        case "foreignLanguage":
-        case "militaryScience":
-        case "pilot":
-        case "science":
-          return true;
-        default:
-          return false;
-      }
+    switch (skill.id) {
+      case "art":
+      case "craft":
+      case "foreignLanguage":
+      case "militaryScience":
+      case "pilot":
+      case "science":
+        return true;
+      default:
+        return false;
     }
   };
 
@@ -239,7 +254,7 @@ export const Profession: React.FC<{
           </Grid.Col>
           <Grid.Col span={7}>
             <Stack>
-              {selectedProfession.name ? (
+              {selectedProfession?.name ? (
                 professionCard(selectedProfession)
               ) : (
                 <Card withBorder ta="start"></Card>
@@ -250,7 +265,7 @@ export const Profession: React.FC<{
       ) : (
         <Grid.Col span={9}>
           <Stack ta="start">
-            {selectedProfession.professionalSkills.filter(
+            {selectedProfession?.professionalSkills.filter(
               (skill) => skill.id === "special"
             ).length > 0 && (
               <Stack>
@@ -265,12 +280,12 @@ export const Profession: React.FC<{
                 />
               </Stack>
             )}
-            {selectedProfession.professionalSkills.filter((skill) =>
-              isSkillChoice(skill)
+            {selectedProfession?.professionalSkills.filter(
+              (skill) => isSkillChoice(skill) && skill.type === ""
             ).length > 0 && (
               <Stack>
                 <Text>Details of Professional Skills</Text>
-                {selectedProfession.professionalSkills
+                {selectedProfession?.professionalSkills
                   .filter((skill) => isSkillChoice(skill))
                   .map((skill, index) => (
                     <TextInput
@@ -341,6 +356,9 @@ export const Profession: React.FC<{
               Confirm {selectedProfession.numberOfOptionalSkills} Additional
               Professional Skill
               {selectedProfession.numberOfOptionalSkills > 1 ? "s" : ""}
+            </Button>
+            <Button bg="red" onClick={() => setConfirmedProfession(false)}>
+              Change Profession
             </Button>
           </Stack>
         </Grid.Col>

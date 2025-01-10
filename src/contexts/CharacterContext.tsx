@@ -6,6 +6,9 @@ const CharacterContext = createContext<any>(null);
 export const CharacterProvider = (props: any) => {
   const { children } = props;
 
+  let currentCharacter = localStorage.getItem("currentCharacter");
+  let savedCharacters = localStorage.getItem("savedCharacters");
+
   const initialState = {
     savedCharacters: [],
     currentCharacter: {},
@@ -33,7 +36,15 @@ export const CharacterProvider = (props: any) => {
     bonds: 0,
   };
 
-  const [state, dispatch] = useReducer(characterReducer, initialState);
+  const [state, dispatch] = useReducer(
+    characterReducer,
+    currentCharacter !== null && savedCharacters !== null
+      ? {
+          currentCharacter: JSON.parse(currentCharacter),
+          savedCharacters: JSON.parse(savedCharacters),
+        }
+      : initialState
+  );
   const actions = characterActions(dispatch);
 
   const context = useMemo(() => [{ ...state }, actions], [state, actions]);
@@ -63,6 +74,16 @@ const characterReducer = (state: any, action: any) => {
         ...state,
         ...action.payload,
       };
+    case "import-character":
+      return {
+        ...state,
+        savedCharacters: [...state.savedCharacters, { ...action.payload }],
+      };
+    case "delete-character":
+      return {
+        ...state,
+        savedCharacters: [...action.payload],
+      };
     default:
       return { ...state };
   }
@@ -75,6 +96,10 @@ const characterActions = (dispatch: any) => ({
     dispatch({ type: "change-character", payload: character }),
   updateCharacters: (character: any) =>
     dispatch({ type: "update-character", payload: character }),
+  importCharacter: (character: any) =>
+    dispatch({ type: "import-character", payload: character }),
+  deleteCharacter: (savedcharacterArr: any) =>
+    dispatch({ type: "import-character", payload: savedcharacterArr }),
 });
 
 export const useCharacterContext = () => {

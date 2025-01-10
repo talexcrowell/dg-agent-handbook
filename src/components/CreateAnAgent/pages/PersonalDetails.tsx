@@ -56,18 +56,21 @@ export const PersonalDetails: React.FC<{
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "name")}
               value={userAgent?.name}
+              required
             />
             <TextInput
               label="Codename"
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "codename")}
               value={userAgent?.codename}
+              required
             />
             <TextInput
               label="Profession"
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "profession")}
               value={userAgent?.profession}
+              required
             />
           </Group>
           <Group>
@@ -76,12 +79,14 @@ export const PersonalDetails: React.FC<{
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "employer")}
               value={userAgent?.employer}
+              required
             />
             <TextInput
               label="Nationality"
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "nationality")}
               value={userAgent?.nationality}
+              required
             />
           </Group>
           <Group>
@@ -89,22 +94,25 @@ export const PersonalDetails: React.FC<{
               label="Sex"
               w={100}
               onChange={(val) => handleAgentPersonalDetails(val, "sex")}
-              data={["M", "F", "-"]}
+              data={["M", "F", "NB", "-"]}
               value={userAgent?.sex}
+              required
             />
             <NumberInput
               label="Age"
               w={100}
-              min={18}
+              min={25}
               max={70}
               onChange={(val) => handleAgentPersonalDetails(val, "age")}
               value={userAgent?.age}
+              required
             />
             <TextInput
               label="Education and Occupational History"
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "education")}
               value={userAgent?.education}
+              required
             />
           </Group>
           <Textarea
@@ -121,14 +129,15 @@ export const PersonalDetails: React.FC<{
           />
           <Button
             component={Link}
-            to={`/agent/${
+            to={`/agents/${
               userAgent.codename ? userAgent.codename.toUpperCase() : ""
             }`}
             disabled={
               !userAgent?.name ||
               !userAgent?.codename ||
               !userAgent?.profession ||
-              !userAgent?.age
+              !userAgent?.age ||
+              !userAgent?.education
             }
             onClick={handleCreateAgent}
           >

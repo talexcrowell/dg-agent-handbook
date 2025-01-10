@@ -1,6 +1,7 @@
 import {
   Checkbox,
   CheckboxGroup,
+  Divider,
   Grid,
   Group,
   InputLabel,
@@ -10,6 +11,7 @@ import {
   Text,
   Textarea,
   TextInput,
+  Title,
 } from "@mantine/core";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 
@@ -17,7 +19,6 @@ export const Personal = () => {
   const [{ currentCharacter }] = useCharacterContext();
 
   let data = { ...currentCharacter };
-  console.log(data);
 
   const tableStatHeaders = [
     "Statistic",
@@ -92,48 +93,47 @@ export const Personal = () => {
 
   const tableAttributeHeaders = ["Attribute", "Maximum", "Current"];
 
-  const derivedAttributesArr = [
-    { label: "Hit Points (HP)", key: "hp" },
-    { label: "Willpower Points (WP)", key: "wp" },
-    { label: "Sanity Points (SAN)", key: "san" },
-    { label: "Breaking Point (BP)", key: "bp" },
-  ];
-
-  const calculateAttribute = (attribute: string) => {
-    const calculations = {
-      hp: Math.ceil((data.stats.strength + data.stats.constitution) / 2),
-      wp: data.stats.power,
-      san: data.stats.power * 5,
-      bp: data.stats.power * 5 - data.stats.power,
-    };
-    return calculations[attribute];
-  };
+  const calculateAttributesLabel = (attribute) =>
+    [
+      { label: "Hit Points (HP)", key: "hp" },
+      { label: "Willpower Points (WP)", key: "wp" },
+      { label: "Sanity Points (SAN)", key: "san" },
+      { label: "Breaking Point (BP)", key: "bp" },
+    ].filter((item) => item.key === attribute)[0].label;
 
   const tableBondHeaders = ["Bonds", "Score"];
   return (
     <Grid p="md">
       <Grid.Col span={12}>
-        <Group>
-          <TextInput label="Name" flex={1} value={data?.name} />
-          <TextInput label="Codename" flex={1} value={data?.codename} />
-        </Group>
-        <Group>
-          <TextInput label="Profession" flex={1} value={data?.profession} />
-          <TextInput label="Employer" flex={1} value={data?.employer} />
-          <TextInput label="Nationality" flex={1} value={data?.nationality} />
-        </Group>
-        <Group>
-          <TextInput label="Sex" w={100} value={data?.sex} />
-          <TextInput label="Age" w={100} value={data?.age} />
-          <TextInput
-            label="Education and Occupational History"
-            flex={1}
-            value={data?.education}
-          />
-        </Group>
+        <Stack>
+          <Title order={4} ta="start" td="underline">
+            Personal Data
+          </Title>
+          <Group ta="start">
+            <TextInput label="Name" flex={1} value={data?.name} />
+            <TextInput label="Codename" flex={1} value={data?.codename} />
+          </Group>
+          <Group ta="start">
+            <TextInput label="Profession" flex={1} value={data?.profession} />
+            <TextInput label="Employer" flex={1} value={data?.employer} />
+            <TextInput label="Nationality" flex={1} value={data?.nationality} />
+          </Group>
+          <Group ta="start">
+            <TextInput label="Sex" w={100} value={data?.sex} />
+            <TextInput label="Age" w={100} value={data?.age} />
+            <TextInput
+              label="Education and Occupational History"
+              flex={1}
+              value={data?.education}
+            />
+          </Group>
+        </Stack>
       </Grid.Col>
       <Grid.Col span={6}>
         <Stack>
+          <Title order={4} ta="start" td="underline">
+            Statistical Data
+          </Title>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -170,6 +170,9 @@ export const Personal = () => {
               })}
             </Table.Tbody>
           </Table>
+          <Title order={4} ta="start" td="underline">
+            Attributes
+          </Title>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -183,13 +186,16 @@ export const Personal = () => {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {derivedAttributesArr.map((attribute) => {
+              {Object.keys(data?.attributes).map((attribute) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>{attribute.label}</Table.Td>
-                    <Table.Td>{calculateAttribute(attribute.key)}</Table.Td>
+                    <Table.Td>{calculateAttributesLabel(attribute)}</Table.Td>
+                    <Table.Td>{data?.attributes[attribute].max}</Table.Td>
                     <Table.Td>
-                      <NumberInput w={100} />
+                      <NumberInput
+                        w={100}
+                        value={data?.attributes[attribute].current}
+                      />
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -200,6 +206,9 @@ export const Personal = () => {
       </Grid.Col>
       <Grid.Col span={6}>
         <Stack>
+          <Title order={4} ta="start" td="underline">
+            Psychological Data
+          </Title>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -255,6 +264,10 @@ export const Personal = () => {
               </CheckboxGroup>
             </Group>
           </Stack>
+          <Divider />
+          <Title order={4} ta="start" td="underline">
+            Injuries
+          </Title>
           <Textarea label="Wounds and Ailments" ta="start" rows={5} />
         </Stack>
       </Grid.Col>

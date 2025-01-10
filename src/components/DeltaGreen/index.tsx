@@ -1,4 +1,4 @@
-import { Grid, Stack, Tabs, Text, Title } from "@mantine/core";
+import { Grid, ScrollArea, Stack, Tabs, Text, Title } from "@mantine/core";
 import { Overview } from "./pages/Overview";
 import { WorldOfDeltaGreen } from "./pages/WorldOfDeltaGreen";
 import { WhatIsDeltaGreen } from "./pages/WhatIsDeltaGreen";
@@ -18,22 +18,34 @@ export const DeltaGreen = () => {
         <Tabs.Tab value="agent">How to Play an Agent</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="overview">
-        <Overview />
+        <ScrollArea>
+          <Overview />
+        </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="world">
-        <WorldOfDeltaGreen />
+        <ScrollArea>
+          <WorldOfDeltaGreen />
+        </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="what">
-        <WhatIsDeltaGreen />
+        <ScrollArea>
+          <WhatIsDeltaGreen />
+        </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="fundamentals">
-        <Fundamentals />
+        <ScrollArea>
+          <Fundamentals />
+        </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="game">
-        <HowTheGameIsPlayed />
+        <ScrollArea>
+          <HowTheGameIsPlayed />
+        </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="agent">
-        <HowToPlayAnAgent />
+        <ScrollArea>
+          <HowToPlayAnAgent />
+        </ScrollArea>
       </Tabs.Panel>
     </Tabs>
   );
