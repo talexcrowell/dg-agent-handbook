@@ -171,13 +171,94 @@ export const Sanity = () => {
             the strength of Bonds. But suffering a trauma always comes with a
             cost.
           </Text>
+          <Title order={3}>Adapting to Sanity Loss</Title>
+          <Text>
+            Adaptation to violence or to helplessness means you always succeed
+            at a Sanity roll for that type of trauma.
+          </Text>
+          <Text>
+            Adaptation to violence or adaptation to helplessness occurs after
+            your Agent has lost SAN from that kind of trauma three times in a
+            row without going temporarily insane from it or hitting the Breaking
+            Point. The character sheet has spaces to mark your Agent’s progress
+            toward adaptation. Each time violence or helplessness reduces your
+            Agent’s SAN by 1 or more, mark a box on your character sheet to keep
+            track of it. If your Agent suffers insanity from violence before all
+            three boxes are marked, erase all the “Violence” boxes and start
+            again. If your Agent suffers insanity from helplessness before all
+            three boxes are marked, erase all the “Helplessness” boxes and start
+            again. If you fill in all three boxes for violence or all three for
+            helplessness, your Agent becomes adapted to it.
+          </Text>
+          <Text>
+            <Text fw={700}>Adapting to Violence:</Text> Unfortunately, being
+            adapted to violence means your Agent’s empathy suffers. He or she
+            permanently loses 1D6 CHA and the same amount from each Bond.
+          </Text>
+          <Text>
+            <Text fw={700}>Adapting to Helplessness:</Text> Being adapted to
+            helplessness means your Agent’s personal drive suffers. As soon as
+            your Agent becomes adapted to helplessness, he or she permanently
+            loses 1D6 POW.
+          </Text>
+          <Text>
+            <Text fw={700}>Adapting to the Unnatural:</Text> There is no
+            adapting to the unnatural. Things that exist beyond human
+            comprehension are beyond “getting used to.” Every new encounter is a
+            fresh shock. The only way to “adapt” to the Unnatural is to reach 0
+            SAN, whereupon the horrors make perfect sense and no longer inflict
+            mental damage.
+          </Text>
+          <Title order={3}>Projecting Onto a Bond</Title>
+          <Text>
+            When your Agent loses SAN, you may spend WP to reduce the loss. The
+            amount is always 1D4: roll the die and reduce your WP by that much.
+          </Text>
+          <Text>
+            If your Agent still has at least 1 WP, reduce the SAN loss by the
+            amount of WP spent—the amount you rolled—to a minimum of zero.
+          </Text>
+          <Text>
+            Now reduce a Bond’s score by the same amount. The next time your
+            Agent interacts with the subject of the Bond, decide what shape the
+            projection takes.
+          </Text>
+          <Title order={3}>Repressing Insanity</Title>
+          <Text>
+            You may attempt to repress the blind panic of temporary insanity or
+            an acute episode of a disorder by spending Willpower Points. The
+            amount is always 1D4: roll the die and reduce your WP by that much.
+          </Text>
+          <Text>
+            If your Agent has at least 1 WP after spending the 1D4, describe how
+            a Bond might help your Agent keep it together. Reduce the Bond by
+            the same amount. Make a note to describe later how the Bond becomes
+            strained as your Agent takes too much support from it.
+          </Text>
+          <Text>
+            Now attempt a Sanity roll. If it succeeds, your Agent suppresses the
+            insanity or disorder and behaves normally.
+          </Text>
           <Divider />
           <Title order={2}>Recovery</Title>
           <Text>There are only a few ways to restore mental health.</Text>
+          <Title order={3}>Therapy or Home Life</Title>
           <Text>
             After the mission your Agent can attempt to recuperate with
             professional help or by focusing on his or her Bonds; the things
             that give your Agent strength.
+          </Text>
+          <Title order={3}>Destroying the Unnatural</Title>
+          <Text>
+            Destroying an unnatural creature or an object known to contain
+            otherworldly power restores an amount of SAN equivalent to the
+            lowest amount that could be lost for encountering it.
+          </Text>
+          <Text>
+            If the SAN loss is 1/1D6, for example, destroying it restores 1 SAN.
+            If the SAN loss is 1D6/1D20, your Agent gains 1D6 SAN for destroying
+            it. This can mean your Agent gains more SAN from overcoming the
+            threat than he or she actually lost from facing it.
           </Text>
           <Divider />
         </Stack>

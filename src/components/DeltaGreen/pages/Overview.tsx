@@ -1,11 +1,14 @@
-import { Grid, Stack, Text, Title } from "@mantine/core";
+import { Flex, Grid, Image, Stack, Text, Title } from "@mantine/core";
 
 export const Overview = () => {
   return (
-    <Grid ta='start' p='md'>
+    <Grid p="md">
       <Grid.Col span={12}>
-        <Stack>
-          <Title td='underline'>Overview</Title>
+        <Stack ta="start">
+          <Flex justify={"center"}>
+            <Image src="https://i.imgur.com/GvYNgBC.png" w={320} />
+          </Flex>
+          <Text>Welcome to Delta Green.</Text>
           <Text>
             Players come to Delta Green for all kinds of reasons. They’re eager
             to solve a mystery, kill a villain, or destroy a monster. These

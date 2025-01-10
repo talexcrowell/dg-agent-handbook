@@ -3,6 +3,7 @@ import { HowToPlay } from "./pages/HowToPlay";
 import { Combat } from "./pages/Combat";
 import { Sanity } from "./pages/Sanity";
 import { Home } from "./pages/Home";
+import { TrainingVideo } from "./pages/TrainingVideo";
 
 export const Rules = () => {
   return (
@@ -12,6 +13,7 @@ export const Rules = () => {
         <Tabs.Tab value="combat">Combat</Tabs.Tab>
         <Tabs.Tab value="sanity">Sanity</Tabs.Tab>
         <Tabs.Tab value="home">Home</Tabs.Tab>
+        <Tabs.Tab value="training">Training Video</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="game">
         <ScrollArea h={"95vh"}>
@@ -32,6 +34,9 @@ export const Rules = () => {
         <ScrollArea h={"95vh"}>
           <Home />
         </ScrollArea>
+      </Tabs.Panel>
+      <Tabs.Panel value="training">
+        <TrainingVideo />
       </Tabs.Panel>
     </Tabs>
   );
