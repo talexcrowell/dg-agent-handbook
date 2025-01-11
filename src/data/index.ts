@@ -320,7 +320,7 @@ export const additionalProfessions = [
       { id: "bureaucracy", name: "Bureaucracy", value: 40 },
       { id: "criminology", name: "Criminology", value: 50 },
       { id: "disguise", name: "Disguise", value: 50 },
-      { id: "drive", name: "drive", value: 40 },
+      { id: "drive", name: "Drive", value: 40 },
       { id: "firearms", name: "Firearms", value: 40 },
       {
         id: "foreignLanguage",

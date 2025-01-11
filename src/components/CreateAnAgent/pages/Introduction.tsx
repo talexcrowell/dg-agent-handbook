@@ -43,7 +43,7 @@ export const Introduction: React.FC<{
             campaigns or one-shots, they are used to add more character depth to
             your agent.
           </Text>
-          <Button onClick={() => handleProgressValue(1)}>
+          <Button onClick={() => handleProgressValue(1)} bg={"green"}>
             Continue to Agent Creation
           </Button>
         </Stack>

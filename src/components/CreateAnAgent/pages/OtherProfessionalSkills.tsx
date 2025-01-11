@@ -24,6 +24,7 @@ import {
   skillPackages,
   skillsMasterList,
 } from "../../../data";
+import styles from "../../../Element.module.css";
 
 export const OtherProfessionalSkills: React.FC<{
   handleAgentOtherSkills: (newSkills: any) => void;
@@ -43,7 +44,7 @@ export const OtherProfessionalSkills: React.FC<{
   };
 
   const handleSelectSkill = (skill) => {
-    if (skillChoices.length > skill.length) {
+    if (skillChoices.length >= skill.length) {
       setCount(count + 1);
       setSkillChoices([
         ...skillChoices.filter((choice: any) => skill.includes(choice.name)),
@@ -69,8 +70,6 @@ export const OtherProfessionalSkills: React.FC<{
   };
 
   const handleSelectAdditionalSkill = (skill) => {
-    console.log(skill);
-
     if (skillChoices.length > skill.length) {
       setCount(count + 1);
       setSkillChoices([
@@ -542,6 +541,8 @@ export const OtherProfessionalSkills: React.FC<{
               <Button
                 onClick={() => handleAgentOtherSkills(skillChoices)}
                 disabled={count !== 0}
+                color={"green"}
+                fullWidth
               >
                 Confirm Bonus Skills
               </Button>
@@ -550,27 +551,42 @@ export const OtherProfessionalSkills: React.FC<{
         ) : (
           <>
             <Grid.Col span={5}>
-              <ScrollArea h={625}>
-                {skillPackages.map((skillPackage) => {
-                  return (
-                    <Card
-                      withBorder
-                      onClick={() => handleSelectSkillPackage(skillPackage)}
-                    >
-                      {skillPackage.name}
-                    </Card>
-                  );
-                })}
-              </ScrollArea>
-            </Grid.Col>
-            <Grid.Col span={7}>
               <Stack>
+                <Title order={3}>Bonus Skill Package List</Title>
+                <ScrollArea h={625}>
+                  {skillPackages.map((skillPackage) => {
+                    return (
+                      <Card
+                        withBorder
+                        onClick={() => handleSelectSkillPackage(skillPackage)}
+                        className={
+                          styles.hoverElement +
+                          " " +
+                          (selectedPackage &&
+                          skillPackage.name === selectedPackage.name
+                            ? styles.selectedElement
+                            : "")
+                        }
+                      >
+                        {skillPackage.name}
+                      </Card>
+                    );
+                  })}
+                </ScrollArea>
+              </Stack>
+            </Grid.Col>
+            <Divider orientation="vertical" mx="md" />
+            <Grid.Col span={6}>
+              <Stack>
+                <Title order={3}>Bonus Skill Package Details</Title>
                 {selectedPackage && (
                   <Card withBorder ta="start">
                     <Stack>
-                      <Text fw={700}>{selectedPackage.name}</Text>
+                      <Title order={3}>{selectedPackage.name}</Title>
                       <List>
-                        <Text td="underline">Professional Skills:</Text>
+                        <Text fw={700} td={"underline"}>
+                          These skills get +20%:
+                        </Text>
                         {selectedPackage.professionalSkills.map((skill) => (
                           <List.Item>{skill.name}</List.Item>
                         ))}
@@ -586,7 +602,10 @@ export const OtherProfessionalSkills: React.FC<{
                           </List.Item>
                         )}
                       </List>
-                      <Button onClick={() => setConfirmedPackage(true)}>
+                      <Button
+                        onClick={() => setConfirmedPackage(true)}
+                        color={"green"}
+                      >
                         Confirm Bonus Skills
                       </Button>
                     </Stack>
@@ -600,10 +619,10 @@ export const OtherProfessionalSkills: React.FC<{
         <>
           <Grid.Col span={12} ta="start">
             <Stack>
-              <Title order={2}>Bonus Skill Package</Title>
-              <Title order={4} td="underline">
-                {selectedPackage.name}
+              <Title order={2} td="underline">
+                Selected Bonus Skill Package
               </Title>
+              <Title order={3}>{selectedPackage.name}</Title>
             </Stack>
           </Grid.Col>
           <Grid.Col span={6}>
@@ -726,7 +745,10 @@ export const OtherProfessionalSkills: React.FC<{
               >
                 Change Package
               </Button>
-              <Button onClick={handleSpecialChoiceAndSpecialties}>
+              <Button
+                onClick={handleSpecialChoiceAndSpecialties}
+                color={"green"}
+              >
                 Confirm Package Details
               </Button>
             </Group>

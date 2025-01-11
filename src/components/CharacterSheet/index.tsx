@@ -1,10 +1,12 @@
 import {
   Checkbox,
   CheckboxGroup,
+  Divider,
   Grid,
   Group,
   InputLabel,
   NumberInput,
+  ScrollArea,
   Stack,
   Table,
   Tabs,
@@ -18,6 +20,7 @@ import { Equipment } from "./pages/Equipment";
 import { Notes } from "./pages/Notes";
 import {
   IconBackpack,
+  IconFile,
   IconList,
   IconNotes,
   IconUser,
@@ -27,8 +30,11 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
   userAgent,
 }) => {
   return (
-    <Tabs orientation="vertical" defaultValue="personal">
+    <Tabs orientation="vertical" defaultValue="all">
       <Tabs.List>
+        <Tabs.Tab value="all" leftSection={<IconFile />}>
+          All
+        </Tabs.Tab>
         <Tabs.Tab value="personal" leftSection={<IconUser />}>
           Personal
         </Tabs.Tab>
@@ -42,6 +48,17 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
           Notes
         </Tabs.Tab>
       </Tabs.List>
+      <Tabs.Panel value="all">
+        <ScrollArea h={"95vh"}>
+          <Personal />
+          <Divider />
+          <Skills />
+          <Divider />
+          <Equipment />
+          <Divider />
+          <Notes />
+        </ScrollArea>
+      </Tabs.Panel>
       <Tabs.Panel value="personal">
         <Personal />
       </Tabs.Panel>

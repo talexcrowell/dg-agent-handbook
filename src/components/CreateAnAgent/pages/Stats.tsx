@@ -315,7 +315,7 @@ export const Stats: React.FC<{
           {statType === "roll" ? (
             <Button onClick={handleStatRoll}>Roll</Button>
           ) : (
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset} bg='red'>Reset</Button>
           )}
         </Group>
       </Grid.Col>
@@ -403,6 +403,7 @@ export const Stats: React.FC<{
           <Button
             onClick={() => handleAgentStats({ ...stats })}
             disabled={Object.values(stats).includes(0)}
+            color={'green'}
           >
             Confirm Statistics
           </Button>

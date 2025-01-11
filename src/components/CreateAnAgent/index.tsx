@@ -138,7 +138,6 @@ export const CreateAnAgent: React.FC = () => {
       let userAgentSkillChoiceArr = newObj[filteredArrAdditional[i].id].filter(
         (item) => item.label !== filteredArrAdditional[i].label
       );
-      console.log(userAgentSkillChoiceArr);
       newObj[filteredArrAdditional[i].id] = [
         ...userAgentSkillChoiceArr,
         {
@@ -236,6 +235,29 @@ export const CreateAnAgent: React.FC = () => {
           "savedCharacters",
           JSON.stringify([{ ...userAgent }])
         );
+
+    setUserAgent({
+      name: "",
+      codename: "",
+      profession: "",
+      employer: "",
+      nationality: "",
+      sex: "",
+      age: "",
+      education: "",
+      personality: "",
+      motivations: "",
+      stats: {
+        strength: 0,
+        constitution: 0,
+        dexterity: 0,
+        intelligence: 0,
+        power: 0,
+        charisma: 0,
+      },
+      skills: { ...defaultSkillValues },
+      bonds: 0,
+    });
   };
 
   let page;

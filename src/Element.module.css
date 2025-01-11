@@ -1,0 +1,14 @@
+.hoverElement {
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    background-color: var(--mantine-color-gray-7);
+  }
+}
+
+.selectedElement {
+  cursor: pointer;
+  background-color: var(--mantine-color-gray-7);
+  border-color: var(--mantine-color-dark-1);
+  transition: 0.5s;
+}

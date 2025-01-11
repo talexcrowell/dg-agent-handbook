@@ -163,6 +163,7 @@ export const Bonds: React.FC<{
           <Button
             onClick={() => handleAgentBonds(bonds)}
             disabled={bonds.filter((bond) => bond.name === "").length > 0}
+            color={'green'}
           >
             Confirm Bonds
           </Button>

@@ -94,7 +94,7 @@ export const PersonalDetails: React.FC<{
               label="Sex"
               w={100}
               onChange={(val) => handleAgentPersonalDetails(val, "sex")}
-              data={["M", "F", "NB", "-"]}
+              data={["M", "F", "DND"]}
               value={userAgent?.sex}
               required
             />
@@ -140,6 +140,7 @@ export const PersonalDetails: React.FC<{
               !userAgent?.education
             }
             onClick={handleCreateAgent}
+            color={'green'}
           >
             Create Agent
           </Button>
