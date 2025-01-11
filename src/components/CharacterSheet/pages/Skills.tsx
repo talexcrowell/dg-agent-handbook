@@ -4,6 +4,7 @@ import {
   Group,
   Stack,
   Table,
+  TableTr,
   Text,
   TextInput,
   Title,
@@ -105,7 +106,7 @@ export const Skills = () => {
                   </Group>
                 </Table.Td>
                 <Table.Td>
-                  <Text>
+                  <Text ta="center">
                     {isSkillChoice(key)
                       ? currentCharacter.skills[key][0].skill
                       : currentCharacter.skills[key]}
@@ -150,7 +151,7 @@ export const Skills = () => {
                   </Group>
                 </Table.Td>
                 <Table.Td>
-                  <Text>
+                  <Text ta="center">
                     {isSkillChoice(key)
                       ? currentCharacter.skills[key][0].skill
                       : currentCharacter.skills[key]}
@@ -195,7 +196,7 @@ export const Skills = () => {
                   </Group>
                 </Table.Td>
                 <Table.Td>
-                  <Text>
+                  <Text ta="center">
                     {isSkillChoice(key)
                       ? currentCharacter.skills[key][0].skill
                       : currentCharacter.skills[key]}
@@ -208,7 +209,7 @@ export const Skills = () => {
         </Table>
       </Grid.Col>
       <Grid.Col span={12}>
-        <Title order={4} ta="start" my="sm" td='underline'>
+        <Title order={4} ta="start" my="sm" td="underline">
           Other Skills and Foreign Languages
         </Title>
       </Grid.Col>
@@ -271,7 +272,13 @@ export const Skills = () => {
               <Table.Th>Skill or Stat Used</Table.Th>
             </Table.Tr>
           </Table.Thead>
-          <Table.Tbody></Table.Tbody>
+          <Table.Tbody>
+            <Table.Tr>
+              <Table.Td>
+                <Text c="dimmed">NONE</Text>
+              </Table.Td>
+            </Table.Tr>
+          </Table.Tbody>
         </Table>
       </Grid.Col>
     </Grid>

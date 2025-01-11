@@ -1,10 +1,15 @@
-import { Grid, Table, Textarea } from "@mantine/core";
+import { Grid, Stack, Table, Textarea, Title } from "@mantine/core";
 
 export const Equipment = () => {
   return (
     <Grid p="md">
       <Grid.Col span={12}>
-        <Textarea label="Armor and Gear" rows={10} ta="start" />
+        <Stack>
+          <Title order={4} td="underline">
+            Equipment
+          </Title>
+          <Textarea label="Armor and Gear" rows={10} ta="start" />
+        </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
         <Table withColumnBorders withTableBorder>

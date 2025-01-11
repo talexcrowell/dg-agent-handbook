@@ -161,8 +161,8 @@ export const Personal = () => {
                         w={100}
                       />
                     </Table.Td>
-                    <Table.Td>{data.stats[stat.toLowerCase()] * 5}</Table.Td>
-                    <Table.Td>
+                    <Table.Td ta="center">{data.stats[stat.toLowerCase()] * 5}</Table.Td>
+                    <Table.Td ta="center">
                       {handleDistinguishingFeatures(stat.toLowerCase())}
                     </Table.Td>
                   </Table.Tr>
@@ -190,8 +190,8 @@ export const Personal = () => {
                 return (
                   <Table.Tr>
                     <Table.Td>{calculateAttributesLabel(attribute)}</Table.Td>
-                    <Table.Td>{data?.attributes[attribute].max}</Table.Td>
-                    <Table.Td>
+                    <Table.Td ta="center">{data?.attributes[attribute].max}</Table.Td>
+                    <Table.Td >
                       <NumberInput
                         w={100}
                         value={data?.attributes[attribute].current}
