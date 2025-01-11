@@ -5,7 +5,7 @@ export const Home = () => {
     <Grid p="md" ta="start">
       <Grid.Col span={12}>
         <Stack>
-          <Title>Home</Title>
+          <Title td="underline">Home</Title>
           <Text>
             Delta Green features occasional scenes that focus on Agents’
             everyday lives. These short vignettes should last no more than a few
@@ -19,9 +19,13 @@ export const Home = () => {
             is appropriate.
           </Text>
           <Divider />
-          <Title order={2}>What Changed</Title>
+          <Title order={2} td="underline">
+            What Changed
+          </Title>
           <Divider />
-          <Title order={2}>Personal Pursuits</Title>
+          <Title order={2} td="underline">
+            Personal Pursuits
+          </Title>
           <Title order={3}>Fulfill Responsibilities</Title>
           <Text>
             If your Agent focuses on ordinary obligations and relationships,
@@ -110,9 +114,13 @@ export const Home = () => {
             points as your Agent spends more and more time on awful things.
           </Text>
           <Divider />
-          <Title order={2}>Getting Fired</Title>
+          <Title order={2} td="underline">
+            Getting Fired
+          </Title>
           <Divider />
-          <Title order={2}>Prosecution</Title>
+          <Title order={2} td="underline">
+            Prosecution
+          </Title>
           <Divider />
         </Stack>
       </Grid.Col>

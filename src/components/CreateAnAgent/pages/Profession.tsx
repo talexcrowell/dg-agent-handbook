@@ -14,7 +14,7 @@ import {
   Title,
 } from "@mantine/core";
 import React, { useState } from "react";
-import { professions } from "../../../data";
+import { additionalProfessions, professions } from "../../../data";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
@@ -242,6 +242,16 @@ export const Profession: React.FC<{
         <>
           <Grid.Col span={5}>
             {professions.map((profession) => {
+              return (
+                <Card
+                  withBorder
+                  onClick={() => handleSelectProfession(profession)}
+                >
+                  {profession.name}
+                </Card>
+              );
+            })}
+            {additionalProfessions.map((profession) => {
               return (
                 <Card
                   withBorder

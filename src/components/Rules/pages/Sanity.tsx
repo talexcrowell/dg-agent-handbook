@@ -5,7 +5,7 @@ export const Sanity = () => {
     <Grid p="md" ta="start">
       <Grid.Col span={12}>
         <Stack>
-          <Title>Sanity</Title>
+          <Title td="underline">Sanity</Title>
           <Text>
             Sanity Points represent the resilience of the relationship between
             your Agent’s personality and the world.
@@ -18,7 +18,9 @@ export const Sanity = () => {
             Agent is forever lost.
           </Text>
           <Divider />
-          <Title order={2}>Rules of Thumb for SAN Loss</Title>
+          <Title order={2} td="underline">
+            Rules of Thumb for SAN Loss
+          </Title>
           <Text>
             If the cost of failing a SAN test is 1D6 or less, the cost of
             success is usually zero. If the cost of failure is 1D8 or 1D10, the
@@ -34,7 +36,9 @@ export const Sanity = () => {
             points.
           </Text>
           <Divider />
-          <Title order={2}>Threats to SAN</Title>
+          <Title order={2} td="underline">
+            Threats to SAN
+          </Title>
           <Text>
             The three major threats to SAN are violence, helplessness and the
             Unnatural. These categories can overlap.
@@ -70,13 +74,17 @@ export const Sanity = () => {
             cosmos, the harder it is to navigate the human world.
           </Text>
           <Divider />
-          <Title order={2}>Insanity and Disorders</Title>
+          <Title order={2} td="underline">
+            Insanity and Disorders
+          </Title>
           <Text>
             Agents who lose excessive SAN lose control of themselves, suffering
             insanity and mental disorders.
           </Text>
           <Divider />
-          <Title order={2}>Temporary Insanity</Title>
+          <Title order={2} td="underline">
+            Temporary Insanity
+          </Title>
           <Text>
             After losing 5 or more SAN in a single roll, your Agent loses
             self-control. For a short time you cannot control your Agent’s
@@ -117,7 +125,9 @@ export const Sanity = () => {
             common reaction against Unnatural and helplessness SAN threats.
           </Text>
           <Divider />
-          <Title order={2}>Disorders</Title>
+          <Title order={2} td="underline">
+            Disorders
+          </Title>
           <Text>
             An Agent whose SAN reaches the Breaking Point gains a disorder. When
             suffering from a disorder, the mind maladapts to mental trauma with
@@ -155,7 +165,9 @@ export const Sanity = () => {
             can diagnose your Agent’s particular disorder.
           </Text>
           <Divider />
-          <Title order={2}>Permanent Insanity</Title>
+          <Title order={2} td="underline">
+            Permanent Insanity
+          </Title>
           <Text>
             An Agent who drops to 0 SAN is effectively “lost.” Just as being
             reduced to 0 Hit Points permanently removes your Agent from your
@@ -165,7 +177,9 @@ export const Sanity = () => {
             therapy or treatment will ever bring them back.
           </Text>
           <Divider />
-          <Title order={2}>Resisting Insanity</Title>
+          <Title order={2} td="underline">
+            Resisting Insanity
+          </Title>
           <Text>
             It’s possible to resist SAN loss and insanity through adaptation and
             the strength of Bonds. But suffering a trauma always comes with a
@@ -240,7 +254,9 @@ export const Sanity = () => {
             insanity or disorder and behaves normally.
           </Text>
           <Divider />
-          <Title order={2}>Recovery</Title>
+          <Title order={2} td="underline">
+            Recovery
+          </Title>
           <Text>There are only a few ways to restore mental health.</Text>
           <Title order={3}>Therapy or Home Life</Title>
           <Text>

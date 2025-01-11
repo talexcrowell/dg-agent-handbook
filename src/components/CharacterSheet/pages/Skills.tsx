@@ -208,7 +208,7 @@ export const Skills = () => {
         </Table>
       </Grid.Col>
       <Grid.Col span={12}>
-        <Title order={4} ta="start" my="sm">
+        <Title order={4} ta="start" my="sm" td='underline'>
           Other Skills and Foreign Languages
         </Title>
       </Grid.Col>

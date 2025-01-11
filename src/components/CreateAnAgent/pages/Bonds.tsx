@@ -14,6 +14,7 @@ import {
   Title,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { additionalProfessions, professions } from "../../../data";
 
 export const Bonds: React.FC<{
   handleAgentBonds: (bonds: any) => void;
@@ -58,8 +59,12 @@ export const Bonds: React.FC<{
     setBonds([...newArr]);
   };
   let bondInputs;
-  switch (userAgent.profession) {
-    case "Special Operator":
+  switch (
+    [...professions, ...additionalProfessions].filter(
+      (item) => item.name === userAgent.profession
+    )[0].bonds
+  ) {
+    case 2:
       bondInputs = (
         <Stack>
           <TextInput
@@ -75,9 +80,7 @@ export const Bonds: React.FC<{
         </Stack>
       );
       break;
-    case "Computer Scientist or Engineer":
-    case "Federal Agent":
-    case "Physician":
+    case 3:
       bondInputs = (
         <Stack>
           <TextInput
@@ -98,8 +101,7 @@ export const Bonds: React.FC<{
         </Stack>
       );
       break;
-    case "Anthropologist or Historian":
-    case "Scientist":
+    case 4:
       bondInputs = (
         <Stack>
           <TextInput
