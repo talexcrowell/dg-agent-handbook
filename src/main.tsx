@@ -12,7 +12,6 @@ import { AgentRoster } from "./components/AgentRoster/index.tsx";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
-import { TrainingVideo } from "./components/Rules/pages/TrainingVideo.tsx";
 
 const router = createHashRouter([
   {
@@ -26,7 +25,6 @@ const router = createHashRouter([
       { path: "/agents/new", element: <CreateAnAgent /> },
       { path: "/agents/:codename", element: <CharacterSheet /> },
       
-      { path: "/training-video", element: <TrainingVideo /> },
     ],
   },
 ]);

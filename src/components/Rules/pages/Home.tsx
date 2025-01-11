@@ -22,6 +22,31 @@ export const Home = () => {
           <Title order={2} td="underline">
             What Changed
           </Title>
+          <Text>
+            In a home vignette, take stock of what changed for your Agent in the
+            last operation.
+          </Text>
+          <Text>
+            <Text fw={700}>Bonds Damaged or Broken:</Text> Describe how each
+            relationship has deteriorated.
+          </Text>
+          <Text>
+            <Text fw={700}>Permanent Injuries:</Text> Describe what they look
+            like.
+          </Text>
+          <Text>
+            <Text fw={700}>Disorders Gained:</Text>Did your Agent hit the
+            Breaking Point during the operation? Now’s the time for the Handler
+            to decide what disorder the Agent gains.
+          </Text>
+          <Text>
+            <Text fw={700}>Work:</Text>If your Agent misused his or her con-
+            tacts, authority, or resources from his or her day job, describe how
+            actions during the operation may have impacted your Agent’s career.
+          </Text>
+          <Text>
+            <Text fw={700}>Prosecution:</Text>Did your Agent get arrested?
+          </Text>
           <Divider />
           <Title order={2} td="underline">
             Personal Pursuits
@@ -60,7 +85,44 @@ export const Home = () => {
             Delta Green) by 1.
           </Text>
           <Title order={3}>Go to Therapy</Title>
-          <Text></Text>
+          <Text>
+            Therapy is a systematic deconstruction of mental trauma. It is an
+            ongoing process requiring honesty and commitment. Going to therapy
+            reduces a Bond (other than one for Delta Green) by 1 as you let
+            responsibilities lapse. Therapy requires a Luck roll or a roll of
+            the therapist’s Psychotherapy skill.
+          </Text>
+          <Text>
+            Your Agent must decide whether to truthfully tell the therapist what
+            caused the SAN loss. If your Agent tells the truth, there are risks.
+            If the SAN loss came from confronting the unnatural, the Handler
+            decides whether the therapist believes what your Agent says. The
+            therapist may in turn lose SAN from the Agent’s stories. If the
+            therapist thinks the Agent’s stories are lies or delusions, make the
+            Luck roll at −20%. If the Luck roll fails, your Agent gains 1 SAN,
+            or loses 1 with a fumble. If the Luck roll succeeds, your Agent
+            gains 1D6 SAN (or 6 with a critical success). If your Agent
+            describes illegal violence and it sounds like further violence is
+            imminent, the Handler may decide the therapist reports it to the
+            authorities.
+          </Text>
+          <Text>
+            If your Agent does not tell the therapist the truth, healing is
+            limited. If the Luck roll fails, your Agent gains no SAN, and loses
+            1 on a fumble. If it succeeds, your Agent gains 1D4 SAN (or 4 for a
+            critical success).
+          </Text>
+          <Text>
+            If your Agent suffers from a disorder, a critical success with
+            therapy’s Luck roll cures it (whether your Agent told the truth or
+            not). Your Agent develops a Bond with the therapist equal to half
+            your Agent’s CHA (or add 1D4 to it if your Agent already has that
+            Bond), and loses 1D4 from one other Bond of your choice. Write
+            “cured” next to the disorder on the character sheet—but do not erase
+            it. The next time you gain a disorder, you must roll another SAN
+            test. If that fails, the “cured” disorder returns in full force
+            alongside the new one.
+          </Text>
           <Title order={3}>Improve Skills or Stats</Title>
           <Text>
             By training or studying extensively, your Agent can try to boost any
@@ -117,10 +179,68 @@ export const Home = () => {
           <Title order={2} td="underline">
             Getting Fired
           </Title>
+          <Text>
+            Delta Green often requires Agents to leave their jobs behind at
+            short notice, to flash their badges under flimsy pretexts, to misuse
+            agency funds, and to return to work injured or shaken from PTSD.
+            Describe that kind of blowback in a “Home” vignette between
+            operations.
+          </Text>
+          <Text>
+            If your Agent has pushed his or her luck once too often, the Handler
+            might say your Agent’s job is on the line. It might require a CHA
+            test to get back into a supervisor’s good graces. If things have
+            really gone wrong and it looks like there’s little hope, it might
+            need a Persuade or Bureaucracy test to suffer a mere suspension or
+            disciplinary action. If the CHA or skill test fails, your Agent gets
+            fired.
+          </Text>
+          <Text>
+            Getting fired costs 0/1 SAN from helplessness. You must make a CHA
+            test for each Bond (including Delta Green Bonds) or lose 1D4 points
+            from it. The test is at −20% if the Bond is a colleague from the
+            job.
+          </Text>
           <Divider />
           <Title order={2} td="underline">
             Prosecution
           </Title>
+          <Text>
+            Delta Green Agents routinely violate major laws. Sometimes they get
+            caught, and sometimes Delta Green can’t cover it up.
+          </Text>
+          <Text>
+            If your Agent is prosecuted for crimes, the result is determined in
+            a between-missions “Home” vignette. An ambitious Handler might have
+            other Agents brought in as witnesses and play out a few minutes of
+            questioning.
+          </Text>
+          <Text>
+            Make a Luck roll. If the Handler thinks the case against your Agent
+            is especially strong, the roll is at a −20% penalty. If the case is
+            especially weak, or if the Handler decides Delta Green is quietly
+            pulling strings on your Agent’s behalf, it’s at a +20% bonus.
+          </Text>
+          <Text>
+            Before making the Luck roll, you can attempt a Law roll to work the
+            system. Success adds a +20% bonus, or +40% with a critical; failure
+            backfires and incurs a −20% penalty, or −40% with a fumble.
+          </Text>
+          <Text>
+            If the Luck roll succeeds, your Agent is acquitted or the case is
+            dropped. But the stress of it can be terrible. You must make a CHA
+            test for each Bond (including Delta Green Bonds) or lose 1D4 points
+            from it.
+          </Text>
+          <Text>
+            If the Luck roll fails, your Agent is convicted at trial or must
+            admit guilt in a plea bargain. Your Agent automatically loses his or
+            her job and loses 0/1D4 SAN from helplessness. And you must make a
+            CHA test for each Bond, including Delta Green Bonds. Success means
+            the Bond drops by one point. Failure means it drops by 1D6. Whether
+            your Agent winds up in prison, on probation, and/or hit with
+            catastrophic fines is up to the Handler.
+          </Text>
           <Divider />
         </Stack>
       </Grid.Col>
