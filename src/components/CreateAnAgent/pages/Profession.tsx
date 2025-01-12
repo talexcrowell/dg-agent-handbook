@@ -170,7 +170,9 @@ export const Profession: React.FC<{
                 w={250}
                 label={
                   skillsMasterList.filter((item) => item.id === skill.id)[0]
-                    .definition
+                    ? skillsMasterList.filter((item) => item.id === skill.id)[0]
+                        .definition
+                    : ""
                 }
                 multiline
                 openDelay={500}
