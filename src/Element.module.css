@@ -12,3 +12,7 @@
   border-color: var(--mantine-color-dark-1);
   transition: 0.5s;
 }
+
+.tooltippedElement {
+  cursor: pointer;
+}

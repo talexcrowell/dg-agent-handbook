@@ -8,9 +8,11 @@ import {
   Text,
   TextInput,
   Title,
+  Tooltip,
 } from "@mantine/core";
-import { defaultSkillValues } from "../../../data";
+import { defaultSkillValues, skillsMasterList } from "../../../data";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
+import styles from "../../../Element.module.css";
 
 export const Skills = () => {
   const skillKeysArr = Object.keys(defaultSkillValues);
@@ -87,15 +89,29 @@ export const Skills = () => {
                 <Table.Td>
                   <Group>
                     <Checkbox />
-                    <Text tt="capitalize" ta="start">
-                      {isSkillChoice(key)
-                        ? currentCharacter.skills[key][0].label !== ""
-                          ? `${skillKeyLabels(key)} (${
-                              currentCharacter.skills[key][0].label
-                            })`
-                          : skillKeyLabels(key)
-                        : skillKeyLabels(key)}{" "}
-                    </Text>
+                    <Tooltip
+                      w={250}
+                      label={
+                        skillsMasterList.filter((skill) => skill.id === key)[0]
+                          .definition
+                      }
+                      multiline
+                      openDelay={500}
+                    >
+                      <Text
+                        tt="capitalize"
+                        ta="start"
+                        className={styles.tooltippedElement}
+                      >
+                        {isSkillChoice(key)
+                          ? currentCharacter.skills[key][0].label !== ""
+                            ? `${skillKeyLabels(key)} (${
+                                currentCharacter.skills[key][0].label
+                              })`
+                            : skillKeyLabels(key)
+                          : skillKeyLabels(key)}{" "}
+                      </Text>
+                    </Tooltip>
                     <Text c="dimmed">
                       (
                       {isSkillChoice(key)
@@ -132,15 +148,29 @@ export const Skills = () => {
                 <Table.Td>
                   <Group>
                     <Checkbox />
-                    <Text tt="capitalize" ta="start">
-                      {isSkillChoice(key)
-                        ? currentCharacter.skills[key][0].label !== ""
-                          ? `${skillKeyLabels(key)} (${
-                              currentCharacter.skills[key][0].label
-                            })`
-                          : skillKeyLabels(key)
-                        : skillKeyLabels(key)}{" "}
-                    </Text>
+                    <Tooltip
+                      w={250}
+                      label={
+                        skillsMasterList.filter((skill) => skill.id === key)[0]
+                          .definition
+                      }
+                      multiline
+                      openDelay={500}
+                    >
+                      <Text
+                        tt="capitalize"
+                        ta="start"
+                        className={styles.tooltippedElement}
+                      >
+                        {isSkillChoice(key)
+                          ? currentCharacter.skills[key][0].label !== ""
+                            ? `${skillKeyLabels(key)} (${
+                                currentCharacter.skills[key][0].label
+                              })`
+                            : skillKeyLabels(key)
+                          : skillKeyLabels(key)}{" "}
+                      </Text>
+                    </Tooltip>
                     <Text c="dimmed">
                       (
                       {isSkillChoice(key)
@@ -177,15 +207,29 @@ export const Skills = () => {
                 <Table.Td>
                   <Group>
                     <Checkbox />
-                    <Text tt="capitalize" ta="start">
-                      {isSkillChoice(key)
-                        ? currentCharacter.skills[key][0].label !== ""
-                          ? `${skillKeyLabels(key)} (${
-                              currentCharacter.skills[key][0].label
-                            })`
-                          : skillKeyLabels(key)
-                        : skillKeyLabels(key)}{" "}
-                    </Text>
+                    <Tooltip
+                      w={250}
+                      label={
+                        skillsMasterList.filter((skill) => skill.id === key)[0]
+                          .definition
+                      }
+                      multiline
+                      openDelay={500}
+                    >
+                      <Text
+                        tt="capitalize"
+                        ta="start"
+                        className={styles.tooltippedElement}
+                      >
+                        {isSkillChoice(key)
+                          ? currentCharacter.skills[key][0].label !== ""
+                            ? `${skillKeyLabels(key)} (${
+                                currentCharacter.skills[key][0].label
+                              })`
+                            : skillKeyLabels(key)
+                          : skillKeyLabels(key)}{" "}
+                      </Text>
+                    </Tooltip>
                     <Text c="dimmed">
                       (
                       {isSkillChoice(key)

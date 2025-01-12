@@ -17,6 +17,7 @@ import {
   Text,
   TextInput,
   Title,
+  Tooltip,
 } from "@mantine/core";
 import React, { useState } from "react";
 import {
@@ -272,7 +273,7 @@ export const OtherProfessionalSkills: React.FC<{
       {!confirmedPackage ? (
         statSystem === "custom" ? (
           <>
-            <Grid.Col span={12}>
+            <Grid.Col span={12} ta="center">
               <Text>Select {count} more skills to boost</Text>
             </Grid.Col>
             <Grid.Col span={3}>
@@ -286,20 +287,32 @@ export const OtherProfessionalSkills: React.FC<{
                       <List.Item>
                         <Checkbox
                           label={
-                            <Text tt="capitalize">
-                              {isSkillChoice(key)
-                                ? userAgent.skills[key][0].label !== ""
-                                  ? `${skillKeyLabels(key)} (${
-                                      userAgent.skills[key][0].label
-                                    })`
-                                  : skillKeyLabels(key)
-                                : skillKeyLabels(key)}{" "}
-                              (
-                              {isSkillChoice(key)
-                                ? userAgent.skills[key][0].skill
-                                : userAgent.skills[key]}
-                              %)
-                            </Text>
+                            <Tooltip
+                              w={250}
+                              label={
+                                skillsMasterList.filter(
+                                  (item) => item.id === key
+                                )[0].definition
+                              }
+                              multiline
+                              openDelay={500}
+                              className={styles.tooltippedElement}
+                            >
+                              <Text tt="capitalize">
+                                {isSkillChoice(key)
+                                  ? userAgent.skills[key][0].label !== ""
+                                    ? `${skillKeyLabels(key)} (${
+                                        userAgent.skills[key][0].label
+                                      })`
+                                    : skillKeyLabels(key)
+                                  : skillKeyLabels(key)}{" "}
+                                (
+                                {isSkillChoice(key)
+                                  ? userAgent.skills[key][0].skill
+                                  : userAgent.skills[key]}
+                                %)
+                              </Text>
+                            </Tooltip>
                           }
                           value={key}
                         />
@@ -356,20 +369,32 @@ export const OtherProfessionalSkills: React.FC<{
                       <List.Item>
                         <Checkbox
                           label={
-                            <Text tt="capitalize">
-                              {isSkillChoice(key)
-                                ? userAgent.skills[key][0].label !== ""
-                                  ? `${skillKeyLabels(key)} (${
-                                      userAgent.skills[key][0].label
-                                    })`
-                                  : skillKeyLabels(key)
-                                : skillKeyLabels(key)}{" "}
-                              (
-                              {isSkillChoice(key)
-                                ? userAgent.skills[key][0].skill
-                                : userAgent.skills[key]}
-                              %)
-                            </Text>
+                            <Tooltip
+                              w={250}
+                              label={
+                                skillsMasterList.filter(
+                                  (item) => item.id === key
+                                )[0].definition
+                              }
+                              multiline
+                              openDelay={500}
+                              className={styles.tooltippedElement}
+                            >
+                              <Text tt="capitalize">
+                                {isSkillChoice(key)
+                                  ? userAgent.skills[key][0].label !== ""
+                                    ? `${skillKeyLabels(key)} (${
+                                        userAgent.skills[key][0].label
+                                      })`
+                                    : skillKeyLabels(key)
+                                  : skillKeyLabels(key)}{" "}
+                                (
+                                {isSkillChoice(key)
+                                  ? userAgent.skills[key][0].skill
+                                  : userAgent.skills[key]}
+                                %)
+                              </Text>
+                            </Tooltip>
                           }
                           value={key}
                         />
@@ -424,20 +449,32 @@ export const OtherProfessionalSkills: React.FC<{
                         <List.Item>
                           <Checkbox
                             label={
-                              <Text tt="capitalize">
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].label !== ""
-                                    ? `${skillKeyLabels(key)} (${
-                                        userAgent.skills[key][0].label
-                                      })`
-                                    : skillKeyLabels(key)
-                                  : skillKeyLabels(key)}{" "}
-                                (
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].skill
-                                  : userAgent.skills[key]}
-                                %)
-                              </Text>
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (item) => item.id === key
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                                className={styles.tooltippedElement}
+                              >
+                                <Text tt="capitalize">
+                                  {isSkillChoice(key)
+                                    ? userAgent.skills[key][0].label !== ""
+                                      ? `${skillKeyLabels(key)} (${
+                                          userAgent.skills[key][0].label
+                                        })`
+                                      : skillKeyLabels(key)
+                                    : skillKeyLabels(key)}{" "}
+                                  (
+                                  {isSkillChoice(key)
+                                    ? userAgent.skills[key][0].skill
+                                    : userAgent.skills[key]}
+                                  %)
+                                </Text>
+                              </Tooltip>
                             }
                             onKeyDown={() => false}
                             value={key}
@@ -583,12 +620,24 @@ export const OtherProfessionalSkills: React.FC<{
                   <Card withBorder ta="start">
                     <Stack>
                       <Title order={3}>{selectedPackage.name}</Title>
-                      <List>
+                      <List spacing={"xs"}>
                         <Text fw={700} td={"underline"}>
                           These skills get +20%:
                         </Text>
                         {selectedPackage.professionalSkills.map((skill) => (
-                          <List.Item>{skill.name}</List.Item>
+                          <Tooltip
+                            w={250}
+                            label={
+                              skillsMasterList.filter(
+                                (item) => item.id === skill.id
+                              )[0].definition
+                            }
+                            multiline
+                            openDelay={500}
+                            className={styles.tooltippedElement}
+                          >
+                            <List.Item>{skill.name}</List.Item>
+                          </Tooltip>
                         ))}
                         {selectedPackage.personalSpecialty && (
                           <List.Item>
@@ -641,27 +690,51 @@ export const OtherProfessionalSkills: React.FC<{
                   .map((skill, index) => {
                     return isSkillChoice(skill.id) ? (
                       <Table.Tr justify="start" align="middle">
-                        <Table.Td>
-                          <Group>
-                            {skill.name}
-                            <TextInput
-                              onChange={(e) =>
-                                handleSkillTypeForSkillPackage(
-                                  index,
-                                  e.target.value
-                                )
-                              }
-                              placeholder="Enter type here..."
-                            />
-                          </Group>
-                        </Table.Td>
+                        <Tooltip
+                          w={250}
+                          label={
+                            skillsMasterList.filter(
+                              (item) => item.id === skill.id
+                            )[0].definition
+                          }
+                          multiline
+                          openDelay={500}
+                          className={styles.tooltippedElement}
+                        >
+                          <Table.Td>
+                            <Group>
+                              {skill.name}
+                              <TextInput
+                                onChange={(e) =>
+                                  handleSkillTypeForSkillPackage(
+                                    index,
+                                    e.target.value
+                                  )
+                                }
+                                placeholder="Enter type here..."
+                              />
+                            </Group>
+                          </Table.Td>
+                        </Tooltip>
                         <Table.Td>0%</Table.Td>
                         <Table.Td>+20%</Table.Td>
                         <Table.Td>20%</Table.Td>
                       </Table.Tr>
                     ) : (
                       <Table.Tr align="middle">
-                        <Table.Td ta="start">{skill.name}</Table.Td>
+                        <Tooltip
+                          w={250}
+                          label={
+                            skillsMasterList.filter(
+                              (item) => item.id === skill.id
+                            )[0].definition
+                          }
+                          multiline
+                          openDelay={500}
+                          className={styles.tooltippedElement}
+                        >
+                          <Table.Td ta="start">{skill.name}</Table.Td>
+                        </Tooltip>
                         <Table.Td>{userAgent.skills[skill.id]}%</Table.Td>
                         <Table.Td>+20%</Table.Td>
                         <Table.Td>{userAgent.skills[skill.id] + 20}%</Table.Td>

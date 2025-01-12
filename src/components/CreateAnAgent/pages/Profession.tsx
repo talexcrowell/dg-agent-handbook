@@ -13,9 +13,14 @@ import {
   Text,
   TextInput,
   Title,
+  Tooltip,
 } from "@mantine/core";
 import React, { useState } from "react";
-import { additionalProfessions, professions } from "../../../data";
+import {
+  additionalProfessions,
+  professions,
+  skillsMasterList,
+} from "../../../data";
 import styles from "../../../Element.module.css";
 
 export const Profession: React.FC<{
@@ -158,39 +163,59 @@ export const Profession: React.FC<{
           </Text>
         </Group>
         <Group align="top">
-          <List>
+          <List spacing={"xs"}>
             <Text td="underline">Professional Skills:</Text>
-            {profession.professionalSkills.map((skill) =>
-              isSkillChoice(skill) ? (
-                <List.Item>
-                  {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
-                  {skill.value}%
-                </List.Item>
-              ) : (
-                <List.Item>
-                  {skill.name} {skill.value}%
-                </List.Item>
-              )
-            )}
-          </List>
-          {profession.optionalSkills.length > 0 && (
-            <List>
-              <Text td="underline">
-                Choose {profession.numberOfOptionalSkills} of these:
-              </Text>
-              {profession.optionalSkills.map((skill) =>
-                isSkillChoice(skill) ? (
-                  <List.Item>
-                    {skill.name} (
-                    {skill.type !== "" ? skill.type : "Choose One"}){" "}
+            {profession.professionalSkills.map((skill) => (
+              <Tooltip
+                w={250}
+                label={
+                  skillsMasterList.filter((item) => item.id === skill.id)[0]
+                    .definition
+                }
+                multiline
+                openDelay={500}
+              >
+                {isSkillChoice(skill) ? (
+                  <List.Item className={styles.tooltippedElement}>
+                    {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
                     {skill.value}%
                   </List.Item>
                 ) : (
-                  <List.Item>
+                  <List.Item className={styles.tooltippedElement}>
                     {skill.name} {skill.value}%
                   </List.Item>
-                )
-              )}
+                )}
+              </Tooltip>
+            ))}
+          </List>
+          {profession.optionalSkills.length > 0 && (
+            <List spacing={"xs"}>
+              <Text td="underline">
+                Choose {profession.numberOfOptionalSkills} of these:
+              </Text>
+              {profession.optionalSkills.map((skill) => (
+                <Tooltip
+                  w={250}
+                  label={
+                    skillsMasterList.filter((item) => item.id === skill.id)[0]
+                      .definition
+                  }
+                  multiline
+                  openDelay={500}
+                >
+                  {isSkillChoice(skill) ? (
+                    <List.Item className={styles.tooltippedElement}>
+                      {skill.name} (
+                      {skill.type !== "" ? skill.type : "Choose One"}){" "}
+                      {skill.value}%
+                    </List.Item>
+                  ) : (
+                    <List.Item className={styles.tooltippedElement}>
+                      {skill.name} {skill.value}%
+                    </List.Item>
+                  )}
+                </Tooltip>
+              ))}
             </List>
           )}
         </Group>
@@ -396,7 +421,7 @@ export const Profession: React.FC<{
                   ).length !== skillDetails.length
                 }
                 onClick={confirmAdditionalSkills}
-                color={'green'}
+                color={"green"}
               >
                 Confirm {selectedProfession.numberOfOptionalSkills} Additional
                 Professional Skill
