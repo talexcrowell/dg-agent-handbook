@@ -23,33 +23,32 @@ export const Bonds: React.FC<{
   const [bonds, setBonds] = useState<any[]>([]);
 
   useEffect(() => {
-    if (userAgent) {
-      switch (userAgent.profession) {
-        case "Special Operator":
-          setBonds([
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-          ]);
-          break;
-        case "Computer Scientist or Engineer":
-        case "Federal Agent":
-        case "Physician":
-          setBonds([
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-          ]);
-          break;
-        case "Anthropologist or Historian":
-        case "Scientist":
-          setBonds([
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-            { name: "", value: userAgent?.stats.charisma },
-          ]);
-          break;
-      }
+    switch (
+      [...professions, ...additionalProfessions].filter(
+        (item) => item.name === userAgent.profession
+      )[0].bonds
+    ) {
+      case 2:
+        setBonds([
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+        ]);
+        break;
+      case 3:
+        setBonds([
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+        ]);
+        break;
+      case 4:
+        setBonds([
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+          { name: "", value: userAgent?.stats.charisma },
+        ]);
+        break;
     }
   }, [userAgent]);
 
@@ -163,7 +162,7 @@ export const Bonds: React.FC<{
           <Button
             onClick={() => handleAgentBonds(bonds)}
             disabled={bonds.filter((bond) => bond.name === "").length > 0}
-            color={'green'}
+            color={"green"}
           >
             Confirm Bonds
           </Button>
