@@ -125,9 +125,15 @@ export const CreateAnAgent: React.FC = () => {
             skill:
               newObj[filteredArr[i].name].filter(
                 (item) => item.label === filteredArr[i].label
-              )[0].skill + filteredArr[i].value,
+              ).length > 0
+                ? newObj[filteredArr[i].name].filter(
+                    (item) => item.label === filteredArr[i].label
+                  )[0].skill + filteredArr[i].value
+                : filteredArr[i].value,
           },
-        ].sort((a, b) => (a.label < b.label ? -1 : a.label > b.label ? 1 : 0));
+        ]
+          .filter((skill) => skill.label !== "")
+          .sort((a, b) => (a.label < b.label ? -1 : a.label > b.label ? 1 : 0));
       } else {
         newObj[filteredArr[i].name] =
           newObj[filteredArr[i].name] + filteredArr[i].value;
