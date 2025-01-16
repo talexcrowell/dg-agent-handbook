@@ -240,6 +240,7 @@ export const Personal = () => {
             label="Motivations and Mental Disorders"
             ta="start"
             rows={5}
+            value={data?.motivations}
           />
           <Stack>
             <InputLabel ta="start">

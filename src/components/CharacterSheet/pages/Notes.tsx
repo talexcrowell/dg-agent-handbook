@@ -1,6 +1,10 @@
 import { Grid, Stack, Textarea, Title } from "@mantine/core";
+import { useCharacterContext } from "../../../contexts/CharacterContext";
 
 export const Notes = () => {
+    const [{ currentCharacter }] = useCharacterContext();
+  
+    let data = { ...currentCharacter };
   return (
     <Grid p="md">
       <Grid.Col span={12}>
@@ -8,7 +12,12 @@ export const Notes = () => {
           <Title order={4} td="underline">
             Notes
           </Title>
-          <Textarea label="Personal Details and Notes" ta="start" rows={10} />
+          <Textarea
+            label="Personal Details and Notes"
+            ta="start"
+            rows={10}
+            value={data?.personality}
+          />
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
