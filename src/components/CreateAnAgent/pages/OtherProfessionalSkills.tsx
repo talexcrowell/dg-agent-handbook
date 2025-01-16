@@ -204,8 +204,6 @@ export const OtherProfessionalSkills: React.FC<{
     setSpecial({ id: option.value, name: option.label });
   };
 
-  const handleSpecialtiesForSkillPackage = (value) => {};
-
   const additionalSkills = skillKeysArr.filter((key) => {
     if (isSkillChoice(key) && userAgent.skills[key].length > 1) {
       return userAgent.skills[key].slice(1, userAgent.skills[key].length);

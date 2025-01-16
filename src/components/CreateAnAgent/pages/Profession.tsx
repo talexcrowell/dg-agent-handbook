@@ -31,7 +31,7 @@ export const Profession: React.FC<{
   const [skillDetails, setSkillDetails] = useState<{ [key: string]: any }>([]);
   const [optionalSkillDetails, setOptionalSkillDetails] = useState<{
     [key: string]: any;
-  }>({});
+  }>([]);
   const [selectedOptionalSkills, setSelectedOptionalSkills] = useState<any[]>(
     []
   );
@@ -126,7 +126,7 @@ export const Profession: React.FC<{
       (item) => skillDetails[item]
     );
 
-    let optionalAdditionalSkills = Object.keys(optionalSkillDetails).map(
+    let optionalAdditionalSkills = Object.keys(selectedOptionalSkills).map(
       (item) => optionalSkillDetails[item]
     );
 
@@ -143,9 +143,8 @@ export const Profession: React.FC<{
       }),
       ...skillIdentities,
       ...additionalSkills,
-      ...optionalAdditionalSkills,
+      ...optionalAdditionalSkills.filter((skill) => skill !== undefined),
     ].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
-
     handleAgentProfession({ ...newObj });
   };
 
@@ -398,7 +397,7 @@ export const Profession: React.FC<{
                 <Stack>
                   {selectedProfession.optionalSkills
                     .filter((skill) => skill.id !== selectedSpecial)
-                    .map((skill) => (
+                    .map((skill, index) => (
                       <Group>
                         <Checkbox
                           value={skill.id}
@@ -406,7 +405,16 @@ export const Profession: React.FC<{
                         />
                         {isSkillChoice(skill) &&
                           selectedOptionalSkills.includes(skill.id) && (
-                            <TextInput placeholder="Enter Type Here..." />
+                            <TextInput
+                              placeholder="Enter Type Here..."
+                              onChange={(e) =>
+                                handleOptionalDetail(
+                                  e.target.value,
+                                  skill,
+                                  index
+                                )
+                              }
+                            />
                           )}
                       </Group>
                     ))}
