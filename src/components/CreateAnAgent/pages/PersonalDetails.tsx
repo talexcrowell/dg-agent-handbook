@@ -129,7 +129,7 @@ export const PersonalDetails: React.FC<{
           />
           <Button
             component={Link}
-            to={`/agents/${
+            to={`/agents/sheet/${
               userAgent.codename ? userAgent.codename.toUpperCase() : ""
             }`}
             disabled={

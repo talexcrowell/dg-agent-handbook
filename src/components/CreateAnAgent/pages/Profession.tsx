@@ -43,12 +43,16 @@ export const Profession: React.FC<{
   };
 
   const confirmProfession = () => {
-    selectedProfession.numberOfOptionalSkills > 0
+    selectedProfession.numberOfOptionalSkills > 0 ||
+    selectedProfession.professionalSkills.filter(
+      (item) => isSkillChoice(item) && item.type === ""
+    ).length > 0
       ? setConfirmedProfession(true)
       : handleAgentProfession(selectedProfession);
   };
 
   const handleDetail = (e, skill, index) => {
+    let newArr = [...skillDetails];
     let skillName;
     switch (skill.id) {
       case "craft":
@@ -67,15 +71,17 @@ export const Profession: React.FC<{
         skillName = "Science";
         break;
     }
-    skillDetails[index.toString()] = {
+    newArr[index.toString()] = {
       type: e,
       name: skillName,
       id: skill.id,
       value: skill.value,
     };
+    setSkillDetails([...newArr]);
   };
 
   const handleOptionalDetail = (e, skill, index) => {
+    let newArr = [...optionalSkillDetails];
     let skillName;
     switch (skill.id) {
       case "craft":
@@ -94,12 +100,13 @@ export const Profession: React.FC<{
         skillName = "Science";
         break;
     }
-    optionalSkillDetails[index.toString()] = {
+    newArr[index.toString()] = {
       type: e,
       name: skillName,
       id: skill.id,
       value: skill.value,
     };
+    setOptionalSkillDetails([...newArr]);
   };
 
   const handleSetOptionalSkills = (skills) => {
@@ -375,6 +382,7 @@ export const Profession: React.FC<{
                           onChange={(e) =>
                             handleDetail(e.target.value, skill, index)
                           }
+                          required
                         />
                       ))}
                   </Stack>
@@ -426,16 +434,12 @@ export const Profession: React.FC<{
                 disabled={
                   selectedOptionalSkills.length !==
                     selectedProfession.numberOfOptionalSkills ||
-                  selectedProfession?.professionalSkills.filter(
-                    (skill) => isSkillChoice(skill) && skill.type === ""
-                  ).length !== skillDetails.length
+                  skillDetails.filter((skill) => skill.type === "").length > 0
                 }
                 onClick={confirmAdditionalSkills}
                 color={"green"}
               >
-                Confirm {selectedProfession.numberOfOptionalSkills} Additional
-                Professional Skill
-                {selectedProfession.numberOfOptionalSkills > 1 ? "s" : ""}
+                Confirm Professional Skills
               </Button>
               <Button bg="red" onClick={() => setConfirmedProfession(false)}>
                 Change Profession
