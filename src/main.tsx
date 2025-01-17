@@ -26,7 +26,7 @@ const router = createHashRouter([
       { path: "/agents/new", element: <CreateAnAgent /> },
       { path: "/agents/sheet/:codename", element: <CharacterSheet /> },
       {
-        path: "/agents/equipment-and-services",
+        path: "/equipment-and-services",
         element: <EquipmentAndServices />,
       },
     ],
