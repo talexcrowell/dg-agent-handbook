@@ -25,6 +25,14 @@ export const Navbar = () => {
         </Grid.Col>
         <Grid.Col span={2}>
           <NavLink
+            label="Equipment and Services"
+            component={Link}
+            to={`/agents/equipment-and-services`}
+            active={location.pathname === "/agents/equipment-and-services"}
+          />
+        </Grid.Col>
+        <Grid.Col span={2}>
+          <NavLink
             label="Agent Roster"
             component={Link}
             to={`/agents`}
