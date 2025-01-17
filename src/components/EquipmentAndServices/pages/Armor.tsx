@@ -1,12 +1,41 @@
-import { Grid, Stack, Table, Title } from "@mantine/core";
+import { Grid, Group, Stack, Table, Text, Title } from "@mantine/core";
 import { armorList } from "../../../data";
+import { IconTriangleFilled } from "@tabler/icons-react";
 
 export const Armor = () => {
+  const calculateIcon = (expense) => {
+    let str;
+    switch (expense) {
+      case "incidental":
+        str = "green";
+        break;
+      case "standard":
+        str = "blue";
+        break;
+      case "unusual":
+        str = "yellow";
+        break;
+      case "major":
+        str = "orange";
+        break;
+      case "extreme":
+        str = "red";
+        break;
+    }
+    return str;
+  };
+  
   return (
     <Grid p="md">
       <Grid.Col span={12}>
         <Stack gap="lg">
           <Title>Body Armor</Title>
+          <Text>
+            While modern construction and materials such as Kevlar and ceramics
+            have come a long way, they cannot protect you against all threats,
+            and usually also cover only a very small part of you. It’s always
+            better to stay behind cover and not get hit.
+          </Text>
           <Table withTableBorder highlightOnHover striped>
             <Table.Thead>
               <Table.Tr>
@@ -23,7 +52,14 @@ export const Armor = () => {
                     <Table.Td>{item.name}</Table.Td>
                     <Table.Td>{item.armorRating}</Table.Td>
                     <Table.Td>{item.description}</Table.Td>
-                    <Table.Td tt="capitalize">{item.expense}</Table.Td>
+                    <Table.Td tt="capitalize">
+                      <Group>
+                        <IconTriangleFilled
+                          color={calculateIcon(item.expense)}
+                        />
+                        {item.expense}
+                      </Group>
+                    </Table.Td>
                   </Table.Tr>
                 );
               })}

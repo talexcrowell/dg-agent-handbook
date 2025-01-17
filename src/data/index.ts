@@ -1301,6 +1301,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "none",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Brass knuckles, heavy flashlight, or steel-toe boot",
@@ -1309,6 +1310,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Garrote",
@@ -1317,6 +1319,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
+    description:
+      "Works only from surprise. If it succeeds, the target is pinned and cannot make a sound, and the garrote does 1D6 damage per round until the target escapes or dies. A garotte made from Kevlar can cut through flexible cuffs.",
   },
   {
     name: "Knife",
@@ -1325,6 +1330,7 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Hatchet",
@@ -1341,6 +1347,7 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Club, nightstick, baton, or collapsible baton",
@@ -1349,6 +1356,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Machete, tomahawk, or sword",
@@ -1357,6 +1365,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Baseball bat or rifle butt",
@@ -1365,6 +1374,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Spear or fixed bayonet",
@@ -1373,6 +1383,7 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Wood axe",
@@ -1381,6 +1392,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Large sword",
@@ -1389,6 +1401,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "handToHand",
+    restricted: false,
   },
   {
     name: "Two-handed sword",
@@ -1397,6 +1410,8 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "handToHand",
+    restricted: false,
+    description: "Requires special training.",
   },
   {
     name: "Pepper spray keychain",
@@ -1407,6 +1422,7 @@ export const weaponsLists = [
     penalty: "–20% for 1 hr",
     expense: "incidental",
     type: "tearGasPepperSpray",
+    restricted: false,
   },
   {
     name: "Pepper spray can",
@@ -1417,6 +1433,7 @@ export const weaponsLists = [
     penalty: "–20% for 1 hr",
     expense: "incidental",
     type: "tearGasPepperSpray",
+    restricted: false,
   },
   {
     name: "Tear gas grenade, thrown",
@@ -1427,6 +1444,8 @@ export const weaponsLists = [
     penalty: "–40% for 1 hr",
     expense: "incidental",
     type: "tearGasPepperSpray",
+    restricted: true,
+    description: "Requires special training.",
   },
   {
     name: "Tear gas grenade, launched",
@@ -1437,6 +1456,7 @@ export const weaponsLists = [
     penalty: "–40% for 1 hr",
     expense: "incidental",
     type: "tearGasPepperSpray",
+    restricted: true,
   },
   {
     name: "Flash-bang grenade, thrown",
@@ -1447,6 +1467,9 @@ export const weaponsLists = [
     penalty: "–40%",
     expense: "incidental",
     type: "stunGrenade",
+    restricted: true,
+    description:
+      "Requires special training. Radius halved outdoors. Victim’s penalty lasts 1D6 turns.",
   },
   {
     name: "Flash-bang grenade, launched",
@@ -1457,6 +1480,8 @@ export const weaponsLists = [
     penalty: "–40%",
     expense: "incidental",
     type: "stunGrenade",
+    restricted: true,
+    description: "Radius halved outdoors. Victim’s penalty lasts 1D6 turns.",
   },
   {
     name: "Stun Gun",
@@ -1466,6 +1491,7 @@ export const weaponsLists = [
     penalty: "–20% for 1D20 turns",
     expense: "incidental",
     type: "electroshock",
+    restricted: false,
   },
   {
     name: "Shock baton",
@@ -1475,6 +1501,7 @@ export const weaponsLists = [
     penalty: "–20% for 1D20 turns",
     expense: "incidental",
     type: "electroshock",
+    restricted: false,
   },
   {
     name: "CED pistol",
@@ -1484,6 +1511,8 @@ export const weaponsLists = [
     penalty: "–20% for 1D20 turns",
     expense: "standard",
     type: "electroshock",
+    restricted: false,
+    description: "Requires special training.",
   },
   {
     name: "Light pistol",
@@ -1495,6 +1524,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
+    description:
+      "Revolver capacity: 6. Examples: .22 LR, .32 ACP, .380 ACP, .38 Special: S&W Model 36 Chief’s Special, Walther PPK.",
   },
   {
     name: "Medium pistol",
@@ -1506,6 +1538,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
+    description:
+      "Revolver capacity: 6. Examples: 9×19 mm, .40 S&W, .45 ACP: Beretta Mod 92FS (M9), Colt M1911A1, Glock 17, Glock 22.",
   },
   {
     name: "Heavy pistol",
@@ -1517,6 +1552,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
+    description:
+      "Revolver capacity: 6. Examples: 10×25mm Auto, .357 Magnum, .44 Magnum, .50 AE: Colt Delta Elite, Glock 20, S&W Model 13.",
   },
   {
     name: "Shotgun (Shot)",
@@ -1528,6 +1566,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
+    description:
+      "Half damage beyond base range. Shotgun examples (12-gauge): Mossberg Model 500, Remington Model 870, Ruger Red Label.",
   },
   {
     name: "Shotgun (Slug)",
@@ -1539,6 +1580,8 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
+    description: "Damage reduced to 2D6 beyond base range.",
   },
   {
     name: "Shotgun (Nonlethal)",
@@ -1550,6 +1593,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "firearms",
+    restricted: false,
   },
   {
     name: "Light rifle or carbine",
@@ -1561,6 +1605,9 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "standard",
     type: "firearms",
+    restricted: true,
+    description:
+      "Use the Lethality rating if firing bursts. Examples: 5.45 x 39mm, 5.56mm NATO: AR-15, Colt M4, FN SCAR-L. Heavier rounds such as 7.62x39mm (AK-47) and .30-30 Winchester inflict 1D12+1 damage.",
   },
   {
     name: "Submachine gun (SMG)",
@@ -1572,6 +1619,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "unusual",
     type: "firearms",
+    restricted: true,
+    description:
+      "Use the Lethality rating if firing bursts. Examples: 5.7×28 mm, 9×19mm, .45 ACP: B&T MP9, FN P90, H&K MP5, IMI Uzi, KRISS Vector, MAC-Ingram M10.",
   },
   {
     name: "Heavy rifle",
@@ -1583,6 +1633,9 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "unusual",
     type: "firearms",
+    restricted: true,
+    description:
+      "Use the Lethality rating if firing bursts. Examples: 7.62 mm NATO, 7.62x54mm, .30-06: H&K G3, FN FAL, Izhmash SVD, M1 Garand, Remington Model 700 (M24).",
   },
   {
     name: "Very heavy rifle",
@@ -1594,6 +1647,9 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "major",
     type: "firearms",
+    restricted: false,
+    description:
+      "Examples: .408 CheyTac, .50 Browning: Barrett Model 82A1, CheyTac M200.",
   },
   {
     name: "Hand grenade",
@@ -1605,6 +1661,8 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: M67, RGO.",
   },
   {
     name: "Rocket-propelled grenade launcher (RPG)",
@@ -1616,6 +1674,8 @@ export const weaponsLists = [
     armorPiercing: 20,
     expense: "standard",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: ATK M72 LAW, Bazalt RPG-7V, Bofors AT4 (M136).",
   },
   {
     name: "Handheld flamethrower",
@@ -1627,6 +1687,8 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "unusual",
     type: "heavyWeapons",
+    restricted: false,
+    description: "Example: Ion XM42.",
   },
   {
     name: "Military flamethrower",
@@ -1638,6 +1700,8 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "unusual",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Example: AEC M9A1-7.",
   },
   {
     name: "General-purpose machine gun (GPMP)",
@@ -1649,6 +1713,8 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "major",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: FN MAG (M240), Kovrov PKM, Saco M60.",
   },
   {
     name: "Grenade launcher (GL)",
@@ -1660,6 +1726,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "major",
     type: "heavyWeapons",
+    restricted: true,
+    description:
+      "Revolver capacity: 6. Examples: Colt M203, H&K M320, Milkor M32, Springfield M79.",
   },
   {
     name: "Grenade machine gun (GMG)",
@@ -1671,6 +1740,9 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "major",
     type: "heavyWeapons",
+    restricted: true,
+    description:
+      "*If firing a burst (5 grenades), Lethality is 20%. Examples: H&K GMG, Saco MK 19 MOD 3, KBP AGS-17.",
   },
   {
     name: "Heavy machine gun (HMG)",
@@ -1682,6 +1754,8 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "major",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: Browning M2HB, Degtyaryov DShKM, Kovrov NSV.",
   },
   {
     name: "Light machine gun (LMG)",
@@ -1693,6 +1767,8 @@ export const weaponsLists = [
     armorPiercing: 3,
     expense: "major",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: FN MINIMI (M249 SAW), Molot RPK.",
   },
   {
     name: "Autocannon",
@@ -1704,6 +1780,8 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "extreme",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: ATK M242 Bushmaster, KBP 2A70.",
   },
   {
     name: "Minigun",
@@ -1715,6 +1793,8 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "extreme",
     type: "heavyWeapons",
+    restricted: true,
+    description: "Examples: Dillon GAU-17/A, GE M134, KBP GShG-7.62.",
   },
   {
     name: "ANFO explosive",
@@ -1726,6 +1806,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "demolitions",
+    restricted: false,
   },
   {
     name: "C4 plastic explosive block, 570 g.",
@@ -1737,6 +1818,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "demolitions",
+    restricted: true,
   },
   {
     name: "Improvised explosive device (IED)",
@@ -1748,6 +1830,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "incidental",
     type: "demolitions",
+    restricted: true,
   },
   {
     name: "Large IED",
@@ -1759,6 +1842,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "standard",
     type: "demolitions",
+    restricted: true,
   },
   {
     name: "Explosively-formed penetrator mine",
@@ -1770,6 +1854,7 @@ export const weaponsLists = [
     armorPiercing: 20,
     expense: "standard",
     type: "demolitions",
+    restricted: true,
   },
   {
     name: "General-purpose bomb",
@@ -1781,6 +1866,7 @@ export const weaponsLists = [
     armorPiercing: 10,
     expense: "unusual",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Heavy mortar",
@@ -1792,6 +1878,7 @@ export const weaponsLists = [
     armorPiercing: 5,
     expense: "major",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Light mortar",
@@ -1803,6 +1890,7 @@ export const weaponsLists = [
     armorPiercing: 0,
     expense: "major",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Anti-tank guided missile (ATGM)",
@@ -1814,6 +1902,7 @@ export const weaponsLists = [
     armorPiercing: 25,
     expense: "extreme",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Anti-tank guided missile (ATGM)",
@@ -1825,6 +1914,7 @@ export const weaponsLists = [
     armorPiercing: 25,
     expense: "extreme",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Artillery",
@@ -1836,6 +1926,7 @@ export const weaponsLists = [
     armorPiercing: 10,
     expense: "extreme",
     type: "artillery",
+    restricted: true,
   },
   {
     name: "Cruise missile",
@@ -1847,6 +1938,7 @@ export const weaponsLists = [
     armorPiercing: 15,
     expense: "extreme",
     type: "artillery",
+    restricted: true,
   },
 ];
 
@@ -1899,7 +1991,192 @@ export const armorList = [
   },
 ];
 
-export const vehicleList = [];
+export const vehicleList = [
+  {
+    name: "Motorcycle",
+    hp: "15 to 20",
+    armor: 0,
+    speed: "Fast",
+    expense: "major",
+    type: "ground",
+  },
+  {
+    name: "Sedan",
+    hp: "25 to 30",
+    armor: 3,
+    speed: "Average",
+    expense: "major",
+    type: "ground",
+  },
+  {
+    name: "Pickup or SUV",
+    hp: "30 to 35",
+    armor: 3,
+    speed: "Average",
+    expense: "major",
+    type: "ground",
+  },
+  {
+    name: "Armored SUV",
+    hp: 35,
+    armor: 10,
+    speed: "Average",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Humvee",
+    hp: 40,
+    armor: 3,
+    speed: "Average",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Armored Humvee",
+    hp: 40,
+    armor: 10,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Semi truck",
+    hp: 45,
+    armor: 3,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "MRAP armored vehicle",
+    hp: 60,
+    armor: 20,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Armored personnel carrier",
+    hp: 80,
+    armor: 20,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Mid-20th century tank",
+    hp: 90,
+    armor: 20,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Modern tank",
+    hp: 100,
+    armor: 25,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Modern tank",
+    hp: 100,
+    armor: 25,
+    speed: "Slow",
+    expense: "extreme",
+    type: "ground",
+  },
+  {
+    name: "Combat rubber raiding craft",
+    hp: 10,
+    armor: 0,
+    speed: "Slow",
+    expense: "unusual",
+    type: "water",
+  },
+  {
+    name: "Rigid-hulled inflatable boat",
+    hp: 20,
+    armor: 0,
+    speed: "Slow",
+    expense: "major",
+    type: "water",
+  },
+  {
+    name: "River patrol boat",
+    hp: 30,
+    armor: 0,
+    speed: "Slow",
+    expense: "extreme",
+    type: "water",
+  },
+  {
+    name: "Speed boat",
+    hp: 25,
+    armor: 0,
+    speed: "Average",
+    expense: "extreme",
+    type: "water",
+  },
+  {
+    name: "Speed boat",
+    hp: 25,
+    armor: 0,
+    speed: "Average",
+    expense: "extreme",
+    type: "water",
+  },
+  {
+    name: "Civilian helicopter",
+    hp: 20,
+    armor: 0,
+    speed: "Average",
+    expense: "extreme",
+    type: "air",
+  },
+  {
+    name: "Commuter plane",
+    hp: 25,
+    armor: 0,
+    speed: "Average",
+    expense: "extreme",
+    type: "air",
+  },
+  {
+    name: "Police helicopter",
+    hp: 30,
+    armor: 0,
+    speed: "Fast",
+    expense: "extreme",
+    type: "air",
+  },
+  {
+    name: "Attack helicopter",
+    hp: 30,
+    armor: 10,
+    speed: "Fast",
+    expense: "extreme",
+    type: "air",
+  },
+  {
+    name: "Passenger jet",
+    hp: 50,
+    armor: 0,
+    speed: "Special",
+    expense: "extreme",
+    type: "air",
+  },
+  {
+    name: "Figther jet",
+    hp: 40,
+    armor: 0,
+    speed: "Special",
+    expense: "extreme",
+    type: "air",
+  },
+];
 
 export const otherGearAndServicesList = {
   transportation: [
@@ -2060,6 +2337,90 @@ export const otherGearAndServicesList = {
       expense: "incidental",
       type: "gearAndServices",
     },
+    {
+      name: "“Script kiddie” hacking software",
+      description:
+        "Requires Computer Science; a failed Luck roll indicates it’s faulty.",
+      expense: "incidental",
+      type: "gearAndServices",
+    },
+    {
+      name: "Earpiece communicator set",
+      expense: "standard",
+      type: "gearAndServices",
+    },
+    {
+      name: "Ordinary computer",
+      expense: "standard",
+      type: "gearAndServices",
+    },
+    {
+      name: "Tablet computer or smartphone",
+      expense: "standard",
+      type: "gearAndServices",
+    },
+    {
+      name: "3D printer (plastic)",
+      expense: "standard",
+      type: "gearAndServices",
+    },
+    {
+      name: "Satellite phone",
+      expense: "unusual",
+      type: "gearAndServices",
+    },
+    {
+      name: "Hire a hacker to defeat basic encryption",
+      description:
+        "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
+      expense: "unusual",
+      type: "gearAndServices",
+    },
+    {
+      name: "Powerful computer",
+      expense: "major",
+      type: "gearAndServices",
+    },
+    {
+      name: "Cutting-edge encryption or data-mining software",
+      description: "Requires Computer Science or special training (INT).",
+      expense: "major",
+      type: "gearAndServices",
+      restricted: true,
+    },
+    {
+      name: "Advanced data-analysis software",
+      description: "Requires Computer Science or special training (INT).",
+      expense: "major",
+      type: "gearAndServices",
+    },
+    {
+      name: "3D printer (metal)",
+      expense: "major",
+      type: "gearAndServices",
+    },
+    {
+      name: "Hire a hacker to defeat advanced encryption",
+      description:
+        "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
+      expense: "major",
+      type: "gearAndServices",
+    },
+    {
+      name: "Portable IMSI catcher for cell surveillance",
+      description:
+        "Requires Computer Science or special training (INT). Has 2 km. range, or 200 m. for a model that can me worn under clothes. A vehicular model has 30 km. range as an Extreme expense.",
+      expense: "major",
+      type: "gearAndServices",
+      restricted: true,
+    },
+    {
+      name: "Exclusive use of a dedicated communications satellite",
+      description: "Requires Computer Science or special training (INT).",
+      expense: "extreme",
+      type: "gearAndServices",
+      restricted: true,
+    },
   ],
   surveillance: [
     {
@@ -2179,6 +2540,7 @@ export const otherGearAndServicesList = {
         "RESTRICTED. Allows operating in reduced light conditions. Most skills are at no penalty. If finely detailed perception is required then a −20% penalty applies.",
       expense: "major",
       type: "gearAndServices",
+      restricted: true,
     },
   ],
   breakingAndEntering: [
@@ -2334,6 +2696,7 @@ export const otherGearAndServicesList = {
         "RESTRICTED. Requires an Alertness test to hear from beyond a wall or a door. An especially quiet suppressed shot, such as a light pistol, incurs a −20% penalty.",
       expense: "standard",
       type: "gearAndServices",
+      restricted: true,
     },
     {
       name: "Targeting laser",
