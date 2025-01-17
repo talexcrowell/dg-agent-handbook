@@ -176,7 +176,7 @@ export const AgentRoster = () => {
                           <Group>
                             <Button
                               component={Link}
-                              to={`/agents/${agent?.codename.toUpperCase()}`}
+                              to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
                               onClick={() =>
                                 actions.changeCurrentCharacter({ ...agent })
                               }
