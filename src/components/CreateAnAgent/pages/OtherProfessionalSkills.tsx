@@ -531,7 +531,7 @@ export const OtherProfessionalSkills: React.FC<{
                               <Checkbox
                                 label={
                                   <Text tt="capitalize">
-                                    {addSkill} ({item.label}) ({item.skill}
+                                    {skillKeyLabels(addSkill)} ({item.label}) ({item.skill}
                                     %)
                                   </Text>
                                 }
