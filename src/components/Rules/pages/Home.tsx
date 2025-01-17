@@ -2,7 +2,7 @@ import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
 
 export const Home = () => {
   return (
-    <Grid p="md" ta="start">
+    <Grid p="md" ta="start" id="home">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline">Home</Title>

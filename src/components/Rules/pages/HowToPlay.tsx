@@ -13,10 +13,12 @@ import {
 
 export const HowToPlay = () => {
   return (
-    <Grid p="md" ta="start">
+    <Grid p="md" ta="start" id="game">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">How to Play</Title>
+          <Title td="underline" id="how-to-play">
+            How to Play
+          </Title>
           <Text>
             Delta Green is about cover-ups, insanity, and death. The world is a
             lie. Beneath it, things squirm, struggling to punch through and raze
@@ -31,7 +33,7 @@ export const HowToPlay = () => {
             life. You fight to live one more day.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="using-skills">
             Using Skills
           </Title>
           <Text>
@@ -46,7 +48,9 @@ export const HowToPlay = () => {
             determines success or failure.
           </Text>
           <Stack py="md">
-            <Title order={3}>Resolving a Test Without Dice</Title>
+            <Title order={3} id="resolving-a-test-without-dice">
+              Resolving a Test Without Dice
+            </Title>
             <Text>
               If the Handler decides you don’t need to roll, it comes down to
               what you’re trying to do and how high your Agent’s skill is. If
@@ -117,7 +121,9 @@ export const HowToPlay = () => {
               </Table.Tbody>
             </Table>
           </Stack>
-          <Title order={3}>Resolving a Test With Dice</Title>
+          <Title order={3} id="resolving-a-test-with-a-dice">
+            Resolving a Test With Dice
+          </Title>
           <Text>
             If the Handler tells you to roll a skill, it’s a skill test. The
             dice determine success or failure. Roll two ten-sided dice to get a
@@ -161,7 +167,9 @@ export const HowToPlay = () => {
             use it. It requires specialized training or education that your
             Agent lacks.
           </Text>
-          <Title order={3}>Using a Stat</Title>
+          <Title order={3} id="using-a-stat">
+            Using a Stat
+          </Title>
           <Text>
             If your Agent tries to do something that anyone ought to be able to
             do—something that’s hard, but doesn’t require specific training like
@@ -232,7 +240,9 @@ export const HowToPlay = () => {
               </Table.Tr>
             </Table.Tbody>
           </Table>
-          <Title order={3}>Bonuses & Penalties</Title>
+          <Title order={3} id="bonuses-and-penalties">
+            Bonuses & Penalties
+          </Title>
           <Text>
             If a bonus or penalty applies, it’s usually +10%/−10%, +20%/−20% or
             (rarely) +40%/−40%.
@@ -303,7 +313,9 @@ export const HowToPlay = () => {
               </Table.Tr>
             </Table.Tbody>
           </Table>
-          <Title order={3}>Group Rolls</Title>
+          <Title order={3} id="group-rolls">
+            Group Rolls
+          </Title>
           <Text>
             If it’s a task where having more help is useful, use the highest
             skill among the team.
@@ -317,7 +329,7 @@ export const HowToPlay = () => {
             or fails, each player rolls.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="success-and-failure">
             Success and Failure
           </Title>
           <Text>
@@ -325,19 +337,25 @@ export const HowToPlay = () => {
             From best to worst they are: Critical Success, Success, Failure, and
             Fumble.
           </Text>
-          <Title order={3}>Critical Success</Title>
+          <Title order={3} id="critical-success">
+            Critical Success
+          </Title>
           <Text>
             A critical success is a roll of 01 or any success where the dice
             match. A critical success automatically succeeds, and exceeds
             expectations. A critical is twice as good as an ordinary success.
             What twice as good means must be taken in context of the action.
           </Text>
-          <Title order={3}>Success</Title>
+          <Title order={3} id="success">
+            Success
+          </Title>
           <Text>
             A success is a roll equal to or less than the test chance. With a
             success, your Agent accomplishes what he or she set out to achieve.
           </Text>
-          <Title order={3}>Failure</Title>
+          <Title order={3} id="failure">
+            Failure
+          </Title>
           <Text>
             A failure is a roll that’s higher than the test chance. Sometimes
             that means your Agent suffers harm.
@@ -346,7 +364,9 @@ export const HowToPlay = () => {
             There may be times when a failed roll means an Agent achieves what
             he or she wanted—but it comes with an unpleasant complication.
           </Text>
-          <Title order={3}>Fumble</Title>
+          <Title order={3} id="fumble">
+            Fumble
+          </Title>
           <Text>
             A fumble is a roll of 00 (100) or any failure where the dice match.
             A fumbled roll fails, no matter how high your Agent’s chance of
@@ -383,7 +403,7 @@ export const HowToPlay = () => {
             </List.Item>
           </List>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="luck-roll">
             The Luck Roll
           </Title>
           <Text>
@@ -393,7 +413,7 @@ export const HowToPlay = () => {
             or bad.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="time-required">
             Time Required
           </Title>
           <Text>
@@ -424,7 +444,7 @@ export const HowToPlay = () => {
             week, a month, or years. It’s up to the Handler.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="opposed-tests">
             Opposed Tests
           </Title>
           <Text>
@@ -435,7 +455,7 @@ export const HowToPlay = () => {
             other but neither needs to roll, the higher rating wins.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="pursuit">
             Pursuit
           </Title>
           <Text>
@@ -492,7 +512,7 @@ export const HowToPlay = () => {
             opponent’s roll to pursue or escape automatically wins.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="willpower-points">
             Willpower Points
           </Title>
           <Text>
@@ -501,7 +521,9 @@ export const HowToPlay = () => {
             resist the effects of terror and mental disorders, and, on rare
             occasions, to resist or enact unnatural rituals.
           </Text>
-          <Title order={3}>Exhaustion</Title>
+          <Title order={3} id="exhaustion">
+            Exhaustion
+          </Title>
           <Text>
             An Agent who works too long or faces extreme danger and injury
             without resting becomes exhausted. When this comes into play is up
@@ -525,7 +547,9 @@ export const HowToPlay = () => {
             Agent gains a new disorder while using stimulants, the Handler has
             good reason to say the disorder takes the form of addiction to them.
           </Text>
-          <Title order={3}>Sleeplessness</Title>
+          <Title order={3} id="sleeplessness">
+            Sleeplessness
+          </Title>
           <Text>
             The first time your Agent tries to sleep after suffering temporary
             insanity or gaining a new disorder, you must make a SAN test. If it

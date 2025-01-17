@@ -2,7 +2,7 @@ import { Divider, Grid, Stack, Text, Title } from "@mantine/core";
 
 export const HowTheGameIsPlayed = () => {
   return (
-    <Grid ta="start" p="md">
+    <Grid ta="start" p="md" id="game">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline">How The Game Is Played</Title>

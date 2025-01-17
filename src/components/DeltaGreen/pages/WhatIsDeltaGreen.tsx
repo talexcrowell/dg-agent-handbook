@@ -2,8 +2,8 @@ import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
 
 export const WhatIsDeltaGreen = () => {
   return (
-    <ScrollArea h={"90vh"}>
-      <Grid ta="start" p="md">
+    <ScrollArea h={"95vh"}>
+      <Grid ta="start" p="md" id="what">
         <Grid.Col span={12}>
           <Stack>
             <Title td="underline">What Is Delta Green?</Title>
@@ -39,7 +39,7 @@ export const WhatIsDeltaGreen = () => {
               version that is common, but your experience may be very different.
             </Text>
             <Divider />
-            <Title order={2}>Potential Recruits</Title>
+            <Title order={2} td="underline">Potential Recruits</Title>
             <Text>
               Delta Green recruits a new prospect only after confirming that he
               or she can handle the work and the unconventional demands the
@@ -59,7 +59,7 @@ export const WhatIsDeltaGreen = () => {
               mission.
             </Text>
             <Divider />
-            <Title order={2}>Operational Briefing</Title>
+            <Title order={2} td="underline">Operational Briefing</Title>
             <Text>
               When a Delta Green operation is necessary, the mission is always
               the same. Stop the incursion. Minimize exposure. Save lives. Cover
@@ -84,7 +84,7 @@ export const WhatIsDeltaGreen = () => {
               nowhere in these orders and reassignments.
             </Text>
             <Divider />
-            <Title order={2}>On the Ground</Title>
+            <Title order={2} td="underline">On the Ground</Title>
             <Text>
               Occasionally, the Delta Green team acts undercover and within the
               budget of an official, mundane investigation or counterterrorism
@@ -112,7 +112,7 @@ export const WhatIsDeltaGreen = () => {
               things go too far, the witness may need to be eliminated.
             </Text>
             <Divider />
-            <Title order={2}>Retirement</Title>
+            <Title order={2} td="underline">Retirement</Title>
             <Text>
               When a Delta Green agent is hurt, killed, or so badly traumatized
               that returning to the day job is impossible, it’s up to fellow

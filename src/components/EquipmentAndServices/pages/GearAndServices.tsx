@@ -38,7 +38,7 @@ export const GearsAndServices = () => {
   };
   return (
     <ScrollArea h={"95vh"}>
-      <Grid p="md">
+      <Grid p="md" id='gear-and-services'>
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline">Transportation</Title>

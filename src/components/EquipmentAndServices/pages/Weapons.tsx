@@ -67,7 +67,7 @@ export const Weapons = () => {
 
   return (
     <ScrollArea h={"95vh"}>
-      <Grid p="md">
+      <Grid p="md" id="weapons">
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline">Hand-to-Hand Weapons</Title>
@@ -96,10 +96,7 @@ export const Weapons = () => {
                           <Group>
                             {item.name}
                             {item.description && (
-                              <Tooltip
-                                label={item.description}
-                                multiline
-                              >
+                              <Tooltip label={item.description} multiline>
                                 <IconInfoCircle />
                               </Tooltip>
                             )}
@@ -162,10 +159,7 @@ export const Weapons = () => {
                           <Group>
                             {item.name}
                             {item.description && (
-                              <Tooltip
-                                label={item.description}
-                                multiline
-                              >
+                              <Tooltip label={item.description} multiline>
                                 <IconInfoCircle />
                               </Tooltip>
                             )}
@@ -228,10 +222,7 @@ export const Weapons = () => {
                           <Group>
                             {item.name}
                             {item.description && (
-                              <Tooltip
-                                label={item.description}
-                                multiline
-                              >
+                              <Tooltip label={item.description} multiline>
                                 <IconInfoCircle />
                               </Tooltip>
                             )}
@@ -291,9 +282,7 @@ export const Weapons = () => {
                           <Group>
                             {item.name}
                             {item.description && (
-                              <Tooltip
-                                label={item.description}
-                              >
+                              <Tooltip label={item.description}>
                                 <IconInfoCircle />
                               </Tooltip>
                             )}
@@ -354,7 +343,11 @@ export const Weapons = () => {
                               </Tooltip>
                             )}
                             {item.restricted && (
-                              <Tooltip label={"RESTRICTED IF CAPABLE OF FULLY AUTOMATIC FIRE"}>
+                              <Tooltip
+                                label={
+                                  "RESTRICTED IF CAPABLE OF FULLY AUTOMATIC FIRE"
+                                }
+                              >
                                 <IconCancel color="red" />
                               </Tooltip>
                             )}

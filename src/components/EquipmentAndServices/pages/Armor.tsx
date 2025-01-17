@@ -24,9 +24,9 @@ export const Armor = () => {
     }
     return str;
   };
-  
+
   return (
-    <Grid p="md">
+    <Grid p="md" id='armor'>
       <Grid.Col span={12}>
         <Stack gap="lg">
           <Title>Body Armor</Title>

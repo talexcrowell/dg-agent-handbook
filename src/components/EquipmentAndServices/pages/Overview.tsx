@@ -24,7 +24,7 @@ export const Overview = () => {
   ];
   return (
     <ScrollArea h={"95vh"}>
-      <Grid p="md">
+      <Grid p="md" id="overview">
         <Grid.Col span={12}>
           <Stack>
             <Title td="underline">Equipment and Services</Title>
@@ -47,45 +47,55 @@ export const Overview = () => {
               difficulty of getting it—into a few broad categories. If an item’s
               expense category isn’t obvious, the Handler decides.
             </Text>
-            <List listStyleType="none">
+            <List listStyleType="none" spacing={"lg"}>
               <List.Item>
                 <Group>
                   <IconTriangleFilled color="green" />
-                  Incidental Expense (Up to $150): Most day-to-day transactions
-                  don’t need tracking at all.
-                </Group>
+                  Incidental Expense (Up to $150)
+                </Group>{" "}
+                <Text>
+                  Most day-to-day transactions don’t need tracking at all.
+                </Text>
               </List.Item>
               <List.Item>
                 <Group>
                   <IconTriangleFilled color="blue" />
-                  Standard Expense ($200 to $800): These substantial expenses
-                  might prove challenging.
+                  Standard Expense ($200 to $800)
                 </Group>
+                <Text>These substantial expenses might prove challenging.</Text>
               </List.Item>
               <List.Item>
                 <Group>
                   <IconTriangleFilled color="yellow" />
-                  Unusual Expense ($1,000 to $5,000): Most Agents can’t afford
-                  to make Unusual purchases out of their own pockets without
-                  trouble.
+                  Unusual Expense ($1,000 to $5,000)
                 </Group>
+                <Text>
+                  Most Agents can’t afford to make Unusual purchases out of
+                  their own pockets without trouble.
+                </Text>
               </List.Item>
               <List.Item>
                 <Group>
                   <IconTriangleFilled color="orange" />
-                  Major Expense ($6,000 to $30,000): This is also the level of
-                  expense for exceptional, rare, or big-ticket items.
+                  Major Expense ($6,000 to $30,000)
                 </Group>
+                <Text>
+                  This is also the level of expense for exceptional, rare, or
+                  big-ticket items.
+                </Text>
               </List.Item>
               <List.Item>
                 <Group>
                   <IconTriangleFilled color="red" />
-                  Extreme Expense ($36,000 and Higher): Beyond that are levels
-                  of spending only open to the truly wealthy.
+                  Extreme Expense ($36,000 and Higher)
                 </Group>
+                <Text>
+                  Beyond that are levels of spending only open to the truly
+                  wealthy.
+                </Text>
               </List.Item>
             </List>
-            <Table withTableBorder striped mb='lg'>
+            <Table withTableBorder striped my="lg">
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th>Expense</Table.Th>
@@ -169,7 +179,9 @@ export const Overview = () => {
               Agents can get more gear or aid during an operation through 3
               different ways:
             </Text>
-            <Title order={2} td="underline">Official Requistion</Title>
+            <Title order={2} td="underline">
+              Official Requistion
+            </Title>
             <Text>
               Many Delta Green operations take place under the cover of
               official, on-the-books government investigations. That allows for
@@ -190,7 +202,9 @@ export const Overview = () => {
               returned at the end of the operation.
             </Text>
             <Divider />
-            <Title order={2} td="underline">Spending Your Own Money</Title>
+            <Title order={2} td="underline">
+              Spending Your Own Money
+            </Title>
             <Text>
               Most Delta Green Agents are full-time members of federal law
               enforcement, the special forces, or ac- ademia. They’re usually
@@ -256,7 +270,9 @@ export const Overview = () => {
               SWAT team on a credit card.
             </Text>
             <Divider />
-            <Title order={2} td="underline">Using Illicit Money</Title>
+            <Title order={2} td="underline">
+              Using Illicit Money
+            </Title>
             <Text>
               Your Agent may have a stack of cash or disposable debit cards
               provided by Delta Green, stolen in an earlier operation, or
@@ -267,7 +283,9 @@ export const Overview = () => {
               that could only be gained as part of an official operation.
             </Text>
             <Divider />
-            <Title order={2} td="underline">Restricted Items</Title>
+            <Title order={2} td="underline">
+              Restricted Items
+            </Title>
             <Text>
               In the U.S., many weapons are available on the open market with
               negligible licensing. But some equipment is tightly enough

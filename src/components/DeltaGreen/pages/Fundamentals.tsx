@@ -2,8 +2,8 @@ import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
 
 export const Fundamentals = () => {
   return (
-    <ScrollArea h={"90vh"}>
-      <Grid ta="start" p="md">
+    <ScrollArea h={"95vh"}>
+      <Grid ta="start" p="md" id="fundamentals">
         <Grid.Col span={12}>
           <Stack>
             <Title td="underline">The Fundamentals</Title>

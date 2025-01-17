@@ -2,10 +2,10 @@ import { Divider, Grid, Stack, Text, Title } from "@mantine/core";
 
 export const WorldOfDeltaGreen = () => {
   return (
-    <Grid ta="start" p="md">
+    <Grid ta="start" p="md" id="world">
       <Grid.Col span={12}>
         <Stack>
-          <Title td='underline'>The World of Delta Green</Title>
+          <Title td="underline">The World of Delta Green</Title>
           <Text>
             Delta Green is a covert group inside the United States federal
             government. Its mission is to investigate, contain, and conceal
@@ -27,7 +27,9 @@ export const WorldOfDeltaGreen = () => {
             nothing more. That’s the first rule of Delta Green.
           </Text>
           <Divider />
-          <Title order={2}>The Unnatural in the Modern Era</Title>
+          <Title order={2} td="underline">
+            The Unnatural in the Modern Era
+          </Title>
           <Text>
             In a world of smartphones and instantaneous communication, how can
             the secret of the unnatural ever be kept? The answer is simple.
