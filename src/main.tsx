@@ -12,7 +12,7 @@ import { AgentRoster } from "./components/AgentRoster/index.tsx";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
-import { EquipmentAndServices } from "./components/EquipmentAndVehicles/index.tsx";
+import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
 
 const router = createHashRouter([
   {
