@@ -35,5 +35,8 @@
     "postcss-simple-vars": "^7.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
