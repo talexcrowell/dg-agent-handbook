@@ -281,7 +281,7 @@ export const OtherProfessionalSkills: React.FC<{
                   onChange={handleSelectSkill}
                 >
                   <Stack>
-                    {skillKeysArr.slice(0, 14).map((key) => (
+                    {skillKeysArr.slice(0, 15).map((key) => (
                       <List.Item>
                         <Checkbox
                           label={
@@ -363,7 +363,7 @@ export const OtherProfessionalSkills: React.FC<{
                   onChange={handleSelectSkill}
                 >
                   <Stack>
-                    {skillKeysArr.slice(15, 29).map((key) => (
+                    {skillKeysArr.slice(15, 30).map((key) => (
                       <List.Item>
                         <Checkbox
                           label={
