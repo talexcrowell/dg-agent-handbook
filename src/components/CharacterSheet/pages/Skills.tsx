@@ -83,7 +83,7 @@ export const Skills = () => {
               <Table.Th>Score</Table.Th>
             </Table.Tr>
           </Table.Thead>
-          {skillKeysArr.slice(0, 14).map((key) => {
+          {skillKeysArr.slice(0, 15).map((key) => {
             return (
               <Table.Tr>
                 <Table.Td>
@@ -142,7 +142,7 @@ export const Skills = () => {
               <Table.Th>Score</Table.Th>
             </Table.Tr>
           </Table.Thead>
-          {skillKeysArr.slice(15, 29).map((key) => {
+          {skillKeysArr.slice(15, 30).map((key) => {
             return (
               <Table.Tr>
                 <Table.Td>
