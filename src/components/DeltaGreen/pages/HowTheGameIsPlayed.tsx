@@ -1,8 +1,15 @@
 import { Divider, Grid, Stack, Text, Title } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 
 export const HowTheGameIsPlayed = () => {
+  const { width } = useViewportSize();
   return (
-    <Grid ta="start" p="md" id="game">
+    <Grid
+      ta="start"
+      p={width > 600 ? "md" : 0}
+      gutter={width > 600 ? "md" : "0"}
+      id="game"
+    >
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline">How The Game Is Played</Title>

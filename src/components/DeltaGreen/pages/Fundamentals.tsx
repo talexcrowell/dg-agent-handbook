@@ -1,9 +1,16 @@
 import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 
 export const Fundamentals = () => {
+  const { width } = useViewportSize();
   return (
     <ScrollArea h={"95vh"}>
-      <Grid ta="start" p="md" id="fundamentals">
+      <Grid
+        ta="start"
+        p={width > 600 ? "md" : 0}
+        gutter={width > 600 ? "md" : "0"}
+        id="fundamentals"
+      >
         <Grid.Col span={12}>
           <Stack>
             <Title td="underline">The Fundamentals</Title>

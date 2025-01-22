@@ -10,8 +10,11 @@ import {
 } from "@mantine/core";
 import { vehicleList } from "../../../data";
 import { IconTriangleFilled } from "@tabler/icons-react";
+import { useViewportSize } from "@mantine/hooks";
 
 export const Vehicles = () => {
+    const { width } = useViewportSize();
+    
   const calculateIcon = (expense) => {
     let str;
     switch (expense) {
@@ -36,7 +39,11 @@ export const Vehicles = () => {
 
   return (
     <ScrollArea h={"95vh"}>
-      <Grid p="md" id='vehicles'>
+      <Grid
+        p={width > 600 ? "md" : 0}
+        gutter={width > 600 ? "md" : "0"}
+        id="vehicles"
+      >
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline">Vehicles</Title>

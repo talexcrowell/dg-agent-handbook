@@ -4,14 +4,14 @@ import { Navbar } from "./components/Navbar";
 import { Outlet } from "react-router-dom";
 import { useViewportSize } from "@mantine/hooks";
 function App() {
-  const { height } = useViewportSize();
+  const { width } = useViewportSize();
   return (
     <AppShell padding="sm">
-      <AppShell.Header h={40}>
+      <AppShell.Header h={ width > 992 ? 45 : 55}>
         <Navbar />
       </AppShell.Header>
-      <AppShell.Main pt={50} pb={0} h={'100vh'}>
-        <Container size="xl">
+      <AppShell.Main pt={width > 992 ? 45 : 55} pb={0}>
+        <Container size="xl" px={width > 600 ? 'md' : '0'}>
           <Outlet />
         </Container>
       </AppShell.Main>

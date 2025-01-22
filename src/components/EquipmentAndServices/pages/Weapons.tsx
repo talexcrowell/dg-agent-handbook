@@ -1,6 +1,8 @@
 import {
+  Button,
   Grid,
   Group,
+  Modal,
   ScrollArea,
   Stack,
   Table,
@@ -14,8 +16,13 @@ import {
   IconInfoCircle,
   IconTriangleFilled,
 } from "@tabler/icons-react";
+import { useViewportSize } from "@mantine/hooks";
+import { useState } from "react";
 
 export const Weapons = () => {
+  const [mobileWeaponsMenuOpen, setMobileWeaponsMenuOpen] = useState(false);
+  const { width } = useViewportSize();
+
   const skillKeyLabels = (key) => {
     switch (key) {
       case "computerScience":
@@ -67,7 +74,11 @@ export const Weapons = () => {
 
   return (
     <ScrollArea h={"95vh"}>
-      <Grid p="md" id="weapons">
+      <Grid
+        p={width > 600 ? "md" : 0}
+        gutter={width > 600 ? "md" : "0"}
+        id="weapons"
+      >
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline">Hand-to-Hand Weapons</Title>
@@ -76,58 +87,130 @@ export const Weapons = () => {
               Unarmed Combat skill. All melee weapons use the Melee Weapons
               skill.
             </Text>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Skill</Table.Th>
-                  <Table.Th>Base Damage</Table.Th>
-                  <Table.Th>Armor Piercing</Table.Th>
-                  <Table.Th>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {weaponsLists
-                  .filter((item) => item.type === "handToHand")
-                  .map((item) => {
-                    return (
+            {width > 760 ? (
+              <Table withTableBorder highlightOnHover striped>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Item</Table.Th>
+                    <Table.Th>Skill</Table.Th>
+                    <Table.Th>Base Damage</Table.Th>
+                    <Table.Th>Armor Piercing</Table.Th>
+                    <Table.Th>Expense</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {weaponsLists
+                    .filter((item) => item.type === "handToHand")
+                    .map((item) => {
+                      return (
+                        <Table.Tr>
+                          <Table.Td>
+                            <Group>
+                              {item.name}
+                              {item.description && (
+                                <Tooltip label={item.description} multiline>
+                                  <IconInfoCircle />
+                                </Tooltip>
+                              )}
+                              {item.restricted && (
+                                <Tooltip label={"RESTRICTED"}>
+                                  <IconCancel color="red" />
+                                </Tooltip>
+                              )}
+                            </Group>
+                          </Table.Td>
+                          <Table.Td>{skillKeyLabels(item.skill)}</Table.Td>
+                          <Table.Td>{item.damage}</Table.Td>
+                          <Table.Td>
+                            {item.armorPiercing === 0
+                              ? "N/A"
+                              : item.armorPiercing}
+                          </Table.Td>
+                          <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
+                        </Table.Tr>
+                      );
+                    })}
+                  <Table.Tr></Table.Tr>
+                </Table.Tbody>
+              </Table>
+            ) : (
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => setMobileWeaponsMenuOpen(true)}
+                  my="lg"
+                >
+                  See Hand-to-Hand Weapons Table
+                </Button>
+                <Modal
+                  opened={mobileWeaponsMenuOpen}
+                  onClose={() => setMobileWeaponsMenuOpen(false)}
+                  fullScreen
+                  title="Hand-to-Hand Weapons Table"
+                >
+                  {" "}
+                  <Table withTableBorder highlightOnHover striped>
+                    <Table.Thead>
                       <Table.Tr>
-                        <Table.Td>
-                          <Group>
-                            {item.name}
-                            {item.description && (
-                              <Tooltip label={item.description} multiline>
-                                <IconInfoCircle />
-                              </Tooltip>
-                            )}
-                            {item.restricted && (
-                              <Tooltip label={"RESTRICTED"}>
-                                <IconCancel color="red" />
-                              </Tooltip>
-                            )}
-                          </Group>
-                        </Table.Td>
-                        <Table.Td>{skillKeyLabels(item.skill)}</Table.Td>
-                        <Table.Td>{item.damage}</Table.Td>
-                        <Table.Td>
-                          {item.armorPiercing === 0
-                            ? "N/A"
-                            : item.armorPiercing}
-                        </Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Th>Item</Table.Th>
+                        <Table.Th>Skill</Table.Th>
+                        <Table.Th>Base Damage</Table.Th>
+                        <Table.Th>Armor Piercing</Table.Th>
+                        <Table.Th>Expense</Table.Th>
                       </Table.Tr>
-                    );
-                  })}
-                <Table.Tr></Table.Tr>
-              </Table.Tbody>
-            </Table>
+                    </Table.Thead>
+                    <Table.Tbody>
+                      {weaponsLists
+                        .filter((item) => item.type === "handToHand")
+                        .map((item) => {
+                          return (
+                            <Table.Tr>
+                              <Table.Td w={150}>
+                                <Group>
+                                  {item.name}
+                                  {item.description && (
+                                    <Tooltip label={item.description} multiline>
+                                      <IconInfoCircle />
+                                    </Tooltip>
+                                  )}
+                                  {item.restricted && (
+                                    <Tooltip label={"RESTRICTED"}>
+                                      <IconCancel color="red" />
+                                    </Tooltip>
+                                  )}
+                                </Group>
+                              </Table.Td>
+                              <Table.Td w={150}>
+                                {skillKeyLabels(item.skill)}
+                              </Table.Td>
+                              <Table.Td>{item.damage}</Table.Td>
+                              <Table.Td>
+                                {item.armorPiercing === 0
+                                  ? "N/A"
+                                  : item.armorPiercing}
+                              </Table.Td>
+                              <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
+                            </Table.Tr>
+                          );
+                        })}
+                      <Table.Tr></Table.Tr>
+                    </Table.Tbody>
+                  </Table>
+                </Modal>
+              </>
+            )}
             <Title td="underline">Tear Gas and Pepper Spray</Title>
             <Text>
               These irritant chemicals make eyes tear, lungs seize, and exposed
@@ -177,14 +260,13 @@ export const Weapons = () => {
                         <Table.Td>{item.uses}</Table.Td>
                         <Table.Td>{item.radius}</Table.Td>
                         <Table.Td>{item.penalty}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -240,14 +322,13 @@ export const Weapons = () => {
                         <Table.Td>{item.uses}</Table.Td>
                         <Table.Td>{item.radius}</Table.Td>
                         <Table.Td>{item.penalty}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -297,14 +378,13 @@ export const Weapons = () => {
                         <Table.Td>{item.range}m</Table.Td>
                         <Table.Td>{item.uses}</Table.Td>
                         <Table.Td>{item.penalty}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -363,14 +443,13 @@ export const Weapons = () => {
                             ? "N/A"
                             : item.armorPiercing}
                         </Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -429,14 +508,13 @@ export const Weapons = () => {
                             ? "N/A"
                             : item.armorPiercing}
                         </Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -493,14 +571,13 @@ export const Weapons = () => {
                             ? "N/A"
                             : item.armorPiercing}
                         </Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}
@@ -557,14 +634,13 @@ export const Weapons = () => {
                             ? "N/A"
                             : item.armorPiercing}
                         </Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        </Table.Td>
+                        <Table.Td>
+                            <Tooltip label={item.expense} tt="capitalize">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                            </Tooltip>
+                          </Table.Td>
                       </Table.Tr>
                     );
                   })}

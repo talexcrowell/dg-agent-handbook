@@ -1,8 +1,10 @@
 import { Flex, Grid, Image, Stack, Text, Title } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 
 export const Overview = () => {
+  const { width } = useViewportSize();
   return (
-    <Grid p="md">
+    <Grid p={width > 600 ? "md" : 0} gutter={width > 600 ? "md" : "0"}>
       <Grid.Col span={12}>
         <Stack ta="start">
           <Flex justify={"center"}>
