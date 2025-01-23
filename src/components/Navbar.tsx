@@ -36,7 +36,6 @@ export const Navbar = () => {
               }
               component={Link}
               to={`/`}
-              active={location.pathname === "/"}
             />
           </Grid.Col>
           <Grid.Col span={2}>
@@ -44,7 +43,7 @@ export const Navbar = () => {
               label="Delta Green"
               component={Link}
               to={`/delta-green`}
-              active={location.pathname === "/delta-green"}
+              active={location.pathname.includes("/delta-green")}
             />
           </Grid.Col>
           <Grid.Col span={2}>
@@ -52,7 +51,7 @@ export const Navbar = () => {
               label="Rules"
               component={Link}
               to={`/rules`}
-              active={location.pathname === "/rules"}
+              active={location.pathname.includes("/rules")}
             />
           </Grid.Col>
           <Grid.Col span={3}>
@@ -60,7 +59,7 @@ export const Navbar = () => {
               label="Equipment and Services"
               component={Link}
               to={`/equipment-and-services`}
-              active={location.pathname === "/equipment-and-services"}
+              active={location.pathname.includes("/equipment-and-services")}
             />
           </Grid.Col>
           <Grid.Col span={3}>
@@ -68,7 +67,7 @@ export const Navbar = () => {
               label="Agent Roster"
               component={Link}
               to={`/agents`}
-              active={location.pathname === "/agents"}
+              active={location.pathname.includes("/agents")}
             />
           </Grid.Col>
         </Grid>
