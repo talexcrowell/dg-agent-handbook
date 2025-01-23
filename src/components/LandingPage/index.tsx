@@ -8,9 +8,11 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
 export const LandingPage = () => {
+  const { width } = useViewportSize();
   return (
     <Grid py="lg">
       <Grid.Col>
@@ -18,7 +20,7 @@ export const LandingPage = () => {
         <Text></Text>
       </Grid.Col>
       <Grid.Col>
-        <SimpleGrid cols={3}>
+        <SimpleGrid cols={width > 760 ? 3 : 2}>
           <Card component={Link} to="/delta-green">
             <Card.Section>
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
@@ -36,16 +38,36 @@ export const LandingPage = () => {
             </Group>
           </Card>
           <Card component={Link} to="/rules/training-video">
-            Training Video
+            <Card.Section>
+              <Image src={"https://i.imgur.com/c1Ne6Io.png"} h={150} />
+            </Card.Section>
+            <Group justify="space-between" mt="md" mb="xs">
+              <Text>Training Video</Text>
+            </Group>
           </Card>
           <Card component={Link} to="/equipment-and-services">
-            Equipment and Services
+            <Card.Section>
+              <Image src={"https://i.imgur.com/dIQQX1X.png"} h={150} />
+            </Card.Section>
+            <Group justify="space-between" mt="md" mb="xs">
+              <Text>Equipment and Services</Text>
+            </Group>
           </Card>
           <Card component={Link} to="/agents">
-            Agent Roster
+            <Card.Section>
+              <Image src={"https://i.imgur.com/7pu9wM0.png"} h={150} />
+            </Card.Section>
+            <Group justify="space-between" mt="md" mb="xs">
+              <Text>Agent Roster</Text>
+            </Group>
           </Card>
           <Card component={Link} to="/agents/new">
-            Create an Agent
+            <Card.Section>
+              <Image src={"https://i.imgur.com/CqrNu4c.png"} h={150} />
+            </Card.Section>
+            <Group justify="space-between" mt="md" mb="xs">
+              <Text>Create an Agent</Text>
+            </Group>
           </Card>
         </SimpleGrid>
       </Grid.Col>
