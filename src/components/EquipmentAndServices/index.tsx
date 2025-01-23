@@ -22,16 +22,21 @@ import { Overview } from "./pages/Overview";
 import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const EquipmentAndServices = () => {
-  const [activeTab, setActiveTab] = useState<string | null>("overview");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
   const { width } = useViewportSize();
+  const navigate = useNavigate();
+  const { tabValue } = useParams();
 
   useEffect(() => {
+    if(!tabValue){
+      navigate('/equipment-and-services/overview')
+    }
     reinitializeRef.current();
-  }, [activeTab]);
+  }, [tabValue]);
 
   return (
     <Grid pb={width > 760 ? 0 : 60}>
@@ -39,8 +44,8 @@ export const EquipmentAndServices = () => {
         <Tabs
           defaultValue="overview"
           orientation="vertical"
-          value={activeTab}
-          onChange={setActiveTab}
+          value={tabValue}
+          onChange={(value) => navigate(`/equipment-and-services/${value}`)}
         >
           {width > 760 ? (
             <Tabs.List>
@@ -133,7 +138,7 @@ export const EquipmentAndServices = () => {
               radius="sm"
               reinitializeRef={reinitializeRef}
               scrollSpyOptions={{
-                selector: `#${activeTab} :is(h1, h2, h3, h4, h5, h6)`,
+                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
               }}
               getControlProps={({ data }) => ({
                 onClick: () => data.getNode().scrollIntoView(),

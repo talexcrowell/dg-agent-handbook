@@ -23,7 +23,6 @@ import { useViewportSize } from "@mantine/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const Rules = () => {
-  const [activeTab, setActiveTab] = useState<string | null>("game");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
   const { width } = useViewportSize();
@@ -31,6 +30,9 @@ export const Rules = () => {
   const { tabValue } = useParams();
 
   useEffect(() => {
+    if(!tabValue){
+      navigate('/rules/how-to-play')
+    }
     reinitializeRef.current();
   }, [tabValue]);
 

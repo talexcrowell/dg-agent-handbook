@@ -30,6 +30,9 @@ export const DeltaGreen = () => {
   const { tabValue } = useParams();
 
   useEffect(() => {
+    if(!tabValue){
+      navigate('/delta-green/overview')
+    }
     reinitializeRef.current();
   }, [tabValue]);
 
