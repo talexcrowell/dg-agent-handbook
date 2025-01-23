@@ -16,7 +16,7 @@ export const LandingPage = () => {
   return (
     <Grid py="lg">
       <Grid.Col>
-        <Title>Agent's Handbook</Title>
+        <Title>Agent Handbook</Title>
         <Text></Text>
       </Grid.Col>
       <Grid.Col>
