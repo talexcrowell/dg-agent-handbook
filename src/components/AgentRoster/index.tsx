@@ -26,12 +26,14 @@ import {
   IconTrash,
   IconUserPlus,
 } from "@tabler/icons-react";
+import { useViewportSize } from "@mantine/hooks";
 
 export const AgentRoster = () => {
   const [{ currentCharacter, savedCharacters }, actions] =
     useCharacterContext();
   const [opened, setOpened] = useState(false);
   const [importString, setImportString] = useState("");
+   const { width } = useViewportSize();
 
   const toggleImport = () => {
     setOpened(!opened);
@@ -89,7 +91,7 @@ export const AgentRoster = () => {
 
   return (
     <>
-      <Grid ta="start">
+      <Grid ta="start" pt={width > 600 ? 0 : 10}>
         <Grid.Col span={12}>
           <Stack>
             <Title>Agent Roster</Title>

@@ -5,6 +5,7 @@ import {
   Grid,
   Group,
   Modal,
+  NavLink,
   ScrollArea,
   Stack,
   Table,
@@ -22,7 +23,7 @@ import { Overview } from "./pages/Overview";
 import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,16 +31,17 @@ export const EquipmentAndServices = () => {
   const { width } = useViewportSize();
   const navigate = useNavigate();
   const { tabValue } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if(!tabValue){
-      navigate('/equipment-and-services/overview')
+    if (!tabValue) {
+      navigate("/equipment-and-services/overview");
     }
     reinitializeRef.current();
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 760 ? 0 : 60}>
+    <Grid pb={width > 760 ? 0 : 60} pt={width > 760 ? 0 : 10}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
@@ -70,40 +72,59 @@ export const EquipmentAndServices = () => {
                 fullScreen
                 title="Section List"
               >
-                <Tabs.List>
-                  <Stack>
-                    <Tabs.Tab
-                      value={"overview"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Overview
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"weapons"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Weapons
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"armor"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Armor
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"vehicles"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Vehicles
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"gear-and-services"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Gear and Services
-                    </Tabs.Tab>
-                  </Stack>
-                </Tabs.List>
+                <Stack>
+                  <NavLink
+                    label="Overview"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/equipment-and-services/overview");
+                    }}
+                    active={
+                      location.pathname === "/equipment-and-services/overview"
+                    }
+                  />
+                  <NavLink
+                    label="Weapons"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/equipment-and-services/weapons");
+                    }}
+                    active={
+                      location.pathname === "/equipment-and-services/weapons"
+                    }
+                  />
+                  <NavLink
+                    label="Armor"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/equipment-and-services/armor");
+                    }}
+                    active={
+                      location.pathname === "/equipment-and-services/armor"
+                    }
+                  />
+                  <NavLink
+                    label="Vehicles"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/equipment-and-services/vehicles");
+                    }}
+                    active={
+                      location.pathname === "/equipment-and-services/vehicles"
+                    }
+                  />
+                  <NavLink
+                    label="Gear and Services"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/equipment-and-services/gear-and-services");
+                    }}
+                    active={
+                      location.pathname ===
+                      "/equipment-and-services/gear-and-services"
+                    }
+                  />
+                </Stack>
               </Modal>
             </Affix>
           )}

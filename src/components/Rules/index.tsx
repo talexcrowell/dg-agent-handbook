@@ -11,6 +11,7 @@ import {
   Affix,
   Button,
   Modal,
+  NavLink,
 } from "@mantine/core";
 import { HowToPlay } from "./pages/HowToPlay";
 import { Combat } from "./pages/Combat";
@@ -20,7 +21,7 @@ import { TrainingVideo } from "./pages/TrainingVideo";
 import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export const Rules = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,16 +29,17 @@ export const Rules = () => {
   const { width } = useViewportSize();
   const navigate = useNavigate();
   const { tabValue } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if(!tabValue){
-      navigate('/rules/how-to-play')
+    if (!tabValue) {
+      navigate("/rules/how-to-play");
     }
     reinitializeRef.current();
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 600 ? 0 : 60}>
+    <Grid pb={width > 600 ? 0 : 60} pt={width > 600 ? 0 : 10}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="how-to-play"
@@ -68,40 +70,48 @@ export const Rules = () => {
                 fullScreen
                 title="Section List"
               >
-                <Tabs.List>
-                  <Stack>
-                    <Tabs.Tab
-                      value={"how-to-play"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      How to Play
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"combat"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Combat
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"sanity"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Sanity
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"home"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Home
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value={"training-video"}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Training Video
-                    </Tabs.Tab>
-                  </Stack>
-                </Tabs.List>
+                <Stack>
+                  <NavLink
+                    label="How to Play"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/rules/how-to-play");
+                    }}
+                    active={location.pathname === "/rules/how-to-play"}
+                  />
+                  <NavLink
+                    label="Combat"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/rules/combat");
+                    }}
+                    active={location.pathname === "/rules/combat"}
+                  />
+                  <NavLink
+                    label="Sanity"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/rules/sanity");
+                    }}
+                    active={location.pathname === "/rules/sanity"}
+                  />
+                  <NavLink
+                    label="Home"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/rules/home");
+                    }}
+                    active={location.pathname === "/rules/home"}
+                  />
+                  <NavLink
+                    label="Training Video"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/rules/training-video");
+                    }}
+                    active={location.pathname === "/rules/training-video"}
+                  />
+                </Stack>
               </Modal>
             </Affix>
           )}

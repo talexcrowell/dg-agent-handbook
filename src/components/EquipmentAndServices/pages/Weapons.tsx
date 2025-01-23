@@ -903,19 +903,25 @@ export const Weapons = () => {
           position={"bottom"}
           opened={mobileWeaponsMenuOpen}
           onClose={() => setMobileWeaponsMenuOpen(false)}
-          title={mobileWeapon?.name}
+          title={
+            <Title order={2}>
+              {mobileWeapon?.name}{" "}
+              {mobileWeapon?.restricted && (
+                <Text c="red" fw={700} td="underline">
+                  {mobileWeapon?.type === "firearms" ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE" : "RESTRICTED ITEM"}
+                </Text>
+              )}
+            </Title>
+          }
         >
-          <Stack>
-            {mobileWeapon?.restricted && (
-              <Flex>
-                <Text>RESTRICTED ITEM</Text>
-              </Flex>
-            )}
+          <Stack gap="lg">
             <SimpleGrid cols={width > 450 ? 3 : 2} verticalSpacing="xl">
               {mobileWeapon?.skill && (
                 <Stack gap="0">
                   <InputLabel>Skill</InputLabel>
-                  <Text>{skillKeyLabels(mobileWeapon?.skill)}</Text>
+                  <Text tt="capitalize">
+                    {skillKeyLabels(mobileWeapon?.skill)}
+                  </Text>
                 </Stack>
               )}
               {mobileWeapon?.damage && (
@@ -924,7 +930,7 @@ export const Weapons = () => {
                   <Text>{mobileWeapon?.damage}</Text>
                 </Stack>
               )}
-              {mobileWeapon?.armorPiercing !== null && (
+              {mobileWeapon?.armorPiercing !== undefined && (
                 <Stack gap="0">
                   <InputLabel>Armor Piercing</InputLabel>
                   <Text>
@@ -937,7 +943,7 @@ export const Weapons = () => {
               {mobileWeapon?.range && (
                 <Stack gap="0">
                   <InputLabel>Range</InputLabel>
-                  <Text>{mobileWeapon?.range}m</Text>
+                  <Text>{mobileWeapon?.range}</Text>
                 </Stack>
               )}
               {mobileWeapon?.uses && (
@@ -960,13 +966,18 @@ export const Weapons = () => {
               )}
               <Stack gap="0">
                 <InputLabel>Expense</InputLabel>
-                <Text tt="capitalize">{mobileWeapon?.expense}</Text>
+                <Group>
+                  <IconTriangleFilled
+                    color={calculateIcon(mobileWeapon?.expense)}
+                  />
+                  <Text tt="capitalize">{mobileWeapon?.expense}</Text>
+                </Group>
               </Stack>
             </SimpleGrid>
             {mobileWeapon?.description && (
               <Stack gap="0">
                 <InputLabel>Additional Info</InputLabel>
-                <Text tt="capitalize">{mobileWeapon?.description}</Text>
+                <Text c="dimmed">{mobileWeapon?.description}</Text>
               </Stack>
             )}
           </Stack>

@@ -5,7 +5,7 @@ import { useViewportSize } from "@mantine/hooks";
 
 export const Armor = () => {
   const { width } = useViewportSize();
-  
+
   const calculateIcon = (expense) => {
     let str;
     switch (expense) {
@@ -36,7 +36,7 @@ export const Armor = () => {
     >
       <Grid.Col span={12}>
         <Stack gap="lg">
-          <Title>Body Armor</Title>
+          <Title td="underline">Body Armor</Title>
           <Text>
             While modern construction and materials such as Kevlar and ceramics
             have come a long way, they cannot protect you against all threats,

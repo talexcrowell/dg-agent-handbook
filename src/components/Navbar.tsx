@@ -96,34 +96,41 @@ export const Navbar = () => {
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         fullScreen
-        title="Handbook Menu"
+        title="Agent Handbook Menu"
       >
+        <NavLink
+          label="Directory"
+          component={Link}
+          to={`/`}
+          active={location.pathname === "/"}
+          onClick={() => setMobileMenuOpen(false)}
+        />
         <NavLink
           label="Delta Green"
           component={Link}
           to={`/delta-green`}
-          active={location.pathname === "/delta-green"}
+          active={location.pathname.includes("/delta-green")}
           onClick={() => setMobileMenuOpen(false)}
         />
         <NavLink
           label="Rules"
           component={Link}
           to={`/rules`}
-          active={location.pathname === "/rules"}
+          active={location.pathname.includes("/rules")}
           onClick={() => setMobileMenuOpen(false)}
         />
         <NavLink
           label="Equipment and Services"
           component={Link}
           to={`/equipment-and-services`}
-          active={location.pathname === "/equipment-and-services"}
+          active={location.pathname.includes("/equipment-and-services")}
           onClick={() => setMobileMenuOpen(false)}
         />
         <NavLink
           label="Agent Roster"
           component={Link}
           to={`/agents`}
-          active={location.pathname === "/agents"}
+          active={location.pathname.includes("/agents")}
           onClick={() => setMobileMenuOpen(false)}
         />
       </Modal>

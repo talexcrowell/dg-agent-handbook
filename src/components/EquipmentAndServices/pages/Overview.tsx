@@ -31,8 +31,8 @@ export const Overview = () => {
   return (
     <ScrollArea h={"95vh"}>
       <Grid
-        p={width > 600 ? "md" : 0}
-        gutter={width > 600 ? "md" : "0"}
+        p={width > 760 ? "md" : 0}
+        gutter={width > 760 ? "md" : "0"}
         id="overview"
       >
         <Grid.Col span={12}>

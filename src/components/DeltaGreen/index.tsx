@@ -4,6 +4,7 @@ import {
   Grid,
   Group,
   Modal,
+  NavLink,
   ScrollArea,
   Stack,
   TableOfContents,
@@ -20,7 +21,7 @@ import { HowToPlayAnAgent } from "./pages/HowToPlayAnAgent";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useViewportSize } from "@mantine/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export const DeltaGreen = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,16 +29,17 @@ export const DeltaGreen = () => {
   const { width } = useViewportSize();
   const navigate = useNavigate();
   const { tabValue } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if(!tabValue){
-      navigate('/delta-green/overview')
+    if (!tabValue) {
+      navigate("/delta-green/overview");
     }
     reinitializeRef.current();
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 600 ? 0 : 60}>
+    <Grid pb={width > 600 ? 0 : 60} pt={width > 600 ? 0 : 10}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
@@ -75,46 +77,63 @@ export const DeltaGreen = () => {
                 fullScreen
                 title="Section List"
               >
-                <Tabs.List>
-                  <Stack>
-                    <Tabs.Tab
-                      value="overview"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Overview
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value="world"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      The World of Delta Green
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value="what-is-delta-green"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      What is Delta Green?
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value="fundamentals"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      The Fundamentals
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value="how-the-game-is-played"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      How the Game is Played
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                      value="how-to-play-an-agent"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      How to Play an Agent
-                    </Tabs.Tab>
-                  </Stack>
-                </Tabs.List>
+                <Stack>
+                  <NavLink
+                    label="Overview"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/overview");
+                    }}
+                    active={location.pathname === "/delta-green/overview"}
+                  />
+                  <NavLink
+                    label="The World of Delta Green"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/world");
+                    }}
+                    active={location.pathname === "/delta-green/world"}
+                  />
+                  <NavLink
+                    label=" What is Delta Green?"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/what-is-delta-green");
+                    }}
+                    active={
+                      location.pathname === "/delta-green/what-is-delta-green"
+                    }
+                  />
+                  <NavLink
+                    label="The Fundamentals"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/fundamentals");
+                    }}
+                    active={location.pathname === "/delta-green/fundamentals"}
+                  />
+                  <NavLink
+                    label="How the Game is Played"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/how-the-game-is-played");
+                    }}
+                    active={
+                      location.pathname ===
+                      "/delta-green/how-the-game-is-played"
+                    }
+                  />
+                  <NavLink
+                    label="How to Play an Agent"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/delta-green/how-to-play-an-agent");
+                    }}
+                    active={
+                      location.pathname === "/delta-green/how-to-play-an-agent"
+                    }
+                  />
+                </Stack>
               </Modal>
             </Affix>
           )}
