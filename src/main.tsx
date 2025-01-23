@@ -14,6 +14,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
 import { LandingPage } from "./components/LandingPage/index.tsx";
+import { ViewportProvider } from "./contexts/ViewportContext.tsx";
 
 const router = createHashRouter([
   {
@@ -21,15 +22,13 @@ const router = createHashRouter([
     element: <App />,
     children: [
       { path: "/", element: <LandingPage /> },
+      
       { path: "/delta-green", element: <DeltaGreen /> },
       { path: "/delta-green/:tabValue", element: <DeltaGreen /> },
 
       { path: "/rules", element: <Rules /> },
       { path: "/rules/:tabValue", element: <Rules /> },
 
-      { path: "/agents", element: <AgentRoster /> },
-      { path: "/agents/new", element: <CreateAnAgent /> },
-      { path: "/agents/sheet/:codename", element: <CharacterSheet /> },
       {
         path: "/equipment-and-services",
         element: <EquipmentAndServices />,
@@ -38,15 +37,21 @@ const router = createHashRouter([
         path: "/equipment-and-services/:tabValue",
         element: <EquipmentAndServices />,
       },
+
+      { path: "/agents", element: <AgentRoster /> },
+      { path: "/agents/new", element: <CreateAnAgent /> },
+      { path: "/agents/sheet/:codename", element: <CharacterSheet /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <CharacterProvider>
-    <MantineProvider defaultColorScheme="dark">
-      <Notifications />
-      <RouterProvider router={router} />
-    </MantineProvider>
-  </CharacterProvider>
+  <ViewportProvider>
+    <CharacterProvider>
+      <MantineProvider defaultColorScheme="dark">
+        <Notifications />
+        <RouterProvider router={router} />
+      </MantineProvider>
+    </CharacterProvider>
+  </ViewportProvider>
 );

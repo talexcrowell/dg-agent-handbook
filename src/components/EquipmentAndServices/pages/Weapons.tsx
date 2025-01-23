@@ -24,11 +24,12 @@ import {
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useState } from "react";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Weapons = () => {
   const [mobileWeaponsMenuOpen, setMobileWeaponsMenuOpen] = useState(false);
   const [mobileWeapon, setMobileWeapon] = useState({});
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
 
   const skillKeyLabels = (key) => {
     switch (key) {
@@ -87,8 +88,8 @@ export const Weapons = () => {
   return (
     <ScrollArea h={"95vh"}>
       <Grid
-        p={width > 760 ? "md" : 0}
-        gutter={width > 760 ? "md" : "0"}
+        p={viewport.width > 760 ? "md" : 0}
+        gutter={viewport.width > 760 ? "md" : "0"}
         id="weapons"
       >
         <Grid.Col span={12}>
@@ -99,7 +100,7 @@ export const Weapons = () => {
               Unarmed Combat skill. All melee weapons use the Melee Weapons
               skill.
             </Text>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -203,7 +204,7 @@ export const Weapons = () => {
               half the usual penalty. Wearing a gas mask protects against these
               effects but incurs a −20% penalty to Alertness and Search tests.
             </Text>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -309,7 +310,7 @@ export const Weapons = () => {
               penalty to all actions for 1D6 turns. (Having eye or ear
               protection reduces the penalty to −20%.)
             </Text>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -413,7 +414,7 @@ export const Weapons = () => {
               test to resist being stunned. After the stun wears off, the victim
               suffers a −20% penalty to all actions for 1D20 turns.
             </Text>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -510,7 +511,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Title td="underline">Firearms</Title>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -607,7 +608,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Title td="underline">Heavy Weapons</Title>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -704,7 +705,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Title td="underline">Demolitions</Title>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -801,7 +802,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Title td="underline">Artillery</Title>
-            {width > 760 ? (
+            {viewport.width > 760 ? (
               <Table withTableBorder highlightOnHover striped>
                 <Table.Thead>
                   <Table.Tr>
@@ -908,14 +909,19 @@ export const Weapons = () => {
               {mobileWeapon?.name}{" "}
               {mobileWeapon?.restricted && (
                 <Text c="red" fw={700} td="underline">
-                  {mobileWeapon?.type === "firearms" ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE" : "RESTRICTED ITEM"}
+                  {mobileWeapon?.type === "firearms"
+                    ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE"
+                    : "RESTRICTED ITEM"}
                 </Text>
               )}
             </Title>
           }
         >
           <Stack gap="lg">
-            <SimpleGrid cols={width > 450 ? 3 : 2} verticalSpacing="xl">
+            <SimpleGrid
+              cols={viewport.width > 450 ? 3 : 2}
+              verticalSpacing="xl"
+            >
               {mobileWeapon?.skill && (
                 <Stack gap="0">
                   <InputLabel>Skill</InputLabel>

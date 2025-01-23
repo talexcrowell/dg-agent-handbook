@@ -22,11 +22,12 @@ import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const DeltaGreen = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
   const navigate = useNavigate();
   const { tabValue } = useParams();
   const location = useLocation();
@@ -39,15 +40,15 @@ export const DeltaGreen = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 600 ? 0 : 60} pt={width > 600 ? 0 : 10}>
-      <Grid.Col span={width > 992 ? 10 : 12}>
+    <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
         >
-          {width > 600 ? (
+          {viewport.width > 600 ? (
             <Tabs.List>
               <Tabs.Tab value="overview">Overview</Tabs.Tab>
               <Tabs.Tab value="world">The World of Delta Green</Tabs.Tab>
@@ -169,7 +170,7 @@ export const DeltaGreen = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "overview" && width > 992 && (
+      {tabValue !== "overview" && viewport.width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
             <Group py="md">

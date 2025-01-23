@@ -1,11 +1,12 @@
 import { Flex, Grid, Image, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Overview = () => {
-  const { width } = useViewportSize();
+ const [viewport] = useViewportContext();
   return (
     <ScrollArea h={"95vh"}>
-    <Grid p={width > 600 ? "md" : 0} gutter={width > 600 ? "md" : "0"}>
+    <Grid p={viewport.width > 600 ? "md" : 0} gutter={viewport.width > 600 ? "md" : "0"}>
       <Grid.Col span={12}>
         <Stack ta="start">
           <Text>Welcome to Delta Green.</Text>

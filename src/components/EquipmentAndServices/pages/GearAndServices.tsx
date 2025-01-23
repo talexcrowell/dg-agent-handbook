@@ -14,9 +14,10 @@ import {
   IconTriangleFilled,
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const GearsAndServices = () => {
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
   const calculateIcon = (expense) => {
     let str;
     switch (expense) {
@@ -41,8 +42,8 @@ export const GearsAndServices = () => {
   return (
     <ScrollArea h={"95vh"}>
       <Grid
-        p={width > 600 ? "md" : 0}
-        gutter={width > 600 ? "md" : "0"}
+        p={viewport.width > 600 ? "md" : 0}
+        gutter={viewport.width > 600 ? "md" : "0"}
         id="gear-and-services"
       >
         <Grid.Col span={12}>

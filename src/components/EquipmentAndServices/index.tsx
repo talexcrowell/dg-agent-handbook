@@ -24,14 +24,15 @@ import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
-  const { width } = useViewportSize();
   const navigate = useNavigate();
   const { tabValue } = useParams();
   const location = useLocation();
+  const [viewport] = useViewportContext()
 
   useEffect(() => {
     if (!tabValue) {
@@ -41,15 +42,15 @@ export const EquipmentAndServices = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 760 ? 0 : 60} pt={width > 760 ? 0 : 10}>
-      <Grid.Col span={width > 992 ? 10 : 12}>
+    <Grid pb={viewport.width > 760 ? 0 : 60} pt={viewport.width > 760 ? 0 : 10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/equipment-and-services/${value}`)}
         >
-          {width > 760 ? (
+          {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
               <Tabs.Tab value={"weapons"}>Weapons</Tabs.Tab>
@@ -145,7 +146,7 @@ export const EquipmentAndServices = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {width > 992 && (
+      {viewport.width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
             <Group py="md">

@@ -22,11 +22,12 @@ import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const Rules = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
   const navigate = useNavigate();
   const { tabValue } = useParams();
   const location = useLocation();
@@ -39,15 +40,15 @@ export const Rules = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={width > 600 ? 0 : 60} pt={width > 600 ? 0 : 10}>
-      <Grid.Col span={width > 992 ? 10 : 12}>
+    <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="how-to-play"
           orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/rules/${value}`)}
         >
-          {width > 600 ? (
+          {viewport.width > 600 ? (
             <Tabs.List>
               <Tabs.Tab value="how-to-play">How to Play</Tabs.Tab>
               <Tabs.Tab value="combat">Combat</Tabs.Tab>
@@ -140,7 +141,7 @@ export const Rules = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "training-video" && width > 992 && (
+      {tabValue !== "training-video" && viewport.width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
             <Group py="md">

@@ -10,9 +10,10 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { Link } from "react-router-dom";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const LandingPage = () => {
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
   return (
     <Grid py="lg">
       <Grid.Col>
@@ -20,7 +21,7 @@ export const LandingPage = () => {
         <Text></Text>
       </Grid.Col>
       <Grid.Col>
-        <SimpleGrid cols={width > 760 ? 3 : 2}>
+        <SimpleGrid cols={viewport.width > 760 ? 3 : 2}>
           <Card component={Link} to="/delta-green">
             <Card.Section>
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />

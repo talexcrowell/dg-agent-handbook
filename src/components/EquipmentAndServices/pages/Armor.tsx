@@ -2,9 +2,10 @@ import { Grid, Group, Stack, Table, Text, Title } from "@mantine/core";
 import { armorList } from "../../../data";
 import { IconTriangleFilled } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Armor = () => {
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
 
   const calculateIcon = (expense) => {
     let str;
@@ -30,8 +31,8 @@ export const Armor = () => {
 
   return (
     <Grid
-      p={width > 600 ? "md" : 0}
-      gutter={width > 600 ? "md" : "0"}
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
       id="armor"
     >
       <Grid.Col span={12}>

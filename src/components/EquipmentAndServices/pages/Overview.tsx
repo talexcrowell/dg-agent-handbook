@@ -14,25 +14,15 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import { IconTriangleFilled } from "@tabler/icons-react";
 import { useState } from "react";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Overview = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { width } = useViewportSize();
-  const expenseArr = [
-    {
-      name: "",
-      modifier: "",
-      timeNormal: "",
-      timeAccelerated: "",
-      review: "",
-      reprecussions: "",
-    },
-  ];
+  const [viewport] = useViewportContext();
   return (
     <ScrollArea h={"95vh"}>
       <Grid
-        p={width > 760 ? "md" : 0}
-        gutter={width > 760 ? "md" : "0"}
+        p={viewport.width > 760 ? "md" : 0}
+        gutter={viewport.width > 760 ? "md" : "0"}
         id="overview"
       >
         <Grid.Col span={12}>
@@ -105,7 +95,7 @@ export const Overview = () => {
                 </Text>
               </List.Item>
             </List>
-            {width > 760 && (
+            {viewport.width > 760 && (
               <Table withTableBorder striped my="lg">
                 <Table.Thead>
                   <Table.Tr>
