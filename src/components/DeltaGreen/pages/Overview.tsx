@@ -1,15 +1,13 @@
-import { Flex, Grid, Image, Stack, Text, Title } from "@mantine/core";
+import { Flex, Grid, Image, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 
 export const Overview = () => {
   const { width } = useViewportSize();
   return (
+    <ScrollArea h={"95vh"}>
     <Grid p={width > 600 ? "md" : 0} gutter={width > 600 ? "md" : "0"}>
       <Grid.Col span={12}>
         <Stack ta="start">
-          <Flex justify={"center"}>
-            <Image src="https://i.imgur.com/GvYNgBC.png" w={320} />
-          </Flex>
           <Text>Welcome to Delta Green.</Text>
           <Text>
             Players come to Delta Green for all kinds of reasons. They’re eager
@@ -61,5 +59,6 @@ export const Overview = () => {
         </Stack>
       </Grid.Col>
     </Grid>
+    </ScrollArea>
   );
 };
