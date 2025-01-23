@@ -8,6 +8,7 @@ import {
   Image,
   Modal,
   NavLink,
+  Text,
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { IconMenu, IconMenu2, IconNotebook } from "@tabler/icons-react";
@@ -22,16 +23,31 @@ export const Navbar = () => {
   return (
     <Container size="xl" h={"100%"}>
       {width > 992 ? (
-        <Grid gutter={'0'}>
-          <Grid.Col span={3}>
+        <Grid gutter={"0"}>
+          <Grid.Col span={2}>
             <NavLink
-              label="Delta Green"
+              label="Handbook"
+              leftSection={
+                <Image
+                  src="https://i.imgur.com/GvYNgBC.png"
+                  w="auto"
+                  h={"25"}
+                />
+              }
               component={Link}
               to={`/`}
               active={location.pathname === "/"}
             />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col span={2}>
+            <NavLink
+              label="Delta Green"
+              component={Link}
+              to={`/delta-green`}
+              active={location.pathname === "/delta-green"}
+            />
+          </Grid.Col>
+          <Grid.Col span={2}>
             <NavLink
               label="Rules"
               component={Link}
@@ -62,9 +78,9 @@ export const Navbar = () => {
             <ActionIcon
               size="lg"
               variant="light"
-              aria-label="Navigation Menu"
+              aria-label="Handbook Menu"
               onClick={() => setMobileMenuOpen(true)}
-              my='xs'
+              my="xs"
             >
               <IconMenu2 size="lg" />
             </ActionIcon>
@@ -81,13 +97,13 @@ export const Navbar = () => {
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         fullScreen
-        title="Navigation Menu"
+        title="Handbook Menu"
       >
         <NavLink
           label="Delta Green"
           component={Link}
-          to={`/`}
-          active={location.pathname === "/"}
+          to={`/delta-green`}
+          active={location.pathname === "/delta-green"}
           onClick={() => setMobileMenuOpen(false)}
         />
         <NavLink

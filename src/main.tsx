@@ -13,20 +13,29 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
+import { LandingPage } from "./components/Landing Page/index.tsx";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <DeltaGreen /> },
+      { path: "/", element: <LandingPage /> },
+      { path: "/delta-green", element: <DeltaGreen /> },
+      { path: "/delta-green/:tabValue", element: <DeltaGreen /> },
+
       { path: "/rules", element: <Rules /> },
+      { path: "/rules/:tabValue", element: <Rules /> },
 
       { path: "/agents", element: <AgentRoster /> },
       { path: "/agents/new", element: <CreateAnAgent /> },
       { path: "/agents/sheet/:codename", element: <CharacterSheet /> },
       {
         path: "/equipment-and-services",
+        element: <EquipmentAndServices />,
+      },
+      {
+        path: "/equipment-and-services/:tabValue",
         element: <EquipmentAndServices />,
       },
     ],

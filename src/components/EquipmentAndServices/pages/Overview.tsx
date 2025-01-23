@@ -105,7 +105,7 @@ export const Overview = () => {
                 </Text>
               </List.Item>
             </List>
-            {width > 760 ? (
+            {width > 760 && (
               <Table withTableBorder striped my="lg">
                 <Table.Thead>
                   <Table.Tr>
@@ -186,101 +186,6 @@ export const Overview = () => {
                   </Text>
                 </Table.Caption>
               </Table>
-            ) : (
-              <>
-                <Button variant="outline" onClick={() => setMobileMenuOpen(true)} my='lg'>
-                  See Expense Table
-                </Button>
-                <Modal
-                  opened={mobileMenuOpen}
-                  onClose={() => setMobileMenuOpen(false)}
-                  fullScreen
-                  title="Expense Table"
-                >
-                  <Table withTableBorder striped my="lg">
-                    <Table.Thead>
-                      <Table.Tr>
-                        <Table.Th>Expense</Table.Th>
-                        <Table.Th>Modifier</Table.Th>
-                        <Table.Th>Time (Normal)</Table.Th>
-                        <Table.Th>Time (Accelerated)</Table.Th>
-                        <Table.Th>Review</Table.Th>
-                        <Table.Th>Repercussions for Wrongful Use</Table.Th>
-                      </Table.Tr>
-                    </Table.Thead>
-                    <Table.Tbody>
-                      <Table.Tr>
-                        <Table.Td>
-                          <Group>
-                            <IconTriangleFilled color="blue" />
-                            Standard
-                          </Group>
-                        </Table.Td>
-                        <Table.Td>+0%</Table.Td>
-                        <Table.Td>A day or two</Table.Td>
-                        <Table.Td>A few hours*</Table.Td>
-                        <Table.Td>
-                          If restricted; or if accelerated and a CHA*5 test
-                          fails
-                        </Table.Td>
-                        <Table.Td>Reprimand</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>
-                          <Group>
-                            <IconTriangleFilled color="yellow" />
-                            Unusual
-                          </Group>
-                        </Table.Td>
-                        <Table.Td>+0%</Table.Td>
-                        <Table.Td>A few days</Table.Td>
-                        <Table.Td>A day or two*</Table.Td>
-                        <Table.Td>
-                          If restricted; or if accelerated and a CHA*5 test
-                          fails
-                        </Table.Td>
-                        <Table.Td>Reprimand</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>
-                          <Group>
-                            <IconTriangleFilled color="orange" />
-                            Major
-                          </Group>
-                        </Table.Td>
-                        <Table.Td>-20%</Table.Td>
-                        <Table.Td>A few weeks</Table.Td>
-                        <Table.Td>A few days**</Table.Td>
-                        <Table.Td>Always</Table.Td>
-                        <Table.Td>Suspension and/or transfer</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>
-                          <Group>
-                            <IconTriangleFilled color="red" />
-                            Extreme
-                          </Group>
-                        </Table.Td>
-                        <Table.Td>-40%</Table.Td>
-                        <Table.Td>A few months</Table.Td>
-                        <Table.Td>A few days**</Table.Td>
-                        <Table.Td>Always</Table.Td>
-                        <Table.Td>Firing and/or prosecution</Table.Td>
-                      </Table.Tr>
-                    </Table.Tbody>
-                    <Table.Caption ta="start">
-                      <Text size="sm">
-                        * Standard or Unusual delivery can be accelerated by
-                        badgering officials.
-                      </Text>{" "}
-                      <Text size="sm">
-                        ** Major or Extreme delivery can be accelerated for a
-                        high-priority operation.
-                      </Text>
-                    </Table.Caption>
-                  </Table>
-                </Modal>
-              </>
             )}
             <Text>
               Agents can get more gear or aid during an operation through 3

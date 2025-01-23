@@ -8,7 +8,7 @@ export const HowTheGameIsPlayed = () => {
       ta="start"
       p={width > 600 ? "md" : 0}
       gutter={width > 600 ? "md" : "0"}
-      id="game"
+      id="how-the-game-is-played"
     >
       <Grid.Col span={12}>
         <Stack>

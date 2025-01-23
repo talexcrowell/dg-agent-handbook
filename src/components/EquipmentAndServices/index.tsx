@@ -34,7 +34,7 @@ export const EquipmentAndServices = () => {
   }, [activeTab]);
 
   return (
-    <Grid pb={60}>
+    <Grid pb={width > 760 ? 0 : 60}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
@@ -42,7 +42,7 @@ export const EquipmentAndServices = () => {
           value={activeTab}
           onChange={setActiveTab}
         >
-          {width > 600 ? (
+          {width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
               <Tabs.Tab value={"weapons"}>Weapons</Tabs.Tab>

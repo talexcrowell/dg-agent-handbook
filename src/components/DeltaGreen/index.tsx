@@ -20,34 +20,42 @@ import { HowToPlayAnAgent } from "./pages/HowToPlayAnAgent";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useViewportSize } from "@mantine/hooks";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const DeltaGreen = () => {
-  const [activeTab, setActiveTab] = useState<string | null>("overview");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
   const { width } = useViewportSize();
+  const navigate = useNavigate();
+  const { tabValue } = useParams();
 
   useEffect(() => {
     reinitializeRef.current();
-  }, [activeTab]);
+  }, [tabValue]);
 
   return (
-    <Grid pb={60}>
+    <Grid pb={width > 600 ? 0 : 60}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
-          value={activeTab}
-          onChange={setActiveTab}
+          value={tabValue}
+          onChange={(value) => navigate(`/delta-green/${value}`)}
         >
           {width > 600 ? (
             <Tabs.List>
               <Tabs.Tab value="overview">Overview</Tabs.Tab>
               <Tabs.Tab value="world">The World of Delta Green</Tabs.Tab>
-              <Tabs.Tab value="what">What is Delta Green?</Tabs.Tab>
+              <Tabs.Tab value="what-is-delta-green">
+                What is Delta Green?
+              </Tabs.Tab>
               <Tabs.Tab value="fundamentals">The Fundamentals</Tabs.Tab>
-              <Tabs.Tab value="game">How the Game is Played</Tabs.Tab>
-              <Tabs.Tab value="agent">How to Play an Agent</Tabs.Tab>
+              <Tabs.Tab value="how-the-game-is-played">
+                How the Game is Played
+              </Tabs.Tab>
+              <Tabs.Tab value="how-to-play-an-agent">
+                How to Play an Agent
+              </Tabs.Tab>
             </Tabs.List>
           ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
@@ -79,7 +87,7 @@ export const DeltaGreen = () => {
                       The World of Delta Green
                     </Tabs.Tab>
                     <Tabs.Tab
-                      value="what"
+                      value="what-is-delta-green"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       What is Delta Green?
@@ -91,13 +99,13 @@ export const DeltaGreen = () => {
                       The Fundamentals
                     </Tabs.Tab>
                     <Tabs.Tab
-                      value="game"
+                      value="how-the-game-is-played"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       How the Game is Played
                     </Tabs.Tab>
                     <Tabs.Tab
-                      value="agent"
+                      value="how-to-play-an-agent"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       How to Play an Agent
@@ -117,7 +125,7 @@ export const DeltaGreen = () => {
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="what">
+          <Tabs.Panel value="what-is-delta-green">
             <ScrollArea>
               <WhatIsDeltaGreen />
             </ScrollArea>
@@ -127,19 +135,19 @@ export const DeltaGreen = () => {
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="game">
+          <Tabs.Panel value="how-the-game-is-played">
             <ScrollArea>
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="agent">
+          <Tabs.Panel value="how-to-play-an-agent">
             <ScrollArea>
               <HowToPlayAnAgent />
             </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {activeTab !== "overview" && width > 992 && (
+      {tabValue !== "overview" && width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
             <Group py="md">
@@ -153,7 +161,7 @@ export const DeltaGreen = () => {
               radius="sm"
               reinitializeRef={reinitializeRef}
               scrollSpyOptions={{
-                selector: `#${activeTab} :is(h1, h2, h3, h4, h5, h6)`,
+                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
               }}
               getControlProps={({ data }) => ({
                 onClick: () => data.getNode().scrollIntoView(),

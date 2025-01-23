@@ -19,7 +19,7 @@ export const HowToPlay = () => {
       p={width > 600 ? "md" : 0}
       gutter={width > 600 ? "md" : "0"}
       ta="start"
-      id="game"
+      id="how-to-play"
     >
       <Grid.Col span={12}>
         <Stack>

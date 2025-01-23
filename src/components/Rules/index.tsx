@@ -20,33 +20,36 @@ import { TrainingVideo } from "./pages/TrainingVideo";
 import { useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Rules = () => {
   const [activeTab, setActiveTab] = useState<string | null>("game");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reinitializeRef = useRef(() => {});
   const { width } = useViewportSize();
+  const navigate = useNavigate();
+  const { tabValue } = useParams();
 
   useEffect(() => {
     reinitializeRef.current();
-  }, [activeTab]);
+  }, [tabValue]);
 
   return (
-    <Grid>
+    <Grid pb={width > 600 ? 0 : 60}>
       <Grid.Col span={width > 992 ? 10 : 12}>
         <Tabs
-          defaultValue="game"
+          defaultValue="how-to-play"
           orientation="vertical"
-          value={activeTab}
-          onChange={setActiveTab}
+          value={tabValue}
+          onChange={(value) => navigate(`/rules/${value}`)}
         >
           {width > 600 ? (
             <Tabs.List>
-              <Tabs.Tab value="game">How to Play</Tabs.Tab>
+              <Tabs.Tab value="how-to-play">How to Play</Tabs.Tab>
               <Tabs.Tab value="combat">Combat</Tabs.Tab>
               <Tabs.Tab value="sanity">Sanity</Tabs.Tab>
               <Tabs.Tab value="home">Home</Tabs.Tab>
-              <Tabs.Tab value="training">Training Video</Tabs.Tab>
+              <Tabs.Tab value="training-video">Training Video</Tabs.Tab>
             </Tabs.List>
           ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
@@ -66,7 +69,7 @@ export const Rules = () => {
                 <Tabs.List>
                   <Stack>
                     <Tabs.Tab
-                      value={"game"}
+                      value={"how-to-play"}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       How to Play
@@ -90,7 +93,7 @@ export const Rules = () => {
                       Home
                     </Tabs.Tab>
                     <Tabs.Tab
-                      value={"training"}
+                      value={"training-video"}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Training Video
@@ -100,7 +103,7 @@ export const Rules = () => {
               </Modal>
             </Affix>
           )}
-          <Tabs.Panel value="game">
+          <Tabs.Panel value="how-to-play">
             <ScrollArea h={"95vh"}>
               <HowToPlay />
             </ScrollArea>
@@ -120,12 +123,12 @@ export const Rules = () => {
               <Home />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="training">
+          <Tabs.Panel value="training-video">
             <TrainingVideo />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {activeTab !== "training" && width > 992 && (
+      {tabValue !== "training-video" && width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
             <Group py="md">
@@ -139,7 +142,7 @@ export const Rules = () => {
               radius="sm"
               reinitializeRef={reinitializeRef}
               scrollSpyOptions={{
-                selector: `#${activeTab} :is(h1, h2, h3, h4, h5, h6)`,
+                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
               }}
               getControlProps={({ data }) => ({
                 onClick: () => data.getNode().scrollIntoView(),
