@@ -13,7 +13,7 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
-import { LandingPage } from "./components/Landing Page/index.tsx";
+import { LandingPage } from "./components/LandingPage/index.tsx";
 
 const router = createHashRouter([
   {
