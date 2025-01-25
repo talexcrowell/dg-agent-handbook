@@ -25,27 +25,36 @@ import {
   IconNotes,
   IconUser,
 } from "@tabler/icons-react";
+import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
   userAgent,
 }) => {
+  const [viewport] = useViewportContext();
   return (
-    <Tabs orientation="vertical" defaultValue="all">
-      <Tabs.List>
+    <Tabs
+      orientation={viewport.width > 992 ? "vertical" : "horizontal"}
+      variant="outline"
+      defaultValue="all"
+    >
+      <Tabs.List
+        justify={viewport.width > 992 ? "flex-start" : "space-between"}
+      >
         <Tabs.Tab value="all" leftSection={<IconFile />}>
-          All
+          {viewport.width > 600 && "All"}
         </Tabs.Tab>
         <Tabs.Tab value="personal" leftSection={<IconUser />}>
-          Personal
+          {viewport.width > 600 && "Personal"}
         </Tabs.Tab>
         <Tabs.Tab value="skills" leftSection={<IconList />}>
-          Skills
+          {viewport.width > 600 && "Skills"}
         </Tabs.Tab>
         <Tabs.Tab value="equipment" leftSection={<IconBackpack />}>
-          Equipment
+          {viewport.width > 600 && "Equipment"}
         </Tabs.Tab>
         <Tabs.Tab value="notes" leftSection={<IconNotes />}>
-          Notes
+          {viewport.width > 600 && "Notes"}
         </Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="all">

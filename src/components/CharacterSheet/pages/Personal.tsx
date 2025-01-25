@@ -14,18 +14,15 @@ import {
   Title,
 } from "@mantine/core";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
+import { useViewportSize } from "@mantine/hooks";
 
 export const Personal = () => {
   const [{ currentCharacter }] = useCharacterContext();
+  const { width } = useViewportSize();
 
   let data = { ...currentCharacter };
 
-  const tableStatHeaders = [
-    "Statistic",
-    "Score",
-    "x5",
-    "Distinguishing Features",
-  ];
+  const tableStatHeaders = ["Statistic", "Score", "x5", "Features"];
 
   const statLabelArr = [
     "Strength",
@@ -103,33 +100,76 @@ export const Personal = () => {
 
   const tableBondHeaders = ["Bonds", "Score"];
   return (
-    <Grid p="md">
+    <Grid py="md" px={width > 992 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Personal Data
           </Title>
-          <Group ta="start">
-            <TextInput label="Name" flex={1} value={data?.name} />
-            <TextInput label="Codename" flex={1} value={data?.codename} />
-          </Group>
-          <Group ta="start">
-            <TextInput label="Profession" flex={1} value={data?.profession} />
-            <TextInput label="Employer" flex={1} value={data?.employer} />
-            <TextInput label="Nationality" flex={1} value={data?.nationality} />
-          </Group>
-          <Group ta="start">
-            <TextInput label="Sex" w={100} value={data?.sex} />
-            <TextInput label="Age" w={100} value={data?.age} />
-            <TextInput
-              label="Education and Occupational History"
-              flex={1}
-              value={data?.education}
-            />
-          </Group>
+          {width > 992 ? (
+            <>
+              <Group ta="start">
+                <TextInput label="Name" flex={1} value={data?.name} />
+                <TextInput label="Codename" flex={1} value={data?.codename} />
+              </Group>
+              <Group ta="start">
+                <TextInput
+                  label="Profession"
+                  flex={1}
+                  value={data?.profession}
+                />
+                <TextInput label="Employer" flex={1} value={data?.employer} />
+                <TextInput
+                  label="Nationality"
+                  flex={1}
+                  value={data?.nationality}
+                />
+              </Group>
+              <Group ta="start">
+                <TextInput label="Sex" w={100} value={data?.sex} />
+                <TextInput label="Age" w={100} value={data?.age} />
+                <TextInput
+                  label="Education and Occupational History"
+                  flex={1}
+                  value={data?.education}
+                />
+              </Group>
+            </>
+          ) : (
+            <>
+              <Group ta="start">
+                <TextInput label="Name" flex={1} value={data?.name} />
+                <TextInput label="Codename" flex={1} value={data?.codename} />
+              </Group>
+              <Group ta="start">
+                <TextInput
+                  label="Profession"
+                  flex={1}
+                  value={data?.profession}
+                />
+                <TextInput label="Employer" flex={1} value={data?.employer} />
+              </Group>
+              <Group ta="start">
+                <TextInput
+                  label="Nationality"
+                  flex={1}
+                  value={data?.nationality}
+                />
+                <TextInput
+                  label="Education/Occupation History"
+                  flex={1}
+                  value={data?.education}
+                />
+              </Group>
+              <Group ta="start">
+                <TextInput label="Sex" flex={1} value={data?.sex} />
+                <TextInput label="Age" flex={1} value={data?.age} />
+              </Group>
+            </>
+          )}
         </Stack>
       </Grid.Col>
-      <Grid.Col span={6}>
+      <Grid.Col span={width > 760 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Statistical Data
@@ -158,13 +198,16 @@ export const Personal = () => {
                         max={18}
                         clampBehavior="strict"
                         // onChange={(val) => handleChangeStat(val, stat)}
-                        w={100}
                       />
                     </Table.Td>
-                    <Table.Td ta="center">{data.stats[stat.toLowerCase()] * 5}</Table.Td>
                     <Table.Td ta="center">
-                      {handleDistinguishingFeatures(stat.toLowerCase())}
+                      {data.stats[stat.toLowerCase()] * 5}
                     </Table.Td>
+                    {
+                      <Table.Td ta="center">
+                        {handleDistinguishingFeatures(stat.toLowerCase())}
+                      </Table.Td>
+                    }
                   </Table.Tr>
                 );
               })}
@@ -190,10 +233,11 @@ export const Personal = () => {
                 return (
                   <Table.Tr>
                     <Table.Td>{calculateAttributesLabel(attribute)}</Table.Td>
-                    <Table.Td ta="center">{data?.attributes[attribute].max}</Table.Td>
-                    <Table.Td >
+                    <Table.Td ta="center">
+                      {data?.attributes[attribute].max}
+                    </Table.Td>
+                    <Table.Td>
                       <NumberInput
-                        w={100}
                         value={data?.attributes[attribute].current}
                       />
                     </Table.Td>
@@ -204,7 +248,7 @@ export const Personal = () => {
           </Table>
         </Stack>
       </Grid.Col>
-      <Grid.Col span={6}>
+      <Grid.Col span={width > 760 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Psychological Data
@@ -226,11 +270,11 @@ export const Personal = () => {
                 return (
                   <Table.Tr>
                     <Table.Td>
-                      <Text w={275} ta="start">
-                        {bond.name}
-                      </Text>
+                      <Text ta="start">{bond.name}</Text>
                     </Table.Td>
-                    <Table.Td>{<NumberInput value={bond.value} />}</Table.Td>
+                    <Table.Td w={100}>
+                      {<NumberInput value={bond.value} />}
+                    </Table.Td>
                   </Table.Tr>
                 );
               })}
