@@ -35,9 +35,41 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
   return (
     <Tabs
       orientation={viewport.width > 760 ? "vertical" : "horizontal"}
-      variant="outline"
+      variant="pills"
       defaultValue="all"
+      inverted
     >
+      <Tabs.Panel value="all">
+        <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
+          <Personal />
+          <Divider />
+          <Skills />
+          <Divider />
+          <Equipment />
+          <Divider />
+          <Notes />
+        </ScrollArea>
+      </Tabs.Panel>
+      <Tabs.Panel value="personal">
+        <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
+          <Personal />
+        </ScrollArea>
+      </Tabs.Panel>
+      <Tabs.Panel value="skills">
+        <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
+          <Skills />
+        </ScrollArea>
+      </Tabs.Panel>
+      <Tabs.Panel value="equipment">
+        <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
+          <Equipment />
+        </ScrollArea>
+      </Tabs.Panel>
+      <Tabs.Panel value="notes">
+        <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
+          <Notes />
+        </ScrollArea>
+      </Tabs.Panel>
       <Tabs.List
         justify={viewport.width > 760 ? "flex-start" : "space-between"}
       >
@@ -57,29 +89,6 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
           {viewport.width > 600 && "Notes"}
         </Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panel value="all">
-        <ScrollArea h={"95vh"}>
-          <Personal />
-          <Divider />
-          <Skills />
-          <Divider />
-          <Equipment />
-          <Divider />
-          <Notes />
-        </ScrollArea>
-      </Tabs.Panel>
-      <Tabs.Panel value="personal">
-        <Personal />
-      </Tabs.Panel>
-      <Tabs.Panel value="skills">
-        <Skills />
-      </Tabs.Panel>
-      <Tabs.Panel value="equipment">
-        <Equipment />
-      </Tabs.Panel>
-      <Tabs.Panel value="notes">
-        <Notes />
-      </Tabs.Panel>
     </Tabs>
   );
 };
