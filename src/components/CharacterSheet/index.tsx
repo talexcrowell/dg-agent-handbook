@@ -34,12 +34,12 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
   const [viewport] = useViewportContext();
   return (
     <Tabs
-      orientation={viewport.width > 992 ? "vertical" : "horizontal"}
+      orientation={viewport.width > 760 ? "vertical" : "horizontal"}
       variant="outline"
       defaultValue="all"
     >
       <Tabs.List
-        justify={viewport.width > 992 ? "flex-start" : "space-between"}
+        justify={viewport.width > 760 ? "flex-start" : "space-between"}
       >
         <Tabs.Tab value="all" leftSection={<IconFile />}>
           {viewport.width > 600 && "All"}

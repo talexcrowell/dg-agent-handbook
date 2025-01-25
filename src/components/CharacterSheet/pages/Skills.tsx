@@ -72,13 +72,13 @@ export const Skills = () => {
   });
 
   return (
-    <Grid py="md" px={viewport.width > 992 ? 'md' : 0} gutter="0">
+    <Grid py="md" px={viewport.width > 760 ? "md" : 0} gutter="0">
       <Grid.Col span={12}>
         <Title order={4} ta="start" td="underline" mb="sm">
           Skills
         </Title>
       </Grid.Col>
-      {viewport.width > 768 ? (
+      {viewport.width > 992 ? (
         <>
           <Grid.Col span={4}>
             <Table withTableBorder withColumnBorders>
@@ -258,6 +258,138 @@ export const Skills = () => {
                   </Table.Tr>
                 );
               })}
+            </Table>
+          </Grid.Col>
+        </>
+      ) : viewport.width > 600 ? (
+        <>
+          <Grid.Col span={12}>
+            <TextInput
+              placeholder="Search for a skill..."
+              rightSection={<IconSearch />}
+              mb='md'
+            />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Table withTableBorder withColumnBorders>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Skill Name</Table.Th>
+                  <Table.Th>Score</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              {skillKeysArr.slice(0, skillKeysArr.length / 2).map((key) => {
+                return (
+                  <Table.Tr>
+                    <Table.Td>
+                      <Group>
+                        <Checkbox />
+                        <Tooltip
+                          w={250}
+                          label={
+                            skillsMasterList.filter(
+                              (skill) => skill.id === key
+                            )[0].definition
+                          }
+                          multiline
+                          openDelay={500}
+                        >
+                          <Text
+                            tt="capitalize"
+                            ta="start"
+                            className={styles.tooltippedElement}
+                          >
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].label !== ""
+                                ? `${skillKeyLabels(key)} (${
+                                    currentCharacter.skills[key][0].label
+                                  })`
+                                : skillKeyLabels(key)
+                              : skillKeyLabels(key)}{" "}
+                          </Text>
+                        </Tooltip>
+                        <Text c="dimmed">
+                          (
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : defaultSkillValues[key]}
+                          %)
+                        </Text>
+                      </Group>
+                    </Table.Td>
+                    <Table.Td>
+                      <Text ta="center">
+                        {isSkillChoice(key)
+                          ? currentCharacter.skills[key][0].skill
+                          : currentCharacter.skills[key]}
+                        %
+                      </Text>
+                    </Table.Td>
+                  </Table.Tr>
+                );
+              })}
+            </Table>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Table withTableBorder withColumnBorders>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Skill Name</Table.Th>
+                  <Table.Th>Score</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              {skillKeysArr
+                .slice(skillKeysArr.length / 2, skillKeysArr.length)
+                .map((key) => {
+                  return (
+                    <Table.Tr>
+                      <Table.Td>
+                        <Group>
+                          <Checkbox />
+                          <Tooltip
+                            w={250}
+                            label={
+                              skillsMasterList.filter(
+                                (skill) => skill.id === key
+                              )[0].definition
+                            }
+                            multiline
+                            openDelay={500}
+                          >
+                            <Text
+                              tt="capitalize"
+                              ta="start"
+                              className={styles.tooltippedElement}
+                            >
+                              {isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].label !== ""
+                                  ? `${skillKeyLabels(key)} (${
+                                      currentCharacter.skills[key][0].label
+                                    })`
+                                  : skillKeyLabels(key)
+                                : skillKeyLabels(key)}{" "}
+                            </Text>
+                          </Tooltip>
+                          <Text c="dimmed">
+                            (
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : defaultSkillValues[key]}
+                            %)
+                          </Text>
+                        </Group>
+                      </Table.Td>
+                      <Table.Td>
+                        <Text ta="center">
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : currentCharacter.skills[key]}
+                          %
+                        </Text>
+                      </Table.Td>
+                    </Table.Tr>
+                  );
+                })}
             </Table>
           </Grid.Col>
         </>

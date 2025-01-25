@@ -15,10 +15,11 @@ import {
 } from "@mantine/core";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Personal = () => {
   const [{ currentCharacter }] = useCharacterContext();
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
 
   let data = { ...currentCharacter };
 
@@ -100,13 +101,13 @@ export const Personal = () => {
 
   const tableBondHeaders = ["Bonds", "Score"];
   return (
-    <Grid py="md" px={width > 992 ? "md" : 0}>
+    <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Personal Data
           </Title>
-          {width > 992 ? (
+          {viewport.width > 760 ? (
             <>
               <Group ta="start">
                 <TextInput label="Name" flex={1} value={data?.name} />
@@ -169,7 +170,7 @@ export const Personal = () => {
           )}
         </Stack>
       </Grid.Col>
-      <Grid.Col span={width > 760 ? 6 : 12}>
+      <Grid.Col span={viewport.width > 880 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Statistical Data
@@ -248,7 +249,7 @@ export const Personal = () => {
           </Table>
         </Stack>
       </Grid.Col>
-      <Grid.Col span={width > 760 ? 6 : 12}>
+      <Grid.Col span={viewport.width > 880 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Psychological Data

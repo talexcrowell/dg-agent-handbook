@@ -1,8 +1,10 @@
 import { Grid, Stack, Table, Textarea, Title } from "@mantine/core";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Equipment = () => {
+  const [viewport] = useViewportContext();
   return (
-    <Grid py="md">
+    <Grid py="md" px={viewport.width > 992 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
           <Title order={4} td="underline">
