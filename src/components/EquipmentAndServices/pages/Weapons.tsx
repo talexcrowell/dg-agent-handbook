@@ -422,7 +422,6 @@ export const Weapons = () => {
                     <Table.Th>Skill</Table.Th>
                     <Table.Th>Range</Table.Th>
                     <Table.Th>Uses</Table.Th>
-                    <Table.Th>Radius</Table.Th>
                     <Table.Th>Victim's Penalty</Table.Th>
                     <Table.Th>Expense</Table.Th>
                   </Table.Tr>
@@ -453,7 +452,6 @@ export const Weapons = () => {
                           </Table.Td>
                           <Table.Td>{item.range}m</Table.Td>
                           <Table.Td>{item.uses}</Table.Td>
-                          <Table.Td>{item.radius}</Table.Td>
                           <Table.Td>{item.penalty}</Table.Td>
                           <Table.Td>
                             <Tooltip label={item.expense} tt="capitalize">
@@ -517,10 +515,10 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
+                    <Table.Th>Damage</Table.Th>
+                    <Table.Th>Lethality</Table.Th>
+                    <Table.Th>Ammo Capacity</Table.Th>
+                    <Table.Th>Armor Piercing</Table.Th>
                     <Table.Th>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
@@ -549,9 +547,13 @@ export const Weapons = () => {
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
                           <Table.Td>{item.range}m</Table.Td>
-                          <Table.Td>{item.uses}</Table.Td>
-                          <Table.Td>{item.radius}</Table.Td>
-                          <Table.Td>{item.penalty}</Table.Td>
+                          <Table.Td>{item.lethality}</Table.Td>
+                          <Table.Td>{item.ammoCapacity}</Table.Td>
+                          <Table.Td>
+                            {item.armorPiercing === 0
+                              ? "N/A"
+                              : item.armorPiercing}
+                          </Table.Td>
                           <Table.Td>
                             <Tooltip label={item.expense} tt="capitalize">
                               <IconTriangleFilled
@@ -615,9 +617,10 @@ export const Weapons = () => {
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
                     <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
+                    <Table.Th>Lethality</Table.Th>
                     <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
+                    <Table.Th>Ammo Capacity</Table.Th>
+                    <Table.Th>Armor Piercing</Table.Th>
                     <Table.Th>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
@@ -646,9 +649,14 @@ export const Weapons = () => {
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
                           <Table.Td>{item.range}m</Table.Td>
-                          <Table.Td>{item.uses}</Table.Td>
+                          <Table.Td>{item.lethality}</Table.Td>
                           <Table.Td>{item.radius}</Table.Td>
-                          <Table.Td>{item.penalty}</Table.Td>
+                          <Table.Td>{item.ammoCapacity}</Table.Td>
+                          <Table.Td>
+                            {item.armorPiercing === 0
+                              ? "N/A"
+                              : item.armorPiercing}
+                          </Table.Td>
                           <Table.Td>
                             <Tooltip label={item.expense} tt="capitalize">
                               <IconTriangleFilled
@@ -712,9 +720,9 @@ export const Weapons = () => {
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
                     <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
+                    <Table.Th>Lethality</Table.Th>
                     <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
+                    <Table.Th>Armor Piercing</Table.Th>
                     <Table.Th>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
@@ -743,9 +751,13 @@ export const Weapons = () => {
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
                           <Table.Td>{item.range}m</Table.Td>
-                          <Table.Td>{item.uses}</Table.Td>
+                          <Table.Td>{item.lethality}</Table.Td>
                           <Table.Td>{item.radius}</Table.Td>
-                          <Table.Td>{item.penalty}</Table.Td>
+                          <Table.Td>
+                            {item.armorPiercing === 0
+                              ? "N/A"
+                              : item.armorPiercing}
+                          </Table.Td>
                           <Table.Td>
                             <Tooltip label={item.expense} tt="capitalize">
                               <IconTriangleFilled
@@ -809,9 +821,10 @@ export const Weapons = () => {
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
                     <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
+                    <Table.Th>Lethality</Table.Th>
                     <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
+                    <Table.Th>Ammo Capacity</Table.Th>
+                    <Table.Th>Armor Piercing</Table.Th>
                     <Table.Th>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
@@ -840,9 +853,14 @@ export const Weapons = () => {
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
                           <Table.Td>{item.range}m</Table.Td>
-                          <Table.Td>{item.uses}</Table.Td>
+                          <Table.Td>{item.lethality}</Table.Td>
                           <Table.Td>{item.radius}</Table.Td>
-                          <Table.Td>{item.penalty}</Table.Td>
+                          <Table.Td>{item.ammoCapacity}</Table.Td>
+                          <Table.Td>
+                            {item.armorPiercing === 0
+                              ? "N/A"
+                              : item.armorPiercing}
+                          </Table.Td>
                           <Table.Td>
                             <Tooltip label={item.expense} tt="capitalize">
                               <IconTriangleFilled
