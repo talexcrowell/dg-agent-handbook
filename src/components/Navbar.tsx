@@ -42,7 +42,7 @@ export const Navbar = () => {
             <NavLink
               label="Delta Green"
               component={Link}
-              to={`/delta-green`}
+              to={`/delta-green/overview`}
               active={location.pathname.includes("/delta-green")}
             />
           </Grid.Col>
@@ -50,7 +50,7 @@ export const Navbar = () => {
             <NavLink
               label="Rules"
               component={Link}
-              to={`/rules`}
+              to={`/rules/how-to-play`}
               active={location.pathname.includes("/rules")}
             />
           </Grid.Col>
@@ -58,7 +58,7 @@ export const Navbar = () => {
             <NavLink
               label="Equipment and Services"
               component={Link}
-              to={`/equipment-and-services`}
+              to={`/equipment-and-services/overview`}
               active={location.pathname.includes("/equipment-and-services")}
             />
           </Grid.Col>

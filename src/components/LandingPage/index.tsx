@@ -22,7 +22,7 @@ export const LandingPage = () => {
       </Grid.Col>
       <Grid.Col>
         <SimpleGrid cols={viewport.width > 760 ? 3 : 2}>
-          <Card component={Link} to="/delta-green">
+          <Card component={Link} to="/delta-green/overview">
             <Card.Section>
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
             </Card.Section>
@@ -30,7 +30,7 @@ export const LandingPage = () => {
               <Text>Delta Green</Text>
             </Group>
           </Card>
-          <Card component={Link} to="/rules">
+          <Card component={Link} to="/rules/how-to-play">
             <Card.Section>
               <Image src={"https://i.imgur.com/usnj5MR.png"} h={150} />
             </Card.Section>
@@ -46,7 +46,7 @@ export const LandingPage = () => {
               <Text>Training Video</Text>
             </Group>
           </Card>
-          <Card component={Link} to="/equipment-and-services">
+          <Card component={Link} to="/equipment-and-services/overview">
             <Card.Section>
               <Image src={"https://i.imgur.com/dIQQX1X.png"} h={150} />
             </Card.Section>

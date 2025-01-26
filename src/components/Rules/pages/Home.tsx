@@ -48,9 +48,10 @@ export const Home = () => {
             to decide what disorder the Agent gains.
           </Text>
           <Text>
-            <Text fw={700}>Work:</Text>If your Agent misused his or her con-
-            tacts, authority, or resources from his or her day job, describe how
-            actions during the operation may have impacted your Agent’s career.
+            <Text fw={700}>Work:</Text>If your Agent misused his or her
+            contacts, authority, or resources from his or her day job, describe
+            how actions during the operation may have impacted your Agent’s
+            career.
           </Text>
           <Text>
             <Text fw={700}>Prosecution:</Text>Did your Agent get arrested?
