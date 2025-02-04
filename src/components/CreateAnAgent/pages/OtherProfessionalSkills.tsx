@@ -3,6 +3,7 @@ import {
   Card,
   Checkbox,
   Divider,
+  Drawer,
   Grid,
   Group,
   Input,
@@ -26,6 +27,7 @@ import {
   skillsMasterList,
 } from "../../../data";
 import styles from "../../../Element.module.css";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const OtherProfessionalSkills: React.FC<{
   handleAgentOtherSkills: (newSkills: any) => void;
@@ -39,8 +41,11 @@ export const OtherProfessionalSkills: React.FC<{
   const [skillChoices, setSkillChoices] = useState<any>([]);
   const [special, setSpecial] = useState({});
   const [personalSpecialties, setPersonalSpecialties] = useState<string[]>([]);
+  const [opened, setOpened] = useState(false);
+  const [viewport] = useViewportContext();
 
   const handleSelectSkillPackage = (skillPackage: any) => {
+    setOpened(true);
     setSelectedPackage({ ...skillPackage });
   };
 
@@ -89,6 +94,11 @@ export const OtherProfessionalSkills: React.FC<{
         },
       ]);
     }
+  };
+
+  const handleConfirmPackage = () => {
+    setOpened(false);
+    setConfirmedPackage(!confirmedPackage);
   };
 
   const skillKeysArr = Object.keys(defaultSkillValues);
@@ -274,272 +284,134 @@ export const OtherProfessionalSkills: React.FC<{
             <Grid.Col span={12} ta="center">
               <Text>Select {count} more skills to boost</Text>
             </Grid.Col>
-            <Grid.Col span={3}>
-              <List ta="start" listStyleType="none">
-                <Checkbox.Group
-                  value={[...skillChoices.map((skill) => skill.name)]}
-                  onChange={handleSelectSkill}
-                >
-                  <Stack>
-                    {skillKeysArr.slice(0, 15).map((key) => (
-                      <List.Item>
-                        <Checkbox
-                          label={
-                            <Tooltip
-                              w={250}
+            {viewport.width > 992 ? (
+              <>
+                <Grid.Col span={4}>
+                  <List ta="start" listStyleType="none">
+                    <Checkbox.Group
+                      value={[...skillChoices.map((skill) => skill.name)]}
+                      onChange={handleSelectSkill}
+                    >
+                      <Stack>
+                        {skillKeysArr.slice(0, 15).map((key) => (
+                          <List.Item>
+                            <Checkbox
                               label={
-                                skillsMasterList.filter(
-                                  (item) => item.id === key
-                                )[0].definition
-                              }
-                              multiline
-                              openDelay={500}
-                              className={styles.tooltippedElement}
-                            >
-                              <Text tt="capitalize">
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].label !== ""
-                                    ? `${skillKeyLabels(key)} (${
-                                        userAgent.skills[key][0].label
-                                      })`
-                                    : skillKeyLabels(key)
-                                  : skillKeyLabels(key)}{" "}
-                                (
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].skill
-                                  : userAgent.skills[key]}
-                                %)
-                              </Text>
-                            </Tooltip>
-                          }
-                          value={key}
-                        />
-                        {skillChoices
-                          .map((skill) => skill.name)
-                          .includes(key) && (
-                          <Stack gap={0}>
-                            <NumberInput
-                              min={20}
-                              max={80}
-                              step={20}
-                              defaultValue={20}
-                              value={
-                                skillChoices.filter((skill) =>
-                                  isSkillChoice(skill)
-                                    ? skill.name === key &&
-                                      skill.type === userAgent[key][0].type
-                                    : skill.name === key
-                                )[0].value
-                              }
-                              prefix="+ "
-                              suffix="%"
-                              onKeyDown={() => false}
-                              onChange={(val) =>
-                                handleAdjustSkillRating(val, key)
-                              }
-                            />
-                            {isSkillChoice(key) &&
-                              !userAgent.skills[key][0].label && (
-                                <TextInput
-                                  label="Type"
-                                  onChange={(val) =>
-                                    handleSkillChoiceLabel(val, key)
+                                <Tooltip
+                                  w={250}
+                                  label={
+                                    skillsMasterList.filter(
+                                      (item) => item.id === key
+                                    )[0].definition
                                   }
-                                />
-                              )}
-                          </Stack>
-                        )}
-                      </List.Item>
-                    ))}
-                  </Stack>
-                </Checkbox.Group>
-              </List>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              {" "}
-              <List ta="start" listStyleType="none">
-                <Checkbox.Group
-                  value={[...skillChoices.map((skill) => skill.name)]}
-                  onChange={handleSelectSkill}
-                >
-                  <Stack>
-                    {skillKeysArr.slice(15, 30).map((key) => (
-                      <List.Item>
-                        <Checkbox
-                          label={
-                            <Tooltip
-                              w={250}
-                              label={
-                                skillsMasterList.filter(
-                                  (item) => item.id === key
-                                )[0].definition
-                              }
-                              multiline
-                              openDelay={500}
-                              className={styles.tooltippedElement}
-                            >
-                              <Text tt="capitalize">
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].label !== ""
-                                    ? `${skillKeyLabels(key)} (${
-                                        userAgent.skills[key][0].label
-                                      })`
-                                    : skillKeyLabels(key)
-                                  : skillKeyLabels(key)}{" "}
-                                (
-                                {isSkillChoice(key)
-                                  ? userAgent.skills[key][0].skill
-                                  : userAgent.skills[key]}
-                                %)
-                              </Text>
-                            </Tooltip>
-                          }
-                          value={key}
-                        />
-                        {skillChoices
-                          .map((skill) => skill.name)
-                          .includes(key) && (
-                          <Stack>
-                            <NumberInput
-                              min={20}
-                              max={80}
-                              step={20}
-                              defaultValue={20}
-                              value={
-                                skillChoices.filter(
-                                  (skill) => skill.name === key
-                                )[0].value
-                              }
-                              prefix="+ "
-                              suffix="%"
-                              onKeyDown={() => false}
-                              onChange={(val) =>
-                                handleAdjustSkillRating(val, key)
-                              }
-                            />
-                            {isSkillChoice(key) &&
-                              !userAgent.skills[key][0].label && (
-                                <TextInput
-                                  label="Type"
-                                  onChange={(val) =>
-                                    handleSkillChoiceLabel(val, key)
-                                  }
-                                />
-                              )}
-                          </Stack>
-                        )}
-                      </List.Item>
-                    ))}
-                  </Stack>
-                </Checkbox.Group>
-              </List>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <List ta="start" listStyleType="none">
-                <Checkbox.Group
-                  value={[...skillChoices.map((skill) => skill.name)]}
-                  onChange={handleSelectSkill}
-                >
-                  <Stack>
-                    {skillKeysArr
-                      .slice(30, skillKeysArr.length - 1)
-                      .map((key) => (
-                        <List.Item>
-                          <Checkbox
-                            label={
-                              <Tooltip
-                                w={250}
-                                label={
-                                  skillsMasterList.filter(
-                                    (item) => item.id === key
-                                  )[0].definition
-                                }
-                                multiline
-                                openDelay={500}
-                                className={styles.tooltippedElement}
-                              >
-                                <Text tt="capitalize">
-                                  {isSkillChoice(key)
-                                    ? userAgent.skills[key][0].label !== ""
-                                      ? `${skillKeyLabels(key)} (${
-                                          userAgent.skills[key][0].label
-                                        })`
-                                      : skillKeyLabels(key)
-                                    : skillKeyLabels(key)}{" "}
-                                  (
-                                  {isSkillChoice(key)
-                                    ? userAgent.skills[key][0].skill
-                                    : userAgent.skills[key]}
-                                  %)
-                                </Text>
-                              </Tooltip>
-                            }
-                            onKeyDown={() => false}
-                            value={key}
-                          />
-                          {skillChoices
-                            .map((skill) => skill.name)
-                            .includes(key) && (
-                            <Stack>
-                              <NumberInput
-                                min={20}
-                                max={80}
-                                step={20}
-                                defaultValue={20}
-                                value={
-                                  skillChoices.filter(
-                                    (skill) => skill.name === key
-                                  )[0].value
-                                }
-                                prefix="+ "
-                                suffix="%"
-                                onChange={(val) =>
-                                  handleAdjustSkillRating(val, key)
-                                }
-                              />
-                              {isSkillChoice(key) &&
-                                !userAgent.skills[key][0].label && (
-                                  <TextInput
-                                    label="Type"
-                                    onChange={(val) =>
-                                      handleSkillChoiceLabel(val, key)
-                                    }
-                                  />
-                                )}
-                            </Stack>
-                          )}
-                        </List.Item>
-                      ))}
-                  </Stack>
-                </Checkbox.Group>
-              </List>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              {additionalSkills.length > 0 && (
-                <List ta="start" listStyleType="none">
-                  <Checkbox.Group
-                    value={[...skillChoices.map((skill) => skill.name)]}
-                    onChange={handleSelectAdditionalSkill}
-                  >
-                    <Stack>
-                      <Text>Additional Skills:</Text>
-                      {additionalSkills.map((addSkill) =>
-                        userAgent.skills[addSkill]
-                          .slice(1, userAgent.skills[addSkill].length)
-                          .map((item) => (
-                            <List.Item>
-                              <Checkbox
-                                label={
+                                  multiline
+                                  openDelay={500}
+                                  className={styles.tooltippedElement}
+                                >
                                   <Text tt="capitalize">
-                                    {skillKeyLabels(addSkill)} ({item.label}) ({item.skill}
+                                    {isSkillChoice(key)
+                                      ? userAgent.skills[key][0].label !== ""
+                                        ? `${skillKeyLabels(key)} (${
+                                            userAgent.skills[key][0].label
+                                          })`
+                                        : skillKeyLabels(key)
+                                      : skillKeyLabels(key)}{" "}
+                                    (
+                                    {isSkillChoice(key)
+                                      ? userAgent.skills[key][0].skill
+                                      : userAgent.skills[key]}
                                     %)
                                   </Text>
-                                }
-                                value={`${addSkill}.${item.label}`}
-                              />
-                              {skillChoices
-                                .map((skill) => skill.name)
-                                .includes(`${addSkill}.${item.label}`) && (
+                                </Tooltip>
+                              }
+                              value={key}
+                            />
+                            {skillChoices
+                              .map((skill) => skill.name)
+                              .includes(key) && (
+                              <Stack gap={0}>
+                                <NumberInput
+                                  min={20}
+                                  max={80}
+                                  step={20}
+                                  defaultValue={20}
+                                  value={
+                                    skillChoices.filter((skill) =>
+                                      isSkillChoice(skill)
+                                        ? skill.name === key &&
+                                          skill.type === userAgent[key][0].type
+                                        : skill.name === key
+                                    )[0].value
+                                  }
+                                  prefix="+ "
+                                  suffix="%"
+                                  onKeyDown={() => false}
+                                  onChange={(val) =>
+                                    handleAdjustSkillRating(val, key)
+                                  }
+                                />
+                                {isSkillChoice(key) &&
+                                  !userAgent.skills[key][0].label && (
+                                    <TextInput
+                                      label="Type"
+                                      onChange={(val) =>
+                                        handleSkillChoiceLabel(val, key)
+                                      }
+                                    />
+                                  )}
+                              </Stack>
+                            )}
+                          </List.Item>
+                        ))}
+                      </Stack>
+                    </Checkbox.Group>
+                  </List>
+                </Grid.Col>
+                <Grid.Col span={4}>
+                  {" "}
+                  <List ta="start" listStyleType="none">
+                    <Checkbox.Group
+                      value={[...skillChoices.map((skill) => skill.name)]}
+                      onChange={handleSelectSkill}
+                    >
+                      <Stack>
+                        {skillKeysArr.slice(15, 30).map((key) => (
+                          <List.Item>
+                            <Checkbox
+                              label={
+                                <Tooltip
+                                  w={250}
+                                  label={
+                                    skillsMasterList.filter(
+                                      (item) => item.id === key
+                                    )[0].definition
+                                  }
+                                  multiline
+                                  openDelay={500}
+                                  className={styles.tooltippedElement}
+                                >
+                                  <Text tt="capitalize">
+                                    {isSkillChoice(key)
+                                      ? userAgent.skills[key][0].label !== ""
+                                        ? `${skillKeyLabels(key)} (${
+                                            userAgent.skills[key][0].label
+                                          })`
+                                        : skillKeyLabels(key)
+                                      : skillKeyLabels(key)}{" "}
+                                    (
+                                    {isSkillChoice(key)
+                                      ? userAgent.skills[key][0].skill
+                                      : userAgent.skills[key]}
+                                    %)
+                                  </Text>
+                                </Tooltip>
+                              }
+                              value={key}
+                            />
+                            {skillChoices
+                              .map((skill) => skill.name)
+                              .includes(key) && (
+                              <Stack>
                                 <NumberInput
                                   min={20}
                                   max={80}
@@ -547,31 +419,405 @@ export const OtherProfessionalSkills: React.FC<{
                                   defaultValue={20}
                                   value={
                                     skillChoices.filter(
-                                      (skill) =>
-                                        skill.name ===
-                                        `${addSkill}.${item.label}`
+                                      (skill) => skill.name === key
                                     )[0].value
                                   }
                                   prefix="+ "
                                   suffix="%"
                                   onKeyDown={() => false}
                                   onChange={(val) =>
-                                    handleAdjustAdditionalSkillRating(
-                                      val,
-                                      addSkill,
-                                      item.label
-                                    )
+                                    handleAdjustSkillRating(val, key)
                                   }
                                 />
+                                {isSkillChoice(key) &&
+                                  !userAgent.skills[key][0].label && (
+                                    <TextInput
+                                      label="Type"
+                                      onChange={(val) =>
+                                        handleSkillChoiceLabel(val, key)
+                                      }
+                                    />
+                                  )}
+                              </Stack>
+                            )}
+                          </List.Item>
+                        ))}
+                      </Stack>
+                    </Checkbox.Group>
+                  </List>
+                </Grid.Col>
+                <Grid.Col span={4}>
+                  <List ta="start" listStyleType="none">
+                    <Checkbox.Group
+                      value={[...skillChoices.map((skill) => skill.name)]}
+                      onChange={handleSelectSkill}
+                    >
+                      <Stack>
+                        {skillKeysArr
+                          .slice(30, skillKeysArr.length - 1)
+                          .map((key) => (
+                            <List.Item>
+                              <Checkbox
+                                label={
+                                  <Tooltip
+                                    w={250}
+                                    label={
+                                      skillsMasterList.filter(
+                                        (item) => item.id === key
+                                      )[0].definition
+                                    }
+                                    multiline
+                                    openDelay={500}
+                                    className={styles.tooltippedElement}
+                                  >
+                                    <Text tt="capitalize">
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].label !== ""
+                                          ? `${skillKeyLabels(key)} (${
+                                              userAgent.skills[key][0].label
+                                            })`
+                                          : skillKeyLabels(key)
+                                        : skillKeyLabels(key)}{" "}
+                                      (
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].skill
+                                        : userAgent.skills[key]}
+                                      %)
+                                    </Text>
+                                  </Tooltip>
+                                }
+                                onKeyDown={() => false}
+                                value={key}
+                              />
+                              {skillChoices
+                                .map((skill) => skill.name)
+                                .includes(key) && (
+                                <Stack>
+                                  <NumberInput
+                                    min={20}
+                                    max={80}
+                                    step={20}
+                                    defaultValue={20}
+                                    value={
+                                      skillChoices.filter(
+                                        (skill) => skill.name === key
+                                      )[0].value
+                                    }
+                                    prefix="+ "
+                                    suffix="%"
+                                    onChange={(val) =>
+                                      handleAdjustSkillRating(val, key)
+                                    }
+                                  />
+                                  {isSkillChoice(key) &&
+                                    !userAgent.skills[key][0].label && (
+                                      <TextInput
+                                        label="Type"
+                                        onChange={(val) =>
+                                          handleSkillChoiceLabel(val, key)
+                                        }
+                                      />
+                                    )}
+                                </Stack>
                               )}
                             </List.Item>
-                          ))
-                      )}
-                    </Stack>
-                  </Checkbox.Group>
-                </List>
-              )}
-            </Grid.Col>
+                          ))}
+                      </Stack>
+                    </Checkbox.Group>
+                  </List>
+                </Grid.Col>
+                <Grid.Col span={4}>
+                  {additionalSkills.length > 0 && (
+                    <List ta="start" listStyleType="none">
+                      <Checkbox.Group
+                        value={[...skillChoices.map((skill) => skill.name)]}
+                        onChange={handleSelectAdditionalSkill}
+                      >
+                        <Stack>
+                          <Text>Additional Skills:</Text>
+                          {additionalSkills.map((addSkill) =>
+                            userAgent.skills[addSkill]
+                              .slice(1, userAgent.skills[addSkill].length)
+                              .map((item) => (
+                                <List.Item>
+                                  <Checkbox
+                                    label={
+                                      <Text tt="capitalize">
+                                        {skillKeyLabels(addSkill)} ({item.label}
+                                        ) ({item.skill}
+                                        %)
+                                      </Text>
+                                    }
+                                    value={`${addSkill}.${item.label}`}
+                                  />
+                                  {skillChoices
+                                    .map((skill) => skill.name)
+                                    .includes(`${addSkill}.${item.label}`) && (
+                                    <NumberInput
+                                      min={20}
+                                      max={80}
+                                      step={20}
+                                      defaultValue={20}
+                                      value={
+                                        skillChoices.filter(
+                                          (skill) =>
+                                            skill.name ===
+                                            `${addSkill}.${item.label}`
+                                        )[0].value
+                                      }
+                                      prefix="+ "
+                                      suffix="%"
+                                      onKeyDown={() => false}
+                                      onChange={(val) =>
+                                        handleAdjustAdditionalSkillRating(
+                                          val,
+                                          addSkill,
+                                          item.label
+                                        )
+                                      }
+                                    />
+                                  )}
+                                </List.Item>
+                              ))
+                          )}
+                        </Stack>
+                      </Checkbox.Group>
+                    </List>
+                  )}
+                </Grid.Col>
+              </>
+            ) : (
+              <>
+                <Grid.Col span={6}>
+                  <List ta="start" listStyleType="none">
+                    <Checkbox.Group
+                      value={[...skillChoices.map((skill) => skill.name)]}
+                      onChange={handleSelectSkill}
+                    >
+                      <Stack>
+                        {skillKeysArr
+                          .slice(0, skillKeysArr.length / 2)
+                          .map((key) => (
+                            <List.Item>
+                              <Checkbox
+                                label={
+                                  <Tooltip
+                                    w={250}
+                                    label={
+                                      skillsMasterList.filter(
+                                        (item) => item.id === key
+                                      )[0].definition
+                                    }
+                                    multiline
+                                    openDelay={500}
+                                    className={styles.tooltippedElement}
+                                  >
+                                    <Text tt="capitalize">
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].label !== ""
+                                          ? `${skillKeyLabels(key)} (${
+                                              userAgent.skills[key][0].label
+                                            })`
+                                          : skillKeyLabels(key)
+                                        : skillKeyLabels(key)}{" "}
+                                      (
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].skill
+                                        : userAgent.skills[key]}
+                                      %)
+                                    </Text>
+                                  </Tooltip>
+                                }
+                                value={key}
+                              />
+                              {skillChoices
+                                .map((skill) => skill.name)
+                                .includes(key) && (
+                                <Stack gap={0}>
+                                  <NumberInput
+                                    min={20}
+                                    max={80}
+                                    step={20}
+                                    defaultValue={20}
+                                    value={
+                                      skillChoices.filter((skill) =>
+                                        isSkillChoice(skill)
+                                          ? skill.name === key &&
+                                            skill.type ===
+                                              userAgent[key][0].type
+                                          : skill.name === key
+                                      )[0].value
+                                    }
+                                    prefix="+ "
+                                    suffix="%"
+                                    onKeyDown={() => false}
+                                    onChange={(val) =>
+                                      handleAdjustSkillRating(val, key)
+                                    }
+                                  />
+                                  {isSkillChoice(key) &&
+                                    !userAgent.skills[key][0].label && (
+                                      <TextInput
+                                        label="Type"
+                                        onChange={(val) =>
+                                          handleSkillChoiceLabel(val, key)
+                                        }
+                                      />
+                                    )}
+                                </Stack>
+                              )}
+                            </List.Item>
+                          ))}
+                      </Stack>
+                    </Checkbox.Group>
+                  </List>
+                </Grid.Col>
+                <Grid.Col span={6}>
+                  <List ta="start" listStyleType="none">
+                    <Checkbox.Group
+                      value={[...skillChoices.map((skill) => skill.name)]}
+                      onChange={handleSelectSkill}
+                    >
+                      <Stack>
+                        {skillKeysArr
+                          .slice(skillKeysArr.length / 2, skillKeysArr.length)
+                          .map((key) => (
+                            <List.Item>
+                              <Checkbox
+                                label={
+                                  <Tooltip
+                                    w={250}
+                                    label={
+                                      skillsMasterList.filter(
+                                        (item) => item.id === key
+                                      )[0].definition
+                                    }
+                                    multiline
+                                    openDelay={500}
+                                    className={styles.tooltippedElement}
+                                  >
+                                    <Text tt="capitalize">
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].label !== ""
+                                          ? `${skillKeyLabels(key)} (${
+                                              userAgent.skills[key][0].label
+                                            })`
+                                          : skillKeyLabels(key)
+                                        : skillKeyLabels(key)}{" "}
+                                      (
+                                      {isSkillChoice(key)
+                                        ? userAgent.skills[key][0].skill
+                                        : userAgent.skills[key]}
+                                      %)
+                                    </Text>
+                                  </Tooltip>
+                                }
+                                value={key}
+                              />
+                              {skillChoices
+                                .map((skill) => skill.name)
+                                .includes(key) && (
+                                <Stack>
+                                  <NumberInput
+                                    min={20}
+                                    max={80}
+                                    step={20}
+                                    defaultValue={20}
+                                    value={
+                                      skillChoices.filter(
+                                        (skill) => skill.name === key
+                                      )[0].value
+                                    }
+                                    prefix="+ "
+                                    suffix="%"
+                                    onKeyDown={() => false}
+                                    onChange={(val) =>
+                                      handleAdjustSkillRating(val, key)
+                                    }
+                                  />
+                                  {isSkillChoice(key) &&
+                                    !userAgent.skills[key][0].label && (
+                                      <TextInput
+                                        label="Type"
+                                        onChange={(val) =>
+                                          handleSkillChoiceLabel(val, key)
+                                        }
+                                      />
+                                    )}
+                                </Stack>
+                              )}
+                            </List.Item>
+                          ))}
+                      </Stack>
+                    </Checkbox.Group>
+                  </List>
+                </Grid.Col>
+                {additionalSkills.length > 0 && (
+                  <Grid.Col span={12}>
+                    <Divider />
+                  </Grid.Col>
+                )}
+                <Grid.Col span={6}>
+                  {additionalSkills.length > 0 && (
+                    <List ta="start" listStyleType="none">
+                      <Checkbox.Group
+                        value={[...skillChoices.map((skill) => skill.name)]}
+                        onChange={handleSelectAdditionalSkill}
+                      >
+                        <Stack>
+                          <Title order={3}>Additional Skills:</Title>
+                          {additionalSkills.map((addSkill) =>
+                            userAgent.skills[addSkill]
+                              .slice(1, userAgent.skills[addSkill].length)
+                              .map((item) => (
+                                <List.Item>
+                                  <Checkbox
+                                    label={
+                                      <Text tt="capitalize">
+                                        {skillKeyLabels(addSkill)} ({item.label}
+                                        ) ({item.skill}
+                                        %)
+                                      </Text>
+                                    }
+                                    value={`${addSkill}.${item.label}`}
+                                  />
+                                  {skillChoices
+                                    .map((skill) => skill.name)
+                                    .includes(`${addSkill}.${item.label}`) && (
+                                    <NumberInput
+                                      min={20}
+                                      max={80}
+                                      step={20}
+                                      defaultValue={20}
+                                      value={
+                                        skillChoices.filter(
+                                          (skill) =>
+                                            skill.name ===
+                                            `${addSkill}.${item.label}`
+                                        )[0].value
+                                      }
+                                      prefix="+ "
+                                      suffix="%"
+                                      onKeyDown={() => false}
+                                      onChange={(val) =>
+                                        handleAdjustAdditionalSkillRating(
+                                          val,
+                                          addSkill,
+                                          item.label
+                                        )
+                                      }
+                                    />
+                                  )}
+                                </List.Item>
+                              ))
+                          )}
+                        </Stack>
+                      </Checkbox.Group>
+                    </List>
+                  )}
+                </Grid.Col>
+              </>
+            )}
             <Grid.Col span={12}>
               <Button
                 onClick={() => handleAgentOtherSkills(skillChoices)}
@@ -585,7 +831,7 @@ export const OtherProfessionalSkills: React.FC<{
           </>
         ) : (
           <>
-            <Grid.Col span={5}>
+            <Grid.Col span={viewport.width > 600 ? 5 : 12}>
               <Stack>
                 <Title order={3}>Bonus Skill Package List</Title>
                 <ScrollArea h={625}>
@@ -611,55 +857,54 @@ export const OtherProfessionalSkills: React.FC<{
               </Stack>
             </Grid.Col>
             <Divider orientation="vertical" mx="md" />
-            <Grid.Col span={6}>
-              <Stack>
-                <Title order={3}>Bonus Skill Package Details</Title>
-                {selectedPackage && (
-                  <Card withBorder ta="start">
-                    <Stack>
-                      <Title order={3}>{selectedPackage.name}</Title>
-                      <List spacing={"xs"}>
-                        <Text fw={700} td={"underline"}>
-                          These skills get +20%:
-                        </Text>
-                        {selectedPackage.professionalSkills.map((skill) => (
-                          <Tooltip
-                            w={250}
-                            label={
-                              skillsMasterList.filter(
-                                (item) => item.id === skill.id
-                              )[0].definition
-                            }
-                            multiline
-                            openDelay={500}
-                            className={styles.tooltippedElement}
-                          >
-                            <List.Item>{skill.name}</List.Item>
-                          </Tooltip>
-                        ))}
-                        {selectedPackage.personalSpecialty && (
-                          <List.Item>
-                            And any {selectedPackage.personalSpecialty} other
-                            {selectedPackage.personalSpecialty > 1 &&
-                              "s"} as{" "}
-                            {selectedPackage.personalSpecialty > 1
-                              ? "personal specialties"
-                              : "a personal specialty"}
-                            .
-                          </List.Item>
-                        )}
-                      </List>
-                      <Button
-                        onClick={() => setConfirmedPackage(true)}
-                        color={"green"}
-                      >
-                        Confirm Bonus Skills
-                      </Button>
-                    </Stack>
-                  </Card>
-                )}
-              </Stack>
-            </Grid.Col>
+            {viewport.width > 600 && (
+              <Grid.Col span={6}>
+                <Stack>
+                  <Title order={3}>Bonus Skill Package Details</Title>
+                  {selectedPackage && (
+                    <Card withBorder ta="start">
+                      <Stack>
+                        <Title order={3}>{selectedPackage.name}</Title>
+                        <List spacing={"xs"}>
+                          <Text fw={700} td={"underline"}>
+                            These skills get +20%:
+                          </Text>
+                          {selectedPackage.professionalSkills.map((skill) => (
+                            <Tooltip
+                              w={250}
+                              label={
+                                skillsMasterList.filter(
+                                  (item) => item.id === skill.id
+                                )[0].definition
+                              }
+                              multiline
+                              openDelay={500}
+                              className={styles.tooltippedElement}
+                            >
+                              <List.Item>{skill.name}</List.Item>
+                            </Tooltip>
+                          ))}
+                          {selectedPackage.personalSpecialty && (
+                            <List.Item>
+                              And any {selectedPackage.personalSpecialty} other
+                              {selectedPackage.personalSpecialty > 1 &&
+                                "s"} as{" "}
+                              {selectedPackage.personalSpecialty > 1
+                                ? "personal specialties"
+                                : "a personal specialty"}
+                              .
+                            </List.Item>
+                          )}
+                        </List>
+                      </Stack>
+                    </Card>
+                  )}
+                  <Button onClick={handleConfirmPackage} color={"green"}>
+                    Confirm Bonus Skills
+                  </Button>
+                </Stack>
+              </Grid.Col>
+            )}
           </>
         )
       ) : (
@@ -825,6 +1070,59 @@ export const OtherProfessionalSkills: React.FC<{
             </Group>
           </Grid.Col>
         </>
+      )}
+      {viewport.width < 600 && selectedPackage && (
+        <Drawer
+          position="bottom"
+          opened={opened}
+          onClose={() => setOpened(false)}
+          size="xl"
+          title="Bonus Skill Package Details"
+        >
+          <Stack>
+            <Title order={3}></Title>
+            {selectedPackage && (
+              <Card withBorder ta="start">
+                <Stack>
+                  <Title order={3}>{selectedPackage?.name}</Title>
+                  <List spacing={"xs"}>
+                    <Text fw={700} td={"underline"}>
+                      These skills get +20%:
+                    </Text>
+                    {selectedPackage?.professionalSkills.map((skill) => (
+                      <Tooltip
+                        w={250}
+                        label={
+                          skillsMasterList.filter(
+                            (item) => item.id === skill.id
+                          )[0].definition
+                        }
+                        multiline
+                        openDelay={500}
+                        className={styles.tooltippedElement}
+                      >
+                        <List.Item>{skill.name}</List.Item>
+                      </Tooltip>
+                    ))}
+                    {selectedPackage?.personalSpecialty && (
+                      <List.Item>
+                        And any {selectedPackage.personalSpecialty} other
+                        {selectedPackage.personalSpecialty > 1 && "s"} as{" "}
+                        {selectedPackage.personalSpecialty > 1
+                          ? "personal specialties"
+                          : "a personal specialty"}
+                        .
+                      </List.Item>
+                    )}
+                  </List>
+                </Stack>
+              </Card>
+            )}
+            <Button onClick={handleConfirmPackage} color={"green"}>
+              Confirm Bonus Skills
+            </Button>
+          </Stack>
+        </Drawer>
       )}
     </Grid>
   );

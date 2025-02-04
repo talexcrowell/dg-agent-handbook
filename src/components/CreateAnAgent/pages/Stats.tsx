@@ -20,6 +20,7 @@ import {
   useCombobox,
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Stats: React.FC<{
   handleAgentStats: (stats: any) => void;
@@ -34,6 +35,7 @@ export const Stats: React.FC<{
     charisma: 0,
   });
   const [pointPool, setPointPool] = useState<number>(72);
+  const [viewport] = useViewportContext();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -43,23 +45,24 @@ export const Stats: React.FC<{
     handleReset();
   }, [statType]);
 
-  const tableStatHeaders = [
-    "Statistic",
-    "Score",
-    "x5",
-    "Distinguishing Features",
-  ];
+  const tableStatHeaders =
+    viewport.width > 600
+      ? ["Statistic", "Score", "x5", "Distinguishing Features"]
+      : ["Stat", "Score", "x5", "Features"];
 
   const tableAttributeHeaders = ["Attribute", "Score"];
 
-  const statLabelArr = [
-    "Strength",
-    "Constitution",
-    "Dexterity",
-    "Intelligence",
-    "Power",
-    "Charisma",
-  ];
+  const statLabelArr =
+    viewport.width > 600
+      ? [
+          "Strength",
+          "Constitution",
+          "Dexterity",
+          "Intelligence",
+          "Power",
+          "Charisma",
+        ]
+      : ["STR", "CON", "DEX", "INT", "POW", "CHA"];
 
   const derivedAttributesArr = [
     { label: "Hit Points (HP)", key: "hp" },
@@ -145,10 +148,8 @@ export const Stats: React.FC<{
       );
     } else {
       return (
-        <Group justify="space-between">
-          <Text ta="center" w={"20%"}>
-            {stats[stat]}
-          </Text>
+        <Stack align="center">
+          <Text ta="center">{stats[stat]}</Text>
           {
             <Select
               placeholder="Swap with..."
@@ -164,9 +165,36 @@ export const Stats: React.FC<{
               }
             />
           }
-        </Group>
+        </Stack>
       );
     }
+  };
+
+  const handleMobileStats = (stat: string) => {
+    let chosenStat;
+    if (stat.length === 3) {
+      switch (stat) {
+        case "str":
+          chosenStat = "strength";
+          break;
+        case "con":
+          chosenStat = "constitution";
+          break;
+        case "dex":
+          chosenStat = "dexterity";
+          break;
+        case "int":
+          chosenStat = "intelligence";
+          break;
+        case "pow":
+          chosenStat = "power";
+          break;
+        case "cha":
+          chosenStat = "charisma";
+          break;
+      }
+    }
+    return chosenStat;
   };
 
   const handleDistinguishingFeatures = (stat: string) => {
@@ -179,6 +207,10 @@ export const Stats: React.FC<{
   const handleStatRoll = () => {
     let newObj = stats;
     statLabelArr.map((stat) => {
+      let translatedStat =
+        viewport.width > 600
+          ? stat.toLowerCase()
+          : handleMobileStats(stat.toLowerCase());
       let roll = new DiceRoll("4d6");
       let rollObj = roll.export(exportFormats.OBJECT);
       let sum = 0;
@@ -192,7 +224,7 @@ export const Stats: React.FC<{
       rollArr.forEach((num) => {
         sum += num;
       });
-      newObj[stat.toLowerCase()] = sum;
+      newObj[translatedStat.toLowerCase()] = sum;
     });
     setStats({ ...newObj });
   };
@@ -315,7 +347,9 @@ export const Stats: React.FC<{
           {statType === "roll" ? (
             <Button onClick={handleStatRoll}>Roll</Button>
           ) : (
-            <Button onClick={handleReset} bg='red'>Reset</Button>
+            <Button onClick={handleReset} bg="red">
+              Reset
+            </Button>
           )}
         </Group>
       </Grid.Col>
@@ -346,44 +380,60 @@ export const Stats: React.FC<{
           </Card>
         </Grid.Col>
       )}
-      <Grid.Col span={8}>
-        <Table withColumnBorders withTableBorder>
-          <Table.Thead>
-            <Table.Tr>
-              {tableStatHeaders.map((header) => {
+      <Grid.Col span={viewport.width > 992 ? 6 : 12}>
+        <Stack>
+          <Title order={2}>Statistics</Title>
+          <Table withColumnBorders withTableBorder>
+            <Table.Thead>
+              <Table.Tr>
+                {tableStatHeaders.map((header) => {
+                  return <Table.Th>{header}</Table.Th>;
+                })}
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {statLabelArr.map((stat) => {
                 return (
-                  <Table.Th>
-                    <Table.Td>{header}</Table.Td>
-                  </Table.Th>
+                  <Table.Tr>
+                    <Table.Td>{stat}</Table.Td>
+                    <Table.Td>
+                      {scoreTableDetail(
+                        viewport.width > 600
+                          ? stat.toLowerCase()
+                          : handleMobileStats(stat.toLowerCase())
+                      )}
+                    </Table.Td>
+                    <Table.Td ta="center">
+                      {stats[
+                        viewport.width > 600
+                          ? stat.toLowerCase()
+                          : handleMobileStats(stat.toLowerCase())
+                      ] * 5}
+                    </Table.Td>
+                    <Table.Td ta="center">
+                      {handleDistinguishingFeatures(
+                        viewport.width > 600
+                          ? stat.toLowerCase()
+                          : handleMobileStats(stat.toLowerCase())
+                      )}
+                    </Table.Td>
+                  </Table.Tr>
                 );
               })}
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {statLabelArr.map((stat) => {
-              return (
-                <Table.Tr>
-                  <Table.Td>{stat}</Table.Td>
-                  <Table.Td>{scoreTableDetail(stat.toLowerCase())}</Table.Td>
-                  <Table.Td>{stats[stat.toLowerCase()] * 5}</Table.Td>
-                  <Table.Td>
-                    {handleDistinguishingFeatures(stat.toLowerCase())}
-                  </Table.Td>
-                </Table.Tr>
-              );
-            })}
-          </Table.Tbody>
-        </Table>
+            </Table.Tbody>
+          </Table>
+        </Stack>
       </Grid.Col>
-      <Grid.Col span={4}>
+      <Grid.Col span={viewport.width > 992 ? 6 : 12}>
         <Stack>
+          <Title order={2}>Derived Attributes</Title>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
                 {tableAttributeHeaders.map((header) => {
                   return (
-                    <Table.Th>
-                      <Table.Td ta="center">{header}</Table.Td>
+                    <Table.Th ta={header === "Score" ? "center" : ""}>
+                      {header}
                     </Table.Th>
                   );
                 })}
@@ -394,7 +444,9 @@ export const Stats: React.FC<{
                 return (
                   <Table.Tr>
                     <Table.Td>{attribute.label}</Table.Td>
-                    <Table.Td>{calculateAttribute(attribute.key)}</Table.Td>
+                    <Table.Td ta="center">
+                      {calculateAttribute(attribute.key)}
+                    </Table.Td>
                   </Table.Tr>
                 );
               })}
@@ -403,7 +455,7 @@ export const Stats: React.FC<{
           <Button
             onClick={() => handleAgentStats({ ...stats })}
             disabled={Object.values(stats).includes(0)}
-            color={'green'}
+            color={"green"}
           >
             Confirm Statistics
           </Button>

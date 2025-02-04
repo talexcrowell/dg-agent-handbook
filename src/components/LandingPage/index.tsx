@@ -8,7 +8,6 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 
@@ -17,7 +16,7 @@ export const LandingPage = () => {
   return (
     <Grid py="lg">
       <Grid.Col>
-        <Title>Agent Handbook</Title>
+        <Title>Agent Handbook Directory</Title>
         <Text></Text>
       </Grid.Col>
       <Grid.Col>

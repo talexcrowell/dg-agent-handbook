@@ -4,6 +4,7 @@ import {
   Checkbox,
   CheckboxGroup,
   Divider,
+  Drawer,
   Grid,
   Group,
   List,
@@ -22,6 +23,7 @@ import {
   skillsMasterList,
 } from "../../../data";
 import styles from "../../../Element.module.css";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
@@ -37,12 +39,16 @@ export const Profession: React.FC<{
   );
   const [confirmedProfession, setConfirmedProfession] = useState(false);
   const [professionsType, setProfessionsType] = useState("Standard");
+  const [viewport] = useViewportContext();
+  const [opened, setOpened] = useState(false);
 
   const handleSelectProfession = (profession: any) => {
+    setOpened(true);
     setSelectedProfession({ ...profession });
   };
 
   const confirmProfession = () => {
+    setOpened(false);
     selectedProfession.numberOfOptionalSkills > 0 ||
     selectedProfession.professionalSkills.filter(
       (item) => isSkillChoice(item) && item.type === ""
@@ -155,86 +161,93 @@ export const Profession: React.FC<{
     handleAgentProfession({ ...newObj });
   };
 
-  const professionCard = (profession) => (
-    <Card withBorder ta="start">
-      <Stack>
-        <Text fw={700}>{profession.name}</Text>
-        <Text fs="italic">{profession.description}</Text>
-        <Group>
-          <Text>
-            Recommended Stats:{" "}
-            {profession.recommendedStats.map((stat: string, i: number) =>
-              i !== profession.recommendedStats.length - 1 ? stat + ", " : stat
-            )}
-          </Text>
-        </Group>
-        <Group align="top">
-          <List spacing={"xs"}>
-            <Text td="underline">Professional Skills:</Text>
-            {profession.professionalSkills.map((skill) => (
-              <Tooltip
-                w={250}
-                label={
-                  skillsMasterList.filter((item) => item.id === skill.id)[0]
-                    ? skillsMasterList.filter((item) => item.id === skill.id)[0]
-                        .definition
-                    : ""
-                }
-                multiline
-                openDelay={500}
-              >
-                {isSkillChoice(skill) ? (
-                  <List.Item className={styles.tooltippedElement}>
-                    {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
-                    {skill.value}%
-                  </List.Item>
-                ) : (
-                  <List.Item className={styles.tooltippedElement}>
-                    {skill.name} {skill.value}%
-                  </List.Item>
+  const professionCard = (profession) => {
+    if (profession.name) {
+      return (
+        <Card withBorder ta="start">
+          <Stack>
+            <Text fw={700}>{profession.name}</Text>
+            <Text fs="italic">{profession.description}</Text>
+            <Group>
+              <Text>
+                Recommended Stats:{" "}
+                {profession.recommendedStats.map((stat: string, i: number) =>
+                  i !== profession.recommendedStats.length - 1
+                    ? stat + ", "
+                    : stat
                 )}
-              </Tooltip>
-            ))}
-          </List>
-          {profession.optionalSkills.length > 0 && (
-            <List spacing={"xs"}>
-              <Text td="underline">
-                Choose {profession.numberOfOptionalSkills} of these:
               </Text>
-              {profession.optionalSkills.map((skill) => (
-                <Tooltip
-                  w={250}
-                  label={
-                    skillsMasterList.filter((item) => item.id === skill.id)[0]
-                      .definition
-                  }
-                  multiline
-                  openDelay={500}
-                >
-                  {isSkillChoice(skill) ? (
-                    <List.Item className={styles.tooltippedElement}>
-                      {skill.name} (
-                      {skill.type !== "" ? skill.type : "Choose One"}){" "}
-                      {skill.value}%
-                    </List.Item>
-                  ) : (
-                    <List.Item className={styles.tooltippedElement}>
-                      {skill.name} {skill.value}%
-                    </List.Item>
-                  )}
-                </Tooltip>
-              ))}
-            </List>
-          )}
-        </Group>
-        <Text fs="italic">Bonds: {profession.bonds}</Text>
-        <Button onClick={() => confirmProfession()} bg={"green"}>
-          Confirm Profession
-        </Button>
-      </Stack>
-    </Card>
-  );
-
+            </Group>
+            <Group align="top">
+              <List spacing={"xs"}>
+                <Text td="underline">Professional Skills:</Text>
+                {profession.professionalSkills.map((skill) => (
+                  <Tooltip
+                    w={250}
+                    label={
+                      skillsMasterList.filter((item) => item.id === skill.id)[0]
+                        ? skillsMasterList.filter(
+                            (item) => item.id === skill.id
+                          )[0].definition
+                        : ""
+                    }
+                    multiline
+                    openDelay={500}
+                  >
+                    {isSkillChoice(skill) ? (
+                      <List.Item className={styles.tooltippedElement}>
+                        {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
+                        {skill.value}%
+                      </List.Item>
+                    ) : (
+                      <List.Item className={styles.tooltippedElement}>
+                        {skill.name} {skill.value}%
+                      </List.Item>
+                    )}
+                  </Tooltip>
+                ))}
+              </List>
+              {profession.optionalSkills.length > 0 && (
+                <List spacing={"xs"}>
+                  <Text td="underline">
+                    Choose {profession.numberOfOptionalSkills} of these:
+                  </Text>
+                  {profession.optionalSkills.map((skill) => (
+                    <Tooltip
+                      w={250}
+                      label={
+                        skillsMasterList.filter(
+                          (item) => item.id === skill.id
+                        )[0].definition
+                      }
+                      multiline
+                      openDelay={500}
+                    >
+                      {isSkillChoice(skill) ? (
+                        <List.Item className={styles.tooltippedElement}>
+                          {skill.name} (
+                          {skill.type !== "" ? skill.type : "Choose One"}){" "}
+                          {skill.value}%
+                        </List.Item>
+                      ) : (
+                        <List.Item className={styles.tooltippedElement}>
+                          {skill.name} {skill.value}%
+                        </List.Item>
+                      )}
+                    </Tooltip>
+                  ))}
+                </List>
+              )}
+            </Group>
+            <Text fs="italic">Bonds: {profession.bonds}</Text>
+            <Button onClick={() => confirmProfession()} bg={"green"}>
+              Confirm Profession
+            </Button>
+          </Stack>
+        </Card>
+      );
+    }
+  };
   const isSkillChoice = (skill) => {
     switch (skill.id) {
       case "art":
@@ -260,7 +273,7 @@ export const Profession: React.FC<{
             agents and special-forces operators. Special agents are highly
             educated investigators trained in interviewing, weighing evidence,
             and self-defense; special operators have stood up to the most
-            intense pressures imag- inable and can handle any crisis.{" "}
+            intense pressures imaginable and can handle any crisis.{" "}
           </Text>
           <Text>
             But academics are necessary, too: computer and engineering experts,
@@ -275,7 +288,7 @@ export const Profession: React.FC<{
       </Grid.Col>
       {!confirmedProfession ? (
         <>
-          <Grid.Col span={5}>
+          <Grid.Col span={viewport.width > 600 ? 5 : 12}>
             <Stack>
               <Group>
                 <Title order={3}>Professions List</Title>
@@ -328,22 +341,24 @@ export const Profession: React.FC<{
             </Stack>
           </Grid.Col>
           <Divider orientation="vertical" mx="sm" />
-          <Grid.Col span={6}>
-            <Stack>
-              <Group>
-                <Title order={3}>Profession Details</Title>
-              </Group>
+          {viewport.width > 600 && (
+            <Grid.Col span={6}>
               <Stack>
-                {selectedProfession?.name ? (
-                  professionCard(selectedProfession)
-                ) : (
-                  <Card withBorder ta="start">
-                    <Text c="dimmed">No Profession Selected...</Text>
-                  </Card>
-                )}{" "}
+                <Group>
+                  <Title order={3}>Profession Details</Title>
+                </Group>
+                <Stack>
+                  {selectedProfession?.name ? (
+                    professionCard(selectedProfession)
+                  ) : (
+                    <Card withBorder ta="start">
+                      <Text c="dimmed">No Profession Selected...</Text>
+                    </Card>
+                  )}{" "}
+                </Stack>
               </Stack>
-            </Stack>
-          </Grid.Col>
+            </Grid.Col>
+          )}
         </>
       ) : (
         <>
@@ -353,7 +368,7 @@ export const Profession: React.FC<{
               (isSkillChoice(skill) && skill.type === "")
           ).length > 0 && (
             <>
-              <Grid.Col span={5}>
+              <Grid.Col span={viewport.width > 600 ? 5 : 12}>
                 {selectedProfession?.professionalSkills.filter(
                   (skill) => skill.id === "special"
                 ).length > 0 && (
@@ -391,7 +406,7 @@ export const Profession: React.FC<{
               <Divider mx="md" orientation="vertical" />
             </>
           )}
-          <Grid.Col span={6}>
+          <Grid.Col span={viewport.width > 600 ? 6 : 12}>
             <Stack>
               <Title order={3}>
                 Select {selectedProfession.numberOfOptionalSkills} Additional
@@ -447,6 +462,16 @@ export const Profession: React.FC<{
             </Stack>
           </Grid.Col>
         </>
+      )}
+      {viewport.width < 600 && selectedProfession.name !== "" && (
+        <Drawer
+          position="bottom"
+          opened={opened}
+          onClose={() => setOpened(false)}
+          size="xl"
+        >
+          {professionCard(selectedProfession)}
+        </Drawer>
       )}
     </Grid>
   );

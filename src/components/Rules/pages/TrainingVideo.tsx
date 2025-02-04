@@ -16,8 +16,8 @@ export const TrainingVideo = () => {
             <iframe
               src="https://drive.google.com/file/d/14tzwdVe1oysg5_vPl9mIQOuPfwGCgMF4/preview"
               allow="autoplay"
-              width={width > 600 ? 720 : 380}
-              height={width > 600 ? 460 : 240}
+              width={width > 992 ? 992 : width > 600 ? 600 : 320}
+              height={width > 992 ? 540 : width > 600 ? 360 : 220}
             />
           </Flex>
         </Stack>

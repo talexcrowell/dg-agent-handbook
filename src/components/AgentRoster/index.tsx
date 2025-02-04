@@ -1,5 +1,8 @@
 import {
+  ActionIcon,
+  ActionIconGroup,
   Button,
+  ButtonGroup,
   Card,
   Divider,
   Flex,
@@ -27,13 +30,14 @@ import {
   IconUserPlus,
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const AgentRoster = () => {
   const [{ currentCharacter, savedCharacters }, actions] =
     useCharacterContext();
   const [opened, setOpened] = useState(false);
   const [importString, setImportString] = useState("");
-   const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
 
   const toggleImport = () => {
     setOpened(!opened);
@@ -46,7 +50,7 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Exported",
       message: "Export string copied to clipboard",
-      position: "top-center",
+      position: "bottom-center",
     });
   };
 
@@ -70,7 +74,7 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Imported Successfully!",
       message: "Agent is available in Agent Roster",
-      position: "top-center",
+      position: "bottom-center",
     });
     toggleImport();
   };
@@ -84,14 +88,14 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Deleted Successfully!",
       message: `Agent ${character.codename} has been removed from the Agent Roster.`,
-      position: "top-center",
+      position: "bottom-center",
     });
     localStorage.setItem("savedCharacters", JSON.stringify([...newArr]));
   };
 
   return (
     <>
-      <Grid ta="start" pt={width > 600 ? 0 : 10}>
+      <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
         <Grid.Col span={12}>
           <Stack>
             <Title>Agent Roster</Title>
@@ -144,65 +148,110 @@ export const AgentRoster = () => {
               <Stack>
                 {savedCharacters.map((agent) => (
                   <Card withBorder radius={"md"}>
-                    <Grid align="center" justify="space-between" gutter="lg">
-                      <Grid.Col span={2}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Codename
-                          </InputLabel>
-                          <Text>Agent {agent.codename}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Divider orientation="vertical" />
-                      <Grid.Col span={2}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Name
-                          </InputLabel>
-                          <Text>{agent.name}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Divider orientation="vertical" />
-                      <Grid.Col span={3}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Profession
-                          </InputLabel>
-                          <Text>{agent.profession}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Divider orientation="vertical" />
-                      <Grid.Col span={4}>
-                        
-                        <Flex justify="center">
-                          <Group>
-                            <Button
-                              component={Link}
-                              to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                              onClick={() =>
-                                actions.changeCurrentCharacter({ ...agent })
-                              }
-                              leftSection={<IconFile />}
-                            >
-                              View
-                            </Button>
-                            <Button
-                              onClick={() => handleExport(agent)}
-                              leftSection={<IconShare />}
-                            >
-                              Export
-                            </Button>
-                            <Button
-                              onClick={() => handleRemoveSavedCharacter(agent)}
-                              bg="red"
-                              leftSection={<IconTrash />}
-                            >
-                              Delete
-                            </Button>
-                          </Group>
-                        </Flex>
-                      </Grid.Col>
-                    </Grid>
+                    {viewport.width > 600 ? (
+                      <Grid align="center" justify="space-between" gutter="lg">
+                        <Grid.Col span={2}>
+                          <Stack gap="xs">
+                            <InputLabel fw={700} td="underline">
+                              Codename
+                            </InputLabel>
+                            <Text>Agent {agent.codename}</Text>
+                          </Stack>
+                        </Grid.Col>
+                        <Divider orientation="vertical" />
+                        <Grid.Col span={2}>
+                          <Stack gap="xs">
+                            <InputLabel fw={700} td="underline">
+                              Name
+                            </InputLabel>
+                            <Text>{agent.name}</Text>
+                          </Stack>
+                        </Grid.Col>
+                        <Divider orientation="vertical" />
+                        <Grid.Col span={3}>
+                          <Stack gap="xs">
+                            <InputLabel fw={700} td="underline">
+                              Profession
+                            </InputLabel>
+                            <Text>{agent.profession}</Text>
+                          </Stack>
+                        </Grid.Col>
+                        <Divider orientation="vertical" />
+                        <Grid.Col span={4}>
+                          <Flex justify="center">
+                            <Group>
+                              <Button
+                                component={Link}
+                                to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+                                onClick={() =>
+                                  actions.changeCurrentCharacter({ ...agent })
+                                }
+                                leftSection={<IconFile />}
+                              >
+                                View
+                              </Button>
+                              <Button
+                                onClick={() => handleExport(agent)}
+                                leftSection={<IconShare />}
+                              >
+                                Export
+                              </Button>
+                              <Button
+                                onClick={() =>
+                                  handleRemoveSavedCharacter(agent)
+                                }
+                                bg="red"
+                                leftSection={<IconTrash />}
+                              >
+                                Delete
+                              </Button>
+                            </Group>
+                          </Flex>
+                        </Grid.Col>
+                      </Grid>
+                    ) : (
+                      <Grid align="center" gutter="sm">
+                        <Grid.Col span={9}>
+                          <Stack gap="xs">
+                            <InputLabel fw={700} td="underline">
+                              Codename
+                            </InputLabel>
+                            <Text>Agent {agent.codename}</Text>
+                            <Divider />
+                            <InputLabel fw={700} td="underline">
+                              Profession
+                            </InputLabel>
+                            <Text>{agent.profession}</Text>
+                          </Stack>
+                        </Grid.Col>
+                        <Grid.Col span={3}>
+                          <Flex justify={"center"}>
+                            <Stack>
+                              <Button
+                                component={Link}
+                                to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+                                onClick={() =>
+                                  actions.changeCurrentCharacter({ ...agent })
+                                }
+                              >
+                                View
+                              </Button>
+                              <Button onClick={() => handleExport(agent)}>
+                                Export
+                              </Button>
+                              <Button
+                                onClick={() =>
+                                  handleRemoveSavedCharacter(agent)
+                                }
+                                bg="red"
+                              >
+                                Delete
+                              </Button>
+                            </Stack>
+                          </Flex>
+                        </Grid.Col>
+                      </Grid>
+                    )}
                   </Card>
                 ))}
               </Stack>
