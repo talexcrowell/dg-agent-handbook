@@ -52,8 +52,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -76,12 +76,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                      {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -92,8 +101,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -116,12 +125,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                      {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -132,8 +150,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -156,12 +174,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                      {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -172,8 +199,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -196,12 +223,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -212,9 +248,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -237,12 +272,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -253,8 +297,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -277,12 +321,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -293,8 +346,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -318,12 +371,21 @@ export const GearsAndServices = () => {
                           </Group>
                         </Table.Td>
                         <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
                         </Table.Td>
                       </Table.Tr>
                     );
@@ -335,9 +397,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -360,12 +421,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -376,8 +446,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -400,12 +470,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -416,8 +495,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -440,12 +519,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -456,8 +544,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -480,12 +568,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -496,8 +593,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -520,12 +617,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -536,8 +642,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -560,12 +666,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -578,8 +693,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -602,12 +717,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -618,8 +742,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -642,12 +766,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -660,8 +793,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -684,12 +817,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -702,8 +844,8 @@ export const GearsAndServices = () => {
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Item</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -726,12 +868,21 @@ export const GearsAndServices = () => {
                         </Group>
                       </Table.Td>
                       <Table.Td tt="capitalize">
-                        <Group>
-                          <IconTriangleFilled
-                            color={calculateIcon(item.expense)}
-                          />
-                          {item.expense}
-                        </Group>
+                        {viewport.width > 760 ? (
+                          <Group>
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Group>
+                        ) : (
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                            {item.expense}
+                          </Stack>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );

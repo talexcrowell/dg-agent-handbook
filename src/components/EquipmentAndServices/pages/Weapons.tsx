@@ -139,12 +139,13 @@ export const Weapons = () => {
                               ? "N/A"
                               : item.armorPiercing}
                           </Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -245,12 +246,13 @@ export const Weapons = () => {
                           <Table.Td>{item.uses}</Table.Td>
                           <Table.Td>{item.radius}</Table.Td>
                           <Table.Td>{item.penalty}</Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -351,12 +353,13 @@ export const Weapons = () => {
                           <Table.Td>{item.uses}</Table.Td>
                           <Table.Td>{item.radius}</Table.Td>
                           <Table.Td>{item.penalty}</Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -453,12 +456,13 @@ export const Weapons = () => {
                           <Table.Td>{item.range}m</Table.Td>
                           <Table.Td>{item.uses}</Table.Td>
                           <Table.Td>{item.penalty}</Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -554,12 +558,13 @@ export const Weapons = () => {
                               ? "N/A"
                               : item.armorPiercing}
                           </Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -657,12 +662,13 @@ export const Weapons = () => {
                               ? "N/A"
                               : item.armorPiercing}
                           </Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -758,12 +764,13 @@ export const Weapons = () => {
                               ? "N/A"
                               : item.armorPiercing}
                           </Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );
@@ -861,12 +868,13 @@ export const Weapons = () => {
                               ? "N/A"
                               : item.armorPiercing}
                           </Table.Td>
-                          <Table.Td>
-                            <Tooltip label={item.expense} tt="capitalize">
+                          <Table.Td tt="capitalize">
+                            <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                            </Tooltip>
+                              {item.expense}
+                            </Stack>
                           </Table.Td>
                         </Table.Tr>
                       );

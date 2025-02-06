@@ -61,12 +61,12 @@ export const Armor = () => {
                     <Table.Td>{item.armorRating}</Table.Td>
                     <Table.Td>{item.description}</Table.Td>
                     <Table.Td tt="capitalize">
-                      <Group>
+                      <Stack align="center">
                         <IconTriangleFilled
                           color={calculateIcon(item.expense)}
                         />
                         {item.expense}
-                      </Group>
+                      </Stack>
                     </Table.Td>
                   </Table.Tr>
                 );
