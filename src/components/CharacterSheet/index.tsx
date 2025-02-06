@@ -35,10 +35,31 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
   return (
     <Tabs
       orientation={viewport.width > 760 ? "vertical" : "horizontal"}
-      variant="pills"
+      variant="outline"
       defaultValue="all"
       inverted
     >
+      {viewport.width > 760 && (
+        <Tabs.List
+          justify={viewport.width > 760 ? "flex-start" : "space-between"}
+        >
+          <Tabs.Tab value="all" leftSection={<IconFile />}>
+            {viewport.width > 600 && "All"}
+          </Tabs.Tab>
+          <Tabs.Tab value="personal" leftSection={<IconUser />}>
+            {viewport.width > 600 && "Personal"}
+          </Tabs.Tab>
+          <Tabs.Tab value="skills" leftSection={<IconList />}>
+            {viewport.width > 600 && "Skills"}
+          </Tabs.Tab>
+          <Tabs.Tab value="equipment" leftSection={<IconBackpack />}>
+            {viewport.width > 600 && "Equipment"}
+          </Tabs.Tab>
+          <Tabs.Tab value="notes" leftSection={<IconNotes />}>
+            {viewport.width > 600 && "Notes"}
+          </Tabs.Tab>
+        </Tabs.List>
+      )}
       <Tabs.Panel value="all">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
           <Personal />
@@ -70,25 +91,27 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
           <Notes />
         </ScrollArea>
       </Tabs.Panel>
-      <Tabs.List
-        justify={viewport.width > 760 ? "flex-start" : "space-between"}
-      >
-        <Tabs.Tab value="all" leftSection={<IconFile />}>
-          {viewport.width > 600 && "All"}
-        </Tabs.Tab>
-        <Tabs.Tab value="personal" leftSection={<IconUser />}>
-          {viewport.width > 600 && "Personal"}
-        </Tabs.Tab>
-        <Tabs.Tab value="skills" leftSection={<IconList />}>
-          {viewport.width > 600 && "Skills"}
-        </Tabs.Tab>
-        <Tabs.Tab value="equipment" leftSection={<IconBackpack />}>
-          {viewport.width > 600 && "Equipment"}
-        </Tabs.Tab>
-        <Tabs.Tab value="notes" leftSection={<IconNotes />}>
-          {viewport.width > 600 && "Notes"}
-        </Tabs.Tab>
-      </Tabs.List>
+      {viewport.width < 760 && (
+        <Tabs.List
+          justify={viewport.width > 760 ? "flex-start" : "space-between"}
+        >
+          <Tabs.Tab value="all" leftSection={<IconFile />}>
+            {viewport.width > 600 && "All"}
+          </Tabs.Tab>
+          <Tabs.Tab value="personal" leftSection={<IconUser />}>
+            {viewport.width > 600 && "Personal"}
+          </Tabs.Tab>
+          <Tabs.Tab value="skills" leftSection={<IconList />}>
+            {viewport.width > 600 && "Skills"}
+          </Tabs.Tab>
+          <Tabs.Tab value="equipment" leftSection={<IconBackpack />}>
+            {viewport.width > 600 && "Equipment"}
+          </Tabs.Tab>
+          <Tabs.Tab value="notes" leftSection={<IconNotes />}>
+            {viewport.width > 600 && "Notes"}
+          </Tabs.Tab>
+        </Tabs.List>
+      )}
     </Tabs>
   );
 };
