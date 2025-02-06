@@ -150,7 +150,7 @@ export const Rules = () => {
             </Group>
             <Divider />
             <TableOfContents
-              variant="light"
+              variant="none"
               color="blue"
               size="sm"
               radius="sm"

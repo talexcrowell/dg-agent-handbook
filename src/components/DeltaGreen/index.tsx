@@ -178,7 +178,7 @@ export const DeltaGreen = () => {
               <Text>Table of Contents</Text>
             </Group>
             <TableOfContents
-              variant="light"
+              variant="none"
               color="blue"
               size="sm"
               radius="sm"
