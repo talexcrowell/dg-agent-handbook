@@ -153,8 +153,9 @@ export const EquipmentAndServices = () => {
               <IconList />
               <Text>Table of Contents</Text>
             </Group>
+            <Divider />
             <TableOfContents
-              variant="light"
+              variant="none"
               color="blue"
               size="sm"
               radius="sm"

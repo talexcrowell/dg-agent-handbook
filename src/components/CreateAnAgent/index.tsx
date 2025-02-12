@@ -12,6 +12,7 @@ import { useCharacterContext } from "../../contexts/CharacterContext";
 import { v4 } from "uuid";
 import { notifications } from "@mantine/notifications";
 import { useViewportSize } from "@mantine/hooks";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const CreateAnAgent: React.FC = () => {
   const [progressValue, setProgressValue] = useState(0);
@@ -38,7 +39,7 @@ export const CreateAnAgent: React.FC = () => {
     bonds: 0,
   });
   const [{}, actions] = useCharacterContext();
-  const { width } = useViewportSize();
+  const [viewport] = useViewportContext();
 
   const handleProgressValue = (value: number) => {
     setProgressValue(value);
@@ -304,32 +305,34 @@ export const CreateAnAgent: React.FC = () => {
       break;
   }
   return (
-    <Grid my="sm">
-      {width > 992 && (
-        <Grid.Col span={2}>
-          <Timeline active={progressValue}>
-            <Timeline.Item>
-              <Text>Introduction</Text>
-            </Timeline.Item>
-            <Timeline.Item>
-              <Text>Statistics</Text>
-            </Timeline.Item>
-            <Timeline.Item>
-              <Text>Profession</Text>
-            </Timeline.Item>
-            <Timeline.Item>
-              <Text>Skills</Text>
-            </Timeline.Item>
-            <Timeline.Item>
-              <Text>Bonds</Text>
-            </Timeline.Item>
-            <Timeline.Item>
-              <Text>Personal Details</Text>
-            </Timeline.Item>
-          </Timeline>
-        </Grid.Col>
-      )}
-      <Grid.Col span={width > 992 ? 10 : 12}>{page}</Grid.Col>
-    </Grid>
+    <Box>
+      <Grid>
+        {viewport.width > 992 && (
+          <Grid.Col span={2}>
+            <Timeline active={progressValue}>
+              <Timeline.Item>
+                <Text>Introduction</Text>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Text>Statistics</Text>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Text>Profession</Text>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Text>Skills</Text>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Text>Bonds</Text>
+              </Timeline.Item>
+              <Timeline.Item>
+                <Text>Personal Details</Text>
+              </Timeline.Item>
+            </Timeline>
+          </Grid.Col>
+        )}
+        <Grid.Col span={viewport.width > 992 ? 10 : 12}>{page}</Grid.Col>
+      </Grid>
+    </Box>
   );
 };

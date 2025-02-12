@@ -1,6 +1,7 @@
 import {
   Affix,
   Button,
+  Divider,
   Grid,
   Group,
   Modal,
@@ -177,8 +178,9 @@ export const DeltaGreen = () => {
               <IconList />
               <Text>Table of Contents</Text>
             </Group>
+            <Divider />
             <TableOfContents
-              variant="light"
+              variant="none"
               color="blue"
               size="sm"
               radius="sm"

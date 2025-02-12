@@ -108,7 +108,7 @@ export const PersonalDetails: React.FC<{
               required
             />
             <TextInput
-              label="Education and Occupational History"
+              label="Edu/Occ History"
               flex={1}
               onChange={(val) => handleAgentPersonalDetails(val, "education")}
               value={userAgent?.education}

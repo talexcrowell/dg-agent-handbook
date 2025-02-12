@@ -19,7 +19,7 @@ import { Sanity } from "./pages/Sanity";
 import { Home } from "./pages/Home";
 import { TrainingVideo } from "./pages/TrainingVideo";
 import { useEffect, useRef, useState } from "react";
-import { IconList, IconNotebook } from "@tabler/icons-react";
+import { IconBook, IconBook2, IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
@@ -148,8 +148,9 @@ export const Rules = () => {
               <IconList />
               <Text>Table of Contents</Text>
             </Group>
+            <Divider />
             <TableOfContents
-              variant="light"
+              variant="none"
               color="blue"
               size="sm"
               radius="sm"
