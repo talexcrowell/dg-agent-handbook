@@ -53,7 +53,7 @@ export const LandingPage = () => {
                 to="/directory"
                 variant="outline"
               >
-                AUTHROIZE
+                AUTHORIZE
               </Button>
               <Button onClick={() => setOpened(false)} variant="outline" color="red">
                 CANCEL
