@@ -41,7 +41,8 @@ export const Navbar = () => {
             <NavLink
               leftSection={<IconList />}
               component={Link}
-              to={`/`}
+              to={`/directory`}
+              active={location.pathname.includes("/directory")}
               label="Directory"
               styles={{
                 root: { borderRight: "1px solid #696969" },
@@ -127,8 +128,8 @@ export const Navbar = () => {
         <NavLink
           label="Directory"
           component={Link}
-          to={`/`}
-          active={location.pathname === "/"}
+          to={`/directory`}
+          active={location.pathname === "/directory"}
           onClick={() => setMobileMenuOpen(false)}
           leftSection={<IconList />}
         />
