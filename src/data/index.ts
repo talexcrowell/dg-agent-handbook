@@ -1905,18 +1905,6 @@ export const weaponsLists = [
     restricted: true,
   },
   {
-    name: "Anti-tank guided missile (ATGM)",
-    skill: "artillery",
-    range: "4km",
-    lethality: 45,
-    radius: "50m",
-    ammoCapacity: 0,
-    armorPiercing: 25,
-    expense: "extreme",
-    type: "artillery",
-    restricted: true,
-  },
-  {
     name: "Artillery",
     skill: "artillery",
     range: "5km",
@@ -2178,741 +2166,720 @@ export const vehicleList = [
   },
 ];
 
-export const otherGearAndServicesList = {
-  transportation: [
-    {
-      name: "Same-day bus ticket",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Car or SUV, rented for a week",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Same-day interstate plane or train ticket",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Same-day international plane ticket to the developed world",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Chartered helicopter, one trip",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Same-day international plane ticket to the developing world",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Chartered jet, one trip",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  lodgings: [
-    {
-      name: "A night or two at a cheap motel",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "A week at a motel or a short-term apartment",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "A week at a fine hotel",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "A week at an exclusive resort",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Private accommodations at the most exclusive locations",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  coversAndLegends: [
-    {
-      name: "Forged passport or identification documents",
-      description:
-        "Requires official requisition or Criminology to find a reliable source.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Forged passport from a G-7 country (Canada, E.U., Japan, U.S., U.K.)",
-      description:
-        "Requires official requisition or Criminology to find a reliable source.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "A new identity",
-      description:
-        "Requires official requisition or Criminology to find a reliable source.",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  storage: [
-    {
-      name: "Public storage unit, one month",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Public storage unit, one year",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Large public storage unit, one year",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-  ],
-  restraints: [
-    {
-      name: "Flexible cuffs",
-      description:
-        "Requires a blade or scissors to cut open. A zip-tie used as makeshift cuffs can be broken open with a STR×5 test at +20%.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Handcuffs",
-      description:
-        "Require a cuff key, special training with lockpicks, or Craft (Locksmith) to open; or a DEX * 5 test at −20% to wriggle out.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-  ],
-  research: [
-    {
-      name: "Access to pay-for-use journals and professional publications",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Get expert advice from a professional or academic",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Credentials for unescorted entry into a restricted site",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Independent verification or review from an academic expert",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Specialized scientific equipment or artifacts from an outside source for “testing and review”",
-      expense: "major",
-      type: "gearAndServices",
-    },
-  ],
-  communicationsAndComputers: [
-    {
-      name: "Burner phone",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Short-range walkie talkie or early-generation mobile phone",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "“Script kiddie” hacking software",
-      description:
-        "Requires Computer Science; a failed Luck roll indicates it’s faulty.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Earpiece communicator set",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Ordinary computer",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Tablet computer or smartphone",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "3D printer (plastic)",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Satellite phone",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Hire a hacker to defeat basic encryption",
-      description:
-        "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Powerful computer",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Cutting-edge encryption or data-mining software",
-      description: "Requires Computer Science or special training (INT).",
-      expense: "major",
-      type: "gearAndServices",
-      restricted: true,
-    },
-    {
-      name: "Advanced data-analysis software",
-      description: "Requires Computer Science or special training (INT).",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "3D printer (metal)",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Hire a hacker to defeat advanced encryption",
-      description:
-        "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Portable IMSI catcher for cell surveillance",
-      description:
-        "Requires Computer Science or special training (INT). Has 2 km. range, or 200 m. for a model that can me worn under clothes. A vehicular model has 30 km. range as an Extreme expense.",
-      expense: "major",
-      type: "gearAndServices",
-      restricted: true,
-    },
-    {
-      name: "Exclusive use of a dedicated communications satellite",
-      description: "Requires Computer Science or special training (INT).",
-      expense: "extreme",
-      type: "gearAndServices",
-      restricted: true,
-    },
-  ],
-  surveillance: [
-    {
-      name: "Simple directional microphone",
-      description: "10m range in typical urban conditions.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Bug detector",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Fiber optic scope",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "GPS jammer",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Voice-activated recorder",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Directional microphone & acoustic software",
-      description:
-        "20 m. range in typical urban conditions. Advanced versions have 50m range as an Unusual expense.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Basic, open-market drone",
-      description: "Requires special training (DEX).",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Audio jammer (RF/cellular)",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "GPS tracking device",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Advanced drone",
-      description: "Requires Pilot (Drone) skill.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Ground-penetrating radar",
-      description:
-        "About the size of a lawn mower; requires special training (INT).",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Military-grade drone",
-      description: "Requires Pilot (Drone) skill; can carry weapons.",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  lightingAndVision: [
-    {
-      name: "Large flashlight",
-      description: "Useful to 100m. Runs for 10 hours.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Tactical light or weapon light",
-      description:
-        "Useful to 50 m. Runs for 1 hour. Available with optional infrared (IR) or ultraviolet (UV) filters. IR can only be seen with night vision goggles or sights. UV will make “invisible” evidence visible, such as bodily fluids and special inks.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Ordinary binoculars",
-      description:
-        "×10 magnification; allows Alertness tests at greater distance.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Civilian night vision goggles (NVG)",
-      description:
-        "Allows operating in reduced light. Runs for 100 hours. Most skill tests such as Driving, Pilot, and ranged attack rolls are at a −20% penalty. The attack penalty can be avoided if the NVGs are used together with a targeting laser in IR mode.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Advanced binoculars or telescope",
-      description:
-        "×20 magnification; allows Alertness tests at greater distance.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Powerful telescope",
-      description:
-        "×50 magnification; allows Alertness tests at greater distance.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Military-grade night vision goggles",
-      description:
-        "RESTRICTED. Allows operating in reduced light conditions. Most skills are at no penalty. If finely detailed perception is required then a −20% penalty applies.",
-      expense: "major",
-      type: "gearAndServices",
-      restricted: true,
-    },
-  ],
-  breakingAndEntering: [
-    {
-      name: "Lockpick kit",
-      description: "Requires special training (DEX).",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Halligan forcible-entry tool",
-      description: "Allows a STR test to get through a hard barrier.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Lockpick gun",
-      description: "Works only on simple tumbler locks.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-  ],
-  emergencyAndSurvival: [
-    {
-      name: "Individual first aid kit",
-      description: "Adds +20% to a single First Aid roll.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Small fire extinguisher (CO2)",
-      description:
-        "Douses a small fire. Can be used with a DEX×5 test to spray an animal such as a dog in the face to make it run away.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Handheld GPS",
-      description:
-        "Does not require a radio signal. Battery life is 14 to 25 hours.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Basic camping gear",
-      description:
-        "Cheap daypack, bivouac sack, survival blanket, button compass, flashlight, matches, meal bars, water purification tablets. Grants +20% to Survival for 3 days.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Personal protective equipment (PPE)",
-      description:
-        "Apron, goggles, gloves, breath mask; provides 2 Armor against chemical and acid splashes and fumes.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Heavy-duty fire extinguisher",
-      description: "Douses a room-sized fire.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Gas mask",
-      description: "Effective against airborne hazards.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "HAZMAT suit",
-      description:
-        "Effective against airborne or contact hazards. Requires 30 minutes to don safely. (Don’t forget to tape up.)",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "First responder medical kit",
-      description:
-        "Bandages, IV kits and fluids, medications (narcotics, anasthetics, antibiotics, etc.), stethoscope, suture and intubation kits, hemostatic gel, bag valve mask. Adds +20% to four First Aid rolls.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Extended camping gear",
-      description:
-        "Large backpack, sleeping bag, tent, compass, headlamp, firestarter, dehydrated meals, water filter, canister stove, hiking clothes. Grants +20% to Survival for 14 days.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "SCUBA gear",
-      description: "Requires special training (Swim).",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Polypropylene barrel filled with acid",
-      description:
-        "Sufficient to reduce a corpse to sludge. Remember to wear PPE!",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-  ],
-  medicalCare: [
-    {
-      name: "Off-the-books first aid, no questions asked",
-      description:
-        "Requires Criminology to find a medical professional of loose ethics.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Off-the-books drugs or minor surgery, no questions asked",
-      description:
-        "Requires Criminology to find a medical professional of loose ethics.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Off-the-books major surgery, no questions asked",
-      description:
-        "Requires Criminology to find a medical professional of loose ethics.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Bribing an incinerator, crematorium, or furnace worker to turn a blind eye while you burn a corpse",
-      description:
-        "Requires Criminology to find a worker willing to cooperate.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-  ],
-  accessories: [
-    {
-      name: "Holographic sight",
-      description:
-        "Gives a +20% bonus to hit as long as your Agent has taken nodamage since his or her last action.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Night vision sight",
-      description:
-        "Allows aiming in reduced light conditions such as starlight. Useful to 400m. Runs for 100 hours. Doubles a firearm’s base range at night if your Agent spends the previous turn taking the Aim action.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Sound suppressor",
-      description:
-        "RESTRICTED. Requires an Alertness test to hear from beyond a wall or a door. An especially quiet suppressed shot, such as a light pistol, incurs a −20% penalty.",
-      expense: "standard",
-      type: "gearAndServices",
-      restricted: true,
-    },
-    {
-      name: "Targeting laser",
-      description:
-        "Gives a +20% bonus to hit as long as your Agent has taken no damage since his or her last action. Does not require your Agent to raise the gun to his or her eyes. Useful to 200 m. Runs for 100 hours. Also available as an Unusual expense with an infrared (IR) mode that can only be seen with NVGs or night-vision sights.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Telescopic sight",
-      description:
-        "Doubles a firearm’s base range if your Agent spent the previous turn taking the Aim action.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Advanced Combat Optical Gunsight (ACOG)",
-      description:
-        "Combines the effects of a holographic sight and a telescopic sight.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Thermal Weapon Sight (TWS)",
-      description:
-        "Allows aiming in complete darkness. Useful to 400 m. Runs for two hours. Doubles a firearm’s base range if you spent the previous turn taking the Aim action.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "“Ghost gun” machine: heavy-duty desktop 3D printer with software",
-      description:
-        "Can mill a block of aluminum into the lower receiver for a firearm. Other gun parts can be bought without licensing as an Unusual expense. Firearm assembly requires an INT×5 test with special training, or a Craft (Gunsmithing) test. If the test fails, the gun is unreliable;",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-  ],
-  lawEnforcement: [
-    {
-      name: "Access to unclassified but restricted files such as criminal or financial records",
-      description:
-        "Must relate to an official investigation. If not, a failed Luck roll means it draws official review.",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Holding a prisoner for 24 hours with no questions asked",
-      description:
-        "Must relate to an official investigation. If not, a failed Luck roll means it draws official review.",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Use for a day of an agency-owned sedan, patrol vehicle, or SUV",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Acquiring data from an unrelated case",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Drone surveillance of a specific suspect for a day or two",
-      description: "Automatically elicits official review",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Use for a day of an agency-owned quad runner, patrol boat or other small, specialized craft",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Deployment of 2–5 local uniformed police",
-      description: "Automatically elicits official review",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Surveillance data from an ongoing case",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Order a wiretap",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "An armored SUV requisitioned for a week",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Calling in a regional FBI SWAT team for a raid",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  military: [
-    {
-      name: "Secure a seat on an already scheduled support flight (Space Available or Space-A)",
-      expense: "incidental",
-      type: "gearAndServices",
-    },
-    {
-      name: "Calling in a special operations team for security or evacuation",
-      description: "Automatically elicits official review",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-    {
-      name: "Helicopter support (transport or surveillance)",
-      description: "Automatically elicits official review",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-    {
-      name: "Missile strike",
-      description:
-        "Automatically elicits official review, will not be performed on American soil.",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  intelligence: [
-    {
-      name: "Access to another agency’s classified files (not related to national security)",
-      description:
-        "Includes digital communications data from NarusInsight (FBI) or XKeyscore (NSA).",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Drone flyover and surveillance over a specific site",
-      description: "Automatically elicits official review.",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Holding a prisoner at a “black site” for 48 hours",
-      description: "An Agent needs to know of the black site in advance.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Acquire clearance to be present during an interrogation or debriefing",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Acquire sophisticated fake documents",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Access to classified files related to national security (which the Agent has no “need to know”)",
-      description:
-        "Technically espionage. It can result in firing and/or prosecution if detected.",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Extended drone or satellite surveillance over a specific site (more than a short flyover)",
-      description: "Automatically elicits official review",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-    {
-      name: "Call in support from a covert operative team in the area",
-      description: "Automatically elicits official review",
-      expense: "extreme",
-      type: "gearAndServices",
-    },
-  ],
-  publicSafety: [
-    {
-      name: "Credentials for unescorted entry into a restricted site",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Access to sensitive files outside the Agent’s specialty",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Place a request for local law enforcement to make an arrest (with justification)",
-      description: "Automatically elicits official review",
-      expense: "standard",
-      type: "gearAndServices",
-    },
-    {
-      name: "Get a warrant for access to an industrial site for alleged environmental crimes",
-      description: "Automatically elicits official review",
-      expense: "unusual",
-      type: "gearAndServices",
-    },
-    {
-      name: "Temporarily shut down a site for investigation of environmental crimes",
-      description: "Automatically elicits official review",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Quarantine a single location",
-      description: "Automatically elicits official review",
-      expense: "major",
-      type: "gearAndServices",
-    },
-    {
-      name: "Quarantine an area",
-      description: "Automatically elicits official review",
-      expense: "major",
-      type: "gearAndServices",
-    },
-  ],
-};
+export const otherGearAndServicesList = [
+  {
+    name: "Same-day bus ticket",
+    expense: "incidental",
+    type: "transportation",
+  },
+  {
+    name: "Car or SUV, rented for a week",
+    expense: "standard",
+    type: "transportation",
+  },
+  {
+    name: "Same-day interstate plane or train ticket",
+    expense: "standard",
+    type: "transportation",
+  },
+  {
+    name: "Same-day international plane ticket to the developed world",
+    expense: "unusual",
+    type: "transportation",
+  },
+  {
+    name: "Chartered helicopter, one trip",
+    expense: "unusual",
+    type: "transportation",
+  },
+  {
+    name: "Same-day international plane ticket to the developing world",
+    expense: "major",
+    type: "transportation",
+  },
+  {
+    name: "Chartered jet, one trip",
+    expense: "extreme",
+    type: "transportation",
+  },
+  {
+    name: "A night or two at a cheap motel",
+    expense: "incidental",
+    type: "lodgings",
+  },
+  {
+    name: "A week at a motel or a short-term apartment",
+    expense: "standard",
+    type: "lodgings",
+  },
+  {
+    name: "A week at a fine hotel",
+    expense: "unusual",
+    type: "lodgings",
+  },
+  {
+    name: "A week at an exclusive resort",
+    expense: "major",
+    type: "lodgings",
+  },
+  {
+    name: "Private accommodations at the most exclusive locations",
+    expense: "extreme",
+    type: "lodgings",
+  },
+  {
+    name: "Forged passport or identification documents",
+    description:
+      "Requires official requisition or Criminology to find a reliable source.",
+    expense: "unusual",
+    type: "coversAndLegends",
+  },
+  {
+    name: "Forged passport from a G-7 country (Canada, E.U., Japan, U.S., U.K.)",
+    description:
+      "Requires official requisition or Criminology to find a reliable source.",
+    expense: "major",
+    type: "coversAndLegends",
+  },
+  {
+    name: "A new identity",
+    description:
+      "Requires official requisition or Criminology to find a reliable source.",
+    expense: "extreme",
+    type: "coversAndLegends",
+  },
+
+  {
+    name: "Public storage unit, one month",
+    expense: "incidental",
+    type: "storage",
+  },
+  {
+    name: "Public storage unit, one year",
+    expense: "standard",
+    type: "storage",
+  },
+  {
+    name: "Large public storage unit, one year",
+    expense: "unusual",
+    type: "storage",
+  },
+
+  {
+    name: "Flexible cuffs",
+    description:
+      "Requires a blade or scissors to cut open. A zip-tie used as makeshift cuffs can be broken open with a STR×5 test at +20%.",
+    expense: "incidental",
+    type: "restraints",
+  },
+  {
+    name: "Handcuffs",
+    description:
+      "Require a cuff key, special training with lockpicks, or Craft (Locksmith) to open; or a DEX * 5 test at −20% to wriggle out.",
+    expense: "incidental",
+    type: "restraints",
+  },
+
+  {
+    name: "Access to pay-for-use journals and professional publications",
+    expense: "incidental",
+    type: "research",
+  },
+  {
+    name: "Get expert advice from a professional or academic",
+    expense: "incidental",
+    type: "research",
+  },
+  {
+    name: "Credentials for unescorted entry into a restricted site",
+    expense: "standard",
+    type: "research",
+  },
+  {
+    name: "Independent verification or review from an academic expert",
+    expense: "standard",
+    type: "research",
+  },
+  {
+    name: "Specialized scientific equipment or artifacts from an outside source for “testing and review”",
+    expense: "major",
+    type: "research",
+  },
+
+  {
+    name: "Burner phone",
+    expense: "incidental",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Short-range walkie talkie or early-generation mobile phone",
+    expense: "incidental",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "“Script kiddie” hacking software",
+    description:
+      "Requires Computer Science; a failed Luck roll indicates it’s faulty.",
+    expense: "incidental",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Earpiece communicator set",
+    expense: "standard",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Ordinary computer",
+    expense: "standard",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Tablet computer or smartphone",
+    expense: "standard",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "3D printer (plastic)",
+    expense: "standard",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Satellite phone",
+    expense: "unusual",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Hire a hacker to defeat basic encryption",
+    description:
+      "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
+    expense: "unusual",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Powerful computer",
+    expense: "major",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Cutting-edge encryption or data-mining software",
+    description: "Requires Computer Science or special training (INT).",
+    expense: "major",
+    type: "communicationsAndComputers",
+    restricted: true,
+  },
+  {
+    name: "Advanced data-analysis software",
+    description: "Requires Computer Science or special training (INT).",
+    expense: "major",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "3D printer (metal)",
+    expense: "major",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Hire a hacker to defeat advanced encryption",
+    description:
+      "Requires Computer Science or Criminology to find a reliable one if the task is illegal.",
+    expense: "major",
+    type: "communicationsAndComputers",
+  },
+  {
+    name: "Portable IMSI catcher for cell surveillance",
+    description:
+      "Requires Computer Science or special training (INT). Has 2 km. range, or 200 m. for a model that can me worn under clothes. A vehicular model has 30 km. range as an Extreme expense.",
+    expense: "major",
+    type: "communicationsAndComputers",
+    restricted: true,
+  },
+  {
+    name: "Exclusive use of a dedicated communications satellite",
+    description: "Requires Computer Science or special training (INT).",
+    expense: "extreme",
+    type: "communicationsAndComputers",
+    restricted: true,
+  },
+
+  {
+    name: "Simple directional microphone",
+    description: "10m range in typical urban conditions.",
+    expense: "incidental",
+    type: "surveillance",
+  },
+  {
+    name: "Bug detector",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "Fiber optic scope",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "GPS jammer",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "Voice-activated recorder",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "Directional microphone & acoustic software",
+    description:
+      "20 m. range in typical urban conditions. Advanced versions have 50m range as an Unusual expense.",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "Basic, open-market drone",
+    description: "Requires special training (DEX).",
+    expense: "standard",
+    type: "surveillance",
+  },
+  {
+    name: "Audio jammer (RF/cellular)",
+    expense: "unusual",
+    type: "surveillance",
+  },
+  {
+    name: "GPS tracking device",
+    expense: "unusual",
+    type: "surveillance",
+  },
+  {
+    name: "Advanced drone",
+    description: "Requires Pilot (Drone) skill.",
+    expense: "unusual",
+    type: "surveillance",
+  },
+  {
+    name: "Ground-penetrating radar",
+    description:
+      "About the size of a lawn mower; requires special training (INT).",
+    expense: "major",
+    type: "surveillance",
+  },
+  {
+    name: "Military-grade drone",
+    description: "Requires Pilot (Drone) skill; can carry weapons.",
+    expense: "extreme",
+    type: "surveillance",
+  },
+
+  {
+    name: "Large flashlight",
+    description: "Useful to 100m. Runs for 10 hours.",
+    expense: "incidental",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Tactical light or weapon light",
+    description:
+      "Useful to 50 m. Runs for 1 hour. Available with optional infrared (IR) or ultraviolet (UV) filters. IR can only be seen with night vision goggles or sights. UV will make “invisible” evidence visible, such as bodily fluids and special inks.",
+    expense: "incidental",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Ordinary binoculars",
+    description:
+      "×10 magnification; allows Alertness tests at greater distance.",
+    expense: "incidental",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Civilian night vision goggles (NVG)",
+    description:
+      "Allows operating in reduced light. Runs for 100 hours. Most skill tests such as Driving, Pilot, and ranged attack rolls are at a −20% penalty. The attack penalty can be avoided if the NVGs are used together with a targeting laser in IR mode.",
+    expense: "standard",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Advanced binoculars or telescope",
+    description:
+      "×20 magnification; allows Alertness tests at greater distance.",
+    expense: "standard",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Powerful telescope",
+    description:
+      "×50 magnification; allows Alertness tests at greater distance.",
+    expense: "unusual",
+    type: "lightingAndVision",
+  },
+  {
+    name: "Military-grade night vision goggles",
+    description:
+      "RESTRICTED. Allows operating in reduced light conditions. Most skills are at no penalty. If finely detailed perception is required then a −20% penalty applies.",
+    expense: "major",
+    type: "lightingAndVision",
+    restricted: true,
+  },
+
+  {
+    name: "Lockpick kit",
+    description: "Requires special training (DEX).",
+    expense: "incidental",
+    type: "breakingAndEntering",
+  },
+  {
+    name: "Halligan forcible-entry tool",
+    description: "Allows a STR test to get through a hard barrier.",
+    expense: "standard",
+    type: "breakingAndEntering",
+  },
+  {
+    name: "Lockpick gun",
+    description: "Works only on simple tumbler locks.",
+    expense: "standard",
+    type: "breakingAndEntering",
+  },
+
+  {
+    name: "Individual first aid kit",
+    description: "Adds +20% to a single First Aid roll.",
+    expense: "incidental",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Small fire extinguisher (CO2)",
+    description:
+      "Douses a small fire. Can be used with a DEX×5 test to spray an animal such as a dog in the face to make it run away.",
+    expense: "incidental",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Handheld GPS",
+    description:
+      "Does not require a radio signal. Battery life is 14 to 25 hours.",
+    expense: "incidental",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Basic camping gear",
+    description:
+      "Cheap daypack, bivouac sack, survival blanket, button compass, flashlight, matches, meal bars, water purification tablets. Grants +20% to Survival for 3 days.",
+    expense: "incidental",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Personal protective equipment (PPE)",
+    description:
+      "Apron, goggles, gloves, breath mask; provides 2 Armor against chemical and acid splashes and fumes.",
+    expense: "incidental",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Heavy-duty fire extinguisher",
+    description: "Douses a room-sized fire.",
+    expense: "standard",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Gas mask",
+    description: "Effective against airborne hazards.",
+    expense: "standard",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "HAZMAT suit",
+    description:
+      "Effective against airborne or contact hazards. Requires 30 minutes to don safely. (Don’t forget to tape up.)",
+    expense: "standard",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "First responder medical kit",
+    description:
+      "Bandages, IV kits and fluids, medications (narcotics, anasthetics, antibiotics, etc.), stethoscope, suture and intubation kits, hemostatic gel, bag valve mask. Adds +20% to four First Aid rolls.",
+    expense: "standard",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Extended camping gear",
+    description:
+      "Large backpack, sleeping bag, tent, compass, headlamp, firestarter, dehydrated meals, water filter, canister stove, hiking clothes. Grants +20% to Survival for 14 days.",
+    expense: "standard",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "SCUBA gear",
+    description: "Requires special training (Swim).",
+    expense: "unusual",
+    type: "emergencyAndSurvival",
+  },
+  {
+    name: "Polypropylene barrel filled with acid",
+    description:
+      "Sufficient to reduce a corpse to sludge. Remember to wear PPE!",
+    expense: "unusual",
+    type: "emergencyAndSurvival",
+  },
+
+  {
+    name: "Off-the-books first aid, no questions asked",
+    description:
+      "Requires Criminology to find a medical professional of loose ethics.",
+    expense: "standard",
+    type: "medicalCare",
+  },
+  {
+    name: "Off-the-books drugs or minor surgery, no questions asked",
+    description:
+      "Requires Criminology to find a medical professional of loose ethics.",
+    expense: "unusual",
+    type: "medicalCare",
+  },
+  {
+    name: "Off-the-books major surgery, no questions asked",
+    description:
+      "Requires Criminology to find a medical professional of loose ethics.",
+    expense: "major",
+    type: "medicalCare",
+  },
+  {
+    name: "Bribing an incinerator, crematorium, or furnace worker to turn a blind eye while you burn a corpse",
+    description: "Requires Criminology to find a worker willing to cooperate.",
+    expense: "major",
+    type: "medicalCare",
+  },
+
+  {
+    name: "Holographic sight",
+    description:
+      "Gives a +20% bonus to hit as long as your Agent has taken nodamage since his or her last action.",
+    expense: "standard",
+    type: "accessories",
+  },
+  {
+    name: "Night vision sight",
+    description:
+      "Allows aiming in reduced light conditions such as starlight. Useful to 400m. Runs for 100 hours. Doubles a firearm’s base range at night if your Agent spends the previous turn taking the Aim action.",
+    expense: "standard",
+    type: "accessories",
+  },
+  {
+    name: "Sound suppressor",
+    description:
+      "RESTRICTED. Requires an Alertness test to hear from beyond a wall or a door. An especially quiet suppressed shot, such as a light pistol, incurs a −20% penalty.",
+    expense: "standard",
+    type: "accessories",
+    restricted: true,
+  },
+  {
+    name: "Targeting laser",
+    description:
+      "Gives a +20% bonus to hit as long as your Agent has taken no damage since his or her last action. Does not require your Agent to raise the gun to his or her eyes. Useful to 200 m. Runs for 100 hours. Also available as an Unusual expense with an infrared (IR) mode that can only be seen with NVGs or night-vision sights.",
+    expense: "standard",
+    type: "accessories",
+  },
+  {
+    name: "Telescopic sight",
+    description:
+      "Doubles a firearm’s base range if your Agent spent the previous turn taking the Aim action.",
+    expense: "standard",
+    type: "accessories",
+  },
+  {
+    name: "Advanced Combat Optical Gunsight (ACOG)",
+    description:
+      "Combines the effects of a holographic sight and a telescopic sight.",
+    expense: "unusual",
+    type: "accessories",
+  },
+  {
+    name: "Thermal Weapon Sight (TWS)",
+    description:
+      "Allows aiming in complete darkness. Useful to 400 m. Runs for two hours. Doubles a firearm’s base range if you spent the previous turn taking the Aim action.",
+    expense: "unusual",
+    type: "accessories",
+  },
+  {
+    name: "“Ghost gun” machine: heavy-duty desktop 3D printer with software",
+    description:
+      "Can mill a block of aluminum into the lower receiver for a firearm. Other gun parts can be bought without licensing as an Unusual expense. Firearm assembly requires an INT×5 test with special training, or a Craft (Gunsmithing) test. If the test fails, the gun is unreliable;",
+    expense: "unusual",
+    type: "accessories",
+  },
+
+  {
+    name: "Access to unclassified but restricted files such as criminal or financial records",
+    description:
+      "Must relate to an official investigation. If not, a failed Luck roll means it draws official review.",
+    expense: "incidental",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Holding a prisoner for 24 hours with no questions asked",
+    description:
+      "Must relate to an official investigation. If not, a failed Luck roll means it draws official review.",
+    expense: "standard",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Use for a day of an agency-owned sedan, patrol vehicle, or SUV",
+    expense: "standard",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Acquiring data from an unrelated case",
+    expense: "standard",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Drone surveillance of a specific suspect for a day or two",
+    description: "Automatically elicits official review",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Use for a day of an agency-owned quad runner, patrol boat or other small, specialized craft",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Deployment of 2–5 local uniformed police",
+    description: "Automatically elicits official review",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Surveillance data from an ongoing case",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Order a wiretap",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "An armored SUV requisitioned for a week",
+    expense: "unusual",
+    type: "lawEnforcement",
+  },
+  {
+    name: "Calling in a regional FBI SWAT team for a raid",
+    expense: "extreme",
+    type: "lawEnforcement",
+  },
+
+  {
+    name: "Secure a seat on an already scheduled support flight (Space Available or Space-A)",
+    expense: "incidental",
+    type: "military",
+  },
+  {
+    name: "Calling in a special operations team for security or evacuation",
+    description: "Automatically elicits official review",
+    expense: "extreme",
+    type: "military",
+  },
+  {
+    name: "Helicopter support (transport or surveillance)",
+    description: "Automatically elicits official review",
+    expense: "extreme",
+    type: "military",
+  },
+  {
+    name: "Missile strike",
+    description:
+      "Automatically elicits official review, will not be performed on American soil.",
+    expense: "extreme",
+    type: "military",
+  },
+
+  {
+    name: "Access to another agency’s classified files (not related to national security)",
+    description:
+      "Includes digital communications data from NarusInsight (FBI) or XKeyscore (NSA).",
+    expense: "unusual",
+    type: "intelligence",
+  },
+  {
+    name: "Drone flyover and surveillance over a specific site",
+    description: "Automatically elicits official review.",
+    expense: "unusual",
+    type: "intelligence",
+  },
+  {
+    name: "Holding a prisoner at a “black site” for 48 hours",
+    description: "An Agent needs to know of the black site in advance.",
+    expense: "major",
+    type: "intelligence",
+  },
+  {
+    name: "Acquire clearance to be present during an interrogation or debriefing",
+    expense: "major",
+    type: "intelligence",
+  },
+  {
+    name: "Acquire sophisticated fake documents",
+    expense: "major",
+    type: "intelligence",
+  },
+  {
+    name: "Access to classified files related to national security (which the Agent has no “need to know”)",
+    description:
+      "Technically espionage. It can result in firing and/or prosecution if detected.",
+    expense: "major",
+    type: "intelligence",
+  },
+  {
+    name: "Extended drone or satellite surveillance over a specific site (more than a short flyover)",
+    description: "Automatically elicits official review",
+    expense: "extreme",
+    type: "intelligence",
+  },
+  {
+    name: "Call in support from a covert operative team in the area",
+    description: "Automatically elicits official review",
+    expense: "extreme",
+    type: "intelligence",
+  },
+
+  {
+    name: "Credentials for unescorted entry into a restricted site",
+    expense: "standard",
+    type: "publicSafety",
+  },
+  {
+    name: "Access to sensitive files outside the Agent’s specialty",
+    expense: "standard",
+    type: "publicSafety",
+  },
+  {
+    name: "Place a request for local law enforcement to make an arrest (with justification)",
+    description: "Automatically elicits official review",
+    expense: "standard",
+    type: "publicSafety",
+  },
+  {
+    name: "Get a warrant for access to an industrial site for alleged environmental crimes",
+    description: "Automatically elicits official review",
+    expense: "unusual",
+    type: "publicSafety",
+  },
+  {
+    name: "Temporarily shut down a site for investigation of environmental crimes",
+    description: "Automatically elicits official review",
+    expense: "major",
+    type: "publicSafety",
+  },
+  {
+    name: "Quarantine a single location",
+    description: "Automatically elicits official review",
+    expense: "major",
+    type: "publicSafety",
+  },
+  {
+    name: "Quarantine an area",
+    description: "Automatically elicits official review",
+    expense: "major",
+    type: "publicSafety",
+  },
+];

@@ -57,302 +57,9 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.transportation.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                      {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Lodgings</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.lodgings.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                      {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Covers and Legends</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.coversAndLegends.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                      {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Storage</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.storage.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Restraints</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.restraints.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Research</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.research.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Title td="underline">Communications and Computers</Title>
-            <Table withTableBorder highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th w={"80%"}>Item</Table.Th>
-                  <Table.Th w={"20%"}>Expense</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {otherGearAndServicesList.communicationsAndComputers.map(
-                  (item) => {
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "transportation")
+                  .map((item) => {
                     return (
                       <Table.Tr>
                         <Table.Td>
@@ -389,8 +96,313 @@ export const GearsAndServices = () => {
                         </Table.Td>
                       </Table.Tr>
                     );
-                  }
-                )}
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Lodgings</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "lodgings")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Covers and Legends</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "coversAndLegends")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Storage</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "storage")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Restraints</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "restraints")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Research</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "research")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+            <Title td="underline">Communications and Computers</Title>
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th w={"80%"}>Item</Table.Th>
+                  <Table.Th w={"20%"}>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "communicationsAndComputers")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Surveillance</Title>
@@ -402,44 +414,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.surveillance.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "surveillance")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Lighting and Vision</Title>
@@ -451,44 +465,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.lightingAndVision.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "lightingAndVision")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Breaking and Entering</Title>
@@ -500,44 +516,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.breakingAndEntering.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "breakingAndEntering")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Emergency and Survival</Title>
@@ -549,44 +567,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.emergencyAndSurvival.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "emergenecyAndSurvival")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Off-the-books Medical Care</Title>
@@ -598,44 +618,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.medicalCare.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "medicalCare")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Weapon Accessories</Title>
@@ -647,44 +669,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.accessories.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "accessories")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">
@@ -698,44 +722,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.lawEnforcement.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "lawEnforcement")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">Military (Official Requisition Only)</Title>
@@ -747,44 +773,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.military.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "military")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">
@@ -798,44 +826,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.intelligence.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "intelligence")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
             <Title td="underline">
@@ -849,44 +879,46 @@ export const GearsAndServices = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {otherGearAndServicesList.publicSafety.map((item) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          {item.name}
-                          {item.description && (
-                            <Tooltip label={item.description} multiline>
-                              <IconInfoCircle />
-                            </Tooltip>
-                          )}
-                          {item.restricted && (
-                            <Tooltip label={"RESTRICTED"}>
-                              <IconCancel color="red" />
-                            </Tooltip>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td tt="capitalize">
-                        {viewport.width > 760 ? (
+                {otherGearAndServicesList
+                  .filter((item) => item.type === "publicSafety")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
                           <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
                           </Group>
-                        ) : (
-                          <Stack align="center">
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Stack>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {viewport.width > 760 ? (
+                            <Group>
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Group>
+                          ) : (
+                            <Stack align="center">
+                              <IconTriangleFilled
+                                color={calculateIcon(item.expense)}
+                              />
+                              {item.expense}
+                            </Stack>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
               </Table.Tbody>
             </Table>
           </Stack>
