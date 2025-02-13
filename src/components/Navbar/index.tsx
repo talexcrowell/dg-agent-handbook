@@ -74,7 +74,7 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={2}>
             <NavLink
-              label="Equipment and Services"
+              label={width > 1284 ? "Equipment and Services" : "Equipment..."}
               component={Link}
               to={`/equipment-and-services/overview`}
               active={location.pathname.includes("/equipment-and-services")}
@@ -130,6 +130,7 @@ export const Navbar = () => {
           to={`/`}
           active={location.pathname === "/"}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconList />}
         />
         <NavLink
           label="Delta Green"
@@ -137,6 +138,7 @@ export const Navbar = () => {
           to={`/delta-green`}
           active={location.pathname.includes("/delta-green")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconWorld />}
         />
         <NavLink
           label="Rules"
@@ -144,6 +146,7 @@ export const Navbar = () => {
           to={`/rules`}
           active={location.pathname.includes("/rules")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconBook />}
         />
         <NavLink
           label="Equipment and Services"
@@ -151,6 +154,7 @@ export const Navbar = () => {
           to={`/equipment-and-services`}
           active={location.pathname.includes("/equipment-and-services")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconPackages />}
         />
         <NavLink
           label="Agent Roster"
@@ -158,6 +162,7 @@ export const Navbar = () => {
           to={`/agents`}
           active={location.pathname.includes("/agents")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconUsers />}
         />
       </Modal>
     </Container>
