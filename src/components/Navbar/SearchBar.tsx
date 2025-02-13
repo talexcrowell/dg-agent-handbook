@@ -26,7 +26,6 @@ export const SearchBar = () => {
   });
 
   const results = fuse.search(searchTerm);
-  console.log(results);
 
   const transformChaptersSectionsHeaders = (
     chapterString: string,

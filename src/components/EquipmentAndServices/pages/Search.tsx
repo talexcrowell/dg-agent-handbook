@@ -185,7 +185,6 @@ export const Search = () => {
           filterOptions[filter] = !filterOptions[filter];
           setFilterOptions({ ...obj });
           if (filter === "restricted") {
-            console.log(filterOptions[filter]);
             let addArr = masterList.filter((item: any) => {
               return item?.restricted;
             });
