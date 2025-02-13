@@ -25,6 +25,7 @@ import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { Search } from "./pages/Search";
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ export const EquipmentAndServices = () => {
   const navigate = useNavigate();
   const { tabValue } = useParams();
   const location = useLocation();
-  const [viewport] = useViewportContext()
+  const [viewport] = useViewportContext();
 
   useEffect(() => {
     if (!tabValue) {
@@ -57,6 +58,7 @@ export const EquipmentAndServices = () => {
               <Tabs.Tab value={"armor"}>Armor</Tabs.Tab>
               <Tabs.Tab value={"vehicles"}>Vehicles</Tabs.Tab>
               <Tabs.Tab value={"gear-and-services"}>Gear and Services</Tabs.Tab>
+              <Tabs.Tab value={"search"}>Search</Tabs.Tab>
             </Tabs.List>
           ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
@@ -144,33 +146,38 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="gear-and-services">
             <GearsAndServices />
           </Tabs.Panel>
+          <Tabs.Panel value="search">
+            <Search />
+          </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {viewport.width > 992 && (
-        <Grid.Col span={2}>
-          <ScrollArea h={"95vh"}>
-            <Group py="md">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
-            <TableOfContents
-              variant="none"
-              color="blue"
-              size="sm"
-              radius="sm"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () => data.getNode().scrollIntoView(),
-                children: data.value,
-              })}
-            />
-          </ScrollArea>
-        </Grid.Col>
-      )}
+      {viewport.width > 992 &&
+        tabValue !==
+          "search" && (
+            <Grid.Col span={2}>
+              <ScrollArea h={"95vh"}>
+                <Group py="md">
+                  <IconList />
+                  <Text>Table of Contents</Text>
+                </Group>
+                <Divider />
+                <TableOfContents
+                  variant="none"
+                  color="blue"
+                  size="sm"
+                  radius="sm"
+                  reinitializeRef={reinitializeRef}
+                  scrollSpyOptions={{
+                    selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+                  }}
+                  getControlProps={({ data }) => ({
+                    onClick: () => data.getNode().scrollIntoView(),
+                    children: data.value,
+                  })}
+                />
+              </ScrollArea>
+            </Grid.Col>
+          )}
     </Grid>
   );
 };
