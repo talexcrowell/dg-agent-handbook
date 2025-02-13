@@ -58,7 +58,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "transportation")
+                  .filter((item) => item.gearAndServicesType === "transportation")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -109,7 +109,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "lodgings")
+                  .filter((item) => item.gearAndServicesType === "lodgings")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -160,7 +160,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "coversAndLegends")
+                  .filter((item) => item.gearAndServicesType === "coversAndLegends")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -211,7 +211,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "storage")
+                  .filter((item) => item.gearAndServicesType === "storage")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -262,7 +262,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "restraints")
+                  .filter((item) => item.gearAndServicesType === "restraints")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -313,7 +313,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "research")
+                  .filter((item) => item.gearAndServicesType === "research")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -364,7 +364,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "communicationsAndComputers")
+                  .filter((item) => item.gearAndServicesType === "communicationsAndComputers")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -415,7 +415,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "surveillance")
+                  .filter((item) => item.gearAndServicesType === "surveillance")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -466,7 +466,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "lightingAndVision")
+                  .filter((item) => item.gearAndServicesType === "lightingAndVision")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -517,7 +517,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "breakingAndEntering")
+                  .filter((item) => item.gearAndServicesType === "breakingAndEntering")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -568,7 +568,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "emergenecyAndSurvival")
+                  .filter((item) => item.gearAndServicesType === "emergenecyAndSurvival")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -619,7 +619,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "medicalCare")
+                  .filter((item) => item.gearAndServicesType === "medicalCare")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -670,7 +670,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "accessories")
+                  .filter((item) => item.gearAndServicesType === "accessories")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -723,7 +723,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "lawEnforcement")
+                  .filter((item) => item.gearAndServicesType === "lawEnforcement")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -774,7 +774,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "military")
+                  .filter((item) => item.gearAndServicesType === "military")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -827,7 +827,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "intelligence")
+                  .filter((item) => item.gearAndServicesType === "intelligence")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -880,7 +880,7 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.type === "publicSafety")
+                  .filter((item) => item.gearAndServicesType === "publicSafety")
                   .map((item) => {
                     return (
                       <Table.Tr>

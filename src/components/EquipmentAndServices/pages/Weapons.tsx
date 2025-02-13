@@ -113,7 +113,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "handToHand")
+                    .filter((item) => item.weaponType === "handToHand")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -163,7 +163,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "handToHand")
+                    .filter((item) => item.weaponType === "handToHand")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -220,7 +220,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "tearGasPepperSpray")
+                    .filter((item) => item.weaponType === "tearGasPepperSpray")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -270,7 +270,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "tearGasPepperSpray")
+                    .filter((item) => item.weaponType === "tearGasPepperSpray")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -327,7 +327,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "stunGrenade")
+                    .filter((item) => item.weaponType === "stunGrenade")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -376,7 +376,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "stunGrenade")
+                    .filter((item) => item.weaponType === "stunGrenade")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -431,7 +431,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "electroshock")
+                    .filter((item) => item.weaponType === "electroshock")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -479,7 +479,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "electroshock")
+                    .filter((item) => item.weaponType === "electroshock")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -528,7 +528,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "firearms")
+                    .filter((item) => item.weaponType === "firearms")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -581,7 +581,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "firearms")
+                    .filter((item) => item.weaponType === "firearms")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -631,7 +631,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "heavyWeapons")
+                    .filter((item) => item.weaponType === "heavyWeapons")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -685,7 +685,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "heavyWeapons")
+                    .filter((item) => item.weaponType === "heavyWeapons")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -734,7 +734,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "demolitions")
+                    .filter((item) => item.weaponType === "demolitions")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -787,7 +787,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "demolitions")
+                    .filter((item) => item.weaponType === "demolitions")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -837,7 +837,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "artillery")
+                    .filter((item) => item.weaponType === "artillery")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -891,7 +891,7 @@ export const Weapons = () => {
                 </Table.Thead>
                 <Table.Tbody>
                   {weaponsLists
-                    .filter((item) => item.type === "artillery")
+                    .filter((item) => item.weaponType === "artillery")
                     .map((item) => {
                       return (
                         <Table.Tr>
@@ -935,7 +935,7 @@ export const Weapons = () => {
               {mobileWeapon?.name}{" "}
               {mobileWeapon?.restricted && (
                 <Text c="red" fw={700} td="underline">
-                  {mobileWeapon?.type === "firearms"
+                  {mobileWeapon?.weaponType === "firearms"
                     ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE"
                     : "RESTRICTED ITEM"}
                 </Text>

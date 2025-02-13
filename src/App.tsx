@@ -7,28 +7,29 @@ import { useEffect } from "react";
 function App() {
   const { pathname, hash, key } = useLocation();
   useEffect(() => {
-    if (hash === '') {
+    if (hash === "") {
       window.scrollTo(0, 0);
-    }
-    else {
+    } else {
       setTimeout(() => {
-        const id = hash.replace('#', '');
+        const id = hash.replace("#", "");
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView();
         }
       }, 0);
     }
-  }, [pathname, hash, key])
+  }, [pathname, hash, key]);
 
   const { width } = useViewportSize();
   return (
     <AppShell padding="sm">
-      <AppShell.Header h={ width > 992 ? 45 : 55}>
-        <Navbar />
-      </AppShell.Header>
+      {pathname !== "/" && (
+        <AppShell.Header h={width > 992 ? 45 : 55}>
+          <Navbar />
+        </AppShell.Header>
+      )}
       <AppShell.Main pt={width > 992 ? 45 : 55} pb={0}>
-        <Container size="xl" px={width > 600 ? 'md' : '0'}>
+        <Container size="xl" px={width > 600 ? "md" : "0"}>
           <Outlet />
         </Container>
       </AppShell.Main>

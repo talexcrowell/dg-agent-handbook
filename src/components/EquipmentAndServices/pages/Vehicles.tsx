@@ -101,7 +101,7 @@ export const Vehicles = () => {
               </Table.Thead>
               <Table.Tbody>
                 {vehicleList
-                  .filter((item) => item.type === "ground")
+                  .filter((item) => item.vehicleType === "ground")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -137,7 +137,7 @@ export const Vehicles = () => {
               </Table.Thead>
               <Table.Tbody>
                 {vehicleList
-                  .filter((item) => item.type === "water")
+                  .filter((item) => item.vehicleType === "water")
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -173,7 +173,7 @@ export const Vehicles = () => {
               </Table.Thead>
               <Table.Tbody>
                 {vehicleList
-                  .filter((item) => item.type === "air")
+                  .filter((item) => item.vehicleType === "air")
                   .map((item) => {
                     return (
                       <Table.Tr>

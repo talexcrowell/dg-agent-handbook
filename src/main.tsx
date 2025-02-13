@@ -13,8 +13,9 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
-import { LandingPage } from "./components/LandingPage/index.tsx";
+import { Directory } from "./components/Directory/index.tsx";
 import { ViewportProvider } from "./contexts/ViewportContext.tsx";
+import { LandingPage } from "./components/LandingPage.tsx";
 
 const router = createHashRouter([
   {
@@ -22,7 +23,8 @@ const router = createHashRouter([
     element: <App />,
     children: [
       { path: "/", element: <LandingPage /> },
-      
+      { path: "/directory", element: <Directory /> },
+
       { path: "/delta-green", element: <DeltaGreen /> },
       { path: "/delta-green/:tabValue", element: <DeltaGreen /> },
 
