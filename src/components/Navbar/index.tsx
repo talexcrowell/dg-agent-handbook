@@ -9,11 +9,24 @@ import {
   Modal,
   NavLink,
   Text,
+  TextInput,
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
-import { IconMenu, IconMenu2, IconNotebook } from "@tabler/icons-react";
+import {
+  IconBook,
+  IconList,
+  IconListDetails,
+  IconMenu,
+  IconMenu2,
+  IconNotebook,
+  IconPackages,
+  IconSearch,
+  IconUsers,
+  IconWorld,
+} from "@tabler/icons-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { SearchBar } from "./SearchBar";
 
 export const Navbar = () => {
   const location = useLocation();
@@ -26,16 +39,13 @@ export const Navbar = () => {
         <Grid gutter={"0"}>
           <Grid.Col span={2}>
             <NavLink
-              label="Handbook"
-              leftSection={
-                <Image
-                  src="https://i.imgur.com/GvYNgBC.png"
-                  w="auto"
-                  h={"25"}
-                />
-              }
+              leftSection={<IconList />}
               component={Link}
               to={`/`}
+              label="Directory"
+              styles={{
+                root: { borderRight: "1px solid #696969" },
+              }}
             />
           </Grid.Col>
           <Grid.Col span={2}>
@@ -44,6 +54,10 @@ export const Navbar = () => {
               component={Link}
               to={`/delta-green/overview`}
               active={location.pathname.includes("/delta-green")}
+              leftSection={<IconWorld />}
+              styles={{
+                root: { borderRight: "1px solid #696969" },
+              }}
             />
           </Grid.Col>
           <Grid.Col span={2}>
@@ -52,23 +66,35 @@ export const Navbar = () => {
               component={Link}
               to={`/rules/how-to-play`}
               active={location.pathname.includes("/rules")}
+              leftSection={<IconBook />}
+              styles={{
+                root: { borderRight: "1px solid #696969" },
+              }}
             />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col span={2}>
             <NavLink
-              label="Equipment and Services"
+              label={width > 1284 ? "Equipment and Services" : "Equipment..."}
               component={Link}
               to={`/equipment-and-services/overview`}
               active={location.pathname.includes("/equipment-and-services")}
+              leftSection={<IconPackages />}
+              styles={{
+                root: { borderRight: "1px solid #696969" },
+              }}
             />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col span={2}>
             <NavLink
               label="Agent Roster"
               component={Link}
               to={`/agents`}
               active={location.pathname.includes("/agents")}
+              leftSection={<IconUsers />}
             />
+          </Grid.Col>
+          <Grid.Col span={2}>
+            <SearchBar />
           </Grid.Col>
         </Grid>
       ) : (
@@ -104,6 +130,7 @@ export const Navbar = () => {
           to={`/`}
           active={location.pathname === "/"}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconList />}
         />
         <NavLink
           label="Delta Green"
@@ -111,6 +138,7 @@ export const Navbar = () => {
           to={`/delta-green`}
           active={location.pathname.includes("/delta-green")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconWorld />}
         />
         <NavLink
           label="Rules"
@@ -118,6 +146,7 @@ export const Navbar = () => {
           to={`/rules`}
           active={location.pathname.includes("/rules")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconBook />}
         />
         <NavLink
           label="Equipment and Services"
@@ -125,6 +154,7 @@ export const Navbar = () => {
           to={`/equipment-and-services`}
           active={location.pathname.includes("/equipment-and-services")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconPackages />}
         />
         <NavLink
           label="Agent Roster"
@@ -132,6 +162,7 @@ export const Navbar = () => {
           to={`/agents`}
           active={location.pathname.includes("/agents")}
           onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconUsers />}
         />
       </Modal>
     </Container>

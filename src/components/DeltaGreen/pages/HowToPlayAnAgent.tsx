@@ -21,7 +21,7 @@ export const HowToPlayAnAgent = () => {
               enjoys.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="describe-your-agent's-actions ">
               Describe Your Agent’s Actions
             </Title>
             <Text>
@@ -38,7 +38,7 @@ export const HowToPlayAnAgent = () => {
               Handler takes that into account to describe what happens next.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="respond-quickly">
               Respond Quickly
             </Title>
             <Text>
@@ -47,7 +47,7 @@ export const HowToPlayAnAgent = () => {
               moving.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="speak-for-your-agent">
               Speak for Your Agent
             </Title>
             <Text>
@@ -59,7 +59,7 @@ export const HowToPlayAnAgent = () => {
               for a horror game.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="respect-the-mood">
               Respect the Mood
             </Title>
             <Text>
@@ -69,7 +69,7 @@ export const HowToPlayAnAgent = () => {
               cosmic terrors.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="work-with-other-players">
               Work With the Other Players
             </Title>
             <Text>
@@ -88,7 +88,7 @@ export const HowToPlayAnAgent = () => {
               think it’s critical, talk to the Handler about it.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="trust-the-handler">
               Trust the Handler
             </Title>
             <Text>

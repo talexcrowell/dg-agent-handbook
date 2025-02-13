@@ -55,7 +55,7 @@ export const EquipmentAndServices = () => {
             <Tabs.List>
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
               <Tabs.Tab value={"weapons"}>Weapons</Tabs.Tab>
-              <Tabs.Tab value={"armor"}>Armor</Tabs.Tab>
+              <Tabs.Tab value={"armor"}>Body Armor</Tabs.Tab>
               <Tabs.Tab value={"vehicles"}>Vehicles</Tabs.Tab>
               <Tabs.Tab value={"gear-and-services"}>Gear and Services</Tabs.Tab>
               <Tabs.Tab value={"search"}>Search</Tabs.Tab>
@@ -97,7 +97,7 @@ export const EquipmentAndServices = () => {
                     }
                   />
                   <NavLink
-                    label="Armor"
+                    label="Body Armor"
                     onClick={() => {
                       setMobileMenuOpen(false);
                       navigate("/equipment-and-services/armor");

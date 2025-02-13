@@ -13,7 +13,9 @@ export const Home = () => {
     >
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Home</Title>
+          <Title td="underline" id="home">
+            Home
+          </Title>
           <Text>
             Delta Green features occasional scenes that focus on Agents’
             everyday lives. These short vignettes should last no more than a few
@@ -27,7 +29,7 @@ export const Home = () => {
             is appropriate.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="what-changed">
             What Changed
           </Title>
           <Text>
@@ -57,10 +59,12 @@ export const Home = () => {
             <Text fw={700}>Prosecution:</Text>Did your Agent get arrested?
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="personal-pursuits">
             Personal Pursuits
           </Title>
-          <Title order={3}>Fulfill Responsibilities</Title>
+          <Title order={3} id="fulfill-responsibilities">
+            Fulfill Responsibilities
+          </Title>
           <Text>
             If your Agent focuses on ordinary obligations and relationships,
             describe something the Agent is doing at work or at home to support
@@ -71,7 +75,9 @@ export const Home = () => {
             related to your Agent’s involvement with Delta Green—reduces the
             Bond by 1D4 and your SAN by 1.
           </Text>
-          <Title order={3}>Back to Nature</Title>
+          <Title order={3} id="back-to-nature">
+            Back to Nature
+          </Title>
           <Text>
             Your Agent can spend time in seclusion, minimizing stress,
             distractions, and obligations. This isn’t a vacation with the
@@ -83,7 +89,9 @@ export const Home = () => {
             adds 1 SAN. A fumble costs 1D4 SAN. Describe the impact of this time
             alone.
           </Text>
-          <Title order={3}>Establish a New Bond</Title>
+          <Title order={3} id="establish-a-new-bond">
+            Establish a New Bond
+          </Title>
           <Text>
             Your Agent attempts to create a new Bond. This means that character
             or group is developing into an essential, important part of your
@@ -93,7 +101,9 @@ export const Home = () => {
             new Bond reduces the value of one other Bond (other than a Bond for
             Delta Green) by 1.
           </Text>
-          <Title order={3}>Go to Therapy</Title>
+          <Title order={3} id="go-to-therapy">
+            Go to Therapy
+          </Title>
           <Text>
             Therapy is a systematic deconstruction of mental trauma. It is an
             ongoing process requiring honesty and commitment. Going to therapy
@@ -132,7 +142,9 @@ export const Home = () => {
             test. If that fails, the “cured” disorder returns in full force
             alongside the new one.
           </Text>
-          <Title order={3}>Improve Skills or Stats</Title>
+          <Title order={3} id="improve-skills-or-stats">
+            Improve Skills or Stats
+          </Title>
           <Text>
             By training or studying extensively, your Agent can try to boost any
             two separate skills or stats, or one stat and one skill. Describe
@@ -147,7 +159,9 @@ export const Home = () => {
             than a Bond for Delta Green) by 1 as you let other responsibilities
             lapse.
           </Text>
-          <Title order={3}>Personal Motivation</Title>
+          <Title order={3} id="personal-motivation">
+            Personal Motivation
+          </Title>
           <Text>
             Your Agent indulges in the things that he or she finds meaningful.
             Roll a SAN test. Success adds 1 SAN, or 1D4 for a critical (up to
@@ -155,13 +169,17 @@ export const Home = () => {
             Delta Green) by 1 as you let other responsibilities lapse. A fumble
             costs 1 SAN.
           </Text>
-          <Title order={3}>Special Training</Title>
+          <Title order={3} id="special-training">
+            Special Training
+          </Title>
           <Text>
             Your Agent can study and practice to gain special training. This
             reduces one Bond (other than a Bond for Delta Green) by 1 as you let
             other responsibilities lapse.
           </Text>
-          <Title order={3}>Stay On the Case</Title>
+          <Title order={3} id="stay-on-the-case">
+            Stay On the Case
+          </Title>
           <Text>
             Your Agent can spend nights and weekends poring over an old
             operation’s evidence and case files. This reduces one Bond (other
@@ -175,7 +193,9 @@ export const Home = () => {
             happened—or in obsessing over it self-destructively if the roll
             means a loss of SAN.
           </Text>
-          <Title order={3}>Study the Unnatural</Title>
+          <Title order={3} id="study-the-unnatural">
+            Study the Unnatural
+          </Title>
           <Text>
             Your Agent can spend the vignette studying a forbidden tome, a
             decrypted flash drive full of shocking data, case reports from a
@@ -185,7 +205,7 @@ export const Home = () => {
             points as your Agent spends more and more time on awful things.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="getting-fired">
             Getting Fired
           </Title>
           <Text>
@@ -211,7 +231,7 @@ export const Home = () => {
             job.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="prosecution">
             Prosecution
           </Title>
           <Text>

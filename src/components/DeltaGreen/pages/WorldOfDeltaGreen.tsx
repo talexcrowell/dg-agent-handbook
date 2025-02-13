@@ -10,7 +10,7 @@ export const WorldOfDeltaGreen = () => {
         ta="start"
         p={viewport.width > 600 ? "md" : 0}
         gutter={viewport.width > 600 ? "md" : "0"}
-        id="world"
+        id="the-world-of-delta-green"
       >
         <Grid.Col span={12}>
           <Stack>
@@ -36,7 +36,11 @@ export const WorldOfDeltaGreen = () => {
               nothing more. That’s the first rule of Delta Green.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title
+              order={2}
+              td="underline"
+              id="the-unnatural-in-the-modern-era"
+            >
               The Unnatural in the Modern Era
             </Title>
             <Text>

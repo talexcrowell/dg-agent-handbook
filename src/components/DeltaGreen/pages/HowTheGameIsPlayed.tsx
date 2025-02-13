@@ -26,7 +26,9 @@ export const HowTheGameIsPlayed = () => {
               show a number between 01 and 00 (meaning 100).
             </Text>
             <Divider />
-            <Title order={2}>Your Agent In the Game</Title>
+            <Title order={2} id="your-agent-in-the-game">
+              Your Agent In the Game
+            </Title>
             <Text>
               A player takes the role of a Delta Green Agent and describes how
               that Agent confronts unnatural horrors. What can your character do
@@ -55,7 +57,9 @@ export const HowTheGameIsPlayed = () => {
               trauma.
             </Text>
             <Divider />
-            <Title order={2}>The Handler</Title>
+            <Title order={2} id="the-handler">
+              The Handler
+            </Title>
             <Text>
               One player does not play an Agent but takes the role of the
               Handler who controls the game. The Handler creates the mystery
@@ -88,7 +92,7 @@ export const HowTheGameIsPlayed = () => {
               introduce their Agents. Describe what your Agent’s day-to-day life
               is like: work, friends, family, the mundane but critical things
               your Agent is willing to die for. The Handler’s next job is to
-              intro- duce the operation: the events that will lead your Agent to
+              introduce the operation: the events that will lead your Agent to
               confront unnatural horror.
             </Text>
           </Stack>
