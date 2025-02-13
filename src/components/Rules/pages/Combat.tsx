@@ -13,7 +13,9 @@ export const Combat = () => {
     >
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Combat</Title>
+          <Title td="underline" id="combat">
+            Combat
+          </Title>
           <Text>
             A serious fight, where people are trying to kill each other, is
             chaotic, frightening, and fast. That’s what these rules represent.
@@ -28,7 +30,7 @@ export const Combat = () => {
             resolves any unnatural threat.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="the-turn">
             The Turn
           </Title>
           <Text>
@@ -44,13 +46,17 @@ export const Combat = () => {
           <Text>
             During a turn, a combatant can attempt one of the following actions:
           </Text>
-          <Title order={3}>Aim</Title>
+          <Title order={3} id="aim">
+            Aim
+          </Title>
           <Text>
             Sacrifice one turn to aim and gain a +20% to your attack next turn.
             Aiming requires no roll. After the next turn, or if your Agent
             suffers any damage before attempting it, the bonus is lost.
           </Text>
-          <Title order={3}>Attack</Title>
+          <Title order={3} id="attack">
+            Attack
+          </Title>
           <Text>
             An “attack” encompasses anything from throwing a punch to firing an
             anti-tank rocket. The “standard” attack (ranged or hand-to-hand) is
@@ -65,7 +71,9 @@ export const Combat = () => {
             semi-automatic firearm might fire three quick shots—but it’s always
             a single attack roll and a single damage roll.
           </Text>
-          <Title order={3}>Called Shot</Title>
+          <Title order={3} id="called-shot">
+            Called Shot
+          </Title>
           <Text>
             A called shot is an attack to a particular body part (the head, the
             hand, the leg). A called shot allows your Agent to roll a grenade
@@ -81,14 +89,18 @@ export const Combat = () => {
             <Text fw={700}>Mostly Covered (-40%):</Text> The target is mostly
             covered (all but a limb or head).
           </Text>
-          <Title order={3}>Disarm</Title>
+          <Title order={3} id="disarm">
+            Disarm
+          </Title>
           <Text>
             An Unarmed Combat roll attempting to make a target drop an object.
             This is possible only if your Agent has both hands free and is in
             hand-to-hand range. Attempting to disarm also means your Agent is
             parrying and blocking.
           </Text>
-          <Title order={3}>Dodge</Title>
+          <Title order={3} id="dodge">
+            Dodge
+          </Title>
           <Text>
             A Dodge skill test to get out of the way of an attack (or a disarm
             or pin). This opposed test pits your Agent’s Dodge skill against the
@@ -96,7 +108,9 @@ export const Combat = () => {
             avoids harm. If the Handler agrees, an Agent can dodge while jogging
             or running as described in the MOVE action on this page.
           </Text>
-          <Title order={3}>Escape</Title>
+          <Title order={3} id="escape">
+            Escape
+          </Title>
           <Text>
             Roll either STR×5 or Unarmed Combat, whichever is better, to escape
             being pinned. It’s opposed by the pinning character’s attack roll
@@ -107,13 +121,17 @@ export const Combat = () => {
             it fails, your Agent remains pinned and the escape roll does not
             defend against attacks.
           </Text>
-          <Title order={3}>Fight Back</Title>
+          <Title order={3} id="fight-back">
+            Fight Back
+          </Title>
           <Text>
             If someone attacks your Agent with a melee weapon or unarmed combat
             (not a ranged attack or an explosive), your Agent can fight back
             with Unarmed Combat or Melee Weapons to block and counterattack.
           </Text>
-          <Title order={3}>Move</Title>
+          <Title order={3} id="move">
+            Move
+          </Title>
           <Text>
             An action that moves your Agent a significant distance: 10 meters
             jogging, 20 meters running, or 30 meters sprinting (or you can move
@@ -132,7 +150,9 @@ export const Combat = () => {
             happens. That requires a Dodge roll if the attack happens in the
             same turn.
           </Text>
-          <Title order={3}>Pin</Title>
+          <Title order={3} id="pin">
+            Pin
+          </Title>
           <Text>
             An attempt to immobilize a target, either on the ground or up
             against something, using Unarmed Combat. This is possible only if
@@ -148,7 +168,9 @@ export const Combat = () => {
           <Text>
             A pinned target can attempt escape once per turn but nothing else.
           </Text>
-          <Title order={3}>Wait</Title>
+          <Title order={3} id="wait">
+            Wait
+          </Title>
           <Text>
             Agents can choose to wait to take any action after their DEX order
             comes up. At any time before your next turn, you can insert your
@@ -157,13 +179,15 @@ export const Combat = () => {
             resolved, but your Agent can jump in before the other character’s
             turn comes up.
           </Text>
-          <Title order={3}>Anything Else</Title>
+          <Title order={3} id="anything-else">
+            Anything Else
+          </Title>
           <Text>
             Anything that takes a moment’s concentration. The Handler decides
             whether it requires a stat or skill test.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="attack-rolls">
             Attack Rolls
           </Title>
           <Text>
@@ -178,7 +202,9 @@ export const Combat = () => {
             circumstances. No matter the bonus or penalty, a roll of 01 always
             hits and a roll of 00 (100) always misses.
           </Text>
-          <Title order={3}>Surprise Attacks</Title>
+          <Title order={3} id="surprise-attacks">
+            Surprise Attacks
+          </Title>
           <Text>
             If your Agent is out to kill someone who’s unaware or helpless (and
             nobody is trying to stop you), that’s hardly combat. You may not
@@ -193,20 +219,24 @@ export const Combat = () => {
             roll at +20%. Any success is a critical hit. If it fails, the attack
             misses.
           </Text>
-          <Title order={3}>Shooting into a Crowd</Title>
+          <Title order={3} id="shooting-into-a-crowd">
+            Shooting into a Crowd
+          </Title>
           <Text>
             Use a called shot to hit a particular target in a crowd with a
             ranged attack. Otherwise a random member of the crowd takes the hit.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="defense-rolls">
             Defense Rolls
           </Title>
           <Text>
             Dodging and hand-to-hand combat (with unarmed or with melee weapons)
             are tests that protect your Agent by opposing an attack roll.
           </Text>
-          <Title order={3}>Dodging and Fighting Back</Title>
+          <Title order={3} id="dodging-and-fighting-back">
+            Dodging and Fighting Back
+          </Title>
           <Text>
             Your Agent can Dodge or fight back against an incoming attack even
             before your Agent’s DEX order in a turn. If you do this, it becomes
@@ -235,7 +265,9 @@ export const Combat = () => {
             your Agent can’t see or hear the attacker, your Agent can’t Dodge or
             fight back.
           </Text>
-          <Title order={3}>Dodging Ranged Attacks</Title>
+          <Title order={3} id="dodging-ranged-attacks">
+            Dodging Ranged Attacks
+          </Title>
           <Text>
             An ordinary Dodge roll can avoid an arrow or a thrown weapon. Nobody
             can react as fast as bullets and shrapnel, but your Agent can use
@@ -245,7 +277,9 @@ export const Combat = () => {
             Dodging does no good. This is why people get nervous when guns come
             out.
           </Text>
-          <Title order={3}>Defending After Attacking</Title>
+          <Title order={3} id="defending-after-attacking">
+            Defending After Attacking
+          </Title>
           <Text>
             When your turn comes up, declare your Agent’s action—attack, called
             shot, disarm, or pin—and make the roll. Your Agent can harm, disarm
@@ -270,7 +304,7 @@ export const Combat = () => {
             against your Agent.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="damage">
             Damage
           </Title>
           <Text>
@@ -307,7 +341,9 @@ export const Combat = () => {
             <Text fw={700}>Death:</Text> If an attack brings your Agent to 0 HP,
             he or she is dead. HP do not go below 0.
           </Text>
-          <Title order={3}>Healing</Title>
+          <Title order={3} id="healing">
+            Healing
+          </Title>
           <Text>There are four types of healing:</Text>
           <Text>
             <Text fw={700}>Resuscitation:</Text> If the Handler says
@@ -343,20 +379,24 @@ export const Combat = () => {
             critical success, the patient regains 1D4; on a fumble, the patient
             loses 1 HP.
           </Text>
-          <Title order={3}>Complications</Title>
+          <Title order={3} id="complicaitons">
+            Complications
+          </Title>
           <Text>
             After treatment in a hospital or aid station, and until the patient
             heals all lost Hit Points, undertaking strenuous activity (any
             physical stat or skill test) inflicts 1D4 HP damage as sutures rip,
             broken bones shift, or fever sets in.
           </Text>
-          <Title order={3}>Recovering Stat Points</Title>
+          <Title order={3} id="recovering-stat-points">
+            Recovering Stat Points
+          </Title>
           <Text>
             Unless the Handler says otherwise, temporarily lost stat points are
             restored at 1 point per day.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="lethality-rating">
             Lethality Rating
           </Title>
           <Text>
@@ -374,7 +414,9 @@ export const Combat = () => {
             Lethality rating, and double the HP damage if the Lethality roll
             fails.
           </Text>
-          <Title order={3}>Kill Radius</Title>
+          <Title order={3} id="kill-radius">
+            Kill Radius
+          </Title>
           <Text>
             If a weapon has a Kill Radius, a successful attack inflicts a
             Lethality roll on each character in that radius. The center of the
@@ -406,7 +448,9 @@ export const Combat = () => {
             safe to just assume that most humans caught in a Kill Radius are
             either dead or incapacitated.
           </Text>
-          <Title order={3}>Suppression</Title>
+          <Title order={3} id="suppression">
+            Suppression
+          </Title>
           <Text>
             Any time your Agent knows that he or she is inside an intended Kill
             Radius, even if the attack roll misses, your Agent’s fear-riddled
@@ -425,7 +469,9 @@ export const Combat = () => {
             ground when suppressed. Only insane, hardened, or fanatical enemies
             stand up in the face of fire.
           </Text>
-          <Title order={3}>Selective Fire</Title>
+          <Title order={3} id="selective-fire">
+            Selective Fire
+          </Title>
           <Text>
             Some small arms, like submachine guns and assault rifles, have
             selective fire. The shooter chooses how it’s used; each pull of the
@@ -440,7 +486,9 @@ export const Combat = () => {
             larger Kill Radius. Some firearms allow only single shots or short
             bursts.
           </Text>
-          <Title order={3}>Blowing Things Up</Title>
+          <Title order={3} id="blowing-things-up">
+            Blowing Things Up
+          </Title>
           <Text>
             If your Agent wants to disable or destroy a vehicle or hardware, a
             heavy weapon with a Lethality rating is the way to do it. Small arms
@@ -449,7 +497,7 @@ export const Combat = () => {
             targets.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="protection-in-combat">
             Protection in Combat
           </Title>
           <Text>
@@ -457,21 +505,27 @@ export const Combat = () => {
             easy an Agent or other creature is to harm, regardless of their
             ability to get out of the way.
           </Text>
-          <Title order={3}>Fragile</Title>
+          <Title order={3} id="fragile">
+            Fragile
+          </Title>
           <Text>
             Fragile targets drop to 0 HP instantly if they suffer any damage
             from a deliberate attempt to injure them. A helpless human is
             Fragile and may, at the Handler’s discretion, be reduced to 0 HP
             with one attack without bothering to roll damage.
           </Text>
-          <Title order={3}>Exposed</Title>
+          <Title order={3} id="exposed">
+            Exposed
+          </Title>
           <Text>
             Exposed is the default for humans and many creatures. It means the
             target is aware of danger and trying to avoid it, but doesn’t have
             any real protection. Attacks operate normally against Exposed
             targets.
           </Text>
-          <Title order={3}>Armored</Title>
+          <Title order={3} id="armored">
+            Armored
+          </Title>
           <Text>
             Being Armored reduces the damage of attacks. Armor has an Armor
             rating which reduces the HP damage of attacks. Armor 5 means reduce
@@ -500,14 +554,18 @@ export const Combat = () => {
             Maybe they take damage reduced by the cover, or maybe they take no
             damage until the cover is breached.
           </Text>
-          <Title order={3}>Huge</Title>
+          <Title order={3} id="huge">
+            Huge
+          </Title>
           <Text>
             A huge target loses Hit Points from ordinary weapon damage as usual.
             But Lethality ratings don’t affect huge creatures in the same way
             they do a human sized target. Instead, the Lethality attack does
             flat HP damage equal to the Lethality rating.
           </Text>
-          <Title order={3}>Transcendent</Title>
+          <Title order={3} id="transcendent">
+            Transcendent
+          </Title>
           <Text>
             Transcendent entities are immune to physical damage. This might mean
             they exist partly in dimensions we barely perceive, or are so
@@ -518,7 +576,9 @@ export const Combat = () => {
             unnatural techniques, under extremely dangerous and limited
             situations, can humans become Transcendent.
           </Text>
-          <Title order={3}>Armor Piercing Weapons</Title>
+          <Title order={3} id="armor-piercing-weapons">
+            Armor Piercing Weapons
+          </Title>
           <Text>
             An armor piercing weapon reduces the Armor value of a target by 5
             points. Heavy armor-piercing weapons reduce armor by 10 points or
@@ -526,10 +586,12 @@ export const Combat = () => {
             specific target, not to victims in its Kill Radius.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" id="other-threats">
             Other Threats
           </Title>
-          <Title order={3}>Poison and Disease</Title>
+          <Title order={3} id="poison-and-disease">
+            Poison and Disease
+          </Title>
           <Text>
             Every poison or disease has two ratings: Speed and Damage.
           </Text>
@@ -556,7 +618,7 @@ export const Combat = () => {
             a failure, he or she suffers full damage and must make the CON×5
             test again after another Speed interval. A fumbled CON test doubles
             the damage. While under the effects of a disease, the Agent cannot
-            gain Hit Points back. Hospital- ization grants a +20% bonus to the
+            gain Hit Points back. Hospitalization grants a +20% bonus to the
             CON test.
           </Text>
           <Text>
@@ -575,22 +637,28 @@ export const Combat = () => {
             harmless. An antidote given after the ailment takes effect halves
             the Lethality rating and the HP damage.
           </Text>
-          <Title order={3}>Falling</Title>
+          <Title order={3} id="falling">
+            Falling
+          </Title>
           <Text>
             Falling is extremely dangerous to humans. Even a bad slip can be
             lethal. A fall from a short distance (one to three meters) does 1D6
-            damage, or 2D6 if it’s a partic- ularly uncontrolled fall. Beyond
+            damage, or 2D6 if it’s a particularly uncontrolled fall. Beyond
             that, a fall instead has a Lethality rating of 1% per meter fallen.
             An agent who survives a fall must make a CON×5 test or be stunned.
           </Text>
-          <Title order={3}>Impact</Title>
+          <Title order={3} id="impact">
+            Impact
+          </Title>
           <Text>
             Slamming into a barrier can be deadly. It has a Lethality rating of
             10% for every 40 kph (25 mph) of speed. Double the Lethality rating
             if your Agent slams into a wall and there’s nowhere to tumble. An
             Agent who survives an impact must make a CON×5 test or be stunned.
           </Text>
-          <Title order={3}>Suffocation</Title>
+          <Title order={3} id="suffocation">
+            Suffocation
+          </Title>
           <Text>
             Suffocation is a slow death. If your Agent takes a deep breath
             before holding it, he or she can go without breathing for CON×5
@@ -605,7 +673,9 @@ export const Combat = () => {
             starts immediately and lasts until someone clears his or her airway
             with a First Aid test.
           </Text>
-          <Title order={3}>Fire</Title>
+          <Title order={3} id="fire">
+            Fire
+          </Title>
           <Text>
             Fire damage suffered depends on the flame’s intensity. The victim
             suffers a damage roll every turn of exposure.
@@ -616,7 +686,9 @@ export const Combat = () => {
             half damage each turn until extinguished. Being surrounded by a
             raging fire also causes suffocation as the fire consumes oxygen.
           </Text>
-          <Title order={3}>Cold</Title>
+          <Title order={3} id="cold">
+            Cold
+          </Title>
           <Text>
             Agents can last for CON in minutes exposed to freezing temperatures
             unprepared, or CON×5 minutes if partially prepared. Fully prepared

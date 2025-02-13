@@ -22,7 +22,9 @@ export const Fundamentals = () => {
               Delta Green operations but they all share the following qualities.
             </Text>
             <Divider />
-            <Title order={2}>Investigation and Uncertainty</Title>
+            <Title order={2} id="investigation-and-uncertainty">
+              Investigation and Uncertainty
+            </Title>
             <Text>
               Delta Green is a call to action against forces of the unnatural.
               First, it is an investigation to discover the nature of a threat,
@@ -34,7 +36,9 @@ export const Fundamentals = () => {
               must be completed.
             </Text>
             <Divider />
-            <Title order={2}>Suspense and Horror</Title>
+            <Title order={2} id="suspense-and-horror">
+              Suspense and Horror
+            </Title>
             <Text>
               Approaching the unnatural—forces that defy physics and human
               comprehension—is never comfortable, especially if you’ve faced it
@@ -47,7 +51,9 @@ export const Fundamentals = () => {
               impossible is real and crippling. Few agents last long.
             </Text>
             <Divider />
-            <Title order={2}>Violence and Moral Choices</Title>
+            <Title order={2} id="violence-and-moral-choices">
+              Violence and Moral Choices
+            </Title>
             <Text>
               When the world falls away and the moment comes for violence, Delta
               Green agents can’t afford to hesitate. Emergencies require
@@ -59,7 +65,9 @@ export const Fundamentals = () => {
               hard to tell the difference until the bullets are flying.
             </Text>
             <Divider />
-            <Title order={2}>Sanity and Comprehension</Title>
+            <Title order={2} id="sanity-and-comprehension">
+              Sanity and Comprehension
+            </Title>
             <Text>
               Human existence is a struggle for understanding. The unnatural is
               that which the human brain cannot understand. The unnatural in all
@@ -69,7 +77,9 @@ export const Fundamentals = () => {
               except for the few facts required to survive.
             </Text>
             <Divider />
-            <Title order={2}>Keeping Secrets</Title>
+            <Title order={2} id="keeping-secrets">
+              Keeping Secrets
+            </Title>
             <Text>
               Even within the pressurized folds of Delta Green there are
               secrets. Agents must keep operations from their family, their
@@ -78,7 +88,9 @@ export const Fundamentals = () => {
               understood as the rank and file of humanity believe it to be.
             </Text>
             <Divider />
-            <Title order={2}>Personal and Professional Consequences</Title>
+            <Title order={2} id="personal-and-professional-consequences">
+              Personal and Professional Consequences
+            </Title>
             <Text>
               The impact of these secrets can be devastating. Divorce, job loss,
               lawsuits, criminal prosecution, or worse. You are part of a
@@ -86,7 +98,7 @@ export const Fundamentals = () => {
               code to perform the mission and, just as important, to cover it
               up. There is no quarter taken or given. If you are arrested or
               humiliated in the media, nobody from the group can help. And if
-              you reveal the group’s secrets, no mat- ter the circumstances, you
+              you reveal the group’s secrets, no matter the circumstances, you
               become the operation.
             </Text>
             <Divider />

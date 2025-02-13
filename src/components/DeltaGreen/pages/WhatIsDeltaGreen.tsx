@@ -3,7 +3,7 @@ import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const WhatIsDeltaGreen = () => {
-    const [viewport] = useViewportContext();
+  const [viewport] = useViewportContext();
   return (
     <ScrollArea h={"95vh"}>
       <Grid
@@ -47,7 +47,7 @@ export const WhatIsDeltaGreen = () => {
               version that is common, but your experience may be very different.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="potential-recruits">
               Potential Recruits
             </Title>
             <Text>
@@ -69,7 +69,7 @@ export const WhatIsDeltaGreen = () => {
               mission.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="operational-briefing">
               Operational Briefing
             </Title>
             <Text>
@@ -96,7 +96,7 @@ export const WhatIsDeltaGreen = () => {
               nowhere in these orders and reassignments.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="on-the-ground">
               On the Ground
             </Title>
             <Text>
@@ -126,7 +126,7 @@ export const WhatIsDeltaGreen = () => {
               things go too far, the witness may need to be eliminated.
             </Text>
             <Divider />
-            <Title order={2} td="underline">
+            <Title order={2} td="underline" id="retirement">
               Retirement
             </Title>
             <Text>
