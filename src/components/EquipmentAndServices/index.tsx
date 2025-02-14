@@ -20,8 +20,8 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import Overview from "./pages/Overview";
 
-const Overview = lazy(() => import("./pages/Overview"));
 const Weapons = lazy(() => import("./pages/Weapons"));
 const Armor = lazy(() => import("./pages/Armor"));
 const Vehicles = lazy(() => import("./pages/Vehicles"));
@@ -133,20 +133,12 @@ export const EquipmentAndServices = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <Suspense
-              fallback={
-                <Center>
-                  <Loader />
-                </Center>
-              }
-            >
-              <Overview />
-            </Suspense>
+            <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="weapons">
             <Suspense
               fallback={
-                <Center>
+                <Center h={"50vh"}>
                   <Loader />
                 </Center>
               }
@@ -157,7 +149,7 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="armor">
             <Suspense
               fallback={
-                <Center>
+                <Center h={"50vh"}>
                   <Loader />
                 </Center>
               }
@@ -168,7 +160,7 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="vehicles">
             <Suspense
               fallback={
-                <Center>
+                <Center h={"50vh"}>
                   <Loader />
                 </Center>
               }
@@ -179,7 +171,7 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="gear-and-services">
             <Suspense
               fallback={
-                <Center>
+                <Center h={"50vh"}>
                   <Loader />
                 </Center>
               }
@@ -190,7 +182,7 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="search">
             <Suspense
               fallback={
-                <Center>
+                <Center h={"50vh"}>
                   <Loader />
                 </Center>
               }
