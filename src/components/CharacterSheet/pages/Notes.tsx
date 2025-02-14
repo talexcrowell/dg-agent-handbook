@@ -23,7 +23,7 @@ export const Notes = () => {
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
-        <Textarea label="Notable People" ta="start" rows={10} />
+        <Textarea label="Experiences with the Unnatural" ta="start" rows={10} />
       </Grid.Col>
       <Grid.Col span={12}>
         <Textarea

@@ -1,8 +1,22 @@
-import { Grid, Stack, Table, Textarea, Title } from "@mantine/core";
+import {
+  Card,
+  Grid,
+  Group,
+  Stack,
+  Table,
+  Text,
+  Textarea,
+  TextInput,
+  Title,
+} from "@mantine/core";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { IconPlus, IconSearch } from "@tabler/icons-react";
+import styles from "../../../Element.module.css";
+import { useState } from "react";
 
 export const Equipment = () => {
   const [viewport] = useViewportContext();
+  const [opened, setOpened] = useState(false);
   return (
     <Grid py="md" px={viewport.width > 992 ? "md" : 0}>
       <Grid.Col span={12}>
@@ -10,6 +24,25 @@ export const Equipment = () => {
           <Title order={4} td="underline">
             Equipment
           </Title>
+          <Card
+            withBorder
+            styles={{ root: { borderStyle: "dotted", border: "1px" } }}
+            onClick={() => setOpened(!opened)}
+          >
+            <Card.Section className={styles.hoverElement}>
+              <Group c="dimmed" justify="center" py="md">
+                <IconPlus />
+                <Text>Add Equipment and Gear</Text>
+              </Group>
+            </Card.Section>
+            {opened && (
+              <Card.Section>
+                <TextInput leftSection={<IconSearch />} />
+                <Stack></Stack>
+              </Card.Section>
+            )}
+          </Card>
+
           <Textarea label="Armor and Gear" rows={10} ta="start" />
         </Stack>
       </Grid.Col>
