@@ -8,9 +8,12 @@ import {
   Grid,
   Group,
   List,
+  MultiSelect,
+  NumberInput,
   SegmentedControl,
   Select,
   Stack,
+  Table,
   Text,
   TextInput,
   Title,
@@ -19,11 +22,13 @@ import {
 import React, { useState } from "react";
 import {
   additionalProfessions,
+  defaultSkillValues,
   professions,
   skillsMasterList,
 } from "../../../data";
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { IconSearch } from "@tabler/icons-react";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
@@ -38,7 +43,14 @@ export const Profession: React.FC<{
     []
   );
   const [confirmedProfession, setConfirmedProfession] = useState(false);
+
+  const [customProfessionName, setCustomProfessionName] = useState("");
+  const [customBonds, setCustomBonds] = useState(3);
+  const [customSkillChoices, setCustomSkillChoices] = useState([]);
+  const [customSkillValues, setCustomSkillValues] = useState({});
+  const [customSkillPoints, setCustomSkillPoints] = useState(400);
   const [professionsType, setProfessionsType] = useState("Standard");
+
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
 
@@ -262,6 +274,46 @@ export const Profession: React.FC<{
     }
   };
 
+  const customProfessionSelectData = [
+    ...skillsMasterList.map((item) => {
+      return { label: item.name, value: item.id };
+    }),
+  ];
+
+  const handleAddPoints = (skill, val) => {
+    let difference = customSkillPoints - val;
+    let newObj = { ...customSkillValues };
+    newObj[skill] = newObj[skill] + val;
+    setCustomSkillValues({ ...newObj });
+    setCustomSkillPoints(difference);
+  };
+
+  const handleCustomBondChange = (val) => {
+    if ((customBonds === 1 && val === 1) || (customBonds === 4 && val === 4)) {
+      return;
+    } else {
+      customBonds > val
+        ? setCustomSkillPoints(customSkillPoints + 50)
+        : setCustomSkillPoints(customSkillPoints - 50);
+      setCustomBonds(val);
+    }
+  };
+
+  const handleCustomAddSkill = (val) => {
+    let newObj = { ...customSkillValues };
+    if (val.length > customSkillChoices.length) {
+      newObj[[...val][val.length - 1]] =
+        defaultSkillValues[[...val][val.length - 1]];
+      setCustomSkillValues({ ...newObj });
+    } else {
+      let removedSkill = Object.keys(customSkillValues).filter(
+        (key) => !val.includes(key)
+      );
+      delete newObj[removedSkill];
+      setCustomSkillValues({ ...newObj });
+    }
+    setCustomSkillChoices([...val]);
+  };
   return (
     <Grid>
       <Grid.Col span={12}>
@@ -293,7 +345,7 @@ export const Profession: React.FC<{
               <Group>
                 <Title order={3}>Professions List</Title>
                 <SegmentedControl
-                  data={["Standard", "Additional"]}
+                  data={["Standard", "Additional", "Custom"]}
                   value={professionsType}
                   onChange={setProfessionsType}
                 />
@@ -337,6 +389,29 @@ export const Profession: React.FC<{
                       </Card>
                     );
                   })}
+                {professionsType === "Custom" && (
+                  <Stack>
+                    <Text fw={700}>Create a Custom Profession</Text>
+                    <Text>
+                      If none of the professions suit your Agent, use these
+                      guidelines to build a new one.
+                    </Text>
+                    <Text>
+                      For your professional skills, pick 10 professional skills
+                      and divide 400 skill points between them. Add those points
+                      to each skill’s starting level.
+                    </Text>
+                    <Text>
+                      Professional skills should be 30% to 50%. No professional
+                      skill may be higher than 60%.
+                    </Text>
+                    <Text>
+                      For each additional bond (to a maximum of 4), reduce
+                      professional skill points by 50. For each bond removed (to
+                      a minimum of 1), add 50 professional skill points.
+                    </Text>
+                  </Stack>
+                )}
               </Stack>
             </Stack>
           </Grid.Col>
@@ -348,13 +423,105 @@ export const Profession: React.FC<{
                   <Title order={3}>Profession Details</Title>
                 </Group>
                 <Stack>
-                  {selectedProfession?.name ? (
-                    professionCard(selectedProfession)
-                  ) : (
+                  {selectedProfession?.name &&
+                    professionsType !== "Custom" &&
+                    professionCard(selectedProfession)}
+                  {professionsType !== "Custom" &&
+                    !selectedProfession?.name && (
+                      <Card withBorder ta="start">
+                        <Text c="dimmed">No Profession Selected...</Text>
+                      </Card>
+                    )}
+                  {professionsType === "Custom" && (
                     <Card withBorder ta="start">
-                      <Text c="dimmed">No Profession Selected...</Text>
+                      <Stack>
+                        <TextInput
+                          label="Profession Name"
+                          placeholder={"Enter profession name..."}
+                          onChange={(e) =>
+                            setCustomProfessionName(e.currentTarget.value)
+                          }
+                          value={customProfessionName}
+                        />
+                        <NumberInput
+                          max={4}
+                          min={1}
+                          label={"Bonds"}
+                          value={customBonds}
+                          onChange={handleCustomBondChange}
+                          clampBehavior="strict"
+                        />
+                        <MultiSelect
+                          label="Professional Skills"
+                          placeholder={
+                            customSkillChoices.length === 0 &&
+                            "Select up to 10 profession skills..."
+                          }
+                          data={[...customProfessionSelectData]}
+                          searchable
+                          rightSection={<IconSearch />}
+                          onChange={handleCustomAddSkill}
+                          value={customSkillChoices}
+                          maxValues={10}
+                        />
+                        <Table withTableBorder withColumnBorders>
+                          <Table.Thead>
+                            <Table.Tr>
+                              <Table.Th>Skill</Table.Th>
+                              <Table.Th>
+                                Adj ({customSkillPoints} points left)
+                              </Table.Th>
+                              <Table.Th>Rating</Table.Th>
+                            </Table.Tr>
+                          </Table.Thead>
+                          <Table.Tbody>
+                            {customSkillChoices.length > 0 ? (
+                              customSkillChoices.map((skill) => {
+                                return (
+                                  <Table.Tr>
+                                    <Table.Td tt="capitalize">
+                                      {skill} (
+                                      {isSkillChoice({ id: skill })
+                                        ? defaultSkillValues[skill][0].skill
+                                        : defaultSkillValues[skill]}
+                                      %)
+                                    </Table.Td>
+                                    <Table.Td>
+                                      <NumberInput
+                                        prefix="+ "
+                                        suffix="%"
+                                        value={
+                                          customSkillValues[skill] -
+                                          defaultSkillValues[skill]
+                                        }
+                                        onChange={(e) =>
+                                          handleAddPoints(skill, e)
+                                        }
+                                      />
+                                    </Table.Td>
+                                    <Table.Td ta="center">
+                                      {isSkillChoice({ id: skill })
+                                        ? customSkillValues[skill][0].skill
+                                        : customSkillValues[skill]}
+                                      %
+                                    </Table.Td>
+                                  </Table.Tr>
+                                );
+                              })
+                            ) : (
+                              <Table.Tr>
+                                <Table.Td>
+                                  <Text c="dimmed">
+                                    Selected skills will appear here
+                                  </Text>
+                                </Table.Td>
+                              </Table.Tr>
+                            )}
+                          </Table.Tbody>
+                        </Table>
+                      </Stack>
                     </Card>
-                  )}{" "}
+                  )}
                 </Stack>
               </Stack>
             </Grid.Col>
