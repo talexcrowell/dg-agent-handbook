@@ -17,6 +17,17 @@ import { Link } from "react-router-dom";
 export const LandingPage = () => {
   const [opened, setOpened] = useState(false);
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleAuthorizeUser = () => {
+    setError(false);
+    if (btoa(password) !== btoa("permafrost")) {
+      setError(true);
+    } else {
+      localStorage.setItem("_at", btoa("permafrost" + Date.now()));
+    }
+  };
+
   return (
     <Grid py="lg">
       <Grid.Col>
@@ -29,7 +40,9 @@ export const LandingPage = () => {
               variant="outline"
               c="grey"
               color="grey"
-              onClick={() => setOpened(true)}
+              component={Link}
+              to="/directory"
+              // onClick={() => setOpened(true)}
             >
               ENTER
             </Button>
@@ -43,19 +56,20 @@ export const LandingPage = () => {
       >
         <Stack>
           <PasswordInput
+            error={error && "ACCESS DENIED. INVALID PASSWORD"}
             onChange={(e) => setPassword(e.currentTarget.value)}
             value={password}
           />
           <Center>
             <Group>
-              <Button
-                component={Link}
-                to="/directory"
-                variant="outline"
-              >
+              <Button variant="outline" onClick={handleAuthorizeUser}>
                 AUTHORIZE
               </Button>
-              <Button onClick={() => setOpened(false)} variant="outline" color="red">
+              <Button
+                onClick={() => setOpened(false)}
+                variant="outline"
+                color="red"
+              >
                 CANCEL
               </Button>
             </Group>
