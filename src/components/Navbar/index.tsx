@@ -112,7 +112,7 @@ export const Navbar = () => {
             </ActionIcon>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Flex justify={"center"} align={"center"} component={Link} to="/">
+            <Flex justify={"center"} align={"center"} component={Link} to="/directory">
               <Image src="https://i.imgur.com/GvYNgBC.png" w="auto" h={"40"} />
             </Flex>
           </Grid.Col>
