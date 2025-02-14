@@ -1469,7 +1469,8 @@ export const weaponsLists = [
     radius: "10m",
     penalty: "–40% for 1 hr",
     expense: "incidental",
-    type: "tearGasPepperSpray",
+    type: "weapon",
+    weaponType: "tearGasPepperSpray",
     restricted: true,
   },
   {
