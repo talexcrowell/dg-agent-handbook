@@ -1,9 +1,11 @@
 import {
   Affix,
   Button,
+  Center,
   Divider,
   Grid,
   Group,
+  Loader,
   Modal,
   NavLink,
   ScrollArea,
@@ -14,18 +16,17 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { weaponsLists } from "../../data";
-import { Weapons } from "./pages/Weapons";
-import { Armor } from "./pages/Armor";
-import { Vehicles } from "./pages/Vehicles";
-import { GearsAndServices } from "./pages/GearAndServices";
-import { Overview } from "./pages/Overview";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
-import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
-import { Search } from "./pages/Search";
+
+const Overview = lazy(() => import("./pages/Overview"));
+const Weapons = lazy(() => import("./pages/Weapons"));
+const Armor = lazy(() => import("./pages/Armor"));
+const Vehicles = lazy(() => import("./pages/Vehicles"));
+const GearsAndServices = lazy(() => import("./pages/GearAndServices"));
+const Search = lazy(() => import("./pages/Search"));
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -132,52 +133,98 @@ export const EquipmentAndServices = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <Overview />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <Overview />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="weapons">
-            <Weapons />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <Weapons />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="armor">
-            <Armor />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <Armor />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="vehicles">
-            <Vehicles />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <Vehicles />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="gear-and-services">
-            <GearsAndServices />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <GearsAndServices />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="search">
-            <Search />
+            <Suspense
+              fallback={
+                <Center>
+                  <Loader />
+                </Center>
+              }
+            >
+              <Search />
+            </Suspense>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {viewport.width > 992 &&
-        tabValue !==
-          "search" && (
-            <Grid.Col span={2}>
-              <ScrollArea h={"95vh"}>
-                <Group py="md">
-                  <IconList />
-                  <Text>Table of Contents</Text>
-                </Group>
-                <Divider />
-                <TableOfContents
-                  variant="none"
-                  color="blue"
-                  size="sm"
-                  radius="sm"
-                  reinitializeRef={reinitializeRef}
-                  scrollSpyOptions={{
-                    selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-                  }}
-                  getControlProps={({ data }) => ({
-                    onClick: () => data.getNode().scrollIntoView(),
-                    children: data.value,
-                  })}
-                />
-              </ScrollArea>
-            </Grid.Col>
-          )}
+      {viewport.width > 992 && tabValue !== "search" && (
+        <Grid.Col span={2}>
+          <ScrollArea h={"95vh"}>
+            <Group py="md">
+              <IconList />
+              <Text>Table of Contents</Text>
+            </Group>
+            <Divider />
+            <TableOfContents
+              variant="none"
+              color="blue"
+              size="sm"
+              radius="sm"
+              reinitializeRef={reinitializeRef}
+              scrollSpyOptions={{
+                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+              }}
+              getControlProps={({ data }) => ({
+                onClick: () => data.getNode().scrollIntoView(),
+                children: data.value,
+              })}
+            />
+          </ScrollArea>
+        </Grid.Col>
+      )}
     </Grid>
   );
 };

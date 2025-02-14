@@ -289,9 +289,7 @@ export const Search = () => {
       </Grid.Col>
       <Grid.Col span={12}>
         <ScrollArea h={650}>
-          <Accordion
-            styles={{ panel: { backgroundColor: "#2e2e2e" } }}
-          >
+          <Accordion styles={{ panel: { backgroundColor: "#2e2e2e" } }}>
             {searchTerm
               ? filteredList
                   .sort((a: any, b: any) => {
@@ -623,3 +621,5 @@ export const Search = () => {
     </Grid>
   );
 };
+
+export default Search;

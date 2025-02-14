@@ -58,7 +58,9 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "transportation")
+                  .filter(
+                    (item) => item.gearAndServicesType === "transportation"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -160,7 +162,9 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "coversAndLegends")
+                  .filter(
+                    (item) => item.gearAndServicesType === "coversAndLegends"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -364,7 +368,10 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "communicationsAndComputers")
+                  .filter(
+                    (item) =>
+                      item.gearAndServicesType === "communicationsAndComputers"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -466,7 +473,9 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "lightingAndVision")
+                  .filter(
+                    (item) => item.gearAndServicesType === "lightingAndVision"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -517,7 +526,9 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "breakingAndEntering")
+                  .filter(
+                    (item) => item.gearAndServicesType === "breakingAndEntering"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -568,7 +579,10 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "emergenecyAndSurvival")
+                  .filter(
+                    (item) =>
+                      item.gearAndServicesType === "emergenecyAndSurvival"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -723,7 +737,9 @@ export const GearsAndServices = () => {
               </Table.Thead>
               <Table.Tbody>
                 {otherGearAndServicesList
-                  .filter((item) => item.gearAndServicesType === "lawEnforcement")
+                  .filter(
+                    (item) => item.gearAndServicesType === "lawEnforcement"
+                  )
                   .map((item) => {
                     return (
                       <Table.Tr>
@@ -927,3 +943,5 @@ export const GearsAndServices = () => {
     </ScrollArea>
   );
 };
+
+export default GearsAndServices;

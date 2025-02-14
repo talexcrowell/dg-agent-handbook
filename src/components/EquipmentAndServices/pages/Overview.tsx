@@ -347,3 +347,5 @@ export const Overview = () => {
     </ScrollArea>
   );
 };
+
+export default Overview;

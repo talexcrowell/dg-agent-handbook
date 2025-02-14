@@ -1018,3 +1018,5 @@ export const Weapons = () => {
     </ScrollArea>
   );
 };
+
+export default Weapons;

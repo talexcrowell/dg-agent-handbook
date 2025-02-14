@@ -78,3 +78,5 @@ export const Armor = () => {
     </Grid>
   );
 };
+
+export default Armor;

@@ -10,12 +10,11 @@ import {
 } from "@mantine/core";
 import { vehicleList } from "../../../data";
 import { IconTriangleFilled } from "@tabler/icons-react";
-import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Vehicles = () => {
-    const [viewport] = useViewportContext();
-    
+  const [viewport] = useViewportContext();
+
   const calculateIcon = (expense) => {
     let str;
     switch (expense) {
@@ -200,3 +199,5 @@ export const Vehicles = () => {
     </ScrollArea>
   );
 };
+
+export default Vehicles;
