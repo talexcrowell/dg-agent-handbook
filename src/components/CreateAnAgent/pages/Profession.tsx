@@ -410,7 +410,7 @@ export const Profession: React.FC<{
       (item) => isSkillChoice(item) && item.type === ""
     ).length > 0
       ? setConfirmedProfession(true)
-      : handleAgentProfession(selectedProfession);
+      : handleAgentProfession({ ...newObj });
   };
 
   return (
