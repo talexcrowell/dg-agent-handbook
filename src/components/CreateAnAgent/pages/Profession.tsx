@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  Center,
   Checkbox,
   CheckboxGroup,
   Divider,
@@ -56,6 +57,13 @@ export const Profession: React.FC<{
 
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
+
+  const handleProfessionTypes = (val) => {
+    if (professionsType === "Custom") {
+      setSelectedProfession({});
+    }
+    setProfessionsType(val);
+  };
 
   const handleSelectProfession = (profession: any) => {
     setOpened(true);
@@ -263,6 +271,7 @@ export const Profession: React.FC<{
       );
     }
   };
+
   const isSkillChoice = (skill) => {
     switch (skill.id) {
       case "art":
@@ -274,6 +283,33 @@ export const Profession: React.FC<{
         return true;
       default:
         return false;
+    }
+  };
+
+  const skillKeyLabels = (key) => {
+    switch (key) {
+      case "computerScience":
+        return "Computer Science";
+      case "firstAid":
+        return "First Aid";
+      case "foreignLanguage":
+        return "Foreign Language";
+      case "heavyMachinery":
+        return "Heavy Machinery";
+      case "heavyWeapons":
+        return "Heavy Weapons";
+      case "humint":
+        return "HUMINT";
+      case "meleeWeapons":
+        return "Melee Weapons";
+      case "militaryScience":
+        return "Military Science";
+      case "sigint":
+        return "SIGINT";
+      case "unarmedCombat":
+        return "Unarmed Combat";
+      default:
+        return key;
     }
   };
 
@@ -304,15 +340,17 @@ export const Profession: React.FC<{
   const handleCustomAddSkill = (val) => {
     let newObj = { ...customSkillValues };
     if (val.length > customSkillChoices.length) {
-      isSkillChoice({ id: [...val][val.length - 1] })
-        ? (newObj[[...val][val.length - 1]] = [{ label: "", skill: 0 }])
-        : (newObj[[...val][val.length - 1]] = 0);
+      newObj[[...val][val.length - 1]] = 0;
+
       setCustomSkillValues({ ...newObj });
     } else {
       let removedSkill = Object.keys(customSkillValues).filter(
         (key) => !val.includes(key)
       );
+      let removedSkillValue = customSkillValues[removedSkill];
+      let difference = customSkillPoints.current + removedSkillValue;
       delete newObj[removedSkill];
+      setCustomSkillPoints({ max: customSkillPoints.max, current: difference });
       setCustomSkillValues({ ...newObj });
     }
     setCustomSkillChoices([...val]);
@@ -325,7 +363,8 @@ export const Profession: React.FC<{
           ? defaultSkillValues[skill][0].skill
           : defaultSkillValues[skill]) >
         60 ||
-      val < 0
+      val < 0 ||
+      customSkillPoints.current + (customSkillValues[skill] - val) < 0
     ) {
       return;
     }
@@ -343,7 +382,20 @@ export const Profession: React.FC<{
 
   const handleCustomProfession = () => {
     let professionalSkills = customSkillChoices.map((skill) => {
-      return { id: skill, value: customSkillValues[skill] };
+      if (isSkillChoice({ id: skill })) {
+        return {
+          id: skill,
+          name: skillKeyLabels(skill),
+          value: customSkillValues[skill],
+          type: "",
+        };
+      } else {
+        return {
+          id: skill,
+          name: skillKeyLabels(skill),
+          value: customSkillValues[skill] + defaultSkillValues[skill],
+        };
+      }
     });
     let newObj = {
       name: customProfessionName,
@@ -353,8 +405,8 @@ export const Profession: React.FC<{
       numberOfOptionalSkills: 0,
     };
     setSelectedProfession({ ...newObj });
-    selectedProfession.numberOfOptionalSkills > 0 ||
-    selectedProfession.professionalSkills.filter(
+
+    newObj?.professionalSkills.filter(
       (item) => isSkillChoice(item) && item.type === ""
     ).length > 0
       ? setConfirmedProfession(true)
@@ -394,7 +446,7 @@ export const Profession: React.FC<{
                 <SegmentedControl
                   data={["Standard", "Additional", "Custom"]}
                   value={professionsType}
-                  onChange={setProfessionsType}
+                  onChange={handleProfessionTypes}
                 />
               </Group>
               <Stack gap="0">
@@ -493,7 +545,7 @@ export const Profession: React.FC<{
                         <NumberInput
                           max={4}
                           min={1}
-                          label={"Bonds"}
+                          label={"Number of Bonds"}
                           value={customBonds}
                           onChange={handleCustomBondChange}
                           clampBehavior="strict"
@@ -502,9 +554,12 @@ export const Profession: React.FC<{
                           label="Professional Skills"
                           placeholder={
                             customSkillChoices.length === 0 &&
-                            "Select up to 10 profession skills..."
+                            "Select up to 10 professional skills..."
                           }
-                          data={[...customProfessionSelectData]}
+                          data={[...customProfessionSelectData].slice(
+                            0,
+                            customProfessionSelectData.length - 1
+                          )}
                           searchable
                           rightSection={<IconSearch />}
                           onChange={handleCustomAddSkill}
@@ -527,7 +582,7 @@ export const Profession: React.FC<{
                                 return (
                                   <Table.Tr>
                                     <Table.Td tt="capitalize">
-                                      {skill} (
+                                      {skillKeyLabels(skill)} (
                                       {isSkillChoice({ id: skill })
                                         ? defaultSkillValues[skill][0].skill
                                         : defaultSkillValues[skill]}
@@ -545,9 +600,7 @@ export const Profession: React.FC<{
                                       />
                                     </Table.Td>
                                     <Table.Td ta="center">
-                                      {(isSkillChoice({ id: skill })
-                                        ? customSkillValues[skill][0].skill
-                                        : customSkillValues[skill]) +
+                                      {customSkillValues[skill] +
                                         (isSkillChoice({ id: skill })
                                           ? defaultSkillValues[skill][0].skill
                                           : defaultSkillValues[skill])}
@@ -576,7 +629,7 @@ export const Profession: React.FC<{
                           }
                           onClick={handleCustomProfession}
                         >
-                          Create Custom Profession
+                          Confirm Custom Profession
                         </Button>
                       </Stack>
                     </Card>
@@ -588,104 +641,102 @@ export const Profession: React.FC<{
         </>
       ) : (
         <>
-          {selectedProfession?.professionalSkills.filter(
-            (skill) =>
-              skill.id === "special" ||
-              (isSkillChoice(skill) && skill.type === "")
-          ).length > 0 && (
-            <>
-              <Grid.Col span={viewport.width > 600 ? 5 : 12}>
-                {selectedProfession?.professionalSkills.filter(
-                  (skill) => skill.id === "special"
-                ).length > 0 && (
-                  <Stack mb="lg">
-                    <Title order={3}>Select Specialty</Title>
-                    <Select
-                      data={[
-                        { value: "anthropology", label: "Anthropology 50%" },
-                        { value: "archeology", label: "Archeology 50%" },
-                      ]}
-                      defaultValue={selectedSpecial}
-                      onChange={setSelectedSpecial}
+          <Grid.Col span={12}>
+            {selectedProfession?.professionalSkills.filter(
+              (skill) => skill.id === "special"
+            ).length > 0 && (
+              <Stack mb="lg">
+                <Title order={3}>Select Specialty</Title>
+                <Select
+                  data={[
+                    { value: "anthropology", label: "Anthropology 50%" },
+                    { value: "archeology", label: "Archeology 50%" },
+                  ]}
+                  defaultValue={selectedSpecial}
+                  onChange={setSelectedSpecial}
+                />
+              </Stack>
+            )}
+            {selectedProfession?.professionalSkills.filter(
+              (skill) => isSkillChoice(skill) && skill.type === ""
+            ).length > 0 && (
+              <Stack>
+                <Title order={3}>Details of Professional Skills</Title>
+                {selectedProfession?.professionalSkills
+                  .filter((skill) => isSkillChoice(skill))
+                  .map((skill, index) => (
+                    <TextInput
+                      tt="capitalize"
+                      label={`${skill.name} (${skill.value}%)`}
+                      onChange={(e) =>
+                        handleDetail(e.target.value, skill, index)
+                      }
+                      required
+                      maw={400}
                     />
-                  </Stack>
-                )}
-                {selectedProfession?.professionalSkills.filter(
-                  (skill) => isSkillChoice(skill) && skill.type === ""
-                ).length > 0 && (
+                  ))}
+                {selectedProfession.numberOfOptionalSkills > 0 && <Divider />}
+              </Stack>
+            )}
+            {selectedProfession.numberOfOptionalSkills > 0 && (
+              <Stack>
+                <Title order={3}>
+                  Select {selectedProfession.numberOfOptionalSkills} Additional
+                  Professional Skill
+                  {selectedProfession.numberOfOptionalSkills > 1 ? "s" : ""}
+                </Title>
+                <CheckboxGroup
+                  value={selectedOptionalSkills}
+                  onChange={handleSetOptionalSkills}
+                >
                   <Stack>
-                    <Title order={3}>Details of Professional Skills</Title>
-                    {selectedProfession?.professionalSkills
-                      .filter((skill) => isSkillChoice(skill))
+                    {selectedProfession.optionalSkills
+                      .filter((skill) => skill.id !== selectedSpecial)
                       .map((skill, index) => (
-                        <TextInput
-                          label={`${skill.name} (${skill.value}%)`}
-                          onChange={(e) =>
-                            handleDetail(e.target.value, skill, index)
-                          }
-                          required
-                        />
+                        <Group>
+                          <Checkbox
+                            value={skill.id}
+                            label={`${skill.name} ${skill.value}%`}
+                          />
+                          {isSkillChoice(skill) &&
+                            selectedOptionalSkills.includes(skill.id) && (
+                              <TextInput
+                                placeholder="Enter Type Here..."
+                                onChange={(e) =>
+                                  handleOptionalDetail(
+                                    e.target.value,
+                                    skill,
+                                    index
+                                  )
+                                }
+                              />
+                            )}
+                        </Group>
                       ))}
                   </Stack>
-                )}
-              </Grid.Col>
-              <Divider mx="md" orientation="vertical" />
-            </>
-          )}
-          <Grid.Col span={viewport.width > 600 ? 6 : 12}>
-            <Stack>
-              <Title order={3}>
-                Select {selectedProfession.numberOfOptionalSkills} Additional
-                Professional Skill
-                {selectedProfession.numberOfOptionalSkills > 1 ? "s" : ""}
-              </Title>
-              <CheckboxGroup
-                value={selectedOptionalSkills}
-                onChange={handleSetOptionalSkills}
-              >
-                <Stack>
-                  {selectedProfession.optionalSkills
-                    .filter((skill) => skill.id !== selectedSpecial)
-                    .map((skill, index) => (
-                      <Group>
-                        <Checkbox
-                          value={skill.id}
-                          label={`${skill.name} ${skill.value}%`}
-                        />
-                        {isSkillChoice(skill) &&
-                          selectedOptionalSkills.includes(skill.id) && (
-                            <TextInput
-                              placeholder="Enter Type Here..."
-                              onChange={(e) =>
-                                handleOptionalDetail(
-                                  e.target.value,
-                                  skill,
-                                  index
-                                )
-                              }
-                            />
-                          )}
-                      </Group>
-                    ))}
-                </Stack>
-              </CheckboxGroup>
-            </Stack>
-            <Stack mt="lg">
-              <Button
-                disabled={
-                  selectedOptionalSkills.length !==
-                    selectedProfession.numberOfOptionalSkills ||
-                  skillDetails.filter((skill) => skill.type === "").length > 0
-                }
-                onClick={confirmAdditionalSkills}
-                color={"green"}
-              >
-                Confirm Professional Skills
-              </Button>
-              <Button bg="red" onClick={() => setConfirmedProfession(false)}>
-                Change Profession
-              </Button>
-            </Stack>
+                </CheckboxGroup>
+              </Stack>
+            )}
+          </Grid.Col>
+          <Grid.Col>
+            <Center>
+              <Stack mt="lg" w={325}>
+                <Button
+                  disabled={
+                    selectedOptionalSkills.length !==
+                      selectedProfession.numberOfOptionalSkills ||
+                    skillDetails.filter((skill) => skill.type === "").length > 0
+                  }
+                  onClick={confirmAdditionalSkills}
+                  color={"green"}
+                >
+                  Confirm Professional Skills
+                </Button>
+                <Button bg="red" onClick={() => setConfirmedProfession(false)}>
+                  Change Profession
+                </Button>
+              </Stack>
+            </Center>
           </Grid.Col>
         </>
       )}

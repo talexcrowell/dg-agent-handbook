@@ -120,12 +120,20 @@ export const PersonalDetails: React.FC<{
             minRows={6}
             onChange={(val) => handleAgentPersonalDetails(val, "personality")}
             value={userAgent?.personality}
+            placeholder="Tenacious, depressed, cautious..."
           />
           <Textarea
             label="Motivations"
             minRows={6}
             onChange={(val) => handleAgentPersonalDetails(val, "motivations")}
             value={userAgent?.motivations}
+            placeholder="National security, learning about cults, protecting loved ones..."
+          />
+          <Textarea
+            label="Experiences with the Unnatural"
+            ta="start"
+            minRows={6}
+            placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />
           <Button
             component={Link}
@@ -140,7 +148,7 @@ export const PersonalDetails: React.FC<{
               !userAgent?.education
             }
             onClick={handleCreateAgent}
-            color={'green'}
+            color={"green"}
           >
             Create Agent
           </Button>

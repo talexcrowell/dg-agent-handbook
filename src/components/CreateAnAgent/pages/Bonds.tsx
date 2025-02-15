@@ -23,11 +23,10 @@ export const Bonds: React.FC<{
   const [bonds, setBonds] = useState<any[]>([]);
 
   useEffect(() => {
-    switch (
-      [...professions, ...additionalProfessions].filter(
-        (item) => item.name === userAgent.profession
-      )[0].bonds
-    ) {
+    switch (userAgent.bonds) {
+      case 1:
+        setBonds([{ name: "", value: userAgent?.stats.charisma }]);
+        break;
       case 2:
         setBonds([
           { name: "", value: userAgent?.stats.charisma },
@@ -58,11 +57,18 @@ export const Bonds: React.FC<{
     setBonds([...newArr]);
   };
   let bondInputs;
-  switch (
-    [...professions, ...additionalProfessions].filter(
-      (item) => item.name === userAgent.profession
-    )[0].bonds
-  ) {
+  switch (userAgent.bonds) {
+    case 1:
+      bondInputs = (
+        <Stack>
+          <TextInput
+            placeholder="Enter bond name and relationship here..."
+            onChange={(val) => handleBond(val, 0)}
+            label="Bond 1"
+          />
+        </Stack>
+      );
+      break;
     case 2:
       bondInputs = (
         <Stack>
