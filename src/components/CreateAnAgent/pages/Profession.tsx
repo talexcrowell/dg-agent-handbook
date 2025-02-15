@@ -48,7 +48,10 @@ export const Profession: React.FC<{
   const [customBonds, setCustomBonds] = useState(3);
   const [customSkillChoices, setCustomSkillChoices] = useState([]);
   const [customSkillValues, setCustomSkillValues] = useState({});
-  const [customSkillPoints, setCustomSkillPoints] = useState(400);
+  const [customSkillPoints, setCustomSkillPoints] = useState({
+    max: 400,
+    current: 400,
+  });
   const [professionsType, setProfessionsType] = useState("Standard");
 
   const [viewport] = useViewportContext();
@@ -280,21 +283,20 @@ export const Profession: React.FC<{
     }),
   ];
 
-  const handleAddPoints = (skill, val) => {
-    let difference = customSkillPoints - val;
-    let newObj = { ...customSkillValues };
-    newObj[skill] = newObj[skill] + val;
-    setCustomSkillValues({ ...newObj });
-    setCustomSkillPoints(difference);
-  };
-
   const handleCustomBondChange = (val) => {
     if ((customBonds === 1 && val === 1) || (customBonds === 4 && val === 4)) {
       return;
     } else {
+      let newObj = { ...customSkillPoints };
       customBonds > val
-        ? setCustomSkillPoints(customSkillPoints + 50)
-        : setCustomSkillPoints(customSkillPoints - 50);
+        ? setCustomSkillPoints({
+            current: newObj.current + 50,
+            max: newObj.max + 50,
+          })
+        : setCustomSkillPoints({
+            current: newObj.current - 50,
+            max: newObj.max - 50,
+          });
       setCustomBonds(val);
     }
   };
@@ -302,8 +304,9 @@ export const Profession: React.FC<{
   const handleCustomAddSkill = (val) => {
     let newObj = { ...customSkillValues };
     if (val.length > customSkillChoices.length) {
-      newObj[[...val][val.length - 1]] =
-        defaultSkillValues[[...val][val.length - 1]];
+      isSkillChoice({ id: [...val][val.length - 1] })
+        ? (newObj[[...val][val.length - 1]] = [{ label: "", skill: 0 }])
+        : (newObj[[...val][val.length - 1]] = 0);
       setCustomSkillValues({ ...newObj });
     } else {
       let removedSkill = Object.keys(customSkillValues).filter(
@@ -314,6 +317,50 @@ export const Profession: React.FC<{
     }
     setCustomSkillChoices([...val]);
   };
+
+  const handleAddPoints = (skill, val) => {
+    if (
+      val +
+        (isSkillChoice({ id: skill })
+          ? defaultSkillValues[skill][0].skill
+          : defaultSkillValues[skill]) >
+        60 ||
+      val < 0
+    ) {
+      return;
+    }
+
+    let newObj = { ...customSkillValues };
+    let pointObj = { ...customSkillPoints };
+    let difference = newObj[skill] - val;
+    newObj[skill] = val;
+    setCustomSkillValues(newObj);
+    setCustomSkillPoints({
+      ...pointObj,
+      current: pointObj.current + difference,
+    });
+  };
+
+  const handleCustomProfession = () => {
+    let professionalSkills = customSkillChoices.map((skill) => {
+      return { id: skill, value: customSkillValues[skill] };
+    });
+    let newObj = {
+      name: customProfessionName,
+      professionalSkills: [...professionalSkills],
+      bonds: customBonds,
+      optionalSkills: [],
+      numberOfOptionalSkills: 0,
+    };
+    setSelectedProfession({ ...newObj });
+    selectedProfession.numberOfOptionalSkills > 0 ||
+    selectedProfession.professionalSkills.filter(
+      (item) => isSkillChoice(item) && item.type === ""
+    ).length > 0
+      ? setConfirmedProfession(true)
+      : handleAgentProfession(selectedProfession);
+  };
+
   return (
     <Grid>
       <Grid.Col span={12}>
@@ -469,7 +516,7 @@ export const Profession: React.FC<{
                             <Table.Tr>
                               <Table.Th>Skill</Table.Th>
                               <Table.Th>
-                                Adj ({customSkillPoints} points left)
+                                Adj ({customSkillPoints.current} points left)
                               </Table.Th>
                               <Table.Th>Rating</Table.Th>
                             </Table.Tr>
@@ -490,19 +537,20 @@ export const Profession: React.FC<{
                                       <NumberInput
                                         prefix="+ "
                                         suffix="%"
-                                        value={
-                                          customSkillValues[skill] -
-                                          defaultSkillValues[skill]
-                                        }
+                                        step={5}
+                                        value={customSkillValues[skill]}
                                         onChange={(e) =>
                                           handleAddPoints(skill, e)
                                         }
                                       />
                                     </Table.Td>
                                     <Table.Td ta="center">
-                                      {isSkillChoice({ id: skill })
+                                      {(isSkillChoice({ id: skill })
                                         ? customSkillValues[skill][0].skill
-                                        : customSkillValues[skill]}
+                                        : customSkillValues[skill]) +
+                                        (isSkillChoice({ id: skill })
+                                          ? defaultSkillValues[skill][0].skill
+                                          : defaultSkillValues[skill])}
                                       %
                                     </Table.Td>
                                   </Table.Tr>
@@ -519,6 +567,17 @@ export const Profession: React.FC<{
                             )}
                           </Table.Tbody>
                         </Table>
+                        <Button
+                          color="green"
+                          disabled={
+                            !customProfessionName ||
+                            customSkillPoints.current !== 0 ||
+                            customSkillChoices.length !== 10
+                          }
+                          onClick={handleCustomProfession}
+                        >
+                          Create Custom Profession
+                        </Button>
                       </Stack>
                     </Card>
                   )}
