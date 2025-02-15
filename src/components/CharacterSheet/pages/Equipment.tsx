@@ -29,11 +29,13 @@ import {
   weaponsLists,
 } from "../../../data";
 import Fuse from "fuse.js";
+import { useCharacterContext } from "../../../contexts/CharacterContext";
 
 export const Equipment = () => {
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [{ currentCharacter }] = useCharacterContext();
 
   const equipmentMasterList = [...weaponsLists, ...armorList, ...vehicleList];
 
@@ -53,10 +55,12 @@ export const Equipment = () => {
           <Title order={4} td="underline">
             Equipment
           </Title>
+
+          {/* {currentCharacter?.equipment.length} */}
           
           <Accordion
             styles={{
-              root: { border: "1px solid #C9C9C9", borderRadius: "6px" },
+              root: { border: "1px solid #2e2e2e", borderRadius: "6px" },
             }}
           >
             <Accordion.Item value={"add-equipment"}>
