@@ -581,7 +581,7 @@ export const GearsAndServices = () => {
                 {otherGearAndServicesList
                   .filter(
                     (item) =>
-                      item.gearAndServicesType === "emergenecyAndSurvival"
+                      item.gearAndServicesType === "emergencyAndSurvival"
                   )
                   .map((item) => {
                     return (
