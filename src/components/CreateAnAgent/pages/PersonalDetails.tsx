@@ -133,6 +133,8 @@ export const PersonalDetails: React.FC<{
             label="Experiences with the Unnatural"
             ta="start"
             minRows={6}
+            onChange={(val) => handleAgentPersonalDetails(val, "unnaturalExperiences")}
+            value={userAgent?.motivations}
             placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />
           <Button

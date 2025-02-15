@@ -27,6 +27,7 @@ export const CreateAnAgent: React.FC = () => {
     education: "",
     personality: "",
     motivations: "",
+    unnaturalExperiences: "",
     stats: {
       strength: 0,
       constitution: 0,
@@ -73,7 +74,7 @@ export const CreateAnAgent: React.FC = () => {
     let newObj = { ...userAgent };
     newObj.profession = profession.name;
     newObj.skills = { ...defaultSkillValues };
-    newObj.bonds = profession.bonds
+    newObj.bonds = profession.bonds;
     for (let i = 0; i < profession.professionalSkills.length; i++) {
       if (isSkillChoice(profession.professionalSkills[i].id)) {
         newObj.skills[profession.professionalSkills[i].id].length > 0
