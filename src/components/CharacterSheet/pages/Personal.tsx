@@ -17,8 +17,7 @@ import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
-export const Personal = () => {
-  const [{ currentCharacter }] = useCharacterContext();
+export const Personal = ({ currentCharacter }: any) => {
   const [viewport] = useViewportContext();
 
   let data = { ...currentCharacter };
@@ -314,7 +313,12 @@ export const Personal = () => {
           <Title order={4} ta="start" td="underline">
             Injuries
           </Title>
-          <Textarea label="Wounds and Ailments" ta="start" rows={5} />
+          <Textarea
+            label="Wounds and Ailments"
+            ta="start"
+            rows={5}
+            value={data?.wounds}
+          />
         </Stack>
       </Grid.Col>
     </Grid>

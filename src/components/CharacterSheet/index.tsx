@@ -27,17 +27,18 @@ import {
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { useCharacterContext } from "../../contexts/CharacterContext";
 
-export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
-  userAgent,
-}) => {
+export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
+  const [{ currentCharacter }] = useCharacterContext();
+
   return (
     <Tabs
       orientation={viewport.width > 760 ? "vertical" : "horizontal"}
       variant="outline"
       defaultValue="all"
-      inverted
+      inverted={viewport.width < 760}
     >
       {viewport.width > 760 && (
         <Tabs.List
@@ -62,33 +63,33 @@ export const CharacterSheet: React.FC<{ userAgent?: any }> = ({
       )}
       <Tabs.Panel value="all">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
-          <Personal />
+          <Personal currentCharacter={currentCharacter} />
           <Divider />
-          <Skills />
+          <Skills currentCharacter={currentCharacter} />
           <Divider />
-          <Equipment />
+          <Equipment currentCharacter={currentCharacter} />
           <Divider />
-          <Notes />
+          <Notes currentCharacter={currentCharacter} />
         </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="personal">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
-          <Personal />
+          <Personal currentCharacter={currentCharacter} />
         </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="skills">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
-          <Skills />
+          <Skills currentCharacter={currentCharacter} />
         </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="equipment">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
-          <Equipment />
+          <Equipment currentCharacter={currentCharacter} />
         </ScrollArea>
       </Tabs.Panel>
       <Tabs.Panel value="notes">
         <ScrollArea h={viewport.width > 760 ? "95vh" : "88vh"}>
-          <Notes />
+          <Notes currentCharacter={currentCharacter} />
         </ScrollArea>
       </Tabs.Panel>
       {viewport.width < 760 && (

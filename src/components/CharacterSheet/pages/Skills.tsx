@@ -4,21 +4,18 @@ import {
   Group,
   Stack,
   Table,
-  TableTr,
   Text,
   TextInput,
   Title,
   Tooltip,
 } from "@mantine/core";
 import { defaultSkillValues, skillsMasterList } from "../../../data";
-import { useCharacterContext } from "../../../contexts/CharacterContext";
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
-import { IconEyeglass, IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 
-export const Skills = () => {
+export const Skills = ({ currentCharacter }: any) => {
   const skillKeysArr = Object.keys(defaultSkillValues);
-  const [{ currentCharacter }] = useCharacterContext();
   const [viewport] = useViewportContext();
 
   const isSkillChoice = (skill) => {
@@ -267,7 +264,7 @@ export const Skills = () => {
             <TextInput
               placeholder="Search for a skill..."
               rightSection={<IconSearch />}
-              mb='md'
+              mb="md"
             />
           </Grid.Col>
           <Grid.Col span={6}>
