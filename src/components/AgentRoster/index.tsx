@@ -93,8 +93,6 @@ export const AgentRoster = () => {
     localStorage.setItem("savedCharacters", JSON.stringify([...newArr]));
   };
 
-  console.log(savedCharacters);
-
   return (
     <>
       <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>

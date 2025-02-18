@@ -17,7 +17,7 @@ import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
-export const Personal = ({ currentCharacter }: any) => {
+export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
   const [viewport] = useViewportContext();
 
   let data = { ...currentCharacter };
@@ -197,7 +197,13 @@ export const Personal = ({ currentCharacter }: any) => {
                         min={3}
                         max={18}
                         clampBehavior="strict"
-                        // onChange={(val) => handleChangeStat(val, stat)}
+                        onChange={(val) =>
+                          handleUpdateCharacter(
+                            "stats",
+                            val,
+                            stat.toLowerCase()
+                          )
+                        }
                       />
                     </Table.Td>
                     <Table.Td ta="center">
@@ -239,6 +245,9 @@ export const Personal = ({ currentCharacter }: any) => {
                     <Table.Td>
                       <NumberInput
                         value={data?.attributes[attribute].current}
+                        onChange={(val) =>
+                          handleUpdateCharacter("attributes", val, attribute)
+                        }
                       />
                     </Table.Td>
                   </Table.Tr>
@@ -266,14 +275,21 @@ export const Personal = ({ currentCharacter }: any) => {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {data.bonds.map((bond) => {
+              {data.bonds.map((bond, index) => {
                 return (
                   <Table.Tr>
                     <Table.Td>
                       <Text ta="start">{bond.name}</Text>
                     </Table.Td>
                     <Table.Td w={100}>
-                      {<NumberInput value={bond.value} />}
+                      {
+                        <NumberInput
+                          value={bond.value}
+                          onChange={(val) =>
+                            handleUpdateCharacter("bonds", val, index)
+                          }
+                        />
+                      }
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -318,6 +334,9 @@ export const Personal = ({ currentCharacter }: any) => {
             ta="start"
             rows={5}
             value={data?.wounds}
+            onChange={(e) =>
+              handleUpdateCharacter("wounds", e.currentTarget.value)
+            }
           />
         </Stack>
       </Grid.Col>

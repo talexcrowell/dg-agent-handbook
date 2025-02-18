@@ -6,6 +6,7 @@ import {
   Grid,
   Group,
   HoverCard,
+  InputLabel,
   Stack,
   Table,
   Text,
@@ -19,24 +20,21 @@ import {
   IconInfoCircle,
   IconPlus,
   IconSearch,
+  IconTrash,
 } from "@tabler/icons-react";
 import styles from "../../../Element.module.css";
 import { useState } from "react";
-import {
-  armorList,
-  otherGearAndServicesList,
-  vehicleList,
-  weaponsLists,
-} from "../../../data";
+import { armorList, weaponsLists } from "../../../data";
 import Fuse from "fuse.js";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
+import { notifications } from "@mantine/notifications";
 
-export const Equipment = ({ currentCharacter }: any) => {
+export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const equipmentMasterList = [...weaponsLists, ...armorList, ...vehicleList];
+  const equipmentMasterList = [...weaponsLists, ...armorList];
 
   const fuse = new Fuse(equipmentMasterList, {
     keys: ["name"],
@@ -47,6 +45,38 @@ export const Equipment = ({ currentCharacter }: any) => {
     return { ...result.item };
   });
 
+  const validateEquipment = (item) => {
+    if (
+      currentCharacter.equipment.filter((thing) => thing.name === item.name)
+        .length > 0
+    ) {
+      notifications.show({
+        color: "red",
+        title: "ERROR: Can't Add Equipment",
+        message: `Equipment could not be added because Agent ${currentCharacter.codename} already has it in their possession.`,
+        position: "bottom-center",
+      });
+    } else {
+      handleUpdateCharacter("equipment", item);
+      notifications.show({
+        color: "green",
+        title: "Equipment Added!",
+        message: `Equipment added to inventory.`,
+        position: "bottom-center",
+      });
+    }
+  };
+
+  const deleteEquipment = (item) => {
+    handleUpdateCharacter("equipmentDelete", item);
+    notifications.show({
+      color: "green",
+      title: "Equipment Removed!",
+      message: `Equipment removed from inventory.`,
+      position: "bottom-center",
+    });
+  };
+
   return (
     <Grid py="md" px={viewport.width > 992 ? "md" : 0}>
       <Grid.Col span={12}>
@@ -54,6 +84,118 @@ export const Equipment = ({ currentCharacter }: any) => {
           <Title order={4} td="underline">
             Equipment
           </Title>
+          <Stack gap="xs">
+            {currentCharacter.equipment.length > 0 ? (
+              currentCharacter.equipment.map((item) => {
+                return (
+                  <Card withBorder>
+                    <Group justify="space-between">
+                      <Group>
+                        <Stack gap="0">
+                          <InputLabel>Item</InputLabel>
+                          <Text>{item?.name}</Text>
+                        </Stack>
+                        <Divider orientation="vertical" />
+                        {item?.armorRating && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Armor Rating</InputLabel>
+                              <Text>{item?.armorRating}</Text>
+                            </Stack>
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.damage && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Damage</InputLabel>
+                              <Text>{item?.damage}</Text>
+                            </Stack>
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.lethality && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Lethality</InputLabel>
+                              <Text>{item?.lethality}%</Text>
+                            </Stack>
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.armorPiercing !== undefined && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Armor Piercing</InputLabel>
+                              <Text>
+                                {item?.armorPiercing === 0
+                                  ? "N/A"
+                                  : item?.armorPiercing}
+                              </Text>
+                            </Stack>{" "}
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.range && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Range</InputLabel>
+                              <Text>{item?.range}</Text>
+                            </Stack>{" "}
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.uses && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Uses</InputLabel>
+                              <Text>{item?.uses}</Text>
+                            </Stack>
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.radius && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Radius</InputLabel>
+                              <Text>{item?.radius}</Text>
+                            </Stack>
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                        {item?.penalty && (
+                          <>
+                            <Stack gap="0">
+                              <InputLabel>Penalty</InputLabel>
+                              <Text>{item?.penalty}</Text>
+                            </Stack>{" "}
+                            <Divider orientation="vertical" />
+                          </>
+                        )}
+                      </Group>
+                      <Group>
+                        <ActionIcon>
+                          <IconInfoCircle />
+                        </ActionIcon>
+                        <ActionIcon
+                          color="red"
+                          onClick={() => deleteEquipment(item)}
+                        >
+                          <IconTrash />
+                        </ActionIcon>
+                      </Group>
+                    </Group>
+                  </Card>
+                );
+              })
+            ) : (
+              <Card>
+                <Text ta="center" c="dimmed">
+                  No equipment in inventory...
+                </Text>
+              </Card>
+            )}
+          </Stack>
           <Accordion
             styles={{
               root: { border: "1px solid #2e2e2e", borderRadius: "6px" },
@@ -82,12 +224,15 @@ export const Equipment = ({ currentCharacter }: any) => {
                           return (
                             <Card>
                               <Group justify="space-between">
-                                {result.name}{" "}
+                                {result.name}
                                 <Group>
                                   <ActionIcon>
                                     <IconInfoCircle />
                                   </ActionIcon>
-                                  <ActionIcon>
+                                  <ActionIcon
+                                    color="green"
+                                    onClick={() => validateEquipment(result)}
+                                  >
                                     <IconPlus />
                                   </ActionIcon>
                                 </Group>
@@ -107,7 +252,15 @@ export const Equipment = ({ currentCharacter }: any) => {
             </Accordion.Item>
           </Accordion>
 
-          <Textarea label="Other Gear" rows={10} ta="start" />
+          <Textarea
+            label="Other Gear"
+            rows={10}
+            ta="start"
+            value={currentCharacter?.otherGear}
+            onChange={(e) => {
+              handleUpdateCharacter("otherGear", e.currentTarget.value);
+            }}
+          />
         </Stack>
       </Grid.Col>
       {/* <Grid.Col span={12}>

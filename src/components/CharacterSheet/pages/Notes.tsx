@@ -2,7 +2,7 @@ import { Grid, Stack, Textarea, Title } from "@mantine/core";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
-export const Notes = ({ currentCharacter }: any) => {
+export const Notes = ({ currentCharacter, handleUpdateCharacter }: any) => {
   let data = { ...currentCharacter };
   const [viewport] = useViewportContext();
   return (
@@ -17,6 +17,9 @@ export const Notes = ({ currentCharacter }: any) => {
             ta="start"
             rows={10}
             value={data?.personality}
+            onChange={(e) => {
+              handleUpdateCharacter("personality", e.currentTarget.value);
+            }}
           />
         </Stack>
       </Grid.Col>
@@ -26,6 +29,9 @@ export const Notes = ({ currentCharacter }: any) => {
           ta="start"
           rows={10}
           value={data?.unnaturalExperiences}
+          onChange={(e) => {
+            handleUpdateCharacter("unnaturalExperiences", e.currentTarget.value);
+          }}
         />
       </Grid.Col>
       <Grid.Col span={12}>
@@ -34,6 +40,9 @@ export const Notes = ({ currentCharacter }: any) => {
           ta="start"
           rows={10}
           value={data?.lifeDevelopments}
+          onChange={(e) => {
+            handleUpdateCharacter("lifeDevelopments", e.currentTarget.value);
+          }}
         />
       </Grid.Col>
     </Grid>
