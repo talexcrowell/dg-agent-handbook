@@ -1,7 +1,9 @@
 import {
+  Center,
   Checkbox,
   CheckboxGroup,
   Divider,
+  Flex,
   Grid,
   Group,
   InputLabel,
@@ -96,7 +98,16 @@ export const CharacterSheet: React.FC = () => {
   };
 
   if (!character?.name) {
-    return <Loader />;
+    return (
+      <Center h={"70vh"}>
+        <Stack>
+          <Flex justify="center">
+            <Loader color="#696969" size={"xl"} />
+          </Flex>
+          <Text c="dimmed">Loading agent information...</Text>
+        </Stack>
+      </Center>
+    );
   } else {
     return (
       <Tabs
