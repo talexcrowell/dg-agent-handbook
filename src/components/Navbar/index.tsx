@@ -13,6 +13,7 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import {
+  IconAddressBook,
   IconBook,
   IconList,
   IconListDetails,
@@ -21,6 +22,7 @@ import {
   IconNotebook,
   IconPackages,
   IconSearch,
+  IconUserPlus,
   IconUsers,
   IconWorld,
 } from "@tabler/icons-react";
@@ -87,12 +89,30 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={2}>
             <NavLink
-              label="Agent Roster"
-              component={Link}
-              to={`/agents`}
+              label="Agent Resources"
               active={location.pathname.includes("/agents")}
-              leftSection={<IconUsers />}
-            />
+              leftSection={<IconAddressBook />}
+              styles={{
+                children: { backgroundColor: "3b3b3b", paddingLeft: 0 },
+              }}
+            >
+              <NavLink
+                autoContrast
+                label="Agent Roster"
+                component={Link}
+                to={`/agents`}
+                active={location.pathname.includes("/agents/roster")}
+                leftSection={<IconUsers />}
+              />
+              <NavLink
+                autoContrast
+                label="Create an Agent"
+                component={Link}
+                to={`/agents/new`}
+                active={location.pathname.includes("/agents/new")}
+                leftSection={<IconUserPlus />}
+              />
+            </NavLink>
           </Grid.Col>
           <Grid.Col span={2}>
             <SearchBar />
@@ -112,7 +132,12 @@ export const Navbar = () => {
             </ActionIcon>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Flex justify={"center"} align={"center"} component={Link} to="/directory">
+            <Flex
+              justify={"center"}
+              align={"center"}
+              component={Link}
+              to="/directory"
+            >
               <Image src="https://i.imgur.com/GvYNgBC.png" w="auto" h={"40"} />
             </Flex>
           </Grid.Col>
@@ -158,13 +183,29 @@ export const Navbar = () => {
           leftSection={<IconPackages />}
         />
         <NavLink
-          label="Agent Roster"
-          component={Link}
-          to={`/agents`}
+          label="Agent Resources"
           active={location.pathname.includes("/agents")}
-          onClick={() => setMobileMenuOpen(false)}
-          leftSection={<IconUsers />}
-        />
+          leftSection={<IconAddressBook />}
+        >
+          <NavLink
+            autoContrast
+            label="Agent Roster"
+            component={Link}
+            to={`/agents`}
+            active={location.pathname.includes("/agents/roster")}
+            leftSection={<IconUsers />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
+            label="Create an Agent"
+            component={Link}
+            to={`/agents/new`}
+            active={location.pathname.includes("/agents/new")}
+            leftSection={<IconUserPlus />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        </NavLink>
       </Modal>
     </Container>
   );
