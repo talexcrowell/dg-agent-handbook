@@ -228,3 +228,5 @@ export const CharacterSheet: React.FC = () => {
     );
   }
 };
+
+export default CharacterSheet;

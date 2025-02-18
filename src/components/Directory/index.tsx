@@ -36,7 +36,9 @@ export const Directory = () => {
         </Stack>
       </Grid.Col>
       <Grid.Col>
-        <SimpleGrid cols={viewport.width > 760 ? 3 : 2}>
+        <SimpleGrid
+          cols={viewport.width > 760 ? 3 : viewport.width > 500 ? 2 : 1}
+        >
           <Card component={Link} to="/delta-green/overview">
             <Card.Section>
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
@@ -90,3 +92,5 @@ export const Directory = () => {
     </Grid>
   );
 };
+
+export default Directory;

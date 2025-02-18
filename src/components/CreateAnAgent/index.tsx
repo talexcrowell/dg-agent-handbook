@@ -338,3 +338,5 @@ export const CreateAnAgent: React.FC = () => {
     </Box>
   );
 };
+
+export default CreateAnAgent;

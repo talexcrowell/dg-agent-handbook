@@ -282,3 +282,5 @@ export const AgentRoster = () => {
     </>
   );
 };
+
+export default AgentRoster;

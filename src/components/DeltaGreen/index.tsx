@@ -52,7 +52,9 @@ export const DeltaGreen = () => {
           {viewport.width > 600 ? (
             <Tabs.List>
               <Tabs.Tab value="overview">Overview</Tabs.Tab>
-              <Tabs.Tab value="the-world-of-delta-green">The World of Delta Green</Tabs.Tab>
+              <Tabs.Tab value="the-world-of-delta-green">
+                The World of Delta Green
+              </Tabs.Tab>
               <Tabs.Tab value="what-is-delta-green">
                 What is Delta Green?
               </Tabs.Tab>
@@ -94,7 +96,10 @@ export const DeltaGreen = () => {
                       setMobileMenuOpen(false);
                       navigate("/delta-green/the-world-of-delta-green");
                     }}
-                    active={location.pathname === "/delta-green/the-world-of-delta-green"}
+                    active={
+                      location.pathname ===
+                      "/delta-green/the-world-of-delta-green"
+                    }
                   />
                   <NavLink
                     label=" What is Delta Green?"
@@ -199,3 +204,5 @@ export const DeltaGreen = () => {
     </Grid>
   );
 };
+
+export default DeltaGreen;

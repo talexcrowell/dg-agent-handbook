@@ -21,6 +21,7 @@ import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import Overview from "./pages/Overview";
+import { FormattedLoader } from "../Rules/FormattedLoader";
 
 const Weapons = lazy(() => import("./pages/Weapons"));
 const Armor = lazy(() => import("./pages/Armor"));
@@ -136,57 +137,27 @@ export const EquipmentAndServices = () => {
             <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="weapons">
-            <Suspense
-              fallback={
-                <Center h={"70vh"}>
-                  <Loader />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FormattedLoader />}>
               <Weapons />
             </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="armor">
-            <Suspense
-              fallback={
-                <Center h={"50vh"}>
-                  <Loader />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FormattedLoader />}>
               <Armor />
             </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="vehicles">
-            <Suspense
-              fallback={
-                <Center h={"50vh"}>
-                  <Loader />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FormattedLoader />}>
               <Vehicles />
             </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="gear-and-services">
-            <Suspense
-              fallback={
-                <Center h={"50vh"}>
-                  <Loader />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FormattedLoader />}>
               <GearsAndServices />
             </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="search">
-            <Suspense
-              fallback={
-                <Center h={"50vh"}>
-                  <Loader />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FormattedLoader />}>
               <Search />
             </Suspense>
           </Tabs.Panel>
@@ -220,3 +191,5 @@ export const EquipmentAndServices = () => {
     </Grid>
   );
 };
+
+export default EquipmentAndServices;
