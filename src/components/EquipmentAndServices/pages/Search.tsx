@@ -243,45 +243,53 @@ export const Search = () => {
           />
           <Stack gap={"0"}>
             <InputLabel>Filter Options</InputLabel>
-            <Group justify="space-evenly">
-              <Checkbox
-                defaultChecked
-                checked={filterOptions.weapon}
-                label="Weapons"
-                onChange={() => handleToggleFilter("weapon")}
-              />
-              <Checkbox
-                defaultChecked
-                checked={filterOptions.armor}
-                label="Armor"
-                onChange={() => handleToggleFilter("armor")}
-              />
-              <Checkbox
-                defaultChecked
-                checked={filterOptions.vehicle}
-                label="Vehicles"
-                onChange={() => handleToggleFilter("vehicle")}
-              />
-              <Checkbox
-                defaultChecked
-                checked={filterOptions.equipment}
-                label="Gear and Services"
-                onChange={() => handleToggleFilter("gearAndServices")}
-              />
-              <Checkbox
-                defaultChecked
-                checked={filterOptions.restricted}
-                label="Restricted"
-                onChange={() => handleToggleFilter("restricted")}
-              />
-              <MultiSelect
-                placeholder="Filter by Expense..."
-                data={["Incidental", "Standard", "Unusual", "Major", "Extreme"]}
-                w={300}
-                value={expenseFilter}
-                onChange={handleExpenseFilter}
-              />
-            </Group>
+            <Card>
+              <Group justify="space-evenly">
+                <Checkbox
+                  defaultChecked
+                  checked={filterOptions.weapon}
+                  label="Weapons"
+                  onChange={() => handleToggleFilter("weapon")}
+                />
+                <Checkbox
+                  defaultChecked
+                  checked={filterOptions.armor}
+                  label="Armor"
+                  onChange={() => handleToggleFilter("armor")}
+                />
+                <Checkbox
+                  defaultChecked
+                  checked={filterOptions.vehicle}
+                  label="Vehicles"
+                  onChange={() => handleToggleFilter("vehicle")}
+                />
+                <Checkbox
+                  defaultChecked
+                  checked={filterOptions.equipment}
+                  label="Gear and Services"
+                  onChange={() => handleToggleFilter("gearAndServices")}
+                />
+                <Checkbox
+                  defaultChecked
+                  checked={filterOptions.restricted}
+                  label="Restricted"
+                  onChange={() => handleToggleFilter("restricted")}
+                />
+                <MultiSelect
+                  placeholder="Filter by Expense..."
+                  data={[
+                    "Incidental",
+                    "Standard",
+                    "Unusual",
+                    "Major",
+                    "Extreme",
+                  ]}
+                  w={300}
+                  value={expenseFilter}
+                  onChange={handleExpenseFilter}
+                />
+              </Group>
+            </Card>
             {/* <Button>Apply Filters</Button> */}
           </Stack>
           <Divider />

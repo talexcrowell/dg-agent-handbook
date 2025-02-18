@@ -45,7 +45,7 @@ export const EquipmentAndServices = () => {
 
   return (
     <Grid pb={viewport.width > 760 ? 0 : 60} pt={viewport.width > 760 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
+      <Grid.Col span={viewport.width > 992 && tabValue !== "search" ? 10 : 12}>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
@@ -138,7 +138,7 @@ export const EquipmentAndServices = () => {
           <Tabs.Panel value="weapons">
             <Suspense
               fallback={
-                <Center h={"50vh"}>
+                <Center h={"70vh"}>
                   <Loader />
                 </Center>
               }
