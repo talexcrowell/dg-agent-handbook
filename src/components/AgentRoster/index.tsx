@@ -117,7 +117,7 @@ export const AgentRoster = () => {
             </Text>
 
             <List>
-              <Text>Agents’ main directives are:</Text>
+              <Text fw={700}>Agents’ main directives are:</Text>
               <List.Item>Stop the Unnatural</List.Item>
               <List.Item>Minimize exposure</List.Item>
               <List.Item>Save lives</List.Item>
