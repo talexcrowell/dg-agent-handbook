@@ -1,21 +1,36 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { CharacterProvider } from "./contexts/CharacterContext.tsx";
-import { MantineProvider } from "@mantine/core";
-import { createHashRouter, RouterProvider } from "react-router-dom";
-import { CreateAnAgent } from "./components/CreateAnAgent/index.tsx";
-import { CharacterSheet } from "./components/CharacterSheet/index.tsx";
-import { DeltaGreen } from "./components/DeltaGreen/index.tsx";
-import { Rules } from "./components/Rules/index.tsx";
-import { AgentRoster } from "./components/AgentRoster/index.tsx";
+import { Loader, MantineProvider } from "@mantine/core";
+import {
+  createHashRouter,
+  RouterProvider,
+  useNavigate,
+  redirect,
+  Navigate,
+} from "react-router-dom";
+
 import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
-import { EquipmentAndServices } from "./components/EquipmentAndServices/index.tsx";
-import { Directory } from "./components/Directory/index.tsx";
 import { ViewportProvider } from "./contexts/ViewportContext.tsx";
-import { LandingPage } from "./components/LandingPage.tsx";
+import { FormattedLoader } from "./components/Rules/FormattedLoader.tsx";
+
+const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
+const Directory = lazy(() => import("./components/Directory/index.tsx"));
+const DeltaGreen = lazy(() => import("./components/DeltaGreen/index.tsx"));
+const Rules = lazy(() => import("./components/Rules/index.tsx"));
+const EquipmentAndServices = lazy(
+  () => import("./components/EquipmentAndServices/index.tsx")
+);
+const CharacterSheet = lazy(
+  () => import("./components/CharacterSheet/index.tsx")
+);
+const CreateAnAgent = lazy(
+  () => import("./components/CreateAnAgent/index.tsx")
+);
+const AgentRoster = lazy(() => import("./components/AgentRoster/index.tsx"));
 
 const router = createHashRouter([
   {
@@ -23,26 +38,69 @@ const router = createHashRouter([
     element: <App />,
     children: [
       { path: "/", element: <LandingPage /> },
-      { path: "/directory", element: <Directory /> },
+      {
+        path: "/directory",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Directory />
+          </Suspense>
+        ),
+      },
 
-      { path: "/delta-green", element: <DeltaGreen /> },
-      { path: "/delta-green/:tabValue", element: <DeltaGreen /> },
+      {
+        path: "/delta-green",
+        element: <Navigate to="/delta-green/overview" />,
+      },
+      {
+        path: "/delta-green/:tabValue",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <DeltaGreen />
+          </Suspense>
+        ),
+      },
 
-      { path: "/rules", element: <Rules /> },
-      { path: "/rules/:tabValue", element: <Rules /> },
+      { path: "/rules", element: <Navigate to="/rules/how-to-play" /> },
+      {
+        path: "/rules/:tabValue",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Rules />
+          </Suspense>
+        ),
+      },
 
       {
         path: "/equipment-and-services",
-        element: <EquipmentAndServices />,
+        element: <Navigate to="/equipment-and-services/overview" />,
       },
       {
         path: "/equipment-and-services/:tabValue",
-        element: <EquipmentAndServices />,
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <EquipmentAndServices />
+          </Suspense>
+        ),
       },
 
-      { path: "/agents", element: <AgentRoster /> },
-      { path: "/agents/new", element: <CreateAnAgent /> },
-      { path: "/agents/sheet/:codename", element: <CharacterSheet /> },
+      { path: "/agents", element: <Navigate to="/agents/roster" /> },
+      { path: "/agents/roster", element: <AgentRoster /> },
+      {
+        path: "/agents/new",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <CreateAnAgent />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/agents/sheet/:codename",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <CharacterSheet />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
