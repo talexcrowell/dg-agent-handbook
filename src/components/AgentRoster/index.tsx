@@ -9,6 +9,7 @@ import {
   Grid,
   Group,
   InputLabel,
+  List,
   Modal,
   Stack,
   Text,
@@ -114,6 +115,17 @@ export const AgentRoster = () => {
               it’s likely you are not a Delta Green recruit but a Delta Green
               mission.
             </Text>
+
+            <List>
+              <Text>Agents’ main directives are:</Text>
+              <List.Item>Stop the Unnatural</List.Item>
+              <List.Item>Minimize exposure</List.Item>
+              <List.Item>Save lives</List.Item>
+              <List.Item>
+                Cover it up to save others from being exposed
+              </List.Item>
+              <List.Item>Never reveal the existence of Delta Green</List.Item>
+            </List>
             <Divider />
           </Stack>
         </Grid.Col>
