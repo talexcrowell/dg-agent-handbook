@@ -15,6 +15,7 @@ import { useViewportSize } from "@mantine/hooks";
 import {
   IconAddressBook,
   IconBook,
+  IconBriefcase,
   IconList,
   IconListDetails,
   IconMenu,
@@ -117,6 +118,15 @@ export const Navbar = () => {
                 to={`/agents/new`}
                 active={location.pathname.includes("/agents/new")}
                 leftSection={<IconUserPlus />}
+                onClick={() => setMenuOpen(false)}
+              />
+              <NavLink
+                autoContrast
+                label="Professions"
+                component={Link}
+                to={`/agents/professions`}
+                active={location.pathname.includes("/agents/professions")}
+                leftSection={<IconBriefcase />}
                 onClick={() => setMenuOpen(false)}
               />
               <NavLink

@@ -16,6 +16,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { ViewportProvider } from "./contexts/ViewportContext.tsx";
 import { FormattedLoader } from "./components/FormattedLoader.tsx";
+import { AgentProfessions } from "./components/AgentProfessions/index.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const Directory = lazy(() => import("./components/Directory/index.tsx"));
@@ -100,6 +101,22 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <CharacterSheet />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/agents/professions",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <AgentProfessions />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/agents/professions/:tabValue",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <AgentProfessions />
           </Suspense>
         ),
       },

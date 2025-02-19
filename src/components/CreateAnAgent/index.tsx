@@ -1,4 +1,12 @@
-import { Box, Grid, Group, RingProgress, Text, Timeline } from "@mantine/core";
+import {
+  Box,
+  Grid,
+  Group,
+  RingProgress,
+  ScrollArea,
+  Text,
+  Timeline,
+} from "@mantine/core";
 import React, { useState } from "react";
 import { Stats } from "./pages/Stats";
 import { Profession } from "./pages/Profession";
@@ -311,7 +319,7 @@ export const CreateAnAgent: React.FC = () => {
       <Grid>
         {viewport.width > 992 && (
           <Grid.Col span={2}>
-            <Timeline active={progressValue}>
+            <Timeline active={progressValue} pt={10}>
               <Timeline.Item>
                 <Text>Introduction</Text>
               </Timeline.Item>
@@ -333,7 +341,9 @@ export const CreateAnAgent: React.FC = () => {
             </Timeline>
           </Grid.Col>
         )}
-        <Grid.Col span={viewport.width > 992 ? 10 : 12}>{page}</Grid.Col>
+        <Grid.Col span={viewport.width > 992 ? 10 : 12}>
+          <ScrollArea h={"93vh"}>{page}</ScrollArea>
+        </Grid.Col>
       </Grid>
     </Box>
   );

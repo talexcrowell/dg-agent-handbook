@@ -285,15 +285,16 @@ export const Stats: React.FC<{
   };
 
   return (
-    <Grid>
+    <Grid
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
+    >
       <Grid.Col span={12} ta="start">
-        <Title>Statistics</Title>
         <Stack>
+          <Title>Statistics</Title>
           <Text>
             Every Agent has six core capabilities: Strength, Constitution,
-            Dexterity, Intelligence, Power, and Charisma. When your Agent
-            attempts a difficult action and no skill covers it, the Handler may
-            ask you to roll a stat test for whatever stat is the closest fit.
+            Dexterity, Intelligence, Power, and Charisma.
           </Text>
           <Text>
             You can create your character's stats in few ways:

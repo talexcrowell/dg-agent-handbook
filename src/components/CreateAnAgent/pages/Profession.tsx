@@ -8,9 +8,11 @@ import {
   Drawer,
   Grid,
   Group,
+  InputLabel,
   List,
   MultiSelect,
   NumberInput,
+  ScrollArea,
   SegmentedControl,
   Select,
   Stack,
@@ -189,68 +191,51 @@ export const Profession: React.FC<{
       return (
         <Card withBorder ta="start">
           <Stack>
-            <Text fw={700}>{profession.name}</Text>
-            <Text fs="italic">{profession.description}</Text>
-            <Group>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Name</InputLabel>
+              <Text fw={700}>{profession.name}</Text>
+            </Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Description</InputLabel>
+              <Text fs="italic">{profession.description}</Text>
+            </Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Recommended Stats</InputLabel>
               <Text>
-                Recommended Stats:{" "}
                 {profession.recommendedStats.map((stat: string, i: number) =>
                   i !== profession.recommendedStats.length - 1
                     ? stat + ", "
                     : stat
                 )}
               </Text>
-            </Group>
+            </Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Bonds</InputLabel>
+              <Text>{profession.bonds}</Text>
+            </Stack>
             <Group align="top">
-              <List spacing={"xs"}>
-                <Text td="underline">Professional Skills:</Text>
-                {profession.professionalSkills.map((skill) => (
-                  <Tooltip
-                    w={250}
-                    label={
-                      skillsMasterList.filter((item) => item.id === skill.id)[0]
-                        ? skillsMasterList.filter(
-                            (item) => item.id === skill.id
-                          )[0].definition
-                        : ""
-                    }
-                    multiline
-                    openDelay={500}
-                  >
-                    {isSkillChoice(skill) ? (
-                      <List.Item className={styles.tooltippedElement}>
-                        {skill.name} ({skill.type ? skill.type : "Choose One"}){" "}
-                        {skill.value}%
-                      </List.Item>
-                    ) : (
-                      <List.Item className={styles.tooltippedElement}>
-                        {skill.name} {skill.value}%
-                      </List.Item>
-                    )}
-                  </Tooltip>
-                ))}
-              </List>
-              {profession.optionalSkills.length > 0 && (
+              <Stack gap="0">
+                <InputLabel c="dimmed">Professional Skills:</InputLabel>
                 <List spacing={"xs"}>
-                  <Text td="underline">
-                    Choose {profession.numberOfOptionalSkills} of these:
-                  </Text>
-                  {profession.optionalSkills.map((skill) => (
+                  {profession.professionalSkills.map((skill) => (
                     <Tooltip
                       w={250}
                       label={
                         skillsMasterList.filter(
                           (item) => item.id === skill.id
-                        )[0].definition
+                        )[0]
+                          ? skillsMasterList.filter(
+                              (item) => item.id === skill.id
+                            )[0].definition
+                          : ""
                       }
                       multiline
                       openDelay={500}
                     >
                       {isSkillChoice(skill) ? (
                         <List.Item className={styles.tooltippedElement}>
-                          {skill.name} (
-                          {skill.type !== "" ? skill.type : "Choose One"}){" "}
-                          {skill.value}%
+                          {skill.name} ({skill.type ? skill.type : "Choose One"}
+                          ) {skill.value}%
                         </List.Item>
                       ) : (
                         <List.Item className={styles.tooltippedElement}>
@@ -260,9 +245,41 @@ export const Profession: React.FC<{
                     </Tooltip>
                   ))}
                 </List>
+              </Stack>
+              {profession.optionalSkills.length > 0 && (
+                <Stack gap="0">
+                  <InputLabel c="dimmed">
+                    Choose {profession.numberOfOptionalSkills} of these skills:
+                  </InputLabel>
+                  <List spacing={"xs"}>
+                    {profession.optionalSkills.map((skill) => (
+                      <Tooltip
+                        w={250}
+                        label={
+                          skillsMasterList.filter(
+                            (item) => item.id === skill.id
+                          )[0].definition
+                        }
+                        multiline
+                        openDelay={500}
+                      >
+                        {isSkillChoice(skill) ? (
+                          <List.Item className={styles.tooltippedElement}>
+                            {skill.name} (
+                            {skill.type !== "" ? skill.type : "Choose One"}){" "}
+                            {skill.value}%
+                          </List.Item>
+                        ) : (
+                          <List.Item className={styles.tooltippedElement}>
+                            {skill.name} {skill.value}%
+                          </List.Item>
+                        )}
+                      </Tooltip>
+                    ))}
+                  </List>
+                </Stack>
               )}
             </Group>
-            <Text fs="italic">Bonds: {profession.bonds}</Text>
             <Button onClick={() => confirmProfession()} bg={"green"}>
               Confirm Profession
             </Button>
@@ -414,7 +431,10 @@ export const Profession: React.FC<{
   };
 
   return (
-    <Grid>
+    <Grid
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
+    >
       <Grid.Col span={12}>
         <Stack ta="start">
           <Title>Profession</Title>
@@ -521,120 +541,122 @@ export const Profession: React.FC<{
                 <Group>
                   <Title order={3}>Profession Details</Title>
                 </Group>
-                <Stack>
-                  {selectedProfession?.name &&
-                    professionsType !== "Custom" &&
-                    professionCard(selectedProfession)}
-                  {professionsType !== "Custom" &&
-                    !selectedProfession?.name && (
+                <ScrollArea h={"83vh"}>
+                  <Stack>
+                    {selectedProfession?.name &&
+                      professionsType !== "Custom" &&
+                      professionCard(selectedProfession)}
+                    {professionsType !== "Custom" &&
+                      !selectedProfession?.name && (
+                        <Card withBorder ta="start">
+                          <Text c="dimmed">No Profession Selected...</Text>
+                        </Card>
+                      )}
+                    {professionsType === "Custom" && (
                       <Card withBorder ta="start">
-                        <Text c="dimmed">No Profession Selected...</Text>
+                        <Stack>
+                          <TextInput
+                            label="Profession Name"
+                            placeholder={"Enter profession name..."}
+                            onChange={(e) =>
+                              setCustomProfessionName(e.currentTarget.value)
+                            }
+                            value={customProfessionName}
+                          />
+                          <NumberInput
+                            max={4}
+                            min={1}
+                            label={"Number of Bonds"}
+                            value={customBonds}
+                            onChange={handleCustomBondChange}
+                            clampBehavior="strict"
+                          />
+                          <MultiSelect
+                            label="Professional Skills"
+                            placeholder={
+                              customSkillChoices.length === 0 &&
+                              "Select up to 10 professional skills..."
+                            }
+                            data={[...customProfessionSelectData].slice(
+                              0,
+                              customProfessionSelectData.length - 1
+                            )}
+                            searchable
+                            rightSection={<IconSearch />}
+                            onChange={handleCustomAddSkill}
+                            value={customSkillChoices}
+                            maxValues={10}
+                          />
+                          <Table withTableBorder withColumnBorders>
+                            <Table.Thead>
+                              <Table.Tr>
+                                <Table.Th>Skill</Table.Th>
+                                <Table.Th>
+                                  Adj ({customSkillPoints.current} points left)
+                                </Table.Th>
+                                <Table.Th>Rating</Table.Th>
+                              </Table.Tr>
+                            </Table.Thead>
+                            <Table.Tbody>
+                              {customSkillChoices.length > 0 ? (
+                                customSkillChoices.map((skill) => {
+                                  return (
+                                    <Table.Tr>
+                                      <Table.Td tt="capitalize">
+                                        {skillKeyLabels(skill)} (
+                                        {isSkillChoice({ id: skill })
+                                          ? defaultSkillValues[skill][0].skill
+                                          : defaultSkillValues[skill]}
+                                        %)
+                                      </Table.Td>
+                                      <Table.Td>
+                                        <NumberInput
+                                          prefix="+ "
+                                          suffix="%"
+                                          step={5}
+                                          value={customSkillValues[skill]}
+                                          onChange={(e) =>
+                                            handleAddPoints(skill, e)
+                                          }
+                                        />
+                                      </Table.Td>
+                                      <Table.Td ta="center">
+                                        {customSkillValues[skill] +
+                                          (isSkillChoice({ id: skill })
+                                            ? defaultSkillValues[skill][0].skill
+                                            : defaultSkillValues[skill])}
+                                        %
+                                      </Table.Td>
+                                    </Table.Tr>
+                                  );
+                                })
+                              ) : (
+                                <Table.Tr>
+                                  <Table.Td>
+                                    <Text c="dimmed">
+                                      Selected skills will appear here
+                                    </Text>
+                                  </Table.Td>
+                                </Table.Tr>
+                              )}
+                            </Table.Tbody>
+                          </Table>
+                          <Button
+                            color="green"
+                            disabled={
+                              !customProfessionName ||
+                              customSkillPoints.current !== 0 ||
+                              customSkillChoices.length !== 10
+                            }
+                            onClick={handleCustomProfession}
+                          >
+                            Confirm Custom Profession
+                          </Button>
+                        </Stack>
                       </Card>
                     )}
-                  {professionsType === "Custom" && (
-                    <Card withBorder ta="start">
-                      <Stack>
-                        <TextInput
-                          label="Profession Name"
-                          placeholder={"Enter profession name..."}
-                          onChange={(e) =>
-                            setCustomProfessionName(e.currentTarget.value)
-                          }
-                          value={customProfessionName}
-                        />
-                        <NumberInput
-                          max={4}
-                          min={1}
-                          label={"Number of Bonds"}
-                          value={customBonds}
-                          onChange={handleCustomBondChange}
-                          clampBehavior="strict"
-                        />
-                        <MultiSelect
-                          label="Professional Skills"
-                          placeholder={
-                            customSkillChoices.length === 0 &&
-                            "Select up to 10 professional skills..."
-                          }
-                          data={[...customProfessionSelectData].slice(
-                            0,
-                            customProfessionSelectData.length - 1
-                          )}
-                          searchable
-                          rightSection={<IconSearch />}
-                          onChange={handleCustomAddSkill}
-                          value={customSkillChoices}
-                          maxValues={10}
-                        />
-                        <Table withTableBorder withColumnBorders>
-                          <Table.Thead>
-                            <Table.Tr>
-                              <Table.Th>Skill</Table.Th>
-                              <Table.Th>
-                                Adj ({customSkillPoints.current} points left)
-                              </Table.Th>
-                              <Table.Th>Rating</Table.Th>
-                            </Table.Tr>
-                          </Table.Thead>
-                          <Table.Tbody>
-                            {customSkillChoices.length > 0 ? (
-                              customSkillChoices.map((skill) => {
-                                return (
-                                  <Table.Tr>
-                                    <Table.Td tt="capitalize">
-                                      {skillKeyLabels(skill)} (
-                                      {isSkillChoice({ id: skill })
-                                        ? defaultSkillValues[skill][0].skill
-                                        : defaultSkillValues[skill]}
-                                      %)
-                                    </Table.Td>
-                                    <Table.Td>
-                                      <NumberInput
-                                        prefix="+ "
-                                        suffix="%"
-                                        step={5}
-                                        value={customSkillValues[skill]}
-                                        onChange={(e) =>
-                                          handleAddPoints(skill, e)
-                                        }
-                                      />
-                                    </Table.Td>
-                                    <Table.Td ta="center">
-                                      {customSkillValues[skill] +
-                                        (isSkillChoice({ id: skill })
-                                          ? defaultSkillValues[skill][0].skill
-                                          : defaultSkillValues[skill])}
-                                      %
-                                    </Table.Td>
-                                  </Table.Tr>
-                                );
-                              })
-                            ) : (
-                              <Table.Tr>
-                                <Table.Td>
-                                  <Text c="dimmed">
-                                    Selected skills will appear here
-                                  </Text>
-                                </Table.Td>
-                              </Table.Tr>
-                            )}
-                          </Table.Tbody>
-                        </Table>
-                        <Button
-                          color="green"
-                          disabled={
-                            !customProfessionName ||
-                            customSkillPoints.current !== 0 ||
-                            customSkillChoices.length !== 10
-                          }
-                          onClick={handleCustomProfession}
-                        >
-                          Confirm Custom Profession
-                        </Button>
-                      </Stack>
-                    </Card>
-                  )}
-                </Stack>
+                  </Stack>
+                </ScrollArea>
               </Stack>
             </Grid.Col>
           )}

@@ -277,7 +277,8 @@ export const additionalProfessions = [
   },
   {
     name: "Intelligence Analyst",
-    description: "",
+    description:
+      "In the FBI, NSA and CIA, there are those who gather information and those who decide what it means. You take information from disparate sources—newspapers, websites, informants, ELINT, and the assets developed by Case Officers—and figure out what it means. In short, your job is the piecing together of unrelated knowledge, a dangerous endeavor in the world of Delta Green.",
     recommendedStats: ["INT"],
     professionalSkills: [
       { id: "anthropology", name: "Anthropology", value: 40 },
@@ -4318,22 +4319,26 @@ export const GlossaryTerms = [
   },
   {
     name: "Anti-Terrorism",
-    definition: "Preventative measures to reduce vulnerability to terrorist attacks.",
+    definition:
+      "Preventative measures to reduce vulnerability to terrorist attacks.",
     type: "procedures",
   },
   {
     name: "Assessment",
-    definition: "A 72-hour window when federal agents may legally conduct an investigation or surveillance without having a PREDICATE.",
+    definition:
+      "A 72-hour window when federal agents may legally conduct an investigation or surveillance without having a PREDICATE.",
     type: "procedures",
   },
   {
     name: "Biosafety Level",
-    definition: "The extent of biocontainment precautions required to isolate biological agents in a laboratory. The lowest, level 1, requires little more than hand washing and thorough cleaning. The highest, level 4, requires the use of CHEMTURION SPACE SUITS, multiple showers, a vacuum room, an ultraviolet light room, multiple airlocks, decontamination of all water and air coming into and going out of the laboratory, and other precautions.",
+    definition:
+      "The extent of biocontainment precautions required to isolate biological agents in a laboratory. The lowest, level 1, requires little more than hand washing and thorough cleaning. The highest, level 4, requires the use of CHEMTURION SPACE SUITS, multiple showers, a vacuum room, an ultraviolet light room, multiple airlocks, decontamination of all water and air coming into and going out of the laboratory, and other precautions.",
     type: "procedures",
   },
   {
     name: "Blind Date",
-    definition: "Meeting someone at their choice of time and place, with the accompanying risks of a set-up.",
+    definition:
+      "Meeting someone at their choice of time and place, with the accompanying risks of a set-up.",
     type: "procedures",
   },
   {
@@ -4343,17 +4348,20 @@ export const GlossaryTerms = [
   },
   {
     name: "Brush Pass",
-    definition: "A brief encounter between agent and officer in order to pass an item along.",
+    definition:
+      "A brief encounter between agent and officer in order to pass an item along.",
     type: "procedures",
   },
   {
     name: "Burned",
-    definition: "To be revealed or exposed as an undercover agent. Also a euphemism for being compromised by blackmail.",
+    definition:
+      "To be revealed or exposed as an undercover agent. Also a euphemism for being compromised by blackmail.",
     type: "procedures",
   },
   {
     name: "Cauterization",
-    definition: "Removing a compromised agent to safety, or dismantling or disposing of a compromised ASSET.",
+    definition:
+      "Removing a compromised agent to safety, or dismantling or disposing of a compromised ASSET.",
     type: "procedures",
   },
   {
@@ -4368,32 +4376,38 @@ export const GlossaryTerms = [
   },
   {
     name: "Cold Approach",
-    definition: "Attempting to recruit an agent without any prior indication that the target would want to work as a spy. Highly risky and seldom done.",
+    definition:
+      "Attempting to recruit an agent without any prior indication that the target would want to work as a spy. Highly risky and seldom done.",
     type: "procedures",
   },
   {
     name: "Compartmentalization",
-    definition: "Limiting access to materials based on not only the material’s security classification but also the person reading the material’s need to know.",
+    definition:
+      "Limiting access to materials based on not only the material’s security classification but also the person reading the material’s need to know.",
     type: "procedures",
   },
   {
     name: "Cover",
-    definition: "A false identity for an agent or official pretext for an operation, meant to justify actions and provide PLAUSIBLE DENIABILITY.",
+    definition:
+      "A false identity for an agent or official pretext for an operation, meant to justify actions and provide PLAUSIBLE DENIABILITY.",
     type: "procedures",
   },
   {
     name: "Dead Drop",
-    definition: "A concealed or inconspicuous location where information can be left for retrieval by another operative.",
+    definition:
+      "A concealed or inconspicuous location where information can be left for retrieval by another operative.",
     type: "procedures",
   },
   {
     name: "Decon",
-    definition: "Slang for “decontaminate,” in reference to infectious diseases or chemical weapons.",
+    definition:
+      "Slang for “decontaminate,” in reference to infectious diseases or chemical weapons.",
     type: "procedures",
   },
   {
     name: "DIOG",
-    definition: "The FBI’s Domestic Investigations and Operations Guide, which governs undercover operations, the use of informants, and steps that may be taken without a formal investigation to gain information that may be used to pressure someone into becoming an informant.",
+    definition:
+      "The FBI’s Domestic Investigations and Operations Guide, which governs undercover operations, the use of informants, and steps that may be taken without a formal investigation to gain information that may be used to pressure someone into becoming an informant.",
     type: "procedures",
   },
   {
@@ -4413,7 +4427,8 @@ export const GlossaryTerms = [
   },
   {
     name: "Extraordinary Rendition",
-    definition: "Government-sponsored abduction and extrajudicial transfer of a person from one country to another, whether for prosecution or for interrogation in a location that allows methods that would be illegal elsewhere.",
+    definition:
+      "Government-sponsored abduction and extrajudicial transfer of a person from one country to another, whether for prosecution or for interrogation in a location that allows methods that would be illegal elsewhere.",
     type: "procedures",
   },
   {
@@ -4423,7 +4438,8 @@ export const GlossaryTerms = [
   },
   {
     name: "FISA Court",
-    definition: "Federal court established by the U.S. Foreign Intelligence Surveillance Act to secretly review surveillance warrant requests by the NSA and FBI.",
+    definition:
+      "Federal court established by the U.S. Foreign Intelligence Surveillance Act to secretly review surveillance warrant requests by the NSA and FBI.",
     type: "procedures",
   },
   {
@@ -4448,12 +4464,14 @@ export const GlossaryTerms = [
   },
   {
     name: "Honey Trap",
-    definition: "Using sex to lure an agent into a compromising position and open him or her to blackmail.",
+    definition:
+      "Using sex to lure an agent into a compromising position and open him or her to blackmail.",
     type: "procedures",
   },
   {
     name: "Isolation",
-    definition: "CIA code for attending the training facility known as THE FARM.",
+    definition:
+      "CIA code for attending the training facility known as THE FARM.",
     type: "procedures",
   },
   {
@@ -4468,12 +4486,14 @@ export const GlossaryTerms = [
   },
   {
     name: "Making a Pass",
-    definition: "Physically passing a message to or from a courier or agent, typically using a BRUSH PASS or a DEAD DROP.",
+    definition:
+      "Physically passing a message to or from a courier or agent, typically using a BRUSH PASS or a DEAD DROP.",
     type: "procedures",
   },
   {
     name: "Measles",
-    definition: "To “die from measles” is to have been assassinated by means that make the death appear natural.",
+    definition:
+      "To “die from measles” is to have been assassinated by means that make the death appear natural.",
     type: "procedures",
   },
   {
@@ -4488,47 +4508,56 @@ export const GlossaryTerms = [
   },
   {
     name: "Neutralize",
-    definition: "To kill or assassinate. For the FBI, to “neutralize” means to damage the target’s political credibility.",
+    definition:
+      "To kill or assassinate. For the FBI, to “neutralize” means to damage the target’s political credibility.",
     type: "procedures",
   },
   {
     name: "Nuke",
-    definition: "Biocontainment euphemism for attempting to render a HOT ZONE sterile.",
+    definition:
+      "Biocontainment euphemism for attempting to render a HOT ZONE sterile.",
     type: "procedures",
   },
   {
     name: "OPSEC",
-    definition: "Operational security. Steps taken to ensure the operation’s secrecy and success.",
+    definition:
+      "Operational security. Steps taken to ensure the operation’s secrecy and success.",
     type: "procedures",
   },
   {
     name: "Playback",
-    definition: "To have a captured agent report disinformation back to his or her superiors as if he or she were still operating normally.",
+    definition:
+      "To have a captured agent report disinformation back to his or her superiors as if he or she were still operating normally.",
     type: "procedures",
   },
   {
     name: "Plumbing",
-    definition: "Work undertaken to prepare for a major operation, usually involving reconnaissance. This work is carried out by “plumbers.”",
+    definition:
+      "Work undertaken to prepare for a major operation, usually involving reconnaissance. This work is carried out by “plumbers.”",
     type: "procedures",
   },
   {
     name: "Predicate",
-    definition: "Information that clearly suggests an individual has violated federal law and therefore may be investigated by federal agents.",
+    definition:
+      "Information that clearly suggests an individual has violated federal law and therefore may be investigated by federal agents.",
     type: "procedures",
   },
   {
     name: "Quarantine",
-    definition: "Isolation of an individual, group, or (rarely) area due to a communicable health risk.",
+    definition:
+      "Isolation of an individual, group, or (rarely) area due to a communicable health risk.",
     type: "procedures",
   },
   {
     name: "Radiological Operation",
-    definition: "Using radioactive materials to cause casualties or restrict the use of terrain.",
+    definition:
+      "Using radioactive materials to cause casualties or restrict the use of terrain.",
     type: "procedures",
   },
   {
     name: "Rolled Up",
-    definition: "When an operation goes bad and an agent, or even an entire network, is arrested.",
+    definition:
+      "When an operation goes bad and an agent, or even an entire network, is arrested.",
     type: "procedures",
   },
   {
@@ -4538,17 +4567,20 @@ export const GlossaryTerms = [
   },
   {
     name: "Sanitize",
-    definition: "To remove all evidence of an agency’s involvement in an operation. Often refers to the use of stolen cars, false I.D., and untraceable equipment.",
+    definition:
+      "To remove all evidence of an agency’s involvement in an operation. Often refers to the use of stolen cars, false I.D., and untraceable equipment.",
     type: "procedures",
   },
   {
     name: "Snitch Jacketing",
-    definition: "FBI technique for making a member of a subversive or organized-crime group appear to be an informer. The result is that the target must come to the FBI and become an informer or witness in order to gain government protection from his or her now-suspicious",
+    definition:
+      "FBI technique for making a member of a subversive or organized-crime group appear to be an informer. The result is that the target must come to the FBI and become an informer or witness in order to gain government protection from his or her now-suspicious",
     type: "procedures",
   },
   {
     name: "Sterilization",
-    definition: "Unequivocal, total destruction of all HOT AGENTS in a HOT ZONE. Extremely difficult to achieve in practice and almost impossible to verify afterwards.",
+    definition:
+      "Unequivocal, total destruction of all HOT AGENTS in a HOT ZONE. Extremely difficult to achieve in practice and almost impossible to verify afterwards.",
     type: "procedures",
   },
   {
@@ -4558,12 +4590,14 @@ export const GlossaryTerms = [
   },
   {
     name: "Wetwork",
-    definition: "Assassination. Originally from a Russian euphemism: “to wet the ground” (e.g., with blood).",
+    definition:
+      "Assassination. Originally from a Russian euphemism: “to wet the ground” (e.g., with blood).",
     type: "procedures",
   },
   {
     name: "Window Dressing",
-    definition: "Ancillary details to make a legend or an operation’s cover more convincing.",
+    definition:
+      "Ancillary details to make a legend or an operation’s cover more convincing.",
     type: "procedures",
   },
 ];
