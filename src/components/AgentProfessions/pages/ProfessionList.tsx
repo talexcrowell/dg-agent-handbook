@@ -155,7 +155,7 @@ export const ProfessionList = () => {
       p={viewport.width > 600 ? "md" : 0}
       gutter={viewport.width > 600 ? "md" : "0"}
     >
-      <Grid.Col span={5}>
+      <Grid.Col span={professionsType !== "Custom" ? 5 : 12}>
         <Stack>
           <Group>
             <Title order={3}>Professions List</Title>
@@ -206,10 +206,10 @@ export const ProfessionList = () => {
               })}
             {professionsType === "Custom" && (
               <Stack>
-                <Text fw={700}>Create a Custom Profession</Text>
+                <Title order={3}>Creating a Custom Profession</Title>
                 <Text>
                   If none of the professions suit your Agent, use these
-                  guidelines to build a new one.
+                  guidelines to create a new one.
                 </Text>
                 <Text>
                   For your professional skills, pick 10 professional skills and
@@ -230,27 +230,31 @@ export const ProfessionList = () => {
           </Stack>
         </Stack>
       </Grid.Col>
-      <Divider orientation="vertical" mx="md" />
-      <Grid.Col span={6}>
-        {" "}
-        <Stack>
-          <Group>
-            <Title order={3}>Profession Details</Title>
-          </Group>
-          <ScrollArea h="84vh">
-            <Stack>
-              {selectedProfession?.name &&
-                professionsType !== "Custom" &&
-                professionCard(selectedProfession)}
-              {professionsType !== "Custom" && !selectedProfession?.name && (
-                <Card withBorder ta="start">
-                  <Text c="dimmed">No Profession Selected...</Text>
-                </Card>
-              )}
-            </Stack>
-          </ScrollArea>
-        </Stack>
-      </Grid.Col>
+      {professionsType !== "Custom" && (
+        <Divider orientation="vertical" mx="md" />
+      )}
+      {professionsType !== "Custom" && (
+        <Grid.Col span={6}>
+          {" "}
+          <Stack>
+            <Group>
+              <Title order={3}>Profession Details</Title>
+            </Group>
+            <ScrollArea h="84vh">
+              <Stack>
+                {selectedProfession?.name &&
+                  professionsType !== "Custom" &&
+                  professionCard(selectedProfession)}
+                {professionsType !== "Custom" && !selectedProfession?.name && (
+                  <Card withBorder ta="start">
+                    <Text c="dimmed">No Profession Selected...</Text>
+                  </Card>
+                )}
+              </Stack>
+            </ScrollArea>
+          </Stack>
+        </Grid.Col>
+      )}
     </Grid>
   );
 };

@@ -80,8 +80,6 @@ export const StatsAndSkills = () => {
     >
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Stats and Skills</Title>
-          <Divider />
           <Title td="underline" order={2} id="statistics">
             Statistics
           </Title>
