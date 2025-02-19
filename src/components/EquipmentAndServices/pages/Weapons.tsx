@@ -86,7 +86,7 @@ export const Weapons = () => {
   };
 
   return (
-    <ScrollArea h={"95vh"}>
+    <ScrollArea h={"92vh"}>
       <Grid
         p={viewport.width > 760 ? "md" : 0}
         gutter={viewport.width > 760 ? "md" : "0"}

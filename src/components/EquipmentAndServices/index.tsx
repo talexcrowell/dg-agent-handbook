@@ -46,7 +46,7 @@ export const EquipmentAndServices = () => {
 
   return (
     <Grid pb={viewport.width > 760 ? 0 : 60} pt={viewport.width > 760 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 && tabValue !== "search" ? 10 : 12}>
+      <Grid.Col span={viewport.width > 992 && tabValue !== "search" ? 10 : 12} pb='0'>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
@@ -165,7 +165,7 @@ export const EquipmentAndServices = () => {
       </Grid.Col>
       {viewport.width > 992 && tabValue !== "search" && (
         <Grid.Col span={2}>
-          <ScrollArea h={"95vh"}>
+          <ScrollArea h={"92vh"}>
             <Group pb="sm">
               <IconList />
               <Text>Table of Contents</Text>

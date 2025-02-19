@@ -42,7 +42,7 @@ export const DeltaGreen = () => {
 
   return (
     <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb='0'>
         <Tabs
           defaultValue="overview"
           orientation="vertical"
@@ -145,12 +145,12 @@ export const DeltaGreen = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <ScrollArea>
+            <ScrollArea h={"92vh"}>
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea>
+            <ScrollArea h={"92vh"}>
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
@@ -160,17 +160,17 @@ export const DeltaGreen = () => {
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea>
+            <ScrollArea h={"92vh"}>
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea>
+            <ScrollArea h={"92vh"}>
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-to-play-an-agent">
-            <ScrollArea>
+            <ScrollArea h={"92vh"}>
               <HowToPlayAnAgent />
             </ScrollArea>
           </Tabs.Panel>

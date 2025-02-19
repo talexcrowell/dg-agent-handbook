@@ -824,4 +824,69 @@ export const searchList = [
     section: "Gear and Services",
     header: "Public Safety (Official Requisition Only)",
   },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Going Unnoticed",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Surveillance",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Pursuit",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Breaking & Entering",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Search & Arrest",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Interrogation",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Human Assets",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Medical Treatment",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Evidence-Tampering",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Medical Treatment",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Disposing of a Body",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Communications",
+  },
+  {
+    chapter: "Tradecraft",
+    section: "",
+    header: "Safe Houses and Green Boxes",
+  },
 ];

@@ -46,7 +46,7 @@ export const Rules = () => {
 
   return (
     <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb='0'>
         <Tabs
           defaultValue="how-to-play"
           orientation="vertical"
@@ -122,22 +122,22 @@ export const Rules = () => {
             </Affix>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea h={"95vh"}>
+            <ScrollArea h={"92vh"}>
               <HowToPlay />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea h={"95vh"}>
+            <ScrollArea h={"92vh"}>
               <Combat />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea h={"95vh"}>
+            <ScrollArea h={"92vh"}>
               <Sanity />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea h={"95vh"}>
+            <ScrollArea h={"92vh"}>
               <Home />
             </ScrollArea>
           </Tabs.Panel>
@@ -148,7 +148,7 @@ export const Rules = () => {
       </Grid.Col>
       {tabValue !== "training-video" && viewport.width > 992 && (
         <Grid.Col span={2}>
-          <ScrollArea h={"95vh"}>
+          <ScrollArea h={"92vh"}>
             <Group pb="sm">
               <IconList />
               <Text>Table of Contents</Text>

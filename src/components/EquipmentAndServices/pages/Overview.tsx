@@ -19,7 +19,7 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const Overview = () => {
   const [viewport] = useViewportContext();
   return (
-    <ScrollArea h={"95vh"}>
+    <ScrollArea h={"92vh"}>
       <Grid
         p={viewport.width > 760 ? "md" : 0}
         gutter={viewport.width > 760 ? "md" : "0"}

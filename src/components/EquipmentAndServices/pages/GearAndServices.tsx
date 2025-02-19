@@ -40,7 +40,7 @@ export const GearsAndServices = () => {
     return str;
   };
   return (
-    <ScrollArea h={"95vh"}>
+    <ScrollArea h={"92vh"}>
       <Grid
         p={viewport.width > 600 ? "md" : 0}
         gutter={viewport.width > 600 ? "md" : "0"}

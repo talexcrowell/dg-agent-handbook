@@ -19,6 +19,7 @@ import styles from "../../Element.module.css";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [opened, setOpened] = useState(false);
 
   const fuse = new Fuse(searchList, {
     keys: ["section", "header", "subheader"],
@@ -46,25 +47,33 @@ export const SearchBar = () => {
         chapter = "rules";
         break;
       case "Equipment and Services":
-        chapter = "equipment-and=services";
+        chapter = "equipment-and-services";
+        break;
+      case "Tradecraft":
+        chapter = "agents/tradecraft";
         break;
     }
     return subheaderString
       ? `/${chapter}/${section}#${subheader}`
       : headerString
-      ? `/${chapter}/${section}#${header}`
+      ? `/${chapter}${section ? "/" + section : ""}#${header}`
       : `/${chapter}/${section}`;
   };
 
+  const handleSearchTerm = (val) => {
+    setOpened(true);
+    return setSearchTerm(val);
+  };
+
   return (
-    <Popover>
+    <Popover opened={opened}>
       <Popover.Target>
         <TextInput
           py={3}
           mx={3}
           leftSection={<IconSearch />}
-          onChange={(e) => setSearchTerm(e.currentTarget.value)}
-          placeholder='Search'
+          onChange={(e) => handleSearchTerm(e.currentTarget.value)}
+          placeholder="Search"
         />
       </Popover.Target>
       <Popover.Dropdown p="0">
@@ -75,17 +84,6 @@ export const SearchBar = () => {
                 <Text size="xs" c="dimmed" td="italic">
                   Navigate to:{" "}
                 </Text>
-                <Breadcrumbs>
-                  <Text size="xs" c="dimmed">
-                    Chapter
-                  </Text>
-                  <Text size="xs" c="dimmed">
-                    Section
-                  </Text>
-                  <Text size="xs" c="dimmed">
-                    Header
-                  </Text>
-                </Breadcrumbs>
               </Group>
             </Box>
             {results.slice(0, 5).map((result: any) => {
@@ -98,11 +96,13 @@ export const SearchBar = () => {
                           ? result.item.chapter.slice(0, 20) + "..."
                           : result.item.chapter}
                       </Text>
-                      <Text size="xs">
-                        {result.item.section.length > 20
-                          ? result.item.section.slice(0, 19) + "..."
-                          : result.item.section}
-                      </Text>
+                      {result.item.section !== "" && (
+                        <Text size="xs">
+                          {result.item.section.length > 20
+                            ? result.item.section.slice(0, 19) + "..."
+                            : result.item.section}
+                        </Text>
+                      )}
                       {result.item.header && (
                         <Text size="xs">{result.item.header}</Text>
                       )}
@@ -119,12 +119,22 @@ export const SearchBar = () => {
                     result.item.subheader
                   )}
                   className={styles.hoverElement}
+                  onClick={() => setOpened(false)}
                 />
               );
             })}
           </Stack>
         ) : searchTerm.length > 0 ? (
-          <Text>No Results Found...</Text>
+          <Stack gap="0" px="0">
+            <Box p="xs">
+              <Group>
+                <Text size="xs" c="dimmed" td="italic">
+                  Navigate to:{" "}
+                </Text>
+              </Group>
+            </Box>
+            <Text>No Results Found...</Text>
+          </Stack>
         ) : (
           ""
         )}

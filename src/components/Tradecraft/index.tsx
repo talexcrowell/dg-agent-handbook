@@ -22,8 +22,8 @@ export const Tradecraft = () => {
 
   return (
     <Grid gutter={"md"}>
-      <Grid.Col span={10}>
-        <ScrollArea h={"95vh"} w={"auto"} scrollbars="y">
+      <Grid.Col span={10} pb='0'>
+        <ScrollArea h={"92vh"} w={"auto"} scrollbars="y">
           <Stack id="tradecraft" px="md">
             <Title td="underline">Tradecraft</Title>
             <Text>
@@ -37,7 +37,7 @@ export const Tradecraft = () => {
               good.
             </Text>
             <Divider />
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="going-unnoticed">
               Going Unnoticed
             </Title>
             <Text>
@@ -143,7 +143,7 @@ export const Tradecraft = () => {
               security video of a recent purchase.
             </Text>
 
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="pursuit">
               Pursuit
             </Title>
             <Text>
@@ -154,7 +154,7 @@ export const Tradecraft = () => {
               recording from every corner. Exposure means more potential victims
               to protect from the unnatural.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="breaking-&-entering">
               Breaking & Entering
             </Title>
 
@@ -172,7 +172,7 @@ export const Tradecraft = () => {
               Use the Forensics skill to obscure toolmarks so someone examining
               the scene with Forensics doesn’t deduce what you did.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="search-&-arrest">
               Search & Arrest
             </Title>
             <Text>
@@ -197,7 +197,7 @@ export const Tradecraft = () => {
               by officials higher up than the Agents, and it means the risk of
               lawsuits if the search or arrest does not lead to prosecution.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="interrogation">
               Interrogation
             </Title>
             <Text>
@@ -214,7 +214,9 @@ export const Tradecraft = () => {
               at the cost of 1D6 WP. A subject who runs out of WP cannot resist
               interrogation.
             </Text>
-            <Title order={3}>Torture</Title>
+            <Title order={3} id="torture">
+              Torture
+            </Title>
             <Text>
               Inflicting pain on the subject costs 0/1D8 SAN for the victim and
               for the torturer and does 1D4 damage to the victim. Torture adds
@@ -233,7 +235,9 @@ export const Tradecraft = () => {
               always gets the final word on whether this yields information
               worth having.
             </Text>
-            <Title order={3}>“Truth” Drugs</Title>
+            <Title order={3} id="truth-drugs">
+              “Truth” Drugs
+            </Title>
             <Text>
               No known drug can induce someone to tell the truth, but drugs can
               relax inhibitions, cause delusions and forgetfulness, ease pain,
@@ -250,7 +254,7 @@ export const Tradecraft = () => {
               Pharmacy. Instead, the victim gets a CON test to withstand the
               alcohol.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="human-assets">
               Human Assets
             </Title>
             <Text>
@@ -264,7 +268,7 @@ export const Tradecraft = () => {
               allows for a Major expense to offer the asset, add +20% to the
               roll.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="medical-treatment">
               Medical Treatment
             </Title>
             <Text>
@@ -290,7 +294,7 @@ export const Tradecraft = () => {
               Unusual expense for surgery (or a Major expense if the patient is
               dying). Cash only, up front.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="evidence-tampering">
               Evidence-Tampering
             </Title>
             <Text>
@@ -304,7 +308,7 @@ export const Tradecraft = () => {
               for corruption. To alter a case file with-out arousing suspicion,
               use Accounting, Bureaucracy, Computer Science, or Law.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="disposing-of-a-body">
               Disposing of a Body
             </Title>
             <Text>
@@ -363,7 +367,7 @@ export const Tradecraft = () => {
               and dumped more than 20 miles off shore. A Forensics roll is
               needed to remove all traces.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="communictions">
               Communications
             </Title>
             <Text>
@@ -406,7 +410,7 @@ export const Tradecraft = () => {
               ditching all digital devices that have microphones and
               location-tracking.
             </Text>
-            <Title td="underline" order={2}>
+            <Title td="underline" order={2} id="safe-houses-and-green-boxes">
               Safe Houses and Green Boxes
             </Title>
             <Text>
