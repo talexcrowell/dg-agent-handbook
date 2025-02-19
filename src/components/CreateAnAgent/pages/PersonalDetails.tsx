@@ -15,14 +15,20 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const PersonalDetails: React.FC<{
   handleAgentPersonalDetails: (val: any, key: any) => void;
   handleCreateAgent: () => void;
   userAgent: any;
 }> = ({ handleAgentPersonalDetails, handleCreateAgent, userAgent }) => {
+  const [viewport] = useViewportContext();
   return (
-    <Grid ta="start">
+    <Grid
+      ta="start"
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
+    >
       <Grid.Col span={12}>
         <Stack>
           <Title>Personal Details</Title>
@@ -133,7 +139,9 @@ export const PersonalDetails: React.FC<{
             label="Experiences with the Unnatural"
             ta="start"
             minRows={6}
-            onChange={(val) => handleAgentPersonalDetails(val, "unnaturalExperiences")}
+            onChange={(val) =>
+              handleAgentPersonalDetails(val, "unnaturalExperiences")
+            }
             value={userAgent?.unnaturalExperiences}
             placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />

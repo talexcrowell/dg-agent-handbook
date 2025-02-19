@@ -15,12 +15,14 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { additionalProfessions, professions } from "../../../data";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Bonds: React.FC<{
   handleAgentBonds: (bonds: any) => void;
   userAgent: any;
 }> = ({ handleAgentBonds, userAgent }) => {
   const [bonds, setBonds] = useState<any[]>([]);
+  const [viewport] = useViewportContext();
 
   useEffect(() => {
     switch (userAgent.bonds) {
@@ -134,7 +136,11 @@ export const Bonds: React.FC<{
       break;
   }
   return (
-    <Grid ta="start">
+    <Grid
+      ta="start"
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
+    >
       <Grid.Col span={12}>
         <Stack>
           <Title>Bonds</Title>

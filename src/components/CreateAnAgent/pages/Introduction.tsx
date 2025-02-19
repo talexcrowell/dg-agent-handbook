@@ -1,11 +1,17 @@
 import { Button, Grid, Image, List, Stack, Text, Title } from "@mantine/core";
 import React from "react";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Introduction: React.FC<{
   handleProgressValue: (value: number) => void;
 }> = ({ handleProgressValue }) => {
+  const [viewport] = useViewportContext();
+  
   return (
-    <Grid>
+    <Grid
+      p={viewport.width > 600 ? "md" : 0}
+      gutter={viewport.width > 600 ? "md" : "0"}
+    >
       <Grid.Col span={12} ta="start">
         <Stack>
           <Title>Introduction</Title>
