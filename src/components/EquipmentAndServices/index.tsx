@@ -21,7 +21,7 @@ import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import Overview from "./pages/Overview";
-import { FormattedLoader } from "../Rules/FormattedLoader";
+import { FormattedLoader } from "../FormattedLoader";
 
 const Weapons = lazy(() => import("./pages/Weapons"));
 const Armor = lazy(() => import("./pages/Armor"));
@@ -166,7 +166,7 @@ export const EquipmentAndServices = () => {
       {viewport.width > 992 && tabValue !== "search" && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
-            <Group py="md">
+            <Group pb="sm">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>

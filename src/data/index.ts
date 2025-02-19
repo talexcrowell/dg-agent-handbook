@@ -3075,3 +3075,1495 @@ export const otherGearAndServicesList = [
     gearAndServicesType: "publicSafety",
   },
 ];
+
+export const GlossaryTerms = [
+  {
+    name: "Babble Juice",
+    definition: "Slang for any kind of truth drug.",
+    type: "equipment",
+  },
+  {
+    name: "Biological Agent",
+    definition: "A harmful microorganism.",
+    type: "equipment",
+  },
+  {
+    name: "Bioregulator",
+    definition:
+      "A biochemical that regulates bodily functions. Some (endogenous) occur naturally. Others can be synthesized.",
+    type: "equipment",
+  },
+  {
+    name: "Blister Agent",
+    definition: "A chemical that blisters the skin.",
+    type: "equipment",
+  },
+  {
+    name: "Blood Agent",
+    definition:
+      "A chemical (usually cyanide or arsenic-based) that interferes with the exchange of oxygen and carbon dioxide between blood and tissues.",
+    type: "equipment",
+  },
+  {
+    name: "Blue Suit",
+    definition: "A CHEMTURION SPACE SUIT.",
+    type: "equipment",
+  },
+  {
+    name: "Bona Fides",
+    definition: "Documents which back up a cover identity.",
+    type: "equipment",
+  },
+  {
+    name: "Bubble Stretcher",
+    definition:
+      "Portable biocontainment pod used for transportation of a HOT patient.",
+    type: "equipment",
+  },
+  {
+    name: "Burner",
+    definition:
+      "A cheap, disposable pre-paid cell phone for use during an operation.",
+    type: "equipment",
+  },
+  {
+    name: "Chemical Agent",
+    definition:
+      "A chemical intended to cause harm, not including riot-control agents and agents which create smoke or flame.",
+    type: "equipment",
+  },
+  {
+    name: "Chemical Weapon",
+    definition:
+      "A toxic chemical used to cause harm, or a munition or device designed to deliver it.",
+    type: "equipment",
+  },
+  {
+    name: "Chemturion Space Suit",
+    definition:
+      "Pressurized, heavy-duty bio-hazard environment suit used in BIOSAFETY LEVEL 4 containment areas. Also known as a “blue suit” because of its color.",
+    type: "equipment",
+  },
+  {
+    name: "Choking Agent",
+    definition: "A chemical that injures the lungs.",
+    type: "equipment",
+  },
+  {
+    name: "Dirty Bomb",
+    definition:
+      "A device that uses a conventional explosive to disperse radioactive material.",
+    type: "equipment",
+  },
+  {
+    name: "Hatbox",
+    definition:
+      "A cylindrical biohazard container made of cardboard. Also known as an ice-cream container.",
+    type: "equipment",
+  },
+  {
+    name: "Hush Puppy",
+    definition:
+      "A silenced, semi-automatic pistol designed to fire one shot per pull of the trigger and not to automatically eject a spent casing and chamber a new round. The action must be worked after each shot, but the only sound produced other than the suppressed shot is the sound of the hammer falling against the firing pin.",
+    type: "equipment",
+  },
+  {
+    name: "IED",
+    definition:
+      "Improvised explosive device, usually made from easily-obtained materials.",
+    type: "equipment",
+  },
+  {
+    name: "Incapacitating Agent",
+    definition:
+      "A chemical that temporarily impairs physiological and/or mental functions by affecting the central nervous system.",
+    type: "equipment",
+  },
+  {
+    name: "Industrial Agent",
+    definition:
+      "A chemical that, even if harmful, was created for use in industrial operations.",
+    type: "equipment",
+  },
+  {
+    name: "Jock Strap Medals",
+    definition:
+      "CIA decorations kept in a safe at Langley HQ until the case officer retires.",
+    type: "equipment",
+  },
+  {
+    name: "Nerve Agent",
+    definition: "A chemical that interferes with the central nervous system.",
+    type: "equipment",
+  },
+  {
+    name: "Pathogen",
+    definition:
+      "An organism capable of causing serious disease or death in humans.",
+    type: "equipment",
+  },
+  {
+    name: "Racal Suit",
+    definition:
+      "Positive-pressure biohazard suit with a battery-powered air supply. For use in fieldwork with extreme airborne hazards. Also known as an “orange suit.”",
+    type: "equipment",
+  },
+  {
+    name: "Radiological Dispersal Device (RDD)",
+    definition:
+      "A device, other than a nuclear weapon, designed to disseminate radiocative material.",
+    type: "equipment",
+  },
+  {
+    name: "RQ-1 Predaor Unmanned Aerial Vehicle",
+    definition:
+      "A long-range drone used for reconnaissance, surveillance, and target acquisition.",
+    type: "equipment",
+  },
+  {
+    name: "Shoe",
+    definition: "A false passport.",
+    type: "equipment",
+  },
+  {
+    name: "Soap",
+    definition:
+      "Nickname for the “truth drug” sodium pentothal, a powerful barbiturate-class sedative.",
+    type: "equipment",
+  },
+  {
+    name: "Throwaway",
+    definition:
+      "A disposable firearm, usually with the serial numbers filed off.",
+    type: "equipment",
+  },
+  {
+    name: "Toxin Agent",
+    definition:
+      "An organic poison secreted by an animal or vegetable; some may be synthesized.",
+    type: "equipment",
+  },
+  {
+    name: "Weapon of Mass Destruction (WMD)",
+    definition: "A weapon capable of widespread death and/or destruction.",
+    type: "equipment",
+  },
+  {
+    name: "Wire",
+    definition: "A wiretap or body microphone.",
+    type: "equipment",
+  },
+  {
+    name: "Agent",
+    definition:
+      "Typically an employee of a government agency, particularly one who represents the agency at large. A notable exception is the intelligence community, where an agent is specifically an asset who provides information to a case officer called a handler.",
+    type: "individuals",
+  },
+  {
+    name: "Agent of Influence",
+    definition:
+      "An intelligence asset left in place to change the policy of his or her organization.",
+    type: "individuals",
+  },
+  {
+    name: "Agent Provocatuer",
+    definition:
+      "An intelligence asset who stirs up trouble, usually as a pretext to an intervention.",
+    type: "individuals",
+  },
+  {
+    name: "Agent-in-Place",
+    definition: "An intelligence asset working within a foreign government.",
+    type: "individuals",
+  },
+  {
+    name: "Border Rats",
+    definition:
+      "DEA, Border Patrol and Customs agents who work the U.S.-Mexican border.",
+    type: "individuals",
+  },
+  {
+    name: "Case Officer",
+    definition: "An intelligence officer who manages agents.",
+    type: "individuals",
+  },
+  {
+    name: "Clean Operative",
+    definition:
+      "An illegal operative who has not come to the attention of law enforcement or intelligence organizations.",
+    type: "individuals",
+  },
+  {
+    name: "Cleaner",
+    definition:
+      "A specialist in removing forensic evidence from a crime scene.",
+    type: "individuals",
+  },
+  {
+    name: "Control Officer or Controller",
+    definition: "A CASE OFFICER.",
+    type: "individuals",
+  },
+  {
+    name: "Customers",
+    definition:
+      "The customers of finished intelligence, usually policymakers and elected officials.",
+    type: "individuals",
+  },
+  {
+    name: "Cut-Out",
+    definition:
+      "A middle man somewhere between an intelligence agent and a case officer. There may be several cut-outs between agent and intelligence service.",
+    type: "individuals",
+  },
+  {
+    name: "Dangle",
+    definition:
+      "An agent set up to be recruited by another intelligence service as a double agent. Also a verb.",
+    type: "individuals",
+  },
+  {
+    name: "Deniable Person",
+    definition:
+      "An agent whose connection to the agency or organization can be plausibly denied.",
+    type: "individuals",
+  },
+  {
+    name: "Doorknockers",
+    definition:
+      "Background check and security personnel who go door to door asking a subject’s friends, neighbors, and relatives about the subject.",
+    type: "individuals",
+  },
+  {
+    name: "Dormant Operative",
+    definition:
+      "An operative with past ties to a terrorist organization but who is no longer active.",
+    type: "individuals",
+  },
+  {
+    name: "EBE",
+    definition: "Extraterrestrial biological entity.",
+    type: "individuals",
+  },
+  {
+    name: "FEEBIE or FEEB",
+    definition:
+      "Epithet used by local law enforcement for the FBI. Highly derogatory.",
+    type: "individuals",
+  },
+  {
+    name: "Flaps-and-Seals Man",
+    definition:
+      "An expert at surreptitiously opening mail, parcels and pouches.",
+    type: "individuals",
+  },
+  {
+    name: "Floater",
+    definition: "A STRINGER.",
+    type: "individuals",
+  },
+  {
+    name: "Friendly",
+    definition:
+      "A Delta Green term for someone who is not part of Delta Green and typically knows little about the group but assists with Delta Green operations.",
+    type: "individuals",
+  },
+  {
+    name: "Ghoul",
+    definition:
+      "An agent or officer who searches obituaries, graves, and death records for identities to be assumed in LEGENDS.",
+    type: "individuals",
+  },
+  {
+    name: "Handler",
+    definition: "A CASE OFFICER.",
+    type: "individuals",
+  },
+  {
+    name: "Handling Agent",
+    definition: "FBI agent who runs agents or informers.",
+    type: "individuals",
+  },
+  {
+    name: "Hip Pocket",
+    definition:
+      "An FBI informant who is unregistered and whose information is not used in court.",
+    type: "individuals",
+  },
+  {
+    name: "Illegals",
+    definition: "Intelligence operatives with no diplomatic or official cover.",
+    type: "individuals",
+  },
+  {
+    name: "Investigator",
+    definition:
+      "A government agent trained to investigate crimes but who does not have any special powers of arrest; not usually trained in firearms and self-defense.",
+    type: "individuals",
+  },
+  {
+    name: "MIB",
+    definition:
+      "Conspiracy-theory slang for agents of secret government programs that deal with the extraterrestrial or the unnatural. MIB stands for Men in Black.",
+    type: "individuals",
+  },
+  {
+    name: "Mole",
+    definition:
+      "A term that may have been coined by spy novelist John LeCarré but was adopted by the intelligence services into their lexicons. A mole is an agent infiltrated into an enemy service.",
+    type: "individuals",
+  },
+  {
+    name: "Mule",
+    definition: "A courier, often a drug courier.",
+    type: "individuals",
+  },
+  {
+    name: "Official",
+    definition: "A senior member of an organization.",
+    type: "individuals",
+  },
+  {
+    name: "Operator",
+    definition:
+      "In counterterrorism, someone who wants to be a terrorist. Contrast with “special operator,” a special-operations soldier.",
+    type: "individuals",
+  },
+  {
+    name: "Outside Man",
+    definition: "CIA jargon for an ILLEGAL.",
+    type: "individuals",
+  },
+  {
+    name: "Pavement Artist",
+    definition:
+      "A term coined by John LeCarré. It denotes a member of an urban surveillance team.",
+    type: "individuals",
+  },
+  {
+    name: "SAC",
+    definition:
+      "Special Agent in Charge; federal law enforcement officer in charge of a given office. Not to be confused with the Strategic Air Command of the military.",
+    type: "individuals",
+  },
+  {
+    name: "Sheep-Dipped",
+    definition:
+      "Refers to military personnel and equipment on loan to the CIA (or to law enforcement when posse comitatus is not a concern) and operating under that authority.",
+    type: "individuals",
+  },
+  {
+    name: "Sleeper",
+    definition:
+      "An agent who remains in the target country for years without performing intelligence-related activities before being activated, or “woken.”",
+    type: "individuals",
+  },
+  {
+    name: "Special Agent",
+    definition:
+      "An investigator who has arrest powers and has been trained in firearms and self-defense.",
+    type: "individuals",
+  },
+  {
+    name: "Spook",
+    definition:
+      "Slang for any intelligence officer, usable derogatorily or affectionately.",
+    type: "individuals",
+  },
+  {
+    name: "Station Chief",
+    definition: "The top CIA officer in a foreign country.",
+    type: "individuals",
+  },
+  {
+    name: "Stringer",
+    definition: "An occasional or freelance spy.",
+    type: "individuals",
+  },
+  {
+    name: "Suit",
+    definition:
+      "Any upper-level administrator away from the action. Often used derogatorily.",
+    type: "individuals",
+  },
+  {
+    name: "Tagged",
+    definition: "Delta Green slang for someone with Delta Green clearance.",
+    type: "individuals",
+  },
+  {
+    name: "Turned",
+    definition:
+      "An intelligence agent who changes sides either voluntarily or under duress.",
+    type: "individuals",
+  },
+  {
+    name: "Walk-In",
+    definition:
+      "An intelligence agent who approaches an intelligence agency to offer his or services. Often highly suspect.",
+    type: "individuals",
+  },
+  {
+    name: "Watchers",
+    definition: "Surveillance teams.",
+    type: "individuals",
+  },
+  {
+    name: "Zombie",
+    definition:
+      "An agent or operative who has “officially died” and assumed a new identity for the purposes of cover and deniability.",
+    type: "individuals",
+  },
+  {
+    name: "ARCHINT",
+    definition:
+      "Archeological intelligence. A term coined within Delta Green and not widely known.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Backstopping",
+    definition:
+      "An extremely in-depth cover. A whole new identity right down to the birth certificate.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Bigot List",
+    definition:
+      "A short list of those with access to intelligence from a given source or operation.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Biographic Leverage",
+    definition: "CIA slang for blackmail material.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Black Propaganda",
+    definition:
+      "Propaganda purported to issue from a source other than its true source.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Blacker than Black",
+    definition: "Delta Green slang for anything to do with Delta Green.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Blind Memoranda",
+    definition:
+      "Memoranda or orders sent without letterhead or file number. Such memoranda may be destroyed with impunity to preserve plausible deniability.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Blowback",
+    definition:
+      "When false propaganda circulated abroad is picked up by domestic news services as the truth.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Bona Fides",
+    definition: "Proof of identity.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Chicken Feed",
+    definition:
+      "Disinformation mixed with reliable intelligence that is sent back by a TURNED agent to his or her superiors.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Classification",
+    definition:
+      "The systematic division of sensitive military, intelligence, or policy materials by the danger it poses if released: CONFIDENTIAL, SECRET, or TOP SECRET.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Clean",
+    definition: "Unknown to hostile intelligence.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "COMINT",
+    definition:
+      "Communications intelligence. Intelligence gathered from interception of communications.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "COMSEC",
+    definition: "Communications security.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Confidential",
+    definition:
+      "Information that would be dangerous if released to the public but would not threaten national security.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Domain Management",
+    definition:
+      "FBI software that maps U.S. communities along ethnic and religious lines.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Ears Only",
+    definition:
+      "Information so sensitive that it cannot be committed to paper.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "ELINT",
+    definition:
+      "Electronic intelligence. Intelligence gathered through means such as radar, sonar, and orbital sensors.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Eyes Only",
+    definition:
+      "A restriction that specifies individuals or groups allowed to view classified information.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Eyewash",
+    definition:
+      "False information transmitted within an organization to conceal operations from double agents or intelligence leaks.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "FININT",
+    definition: "Financial Intelligence, gathered from monetary transactions.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Front",
+    definition:
+      "A legitimate cover organization run for the benefit of an intelligence or national-security agency; sometimes a PROPRIETARY COMPANY.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Grey Propaganda",
+    definition: "Propaganda with no traceable source.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "HUMINT",
+    definition:
+      "Human intelligence. Intelligence gathered from human sources such as agents.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "IMINT",
+    definition:
+      "Imagery Intelligence. Collecting and analyzing visual intelligence, usually photographs gathered from satellites and airborne platforms.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Mainway",
+    definition:
+      "An NSA database of phone-call metadata used for traffic and social network analysis.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Marina",
+    definition:
+      "An NSA application that analyzes a subject’s Internet activity over the previous 365 days.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "MASINT",
+    definition: "",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "NarusInsight",
+    definition:
+      "Supercomputer system used by the FBI to collect information from digital communications.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "OPINT",
+    definition:
+      "Operational intelligence; intelligence used to conduct a field operation.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "OSINT",
+    definition:
+      "Open Source Intelligence; intelligence-gathering that does not require classified sources or methods. Open sources can include published papers, press releases, news stories and social media.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Pattern",
+    definition:
+      "The behavior and daily routines unique to an individual or an organization.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Pinwale",
+    definition:
+      "An NSA system for collecting and searching digital communications, including email.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Plaintext",
+    definition: "An unencrypted message.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Prism",
+    definition:
+      "An NSA system for collecting Internet communications from major U.S. providers.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Product",
+    definition: "Finished intelligence reports.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Secret",
+    definition:
+      "Information that is classified because it has significant national security value.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Sensitive Compartmentalized Information (SCI)",
+    definition:
+      "Classified information that is especially restricted, usually because it demonstrates the accuracy of a secret collection technique such as a spy satellite.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "SIGINT",
+    definition:
+      "Signals intelligence. Intelligence gathered through signals and coded-communications interception.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Social Network Analysis",
+    definition:
+      "Analysis of social structures and the ways individuals and groups interact.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Special Access Program",
+    definition:
+      "A method of further restricting classified information by limiting access to specifically authorized individuals.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Steganography",
+    definition:
+      "Concealing a message in a visual medium such as dots or patterns in an image.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Tear Line",
+    definition:
+      "Slang for classified information that is approved to be shared with those lacking clearance.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Top Secret",
+    definition:
+      "Classified information that must be handled with extreme care because releasing it would gravely harm national security.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Traffic Analysis",
+    definition:
+      "Gaining intelligence from the volume and patterns of intercepted messages rather than their contents.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Trafficthief",
+    definition:
+      "An NSA database of metadata associated with names, phone numbers, email addresses, and other identifying information.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "The Unnatural",
+    definition:
+      "Genuinely supernatural or alien forces, technology, or entities. Usually inimical to human life and sanity.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "XKeyscore",
+    definition:
+      "An NSA computer system for searching and analyzing global Internet data.",
+    type: "informationAndMisinformation",
+  },
+  {
+    name: "Black Site",
+    definition:
+      "An unacknowledged facility where a black project is conducted, such as a secret prison.",
+    type: "locations",
+  },
+  {
+    name: "Camp Swampy",
+    definition: "Another name for THE FARM.",
+    type: "locations",
+  },
+  {
+    name: "The Farm",
+    definition:
+      "CIA term for its secret training facility at Camp Peary, Virginia.",
+    type: "locations",
+  },
+  {
+    name: "Green Box",
+    definition:
+      "A secret location in which a Delta Green team deposits equipment for future operations or by other teams that know of it.",
+    type: "locations",
+  },
+  {
+    name: "Grinder",
+    definition: "CIA briefing room for interrogating defectors.",
+    type: "locations",
+  },
+  {
+    name: "Hangar 18",
+    definition:
+      "Delta Green slang for Wright-Patterson Air Force Base, home of the National Air and Space Intelligence Center and rumored site of the Roswell crash debris.",
+    type: "locations",
+  },
+  {
+    name: "Hot Suite",
+    definition: "A BIOSAFETY LEVEL 4 laboratory and containment facility.",
+    type: "locations",
+  },
+  {
+    name: "The Ice Cave",
+    definition:
+      "Among Delta Green operatives, a rumored xenobiology facility located on the DOE’s Los Alamos reserve in Nevada.",
+    type: "locations",
+  },
+  {
+    name: "The Institute",
+    definition:
+      "Slang for the USAMRIID, the United States Army’s Medical Research Institute for Infectious Diseases.",
+    type: "locations",
+  },
+  {
+    name: "LZ",
+    definition:
+      "Landing Zone. Area where a helicopter or VTOL can land and take off.",
+    type: "locations",
+  },
+  {
+    name: "Safe House",
+    definition:
+      "A hideaway where agents or defectors may be safely accommodated. Often refers to a place where agents or defectors can be debriefed.",
+    type: "locations",
+  },
+  {
+    name: "Slammer",
+    definition: "The BIOSAFETY LEVEL 4 HOT SUITE at USAMRIID.",
+    type: "locations",
+  },
+  {
+    name: "The Submarine",
+    definition: "The BIOSAFETY LEVEL 4 morgue at USAMRIID.",
+    type: "locations",
+  },
+  {
+    name: "The Tank",
+    definition:
+      "CIA and FBI jargon for a room built to be secure against surveillance.",
+    type: "locations",
+  },
+  {
+    name: "1001",
+    definition:
+      "Refers to the federal law that prohibits lying to federal agents (Title 18, Section 1001). Often can be enforced even when no other crime can be proven.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Angel",
+    definition: "A radar signal from the weather or unknown causes.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Angel Hair",
+    definition:
+      "Filaments sometimes found after a UFO sighting; often suspected to be the webs of migrating spiders.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Asset",
+    definition:
+      "Any person, group, instrument, installation, supply or resource at the disposal of an organization.",
+    type: "miscellaneous",
+  },
+  {
+    name: "BLUE BOOK",
+    definition:
+      "Third codename for the U.S. Air Force UFO investigation project (1953 to 1969).",
+    type: "miscellaneous",
+  },
+  {
+    name: "Burn, Burning",
+    definition:
+      "Slang for an explosive chain of lethal transmissions, wherein a lethal infectious agent spreads explosively through a population.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Cattle Mutilation",
+    definition:
+      "Typically associated with UFO sightings, Satanists, or insurance fraud.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Collateral Damage",
+    definition:
+      "Civilian casualties and property damage caused by a strike against a military objective.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Disposable",
+    definition:
+      "Something or someone able to be sacrificed, if necessary, for the success of a mission.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Flap",
+    definition:
+      "Military slang for startled confusion, such as is caused by surprise inspections.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Foreign Intelligence Survellance Act (FISA)",
+    definition:
+      "A law that allows federal agencies to monitor suspected terrorists or spies without showing probable cause.",
+    type: "miscellaneous",
+  },
+  {
+    name: "The Game",
+    definition:
+      "To be “In the Game” is to be involved in an exclusive, secretive field—usually intelligence work or drug trafficking.",
+    type: "miscellaneous",
+  },
+  {
+    name: "GRUDGE",
+    definition:
+      "Second codename for the U.S. Air Force UFO investigation project (1949 to 1953).",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hooah",
+    definition:
+      "The Army’s battle cry and signal of assent. Some say it comes from the abbreviation H.U.A., from “Heard, Understood, Acknowledged.”",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hoorah",
+    definition:
+      "A battle cry and signal of assent sometimes used by Navy personnel who serve closely with Marines.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hooyah",
+    definition: "The Navy’s battle cry and signal of assent.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hot",
+    definition: "Lethally infectious, in a biological sense.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hot Agent",
+    definition: "An extremely lethal virus.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Hot Zone",
+    definition: "The area of a lethal infectious outbreak.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Material Support",
+    definition:
+      "Money, lodging, training, documents, weapons, or personnel provided to a terrorist organization. Prosecutable even if the organization itself is fictional.",
+    type: "miscellaneous",
+  },
+  {
+    name: "M.I.C.E.",
+    definition:
+      "CIA code for the four reasons people spy: Money, Ideology, Compromise, and Ego.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Millenarian",
+    definition:
+      "Apocalyptic; foreshadowing or foreboding imminent and widespread destruction.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Mogul",
+    definition:
+      "A project that used clusters of balloons with microphones to spy on Soviet nuclear tests. Its activities were behind the 1947 Roswell Incident. There was no disk. Do not ask.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Oorah",
+    definition: "The Marine Corps’ battle cry and assent signal.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Operational Climate",
+    definition:
+      "Describes the difficulty of carrying out intelligence operations in a locale, either due to local attitudes or strict policing.",
+    type: "miscellaneous",
+  },
+  {
+    name: "OPTempo",
+    definition:
+      "Operational tempo, the frequency with which a military unit is deployed. High OPTEMPO tends to reduce morale and disrupt effectiveness.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Oversight",
+    definition:
+      "Political monitoring of COVERT operations by elected officials.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Plausable Deniability",
+    definition:
+      "Being able to claim that you didn’t know about the operation, or were “out of the loop.” Very important for bureaucrats and politicians.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Prosaic Explanation",
+    definition:
+      "A common, mundane, ordinary cause for a UFO sighting or alien encounter.",
+    type: "miscellaneous",
+  },
+  {
+    name: "PTSD",
+    definition:
+      "Post-traumatic stress disorder, a wide range of lingering symptoms of exposure to trauma. Common among combat veterans, victims of violence, and disaster survivors.",
+    type: "miscellaneous",
+  },
+  {
+    name: "SIGN",
+    definition:
+      "First codename for the U.S. Air Force UFO investigation project (1947 to 1949).",
+    type: "miscellaneous",
+  },
+  {
+    name: "Stepped On",
+    definition:
+      "Radio and signal interference; as in “The signal was stepped on.” Also used in the drug trade to refer to deliberate dilution of a product.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Tasked",
+    definition: "Ordered.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Tradecraft",
+    definition:
+      "The techniques of espionage. Obscuring and covering up your actions to reduce suspicion.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Walk-In",
+    definition:
+      "In UFO lore, an extraterrestrial spirit that has taken over the body of a human.",
+    type: "miscellaneous",
+  },
+  {
+    name: "Aymmetrical Warfare",
+    definition:
+      "Battle between forces whose relative strength is highly disproportionate. Most conventional military actions against terrorists are asymmetrical.",
+    type: "operations",
+  },
+  {
+    name: "Bang and Burn",
+    definition: "A demolition-and-sabotage operation.",
+    type: "operations",
+  },
+  {
+    name: "Bioterrorism",
+    definition: "Terrorism using a BIOLOGICAL AGENT or the threat of one.",
+    type: "operations",
+  },
+  {
+    name: "Black Bag Job",
+    definition:
+      "FBI jargon for operations involving illegal burglary or breaking and entering, either to perform a search or to install eavesdropping equipment.",
+    type: "operations",
+  },
+  {
+    name: "Black Bag Operation",
+    definition: "CIA jargon for bribery.",
+    type: "operations",
+  },
+  {
+    name: "Black Operations",
+    definition:
+      "An operation that is completely “off the books,” either highly secret, illegal, or outside an agency’s official charter.",
+    type: "operations",
+  },
+  {
+    name: "Blowback",
+    definition: "Any unintended (negative) consequences of an operation.",
+    type: "operations",
+  },
+  {
+    name: "Bureau Special",
+    definition:
+      "An FBI investigation carried on outside the framework of usual Bureau procedure with no files or records being maintained. Generally involves illegal or politically sensitive affairs.",
+    type: "operations",
+  },
+  {
+    name: "Buy-Bust Operation",
+    definition:
+      "Law enforcement operation designed to lure a drug dealer to a single purchase and arrest of the dealer immediately afterwards.",
+    type: "operations",
+  },
+  {
+    name: "Case Death",
+    definition:
+      "An operation that fails for no discernable reason. Usually provokes suspicion of a security leak.",
+    type: "operations",
+  },
+  {
+    name: "Clandestine",
+    definition:
+      "An operation that should go completely unseen, such as putting a rubber raft full of agents ashore in the dead of night.",
+    type: "operations",
+  },
+  {
+    name: "Counterterrorism",
+    definition: "Pre-emptive or retaliatory measures to fight terrorism.",
+    type: "operations",
+  },
+  {
+    name: "Covert",
+    definition:
+      "An operation that may be seen but should not be noticed, such as an agent entering a country through customs with false identification and a cover story.",
+    type: "operations",
+  },
+  {
+    name: "Covert Action",
+    definition:
+      "CIA jargon for attempting to secretly influence the affairs of another country.",
+    type: "operations",
+  },
+  {
+    name: "A Day at the Races",
+    definition:
+      "Delta Green slang for an operation used to train or evaluate a candidate.",
+    type: "operations",
+  },
+  {
+    name: "Destabilization",
+    definition:
+      "Creating chaos in a country for the purpose of replacing its government or paralyzing its foreign policy.",
+    type: "operations",
+  },
+  {
+    name: "Dirty Tricks",
+    definition: "CIA jargon for BLACK OPERATIONS and COVERT ACTION.",
+    type: "operations",
+  },
+  {
+    name: "Drain the Swamp",
+    definition:
+      "Slang for changing an environment to make it more difficult for a terrorist network to operate.",
+    type: "operations",
+  },
+  {
+    name: "Executive Action",
+    definition: "CIA euphemism for overthrowing a leader of a foreign country.",
+    type: "operations",
+  },
+  {
+    name: "False Flag",
+    definition:
+      "An operation designed to appear as though it is being carried out by someone other than those who actually planned and executed it.",
+    type: "operations",
+  },
+  {
+    name: "Joint Terrorism Task Force (JTTF)",
+    definition:
+      "A partnership between federal and local law enforcement agencies.",
+    type: "operations",
+  },
+  {
+    name: "Mowing the Grass",
+    definition:
+      "Undertaking difficult operations again and again with superficial results but no lasting effect. Often used in reference to counterinsurgency operations and drug enforcement.",
+    type: "operations",
+  },
+  {
+    name: "Narco-Terrorism",
+    definition:
+      "Terrorism financed by drug trafficking or meant to further the aims of drug traffickers.",
+    type: "operations",
+  },
+  {
+    name: "A Night at the Opera",
+    definition:
+      "Delta Green slang for a DG operation. Supplanted the term Psychotic Opera.",
+    type: "operations",
+  },
+  {
+    name: "Overt",
+    definition:
+      "An operation where no attempt is made to conceal the operation or the identities of those involved.",
+    type: "operations",
+  },
+  {
+    name: "Psychotic Opera",
+    definition:
+      "An old Delta Green slang term for a psychological warfare operation used as cover for a Delta Green operation. Supplanted by A NIGHT AT THE OPERA.",
+    type: "operations",
+  },
+  {
+    name: "Special Projects",
+    definition:
+      "CIA jargon for the tougher side of intelligence operations such as counterinsurgency warfare and paramilitary operations.",
+    type: "operations",
+  },
+  {
+    name: "Surgical Strike",
+    definition:
+      "A military operation with a limited objective, meant to be performed with precision and swiftness and to leave a limited footprint.",
+    type: "operations",
+  },
+  {
+    name: "Symmetrical Warfare",
+    definition: "Battle between equivalent forces.",
+    type: "operations",
+  },
+  {
+    name: "TDY",
+    definition:
+      "Temporary duty assignment, a brief (usually no more than two months) military deployment of an individual or team away from their unit. Sometimes written “TDA.”",
+    type: "operations",
+  },
+  {
+    name: "The Aquarium",
+    definition:
+      "Insider slang for the GRU, or Main Intelligence Directorate, Russia’s senior military intelligence agency.",
+    type: "organizations",
+  },
+  {
+    name: "Alphabet Soup",
+    definition:
+      "A reference to the many U.S. agencies known by their acronyms rather than full names (i.e., CIA, FBI, DEA, etc.)",
+    type: "organizations",
+  },
+  {
+    name: "Cell",
+    definition:
+      "A small group of a larger organization that is separated for security. Terrorist organizations and resistance groups are often organized into cells.",
+    type: "organizations",
+  },
+  {
+    name: "The Company",
+    definition: "Insider jargon for the CIA.",
+    type: "organizations",
+  },
+  {
+    name: "Cousins",
+    definition:
+      "British intelligence slang for the CIA, sometimes meant derogatorily.",
+    type: "organizations",
+  },
+  {
+    name: "Echelon",
+    definition:
+      "A global system for communication surveillance run by the Five Eyes",
+    type: "organizations",
+  },
+  {
+    name: "The Firm",
+    definition:
+      "British slang for MI-6, the British Secret Intelligence Service.",
+    type: "organizations",
+  },
+  {
+    name: "Five Eyes (FVEY)",
+    definition:
+      "An intelligence alliance between the U.S., U.K., Canada, New Zealand, and Australia.",
+    type: "organizations",
+  },
+  {
+    name: "Notional",
+    definition:
+      "A CIA-owned company that exists only on paper. For the FBI, a notional is a counterfeit subversive organization set up to draw members away from real subversive organizations.",
+    type: "organizations",
+  },
+  {
+    name: "Proprietary Company",
+    definition:
+      "A company owned and operated by an intelligence agency for the support of that agency’s operations. Air America was a CIA proprietary company.",
+    type: "organizations",
+  },
+  {
+    name: "Puzzle Palace",
+    definition:
+      "Slang for the NSA. NSA is often said to stand for “No Such Agency” or “Never Say Anything,” due to its extremely secret nature.",
+    type: "organizations",
+  },
+  {
+    name: "Siblings",
+    definition: "CIA slang for the Defense Intelligence Agency.",
+    type: "organizations",
+  },
+  {
+    name: "Anti-Terrorism",
+    definition: "Preventative measures to reduce vulnerability to terrorist attacks.",
+    type: "procedures",
+  },
+  {
+    name: "Assessment",
+    definition: "A 72-hour window when federal agents may legally conduct an investigation or surveillance without having a PREDICATE.",
+    type: "procedures",
+  },
+  {
+    name: "Biosafety Level",
+    definition: "The extent of biocontainment precautions required to isolate biological agents in a laboratory. The lowest, level 1, requires little more than hand washing and thorough cleaning. The highest, level 4, requires the use of CHEMTURION SPACE SUITS, multiple showers, a vacuum room, an ultraviolet light room, multiple airlocks, decontamination of all water and air coming into and going out of the laboratory, and other precautions.",
+    type: "procedures",
+  },
+  {
+    name: "Blind Date",
+    definition: "Meeting someone at their choice of time and place, with the accompanying risks of a set-up.",
+    type: "procedures",
+  },
+  {
+    name: "Blown",
+    definition: "To be exposed as an undercover agent.",
+    type: "procedures",
+  },
+  {
+    name: "Brush Pass",
+    definition: "A brief encounter between agent and officer in order to pass an item along.",
+    type: "procedures",
+  },
+  {
+    name: "Burned",
+    definition: "To be revealed or exposed as an undercover agent. Also a euphemism for being compromised by blackmail.",
+    type: "procedures",
+  },
+  {
+    name: "Cauterization",
+    definition: "Removing a compromised agent to safety, or dismantling or disposing of a compromised ASSET.",
+    type: "procedures",
+  },
+  {
+    name: "Clean-up",
+    definition: "Removing or obscuring evidence at a crime scene.",
+    type: "procedures",
+  },
+  {
+    name: "Close a Contract",
+    definition: "To kill or assassinate.",
+    type: "procedures",
+  },
+  {
+    name: "Cold Approach",
+    definition: "Attempting to recruit an agent without any prior indication that the target would want to work as a spy. Highly risky and seldom done.",
+    type: "procedures",
+  },
+  {
+    name: "Compartmentalization",
+    definition: "Limiting access to materials based on not only the material’s security classification but also the person reading the material’s need to know.",
+    type: "procedures",
+  },
+  {
+    name: "Cover",
+    definition: "A false identity for an agent or official pretext for an operation, meant to justify actions and provide PLAUSIBLE DENIABILITY.",
+    type: "procedures",
+  },
+  {
+    name: "Dead Drop",
+    definition: "A concealed or inconspicuous location where information can be left for retrieval by another operative.",
+    type: "procedures",
+  },
+  {
+    name: "Decon",
+    definition: "Slang for “decontaminate,” in reference to infectious diseases or chemical weapons.",
+    type: "procedures",
+  },
+  {
+    name: "DIOG",
+    definition: "The FBI’s Domestic Investigations and Operations Guide, which governs undercover operations, the use of informants, and steps that may be taken without a formal investigation to gain information that may be used to pressure someone into becoming an informant.",
+    type: "procedures",
+  },
+  {
+    name: "Dry Cleaning",
+    definition: "Losing a tail or surveillance team.",
+    type: "procedures",
+  },
+  {
+    name: "Exfiltration",
+    definition: "CLANDESTINE or COVERT removal of personnel from an area.",
+    type: "procedures",
+  },
+  {
+    name: "Extraction",
+    definition: "Evacuate personnel from an area.",
+    type: "procedures",
+  },
+  {
+    name: "Extraordinary Rendition",
+    definition: "Government-sponsored abduction and extrajudicial transfer of a person from one country to another, whether for prosecution or for interrogation in a location that allows methods that would be illegal elsewhere.",
+    type: "procedures",
+  },
+  {
+    name: "Ferret Searches",
+    definition: "Surprise CIA internal security inspection.",
+    type: "procedures",
+  },
+  {
+    name: "FISA Court",
+    definition: "Federal court established by the U.S. Foreign Intelligence Surveillance Act to secretly review surveillance warrant requests by the NSA and FBI.",
+    type: "procedures",
+  },
+  {
+    name: "Fix",
+    definition: "CIA jargon for compromise, blackmail, or misdirection.",
+    type: "procedures",
+  },
+  {
+    name: "Fluttered",
+    definition: "To be examined by a polygraph machine.",
+    type: "procedures",
+  },
+  {
+    name: "Fumigating",
+    definition: "Checking an area for surveillance devices.",
+    type: "procedures",
+  },
+  {
+    name: "Go to Ground",
+    definition: "Go into hiding.",
+    type: "procedures",
+  },
+  {
+    name: "Honey Trap",
+    definition: "Using sex to lure an agent into a compromising position and open him or her to blackmail.",
+    type: "procedures",
+  },
+  {
+    name: "Isolation",
+    definition: "CIA code for attending the training facility known as THE FARM.",
+    type: "procedures",
+  },
+  {
+    name: "Legend",
+    definition: "A fake biography to give a spy COVER.",
+    type: "procedures",
+  },
+  {
+    name: "Make",
+    definition: "To recognize someone.",
+    type: "procedures",
+  },
+  {
+    name: "Making a Pass",
+    definition: "Physically passing a message to or from a courier or agent, typically using a BRUSH PASS or a DEAD DROP.",
+    type: "procedures",
+  },
+  {
+    name: "Measles",
+    definition: "To “die from measles” is to have been assassinated by means that make the death appear natural.",
+    type: "procedures",
+  },
+  {
+    name: "Moonlight Extradition",
+    definition: "An EXTRAORDINARY RENDITION.",
+    type: "procedures",
+  },
+  {
+    name: "Naked",
+    definition: "An intelligence operative working without cover or backup.",
+    type: "procedures",
+  },
+  {
+    name: "Neutralize",
+    definition: "To kill or assassinate. For the FBI, to “neutralize” means to damage the target’s political credibility.",
+    type: "procedures",
+  },
+  {
+    name: "Nuke",
+    definition: "Biocontainment euphemism for attempting to render a HOT ZONE sterile.",
+    type: "procedures",
+  },
+  {
+    name: "OPSEC",
+    definition: "Operational security. Steps taken to ensure the operation’s secrecy and success.",
+    type: "procedures",
+  },
+  {
+    name: "Playback",
+    definition: "To have a captured agent report disinformation back to his or her superiors as if he or she were still operating normally.",
+    type: "procedures",
+  },
+  {
+    name: "Plumbing",
+    definition: "Work undertaken to prepare for a major operation, usually involving reconnaissance. This work is carried out by “plumbers.”",
+    type: "procedures",
+  },
+  {
+    name: "Predicate",
+    definition: "Information that clearly suggests an individual has violated federal law and therefore may be investigated by federal agents.",
+    type: "procedures",
+  },
+  {
+    name: "Quarantine",
+    definition: "Isolation of an individual, group, or (rarely) area due to a communicable health risk.",
+    type: "procedures",
+  },
+  {
+    name: "Radiological Operation",
+    definition: "Using radioactive materials to cause casualties or restrict the use of terrain.",
+    type: "procedures",
+  },
+  {
+    name: "Rolled Up",
+    definition: "When an operation goes bad and an agent, or even an entire network, is arrested.",
+    type: "procedures",
+  },
+  {
+    name: "Sanction",
+    definition: "To kill or assassinate.",
+    type: "procedures",
+  },
+  {
+    name: "Sanitize",
+    definition: "To remove all evidence of an agency’s involvement in an operation. Often refers to the use of stolen cars, false I.D., and untraceable equipment.",
+    type: "procedures",
+  },
+  {
+    name: "Snitch Jacketing",
+    definition: "FBI technique for making a member of a subversive or organized-crime group appear to be an informer. The result is that the target must come to the FBI and become an informer or witness in order to gain government protection from his or her now-suspicious",
+    type: "procedures",
+  },
+  {
+    name: "Sterilization",
+    definition: "Unequivocal, total destruction of all HOT AGENTS in a HOT ZONE. Extremely difficult to achieve in practice and almost impossible to verify afterwards.",
+    type: "procedures",
+  },
+  {
+    name: "Toss",
+    definition: "To surreptitiously enter and search a target’s domicile.",
+    type: "procedures",
+  },
+  {
+    name: "Wetwork",
+    definition: "Assassination. Originally from a Russian euphemism: “to wet the ground” (e.g., with blood).",
+    type: "procedures",
+  },
+  {
+    name: "Window Dressing",
+    definition: "Ancillary details to make a legend or an operation’s cover more convincing.",
+    type: "procedures",
+  },
+];

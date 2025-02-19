@@ -15,7 +15,7 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { ViewportProvider } from "./contexts/ViewportContext.tsx";
-import { FormattedLoader } from "./components/Rules/FormattedLoader.tsx";
+import { FormattedLoader } from "./components/FormattedLoader.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const Directory = lazy(() => import("./components/Directory/index.tsx"));
@@ -31,6 +31,8 @@ const CreateAnAgent = lazy(
   () => import("./components/CreateAnAgent/index.tsx")
 );
 const AgentRoster = lazy(() => import("./components/AgentRoster/index.tsx"));
+const Tradecraft = lazy(() => import("./components/Tradecraft/index.tsx"));
+const Glossary = lazy(() => import("./components/Glossary/index.tsx"));
 
 const router = createHashRouter([
   {
@@ -98,6 +100,22 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <CharacterSheet />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/agents/tradecraft",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Tradecraft />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/agents/glossary",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Glossary />
           </Suspense>
         ),
       },

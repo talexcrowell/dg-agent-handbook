@@ -22,8 +22,10 @@ import {
   IconNotebook,
   IconPackages,
   IconSearch,
+  IconSpy,
   IconUserPlus,
   IconUsers,
+  IconVocabulary,
   IconWorld,
 } from "@tabler/icons-react";
 import { useState } from "react";
@@ -34,6 +36,7 @@ export const Navbar = () => {
   const location = useLocation();
   const { width } = useViewportSize();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <Container size="xl" h={"100%"}>
@@ -93,8 +96,10 @@ export const Navbar = () => {
               active={location.pathname.includes("/agents")}
               leftSection={<IconAddressBook />}
               styles={{
-                children: { backgroundColor: "3b3b3b", paddingLeft: 0 },
+                children: { backgroundColor: "#3b3b3b", paddingLeft: 0 },
               }}
+              opened={menuOpen}
+              onClick={()=>setMenuOpen(true)}
             >
               <NavLink
                 autoContrast
@@ -103,6 +108,7 @@ export const Navbar = () => {
                 to={`/agents`}
                 active={location.pathname.includes("/agents/roster")}
                 leftSection={<IconUsers />}
+                onClick={() => setMenuOpen(false)}
               />
               <NavLink
                 autoContrast
@@ -111,6 +117,25 @@ export const Navbar = () => {
                 to={`/agents/new`}
                 active={location.pathname.includes("/agents/new")}
                 leftSection={<IconUserPlus />}
+                onClick={() => setMenuOpen(false)}
+              />
+              <NavLink
+                autoContrast
+                label="Tradecraft"
+                component={Link}
+                to={`/agents/tradecraft`}
+                active={location.pathname.includes("/agents/tradecraft")}
+                leftSection={<IconSpy />}
+                onClick={() => setMenuOpen(false)}
+              />
+              <NavLink
+                autoContrast
+                label="Glossary"
+                component={Link}
+                to={`/agents/glossary`}
+                active={location.pathname.includes("/agents/glossary")}
+                leftSection={<IconVocabulary />}
+                onClick={() => setMenuOpen(false)}
               />
             </NavLink>
           </Grid.Col>
@@ -187,6 +212,24 @@ export const Navbar = () => {
           active={location.pathname.includes("/agents")}
           leftSection={<IconAddressBook />}
         >
+          <NavLink
+            autoContrast
+            label="Tradecraft"
+            component={Link}
+            to={`/agents/tradecraft`}
+            active={location.pathname.includes("/agents/tradecraft")}
+            leftSection={<IconSpy />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
+            label="Glossary"
+            component={Link}
+            to={`/agents/glossary`}
+            active={location.pathname.includes("/agents/glossary")}
+            leftSection={<IconVocabulary />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
           <NavLink
             autoContrast
             label="Agent Roster"

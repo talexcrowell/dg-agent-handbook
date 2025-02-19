@@ -179,7 +179,7 @@ export const DeltaGreen = () => {
       {tabValue !== "overview" && viewport.width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"95vh"}>
-            <Group py="md">
+            <Group pb="sm">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>

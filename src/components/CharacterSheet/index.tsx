@@ -35,6 +35,7 @@ import { useCharacterContext } from "../../contexts/CharacterContext";
 import { useEffect, useState } from "react";
 import { Settings } from "./pages/Settings";
 
+
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
   const [{ currentCharacter }] = useCharacterContext();
