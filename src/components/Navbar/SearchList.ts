@@ -825,6 +825,90 @@ export const searchList = [
     header: "Public Safety (Official Requisition Only)",
   },
   {
+    chapter: "Professions",
+    section: "Stats and Skills",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Statistics",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Statistic Definitions",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Attributes",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Attribute Definitions",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Base Rating",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "How Skills Work",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Common Knowledge",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Using Libraries",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Improving Skills",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Special Training",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skills",
+    subheader: "Skill (Types)",
+  },
+  {
+    chapter: "Professions",
+    section: "Stats and Skills",
+    header: "Skill Definitions",
+  },
+  {
+    chapter: "Professions",
+    section: "Profession List",
+  },
+  {
+    chapter: "Professions",
+    section: "Bonus Skill Package List",
+  },
+  {
     chapter: "Tradecraft",
     section: "",
     header: "Going Unnoticed",

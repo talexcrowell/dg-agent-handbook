@@ -2,6 +2,7 @@ import {
   Box,
   Breadcrumbs,
   Card,
+  Divider,
   Group,
   HoverCard,
   NavLink,
@@ -19,7 +20,6 @@ import styles from "../../Element.module.css";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [opened, setOpened] = useState(false);
 
   const fuse = new Fuse(searchList, {
     keys: ["section", "header", "subheader"],
@@ -49,6 +49,9 @@ export const SearchBar = () => {
       case "Equipment and Services":
         chapter = "equipment-and-services";
         break;
+      case "Professions":
+        chapter = "agents/professions";
+        break;
       case "Tradecraft":
         chapter = "agents/tradecraft";
         break;
@@ -61,12 +64,11 @@ export const SearchBar = () => {
   };
 
   const handleSearchTerm = (val) => {
-    setOpened(true);
     return setSearchTerm(val);
   };
 
   return (
-    <Popover opened={opened}>
+    <Popover>
       <Popover.Target>
         <TextInput
           py={3}
@@ -79,13 +81,12 @@ export const SearchBar = () => {
       <Popover.Dropdown p="0">
         {results.length > 0 ? (
           <Stack gap="0" px="0">
-            <Box p="xs">
-              <Group>
-                <Text size="xs" c="dimmed" td="italic">
-                  Navigate to:{" "}
-                </Text>
-              </Group>
-            </Box>
+            <Group p="xs" styles={{ root: { backgroundColor: "#3b3b3b" } }}>
+              <Text size="xs" c="dimmed" td="italic">
+                Navigate to:{" "}
+              </Text>
+            </Group>
+            <Divider />
             {results.slice(0, 5).map((result: any) => {
               return (
                 <NavLink
@@ -119,7 +120,6 @@ export const SearchBar = () => {
                     result.item.subheader
                   )}
                   className={styles.hoverElement}
-                  onClick={() => setOpened(false)}
                 />
               );
             })}
