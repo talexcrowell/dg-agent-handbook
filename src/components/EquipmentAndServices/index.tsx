@@ -191,4 +191,4 @@ export const EquipmentAndServices = () => {
   );
 };
 
-export default useMemo(() => <EquipmentAndServices />, []);
+export default EquipmentAndServices;
