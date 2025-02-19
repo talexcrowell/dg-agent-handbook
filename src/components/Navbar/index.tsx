@@ -92,7 +92,7 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={2}>
             <NavLink
-              label="Agent Resources"
+              label={width > 1284 ? "Agent Resources" : "Agent Res..."}
               active={location.pathname.includes("/agents")}
               leftSection={<IconAddressBook />}
               styles={{

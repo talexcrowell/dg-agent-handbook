@@ -12,9 +12,11 @@ import {
 } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 import { useEffect, useRef } from "react";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const Tradecraft = () => {
   const reinitializeRef = useRef(() => {});
+  const [viewport] = useViewportContext();
 
   useEffect(() => {
     reinitializeRef.current();
@@ -22,7 +24,7 @@ export const Tradecraft = () => {
 
   return (
     <Grid gutter={"md"}>
-      <Grid.Col span={10} pb='0'>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <ScrollArea h={"92vh"} w={"auto"} scrollbars="y">
           <Stack id="tradecraft" px="md">
             <Title td="underline">Tradecraft</Title>
@@ -438,29 +440,31 @@ export const Tradecraft = () => {
           </Stack>
         </ScrollArea>
       </Grid.Col>
-      <Grid.Col span={2}>
-        <ScrollArea h={"85vh"}>
-          <Group pb="sm">
-            <IconList />
-            <Text>Table of Contents</Text>
-          </Group>
-          <Divider />
-          <TableOfContents
-            variant="none"
-            color="blue"
-            size="sm"
-            radius="sm"
-            reinitializeRef={reinitializeRef}
-            scrollSpyOptions={{
-              selector: `#tradecraft :is(h2, h3, h4, h5, h6)`,
-            }}
-            getControlProps={({ data }) => ({
-              onClick: () => data.getNode().scrollIntoView(),
-              children: data.value,
-            })}
-          />
-        </ScrollArea>
-      </Grid.Col>
+      {viewport.width > 992 && (
+        <Grid.Col span={2}>
+          <ScrollArea h={"85vh"}>
+            <Group pb="sm">
+              <IconList />
+              <Text>Table of Contents</Text>
+            </Group>
+            <Divider />
+            <TableOfContents
+              variant="none"
+              color="blue"
+              size="sm"
+              radius="sm"
+              reinitializeRef={reinitializeRef}
+              scrollSpyOptions={{
+                selector: `#tradecraft :is(h2, h3, h4, h5, h6)`,
+              }}
+              getControlProps={({ data }) => ({
+                onClick: () => data.getNode().scrollIntoView(),
+                children: data.value,
+              })}
+            />
+          </ScrollArea>
+        </Grid.Col>
+      )}
     </Grid>
   );
 };
