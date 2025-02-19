@@ -38,7 +38,7 @@ export const Vehicles = () => {
   };
 
   return (
-    <ScrollArea h={"92vh"}>
+    <ScrollArea h={"93vh"}>
       <Grid
         p={viewport.width > 600 ? "md" : 0}
         gutter={viewport.width > 600 ? "md" : "0"}

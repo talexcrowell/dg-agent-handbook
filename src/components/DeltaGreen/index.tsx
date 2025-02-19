@@ -24,6 +24,7 @@ import { useEffect, useRef, useState } from "react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import styles from "../../Element.module.css";
 
 export const DeltaGreen = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ export const DeltaGreen = () => {
 
   return (
     <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb='0'>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="overview"
           orientation="vertical"
@@ -145,12 +146,12 @@ export const DeltaGreen = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
@@ -160,26 +161,26 @@ export const DeltaGreen = () => {
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-to-play-an-agent">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <HowToPlayAnAgent />
             </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {tabValue !== "overview" && viewport.width > 992 && (
-        <Grid.Col span={2}>
-          <ScrollArea h={"95vh"}>
-            <Group pb="sm">
+        <Grid.Col span={2} pb={0}>
+          <ScrollArea h={"93vh"}>
+            <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>

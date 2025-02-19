@@ -46,7 +46,7 @@ export const Rules = () => {
 
   return (
     <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb='0'>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="how-to-play"
           orientation="vertical"
@@ -122,22 +122,22 @@ export const Rules = () => {
             </Affix>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <HowToPlay />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <Combat />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <Sanity />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea h={"92vh"}>
+            <ScrollArea h={"93vh"}>
               <Home />
             </ScrollArea>
           </Tabs.Panel>
@@ -147,9 +147,9 @@ export const Rules = () => {
         </Tabs>
       </Grid.Col>
       {tabValue !== "training-video" && viewport.width > 992 && (
-        <Grid.Col span={2}>
-          <ScrollArea h={"92vh"}>
-            <Group pb="sm">
+        <Grid.Col span={2} pb={0}>
+          <ScrollArea h={"93vh"}>
+            <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>

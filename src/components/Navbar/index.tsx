@@ -39,9 +39,9 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <Container size="xl" h={"100%"}>
+    <Container size="xl">
       {width > 992 ? (
-        <Grid gutter={"0"}>
+        <Grid gutter={"0"} align="center">
           <Grid.Col span={2}>
             <NavLink
               leftSection={<IconList />}
@@ -99,7 +99,7 @@ export const Navbar = () => {
                 children: { backgroundColor: "#3b3b3b", paddingLeft: 0 },
               }}
               opened={menuOpen}
-              onClick={()=>setMenuOpen(!menuOpen)}
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               <NavLink
                 autoContrast
@@ -214,24 +214,6 @@ export const Navbar = () => {
         >
           <NavLink
             autoContrast
-            label="Tradecraft"
-            component={Link}
-            to={`/agents/tradecraft`}
-            active={location.pathname.includes("/agents/tradecraft")}
-            leftSection={<IconSpy />}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <NavLink
-            autoContrast
-            label="Glossary"
-            component={Link}
-            to={`/agents/glossary`}
-            active={location.pathname.includes("/agents/glossary")}
-            leftSection={<IconVocabulary />}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <NavLink
-            autoContrast
             label="Agent Roster"
             component={Link}
             to={`/agents`}
@@ -246,6 +228,24 @@ export const Navbar = () => {
             to={`/agents/new`}
             active={location.pathname.includes("/agents/new")}
             leftSection={<IconUserPlus />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
+            label="Tradecraft"
+            component={Link}
+            to={`/agents/tradecraft`}
+            active={location.pathname.includes("/agents/tradecraft")}
+            leftSection={<IconSpy />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
+            label="Glossary"
+            component={Link}
+            to={`/agents/glossary`}
+            active={location.pathname.includes("/agents/glossary")}
+            leftSection={<IconVocabulary />}
             onClick={() => setMobileMenuOpen(false)}
           />
         </NavLink>

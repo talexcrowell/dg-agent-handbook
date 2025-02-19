@@ -164,9 +164,9 @@ export const EquipmentAndServices = () => {
         </Tabs>
       </Grid.Col>
       {viewport.width > 992 && tabValue !== "search" && (
-        <Grid.Col span={2}>
-          <ScrollArea h={"92vh"}>
-            <Group pb="sm">
+        <Grid.Col span={2} pb={0}>
+          <ScrollArea h={"93vh"} >
+            <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>

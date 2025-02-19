@@ -5,7 +5,7 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const HowToPlayAnAgent = () => {
   const [viewport] = useViewportContext();
   return (
-    <ScrollArea h={"95vh"}>
+    <ScrollArea h={"92vh"}>
       <Grid
         ta="start"
         p={viewport.width > 600 ? "md" : 0}
