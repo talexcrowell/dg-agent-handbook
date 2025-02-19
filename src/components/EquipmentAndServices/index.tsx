@@ -16,18 +16,24 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import Overview from "./pages/Overview";
+import Weapons from "./pages/Weapons";
 import { FormattedLoader } from "../FormattedLoader";
+import Armor from "./pages/Armor";
+import Vehicles from "./pages/Vehicles";
+import GearsAndServices from "./pages/GearAndServices";
+import Search from "./pages/Search";
 
-const Weapons = lazy(() => import("./pages/Weapons"));
-const Armor = lazy(() => import("./pages/Armor"));
-const Vehicles = lazy(() => import("./pages/Vehicles"));
-const GearsAndServices = lazy(() => import("./pages/GearAndServices"));
-const Search = lazy(() => import("./pages/Search"));
+// const Weapons = lazy(() => import("./pages/Weapons"));
+const WeaponsList = useMemo(() => Weapons, []);
+const ArmorList = useMemo(() => Armor, []);
+const VehiclesList = useMemo(() => Vehicles, []);
+const GearsAndServicesList = useMemo(() => GearsAndServices, []);
+const SearchComponent = useMemo(() => Search, []);
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,7 +52,10 @@ export const EquipmentAndServices = () => {
 
   return (
     <Grid pb={0}>
-      <Grid.Col span={viewport.width > 992 && tabValue !== "search" ? 10 : 12} pb='0'>
+      <Grid.Col
+        span={viewport.width > 992 && tabValue !== "search" ? 10 : 12}
+        pb="0"
+      >
         <Tabs
           defaultValue="overview"
           orientation="vertical"
@@ -137,35 +146,25 @@ export const EquipmentAndServices = () => {
             <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="weapons">
-            <Suspense fallback={<FormattedLoader />}>
-              <Weapons />
-            </Suspense>
+            <WeaponsList />
           </Tabs.Panel>
           <Tabs.Panel value="armor">
-            <Suspense fallback={<FormattedLoader />}>
-              <Armor />
-            </Suspense>
+            <ArmorList />
           </Tabs.Panel>
           <Tabs.Panel value="vehicles">
-            <Suspense fallback={<FormattedLoader />}>
-              <Vehicles />
-            </Suspense>
+            <VehiclesList />
           </Tabs.Panel>
           <Tabs.Panel value="gear-and-services">
-            <Suspense fallback={<FormattedLoader />}>
-              <GearsAndServices />
-            </Suspense>
+            <GearsAndServicesList />
           </Tabs.Panel>
           <Tabs.Panel value="search">
-            <Suspense fallback={<FormattedLoader />}>
-              <Search />
-            </Suspense>
+            <SearchComponent />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {viewport.width > 992 && tabValue !== "search" && (
         <Grid.Col span={2} pb={0}>
-          <ScrollArea h={"93vh"} >
+          <ScrollArea h={"93vh"}>
             <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>
@@ -192,4 +191,4 @@ export const EquipmentAndServices = () => {
   );
 };
 
-export default EquipmentAndServices;
+export default useMemo(() => <EquipmentAndServices />, []);
