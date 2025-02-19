@@ -99,7 +99,7 @@ export const Navbar = () => {
                 children: { backgroundColor: "#3b3b3b", paddingLeft: 0 },
               }}
               opened={menuOpen}
-              onClick={()=>setMenuOpen(true)}
+              onClick={()=>setMenuOpen(!menuOpen)}
             >
               <NavLink
                 autoContrast
