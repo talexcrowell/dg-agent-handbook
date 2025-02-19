@@ -39,9 +39,9 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <Container size="xl">
+    <Container size="xl" h={"100%"}>
       {width > 992 ? (
-        <Grid gutter={"0"} align="center">
+        <Grid gutter={"0"} my={1}>
           <Grid.Col span={2}>
             <NavLink
               leftSection={<IconList />}

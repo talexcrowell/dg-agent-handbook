@@ -6,6 +6,7 @@ import {
   List,
   Modal,
   ScrollArea,
+  Space,
   Stack,
   Table,
   Text,
@@ -341,6 +342,11 @@ export const Overview = () => {
               Costs on the black market are typically high. Make a Luck roll. If
               it fails, the item is one expense level greater than usual.
             </Text>
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
       </Grid>

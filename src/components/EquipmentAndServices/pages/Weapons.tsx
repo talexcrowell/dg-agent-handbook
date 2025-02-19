@@ -9,6 +9,7 @@ import {
   Modal,
   ScrollArea,
   SimpleGrid,
+  Space,
   Stack,
   Table,
   Text,
@@ -924,6 +925,11 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
         <Drawer

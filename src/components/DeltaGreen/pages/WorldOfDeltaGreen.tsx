@@ -1,4 +1,4 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -69,6 +69,11 @@ export const WorldOfDeltaGreen = () => {
               Taken together, these add up to the illusion of order that covers
               our haunted world.
             </Text>
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
       </Grid>

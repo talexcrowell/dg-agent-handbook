@@ -1,9 +1,9 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Sanity = () => {
-    const [viewport] = useViewportContext();
+  const [viewport] = useViewportContext();
   return (
     <Grid
       p={viewport.width > 600 ? "md" : 0}
@@ -310,7 +310,11 @@ export const Sanity = () => {
             it. This can mean your Agent gains more SAN from overcoming the
             threat than he or she actually lost from facing it.
           </Text>
-          <Divider />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

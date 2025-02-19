@@ -1,4 +1,4 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -618,8 +618,8 @@ export const Combat = () => {
             a failure, he or she suffers full damage and must make the CON×5
             test again after another Speed interval. A fumbled CON test doubles
             the damage. While under the effects of a disease, the Agent cannot
-            gain Hit Points back. Hospitalization grants a +20% bonus to the
-            CON test.
+            gain Hit Points back. Hospitalization grants a +20% bonus to the CON
+            test.
           </Text>
           <Text>
             Serious diseases may come with a penalty to the CON test. A
@@ -705,6 +705,11 @@ export const Combat = () => {
             Exposure to warmth and shelter restores 1 point of CON per minute.
             Hit Points heal normally.
           </Text>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

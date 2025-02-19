@@ -1,4 +1,4 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -138,6 +138,11 @@ export const WhatIsDeltaGreen = () => {
               In Delta Green the mission comes first, and death is the only sure
               way out.
             </Text>
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
       </Grid>

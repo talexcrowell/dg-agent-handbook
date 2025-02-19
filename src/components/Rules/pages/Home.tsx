@@ -1,4 +1,4 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -270,7 +270,11 @@ export const Home = () => {
             your Agent winds up in prison, on probation, and/or hit with
             catastrophic fines is up to the Handler.
           </Text>
-          <Divider />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

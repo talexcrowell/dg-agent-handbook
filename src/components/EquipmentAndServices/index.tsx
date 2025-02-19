@@ -45,7 +45,7 @@ export const EquipmentAndServices = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={viewport.width > 760 ? 0 : 60} pt={viewport.width > 760 ? 0 : 10}>
+    <Grid pb={0}>
       <Grid.Col span={viewport.width > 992 && tabValue !== "search" ? 10 : 12} pb='0'>
         <Tabs
           defaultValue="overview"

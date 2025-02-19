@@ -1,4 +1,4 @@
-import { Divider, Grid, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -101,7 +101,11 @@ export const Fundamentals = () => {
               you reveal the group’s secrets, no matter the circumstances, you
               become the operation.
             </Text>
-            <Divider />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
       </Grid>

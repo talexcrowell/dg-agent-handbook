@@ -2,6 +2,7 @@ import {
   Grid,
   Group,
   ScrollArea,
+  Space,
   Stack,
   Table,
   Title,
@@ -40,7 +41,7 @@ export const GearsAndServices = () => {
     return str;
   };
   return (
-    <ScrollArea h={"92vh"}>
+    <ScrollArea h={"93vh"}>
       <Grid
         p={viewport.width > 600 ? "md" : 0}
         gutter={viewport.width > 600 ? "md" : "0"}
@@ -937,6 +938,11 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </Grid.Col>
       </Grid>

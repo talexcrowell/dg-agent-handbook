@@ -42,7 +42,7 @@ export const DeltaGreen = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={viewport.width > 600 ? 0 : 60} pt={viewport.width > 600 ? 0 : 10}>
+    <Grid pb={0}>
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="overview"

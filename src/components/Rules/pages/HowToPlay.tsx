@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ScrollArea,
+  Space,
   Stack,
   Table,
   Text,
@@ -574,6 +575,11 @@ export const HowToPlay = () => {
             sedatives, the Handler has good reason to say the disorder takes the
             form of an addiction to them.
           </Text>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>
