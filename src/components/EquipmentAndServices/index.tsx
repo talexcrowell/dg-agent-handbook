@@ -16,24 +16,18 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import Overview from "./pages/Overview";
-import Weapons from "./pages/Weapons";
 import { FormattedLoader } from "../FormattedLoader";
-import Armor from "./pages/Armor";
-import Vehicles from "./pages/Vehicles";
-import GearsAndServices from "./pages/GearAndServices";
-import Search from "./pages/Search";
 
-// const Weapons = lazy(() => import("./pages/Weapons"));
-const WeaponsList = useMemo(() => Weapons, []);
-const ArmorList = useMemo(() => Armor, []);
-const VehiclesList = useMemo(() => Vehicles, []);
-const GearsAndServicesList = useMemo(() => GearsAndServices, []);
-const SearchComponent = useMemo(() => Search, []);
+const Weapons = lazy(() => import("./pages/Weapons"));
+const Armor = lazy(() => import("./pages/Armor"));
+const Vehicles = lazy(() => import("./pages/Vehicles"));
+const GearsAndServices = lazy(() => import("./pages/GearAndServices"));
+const Search = lazy(() => import("./pages/Search"));
 
 export const EquipmentAndServices = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -146,19 +140,29 @@ export const EquipmentAndServices = () => {
             <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="weapons">
-            <WeaponsList />
+            <Suspense fallback={<FormattedLoader />}>
+              <Weapons />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="armor">
-            <ArmorList />
+            <Suspense fallback={<FormattedLoader />}>
+              <Armor />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="vehicles">
-            <VehiclesList />
+            <Suspense fallback={<FormattedLoader />}>
+              <Vehicles />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="gear-and-services">
-            <GearsAndServicesList />
+            <Suspense fallback={<FormattedLoader />}>
+              <GearsAndServices />
+            </Suspense>
           </Tabs.Panel>
           <Tabs.Panel value="search">
-            <SearchComponent />
+            <Suspense fallback={<FormattedLoader />}>
+              <Search />
+            </Suspense>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
