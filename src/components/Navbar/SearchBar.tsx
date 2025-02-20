@@ -18,7 +18,7 @@ import { searchList } from "./SearchList";
 import { Link } from "react-router-dom";
 import styles from "../../Element.module.css";
 
-export const SearchBar = () => {
+export const SearchBar = ({ setMobileMenuOpen }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const fuse = new Fuse(searchList, {
@@ -75,7 +75,7 @@ export const SearchBar = () => {
           mx={3}
           leftSection={<IconSearch />}
           onChange={(e) => handleSearchTerm(e.currentTarget.value)}
-          placeholder="Search"
+          placeholder="Search Handbook"
         />
       </Popover.Target>
       <Popover.Dropdown p="0">
@@ -120,6 +120,7 @@ export const SearchBar = () => {
                     result.item.subheader
                   )}
                   className={styles.hoverElement}
+                  onClick={() => setMobileMenuOpen(false)}
                 />
               );
             })}

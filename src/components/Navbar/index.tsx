@@ -2,6 +2,7 @@ import {
   ActionIcon,
   ActionIconGroup,
   Container,
+  Drawer,
   Flex,
   Grid,
   Group,
@@ -179,12 +180,12 @@ export const Navbar = () => {
           <Grid.Col span={4} justify="end"></Grid.Col>
         </Grid>
       )}
-      <Modal
+      <Drawer
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
-        fullScreen
-        title="Agent Handbook Menu"
+        title="Agent Handbook"
       >
+        {mobileMenuOpen && <SearchBar setMobileMenuOpen={setMobileMenuOpen} />}
         <NavLink
           label="Directory"
           component={Link}
@@ -259,7 +260,7 @@ export const Navbar = () => {
             onClick={() => setMobileMenuOpen(false)}
           />
         </NavLink>
-      </Modal>
+      </Drawer>
     </Container>
   );
 };

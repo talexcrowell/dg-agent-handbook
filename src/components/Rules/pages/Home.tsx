@@ -1,6 +1,17 @@
-import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
+import {
+  Anchor,
+  Divider,
+  Grid,
+  Group,
+  ScrollArea,
+  Space,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [viewport] = useViewportContext();
@@ -177,6 +188,15 @@ export const Home = () => {
             reduces one Bond (other than a Bond for Delta Green) by 1 as you let
             other responsibilities lapse.
           </Text>
+          <Group gap={5}>
+            <Text>You can read more about special training in</Text>
+            <Anchor
+              component={Link}
+              to="/agents/professions/stats-and-skills#special-training"
+            >
+              Professions.
+            </Anchor>
+          </Group>
           <Title order={3} id="stay-on-the-case">
             Stay On the Case
           </Title>
