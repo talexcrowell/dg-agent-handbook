@@ -674,6 +674,20 @@ export const searchList = [
   {
     chapter: "Equipment and Services",
     section: "Weapons",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Concealment",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Bright Lights",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
     header: "Hand-to-Hand Weapons",
   },
   {
@@ -695,6 +709,30 @@ export const searchList = [
     chapter: "Equipment and Services",
     section: "Weapons",
     header: "Firearms",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Firearms",
+    subheader: "Pistols",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Firearms",
+    subheader: "Shotguns",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Firearms",
+    subheader: "Submachine Guns",
+  },
+  {
+    chapter: "Equipment and Services",
+    section: "Weapons",
+    header: "Firearms",
+    subheader: "Rifles and Carbines",
   },
   {
     chapter: "Equipment and Services",

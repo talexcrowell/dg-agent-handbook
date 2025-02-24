@@ -49,7 +49,9 @@ export const GearsAndServices = () => {
       >
         <Grid.Col span={12}>
           <Stack gap="lg">
-            <Title td="underline">Transportation</Title>
+            <Title td="underline" id="transportation">
+              Transportation
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -102,7 +104,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Lodgings</Title>
+            <Title td="underline" id="lodgings">
+              Lodgings
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -153,7 +157,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Covers and Legends</Title>
+            <Title td="underline" id="covers-and-legends">
+              Covers and Legends
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -206,7 +212,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Storage</Title>
+            <Title td="underline" id="storage">
+              Storage
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -257,7 +265,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Restraints</Title>
+            <Title td="underline" id="restraints">
+              Restraints
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -308,7 +318,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Research</Title>
+            <Title td="underline" id="research">
+              Research
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -359,7 +371,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Communications and Computers</Title>
+            <Title td="underline" id="communications-and-computers">
+              Communications and Computers
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -413,7 +427,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Surveillance</Title>
+            <Title td="underline" id="surveillance">
+              Surveillance
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -464,7 +480,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Lighting and Vision</Title>
+            <Title td="underline" id="lighting-and-vision">
+              Lighting and Vision
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -517,7 +535,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Breaking and Entering</Title>
+            <Title td="underline" id="breaking-and-entering">
+              Breaking and Entering
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -570,7 +590,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Emergency and Survival</Title>
+            <Title td="underline" id="emergency-and-survival">
+              Emergency and Survival
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -624,7 +646,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Off-the-books Medical Care</Title>
+            <Title td="underline" id="off-the-books-medical-care">
+              Off-the-books Medical Care
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -675,7 +699,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Weapon Accessories</Title>
+            <Title td="underline" id="weapon-accessories">
+              Weapon Accessories
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -726,7 +752,10 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">
+            <Title
+              td="underline"
+              id="law-enforcement-(official-requisition-only)"
+            >
               Law Enforcement (Official Requisition Only)
             </Title>
             <Table withTableBorder highlightOnHover striped>
@@ -781,7 +810,9 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">Military (Official Requisition Only)</Title>
+            <Title td="underline" id="military-(official-requisition-only)">
+              Military (Official Requisition Only)
+            </Title>
             <Table withTableBorder highlightOnHover striped>
               <Table.Thead>
                 <Table.Tr>
@@ -832,7 +863,7 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">
+            <Title td="underline" id="intelligence-(official-requisition-only)">
               Intelligence (Official Requisition Only)
             </Title>
             <Table withTableBorder highlightOnHover striped>
@@ -885,7 +916,10 @@ export const GearsAndServices = () => {
                   })}
               </Table.Tbody>
             </Table>
-            <Title td="underline">
+            <Title
+              td="underline"
+              id="public-safety-(official-requisition-only)"
+            >
               Public Safety (Official Requisition Only)
             </Title>
             <Table withTableBorder highlightOnHover striped>
