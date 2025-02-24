@@ -235,6 +235,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="tear-gas-and-pepper-spray">
               Tear Gas and Pepper Spray
             </Title>
@@ -344,6 +345,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="stun-grenades">
               Stun Grenades
             </Title>
@@ -452,6 +454,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="electroshock-weapons">
               Electroshock Weapons
             </Title>
@@ -557,6 +560,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="firearms">
               Firearms
             </Title>
@@ -768,6 +772,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="heavy-weapons">
               Heavy Weapons
             </Title>
@@ -892,6 +897,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="demolitions">
               Demolitions
             </Title>
@@ -1002,6 +1008,7 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+            <Divider />
             <Title td="underline" order={2} id="artillery">
               Artillery
             </Title>
