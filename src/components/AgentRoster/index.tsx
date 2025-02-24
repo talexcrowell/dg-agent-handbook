@@ -203,7 +203,7 @@ export const AgentRoster = () => {
                                 View
                               </Button>
                               <Button
-                                onClick={() => handleExport(agent)}
+                                onClick={() => handleExport({...agent})}
                                 leftSection={<IconShare />}
                               >
                                 Export
