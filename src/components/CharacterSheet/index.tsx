@@ -141,7 +141,7 @@ export const CharacterSheet: React.FC = () => {
           </Tabs.List>
         )}
         <Tabs.Panel value="all">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -164,7 +164,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="personal">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -172,7 +172,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="skills">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Skills
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -180,7 +180,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -188,7 +188,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="notes">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -196,7 +196,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "88vh"}>
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Settings currentCharacter={character} />
           </ScrollArea>
         </Tabs.Panel>

@@ -45,7 +45,7 @@ export const AgentRoster = () => {
   };
 
   const handleExport = (character) => {
-    let jsonObj = JSON.stringify(character);
+    let jsonObj = JSON.stringify({ ...character });
     navigator.clipboard.writeText(btoa(jsonObj));
     notifications.show({
       color: "green",
@@ -203,7 +203,7 @@ export const AgentRoster = () => {
                                 View
                               </Button>
                               <Button
-                                onClick={() => handleExport({...agent})}
+                                onClick={() => handleExport({ ...agent })}
                                 leftSection={<IconShare />}
                               >
                                 Export
