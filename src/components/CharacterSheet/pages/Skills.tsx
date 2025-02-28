@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   Grid,
   Group,
@@ -14,7 +15,12 @@ import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { IconSearch } from "@tabler/icons-react";
 
-export const Skills = ({ currentCharacter }: any) => {
+export const Skills = ({
+  currentCharacter,
+  handleStandardRoll,
+  inPerson,
+  handleFailedTests,
+}: any) => {
   const skillKeysArr = Object.keys(defaultSkillValues);
   const [viewport] = useViewportContext();
 
@@ -87,10 +93,25 @@ export const Skills = ({ currentCharacter }: any) => {
               </Table.Thead>
               {skillKeysArr.slice(0, 15).map((key) => {
                 return (
-                  <Table.Tr>
+                  <Table.Tr key={key}>
                     <Table.Td>
                       <Group>
-                        <Checkbox />
+                        <Checkbox
+                          value={key}
+                          checked={currentCharacter.failedTests.includes(key)}
+                          onChange={(e) =>
+                            e.currentTarget.checked
+                              ? handleFailedTests([
+                                  ...currentCharacter.failedTests,
+                                  key,
+                                ])
+                              : handleFailedTests([
+                                  ...currentCharacter.failedTests.filter(
+                                    (test) => test !== key
+                                  ),
+                                ])
+                          }
+                        />
                         <Tooltip
                           w={250}
                           label={
@@ -105,6 +126,7 @@ export const Skills = ({ currentCharacter }: any) => {
                             tt="capitalize"
                             ta="start"
                             className={styles.tooltippedElement}
+                            size="sm"
                           >
                             {isSkillChoice(key)
                               ? currentCharacter.skills[key][0].label !== ""
@@ -115,22 +137,39 @@ export const Skills = ({ currentCharacter }: any) => {
                               : skillKeyLabels(key)}{" "}
                           </Text>
                         </Tooltip>
-                        <Text c="dimmed">
-                          (
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : defaultSkillValues[key]}
+                        <Text c="dimmed" size="sm">
+                          ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                           %)
                         </Text>
                       </Group>
                     </Table.Td>
                     <Table.Td>
-                      <Text ta="center">
-                        {isSkillChoice(key)
-                          ? currentCharacter.skills[key][0].skill
-                          : currentCharacter.skills[key]}
-                        %
-                      </Text>
+                      {inPerson ? (
+                        <Button
+                          fullWidth
+                          onClick={() => handleStandardRoll(key)}
+                          variant="outline"
+                          disabled={
+                            (isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]) === 0
+                          }
+                        >
+                          <Text ta="center" size="sm">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        </Button>
+                      ) : (
+                        <Text ta="center">
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : currentCharacter.skills[key]}
+                          %
+                        </Text>
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -147,10 +186,25 @@ export const Skills = ({ currentCharacter }: any) => {
               </Table.Thead>
               {skillKeysArr.slice(15, 30).map((key) => {
                 return (
-                  <Table.Tr>
+                  <Table.Tr key={key}>
                     <Table.Td>
                       <Group>
-                        <Checkbox />
+                        <Checkbox
+                          value={key}
+                          checked={currentCharacter.failedTests.includes(key)}
+                          onChange={(e) =>
+                            e.currentTarget.checked
+                              ? handleFailedTests([
+                                  ...currentCharacter.failedTests,
+                                  key,
+                                ])
+                              : handleFailedTests([
+                                  ...currentCharacter.failedTests.filter(
+                                    (test) => test !== key
+                                  ),
+                                ])
+                          }
+                        />
                         <Tooltip
                           w={250}
                           label={
@@ -165,6 +219,7 @@ export const Skills = ({ currentCharacter }: any) => {
                             tt="capitalize"
                             ta="start"
                             className={styles.tooltippedElement}
+                            size="sm"
                           >
                             {isSkillChoice(key)
                               ? currentCharacter.skills[key][0].label !== ""
@@ -175,22 +230,39 @@ export const Skills = ({ currentCharacter }: any) => {
                               : skillKeyLabels(key)}{" "}
                           </Text>
                         </Tooltip>
-                        <Text c="dimmed">
-                          (
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : defaultSkillValues[key]}
+                        <Text c="dimmed" size="sm">
+                          ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                           %)
                         </Text>
                       </Group>
                     </Table.Td>
                     <Table.Td>
-                      <Text ta="center">
-                        {isSkillChoice(key)
-                          ? currentCharacter.skills[key][0].skill
-                          : currentCharacter.skills[key]}
-                        %
-                      </Text>
+                      {inPerson ? (
+                        <Button
+                          fullWidth
+                          onClick={() => handleStandardRoll(key)}
+                          variant="outline"
+                          disabled={
+                            (isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]) === 0
+                          }
+                        >
+                          <Text ta="center" size="sm">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        </Button>
+                      ) : (
+                        <Text ta="center">
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : currentCharacter.skills[key]}
+                          %
+                        </Text>
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -207,10 +279,25 @@ export const Skills = ({ currentCharacter }: any) => {
               </Table.Thead>
               {skillKeysArr.slice(30, skillKeysArr.length).map((key) => {
                 return (
-                  <Table.Tr>
+                  <Table.Tr key={key}>
                     <Table.Td>
                       <Group>
-                        <Checkbox />
+                        <Checkbox
+                          value={key}
+                          checked={currentCharacter.failedTests.includes(key)}
+                          onChange={(e) =>
+                            e.currentTarget.checked
+                              ? handleFailedTests([
+                                  ...currentCharacter.failedTests,
+                                  key,
+                                ])
+                              : handleFailedTests([
+                                  ...currentCharacter.failedTests.filter(
+                                    (test) => test !== key
+                                  ),
+                                ])
+                          }
+                        />
                         <Tooltip
                           w={250}
                           label={
@@ -225,6 +312,7 @@ export const Skills = ({ currentCharacter }: any) => {
                             tt="capitalize"
                             ta="start"
                             className={styles.tooltippedElement}
+                            size="sm"
                           >
                             {isSkillChoice(key)
                               ? currentCharacter.skills[key][0].label !== ""
@@ -235,22 +323,39 @@ export const Skills = ({ currentCharacter }: any) => {
                               : skillKeyLabels(key)}{" "}
                           </Text>
                         </Tooltip>
-                        <Text c="dimmed">
-                          (
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : defaultSkillValues[key]}
+                        <Text c="dimmed" size="sm">
+                          ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                           %)
                         </Text>
                       </Group>
                     </Table.Td>
                     <Table.Td>
-                      <Text ta="center">
-                        {isSkillChoice(key)
-                          ? currentCharacter.skills[key][0].skill
-                          : currentCharacter.skills[key]}
-                        %
-                      </Text>
+                      {inPerson ? (
+                        <Button
+                          fullWidth
+                          onClick={() => handleStandardRoll(key)}
+                          variant="outline"
+                          disabled={
+                            (isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]) === 0
+                          }
+                        >
+                          <Text ta="center" size="sm">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        </Button>
+                      ) : (
+                        <Text ta="center">
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : currentCharacter.skills[key]}
+                          %
+                        </Text>
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -277,10 +382,25 @@ export const Skills = ({ currentCharacter }: any) => {
               </Table.Thead>
               {skillKeysArr.slice(0, skillKeysArr.length / 2).map((key) => {
                 return (
-                  <Table.Tr>
+                  <Table.Tr key={key}>
                     <Table.Td>
                       <Group>
-                        <Checkbox />
+                        <Checkbox
+                          value={key}
+                          checked={currentCharacter.failedTests.includes(key)}
+                          onChange={(e) =>
+                            e.currentTarget.checked
+                              ? handleFailedTests([
+                                  ...currentCharacter.failedTests,
+                                  key,
+                                ])
+                              : handleFailedTests([
+                                  ...currentCharacter.failedTests.filter(
+                                    (test) => test !== key
+                                  ),
+                                ])
+                          }
+                        />
                         <Tooltip
                           w={250}
                           label={
@@ -295,6 +415,7 @@ export const Skills = ({ currentCharacter }: any) => {
                             tt="capitalize"
                             ta="start"
                             className={styles.tooltippedElement}
+                            size="sm"
                           >
                             {isSkillChoice(key)
                               ? currentCharacter.skills[key][0].label !== ""
@@ -305,22 +426,39 @@ export const Skills = ({ currentCharacter }: any) => {
                               : skillKeyLabels(key)}{" "}
                           </Text>
                         </Tooltip>
-                        <Text c="dimmed">
-                          (
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : defaultSkillValues[key]}
+                        <Text c="dimmed" size="sm">
+                          ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                           %)
                         </Text>
                       </Group>
                     </Table.Td>
                     <Table.Td>
-                      <Text ta="center">
-                        {isSkillChoice(key)
-                          ? currentCharacter.skills[key][0].skill
-                          : currentCharacter.skills[key]}
-                        %
-                      </Text>
+                      {inPerson ? (
+                        <Button
+                          fullWidth
+                          onClick={() => handleStandardRoll(key)}
+                          variant="outline"
+                          disabled={
+                            (isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]) === 0
+                          }
+                        >
+                          <Text ta="center" size="sm">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        </Button>
+                      ) : (
+                        <Text ta="center">
+                          {isSkillChoice(key)
+                            ? currentCharacter.skills[key][0].skill
+                            : currentCharacter.skills[key]}
+                          %
+                        </Text>
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -339,10 +477,25 @@ export const Skills = ({ currentCharacter }: any) => {
                 .slice(skillKeysArr.length / 2, skillKeysArr.length)
                 .map((key) => {
                   return (
-                    <Table.Tr>
+                    <Table.Tr key={key}>
                       <Table.Td>
                         <Group>
-                          <Checkbox />
+                          <Checkbox
+                            value={key}
+                            checked={currentCharacter.failedTests.includes(key)}
+                            onChange={(e) =>
+                              e.currentTarget.checked
+                                ? handleFailedTests([
+                                    ...currentCharacter.failedTests,
+                                    key,
+                                  ])
+                                : handleFailedTests([
+                                    ...currentCharacter.failedTests.filter(
+                                      (test) => test !== key
+                                    ),
+                                  ])
+                            }
+                          />
                           <Tooltip
                             w={250}
                             label={
@@ -357,6 +510,7 @@ export const Skills = ({ currentCharacter }: any) => {
                               tt="capitalize"
                               ta="start"
                               className={styles.tooltippedElement}
+                              size="sm"
                             >
                               {isSkillChoice(key)
                                 ? currentCharacter.skills[key][0].label !== ""
@@ -367,22 +521,39 @@ export const Skills = ({ currentCharacter }: any) => {
                                 : skillKeyLabels(key)}{" "}
                             </Text>
                           </Tooltip>
-                          <Text c="dimmed">
-                            (
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : defaultSkillValues[key]}
+                          <Text c="dimmed" size="sm">
+                            ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                             %)
                           </Text>
                         </Group>
                       </Table.Td>
                       <Table.Td>
-                        <Text ta="center">
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : currentCharacter.skills[key]}
-                          %
-                        </Text>
+                        {inPerson ? (
+                          <Button
+                            fullWidth
+                            onClick={() => handleStandardRoll(key)}
+                            variant="outline"
+                            disabled={
+                              (isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].skill
+                                : currentCharacter.skills[key]) === 0
+                            }
+                          >
+                            <Text ta="center" size="sm">
+                              {isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].skill
+                                : currentCharacter.skills[key]}
+                              %
+                            </Text>
+                          </Button>
+                        ) : (
+                          <Text ta="center">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -410,7 +581,22 @@ export const Skills = ({ currentCharacter }: any) => {
                     <Table.Tr>
                       <Table.Td>
                         <Group>
-                          <Checkbox />
+                          <Checkbox
+                            value={key}
+                            checked={currentCharacter.failedTests.includes(key)}
+                            onChange={(e) =>
+                              e.currentTarget.checked
+                                ? handleFailedTests([
+                                    ...currentCharacter.failedTests,
+                                    key,
+                                  ])
+                                : handleFailedTests([
+                                    ...currentCharacter.failedTests.filter(
+                                      (test) => test !== key
+                                    ),
+                                  ])
+                            }
+                          />
                           <Tooltip
                             w={250}
                             label={
@@ -436,21 +622,38 @@ export const Skills = ({ currentCharacter }: any) => {
                             </Text>
                           </Tooltip>
                           <Text c="dimmed">
-                            (
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : defaultSkillValues[key]}
+                            ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
                             %)
                           </Text>
                         </Group>
                       </Table.Td>
                       <Table.Td>
-                        <Text ta="center">
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : currentCharacter.skills[key]}
-                          %
-                        </Text>
+                        {inPerson ? (
+                          <Button
+                            fullWidth
+                            onClick={() => handleStandardRoll(key)}
+                            variant="outline"
+                            disabled={
+                              (isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].skill
+                                : currentCharacter.skills[key]) === 0
+                            }
+                          >
+                            <Text ta="center" size="sm">
+                              {isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].skill
+                                : currentCharacter.skills[key]}
+                              %
+                            </Text>
+                          </Button>
+                        ) : (
+                          <Text ta="center">
+                            {isSkillChoice(key)
+                              ? currentCharacter.skills[key][0].skill
+                              : currentCharacter.skills[key]}
+                            %
+                          </Text>
+                        )}
                       </Table.Td>
                     </Table.Tr>
                   );

@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   CheckboxGroup,
   Divider,
@@ -17,12 +18,20 @@ import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
-export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
+export const Personal = ({
+  currentCharacter,
+  handleUpdateCharacter,
+  handleStandardRoll,
+  inPerson,
+}: any) => {
   const [viewport] = useViewportContext();
 
   let data = { ...currentCharacter };
 
-  const tableStatHeaders = ["Statistic", "Score", "x5", "Features"];
+  const tableStatHeaders =
+    viewport.width > 760
+      ? ["Statistic", "Score", "x5", "Features"]
+      : ["Statistic", "Score", "x5"];
 
   const statLabelArr = [
     "Strength",
@@ -92,10 +101,10 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
 
   const calculateAttributesLabel = (attribute) =>
     [
-      { label: "Hit Points (HP)", key: "hp" },
-      { label: "Willpower Points (WP)", key: "wp" },
-      { label: "Sanity Points (SAN)", key: "san" },
-      { label: "Breaking Point (BP)", key: "bp" },
+      { label: "Hit Points", key: "hp" },
+      { label: "Willpower", key: "wp" },
+      { label: "Sanity", key: "san" },
+      { label: "Breaking Point", key: "bp" },
     ].filter((item) => item.key === attribute)[0].label;
 
   const tableBondHeaders = ["Bonds", "Score"];
@@ -190,7 +199,19 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
               {statLabelArr.map((stat) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>{stat}</Table.Td>
+                    <Table.Td>
+                      {inPerson ? (
+                        <Button
+                          fullWidth
+                          onClick={() => handleStandardRoll(stat.toLowerCase())}
+                          variant="outline"
+                        >
+                          {stat}
+                        </Button>
+                      ) : (
+                        stat
+                      )}
+                    </Table.Td>
                     <Table.Td>
                       <NumberInput
                         value={data?.stats[stat.toLowerCase()]}
@@ -209,11 +230,11 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
                     <Table.Td ta="center">
                       {data.stats[stat.toLowerCase()] * 5}
                     </Table.Td>
-                    {
+                    {viewport.width > 760 && (
                       <Table.Td ta="center">
                         {handleDistinguishingFeatures(stat.toLowerCase())}
                       </Table.Td>
-                    }
+                    )}
                   </Table.Tr>
                 );
               })}
@@ -238,7 +259,17 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
               {Object.keys(data?.attributes).map((attribute) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>{calculateAttributesLabel(attribute)}</Table.Td>
+                    <Table.Td>
+                      {attribute === "san" && inPerson ? (
+                        <Button size="sm" variant="outline" fullWidth onClick={() => handleStandardRoll(attribute)}>
+                          <Text size="sm" fw={600} truncate="end">
+                            {calculateAttributesLabel(attribute)}
+                          </Text>
+                        </Button>
+                      ) : (
+                        calculateAttributesLabel(attribute)
+                      )}
+                    </Table.Td>
                     <Table.Td ta="center">
                       {data?.attributes[attribute].max}
                     </Table.Td>
@@ -278,9 +309,7 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
               {data.bonds.map((bond, index) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>
-                      <Text ta="start">{bond.name}</Text>
-                    </Table.Td>
+                    <Table.Td>{bond.name}</Table.Td>
                     <Table.Td w={100}>
                       {
                         <NumberInput
@@ -307,22 +336,18 @@ export const Personal = ({ currentCharacter, handleUpdateCharacter }: any) => {
               Incidents of SAN Loss Without going Insane
             </InputLabel>
             <Group justify="space-between">
-              <CheckboxGroup>
                 <Group>
                   <InputLabel>Violence</InputLabel>
                   <Checkbox />
                   <Checkbox />
                   <Checkbox />
                 </Group>
-              </CheckboxGroup>
-              <CheckboxGroup>
                 <Group>
                   <InputLabel>Helplessness</InputLabel>
                   <Checkbox />
                   <Checkbox />
                   <Checkbox />
                 </Group>
-              </CheckboxGroup>
             </Group>
           </Stack>
           <Divider />
