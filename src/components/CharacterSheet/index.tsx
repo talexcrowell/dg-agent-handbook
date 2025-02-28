@@ -275,8 +275,15 @@ export const CharacterSheet: React.FC = () => {
 
   const toggleRollLog = () => {
     toggle();
-    setShowRollLog(!showRollLog);
+    setTimeout(() => {
+      setShowRollLog(!showRollLog);
+    }, 3);
   };
+
+  const handleRollLog = () => {
+    setShowRollLog(!showRollLog);
+    toggle();
+  }
 
   const handleDeleteRollLog = () => {
     handleUpdateCharacter("rollLog", []);
@@ -426,7 +433,7 @@ export const CharacterSheet: React.FC = () => {
               currentCharacter={character}
               handleInPerson={handleInPerson}
               inPerson={inPerson}
-              toggleRollLog={toggleRollLog}
+              toggleRollLog={handleRollLog}
             />
           </ScrollArea>
         </Tabs.Panel>
