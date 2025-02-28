@@ -28,10 +28,10 @@ export const BonusSkillPackagesList = () => {
   return (
     <>
       <Grid
-        p={viewport.width > 600 ? "md" : 0}
-        gutter={viewport.width > 600 ? "md" : "0"}
+        p={viewport.width > 760 ? "md" : 0}
+        gutter={viewport.width > 760 ? "md" : "0"}
       >
-        <Grid.Col span={viewport.width > 600 ? 5 : 12} pb="0">
+        <Grid.Col span={viewport.width > 760 ? 5 : 12} pb="0">
           <Stack>
             <Title order={3}>Bonus Skill Package List</Title>
             <ScrollArea h={"79vh"}>
@@ -61,7 +61,7 @@ export const BonusSkillPackagesList = () => {
           </Stack>
         </Grid.Col>
         <Divider orientation="vertical" mx="md" />
-        {viewport.width > 600 && (
+        {viewport.width > 760 && (
           <Grid.Col span={6}>
             <Stack>
               <Title order={3}>Bonus Skill Package Details</Title>
@@ -115,7 +115,7 @@ export const BonusSkillPackagesList = () => {
           </Grid.Col>
         )}
       </Grid>
-      {viewport.width < 600 && selectedPackage?.name !== "" && (
+      {viewport.width < 760 && selectedPackage?.name !== "" && (
         <Drawer
           position="bottom"
           opened={opened}

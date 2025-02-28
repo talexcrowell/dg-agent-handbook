@@ -246,11 +246,11 @@ export const ProfessionList = () => {
   return (
     <>
       <Grid
-        p={viewport.width > 600 ? "md" : 0}
-        gutter={viewport.width > 600 ? "md" : "0"}
+        p={viewport.width > 760 ? "md" : 0}
+        gutter={viewport.width > 760 ? "md" : "0"}
       >
         <Grid.Col
-          span={viewport.width > 600 && professionsType !== "Custom" ? 5 : 12}
+          span={viewport.width > 760 && professionsType !== "Custom" ? 5 : 12}
         >
           <Stack>
             <Group>
@@ -326,10 +326,10 @@ export const ProfessionList = () => {
             </Stack>
           </Stack>
         </Grid.Col>
-        {viewport.width > 600 && professionsType !== "Custom" && (
+        {viewport.width > 760 && professionsType !== "Custom" && (
           <Divider orientation="vertical" mx="md" />
         )}
-        {viewport.width > 600 && professionsType !== "Custom" && (
+        {viewport.width > 760 && professionsType !== "Custom" && (
           <Grid.Col span={6}>
             {" "}
             <Stack>
@@ -353,7 +353,7 @@ export const ProfessionList = () => {
           </Grid.Col>
         )}
       </Grid>
-      {viewport.width < 600 && selectedProfession.name !== "" && (
+      {viewport.width < 760 && selectedProfession.name !== "" && (
         <Drawer
           position="bottom"
           opened={opened}
