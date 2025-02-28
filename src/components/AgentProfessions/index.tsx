@@ -8,6 +8,7 @@ import {
   InputLabel,
   List,
   Modal,
+  NavLink,
   ScrollArea,
   SegmentedControl,
   Stack,
@@ -25,7 +26,7 @@ import {
 } from "../../data";
 import styles from "../../Element.module.css";
 import { useViewportContext } from "../../contexts/ViewportContext";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IconList, IconNotebook } from "@tabler/icons-react";
 import { Overview } from "./pages/Overview";
 import { ProfessionList } from "./pages/ProfessionList";
@@ -82,7 +83,51 @@ export const AgentProfessions = () => {
                 fullScreen
                 title="Section List"
               >
-                <Stack></Stack>
+                <Stack>
+                  <NavLink
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/agents/professions/overview");
+                    }}
+                    active={
+                      location.pathname === "/agents/professions/overview"
+                    }
+                    label="Overview"
+                  />
+                  <NavLink
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/agents/professions/stats-and-skills");
+                    }}
+                    active={
+                      location.pathname ===
+                      "/agents/professions/stats-and-skills"
+                    }
+                    label="Stats and Skills"
+                  />
+                  <NavLink
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/agents/professions/profession-list");
+                    }}
+                    active={
+                      location.pathname ===
+                      "/agents/professions/profession-list"
+                    }
+                    label="Profession List"
+                  />
+                  <NavLink
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/agents/professions/bonus-skill-package-list");
+                    }}
+                    active={
+                      location.pathname ===
+                      "/agents/professions/bonus-skill-package-list"
+                    }
+                    label="Bonus Skill Package List"
+                  />
+                </Stack>
               </Modal>
             </Affix>
           )}
@@ -97,10 +142,14 @@ export const AgentProfessions = () => {
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="profession-list">
-            <ProfessionList />
+            <ScrollArea h={"93vh"}>
+              <ProfessionList />
+            </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="bonus-skill-package-list">
-            <BonusSkillPackagesList />
+            <ScrollArea h={"93vh"}>
+              <BonusSkillPackagesList />
+            </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
