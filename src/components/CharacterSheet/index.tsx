@@ -13,6 +13,7 @@ import {
   Group,
   InputLabel,
   Loader,
+  Modal,
   NumberInput,
   ScrollArea,
   Stack,
@@ -283,7 +284,7 @@ export const CharacterSheet: React.FC = () => {
   const handleRollLog = () => {
     setShowRollLog(!showRollLog);
     toggle();
-  }
+  };
 
   const handleDeleteRollLog = () => {
     handleUpdateCharacter("rollLog", []);
@@ -458,163 +459,324 @@ export const CharacterSheet: React.FC = () => {
             </Tabs.Tab>
           </Tabs.List>
         )}
-        <Drawer
-          opened={opened}
-          withCloseButton={false}
-          onClose={close}
-          size={showRollLog ? "fullsize" : "sm"}
-          position="bottom"
-        >
-          {showRollLog ? (
-            <Stack justify="space-between" h={"93vh"}>
-              <Stack>
-                <Title order={3}>Roll Log</Title>
-                <Divider />
-                {character.rollLog.length > 0 && (
-                  <ScrollArea h={"70vh"}>
-                    <Stack>
-                      {character.rollLog.reverse().map((item) => {
-                        return (
-                          <Card
-                            withBorder
-                            styles={{
-                              root: {
-                                borderColor:
-                                  calculateRollLogEntryLanguage(item) ===
-                                    "CRITICAL SUCCESS" ||
-                                  calculateRollLogEntryLanguage(item) ===
-                                    "SUCCESS"
-                                    ? "green"
-                                    : "red",
-                              },
-                            }}
-                          >
-                            <Stack>
-                              <Group justify="space-between">
-                                <Text>
-                                  {calculateRollLogEntryLanguage(item)}
-                                </Text>
-                                <Text c="dimmed">
-                                  {handleDateStamp(item.date)}
-                                </Text>
-                              </Group>
-                              <Divider />
-                              <Group justify="space-between">
-                                <Stack gap="0">
-                                  <InputLabel>Test</InputLabel>
-                                  <Text tt="capitalize">
-                                    {skillKeyLabels(item.skill)}
-                                  </Text>
-                                </Stack>
-                                <Stack gap="0">
-                                  <InputLabel>Rating</InputLabel>
-                                  <Text tt="capitalize">
-                                    {item.skill == "san"
-                                      ? character.attributes[item.skill].current
-                                      : isStat(item.skill)
-                                      ? character.stats[item.skill] * 5
-                                      : isSkillChoice(item.skill)
-                                      ? character.skills[item.skill][0].skill
-                                      : character.skills[item.skill]}
-                                  </Text>
-                                </Stack>
-                                <Stack gap="0">
-                                  <InputLabel>Roll</InputLabel>
-                                  <Text>{item.rolledValue}</Text>
-                                </Stack>
-                              </Group>
-                            </Stack>
-                          </Card>
-                        );
-                      })}
-                    </Stack>
-                  </ScrollArea>
-                )}
-              </Stack>
-              {character.rollLog.length === 0 && (
-                <Text c="dimmed" ta="center">
-                  There are no entires in your roll log.
-                </Text>
-              )}
-              <Stack>
-                <Button
-                  variant="outline"
-                  onClick={handleDeleteRollLog}
-                  leftSection={<IconTrash />}
-                >
-                  Clear Roll Log
-                </Button>
-                <Button
-                  variant="outline"
-                  color="red"
-                  onClick={toggleRollLog}
-                  leftSection={<IconX />}
-                >
-                  Close
-                </Button>
-              </Stack>
-            </Stack>
-          ) : (
-            <Stack gap="lg">
-              <Title
-                order={3}
-                ta="center"
-                bg={
-                  calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
-                  calculateCurrentRollLanguage() === "SUCCESS"
-                    ? "green"
-                    : "red"
-                }
-                styles={{ root: { borderRadius: "4px" } }}
-                py="sm"
-              >
-                {calculateCurrentRollLanguage()}
-              </Title>
-              <Card>
+        {viewport.width <= 760 ? (
+          <Drawer
+            opened={opened}
+            withCloseButton={false}
+            onClose={close}
+            size={showRollLog ? "fullsize" : "sm"}
+            position="bottom"
+          >
+            {showRollLog ? (
+              <Stack justify="space-between" h={"93vh"}>
                 <Stack>
-                  <Group justify="space-between">
-                    <Text fw={700}>Dice Roll</Text>
-                    <Group fw={700}>{value.join("")}</Group>
-                  </Group>
-                  <Divider label={<IconVs />} />
+                  <Title order={3}>Roll Log</Title>
+                  <Divider />
+                  {character.rollLog.length > 0 && (
+                    <ScrollArea h={"70vh"}>
+                      <Stack>
+                        {character.rollLog.reverse().map((item) => {
+                          return (
+                            <Card
+                              withBorder
+                              styles={{
+                                root: {
+                                  borderColor:
+                                    calculateRollLogEntryLanguage(item) ===
+                                      "CRITICAL SUCCESS" ||
+                                    calculateRollLogEntryLanguage(item) ===
+                                      "SUCCESS"
+                                      ? "green"
+                                      : "red",
+                                },
+                              }}
+                            >
+                              <Stack>
+                                <Group justify="space-between">
+                                  <Text>
+                                    {calculateRollLogEntryLanguage(item)}
+                                  </Text>
+                                  <Text c="dimmed">
+                                    {handleDateStamp(item.date)}
+                                  </Text>
+                                </Group>
+                                <Divider />
+                                <Group justify="space-between">
+                                  <Stack gap="0">
+                                    <InputLabel>Test</InputLabel>
+                                    <Text tt="capitalize">
+                                      {skillKeyLabels(item.skill)}
+                                    </Text>
+                                  </Stack>
+                                  <Stack gap="0">
+                                    <InputLabel>Rating</InputLabel>
+                                    <Text tt="capitalize">
+                                      {item.skill == "san"
+                                        ? character.attributes[item.skill]
+                                            .current
+                                        : isStat(item.skill)
+                                        ? character.stats[item.skill] * 5
+                                        : isSkillChoice(item.skill)
+                                        ? character.skills[item.skill][0].skill
+                                        : character.skills[item.skill]}
+                                    </Text>
+                                  </Stack>
+                                  <Stack gap="0">
+                                    <InputLabel>Roll</InputLabel>
+                                    <Text>{item.rolledValue}</Text>
+                                  </Stack>
+                                </Group>
+                              </Stack>
+                            </Card>
+                          );
+                        })}
+                      </Stack>
+                    </ScrollArea>
+                  )}
+                </Stack>
+                {character.rollLog.length === 0 && (
+                  <Text c="dimmed" ta="center">
+                    There are no entires in your roll log.
+                  </Text>
+                )}
+                <Stack>
+                  <Button
+                    variant="outline"
+                    onClick={handleDeleteRollLog}
+                    leftSection={<IconTrash />}
+                  >
+                    Clear Roll Log
+                  </Button>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    onClick={toggleRollLog}
+                    leftSection={<IconX />}
+                  >
+                    Close
+                  </Button>
+                </Stack>
+              </Stack>
+            ) : (
+              <Stack gap="lg">
+                <Title
+                  order={3}
+                  ta="center"
+                  bg={
+                    calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
+                    calculateCurrentRollLanguage() === "SUCCESS"
+                      ? "green"
+                      : "red"
+                  }
+                  styles={{ root: { borderRadius: "4px" } }}
+                  py="sm"
+                >
+                  {calculateCurrentRollLanguage()}
+                </Title>
+                <Card>
                   <Stack>
                     <Group justify="space-between">
-                      <Text tt="capitalize" fw={700}>
-                        {skillKeyLabels(rollType)}
-                      </Text>
-                      <Text fw={700}>
-                        {rollType == "san"
-                          ? character.attributes[rollType].current
-                          : isStat(rollType)
-                          ? character.stats[rollType] * 5
-                          : isSkillChoice(rollType)
-                          ? character.skills[rollType][0].skill
-                          : character.skills[rollType]}
-                      </Text>
+                      <Text fw={700}>Dice Roll</Text>
+                      <Group fw={700}>{value.join("")}</Group>
                     </Group>
+                    <Divider label={<IconVs />} />
+                    <Stack>
+                      <Group justify="space-between">
+                        <Text tt="capitalize" fw={700}>
+                          {skillKeyLabels(rollType)}
+                        </Text>
+                        <Text fw={700}>
+                          {rollType == "san"
+                            ? character.attributes[rollType].current
+                            : isStat(rollType)
+                            ? character.stats[rollType] * 5
+                            : isSkillChoice(rollType)
+                            ? character.skills[rollType][0].skill
+                            : character.skills[rollType]}
+                        </Text>
+                      </Group>
+                    </Stack>
                   </Stack>
+                </Card>
+                <Stack>
+                  <Button
+                    variant="outline"
+                    leftSection={<IconHistory />}
+                    onClick={() => setShowRollLog(true)}
+                  >
+                    View Roll Log
+                  </Button>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    onClick={toggle}
+                    leftSection={<IconX />}
+                  >
+                    Close
+                  </Button>
                 </Stack>
-              </Card>
-              <Stack>
-                <Button
-                  variant="outline"
-                  leftSection={<IconHistory />}
-                  onClick={() => setShowRollLog(true)}
-                >
-                  View Roll Log
-                </Button>
-                <Button
-                  variant="outline"
-                  color="red"
-                  onClick={toggle}
-                  leftSection={<IconX />}
-                >
-                  Close
-                </Button>
               </Stack>
-            </Stack>
-          )}
-        </Drawer>
+            )}
+          </Drawer>
+        ) : (
+          <Modal
+            opened={opened}
+            withCloseButton={false}
+            onClose={close}
+            size={"lg"}
+          >
+            {showRollLog ? (
+              <Stack justify="space-between" h={"75vh"}>
+                <Stack>
+                  <Title order={3}>Roll Log</Title>
+                  <Divider />
+                  {character.rollLog.length > 0 && (
+                    <ScrollArea.Autosize mah={425}>
+                      <Stack>
+                        {character.rollLog.reverse().map((item) => {
+                          return (
+                            <Card
+                              withBorder
+                              styles={{
+                                root: {
+                                  borderColor:
+                                    calculateRollLogEntryLanguage(item) ===
+                                      "CRITICAL SUCCESS" ||
+                                    calculateRollLogEntryLanguage(item) ===
+                                      "SUCCESS"
+                                      ? "green"
+                                      : "red",
+                                },
+                              }}
+                            >
+                              <Stack>
+                                <Group justify="space-between">
+                                  <Text fw={700}>
+                                    {calculateRollLogEntryLanguage(item)}
+                                  </Text>
+                                  <Text c="dimmed">
+                                    {handleDateStamp(item.date)}
+                                  </Text>
+                                </Group>
+                                <Divider />
+                                <Group justify="space-between">
+                                  <Stack gap="0">
+                                    <InputLabel c="dimmed">Test</InputLabel>
+                                    <Text tt="capitalize">
+                                      {skillKeyLabels(item.skill)}
+                                    </Text>
+                                  </Stack>
+                                  <Stack gap="0">
+                                    <InputLabel c="dimmed">Rating</InputLabel>
+                                    <Text tt="capitalize">
+                                      {item.skill == "san"
+                                        ? character.attributes[item.skill]
+                                            .current
+                                        : isStat(item.skill)
+                                        ? character.stats[item.skill] * 5
+                                        : isSkillChoice(item.skill)
+                                        ? character.skills[item.skill][0].skill
+                                        : character.skills[item.skill]}
+                                    </Text>
+                                  </Stack>
+                                  <Stack gap="0">
+                                    <InputLabel c="dimmed">Roll</InputLabel>
+                                    <Text>{item.rolledValue}</Text>
+                                  </Stack>
+                                </Group>
+                              </Stack>
+                            </Card>
+                          );
+                        })}
+                      </Stack>
+                    </ScrollArea.Autosize>
+                  )}
+                </Stack>
+                {character.rollLog.length === 0 && (
+                  <Text c="dimmed" ta="center">
+                    There are no entires in your roll log.
+                  </Text>
+                )}
+                <Stack>
+                  <Button
+                    variant="outline"
+                    onClick={handleDeleteRollLog}
+                    leftSection={<IconTrash />}
+                  >
+                    Clear Roll Log
+                  </Button>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    onClick={toggleRollLog}
+                    leftSection={<IconX />}
+                  >
+                    Close
+                  </Button>
+                </Stack>
+              </Stack>
+            ) : (
+              <Stack gap="lg">
+                <Title
+                  order={3}
+                  ta="center"
+                  bg={
+                    calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
+                    calculateCurrentRollLanguage() === "SUCCESS"
+                      ? "green"
+                      : "red"
+                  }
+                  styles={{ root: { borderRadius: "4px" } }}
+                  py="sm"
+                >
+                  {calculateCurrentRollLanguage()}
+                </Title>
+                <Card>
+                  <Stack>
+                    <Group justify="space-between">
+                      <Text fw={700}>Dice Roll</Text>
+                      <Group fw={700}>{value.join("")}</Group>
+                    </Group>
+                    <Divider label={<IconVs />} />
+                    <Stack>
+                      <Group justify="space-between">
+                        <Text tt="capitalize" fw={700}>
+                          {skillKeyLabels(rollType)}
+                        </Text>
+                        <Text fw={700}>
+                          {rollType == "san"
+                            ? character.attributes[rollType].current
+                            : isStat(rollType)
+                            ? character.stats[rollType] * 5
+                            : isSkillChoice(rollType)
+                            ? character.skills[rollType][0].skill
+                            : character.skills[rollType]}
+                        </Text>
+                      </Group>
+                    </Stack>
+                  </Stack>
+                </Card>
+                <Stack>
+                  <Button
+                    variant="outline"
+                    leftSection={<IconHistory />}
+                    onClick={() => setShowRollLog(true)}
+                  >
+                    View Roll Log
+                  </Button>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    onClick={toggle}
+                    leftSection={<IconX />}
+                  >
+                    Close
+                  </Button>
+                </Stack>
+              </Stack>
+            )}
+          </Modal>
+        )}
       </Tabs>
     );
   }
