@@ -210,7 +210,7 @@ export const Overview = () => {
             </Title>
             <Text>
               Most Delta Green Agents are full-time members of federal law
-              enforcement, the special forces, or ac- ademia. They’re usually
+              enforcement, the special forces, or academia. They’re usually
               not rich. Paying for anything more than Incidental expenses can be
               tricky.
             </Text>
@@ -292,7 +292,7 @@ export const Overview = () => {
             <Text>
               In the U.S., many weapons are available on the open market with
               negligible licensing. But some equipment is tightly enough
-              restrict- ed that it can be requisitioned only with a great deal
+              restricted that it can be requisitioned only with a great deal
               of paperwork and scrutiny, or purchased only after time-consuming
               and expensive registrations and licensing—or by shopping on the
               black market. In the equipment tables, such items are labeled
@@ -301,13 +301,13 @@ export const Overview = () => {
             <Text>
               Submachine guns, assault rifles, and automatic rifles that can
               fire on full automatic are restricted. But one can be bought
-              legally if it fires only on semi- automatic, and can be converted
+              legally if it fires only on semi-automatic, and can be converted
               to full automatic with inexpensive tools, an hour or two of work,
               and a Craft (Gunsmithing) roll. Fumbling the roll ruins the
               weapon.
             </Text>
             <Text>
-              Certain electronics, particularly advanced encryp- tion programs,
+              Certain electronics, particularly advanced encryption programs,
               are also restricted and/or monitored in the U.S.
             </Text>
             <Text>
@@ -318,11 +318,11 @@ export const Overview = () => {
             </Text>
             <Title order={3}>The Black Market</Title>
             <Text>
-              Practically everything can be had on the black mar- ket, including
+              Practically everything can be had on the black market, including
               machine guns and explosives. Buying a restricted item on the black
               market requires either a Criminology roll to find a street dealer
               or a Computer Science roll to hide your Agent’s tracks on a Dark
-              Web market. If your Agent has extensive contact with spe- cial
+              Web market. If your Agent has extensive contact with special
               restricted communities, you might have access to a particular kind
               of black market as special training using Criminology or CHA : gun
               clubs and veterans for firearms, for example, or the drug
