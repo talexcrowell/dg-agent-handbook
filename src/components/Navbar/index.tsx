@@ -243,6 +243,15 @@ export const Navbar = () => {
           />
           <NavLink
             autoContrast
+            label="Professions"
+            component={Link}
+            to={`/agents/professions`}
+            active={location.pathname.includes("/agents/professions")}
+            leftSection={<IconBriefcase />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
             label="Tradecraft"
             component={Link}
             to={`/agents/tradecraft`}
