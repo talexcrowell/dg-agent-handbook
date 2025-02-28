@@ -58,14 +58,14 @@ export const Settings = ({
               >
                 Export Character
               </Button>
-              <Button
+              {/* <Button
                 onClick={handleExport}
                 w={300}
                 color="red"
                 leftSection={<IconTrash />}
               >
                 Delete Character
-              </Button>
+              </Button> */}
             </Stack>
           </Center>
         </Stack>
