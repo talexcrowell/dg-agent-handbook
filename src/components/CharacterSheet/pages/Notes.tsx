@@ -6,7 +6,7 @@ export const Notes = ({ currentCharacter, handleUpdateCharacter }: any) => {
   let data = { ...currentCharacter };
   const [viewport] = useViewportContext();
   return (
-    <Grid py="md" px={viewport.width > 992 ? "md" : 0}>
+    <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
           <Title order={4} td="underline">

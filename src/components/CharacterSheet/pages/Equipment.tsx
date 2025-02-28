@@ -3,10 +3,12 @@ import {
   ActionIcon,
   Card,
   Divider,
+  Flex,
   Grid,
   Group,
   HoverCard,
   InputLabel,
+  SimpleGrid,
   Stack,
   Table,
   Text,
@@ -128,7 +130,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
   };
 
   return (
-    <Grid py="md" px={viewport.width > 992 ? "md" : 0}>
+    <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
           <Title order={4} td="underline">
@@ -267,12 +269,16 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                 </Text>
               </Card>
             )}
-                        <Accordion
+            <Accordion
               styles={{
-                root: { backgroundColor: "	#2e2e2e", border: "1px solid #3b3b3b", borderRadius: "6px" },
-                panel: {backgroundColor: "	#242424"}
+                root: {
+                  backgroundColor: "	#2e2e2e",
+                  border: "1px solid #3b3b3b",
+                  borderRadius: "6px",
+                },
+                panel: { backgroundColor: "	#242424" },
               }}
-              p='0'
+              p="0"
             >
               <Accordion.Item value={"add-equipment"}>
                 <Accordion.Control className={styles.hoverElement}>
@@ -297,27 +303,24 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                             return (
                               <Card withBorder>
                                 <Group justify="space-between">
-                                  <Group>
+                                  <SimpleGrid cols={4} w={"90%"}>
                                     <Stack gap="0">
                                       <InputLabel c="dimmed">Name</InputLabel>
                                       <Text>{result?.name}</Text>
                                     </Stack>
-                                    <Divider orientation="vertical" />
+
                                     {result?.type === "gearAndServices" &&
                                       result?.description && (
                                         <>
-                                          <Stack gap="0">
+                                          <Stack gap="0" miw={450}>
                                             <InputLabel c="dimmed">
                                               Description
                                             </InputLabel>
-                                            <Text>
-                                              {result?.description.length > 85
-                                                ? result?.description.slice(
-                                                    0,
-                                                    85
-                                                  ) + "..."
-                                                : result?.description}
-                                            </Text>
+                                            <Flex>
+                                              <Text>
+                                                {result?.description}
+                                              </Text>
+                                            </Flex>
                                           </Stack>
                                         </>
                                       )}
@@ -331,7 +334,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                             {skillKeyLabels(result?.skill)}
                                           </Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.armorRating && (
@@ -342,7 +344,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.armorRating}</Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.damage && (
@@ -353,7 +354,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.damage}</Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.lethality && (
@@ -364,7 +364,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.lethality}%</Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.armorPiercing !== undefined && (
@@ -379,7 +378,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                               : result?.armorPiercing}
                                           </Text>
                                         </Stack>{" "}
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.range && (
@@ -390,7 +388,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.range}</Text>
                                         </Stack>{" "}
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.uses && (
@@ -401,7 +398,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.uses}</Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.radius && (
@@ -412,7 +408,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.radius}</Text>
                                         </Stack>
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
                                     {result?.penalty && (
@@ -423,19 +418,18 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                           </InputLabel>
                                           <Text>{result?.penalty}</Text>
                                         </Stack>{" "}
-                                        <Divider orientation="vertical" />
                                       </>
                                     )}
-                                  </Group>
-                                  <Group>
-                                    <ActionIcon
-                                      color="green"
-                                      onClick={() => validateEquipment(result)}
-                                    >
-                                      <IconPlus />
-                                    </ActionIcon>
-                                  </Group>
+                                  </SimpleGrid>
+
+                                  <ActionIcon
+                                    color="green"
+                                    onClick={() => validateEquipment(result)}
+                                  >
+                                    <IconPlus />
+                                  </ActionIcon>
                                 </Group>
+                                {/* </Group> */}
                               </Card>
                             );
                           })

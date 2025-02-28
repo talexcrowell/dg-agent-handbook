@@ -118,27 +118,79 @@ export const Personal = ({
           {viewport.width > 760 ? (
             <>
               <Group ta="start">
-                <TextInput label="Name" flex={1} value={data?.name} />
-                <TextInput label="Codename" flex={1} value={data?.codename} />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Name
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.name}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Codename
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.codename}
+                />
               </Group>
               <Group ta="start">
                 <TextInput
-                  label="Profession"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Profession
+                    </Text>
+                  }
                   flex={1}
                   value={data?.profession}
                 />
-                <TextInput label="Employer" flex={1} value={data?.employer} />
                 <TextInput
-                  label="Nationality"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Employer
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.employer}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Nationality
+                    </Text>
+                  }
                   flex={1}
                   value={data?.nationality}
                 />
               </Group>
               <Group ta="start">
-                <TextInput label="Sex" w={100} value={data?.sex} />
-                <TextInput label="Age" w={100} value={data?.age} />
                 <TextInput
-                  label="Education and Occupational History"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Sex
+                    </Text>
+                  }
+                  w={100}
+                  value={data?.sex}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Age
+                    </Text>
+                  }
+                  w={100}
+                  value={data?.age}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Education/Occupation History
+                    </Text>
+                  }
                   flex={1}
                   value={data?.education}
                 />
@@ -147,32 +199,84 @@ export const Personal = ({
           ) : (
             <>
               <Group ta="start">
-                <TextInput label="Name" flex={1} value={data?.name} />
-                <TextInput label="Codename" flex={1} value={data?.codename} />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Name
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.name}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Codename
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.codename}
+                />
               </Group>
               <Group ta="start">
                 <TextInput
-                  label="Profession"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Profession
+                    </Text>
+                  }
                   flex={1}
                   value={data?.profession}
                 />
-                <TextInput label="Employer" flex={1} value={data?.employer} />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Employer
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.employer}
+                />
               </Group>
               <Group ta="start">
                 <TextInput
-                  label="Nationality"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Nationality
+                    </Text>
+                  }
                   flex={1}
                   value={data?.nationality}
                 />
                 <TextInput
-                  label="Education/Occupation History"
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Education/Occupation History
+                    </Text>
+                  }
                   flex={1}
                   value={data?.education}
                 />
               </Group>
               <Group ta="start">
-                <TextInput label="Sex" flex={1} value={data?.sex} />
-                <TextInput label="Age" flex={1} value={data?.age} />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Sex
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.sex}
+                />
+                <TextInput
+                  label={
+                    <Text size="sm" truncate="end" c="dimmed">
+                      Age
+                    </Text>
+                  }
+                  flex={1}
+                  value={data?.age}
+                />
               </Group>
             </>
           )}
@@ -261,7 +365,12 @@ export const Personal = ({
                   <Table.Tr>
                     <Table.Td>
                       {attribute === "san" && inPerson ? (
-                        <Button size="sm" variant="outline" fullWidth onClick={() => handleStandardRoll(attribute)}>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          fullWidth
+                          onClick={() => handleStandardRoll(attribute)}
+                        >
                           <Text size="sm" fw={600} truncate="end">
                             {calculateAttributesLabel(attribute)}
                           </Text>
@@ -284,6 +393,34 @@ export const Personal = ({
                   </Table.Tr>
                 );
               })}
+              <Table.Tr>
+                <Table.Td>
+                  {inPerson ? (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      fullWidth
+                      onClick={() => handleStandardRoll('luck')}
+                    >
+                      <Text size="sm" fw={600} truncate="end">
+                        Luck
+                      </Text>
+                    </Button>
+                  ) : (
+                    "Luck"
+                  )}
+                </Table.Td>
+                <Table.Td>
+                  <Text size="sm" ta="center">
+                    50
+                  </Text>
+                </Table.Td>
+                <Table.Td>
+                  <Text size="sm" ta="center">
+                    50
+                  </Text>
+                </Table.Td>
+              </Table.Tr>
             </Table.Tbody>
           </Table>
         </Stack>
@@ -336,18 +473,18 @@ export const Personal = ({
               Incidents of SAN Loss Without going Insane
             </InputLabel>
             <Group justify="space-between">
-                <Group>
-                  <InputLabel>Violence</InputLabel>
-                  <Checkbox />
-                  <Checkbox />
-                  <Checkbox />
-                </Group>
-                <Group>
-                  <InputLabel>Helplessness</InputLabel>
-                  <Checkbox />
-                  <Checkbox />
-                  <Checkbox />
-                </Group>
+              <Group>
+                <InputLabel>Violence</InputLabel>
+                <Checkbox />
+                <Checkbox />
+                <Checkbox />
+              </Group>
+              <Group>
+                <InputLabel>Helplessness</InputLabel>
+                <Checkbox />
+                <Checkbox />
+                <Checkbox />
+              </Group>
             </Group>
           </Stack>
           <Divider />

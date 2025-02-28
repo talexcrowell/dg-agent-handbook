@@ -51,7 +51,8 @@ import { notifications } from "@mantine/notifications";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
-  const [{ currentCharacter }] = useCharacterContext();
+  const [{ currentCharacter, savedCharacters }, actions] =
+    useCharacterContext();
   const [character, setCharacter] = useState({});
 
   // Settings
@@ -115,15 +116,25 @@ export const CharacterSheet: React.FC = () => {
         );
         characterObj.equipment = [...newArr];
         break;
+      case "failedTests":
+        characterObj[key] = [...val];
+        break;
       default:
         characterObj[key] = val;
         break;
     }
-
     setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
       JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
     );
   };
 
@@ -133,28 +144,36 @@ export const CharacterSheet: React.FC = () => {
         color: "green",
         title: "In Person Mode Activated!",
         message: "Rolling enabled on your character sheet.",
-        position: "top-center",
+        position: viewport.width > 760 ? "bottom-center" : "top-center",
       });
     } else {
       notifications.show({
         color: "green",
         title: "In Person Mode Deactivated!",
         message: "Rolling disabled on your character sheet.",
-        position: "top-center",
+        position: viewport.width > 760 ? "bottom-center" : "top-center",
       });
     }
     setInPerson(!inPerson);
   };
 
   const handleStandardRoll = (skill) => {
+    let characterObj = {
+      ...character,
+    };
+    setRollType(skill);
+
     let playerValue =
-      skill == "san"
+      skill === "luck"
+        ? 50
+        : skill === "san"
         ? character.attributes[skill].current
         : isStat(skill)
         ? character.stats[skill] * 5
         : isSkillChoice(skill)
         ? character.skills[skill][0].skill
         : character.skills[skill];
+
     let roll: any = new DiceRoll("2d10");
     let rollObj = roll.export(exportFormats.OBJECT);
     let diceRoll = rollObj.rolls[0].rolls.map((item) => {
@@ -164,8 +183,9 @@ export const CharacterSheet: React.FC = () => {
         return item.calculationValue;
       }
     });
+
     setValue([...diceRoll]);
-    setRollType(skill);
+
     let newRollLog = [
       ...character.rollLog,
       {
@@ -175,16 +195,29 @@ export const CharacterSheet: React.FC = () => {
       },
     ];
 
-    // To-Do: Auto-check when failed
-    // if (parseInt(diceRoll.join("")) > playerValue) {
-    //   setCharacter({
-    //     ...character,
-    //     failedTests: [...character.failedTests, skill],
-    //   });
-    // }
+    if (
+      !isStat(skill) &&
+      (skill !== "san" || skill !== "luck") &&
+      parseInt(diceRoll.join("")) > playerValue &&
+      !characterObj.failedTests.includes(skill)
+    ) {
+      characterObj.failedTests = [...character.failedTests, skill];
+    }
 
-    handleUpdateCharacter("rollLog", [...newRollLog]);
-
+    characterObj.rollLog = [...newRollLog];
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
     toggle();
   };
 
@@ -247,7 +280,9 @@ export const CharacterSheet: React.FC = () => {
 
   const calculateCurrentRollLanguage = () => {
     let userValue =
-      rollType == "san"
+      rollType == "luck"
+        ? 50
+        : rollType == "san"
         ? character.attributes[rollType].current
         : isStat(rollType)
         ? character.stats[rollType] * 5
@@ -269,7 +304,9 @@ export const CharacterSheet: React.FC = () => {
 
   const calculateRollLogEntryLanguage = (item) => {
     let userValue =
-      item.skill === "san"
+      item.skill == "luck"
+        ? 50
+        : item.skill === "san"
         ? character.attributes[item.skill].current
         : isStat(rollType)
         ? character.stats[item.skill] * 5
@@ -527,7 +564,9 @@ export const CharacterSheet: React.FC = () => {
                                   <Stack gap="0">
                                     <InputLabel c="dimmed">Rating</InputLabel>
                                     <Text tt="capitalize">
-                                      {item.skill == "san"
+                                      {item.skill === "luck"
+                                        ? 50
+                                        : item.skill == "san"
                                         ? character.attributes[item.skill]
                                             .current
                                         : isStat(item.skill)
@@ -602,7 +641,9 @@ export const CharacterSheet: React.FC = () => {
                           {skillKeyLabels(rollType)}
                         </Text>
                         <Text fw={700}>
-                          {rollType == "san"
+                          {rollType == "luck"
+                            ? 50
+                            : rollType == "san"
                             ? character.attributes[rollType].current
                             : isStat(rollType)
                             ? character.stats[rollType] * 5
@@ -685,7 +726,9 @@ export const CharacterSheet: React.FC = () => {
                                   <Stack gap="0">
                                     <InputLabel c="dimmed">Rating</InputLabel>
                                     <Text tt="capitalize">
-                                      {item.skill == "san"
+                                      {item.skill == "luck"
+                                        ? 50
+                                        : item.skill == "san"
                                         ? character.attributes[item.skill]
                                             .current
                                         : isStat(item.skill)
@@ -760,7 +803,9 @@ export const CharacterSheet: React.FC = () => {
                           {skillKeyLabels(rollType)}
                         </Text>
                         <Text fw={700}>
-                          {rollType == "san"
+                          {rollType == "luck"
+                            ? 50
+                            : rollType == "san"
                             ? character.attributes[rollType].current
                             : isStat(rollType)
                             ? character.stats[rollType] * 5
