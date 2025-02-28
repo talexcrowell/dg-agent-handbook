@@ -209,7 +209,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                 return (
                   <Card withBorder>
                     <Group justify="space-between">
-                      <SimpleGrid cols={3} w={"85%"}>
+                      <SimpleGrid cols={viewport.width < 600 ? 2 : 3} w={"85%"}>
                         <Stack gap="0">
                           <InputLabel c="dimmed">Name</InputLabel>
                           <Text>{item?.name}</Text>
@@ -219,12 +219,14 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                           <Text>{handleEquipmentType(item).type}</Text>
                         </Stack>
 
-                        <Stack gap="0">
-                          <InputLabel c="dimmed">Subtype</InputLabel>
-                          <Text tt="capitalize">
-                            {handleEquipmentType(item).subtype}
-                          </Text>
-                        </Stack>
+                        {viewport.width >= 600 && (
+                          <Stack gap="0">
+                            <InputLabel c="dimmed">Subtype</InputLabel>
+                            <Text tt="capitalize">
+                              {handleEquipmentType(item).subtype}
+                            </Text>
+                          </Stack>
+                        )}
                       </SimpleGrid>
 
                       <ActionIcon
@@ -278,7 +280,10 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                             return (
                               <Card withBorder>
                                 <Group justify="space-between">
-                                  <SimpleGrid cols={3} w={"80%"}>
+                                  <SimpleGrid
+                                    cols={viewport.width < 600 ? 2 : 3}
+                                    w={"80%"}
+                                  >
                                     <Stack gap="0">
                                       <InputLabel c="dimmed">Name</InputLabel>
                                       <Text>{result?.name}</Text>
@@ -289,14 +294,16 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                         {handleEquipmentType(result).type}
                                       </Text>
                                     </Stack>
-                                    <Stack gap="0">
-                                      <InputLabel c="dimmed">
-                                        Subtype
-                                      </InputLabel>
-                                      <Text tt="capitalize">
-                                        {handleEquipmentType(result).subtype}
-                                      </Text>
-                                    </Stack>
+                                    {viewport.width >= 600 && (
+                                      <Stack gap="0">
+                                        <InputLabel c="dimmed">
+                                          Subtype
+                                        </InputLabel>
+                                        <Text tt="capitalize">
+                                          {handleEquipmentType(result).subtype}
+                                        </Text>
+                                      </Stack>
+                                    )}
                                   </SimpleGrid>
                                   <Group>
                                     <ActionIcon
@@ -306,12 +313,6 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                                       }
                                     >
                                       <IconDots />
-                                    </ActionIcon>
-                                    <ActionIcon
-                                      color="green"
-                                      onClick={() => validateEquipment(result)}
-                                    >
-                                      <IconPlus />
                                     </ActionIcon>
                                   </Group>
                                 </Group>
@@ -467,13 +468,21 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
             </Stack>
             {currentCharacter.equipment.filter(
               (item) => item.name === equipmentItem.name
-            ).length > 0 && (
+            ).length > 0 ? (
               <Button
                 leftSection={<IconTrash />}
                 color="red"
                 onClick={() => deleteEquipment(equipmentItem)}
               >
                 Delete
+              </Button>
+            ) : (
+              <Button
+                leftSection={<IconPlus />}
+                color="green"
+                onClick={() => validateEquipment(equipmentItem)}
+              >
+                Add Equipment
               </Button>
             )}
           </Stack>
@@ -598,13 +607,21 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
             )}
             {currentCharacter.equipment.filter(
               (item) => item.name === equipmentItem.name
-            ).length > 0 && (
+            ).length > 0 ? (
               <Button
                 leftSection={<IconTrash />}
                 color="red"
                 onClick={() => deleteEquipment(equipmentItem)}
               >
                 Delete
+              </Button>
+            ) : (
+              <Button
+                leftSection={<IconPlus />}
+                color="green"
+                onClick={() => validateEquipment(equipmentItem)}
+              >
+                Add Equipment
               </Button>
             )}
           </Stack>
