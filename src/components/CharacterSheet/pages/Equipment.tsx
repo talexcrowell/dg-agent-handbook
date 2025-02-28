@@ -1,13 +1,16 @@
 import {
   Accordion,
   ActionIcon,
+  Button,
   Card,
   Divider,
+  Drawer,
   Flex,
   Grid,
   Group,
   HoverCard,
   InputLabel,
+  Modal,
   SimpleGrid,
   Stack,
   Table,
@@ -18,6 +21,7 @@ import {
 } from "@mantine/core";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import {
+  IconDots,
   IconDotsVertical,
   IconInfoCircle,
   IconPlus,
@@ -39,6 +43,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [equipmentItem, setEquipmentItem] = useState({});
 
   const equipmentMasterList = [
     ...weaponsLists.filter((item) => {
@@ -60,6 +65,61 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
         item.name !== "Exclusive use of a dedicated communications satellite"
     ),
   ];
+
+  const handleEquipmentType = (item) => {
+    let type;
+    let subtype;
+    switch (item.type) {
+      case "gearAndServices":
+        type = "Gear and Services";
+        switch (item.gearAndServicesType) {
+          case "coversAndLegends":
+            subtype = "Covers And Legends";
+            break;
+          case "communicationsAndComputers":
+            subtype = "Communications And Computers";
+            break;
+          case "lightingAndVision":
+            subtype = "Lighting And Vision";
+            break;
+          case "breakingAndEntering":
+            subtype = "Breaking And Entering";
+            break;
+          case "emergencyAndSurvival":
+            subtype = "Emergency And Survival";
+            break;
+          default:
+            subtype = item.gearAndServicesType;
+            break;
+        }
+        break;
+      case "weapon":
+        type = "Weapon";
+        subtype = item.weaponType;
+        switch (item.weaponType) {
+          case "handToHand":
+            subtype = "Hand-To-Hand";
+            break;
+          case "heavyWeapons":
+            subtype = "Heavy Weapons";
+            break;
+          case "stunGrenade":
+            subtype = "Stun Grenade";
+            break;
+          case "tearGasPepperSpray":
+            subtype = "Tear Gas/Pepper Spray";
+            break;
+          default:
+            subtype = item.weaponType;
+            break;
+        }
+        break;
+      case "armor":
+        type = "Armor";
+        break;
+    }
+    return { type, subtype };
+  };
 
   const fuse = new Fuse(equipmentMasterList, {
     keys: ["name"],
@@ -121,12 +181,18 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
 
   const deleteEquipment = (item) => {
     handleUpdateCharacter("equipmentDelete", item);
+    setOpened(false);
     notifications.show({
       color: "green",
       title: "Equipment Removed!",
       message: `Equipment removed from inventory.`,
       position: "bottom-center",
     });
+  };
+
+  const handleInspectEquipment = (item) => {
+    setEquipmentItem({ ...item });
+    setOpened(true);
   };
 
   return (
@@ -143,121 +209,30 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                 return (
                   <Card withBorder>
                     <Group justify="space-between">
-                      <Group>
+                      <SimpleGrid cols={3} w={"85%"}>
                         <Stack gap="0">
                           <InputLabel c="dimmed">Name</InputLabel>
                           <Text>{item?.name}</Text>
                         </Stack>
-                        <Divider orientation="vertical" />
-                        {item?.type === "gearAndServices" &&
-                          item?.description && (
-                            <>
-                              <Stack gap="0">
-                                <InputLabel c="dimmed">Description</InputLabel>
-                                <Text>
-                                  {item?.description.length > 85
-                                    ? item?.description.slice(0, 85) + "..."
-                                    : item?.description}
-                                </Text>
-                              </Stack>
-                            </>
-                          )}
-                        {item?.skill && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Skill</InputLabel>
-                              <Text tt="capitalize">
-                                {skillKeyLabels(item?.skill)}
-                              </Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.armorRating && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Armor Rating</InputLabel>
-                              <Text>{item?.armorRating}</Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.damage && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Damage</InputLabel>
-                              <Text>{item?.damage}</Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.lethality && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Lethality</InputLabel>
-                              <Text>{item?.lethality}%</Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.armorPiercing !== undefined && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Armor Piercing</InputLabel>
-                              <Text>
-                                {item?.armorPiercing === 0
-                                  ? "N/A"
-                                  : item?.armorPiercing}
-                              </Text>
-                            </Stack>{" "}
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.range && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Range</InputLabel>
-                              <Text>{item?.range}</Text>
-                            </Stack>{" "}
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.uses && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Uses</InputLabel>
-                              <Text>{item?.uses}</Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.radius && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Radius</InputLabel>
-                              <Text>{item?.radius}</Text>
-                            </Stack>
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                        {item?.penalty && (
-                          <>
-                            <Stack gap="0">
-                              <InputLabel c="dimmed">Penalty</InputLabel>
-                              <Text>{item?.penalty}</Text>
-                            </Stack>{" "}
-                            <Divider orientation="vertical" />
-                          </>
-                        )}
-                      </Group>
-                      <Group>
-                        <ActionIcon
-                          color="red"
-                          onClick={() => deleteEquipment(item)}
-                        >
-                          <IconTrash />
-                        </ActionIcon>
-                      </Group>
+                        <Stack gap="0">
+                          <InputLabel c="dimmed">Type</InputLabel>
+                          <Text>{handleEquipmentType(item).type}</Text>
+                        </Stack>
+
+                        <Stack gap="0">
+                          <InputLabel c="dimmed">Subtype</InputLabel>
+                          <Text tt="capitalize">
+                            {handleEquipmentType(item).subtype}
+                          </Text>
+                        </Stack>
+                      </SimpleGrid>
+
+                      <ActionIcon
+                        color="grey"
+                        onClick={() => handleInspectEquipment(item)}
+                      >
+                        <IconDots />
+                      </ActionIcon>
                     </Group>
                   </Card>
                 );
@@ -303,131 +278,42 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                             return (
                               <Card withBorder>
                                 <Group justify="space-between">
-                                  <SimpleGrid cols={4} w={"90%"}>
+                                  <SimpleGrid cols={3} w={"80%"}>
                                     <Stack gap="0">
                                       <InputLabel c="dimmed">Name</InputLabel>
                                       <Text>{result?.name}</Text>
                                     </Stack>
-
-                                    {result?.type === "gearAndServices" &&
-                                      result?.description && (
-                                        <>
-                                          <Stack gap="0" miw={450}>
-                                            <InputLabel c="dimmed">
-                                              Description
-                                            </InputLabel>
-                                            <Flex>
-                                              <Text>
-                                                {result?.description}
-                                              </Text>
-                                            </Flex>
-                                          </Stack>
-                                        </>
-                                      )}
-                                    {result?.skill && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Skill
-                                          </InputLabel>
-                                          <Text tt="capitalize">
-                                            {skillKeyLabels(result?.skill)}
-                                          </Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.armorRating && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Armor Rating
-                                          </InputLabel>
-                                          <Text>{result?.armorRating}</Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.damage && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Damage
-                                          </InputLabel>
-                                          <Text>{result?.damage}</Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.lethality && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Lethality
-                                          </InputLabel>
-                                          <Text>{result?.lethality}%</Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.armorPiercing !== undefined && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Armor Piercing
-                                          </InputLabel>
-                                          <Text>
-                                            {result?.armorPiercing === 0
-                                              ? "N/A"
-                                              : result?.armorPiercing}
-                                          </Text>
-                                        </Stack>{" "}
-                                      </>
-                                    )}
-                                    {result?.range && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Range
-                                          </InputLabel>
-                                          <Text>{result?.range}</Text>
-                                        </Stack>{" "}
-                                      </>
-                                    )}
-                                    {result?.uses && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Uses
-                                          </InputLabel>
-                                          <Text>{result?.uses}</Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.radius && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Radius
-                                          </InputLabel>
-                                          <Text>{result?.radius}</Text>
-                                        </Stack>
-                                      </>
-                                    )}
-                                    {result?.penalty && (
-                                      <>
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Penalty
-                                          </InputLabel>
-                                          <Text>{result?.penalty}</Text>
-                                        </Stack>{" "}
-                                      </>
-                                    )}
+                                    <Stack gap="0">
+                                      <InputLabel c="dimmed">Type</InputLabel>
+                                      <Text>
+                                        {handleEquipmentType(result).type}
+                                      </Text>
+                                    </Stack>
+                                    <Stack gap="0">
+                                      <InputLabel c="dimmed">
+                                        Subtype
+                                      </InputLabel>
+                                      <Text tt="capitalize">
+                                        {handleEquipmentType(result).subtype}
+                                      </Text>
+                                    </Stack>
                                   </SimpleGrid>
-
-                                  <ActionIcon
-                                    color="green"
-                                    onClick={() => validateEquipment(result)}
-                                  >
-                                    <IconPlus />
-                                  </ActionIcon>
+                                  <Group>
+                                    <ActionIcon
+                                      color="grey"
+                                      onClick={() =>
+                                        handleInspectEquipment(result)
+                                      }
+                                    >
+                                      <IconDots />
+                                    </ActionIcon>
+                                    <ActionIcon
+                                      color="green"
+                                      onClick={() => validateEquipment(result)}
+                                    >
+                                      <IconPlus />
+                                    </ActionIcon>
+                                  </Group>
                                 </Group>
                                 {/* </Group> */}
                               </Card>
@@ -458,54 +344,272 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
           />
         </Stack>
       </Grid.Col>
-      {/* <Grid.Col span={12}>
-        <Table withColumnBorders withTableBorder>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Weapon</Table.Th>
-              <Table.Th>Skill %</Table.Th>
-              <Table.Th>Base Range</Table.Th>
-              <Table.Th>Damage</Table.Th>
-              <Table.Th>Armor Piercing</Table.Th>
-              <Table.Th>Lethality</Table.Th>
-              <Table.Th>Kill Radius</Table.Th>
-              <Table.Th>Ammo</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            <Table.Tr>
-              <Table.Td>(a)</Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-            </Table.Tr>
-            <Table.Tr>
-              <Table.Td>(b)</Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-            </Table.Tr>
-            <Table.Tr>
-              <Table.Td>(c)</Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-              <Table.Td></Table.Td>
-            </Table.Tr>
-          </Table.Tbody>
-        </Table>
-      </Grid.Col> */}
+      {viewport.width < 760 ? (
+        <Drawer
+          opened={opened}
+          onClose={() => setOpened(!opened)}
+          title={<Title order={3}>{equipmentItem.name}</Title>}
+          position="bottom"
+        >
+          <Stack>
+            <Stack>
+              {equipmentItem?.restricted && (
+                <Text c="red" fw={700}>
+                  {handleEquipmentType(equipmentItem).subtype === "firearms"
+                    ? "RESTRICTED IF CAPABLE OF AUTOMATIC FIRE"
+                    : "RESTRICTED"}
+                </Text>
+              )}
+              <SimpleGrid cols={2}>
+                <Stack gap="0">
+                  <InputLabel c="dimmed">Type</InputLabel>
+                  <Text tt="capitalize">
+                    {handleEquipmentType(equipmentItem).type}
+                  </Text>
+                </Stack>
+                <Stack gap="0">
+                  <InputLabel c="dimmed">Subtype</InputLabel>
+                  <Text tt="capitalize">
+                    {handleEquipmentType(equipmentItem).subtype}
+                  </Text>
+                </Stack>
+              </SimpleGrid>
+              <SimpleGrid cols={3}>
+                {equipmentItem?.skill && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Skill</InputLabel>
+                      <Text tt="capitalize">
+                        {skillKeyLabels(equipmentItem?.skill)}
+                      </Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.armorRating && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Armor Rating</InputLabel>
+                      <Text>{equipmentItem?.armorRating}</Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.damage && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Damage</InputLabel>
+                      <Text>{equipmentItem?.damage}</Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.lethality && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Lethality</InputLabel>
+                      <Text>{equipmentItem?.lethality}%</Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.armorPiercing !== undefined && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Armor Piercing</InputLabel>
+                      <Text>
+                        {equipmentItem?.armorPiercing === 0
+                          ? "N/A"
+                          : equipmentItem?.armorPiercing}
+                      </Text>
+                    </Stack>{" "}
+                  </>
+                )}
+                {equipmentItem?.range !== undefined && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Range</InputLabel>
+                      <Text>{equipmentItem?.range}m</Text>
+                    </Stack>{" "}
+                  </>
+                )}
+                {equipmentItem?.uses && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Uses</InputLabel>
+                      <Text>{equipmentItem?.uses}</Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.radius && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Radius</InputLabel>
+                      <Text>{equipmentItem?.radius}</Text>
+                    </Stack>
+                  </>
+                )}
+                {equipmentItem?.penalty && (
+                  <>
+                    <Stack gap="0">
+                      <InputLabel c="dimmed">Penalty</InputLabel>
+                      <Text>{equipmentItem?.penalty}</Text>
+                    </Stack>{" "}
+                  </>
+                )}
+              </SimpleGrid>
+              {equipmentItem?.description && (
+                <Stack gap="0">
+                  <InputLabel c="dimmed">Description</InputLabel>
+                  <Text>
+                    {equipmentItem?.description.length > 85
+                      ? equipmentItem?.description.slice(0, 85) + "..."
+                      : equipmentItem?.description}
+                  </Text>
+                </Stack>
+              )}
+            </Stack>
+            {currentCharacter.equipment.filter(
+              (item) => item.name === equipmentItem.name
+            ).length > 0 && (
+              <Button
+                leftSection={<IconTrash />}
+                color="red"
+                onClick={() => deleteEquipment(equipmentItem)}
+              >
+                Delete
+              </Button>
+            )}
+          </Stack>
+        </Drawer>
+      ) : (
+        <Modal
+          opened={opened}
+          onClose={() => setOpened(!opened)}
+          title={<Title order={3}>{equipmentItem.name}</Title>}
+        >
+          <Stack>
+            {equipmentItem?.restricted && (
+              <Text c="red" fw={700}>
+                {handleEquipmentType(equipmentItem).subtype === "firearms"
+                  ? "RESTRICTED IF CAPABLE OF AUTOMATIC FIRE"
+                  : "RESTRICTED"}
+              </Text>
+            )}
+            <SimpleGrid cols={2}>
+              <Stack gap="0">
+                <InputLabel c="dimmed">Type</InputLabel>
+                <Text tt="capitalize">
+                  {handleEquipmentType(equipmentItem).type}
+                </Text>
+              </Stack>
+              <Stack gap="0">
+                <InputLabel c="dimmed">Subtype</InputLabel>
+                <Text tt="capitalize">
+                  {handleEquipmentType(equipmentItem).subtype}
+                </Text>
+              </Stack>
+            </SimpleGrid>
+            <SimpleGrid cols={3}>
+              {equipmentItem?.skill && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Skill</InputLabel>
+                    <Text tt="capitalize">
+                      {skillKeyLabels(equipmentItem?.skill)}
+                    </Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.armorRating && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Armor Rating</InputLabel>
+                    <Text>{equipmentItem?.armorRating}</Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.damage && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Damage</InputLabel>
+                    <Text>{equipmentItem?.damage}</Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.lethality && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Lethality</InputLabel>
+                    <Text>{equipmentItem?.lethality}%</Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.armorPiercing !== undefined && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Armor Piercing</InputLabel>
+                    <Text>
+                      {equipmentItem?.armorPiercing === 0
+                        ? "N/A"
+                        : equipmentItem?.armorPiercing}
+                    </Text>
+                  </Stack>{" "}
+                </>
+              )}
+              {equipmentItem?.range !== undefined && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Range</InputLabel>
+                    <Text>{equipmentItem?.range}m</Text>
+                  </Stack>{" "}
+                </>
+              )}
+              {equipmentItem?.uses && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Uses</InputLabel>
+                    <Text>{equipmentItem?.uses}</Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.radius && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Radius</InputLabel>
+                    <Text>{equipmentItem?.radius}</Text>
+                  </Stack>
+                </>
+              )}
+              {equipmentItem?.penalty && (
+                <>
+                  <Stack gap="0">
+                    <InputLabel c="dimmed">Penalty</InputLabel>
+                    <Text>{equipmentItem?.penalty}</Text>
+                  </Stack>{" "}
+                </>
+              )}
+            </SimpleGrid>
+            {equipmentItem?.description && (
+              <Stack gap="0">
+                <InputLabel c="dimmed">Description</InputLabel>
+                <Text>
+                  {equipmentItem?.description.length > 85
+                    ? equipmentItem?.description.slice(0, 85) + "..."
+                    : equipmentItem?.description}
+                </Text>
+              </Stack>
+            )}
+            {currentCharacter.equipment.filter(
+              (item) => item.name === equipmentItem.name
+            ).length > 0 && (
+              <Button
+                leftSection={<IconTrash />}
+                color="red"
+                onClick={() => deleteEquipment(equipmentItem)}
+              >
+                Delete
+              </Button>
+            )}
+          </Stack>
+        </Modal>
+      )}
     </Grid>
   );
 };
