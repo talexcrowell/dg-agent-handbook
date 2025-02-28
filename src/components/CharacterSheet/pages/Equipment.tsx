@@ -185,7 +185,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
     notifications.show({
       color: "green",
       title: "Equipment Removed!",
-      message: `Equipment removed from inventory.`,
+      message: `Equipment removed from Agent ${currentCharacter.codename}'s inventory.`,
       position: "bottom-center",
     });
   };

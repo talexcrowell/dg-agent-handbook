@@ -14,6 +14,8 @@ import { defaultSkillValues, skillsMasterList } from "../../../data";
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { IconSearch } from "@tabler/icons-react";
+import { useState } from "react";
+import Fuse from "fuse.js";
 
 export const Skills = ({
   currentCharacter,
@@ -22,6 +24,7 @@ export const Skills = ({
   handleFailedTests,
 }: any) => {
   const skillKeysArr = Object.keys(defaultSkillValues);
+  const [searchTerm, setSearchTerm] = useState("");
   const [viewport] = useViewportContext();
 
   const isSkillChoice = (skill) => {
@@ -72,6 +75,18 @@ export const Skills = ({
         currentCharacter.skills[key].length
       );
     }
+  });
+
+  const handleSearch = (val) => {
+    setSearchTerm(val);
+  };
+
+  const fuse = new Fuse(skillKeysArr, {
+    threshold: 0.45,
+  });
+
+  const filteredList = fuse.search(searchTerm).map((item) => {
+    return { name: item.item };
   });
 
   return (
@@ -370,128 +385,37 @@ export const Skills = ({
               placeholder="Search for a skill..."
               rightSection={<IconSearch />}
               mb="md"
+              onChange={(e) => handleSearch(e.currentTarget.value)}
             />
           </Grid.Col>
-          <Grid.Col span={6}>
-            <Table withTableBorder withColumnBorders>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Skill Name</Table.Th>
-                  <Table.Th>Score</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              {skillKeysArr.slice(0, skillKeysArr.length / 2).map((key) => {
-                return (
-                  <Table.Tr key={key}>
-                    <Table.Td>
-                      <Group>
-                        <Checkbox
-                          value={key}
-                          checked={currentCharacter.failedTests.includes(key)}
-                          onChange={(e) =>
-                            e.currentTarget.checked
-                              ? handleFailedTests([
-                                  ...currentCharacter.failedTests,
-                                  key,
-                                ])
-                              : handleFailedTests([
-                                  ...currentCharacter.failedTests.filter(
-                                    (test) => test !== key
-                                  ),
-                                ])
-                          }
-                        />
-                        <Tooltip
-                          w={250}
-                          label={
-                            skillsMasterList.filter(
-                              (skill) => skill.id === key
-                            )[0].definition
-                          }
-                          multiline
-                          openDelay={500}
-                        >
-                          <Text
-                            tt="capitalize"
-                            ta="start"
-                            className={styles.tooltippedElement}
-                            size="sm"
-                          >
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].label !== ""
-                                ? `${skillKeyLabels(key)} (${
-                                    currentCharacter.skills[key][0].label
-                                  })`
-                                : skillKeyLabels(key)
-                              : skillKeyLabels(key)}{" "}
-                          </Text>
-                        </Tooltip>
-                        <Text c="dimmed" size="sm">
-                          ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
-                          %)
-                        </Text>
-                      </Group>
-                    </Table.Td>
-                    <Table.Td>
-                      {inPerson ? (
-                        <Button
-                          fullWidth
-                          onClick={() => handleStandardRoll(key)}
-                          variant="outline"
-                          disabled={
-                            (isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : currentCharacter.skills[key]) === 0
-                          }
-                        >
-                          <Text ta="center" size="sm">
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : currentCharacter.skills[key]}
-                            %
-                          </Text>
-                        </Button>
-                      ) : (
-                        <Text ta="center">
-                          {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
-                            : currentCharacter.skills[key]}
-                          %
-                        </Text>
-                      )}
-                    </Table.Td>
+          {searchTerm ? (
+            <Grid.Col span={12}>
+              <Table withTableBorder withColumnBorders>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Skill Name</Table.Th>
+                    <Table.Th>Score</Table.Th>
                   </Table.Tr>
-                );
-              })}
-            </Table>
-          </Grid.Col>
-          <Grid.Col span={6}>
-            <Table withTableBorder withColumnBorders>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Skill Name</Table.Th>
-                  <Table.Th>Score</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              {skillKeysArr
-                .slice(skillKeysArr.length / 2, skillKeysArr.length)
-                .map((key) => {
+                </Table.Thead>
+                {filteredList.map((key) => {
                   return (
-                    <Table.Tr key={key}>
+                    <Table.Tr key={key.name}>
                       <Table.Td>
                         <Group>
                           <Checkbox
-                            value={key}
-                            checked={currentCharacter.failedTests.includes(key)}
+                            value={key.name}
+                            checked={currentCharacter.failedTests.includes(
+                              key.name
+                            )}
                             onChange={(e) =>
                               e.currentTarget.checked
                                 ? handleFailedTests([
                                     ...currentCharacter.failedTests,
-                                    key,
+                                    key.name,
                                   ])
                                 : handleFailedTests([
                                     ...currentCharacter.failedTests.filter(
-                                      (test) => test !== key
+                                      (test) => test !== key.name
                                     ),
                                   ])
                             }
@@ -500,7 +424,7 @@ export const Skills = ({
                             w={250}
                             label={
                               skillsMasterList.filter(
-                                (skill) => skill.id === key
+                                (skill) => skill.id === key.name
                               )[0].definition
                             }
                             multiline
@@ -512,17 +436,21 @@ export const Skills = ({
                               className={styles.tooltippedElement}
                               size="sm"
                             >
-                              {isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].label !== ""
-                                  ? `${skillKeyLabels(key)} (${
-                                      currentCharacter.skills[key][0].label
+                              {isSkillChoice(key.name)
+                                ? currentCharacter.skills[key.name][0].label !==
+                                  ""
+                                  ? `${skillKeyLabels(key.name)} (${
+                                      currentCharacter.skills[key.name][0].label
                                     })`
-                                  : skillKeyLabels(key)
-                                : skillKeyLabels(key)}{" "}
+                                  : skillKeyLabels(key.name)
+                                : skillKeyLabels(key.name)}{" "}
                             </Text>
                           </Tooltip>
                           <Text c="dimmed" size="sm">
-                            ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
+                            (
+                            {isSkillChoice(key.name)
+                              ? 0
+                              : defaultSkillValues[key.name]}
                             %)
                           </Text>
                         </Group>
@@ -534,23 +462,23 @@ export const Skills = ({
                             onClick={() => handleStandardRoll(key)}
                             variant="outline"
                             disabled={
-                              (isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].skill
-                                : currentCharacter.skills[key]) === 0
+                              (isSkillChoice(key.name)
+                                ? currentCharacter.skills[key.name][0].skill
+                                : currentCharacter.skills[key.name]) === 0
                             }
                           >
                             <Text ta="center" size="sm">
-                              {isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].skill
-                                : currentCharacter.skills[key]}
+                              {isSkillChoice(key.name)
+                                ? currentCharacter.skills[key.name][0].skill
+                                : currentCharacter.skills[key.name]}
                               %
                             </Text>
                           </Button>
                         ) : (
                           <Text ta="center">
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : currentCharacter.skills[key]}
+                            {isSkillChoice(key.name)
+                              ? currentCharacter.skills[key.name][0].skill
+                              : currentCharacter.skills[key.name]}
                             %
                           </Text>
                         )}
@@ -558,8 +486,209 @@ export const Skills = ({
                     </Table.Tr>
                   );
                 })}
-            </Table>
-          </Grid.Col>
+              </Table>
+            </Grid.Col>
+          ) : (
+            <>
+              <Grid.Col span={6}>
+                <Table withTableBorder withColumnBorders>
+                  <Table.Thead>
+                    <Table.Tr>
+                      <Table.Th>Skill Name</Table.Th>
+                      <Table.Th>Score</Table.Th>
+                    </Table.Tr>
+                  </Table.Thead>
+                  {skillKeysArr.slice(0, skillKeysArr.length / 2).map((key) => {
+                    return (
+                      <Table.Tr key={key}>
+                        <Table.Td>
+                          <Group>
+                            <Checkbox
+                              value={key}
+                              checked={currentCharacter.failedTests.includes(
+                                key
+                              )}
+                              onChange={(e) =>
+                                e.currentTarget.checked
+                                  ? handleFailedTests([
+                                      ...currentCharacter.failedTests,
+                                      key,
+                                    ])
+                                  : handleFailedTests([
+                                      ...currentCharacter.failedTests.filter(
+                                        (test) => test !== key
+                                      ),
+                                    ])
+                              }
+                            />
+                            <Tooltip
+                              w={250}
+                              label={
+                                skillsMasterList.filter(
+                                  (skill) => skill.id === key
+                                )[0].definition
+                              }
+                              multiline
+                              openDelay={500}
+                            >
+                              <Text
+                                tt="capitalize"
+                                ta="start"
+                                className={styles.tooltippedElement}
+                                size="sm"
+                              >
+                                {isSkillChoice(key)
+                                  ? currentCharacter.skills[key][0].label !== ""
+                                    ? `${skillKeyLabels(key)} (${
+                                        currentCharacter.skills[key][0].label
+                                      })`
+                                    : skillKeyLabels(key)
+                                  : skillKeyLabels(key)}{" "}
+                              </Text>
+                            </Tooltip>
+                            <Text c="dimmed" size="sm">
+                              (
+                              {isSkillChoice(key) ? 0 : defaultSkillValues[key]}
+                              %)
+                            </Text>
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          {inPerson ? (
+                            <Button
+                              fullWidth
+                              onClick={() => handleStandardRoll(key)}
+                              variant="outline"
+                              disabled={
+                                (isSkillChoice(key)
+                                  ? currentCharacter.skills[key][0].skill
+                                  : currentCharacter.skills[key]) === 0
+                              }
+                            >
+                              <Text ta="center" size="sm">
+                                {isSkillChoice(key)
+                                  ? currentCharacter.skills[key][0].skill
+                                  : currentCharacter.skills[key]}
+                                %
+                              </Text>
+                            </Button>
+                          ) : (
+                            <Text ta="center">
+                              {isSkillChoice(key)
+                                ? currentCharacter.skills[key][0].skill
+                                : currentCharacter.skills[key]}
+                              %
+                            </Text>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                </Table>
+              </Grid.Col>
+              <Grid.Col span={6}>
+                <Table withTableBorder withColumnBorders>
+                  <Table.Thead>
+                    <Table.Tr>
+                      <Table.Th>Skill Name</Table.Th>
+                      <Table.Th>Score</Table.Th>
+                    </Table.Tr>
+                  </Table.Thead>
+                  {skillKeysArr
+                    .slice(skillKeysArr.length / 2, skillKeysArr.length)
+                    .map((key) => {
+                      return (
+                        <Table.Tr key={key}>
+                          <Table.Td>
+                            <Group>
+                              <Checkbox
+                                value={key}
+                                checked={currentCharacter.failedTests.includes(
+                                  key
+                                )}
+                                onChange={(e) =>
+                                  e.currentTarget.checked
+                                    ? handleFailedTests([
+                                        ...currentCharacter.failedTests,
+                                        key,
+                                      ])
+                                    : handleFailedTests([
+                                        ...currentCharacter.failedTests.filter(
+                                          (test) => test !== key
+                                        ),
+                                      ])
+                                }
+                              />
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (skill) => skill.id === key
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                              >
+                                <Text
+                                  tt="capitalize"
+                                  ta="start"
+                                  className={styles.tooltippedElement}
+                                  size="sm"
+                                >
+                                  {isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].label !==
+                                      ""
+                                      ? `${skillKeyLabels(key)} (${
+                                          currentCharacter.skills[key][0].label
+                                        })`
+                                      : skillKeyLabels(key)
+                                    : skillKeyLabels(key)}{" "}
+                                </Text>
+                              </Tooltip>
+                              <Text c="dimmed" size="sm">
+                                (
+                                {isSkillChoice(key)
+                                  ? 0
+                                  : defaultSkillValues[key]}
+                                %)
+                              </Text>
+                            </Group>
+                          </Table.Td>
+                          <Table.Td>
+                            {inPerson ? (
+                              <Button
+                                fullWidth
+                                onClick={() => handleStandardRoll(key)}
+                                variant="outline"
+                                disabled={
+                                  (isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].skill
+                                    : currentCharacter.skills[key]) === 0
+                                }
+                              >
+                                <Text ta="center" size="sm">
+                                  {isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].skill
+                                    : currentCharacter.skills[key]}
+                                  %
+                                </Text>
+                              </Button>
+                            ) : (
+                              <Text ta="center">
+                                {isSkillChoice(key)
+                                  ? currentCharacter.skills[key][0].skill
+                                  : currentCharacter.skills[key]}
+                                %
+                              </Text>
+                            )}
+                          </Table.Td>
+                        </Table.Tr>
+                      );
+                    })}
+                </Table>
+              </Grid.Col>
+            </>
+          )}
         </>
       ) : (
         <Grid.Col span={12}>
@@ -567,6 +696,7 @@ export const Skills = ({
             <TextInput
               placeholder="Search for a skill..."
               rightSection={<IconSearch />}
+              onChange={(e) => handleSearch(e.currentTarget.value)}
             />
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
@@ -576,88 +706,186 @@ export const Skills = ({
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {skillKeysArr.map((key) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>
-                        <Group>
-                          <Checkbox
-                            value={key}
-                            checked={currentCharacter.failedTests.includes(key)}
-                            onChange={(e) =>
-                              e.currentTarget.checked
-                                ? handleFailedTests([
-                                    ...currentCharacter.failedTests,
-                                    key,
-                                  ])
-                                : handleFailedTests([
-                                    ...currentCharacter.failedTests.filter(
-                                      (test) => test !== key
-                                    ),
-                                  ])
-                            }
-                          />
-                          <Tooltip
-                            w={250}
-                            label={
-                              skillsMasterList.filter(
-                                (skill) => skill.id === key
-                              )[0].definition
-                            }
-                            multiline
-                            openDelay={500}
-                          >
-                            <Text
-                              tt="capitalize"
-                              ta="start"
-                              className={styles.tooltippedElement}
-                            >
-                              {isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].label !== ""
-                                  ? `${skillKeyLabels(key)} (${
-                                      currentCharacter.skills[key][0].label
-                                    })`
-                                  : skillKeyLabels(key)
-                                : skillKeyLabels(key)}{" "}
-                            </Text>
-                          </Tooltip>
-                          <Text c="dimmed">
-                            ({isSkillChoice(key) ? 0 : defaultSkillValues[key]}
-                            %)
-                          </Text>
-                        </Group>
-                      </Table.Td>
-                      <Table.Td>
-                        {inPerson ? (
-                          <Button
-                            fullWidth
-                            onClick={() => handleStandardRoll(key)}
-                            variant="outline"
-                            disabled={
-                              (isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].skill
-                                : currentCharacter.skills[key]) === 0
-                            }
-                          >
-                            <Text ta="center" size="sm">
-                              {isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].skill
-                                : currentCharacter.skills[key]}
-                              %
-                            </Text>
-                          </Button>
-                        ) : (
-                          <Text ta="center">
-                            {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
-                              : currentCharacter.skills[key]}
-                            %
-                          </Text>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
+                {searchTerm
+                  ? filteredList.map((key) => {
+                      return (
+                        <Table.Tr key={key.name}>
+                          <Table.Td>
+                            <Group>
+                              <Checkbox
+                                value={key.name}
+                                checked={currentCharacter.failedTests.includes(
+                                  key.name
+                                )}
+                                onChange={(e) =>
+                                  e.currentTarget.checked
+                                    ? handleFailedTests([
+                                        ...currentCharacter.failedTests,
+                                        key.name,
+                                      ])
+                                    : handleFailedTests([
+                                        ...currentCharacter.failedTests.filter(
+                                          (test) => test !== key.name
+                                        ),
+                                      ])
+                                }
+                              />
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (skill) => skill.id === key.name
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                              >
+                                <Text
+                                  tt="capitalize"
+                                  ta="start"
+                                  className={styles.tooltippedElement}
+                                  size="sm"
+                                >
+                                  {isSkillChoice(key.name)
+                                    ? currentCharacter.skills[key.name][0]
+                                        .label !== ""
+                                      ? `${skillKeyLabels(key.name)} (${
+                                          currentCharacter.skills[key.name][0]
+                                            .label
+                                        })`
+                                      : skillKeyLabels(key.name)
+                                    : skillKeyLabels(key.name)}{" "}
+                                </Text>
+                              </Tooltip>
+                              <Text c="dimmed" size="sm">
+                                (
+                                {isSkillChoice(key.name)
+                                  ? 0
+                                  : defaultSkillValues[key.name]}
+                                %)
+                              </Text>
+                            </Group>
+                          </Table.Td>
+                          <Table.Td>
+                            {inPerson ? (
+                              <Button
+                                fullWidth
+                                onClick={() => handleStandardRoll(key)}
+                                variant="outline"
+                                disabled={
+                                  (isSkillChoice(key.name)
+                                    ? currentCharacter.skills[key.name][0].skill
+                                    : currentCharacter.skills[key.name]) === 0
+                                }
+                              >
+                                <Text ta="center" size="sm">
+                                  {isSkillChoice(key.name)
+                                    ? currentCharacter.skills[key.name][0].skill
+                                    : currentCharacter.skills[key.name]}
+                                  %
+                                </Text>
+                              </Button>
+                            ) : (
+                              <Text ta="center">
+                                {isSkillChoice(key.name)
+                                  ? currentCharacter.skills[key.name][0].skill
+                                  : currentCharacter.skills[key.name]}
+                                %
+                              </Text>
+                            )}
+                          </Table.Td>
+                        </Table.Tr>
+                      );
+                    })
+                  : skillKeysArr.map((key) => {
+                      return (
+                        <Table.Tr>
+                          <Table.Td>
+                            <Group>
+                              <Checkbox
+                                value={key}
+                                checked={currentCharacter.failedTests.includes(
+                                  key
+                                )}
+                                onChange={(e) =>
+                                  e.currentTarget.checked
+                                    ? handleFailedTests([
+                                        ...currentCharacter.failedTests,
+                                        key,
+                                      ])
+                                    : handleFailedTests([
+                                        ...currentCharacter.failedTests.filter(
+                                          (test) => test !== key
+                                        ),
+                                      ])
+                                }
+                              />
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (skill) => skill.id === key
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                              >
+                                <Text
+                                  tt="capitalize"
+                                  ta="start"
+                                  className={styles.tooltippedElement}
+                                  size="sm"
+                                >
+                                  {isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].label !==
+                                      ""
+                                      ? `${skillKeyLabels(key)} (${
+                                          currentCharacter.skills[key][0].label
+                                        })`
+                                      : skillKeyLabels(key)
+                                    : skillKeyLabels(key)}{" "}
+                                </Text>
+                              </Tooltip>
+                              <Text c="dimmed">
+                                (
+                                {isSkillChoice(key)
+                                  ? 0
+                                  : defaultSkillValues[key]}
+                                %)
+                              </Text>
+                            </Group>
+                          </Table.Td>
+                          <Table.Td>
+                            {inPerson ? (
+                              <Button
+                                fullWidth
+                                onClick={() => handleStandardRoll(key)}
+                                variant="outline"
+                                disabled={
+                                  (isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].skill
+                                    : currentCharacter.skills[key]) === 0
+                                }
+                              >
+                                <Text ta="center" size="sm">
+                                  {isSkillChoice(key)
+                                    ? currentCharacter.skills[key][0].skill
+                                    : currentCharacter.skills[key]}
+                                  %
+                                </Text>
+                              </Button>
+                            ) : (
+                              <Text ta="center">
+                                {isSkillChoice(key)
+                                  ? currentCharacter.skills[key][0].skill
+                                  : currentCharacter.skills[key]}
+                                %
+                              </Text>
+                            )}
+                          </Table.Td>
+                        </Table.Tr>
+                      );
+                    })}
               </Table.Tbody>
             </Table>
           </Stack>
