@@ -75,7 +75,7 @@ export const BonusSkillPackagesList = () => {
                     <Stack gap="0">
                       <InputLabel c="dimmed">Skill Set:</InputLabel>
                       <List spacing={"xs"}>
-                        {selectedPackage.professionalSkills.map((skill) => (
+                        {selectedPackage?.professionalSkills.map((skill) => (
                           <Tooltip
                             w={250}
                             label={
@@ -115,7 +115,7 @@ export const BonusSkillPackagesList = () => {
           </Grid.Col>
         )}
       </Grid>
-      {viewport.width < 760 && selectedPackage?.name !== "" && (
+      {viewport.width < 760 && selectedPackage?.name && (
         <Drawer
           position="bottom"
           opened={opened}

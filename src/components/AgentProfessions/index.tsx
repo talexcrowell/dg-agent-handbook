@@ -59,7 +59,7 @@ export const AgentProfessions = () => {
           value={tabValue}
           onChange={(value) => navigate(`/agents/professions/${value}`)}
         >
-          {viewport.width > 600 ? (
+          {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value="overview">Overview</Tabs.Tab>
               <Tabs.Tab value="stats-and-skills">Stats and Skills</Tabs.Tab>

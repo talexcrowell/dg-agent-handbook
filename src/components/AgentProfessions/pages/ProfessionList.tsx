@@ -243,6 +243,7 @@ export const ProfessionList = () => {
       );
     }
   };
+
   return (
     <>
       <Grid
@@ -353,7 +354,7 @@ export const ProfessionList = () => {
           </Grid.Col>
         )}
       </Grid>
-      {viewport.width < 760 && selectedProfession.name !== "" && (
+      {viewport.width < 760 && selectedProfession?.name !== "" && (
         <Drawer
           position="bottom"
           opened={opened}
