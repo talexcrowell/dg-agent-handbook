@@ -275,9 +275,7 @@ export const CharacterSheet: React.FC = () => {
 
   const toggleRollLog = () => {
     toggle();
-    setTimeout(() => {
-      setShowRollLog(!showRollLog);
-    }, 3);
+    setShowRollLog(!showRollLog);
   };
 
   const handleDeleteRollLog = () => {
@@ -466,7 +464,7 @@ export const CharacterSheet: React.FC = () => {
                 <Title order={3}>Roll Log</Title>
                 <Divider />
                 {character.rollLog.length > 0 && (
-                  <ScrollArea h={"73vh"}>
+                  <ScrollArea h={"72vh"}>
                     <Stack>
                       {character.rollLog.reverse().map((item) => {
                         return (
