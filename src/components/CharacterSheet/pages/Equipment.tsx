@@ -158,6 +158,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
   };
 
   const validateEquipment = (item) => {
+    setOpened(false);
     if (
       currentCharacter.equipment.filter((thing) => thing.name === item.name)
         .length > 0
