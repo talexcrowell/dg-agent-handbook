@@ -13,6 +13,7 @@ export const Settings = ({
   inPerson,
   toggleRollLog
 }: any) => {
+  
   const handleExport = () => {
     let jsonObj = JSON.stringify(currentCharacter);
     navigator.clipboard.writeText(btoa(jsonObj));

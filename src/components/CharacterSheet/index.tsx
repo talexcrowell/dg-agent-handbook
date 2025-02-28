@@ -47,6 +47,7 @@ import { useCharacterContext } from "../../contexts/CharacterContext";
 import { useEffect, useState } from "react";
 import { Settings } from "./pages/Settings";
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
+import { notifications } from "@mantine/notifications";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
@@ -127,6 +128,21 @@ export const CharacterSheet: React.FC = () => {
   };
 
   const handleInPerson = () => {
+    if (!inPerson) {
+      notifications.show({
+        color: "green",
+        title: "In Person Mode Activated!",
+        message: "Rolling enabled on your character sheet.",
+        position: "bottom-center",
+      });
+    } else {
+      notifications.show({
+        color: "green",
+        title: "In Person Mode Deactivated!",
+        message: "Rolling disabled on your character sheet.",
+        position: "bottom-center",
+      });
+    }
     setInPerson(!inPerson);
   };
 
