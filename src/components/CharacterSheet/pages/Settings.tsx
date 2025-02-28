@@ -16,6 +16,7 @@ export const Settings = ({
   handleInPerson,
   inPerson,
   toggleRollLog,
+  handleFailedTests,
 }: any) => {
   const [viewport] = useViewportContext();
   const handleExport = () => {
@@ -25,8 +26,19 @@ export const Settings = ({
       color: "green",
       title: "Agent Exported",
       message: "Export string copied to clipboard",
-      position: "bottom-center",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
+  };
+
+  const handleRollFailures = () => {
+    notifications.show({
+      color: "green",
+      title: "Rolled Failures",
+      message:
+        "All failures have been cleared. Adding rolled failures to skills will be added soon.",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
+    });
+    handleFailedTests([]);
   };
 
   return (
@@ -60,12 +72,12 @@ export const Settings = ({
                 )}
                 {inPerson && (
                   <Button
-                    onClick={handleExport}
+                    onClick={handleRollFailures}
                     fullWidth
                     leftSection={<IconDice4 />}
                     color="grey"
                   >
-                    Roll Failures
+                    Roll/Clear Failures
                   </Button>
                 )}
                 <Button
@@ -106,17 +118,18 @@ export const Settings = ({
               )}
               {inPerson && (
                 <Button
-                  onClick={handleExport}
+                  onClick={handleRollFailures}
                   maw={375}
                   leftSection={<IconDice4 />}
                 >
-                  Roll Failures
+                  Roll/Clear Failures
                 </Button>
               )}
               <Button
                 onClick={handleExport}
                 maw={375}
                 leftSection={<IconHome />}
+                disabled
               >
                 Home Scene/Improvements
               </Button>

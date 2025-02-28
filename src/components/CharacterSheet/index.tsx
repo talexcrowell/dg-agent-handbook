@@ -488,6 +488,7 @@ export const CharacterSheet: React.FC = () => {
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={handleRollLog}
+              handleFailedTests={handleFailedTests}
             />
           </ScrollArea>
         </Tabs.Panel>

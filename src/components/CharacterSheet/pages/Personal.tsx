@@ -282,7 +282,7 @@ export const Personal = ({
           )}
         </Stack>
       </Grid.Col>
-      <Grid.Col span={viewport.width > 880 ? 6 : 12}>
+      <Grid.Col span={viewport.width > 980 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Statistical Data
@@ -425,7 +425,7 @@ export const Personal = ({
           </Table>
         </Stack>
       </Grid.Col>
-      <Grid.Col span={viewport.width > 880 ? 6 : 12}>
+      <Grid.Col span={viewport.width > 980 ? 6 : 12}>
         <Stack>
           <Title order={4} ta="start" td="underline">
             Psychological Data
