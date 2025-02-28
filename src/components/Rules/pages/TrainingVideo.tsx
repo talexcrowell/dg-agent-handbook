@@ -14,7 +14,7 @@ export const TrainingVideo = () => {
           </Text>
           <Flex justify="center">
             <iframe
-              src="https://drive.google.com/file/d/14tzwdVe1oysg5_vPl9mIQOuPfwGCgMF4/preview"
+              src="https://drive.google.com/file/d/1mMn0v6OEq9hinAjrnzVVJ7dDN9BcJHlT/preview" 
               allow="autoplay"
               width={width > 992 ? 992 : width > 600 ? 600 : 320}
               height={width > 992 ? 540 : width > 600 ? 360 : 220}
