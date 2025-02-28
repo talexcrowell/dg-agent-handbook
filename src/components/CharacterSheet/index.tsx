@@ -290,12 +290,12 @@ export const CharacterSheet: React.FC = () => {
         ? character.skills[rollType][0].skill
         : character.skills[rollType];
     if (userValue >= parseInt(value.join(""))) {
-      if (value[0] === value[1]) {
+      if (value[0] === value[1] || parseInt(value.join("")) === 1) {
         return "CRITICAL SUCCESS";
       }
       return "SUCCESS";
     } else {
-      if (value[0] === value[1]) {
+      if (value[0] === value[1] || parseInt(value.join("")) === 0) {
         return "FUMBLE";
       }
       return "FAILURE";
