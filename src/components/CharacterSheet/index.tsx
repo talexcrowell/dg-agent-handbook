@@ -157,6 +157,7 @@ export const CharacterSheet: React.FC = () => {
         date: new Date().getTime(),
       },
     ];
+
     // To-Do: Auto-check when failed
     // if (parseInt(diceRoll.join("")) > playerValue) {
     //   setCharacter({
@@ -164,6 +165,7 @@ export const CharacterSheet: React.FC = () => {
     //     failedTests: [...character.failedTests, skill],
     //   });
     // }
+
     handleUpdateCharacter("rollLog", [...newRollLog]);
 
     toggle();
@@ -451,16 +453,7 @@ export const CharacterSheet: React.FC = () => {
           {showRollLog ? (
             <Stack justify="space-between" h={"93vh"}>
               <Stack>
-                <Group justify="space-between">
-                  <Title order={3}>Roll Log (Most Recent)</Title>
-                  <ActionIcon
-                    size="lg"
-                    color="red"
-                    onClick={handleDeleteRollLog}
-                  >
-                    <IconTrash />
-                  </ActionIcon>
-                </Group>
+                <Title order={3}>Roll Log</Title>
                 <Divider />
                 {character.rollLog.length > 0 && (
                   <ScrollArea h={"75vh"}>
@@ -529,6 +522,13 @@ export const CharacterSheet: React.FC = () => {
                 </Text>
               )}
               <Stack>
+                <Button
+                  variant="outline"
+                  onClick={handleDeleteRollLog}
+                  leftSection={<IconTrash />}
+                >
+                  Clear Roll Log
+                </Button>
                 <Button
                   variant="outline"
                   color="red"
