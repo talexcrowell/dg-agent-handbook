@@ -503,13 +503,13 @@ export const CharacterSheet: React.FC = () => {
                                 <Divider />
                                 <Group justify="space-between">
                                   <Stack gap="0">
-                                    <InputLabel>Test</InputLabel>
+                                    <InputLabel c="dimmed">Test</InputLabel>
                                     <Text tt="capitalize">
                                       {skillKeyLabels(item.skill)}
                                     </Text>
                                   </Stack>
                                   <Stack gap="0">
-                                    <InputLabel>Rating</InputLabel>
+                                    <InputLabel c="dimmed">Rating</InputLabel>
                                     <Text tt="capitalize">
                                       {item.skill == "san"
                                         ? character.attributes[item.skill]
@@ -522,7 +522,7 @@ export const CharacterSheet: React.FC = () => {
                                     </Text>
                                   </Stack>
                                   <Stack gap="0">
-                                    <InputLabel>Roll</InputLabel>
+                                    <InputLabel c="dimmed">Roll</InputLabel>
                                     <Text>{item.rolledValue}</Text>
                                   </Stack>
                                 </Group>
