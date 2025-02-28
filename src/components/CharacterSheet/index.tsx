@@ -133,14 +133,14 @@ export const CharacterSheet: React.FC = () => {
         color: "green",
         title: "In Person Mode Activated!",
         message: "Rolling enabled on your character sheet.",
-        position: "bottom-center",
+        position: "top-center",
       });
     } else {
       notifications.show({
         color: "green",
         title: "In Person Mode Deactivated!",
         message: "Rolling disabled on your character sheet.",
-        position: "bottom-center",
+        position: "top-center",
       });
     }
     setInPerson(!inPerson);
