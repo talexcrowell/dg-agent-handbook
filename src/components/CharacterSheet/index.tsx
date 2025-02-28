@@ -464,7 +464,7 @@ export const CharacterSheet: React.FC = () => {
                 <Title order={3}>Roll Log</Title>
                 <Divider />
                 {character.rollLog.length > 0 && (
-                  <ScrollArea h={"72vh"}>
+                  <ScrollArea h={"70vh"}>
                     <Stack>
                       {character.rollLog.reverse().map((item) => {
                         return (
