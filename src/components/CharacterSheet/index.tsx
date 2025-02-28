@@ -409,6 +409,19 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
+        <Tabs.Panel value="equipment-notes">
+          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+            <Equipment
+              currentCharacter={character}
+              handleUpdateCharacter={handleUpdateCharacter}
+            />
+            <Divider />
+            <Notes
+              currentCharacter={character}
+              handleUpdateCharacter={handleUpdateCharacter}
+            />
+          </ScrollArea>
+        </Tabs.Panel>
         <Tabs.Panel value="settings">
           <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
             <Settings
@@ -432,10 +445,7 @@ export const CharacterSheet: React.FC = () => {
             <Tabs.Tab value="skills" leftSection={<IconList />}>
               {viewport.width > 760 && "Skills"}
             </Tabs.Tab>
-            <Tabs.Tab value="equipment" leftSection={<IconBackpack />}>
-              {viewport.width > 760 && "Equipment"}
-            </Tabs.Tab>
-            <Tabs.Tab value="notes" leftSection={<IconNotes />}>
+            <Tabs.Tab value="equipment-notes" leftSection={<IconNotes />}>
               {viewport.width > 760 && "Notes"}
             </Tabs.Tab>
             <Tabs.Tab value="settings" leftSection={<IconSettings />}>
