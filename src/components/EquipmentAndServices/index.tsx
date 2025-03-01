@@ -72,7 +72,7 @@ export const EquipmentAndServices = () => {
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                Section List
+                Equipment and Services Section List
               </Button>
               <Modal
                 opened={mobileMenuOpen}

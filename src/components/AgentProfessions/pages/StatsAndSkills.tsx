@@ -1,4 +1,4 @@
-import { Divider, Grid, List, Stack, Table, Text, Title } from "@mantine/core";
+import { Divider, Grid, List, Space, Stack, Table, Text, Title } from "@mantine/core";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { skillsMasterList } from "../../../data";
 
@@ -316,6 +316,11 @@ export const StatsAndSkills = () => {
               })}
             </Table.Tbody>
           </Table>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

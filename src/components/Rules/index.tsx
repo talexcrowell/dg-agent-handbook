@@ -68,7 +68,7 @@ export const Rules = () => {
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                Section List
+                Rules Section List
               </Button>
               <Modal
                 opened={mobileMenuOpen}

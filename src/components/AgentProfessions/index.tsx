@@ -75,7 +75,7 @@ export const AgentProfessions = () => {
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                Section List
+                Professions Section List
               </Button>
               <Modal
                 opened={mobileMenuOpen}

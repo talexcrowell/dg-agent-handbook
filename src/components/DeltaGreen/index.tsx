@@ -74,7 +74,7 @@ export const DeltaGreen = () => {
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                Section List
+               Delta Green Section List
               </Button>
               <Modal
                 opened={mobileMenuOpen}
