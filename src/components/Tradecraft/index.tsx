@@ -443,7 +443,7 @@ export const Tradecraft = () => {
       {viewport.width > 992 && (
         <Grid.Col span={2}>
           <ScrollArea h={"85vh"}>
-            <Group pb="sm">
+            <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>
