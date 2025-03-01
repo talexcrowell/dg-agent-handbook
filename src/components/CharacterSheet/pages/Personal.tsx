@@ -126,6 +126,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.name}
+                  onChange={(e) =>
+                    handleUpdateCharacter("name", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -135,6 +138,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
+                  onChange={(e) =>
+                    handleUpdateCharacter("codename", e.currentTarget.value)
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -146,6 +152,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.profession}
+                  onChange={(e) =>
+                    handleUpdateCharacter("profession", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -155,6 +164,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.employer}
+                  onChange={(e) =>
+                    handleUpdateCharacter("employer", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -164,6 +176,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
+                  onChange={(e) =>
+                    handleUpdateCharacter("nationality", e.currentTarget.value)
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -193,6 +208,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.education}
+                  onChange={(e) =>
+                    handleUpdateCharacter("education", e.currentTarget.value)
+                  }
                 />
               </Group>
             </>
@@ -207,6 +225,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.name}
+                  onChange={(e) =>
+                    handleUpdateCharacter("name", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -216,6 +237,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
+                  onChange={(e) =>
+                    handleUpdateCharacter("codename", e.currentTarget.value)
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -227,6 +251,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.profession}
+                  onChange={(e) =>
+                    handleUpdateCharacter("profession", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -236,6 +263,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.employer}
+                  onChange={(e) =>
+                    handleUpdateCharacter("employer", e.currentTarget.value)
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -247,6 +277,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
+                  onChange={(e) =>
+                    handleUpdateCharacter("nationality", e.currentTarget.value)
+                  }
                 />
                 <TextInput
                   label={
@@ -256,6 +289,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.education}
+                  onChange={(e) =>
+                    handleUpdateCharacter("education", e.currentTarget.value)
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -400,7 +436,7 @@ export const Personal = ({
                       size="sm"
                       variant="outline"
                       fullWidth
-                      onClick={() => handleStandardRoll('luck')}
+                      onClick={() => handleStandardRoll("luck")}
                     >
                       <Text size="sm" fw={600} truncate="end">
                         Luck
@@ -467,6 +503,9 @@ export const Personal = ({
             ta="start"
             rows={5}
             value={data?.motivations}
+            onChange={(e) =>
+              handleUpdateCharacter("motivations", e.currentTarget.value)
+            }
           />
           <Stack>
             <InputLabel ta="start">
