@@ -1,13 +1,17 @@
 import {
   Box,
+  Button,
+  Center,
   Grid,
   Group,
+  Modal,
   RingProgress,
   ScrollArea,
+  Stack,
   Text,
   Timeline,
 } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stats } from "./pages/Stats";
 import { Profession } from "./pages/Profession";
 import { OtherProfessionalSkills } from "./pages/OtherProfessionalSkills";
@@ -21,6 +25,8 @@ import { v4 } from "uuid";
 import { notifications } from "@mantine/notifications";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IconExclamationCircle } from "@tabler/icons-react";
 
 export const CreateAnAgent: React.FC = () => {
   const [progressValue, setProgressValue] = useState(0);
@@ -49,6 +55,29 @@ export const CreateAnAgent: React.FC = () => {
   });
   const [{}, actions] = useCharacterContext();
   const [viewport] = useViewportContext();
+  const [blockerOpened, setBlockerOpened] = useState(false);
+
+  let location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", function (event) {
+      window.history.pushState(null, document.title, window.location.href);
+      setBlockerOpened(true);
+    });
+    return () => {
+      window.removeEventListener("popstate", function (event) {
+        window.history.pushState(null, document.title, window.location.href);
+        setBlockerOpened(false);
+      });
+    };
+  }, [location]);
+
+  const handleLeaveCharacterCreator = () => {
+    setBlockerOpened(false);
+    navigate("/agents/roster");
+  };
 
   const handleProgressValue = (value: number) => {
     setProgressValue(value);
@@ -345,6 +374,31 @@ export const CreateAnAgent: React.FC = () => {
           <ScrollArea h={"93vh"}>{page}</ScrollArea>
         </Grid.Col>
       </Grid>
+      <Modal
+        opened={blockerOpened}
+        onClose={() => setBlockerOpened(false)}
+        fullScreen={viewport.width <= 760}
+      >
+        <Stack>
+          <Center>
+            <Stack>
+              <IconExclamationCircle size={84} color="red" />
+            </Stack>
+          </Center>
+          <Text>Are you sure you want to leave while creating an Agent?</Text>
+          <Text>You will be taken back to the Agent Roster.</Text>
+          <Button onClick={handleLeaveCharacterCreator} variant="outline">
+            Yes
+          </Button>
+          <Button
+            onClick={() => setBlockerOpened(false)}
+            variant="outline"
+            color="red"
+          >
+            No
+          </Button>
+        </Stack>
+      </Modal>
     </Box>
   );
 };

@@ -248,7 +248,7 @@ export const OtherProfessionalSkills: React.FC<{
   return (
     <Grid
       p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
+      gutter={viewport.width > 600 ? "md" : "sm"}
     >
       <Grid.Col>
         <Stack ta="start">

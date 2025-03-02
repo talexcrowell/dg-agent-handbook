@@ -139,7 +139,7 @@ export const Bonds: React.FC<{
     <Grid
       ta="start"
       p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
+      gutter={viewport.width > 600 ? "md" : "sm"}
     >
       <Grid.Col span={12}>
         <Stack>
