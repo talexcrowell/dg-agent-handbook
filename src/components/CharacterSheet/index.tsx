@@ -31,6 +31,8 @@ import { Notes } from "./pages/Notes";
 import {
   IconArrowLeft,
   IconBackpack,
+  IconExclamationCircle,
+  IconExclamationMark,
   IconFile,
   IconHistory,
   IconList,
@@ -44,16 +46,18 @@ import {
 import { useDisclosure, useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { useCharacterContext } from "../../contexts/CharacterContext";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Settings } from "./pages/Settings";
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import { notifications } from "@mantine/notifications";
+import { useBlocker, useLocation, useNavigate } from "react-router-dom";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
   const [{ currentCharacter, savedCharacters }, actions] =
     useCharacterContext();
   const [character, setCharacter] = useState({});
+  const [blockerOpened, setBlockerOpened] = useState(false);
 
   // Settings
   const [inPerson, setInPerson] = useState(false);
@@ -90,6 +94,29 @@ export const CharacterSheet: React.FC = () => {
     }
     setCharacter({ ...newObj });
   }, [currentCharacter]);
+
+  // Back Button Blocker
+  let location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", function (event) {
+      window.history.pushState(null, document.title, window.location.href);
+      setBlockerOpened(true);
+    });
+    return () => {
+      window.removeEventListener("popstate", function (event) {
+        window.history.pushState(null, document.title, window.location.href);
+        setBlockerOpened(false);
+      });
+    };
+  }, [location]);
+
+  const handleLeaveCharacterSheet = () => {
+    setBlockerOpened(false);
+    navigate("/agents/roster");
+  };
 
   const handleUpdateCharacter = (
     key: string,
@@ -839,6 +866,31 @@ export const CharacterSheet: React.FC = () => {
             )}
           </Modal>
         )}
+        <Modal
+          opened={blockerOpened}
+          onClose={() => setBlockerOpened(false)}
+          fullScreen={viewport.width <= 760}
+        >
+          <Stack>
+            <Center>
+              <Stack>
+                <IconExclamationCircle size={84} color="red"/>
+              </Stack>
+            </Center>
+            <Text>Are you sure you want to leave the character sheet?</Text>
+            <Text>You will be taken back to the Agent Roster.</Text>
+            <Button onClick={handleLeaveCharacterSheet} variant="outline">
+              Yes
+            </Button>
+            <Button
+              onClick={() => setBlockerOpened(false)}
+              variant="outline"
+              color="red"
+            >
+              No
+            </Button>
+          </Stack>
+        </Modal>
       </Tabs>
     );
   }
