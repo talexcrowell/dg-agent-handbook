@@ -82,7 +82,11 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={2}>
             <NavLink
-              label={width > 1284 ? "Equipment and Services" : "Equipment..."}
+              label={
+                <Text truncate="end" size="sm">
+                  Equipment and Services
+                </Text>
+              }
               component={Link}
               to={`/equipment-and-services/overview`}
               active={location.pathname.includes("/equipment-and-services")}
@@ -94,7 +98,11 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={2}>
             <NavLink
-              label={width > 1284 ? "Agent Resources" : "Agent Res..."}
+              label={
+                <Text truncate="end" size="sm">
+                  Agent Resources
+                </Text>
+              }
               active={location.pathname.includes("/agents")}
               leftSection={<IconAddressBook />}
               styles={{

@@ -60,7 +60,9 @@ export const CharacterSheet: React.FC = () => {
   const [blockerOpened, setBlockerOpened] = useState(false);
 
   // Settings
-  const [inPerson, setInPerson] = useState(false);
+  const [inPerson, setInPerson] = useState(
+    currentCharacter.inPersonMode ? currentCharacter.inPersonMode : false
+  );
 
   // Rolls
   const [value, setValue] = useState([]);
@@ -91,6 +93,9 @@ export const CharacterSheet: React.FC = () => {
     }
     if (!currentCharacter.failedTests) {
       newObj.failedTests = [];
+    }
+    if (!currentCharacter.inPersonMode) {
+      newObj.inPersonMode = false;
     }
     setCharacter({ ...newObj });
   }, [currentCharacter]);
@@ -182,6 +187,7 @@ export const CharacterSheet: React.FC = () => {
       });
     }
     setInPerson(!inPerson);
+    handleUpdateCharacter("inPersonMode", !inPerson);
   };
 
   const handleStandardRoll = (skill) => {
@@ -874,7 +880,7 @@ export const CharacterSheet: React.FC = () => {
           <Stack>
             <Center>
               <Stack>
-                <IconExclamationCircle size={84} color="red"/>
+                <IconExclamationCircle size={84} color="red" />
               </Stack>
             </Center>
             <Text>Are you sure you want to leave the character sheet?</Text>

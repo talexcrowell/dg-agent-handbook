@@ -138,9 +138,7 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
-                  onChange={(e) =>
-                    handleUpdateCharacter("codename", e.currentTarget.value)
-                  }
+                  styles={{ input: { cursor: "not-allowed" } }}
                 />
               </Group>
               <Group ta="start">
@@ -176,9 +174,7 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
-                  onChange={(e) =>
-                    handleUpdateCharacter("nationality", e.currentTarget.value)
-                  }
+                  styles={{ input: { cursor: "not-allowed" } }}
                 />
               </Group>
               <Group ta="start">
@@ -237,9 +233,7 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
-                  onChange={(e) =>
-                    handleUpdateCharacter("codename", e.currentTarget.value)
-                  }
+                  styles={{ input: { cursor: "not-allowed" } }}
                 />
               </Group>
               <Group ta="start">
@@ -277,9 +271,7 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
-                  onChange={(e) =>
-                    handleUpdateCharacter("nationality", e.currentTarget.value)
-                  }
+                  styles={{ input: { cursor: "not-allowed" } }}
                 />
                 <TextInput
                   label={
