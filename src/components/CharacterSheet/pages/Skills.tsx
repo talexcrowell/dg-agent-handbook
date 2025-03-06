@@ -20,6 +20,7 @@ import Fuse from "fuse.js";
 export const Skills = ({
   currentCharacter,
   handleStandardRoll,
+  handleAdditionalStandardRoll,
   inPerson,
   handleFailedTests,
 }: any) => {
@@ -907,10 +908,10 @@ export const Skills = ({
                     <Table.Th>Score</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
-                {additionalSkills.map((key, index) => {
+                {additionalSkills.map((key) => {
                   return currentCharacter.skills[key]
                     .slice(1, currentCharacter.skills[key].length)
-                    .map((type) => {
+                    .map((type, index) => {
                       return (
                         <Table.Tr>
                           <Table.Td>
@@ -933,12 +934,34 @@ export const Skills = ({
                             </Group>
                           </Table.Td>
                           <Table.Td>
-                            <Text>
-                              {isSkillChoice(key)
-                                ? type.skill
-                                : currentCharacter.skills[key]}
-                              %
-                            </Text>
+                            {inPerson ? (
+                              <Button
+                                fullWidth
+                                onClick={() =>
+                                  handleAdditionalStandardRoll(key, index)
+                                }
+                                variant="outline"
+                                disabled={
+                                  (isSkillChoice(key)
+                                    ? type.skill
+                                    : currentCharacter.skills[key]) === 0
+                                }
+                              >
+                                <Text ta="center" size="sm">
+                                  {isSkillChoice(key)
+                                    ? type.skill
+                                    : currentCharacter.skills[key]}
+                                  %
+                                </Text>
+                              </Button>
+                            ) : (
+                              <Text>
+                                {isSkillChoice(key)
+                                  ? type.skill
+                                  : currentCharacter.skills[key]}
+                                %
+                              </Text>
+                            )}
                           </Table.Td>
                         </Table.Tr>
                       );

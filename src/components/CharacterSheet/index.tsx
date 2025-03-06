@@ -51,6 +51,7 @@ import { Settings } from "./pages/Settings";
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import { notifications } from "@mantine/notifications";
 import { useBlocker, useLocation, useNavigate } from "react-router-dom";
+import { RollModalContainer } from "./RollModal";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
@@ -69,6 +70,7 @@ export const CharacterSheet: React.FC = () => {
   const [rollType, setRollType] = useState("");
   const [showRollLog, setShowRollLog] = useState(false);
   const [opened, { toggle, close }] = useDisclosure(false);
+  const [modalType, setModalType] = useState("default");
 
   // Fill potential missing fields
   useEffect(() => {
@@ -190,6 +192,20 @@ export const CharacterSheet: React.FC = () => {
     handleUpdateCharacter("inPersonMode", !inPerson);
   };
 
+  const isCombat = (skill) => {
+    switch (skill) {
+      case "unarmedCombat":
+      case "heavyWeapons":
+      case "meleeWeapons":
+      case "firearms":
+      case "artillery":
+      case "demolitions":
+        return true;
+      default:
+        return false;
+    }
+  };
+
   const handleStandardRoll = (skill) => {
     let characterObj = {
       ...character,
@@ -223,7 +239,13 @@ export const CharacterSheet: React.FC = () => {
       ...character.rollLog,
       {
         rolledValue: parseInt(diceRoll.join("")),
+        ratingValue: isSkillChoice(skill)
+          ? character.skills[skill][0].skill
+          : character.skills[skill],
         skill,
+        label: isSkillChoice(skill)
+          ? `(${character.skills[skill][0].label})`
+          : "",
         date: new Date().getTime(),
       },
     ];
@@ -235,6 +257,10 @@ export const CharacterSheet: React.FC = () => {
       !characterObj.failedTests.includes(skill)
     ) {
       characterObj.failedTests = [...character.failedTests, skill];
+    }
+
+    if (isCombat(skill)) {
+      setModalType("combat");
     }
 
     characterObj.rollLog = [...newRollLog];
@@ -251,6 +277,134 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    toggle();
+  };
+
+  const handleAdditionalStandardRoll = (skill, index) => {
+    let characterObj = {
+      ...character,
+    };
+    setRollType(skill);
+
+    let label = character.skills[skill][index + 1].label;
+
+    let roll: any = new DiceRoll("2d10");
+    let rollObj = roll.export(exportFormats.OBJECT);
+    let diceRoll = rollObj.rolls[0].rolls.map((item) => {
+      if (item.calculationValue === 10) {
+        return 0;
+      } else {
+        return item.calculationValue;
+      }
+    });
+
+    setValue([...diceRoll]);
+
+    let newRollLog = [
+      ...character.rollLog,
+      {
+        rolledValue: parseInt(diceRoll.join("")),
+        skill,
+        label,
+        date: new Date().getTime(),
+      },
+    ];
+
+    // if (
+    //   !isStat(skill) &&
+    //   (skill !== "san" || skill !== "luck") &&
+    //   parseInt(diceRoll.join("")) > playerValue &&
+    //   !characterObj.failedTests.includes(skill)
+    // ) {
+    //   characterObj.failedTests = [...character.failedTests, skill];
+    // }
+
+    characterObj.rollLog = [...newRollLog];
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
+    toggle();
+  };
+
+  const handleDamageRoll = (value) => {
+    let characterObj = {
+      ...character,
+    };
+    let roll: any = new DiceRoll(value);
+    let rollObj = roll.export(exportFormats.OBJECT);
+    let diceRoll = rollObj.total;
+    let newRollLog = [...character.rollLog];
+    newRollLog[newRollLog.length - 1].damage = diceRoll + " Damage";
+    characterObj.rollLog = [...newRollLog];
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
+
+    // console.log([...diceRoll]);
+  };
+
+  const handleLethalityRoll = (rating) => {
+    let characterObj = {
+      ...character,
+    };
+    let roll: any = new DiceRoll("2d10");
+    let rollObj = roll.export(exportFormats.OBJECT);
+    let diceRoll = rollObj.rolls[0].rolls.map((item) => {
+      if (item.calculationValue === 10) {
+        return 0;
+      } else {
+        return item.calculationValue;
+      }
+    });
+
+    let lethalityDamage;
+    if (parseInt(diceRoll.join("")) <= rating) {
+      lethalityDamage = "Target Killed";
+    } else {
+      lethalityDamage =
+        parseInt(diceRoll[0]) + parseInt(diceRoll[1]) + " Damage";
+    }
+
+    let newRollLog = [...character.rollLog];
+    newRollLog[newRollLog.length - 1].damage = lethalityDamage;
+    characterObj.rollLog = [...newRollLog];
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
+  };
+
+  const handleRollModalType = (type) => {
+    setModalType(type);
     toggle();
   };
 
@@ -282,111 +436,9 @@ export const CharacterSheet: React.FC = () => {
     }
   };
 
-  const skillKeyLabels = (key) => {
-    switch (key) {
-      case "computerScience":
-        return "Computer Science";
-      case "firstAid":
-        return "First Aid";
-      case "foreignLanguage":
-        return "Foreign Language";
-      case "heavyMachinery":
-        return "Heavy Machinery";
-      case "heavyWeapons":
-        return "Heavy Weapons";
-      case "humint":
-        return "HUMINT";
-      case "meleeWeapons":
-        return "Melee Weapons";
-      case "militaryScience":
-        return "Military Science";
-      case "sigint":
-        return "SIGINT";
-      case "unarmedCombat":
-        return "Unarmed Combat";
-      case "san":
-        return "Sanity";
-      default:
-        return key;
-    }
-  };
-
-  const calculateCurrentRollLanguage = () => {
-    let userValue =
-      rollType == "luck"
-        ? 50
-        : rollType == "san"
-        ? character.attributes[rollType].current
-        : isStat(rollType)
-        ? character.stats[rollType] * 5
-        : isSkillChoice(rollType)
-        ? character.skills[rollType][0].skill
-        : character.skills[rollType];
-    if (userValue >= parseInt(value.join(""))) {
-      if (value[0] === value[1] || parseInt(value.join("")) === 1) {
-        return "CRITICAL SUCCESS";
-      }
-      return "SUCCESS";
-    } else {
-      if (value[0] === value[1] || parseInt(value.join("")) === 0) {
-        return "FUMBLE";
-      }
-      return "FAILURE";
-    }
-  };
-
-  const calculateRollLogEntryLanguage = (item) => {
-    let userValue =
-      item.skill == "luck"
-        ? 50
-        : item.skill === "san"
-        ? character.attributes[item.skill].current
-        : isStat(rollType)
-        ? character.stats[item.skill] * 5
-        : isSkillChoice(item.skill)
-        ? character.skills[item.skill][0].skill
-        : character.skills[item.skill];
-
-    if (userValue >= item.rolledValue) {
-      if (item.rolledValue.toString()[0] === item.rolledValue.toString()[1]) {
-        return "CRITICAL SUCCESS";
-      }
-      return "SUCCESS";
-    } else {
-      if (item.rolledValue.toString()[0] === item.rolledValue.toString()[1]) {
-        return "FUMBLE";
-      }
-      return "FAILURE";
-    }
-  };
-
-  const toggleRollLog = () => {
-    toggle();
-    setTimeout(() => {
-      setShowRollLog(!showRollLog);
-    }, 3);
-  };
-
   const handleRollLog = () => {
     setShowRollLog(!showRollLog);
     toggle();
-  };
-
-  const handleDeleteRollLog = () => {
-    handleUpdateCharacter("rollLog", []);
-  };
-
-  const handleDateStamp = (time) => {
-    let newTime = new Date(time);
-    return `${newTime.getHours()}:${
-      newTime.getMinutes() < 10
-        ? "0" + newTime.getMinutes()
-        : newTime.getMinutes()
-    }:${
-      newTime.getSeconds() < 10
-        ? "0" + newTime.getSeconds()
-        : newTime.getSeconds()
-    }`;
   };
 
   const handleFailedTests = (val) => {
@@ -447,8 +499,8 @@ export const CharacterSheet: React.FC = () => {
             <Divider />
             <Skills
               currentCharacter={character}
-              handleUpdateCharacter={handleUpdateCharacter}
               handleStandardRoll={handleStandardRoll}
+              handleAdditionalStandardRoll={handleAdditionalStandardRoll}
               inPerson={inPerson}
               handleFailedTests={handleFailedTests}
             />
@@ -478,8 +530,8 @@ export const CharacterSheet: React.FC = () => {
           <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
             <Skills
               currentCharacter={character}
-              handleUpdateCharacter={handleUpdateCharacter}
               handleStandardRoll={handleStandardRoll}
+              handleAdditionalStandardRoll={handleAdditionalStandardRoll}
               inPerson={inPerson}
               handleFailedTests={handleFailedTests}
             />
@@ -546,336 +598,26 @@ export const CharacterSheet: React.FC = () => {
             </Tabs.Tab>
           </Tabs.List>
         )}
-        {viewport.width <= 760 ? (
-          <Drawer
-            opened={opened}
-            withCloseButton={false}
-            onClose={close}
-            size={showRollLog ? "fullsize" : "sm"}
-            position="bottom"
-          >
-            {showRollLog ? (
-              <Stack justify="space-between" h={"93vh"}>
-                <Stack>
-                  <Title order={3}>Roll Log</Title>
-                  <Divider />
-                  {character.rollLog.length > 0 && (
-                    <ScrollArea h={"70vh"}>
-                      <Stack>
-                        {character.rollLog.reverse().map((item) => {
-                          return (
-                            <Card
-                              withBorder
-                              styles={{
-                                root: {
-                                  borderColor:
-                                    calculateRollLogEntryLanguage(item) ===
-                                      "CRITICAL SUCCESS" ||
-                                    calculateRollLogEntryLanguage(item) ===
-                                      "SUCCESS"
-                                      ? "green"
-                                      : "red",
-                                },
-                              }}
-                            >
-                              <Stack>
-                                <Group justify="space-between">
-                                  <Text>
-                                    {calculateRollLogEntryLanguage(item)}
-                                  </Text>
-                                  <Text c="dimmed">
-                                    {handleDateStamp(item.date)}
-                                  </Text>
-                                </Group>
-                                <Divider />
-                                <Group justify="space-between">
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Test</InputLabel>
-                                    <Text tt="capitalize">
-                                      {skillKeyLabels(item.skill)}
-                                    </Text>
-                                  </Stack>
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Rating</InputLabel>
-                                    <Text tt="capitalize">
-                                      {item.skill === "luck"
-                                        ? 50
-                                        : item.skill == "san"
-                                        ? character.attributes[item.skill]
-                                            .current
-                                        : isStat(item.skill)
-                                        ? character.stats[item.skill] * 5
-                                        : isSkillChoice(item.skill)
-                                        ? character.skills[item.skill][0].skill
-                                        : character.skills[item.skill]}
-                                    </Text>
-                                  </Stack>
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Roll</InputLabel>
-                                    <Text>{item.rolledValue}</Text>
-                                  </Stack>
-                                </Group>
-                              </Stack>
-                            </Card>
-                          );
-                        })}
-                      </Stack>
-                    </ScrollArea>
-                  )}
-                </Stack>
-                {character.rollLog.length === 0 && (
-                  <Text c="dimmed" ta="center">
-                    There are no entires in your roll log.
-                  </Text>
-                )}
-                <Stack>
-                  <Button
-                    variant="outline"
-                    onClick={handleDeleteRollLog}
-                    leftSection={<IconTrash />}
-                  >
-                    Clear Roll Log
-                  </Button>
-                  <Button
-                    variant="outline"
-                    color="red"
-                    onClick={toggleRollLog}
-                    leftSection={<IconX />}
-                  >
-                    Close
-                  </Button>
-                </Stack>
-              </Stack>
-            ) : (
-              <Stack gap="lg">
-                <Title
-                  order={3}
-                  ta="center"
-                  bg={
-                    calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
-                    calculateCurrentRollLanguage() === "SUCCESS"
-                      ? "green"
-                      : "red"
-                  }
-                  styles={{ root: { borderRadius: "4px" } }}
-                  py="sm"
-                >
-                  {calculateCurrentRollLanguage()}
-                </Title>
-                <Card>
-                  <Stack>
-                    <Group justify="space-between">
-                      <Text fw={700}>Dice Roll</Text>
-                      <Group fw={700}>{value.join("")}</Group>
-                    </Group>
-                    <Divider label={<IconVs />} />
-                    <Stack>
-                      <Group justify="space-between">
-                        <Text tt="capitalize" fw={700}>
-                          {skillKeyLabels(rollType)}
-                        </Text>
-                        <Text fw={700}>
-                          {rollType == "luck"
-                            ? 50
-                            : rollType == "san"
-                            ? character.attributes[rollType].current
-                            : isStat(rollType)
-                            ? character.stats[rollType] * 5
-                            : isSkillChoice(rollType)
-                            ? character.skills[rollType][0].skill
-                            : character.skills[rollType]}
-                        </Text>
-                      </Group>
-                    </Stack>
-                  </Stack>
-                </Card>
-                <Stack>
-                  <Button
-                    variant="outline"
-                    leftSection={<IconHistory />}
-                    onClick={() => setShowRollLog(true)}
-                  >
-                    View Roll Log
-                  </Button>
-                  <Button
-                    variant="outline"
-                    color="red"
-                    onClick={toggle}
-                    leftSection={<IconX />}
-                  >
-                    Close
-                  </Button>
-                </Stack>
-              </Stack>
-            )}
-          </Drawer>
-        ) : (
-          <Modal
-            opened={opened}
-            withCloseButton={false}
-            onClose={close}
-            size={"lg"}
-          >
-            {showRollLog ? (
-              <Stack justify="space-between" h={"75vh"}>
-                <Stack>
-                  <Title order={3}>Roll Log</Title>
-                  <Divider />
-                  {character.rollLog.length > 0 && (
-                    <ScrollArea.Autosize mah={425}>
-                      <Stack>
-                        {character.rollLog.reverse().map((item) => {
-                          return (
-                            <Card
-                              withBorder
-                              styles={{
-                                root: {
-                                  borderColor:
-                                    calculateRollLogEntryLanguage(item) ===
-                                      "CRITICAL SUCCESS" ||
-                                    calculateRollLogEntryLanguage(item) ===
-                                      "SUCCESS"
-                                      ? "green"
-                                      : "red",
-                                },
-                              }}
-                            >
-                              <Stack>
-                                <Group justify="space-between">
-                                  <Text fw={700}>
-                                    {calculateRollLogEntryLanguage(item)}
-                                  </Text>
-                                  <Text c="dimmed">
-                                    {handleDateStamp(item.date)}
-                                  </Text>
-                                </Group>
-                                <Divider />
-                                <Group justify="space-between">
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Test</InputLabel>
-                                    <Text tt="capitalize">
-                                      {skillKeyLabels(item.skill)}
-                                    </Text>
-                                  </Stack>
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Rating</InputLabel>
-                                    <Text tt="capitalize">
-                                      {item.skill == "luck"
-                                        ? 50
-                                        : item.skill == "san"
-                                        ? character.attributes[item.skill]
-                                            .current
-                                        : isStat(item.skill)
-                                        ? character.stats[item.skill] * 5
-                                        : isSkillChoice(item.skill)
-                                        ? character.skills[item.skill][0].skill
-                                        : character.skills[item.skill]}
-                                    </Text>
-                                  </Stack>
-                                  <Stack gap="0">
-                                    <InputLabel c="dimmed">Roll</InputLabel>
-                                    <Text>{item.rolledValue}</Text>
-                                  </Stack>
-                                </Group>
-                              </Stack>
-                            </Card>
-                          );
-                        })}
-                      </Stack>
-                    </ScrollArea.Autosize>
-                  )}
-                </Stack>
-                {character.rollLog.length === 0 && (
-                  <Text c="dimmed" ta="center">
-                    There are no entires in your roll log.
-                  </Text>
-                )}
-                <Stack>
-                  <Button
-                    variant="outline"
-                    onClick={handleDeleteRollLog}
-                    leftSection={<IconTrash />}
-                  >
-                    Clear Roll Log
-                  </Button>
-                  <Button
-                    variant="outline"
-                    color="red"
-                    onClick={toggleRollLog}
-                    leftSection={<IconX />}
-                  >
-                    Close
-                  </Button>
-                </Stack>
-              </Stack>
-            ) : (
-              <Stack gap="lg">
-                <Title
-                  order={3}
-                  ta="center"
-                  bg={
-                    calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
-                    calculateCurrentRollLanguage() === "SUCCESS"
-                      ? "green"
-                      : "red"
-                  }
-                  styles={{ root: { borderRadius: "4px" } }}
-                  py="sm"
-                >
-                  {calculateCurrentRollLanguage()}
-                </Title>
-                <Card>
-                  <Stack>
-                    <Group justify="space-between">
-                      <Text fw={700}>Dice Roll</Text>
-                      <Group fw={700}>{value.join("")}</Group>
-                    </Group>
-                    <Divider label={<IconVs />} />
-                    <Stack>
-                      <Group justify="space-between">
-                        <Text tt="capitalize" fw={700}>
-                          {skillKeyLabels(rollType)}
-                        </Text>
-                        <Text fw={700}>
-                          {rollType == "luck"
-                            ? 50
-                            : rollType == "san"
-                            ? character.attributes[rollType].current
-                            : isStat(rollType)
-                            ? character.stats[rollType] * 5
-                            : isSkillChoice(rollType)
-                            ? character.skills[rollType][0].skill
-                            : character.skills[rollType]}
-                        </Text>
-                      </Group>
-                    </Stack>
-                  </Stack>
-                </Card>
-                <Stack>
-                  <Button
-                    variant="outline"
-                    leftSection={<IconHistory />}
-                    onClick={() => setShowRollLog(true)}
-                  >
-                    View Roll Log
-                  </Button>
-                  <Button
-                    variant="outline"
-                    color="red"
-                    onClick={toggle}
-                    leftSection={<IconX />}
-                  >
-                    Close
-                  </Button>
-                </Stack>
-              </Stack>
-            )}
-          </Modal>
-        )}
+
+        <RollModalContainer
+          character={character}
+          rollType={rollType}
+          value={value}
+          opened={opened}
+          close={close}
+          isMobile={viewport.width <= 760}
+          toggle={toggle}
+          modalType={modalType}
+          handleUpdateCharacter={handleUpdateCharacter}
+          handleDamageRoll={handleDamageRoll}
+          handleLethalityRoll={handleLethalityRoll}
+        />
+
         <Modal
           opened={blockerOpened}
           onClose={() => setBlockerOpened(false)}
           fullScreen={viewport.width <= 760}
+          withCloseButton={false}
         >
           <Stack>
             <Center>
