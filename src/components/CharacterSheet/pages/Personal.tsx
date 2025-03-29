@@ -413,6 +413,8 @@ export const Personal = ({
                     <Table.Td>
                       <NumberInput
                         value={data?.attributes[attribute].current}
+                        max={data?.attributes[attribute].max}
+                        min={0}
                         onChange={(val) =>
                           handleUpdateCharacter("attributes", val, attribute)
                         }
@@ -479,6 +481,8 @@ export const Personal = ({
                       {
                         <NumberInput
                           value={bond.value}
+                          max={data?.stats.charisma}
+                          min={0}
                           onChange={(val) =>
                             handleUpdateCharacter("bonds", val, index)
                           }

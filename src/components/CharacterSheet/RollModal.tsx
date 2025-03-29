@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Card,
   Checkbox,
   Divider,
@@ -29,10 +30,13 @@ const RollModalContent = ({
   modalType,
   handleDamageRoll,
   handleLethalityRoll,
+  handleSanityDamage,
+  handleSanityDefense,
 }: any) => {
   const [diceNotation, setDiceNotation] = useState("1d4");
   const [lethality, setLethality] = useState(false);
   const [lethalityRating, setLethalityRating] = useState(10);
+  const [bond, setBond] = useState("");
 
   const handleDateStamp = (time) => {
     let newTime = new Date(time);
@@ -299,6 +303,7 @@ const RollModalContent = ({
         >
           {calculateCurrentRollLanguage()}
         </Title>
+        {/* Roll Card */}
         <Card>
           <Stack>
             <Group justify="space-between">
@@ -325,6 +330,7 @@ const RollModalContent = ({
             </Stack>
           </Stack>
         </Card>
+        {/* Damage Card */}
         {character.rollLog.length > 0 &&
           character.rollLog[character.rollLog.length - 1].rolledValue <=
             character.rollLog[character.rollLog.length - 1].ratingValue &&
@@ -416,6 +422,105 @@ const RollModalContent = ({
               </Stack>
             </Card>
           )}
+        {character.rollLog.length > 0 &&
+          character.rollLog[character.rollLog.length - 1].rolledValue >=
+            character.rollLog[character.rollLog.length - 1].ratingValue &&
+          character.rollLog[character.rollLog.length - 1].skill === "san" && (
+            <Card>
+              <Stack>
+                <Text fw={700}>Sanity Damage</Text>
+                {!character?.rollLog[character.rollLog.length - 1].damage ? (
+                  <Group align="end" justify="space-between">
+                    <Select
+                      label={<InputLabel c="dimmed">Damage Dice</InputLabel>}
+                      data={[
+                        "1d4",
+                        "1d6",
+                        "1d8",
+                        "2d8",
+                        "1d10",
+                        "1d12",
+                        "1d12+2",
+                      ]}
+                      onChange={(e) => {
+                        setDiceNotation(e);
+                      }}
+                      disabled={
+                        character?.rollLog[character.rollLog.length - 1].damage
+                      }
+                      value={diceNotation}
+                    />
+                    <Button
+                      onClick={() => handleDamageRoll(diceNotation)}
+                      disabled={
+                        character?.rollLog[character.rollLog.length - 1].damage
+                      }
+                    >
+                      Roll Damage
+                    </Button>
+                  </Group>
+                ) : (
+                  <Text fw={700} ta="center">
+                    {character?.rollLog[character.rollLog.length - 1].damage}
+                  </Text>
+                )}
+                {character?.rollLog[character.rollLog.length - 1].damage && (
+                  <>
+                    <Divider />
+                    <Text fw={700}>Project onto a Bond?</Text>
+                    {!character?.rollLog[character.rollLog.length - 1].bond ? (
+                      <Group justify="space-between" align="end">
+                        <Select
+                          label={<InputLabel c="dimmed">Bond</InputLabel>}
+                          data={[...character.bonds.map((item) => item.name)]}
+                          value={bond}
+                          onChange={(e) => setBond(e)}
+                        />
+                        <Group>
+                          <Button
+                            color="green"
+                            onClick={() =>
+                              handleSanityDefense(
+                                character?.rollLog[character.rollLog.length - 1]
+                                  .damage,
+                                bond
+                              )
+                            }
+                            disabled={!bond}
+                          >
+                            Yes
+                          </Button>
+                          <Button
+                            color="red"
+                            onClick={() =>
+                              handleSanityDamage(
+                                character?.rollLog[character.rollLog.length - 1]
+                                  .damage
+                              )
+                            }
+                          >
+                            No
+                          </Button>
+                        </Group>
+                      </Group>
+                    ) : (
+                      <Stack ta="center">
+                        <Text fw={700}>
+                          Willpower is now {character?.attributes.wp.current}
+                        </Text>
+                        <Text fw={700}>
+                          {
+                            character?.rollLog[character.rollLog.length - 1]
+                              .bond
+                          }
+                        </Text>
+                      </Stack>
+                    )}
+                  </>
+                )}
+              </Stack>
+            </Card>
+          )}
         <Stack>
           <Button
             variant="outline"
@@ -450,6 +555,8 @@ export const RollModalContainer = ({
   handleUpdateCharacter,
   handleDamageRoll,
   handleLethalityRoll,
+  handleSanityDamage,
+  handleSanityDefense,
 }: any) => {
   const [showRollLog, setShowRollLog] = useState(false);
 
@@ -485,6 +592,7 @@ export const RollModalContainer = ({
           modalType={modalType}
           handleDamageRoll={handleDamageRoll}
           handleLethalityRoll={handleLethalityRoll}
+          handleSanityDamage={handleSanityDamage}
         />
       </Drawer>
     );
@@ -508,6 +616,8 @@ export const RollModalContainer = ({
           modalType={modalType}
           handleDamageRoll={handleDamageRoll}
           handleLethalityRoll={handleLethalityRoll}
+          handleSanityDamage={handleSanityDamage}
+          handleSanityDefense={handleSanityDefense}
         />
       </Modal>
     );

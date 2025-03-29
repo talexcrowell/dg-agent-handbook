@@ -239,9 +239,16 @@ export const CharacterSheet: React.FC = () => {
       ...character.rollLog,
       {
         rolledValue: parseInt(diceRoll.join("")),
-        ratingValue: isSkillChoice(skill)
-          ? character.skills[skill][0].skill
-          : character.skills[skill],
+        ratingValue:
+          skill === "luck"
+            ? 50
+            : skill === "san"
+            ? character.attributes[skill].current
+            : isStat(skill)
+            ? character.stats[skill] * 5
+            : isSkillChoice(skill)
+            ? character.skills[skill][0].skill
+            : character.skills[skill],
         skill,
         label: isSkillChoice(skill)
           ? `(${character.skills[skill][0].label})`
@@ -359,8 +366,6 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
-
-    // console.log([...diceRoll]);
   };
 
   const handleLethalityRoll = (rating) => {
@@ -388,6 +393,103 @@ export const CharacterSheet: React.FC = () => {
     let newRollLog = [...character.rollLog];
     newRollLog[newRollLog.length - 1].damage = lethalityDamage;
     characterObj.rollLog = [...newRollLog];
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
+  };
+
+  const handleSanityDefense = (damageValue, selectedBond) => {
+    let characterObj = {
+      ...character,
+    };
+
+    let roll: any = new DiceRoll("1d4");
+    let rollObj = roll.export(exportFormats.OBJECT);
+    let diceRoll = rollObj.total;
+
+    let sanDifference =
+      parseInt(damageValue.replace(" Damage", "")) - parseInt(diceRoll) < 0
+        ? 0
+        : parseInt(damageValue.replace(" Damage", "")) - parseInt(diceRoll);
+
+    let bondFilter = characterObj.bonds.filter(
+      (bond) => bond.name === selectedBond
+    )[0];
+
+    let bondOthersFilter = characterObj.bonds.filter(
+      (bond) => bond.name !== selectedBond
+    );
+
+    // Willpower calculation
+    characterObj.attributes.wp.current =
+      characterObj.attributes.wp.current -
+      (sanDifference === 0
+        ? parseInt(damageValue.replace(" Damage", ""))
+        : parseInt(damageValue.replace(" Damage", "")) - sanDifference);
+
+    // Bonds calculation
+    characterObj.bonds = [
+      ...bondOthersFilter,
+      {
+        name: bondFilter.name,
+        value:
+          bondFilter.value -
+          (sanDifference === 0
+            ? parseInt(damageValue.replace(" Damage", ""))
+            : parseInt(damageValue.replace(" Damage", "")) - sanDifference),
+      },
+    ];
+
+    //Sanity Damage Calculation
+    characterObj.attributes.san.current =
+      characterObj.attributes.san.current - sanDifference;
+    // Update Roll Log
+    let newRollLog = [...character.rollLog];
+    newRollLog[newRollLog.length - 1].bond =
+      selectedBond +
+      ` suffers ${
+        sanDifference === 0
+          ? parseInt(damageValue.replace(" Damage", ""))
+          : parseInt(damageValue.replace(" Damage", "")) - sanDifference
+      } bond loss`;
+    newRollLog[newRollLog.length - 1].damage = `${
+      newRollLog[newRollLog.length - 1].damage
+    } - ${parseInt(diceRoll)} Projection = ${sanDifference} Damage`;
+    characterObj.rollLog = [...newRollLog];
+    // Update character sheet
+    setCharacter({ ...characterObj });
+    actions.updateCharacters({ ...characterObj });
+    localStorage.setItem(
+      "currentCharacter",
+      JSON.stringify({ ...characterObj })
+    );
+    localStorage.setItem(
+      "savedCharacters",
+      JSON.stringify([
+        ...savedCharacters.filter((item) => item.id !== characterObj.id),
+        { ...characterObj },
+      ])
+    );
+  };
+
+  const handleSanityDamage = (damageValue) => {
+    let characterObj = {
+      ...character,
+    };
+    //Sanity Damage Calculation
+    characterObj.attributes.san.current =
+      characterObj.attributes.san.current -
+      parseInt(damageValue.replace(" Damage", ""));
     setCharacter({ ...characterObj });
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
@@ -611,6 +713,8 @@ export const CharacterSheet: React.FC = () => {
           handleUpdateCharacter={handleUpdateCharacter}
           handleDamageRoll={handleDamageRoll}
           handleLethalityRoll={handleLethalityRoll}
+          handleSanityDamage={handleSanityDamage}
+          handleSanityDefense={handleSanityDefense}
         />
 
         <Modal
