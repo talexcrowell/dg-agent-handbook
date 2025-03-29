@@ -98,7 +98,7 @@ export const AgentRoster = () => {
     <>
       <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
         <Grid.Col span={12}>
-          <Stack>
+          <Stack mt='md'>
             <Title>Agent Roster</Title>
             <Text>
               Delta Green recruits a new prospect only after confirming that
