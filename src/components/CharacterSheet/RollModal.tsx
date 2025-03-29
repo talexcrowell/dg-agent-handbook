@@ -423,7 +423,7 @@ const RollModalContent = ({
             </Card>
           )}
         {character.rollLog.length > 0 &&
-          character.rollLog[character.rollLog.length - 1].rolledValue >=
+          character.rollLog[character.rollLog.length - 1].rolledValue >
             character.rollLog[character.rollLog.length - 1].ratingValue &&
           character.rollLog[character.rollLog.length - 1].skill === "san" && (
             <Card>
@@ -460,8 +460,16 @@ const RollModalContent = ({
                     </Button>
                   </Group>
                 ) : (
-                  <Text fw={700} ta="center">
-                    {character?.rollLog[character.rollLog.length - 1].damage}
+                  <Text
+                    fw={700}
+                    ta="center"
+                  >
+                    {character?.rollLog[character.rollLog.length - 1].damage}{" "}
+                    {parseInt(
+                      character?.rollLog[
+                        character.rollLog.length - 1
+                      ].damage.replace(" Damage", "")
+                    ) >= 5 && "(Temporary Insanity)"}
                   </Text>
                 )}
                 {character?.rollLog[character.rollLog.length - 1].damage && (
@@ -552,20 +560,16 @@ export const RollModalContainer = ({
   isMobile,
   toggle,
   modalType,
+  showRollLog,
   handleUpdateCharacter,
   handleDamageRoll,
   handleLethalityRoll,
   handleSanityDamage,
   handleSanityDefense,
+  toggleRollLog,
 }: any) => {
-  const [showRollLog, setShowRollLog] = useState(false);
 
-  const toggleRollLogTimed = () => {
-    toggle();
-    setTimeout(() => {
-      setShowRollLog(!showRollLog);
-    }, 3);
-  };
+
 
   const handleShowRollLog = () => {
     setShowRollLog(!showRollLog);
@@ -576,7 +580,7 @@ export const RollModalContainer = ({
       <Drawer
         opened={opened}
         withCloseButton={false}
-        onClose={showRollLog ? toggleRollLogTimed : close}
+        onClose={showRollLog ? toggleRollLog : close}
         size={"fullscreen"}
         position="bottom"
       >
@@ -585,7 +589,7 @@ export const RollModalContainer = ({
           handleUpdateCharacter={handleUpdateCharacter}
           toggle={toggle}
           showRollLog={showRollLog}
-          toggleRollLogTimed={toggleRollLogTimed}
+          toggleRollLogTimed={toggleRollLog}
           handleShowRollLog={handleShowRollLog}
           rollType={rollType}
           value={value}
@@ -601,7 +605,7 @@ export const RollModalContainer = ({
       <Modal
         opened={opened}
         withCloseButton={false}
-        onClose={showRollLog ? toggleRollLogTimed : close}
+        onClose={showRollLog ? toggleRollLog : close}
         size={"lg"}
       >
         <RollModalContent
@@ -609,7 +613,7 @@ export const RollModalContainer = ({
           handleUpdateCharacter={handleUpdateCharacter}
           toggle={toggle}
           showRollLog={showRollLog}
-          toggleRollLogTimed={toggleRollLogTimed}
+          toggleRollLogTimed={toggleRollLog}
           handleShowRollLog={handleShowRollLog}
           rollType={rollType}
           value={value}

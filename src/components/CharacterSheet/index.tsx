@@ -538,9 +538,9 @@ export const CharacterSheet: React.FC = () => {
     }
   };
 
-  const handleRollLog = () => {
+  const toggleRollLog = () => {
     setShowRollLog(!showRollLog);
-    toggle();
+    setTimeout(() => toggle(), 250);
   };
 
   const handleFailedTests = (val) => {
@@ -674,7 +674,7 @@ export const CharacterSheet: React.FC = () => {
               currentCharacter={character}
               handleInPerson={handleInPerson}
               inPerson={inPerson}
-              toggleRollLog={handleRollLog}
+              toggleRollLog={toggleRollLog}
               handleFailedTests={handleFailedTests}
             />
           </ScrollArea>
@@ -715,6 +715,8 @@ export const CharacterSheet: React.FC = () => {
           handleLethalityRoll={handleLethalityRoll}
           handleSanityDamage={handleSanityDamage}
           handleSanityDefense={handleSanityDefense}
+          showRollLog={showRollLog}
+          toggleRollLog={toggleRollLog}
         />
 
         <Modal
