@@ -371,6 +371,7 @@ export const CharacterSheet: React.FC = () => {
       message: `You dealt ${diceRoll} damage to your target.`,
       autoClose: 7000,
       color: "green",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
   };
 
@@ -419,6 +420,7 @@ export const CharacterSheet: React.FC = () => {
           : `You dealt ${lethalityDamage} damage to your target.`,
       autoClose: 7000,
       color: "green",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
   };
 
@@ -500,6 +502,7 @@ export const CharacterSheet: React.FC = () => {
       } bond loss to ${selectedBond}.`,
       autoClose: 7000,
       color: "red",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
   };
 
@@ -535,6 +538,7 @@ export const CharacterSheet: React.FC = () => {
       )} sanity damage`,
       autoClose: 7000,
       color: "red",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
   };
 
