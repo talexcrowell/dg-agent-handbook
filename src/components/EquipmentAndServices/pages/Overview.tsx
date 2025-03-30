@@ -112,7 +112,7 @@ export const Overview = () => {
                 <Table.Tbody>
                   <Table.Tr>
                     <Table.Td>
-                      <Stack justify="center">
+                      <Stack align="center">
                         <IconTriangleFilled color="blue" />
                         <Text size="sm">Standard</Text>
                       </Stack>
@@ -127,7 +127,7 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Stack justify="center">
+                      <Stack align="center">
                         <IconTriangleFilled color="yellow" />
                         <Text size="sm">Unusual</Text>
                       </Stack>
@@ -142,7 +142,7 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Stack justify="center">
+                      <Stack align="center">
                         <IconTriangleFilled color="orange" />
                         <Text size="sm">Major</Text>
                       </Stack>
@@ -155,7 +155,7 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Stack justify="center">
+                      <Stack align="center">
                         <IconTriangleFilled color="red" />
                         <Text size="sm">Extreme</Text>
                       </Stack>
