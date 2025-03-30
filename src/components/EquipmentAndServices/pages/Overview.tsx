@@ -1,6 +1,7 @@
 import {
   Button,
   Divider,
+  Flex,
   Grid,
   Group,
   List,
@@ -111,10 +112,10 @@ export const Overview = () => {
                 <Table.Tbody>
                   <Table.Tr>
                     <Table.Td>
-                      <Group>
+                      <Stack justify="center">
                         <IconTriangleFilled color="blue" />
-                        Standard
-                      </Group>
+                        <Text size="sm">Standard</Text>
+                      </Stack>
                     </Table.Td>
                     <Table.Td>+0%</Table.Td>
                     <Table.Td>A day or two</Table.Td>
@@ -126,10 +127,10 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Group>
+                      <Stack justify="center">
                         <IconTriangleFilled color="yellow" />
-                        Unusual
-                      </Group>
+                        <Text size="sm">Unusual</Text>
+                      </Stack>
                     </Table.Td>
                     <Table.Td>+0%</Table.Td>
                     <Table.Td>A few days</Table.Td>
@@ -141,10 +142,10 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Group>
+                      <Stack justify="center">
                         <IconTriangleFilled color="orange" />
-                        Major
-                      </Group>
+                        <Text size="sm">Major</Text>
+                      </Stack>
                     </Table.Td>
                     <Table.Td>-20%</Table.Td>
                     <Table.Td>A few weeks</Table.Td>
@@ -154,10 +155,10 @@ export const Overview = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Group>
+                      <Stack justify="center">
                         <IconTriangleFilled color="red" />
-                        Extreme
-                      </Group>
+                        <Text size="sm">Extreme</Text>
+                      </Stack>
                     </Table.Td>
                     <Table.Td>-40%</Table.Td>
                     <Table.Td>A few months</Table.Td>
@@ -210,8 +211,8 @@ export const Overview = () => {
             </Title>
             <Text>
               Most Delta Green Agents are full-time members of federal law
-              enforcement, the special forces, or academia. They’re usually
-              not rich. Paying for anything more than Incidental expenses can be
+              enforcement, the special forces, or academia. They’re usually not
+              rich. Paying for anything more than Incidental expenses can be
               tricky.
             </Text>
             <Text>
@@ -292,10 +293,10 @@ export const Overview = () => {
             <Text>
               In the U.S., many weapons are available on the open market with
               negligible licensing. But some equipment is tightly enough
-              restricted that it can be requisitioned only with a great deal
-              of paperwork and scrutiny, or purchased only after time-consuming
-              and expensive registrations and licensing—or by shopping on the
-              black market. In the equipment tables, such items are labeled
+              restricted that it can be requisitioned only with a great deal of
+              paperwork and scrutiny, or purchased only after time-consuming and
+              expensive registrations and licensing—or by shopping on the black
+              market. In the equipment tables, such items are labeled
               RESTRICTED.
             </Text>
             <Text>
