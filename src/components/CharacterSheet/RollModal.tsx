@@ -365,6 +365,7 @@ const RollModalContent = ({
                         suffix="%"
                         min={10}
                         max={30}
+                        w={150}
                         defaultValue={10}
                         value={lethalityRating}
                         step={5}
@@ -404,6 +405,7 @@ const RollModalContent = ({
                           character?.rollLog[character.rollLog.length - 1]
                             .damage
                         }
+                        w={150}
                         value={diceNotation}
                       />
                       <Button
