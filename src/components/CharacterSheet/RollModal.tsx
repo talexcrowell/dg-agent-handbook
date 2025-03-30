@@ -475,7 +475,7 @@ const RollModalContent = ({
                 {character?.rollLog[character.rollLog.length - 1].damage && (
                   <>
                     <Divider />
-                    <Text fw={700}>Project onto a Bond?</Text>
+                    <Text fw={700}>Sanity Defense (Project onto a Bond?)</Text>
                     {!character?.rollLog[character.rollLog.length - 1].bond ? (
                       <Group justify="space-between" align="end">
                         <Select
@@ -514,7 +514,7 @@ const RollModalContent = ({
                     ) : (
                       <Stack ta="center">
                         <Text fw={700}>
-                          Willpower is now {character?.attributes.wp.current}
+                          Willpower is {character?.attributes.wp.current}
                         </Text>
                         <Text fw={700}>
                           {

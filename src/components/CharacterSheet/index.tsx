@@ -311,20 +311,21 @@ export const CharacterSheet: React.FC = () => {
       ...character.rollLog,
       {
         rolledValue: parseInt(diceRoll.join("")),
+        ratingValue: character.skills[skill][index + 1].skill,
         skill,
         label,
         date: new Date().getTime(),
       },
     ];
 
-    // if (
-    //   !isStat(skill) &&
-    //   (skill !== "san" || skill !== "luck") &&
-    //   parseInt(diceRoll.join("")) > playerValue &&
-    //   !characterObj.failedTests.includes(skill)
-    // ) {
-    //   characterObj.failedTests = [...character.failedTests, skill];
-    // }
+    if (
+      !isStat(skill) &&
+      (skill !== "san" || skill !== "luck") &&
+      parseInt(diceRoll.join("")) > playerValue &&
+      !characterObj.failedTests.includes(skill)
+    ) {
+      characterObj.failedTests = [...character.failedTests, skill];
+    }
 
     characterObj.rollLog = [...newRollLog];
     setCharacter({ ...characterObj });
@@ -486,10 +487,14 @@ export const CharacterSheet: React.FC = () => {
     let characterObj = {
       ...character,
     };
+
     //Sanity Damage Calculation
     characterObj.attributes.san.current =
       characterObj.attributes.san.current -
       parseInt(damageValue.replace(" Damage", ""));
+    let newRollLog = [...character.rollLog];
+    newRollLog[newRollLog.length - 1].bond = "No bond loss";
+    characterObj.rollLog = [...newRollLog];
     setCharacter({ ...characterObj });
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
