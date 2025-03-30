@@ -339,18 +339,21 @@ const RollModalContent = ({
               <Stack>
                 <Text fw={700}>Damage Roll</Text>
                 <Stack>
-                  <Checkbox
-                    label="Does your weapon have a Lethality Rating?"
-                    checked={
-                      isLethalCombat(
-                        character?.rollLog[character.rollLog.length - 1].skill
-                      ) || lethality
-                    }
-                    onChange={() => setLethality(!lethality)}
-                    disabled={
-                      character?.rollLog[character.rollLog.length - 1].damage
-                    }
-                  />
+                  {character.rollLog[character.rollLog.length - 1].skill !==
+                    "unarmedCombat" && (
+                    <Checkbox
+                      label="Does your weapon have a Lethality Rating?"
+                      checked={
+                        isLethalCombat(
+                          character?.rollLog[character.rollLog.length - 1].skill
+                        ) || lethality
+                      }
+                      onChange={() => setLethality(!lethality)}
+                      disabled={
+                        character?.rollLog[character.rollLog.length - 1].damage
+                      }
+                    />
+                  )}
                   {isLethalCombat(
                     character?.rollLog[character.rollLog.length - 1].skill
                   ) || lethality ? (
@@ -460,10 +463,7 @@ const RollModalContent = ({
                     </Button>
                   </Group>
                 ) : (
-                  <Text
-                    fw={700}
-                    ta="center"
-                  >
+                  <Text fw={700} ta="center">
                     {character?.rollLog[character.rollLog.length - 1].damage}{" "}
                     {parseInt(
                       character?.rollLog[
@@ -568,9 +568,6 @@ export const RollModalContainer = ({
   handleSanityDefense,
   toggleRollLog,
 }: any) => {
-
-
-
   const handleShowRollLog = () => {
     setShowRollLog(!showRollLog);
   };

@@ -367,6 +367,11 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    notifications.show({
+      message: `You dealt ${diceRoll} damage to your target.`,
+      autoClose: 7000,
+      color: "green",
+    });
   };
 
   const handleLethalityRoll = (rating) => {
@@ -407,6 +412,14 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    notifications.show({
+      message:
+        parseInt(diceRoll.join("")) <= rating
+          ? "You killed your target."
+          : `You dealt ${lethalityDamage} damage to your target.`,
+      autoClose: 7000,
+      color: "green",
+    });
   };
 
   const handleSanityDefense = (damageValue, selectedBond) => {
@@ -481,6 +494,13 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    notifications.show({
+      message: `You have taken ${sanDifference} sanity damage. You projected ${
+        parseInt(damageValue.replace(" Damage", "")) - sanDifference
+      } bond loss to ${selectedBond}.`,
+      autoClose: 7000,
+      color: "red",
+    });
   };
 
   const handleSanityDamage = (damageValue) => {
@@ -508,6 +528,14 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    notifications.show({
+      message: `You have taken ${damageValue.replace(
+        " Damage",
+        ""
+      )} sanity damage`,
+      autoClose: 7000,
+      color: "red",
+    });
   };
 
   const handleRollModalType = (type) => {
