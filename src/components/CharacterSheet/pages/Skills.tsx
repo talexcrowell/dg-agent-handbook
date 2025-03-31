@@ -938,7 +938,7 @@ export const Skills = ({
                               <Button
                                 fullWidth
                                 onClick={() =>
-                                  handleAdditionalStandardRoll(key, index)
+                                  handleAdditionalStandardRoll(key, type)
                                 }
                                 variant="outline"
                                 disabled={

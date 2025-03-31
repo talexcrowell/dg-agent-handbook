@@ -287,13 +287,12 @@ export const CharacterSheet: React.FC = () => {
     toggle();
   };
 
-  const handleAdditionalStandardRoll = (skill, index) => {
+  const handleAdditionalStandardRoll = (skill, type) => {
     let characterObj = {
       ...character,
     };
+    
     setRollType(skill);
-
-    let label = character.skills[skill][index + 1].label;
 
     let roll: any = new DiceRoll("2d10");
     let rollObj = roll.export(exportFormats.OBJECT);
@@ -307,25 +306,28 @@ export const CharacterSheet: React.FC = () => {
 
     setValue([...diceRoll]);
 
+    let ratingValue = characterObj.skills[skill].filter((val) => {
+      return val.label === type?.label;
+    })[0].skill;
+
     let newRollLog = [
-      ...character.rollLog,
+      ...characterObj.rollLog,
       {
         rolledValue: parseInt(diceRoll.join("")),
-        ratingValue: character.skills[skill][index + 1].skill,
+        ratingValue,
         skill,
-        label,
+        label: `(${type.label})`,
         date: new Date().getTime(),
       },
     ];
 
-    if (
-      !isStat(skill) &&
-      (skill !== "san" || skill !== "luck") &&
-      parseInt(diceRoll.join("")) > playerValue &&
-      !characterObj.failedTests.includes(skill)
-    ) {
-      characterObj.failedTests = [...character.failedTests, skill];
-    }
+    // if (
+    //   !isStat(skill) &&
+    //   parseInt(diceRoll.join("")) > playerValue &&
+    //   !characterObj.failedTests.includes(skill)
+    // ) {
+    //   characterObj.failedTests = [...character.failedTests, skill];
+    // }
 
     characterObj.rollLog = [...newRollLog];
     setCharacter({ ...characterObj });
@@ -576,8 +578,8 @@ export const CharacterSheet: React.FC = () => {
   };
 
   const toggleRollLog = () => {
-    setShowRollLog(!showRollLog);
-    setTimeout(() => toggle(), 250);
+    setTimeout(() => setShowRollLog(!showRollLog), 250);
+    toggle();
   };
 
   const handleFailedTests = (val) => {
@@ -754,6 +756,7 @@ export const CharacterSheet: React.FC = () => {
           handleSanityDefense={handleSanityDefense}
           showRollLog={showRollLog}
           toggleRollLog={toggleRollLog}
+          setShowRollLog={setShowRollLog}
         />
 
         <Modal

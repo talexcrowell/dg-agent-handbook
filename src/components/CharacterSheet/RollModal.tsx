@@ -427,6 +427,7 @@ const RollModalContent = ({
               </Stack>
             </Card>
           )}
+        {/* Sanity Card */}
         {character.rollLog.length > 0 &&
           character.rollLog[character.rollLog.length - 1].rolledValue >
             character.rollLog[character.rollLog.length - 1].ratingValue &&
@@ -569,6 +570,7 @@ export const RollModalContainer = ({
   handleSanityDamage,
   handleSanityDefense,
   toggleRollLog,
+  setShowRollLog,
 }: any) => {
   const handleShowRollLog = () => {
     setShowRollLog(!showRollLog);
@@ -596,6 +598,7 @@ export const RollModalContainer = ({
           handleDamageRoll={handleDamageRoll}
           handleLethalityRoll={handleLethalityRoll}
           handleSanityDamage={handleSanityDamage}
+          handleSanityDefense={handleSanityDefense}
         />
       </Drawer>
     );
