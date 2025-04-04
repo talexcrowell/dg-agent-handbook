@@ -1,0 +1,818 @@
+export const premadeAgents = [
+  {
+    stats: {
+      strength: 12,
+      constitution: 13,
+      dexterity: 12,
+      intelligence: 13,
+      power: 11,
+      charisma: 11,
+    },
+    attributes: {
+      hp: {
+        max: 13,
+        current: 13,
+      },
+      wp: {
+        max: 11,
+        current: 11,
+      },
+      san: {
+        max: 55,
+        current: 55,
+      },
+      bp: {
+        max: 44,
+        current: 44,
+      },
+    },
+    profession: "Federal Agent",
+    skills: {
+      accounting: 60,
+      alertness: 70,
+      anthropology: 0,
+      archeology: 0,
+      art: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      artillery: 0,
+      athletics: 30,
+      bureaucracy: 40,
+      computerScience: 0,
+      craft: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      criminology: 70,
+      demolitions: 0,
+      disguise: 10,
+      dodge: 30,
+      drive: 70,
+      firearms: 70,
+      firstAid: 10,
+      foreignLanguage: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      forensics: 30,
+      heavyMachinery: 10,
+      heavyWeapons: 0,
+      history: 10,
+      humint: 80,
+      law: 50,
+      medicine: 0,
+      meleeWeapons: 50,
+      militaryScience: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      navigate: 10,
+      occult: 10,
+      persuade: 50,
+      pharmacy: 0,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 10,
+      ride: 10,
+      science: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      search: 50,
+      sigint: 0,
+      stealth: 10,
+      surgery: 0,
+      survival: 10,
+      swim: 20,
+      unarmedCombat: 80,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Cheryl Moore, Wife",
+        value: 11,
+      },
+      {
+        name: "Gareth Moore, Son",
+        value: 11,
+      },
+      {
+        name: "Robert Poder, Ex-Duty Partner",
+        value: 11,
+      },
+    ],
+    education: "Police Officer",
+    name: "Harrison Moore",
+    codename: "TALON",
+    employer: "FBI",
+    nationality: "American",
+    sex: "M",
+    age: 38,
+    personality:
+      "Focused, proper, and maybe too professional in his interactions. He is passionate about protecting his family and his country. He does not like to show vulnerability.",
+    motivations:
+      "Family, patriotism(?), providing protection to the community.",
+    unnaturalExperiences:
+      'During a drug deal bust gone wrong, those that were nasally exposed to the "drug" mutated and morphed into horrendous elongated creatures that killed indiscriminately. While escaping, Harrison burned the building to the ground effectively killing the creatures. ',
+    id: "4e3ffc90-0c61-45a3-ae5c-89160c971ff1",
+  },
+  {
+    stats: {
+      strength: 12,
+      constitution: 11,
+      dexterity: 12,
+      intelligence: 13,
+      power: 11,
+      charisma: 13,
+    },
+    attributes: {
+      hp: {
+        max: 12,
+        current: 12,
+      },
+      wp: {
+        max: 11,
+        current: 11,
+      },
+      san: {
+        max: 55,
+        current: 55,
+      },
+      bp: {
+        max: 44,
+        current: 44,
+      },
+    },
+    profession: "Federal Agent",
+    skills: {
+      accounting: 10,
+      alertness: 70,
+      anthropology: 0,
+      archeology: 0,
+      art: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      artillery: 0,
+      athletics: 50,
+      bureaucracy: 40,
+      computerScience: 0,
+      craft: [
+        {
+          label: "Locksmith",
+          skill: 20,
+        },
+        {
+          label: "Electrician",
+          skill: 20,
+        },
+      ],
+      criminology: 70,
+      demolitions: 0,
+      disguise: 30,
+      dodge: 30,
+      drive: 50,
+      firearms: 50,
+      firstAid: 10,
+      foreignLanguage: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      forensics: 30,
+      heavyMachinery: 10,
+      heavyWeapons: 0,
+      history: 10,
+      humint: 60,
+      law: 30,
+      medicine: 0,
+      meleeWeapons: 30,
+      militaryScience: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      navigate: 10,
+      occult: 10,
+      persuade: 50,
+      pharmacy: 0,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 10,
+      ride: 10,
+      science: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      search: 70,
+      sigint: 0,
+      stealth: 30,
+      surgery: 0,
+      survival: 10,
+      swim: 20,
+      unarmedCombat: 60,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Oliver Schultz, Husband",
+        value: 13,
+      },
+      {
+        name: "Rebecca Burns, Sister",
+        value: 13,
+      },
+      {
+        name: "Melinda Burns, Mother",
+        value: 13,
+      },
+    ],
+    education: '"Black Bag" Training',
+    name: "Dana Burns-Schultz",
+    codename: "TIGRIS",
+    employer: "CIA",
+    nationality: "American",
+    sex: "F",
+    age: 36,
+    personality:
+      "Confident and likes to make things look easy, gets easily frustrated with little mistakes, really enjoys collecting small trophies from places she visits",
+    motivations:
+      "Finding what happened to her father, Gary Burns. She clawed her way to this position to leverage the best resources she can to get information.",
+    unnaturalExperiences:
+      "Her father disappeared without a trace in the middle of the night. He left a note written in an abstract cypher. There has been no tangible progress on translating the note.",
+    id: "f5d987b8-2752-4bf7-a760-373a0823f807",
+  },
+  {
+    stats: {
+      strength: 14,
+      constitution: 12,
+      dexterity: 15,
+      intelligence: 11,
+      power: 10,
+      charisma: 10,
+    },
+    attributes: {
+      hp: {
+        max: 13,
+        current: 13,
+      },
+      wp: {
+        max: 10,
+        current: 10,
+      },
+      san: {
+        max: 50,
+        current: 50,
+      },
+      bp: {
+        max: 40,
+        current: 40,
+      },
+    },
+    profession: "Special Operator",
+    skills: {
+      accounting: 10,
+      alertness: 80,
+      anthropology: 0,
+      archeology: 0,
+      art: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      artillery: 20,
+      athletics: 80,
+      bureaucracy: 10,
+      computerScience: 0,
+      craft: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      criminology: 10,
+      demolitions: 40,
+      disguise: 10,
+      dodge: 30,
+      drive: 40,
+      firearms: 80,
+      firstAid: 10,
+      foreignLanguage: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      forensics: 0,
+      heavyMachinery: 10,
+      heavyWeapons: 70,
+      history: 10,
+      humint: 10,
+      law: 0,
+      medicine: 0,
+      meleeWeapons: 50,
+      militaryScience: [
+        {
+          label: "Land",
+          skill: 60,
+        },
+        {
+          label: "Land",
+          skill: 20,
+        },
+      ],
+      navigate: 50,
+      occult: 10,
+      persuade: 20,
+      pharmacy: 0,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 10,
+      ride: 10,
+      science: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      search: 20,
+      sigint: 0,
+      stealth: 50,
+      surgery: 0,
+      survival: 50,
+      swim: 50,
+      unarmedCombat: 80,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Nesrin Basaran, Father",
+        value: 10,
+      },
+      {
+        name: "Adile Basaran, Sister",
+        value: 10,
+      },
+    ],
+    education: "Soldier",
+    name: "Serhat Basaran",
+    codename: "TITAN",
+    employer: "Black River Defense Solutions",
+    nationality: "American, Turkish",
+    sex: "M",
+    age: 37,
+    personality:
+      "Always follows through with orders, very disciplined, observant, prefers to speak directly and concisely",
+    motivations:
+      'Providing funding towards care for his father and sister. Guilt for his elderly father who is harsh towards him. Love for his sister who is in a constant battle with her illness. The exorbitant price of care has led him to take on "wetwork".',
+    unnaturalExperiences:
+      "During an operation, he encountered a creature that hunted him and his crew down one by one in the middle of the Appalachian forest. It seemed to move in the shadows and was almost toying with them. By sheer luck, the creature spared Serhat leaving him scared and injured. ",
+    id: "afdc4dd3-0518-4494-9a96-d08a459ea9f5",
+  },
+  {
+    stats: {
+      strength: 11,
+      constitution: 10,
+      dexterity: 10,
+      intelligence: 15,
+      power: 12,
+      charisma: 14,
+    },
+    attributes: {
+      hp: {
+        max: 11,
+        current: 11,
+      },
+      wp: {
+        max: 12,
+        current: 12,
+      },
+      san: {
+        max: 60,
+        current: 60,
+      },
+      bp: {
+        max: 48,
+        current: 48,
+      },
+    },
+    profession: "Physician",
+    skills: {
+      accounting: 10,
+      alertness: 40,
+      anthropology: 0,
+      archeology: 0,
+      art: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      artillery: 0,
+      athletics: 30,
+      bureaucracy: 40,
+      computerScience: 0,
+      craft: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      criminology: 10,
+      demolitions: 0,
+      disguise: 10,
+      dodge: 30,
+      drive: 20,
+      firearms: 20,
+      firstAid: 80,
+      foreignLanguage: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      forensics: 0,
+      heavyMachinery: 10,
+      heavyWeapons: 0,
+      history: 10,
+      humint: 10,
+      law: 0,
+      medicine: 80,
+      meleeWeapons: 30,
+      militaryScience: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      navigate: 10,
+      occult: 10,
+      persuade: 60,
+      pharmacy: 70,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 80,
+      ride: 10,
+      science: [
+        {
+          label: "Biology",
+          skill: 60,
+        },
+        {
+          label: "Biology",
+          skill: 20,
+        },
+      ],
+      search: 60,
+      sigint: 0,
+      stealth: 10,
+      surgery: 0,
+      survival: 10,
+      swim: 20,
+      unarmedCombat: 40,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Geoffrey Deschamps, Brother",
+        value: 14,
+      },
+      {
+        name: "Dr. Sheila Abner, Medical Colleague",
+        value: 14,
+      },
+      {
+        name: "Hubert, Dog",
+        value: 14,
+      },
+    ],
+    education: "Pre-Med Studies",
+    name: "Dr. Madeline Deschamps",
+    codename: "TERRA",
+    employer: "John Hoskins Hospital",
+    nationality: "American, French",
+    sex: "F",
+    age: 35,
+    personality:
+      "Caring, empathetic, patient, looks for the best in people, determined, and can obsessively focus on a task.",
+    motivations:
+      "Healing the community and helping others in their most dire of moments, enjoys being important and effective",
+    unnaturalExperiences:
+      "A very sick patient was admitted showcasing an extreme fever and nausea. Within a few minutes of being admitted, the patient bloated to an extreme size while falling unconscious. Upon returning after tying to get more help, the patient seemed to be back to normal size with extreme bruising around her body. The patient was quickly quarantined by a mystery team of medical professionals. Dr. Deschamps was able to keep and hide some of this patient's information.",
+    id: "145f0d46-112c-4664-819c-a8de008ebe2e",
+  },
+  {
+    stats: {
+      strength: 11,
+      constitution: 10,
+      dexterity: 12,
+      intelligence: 15,
+      power: 14,
+      charisma: 10,
+    },
+    attributes: {
+      hp: {
+        max: 11,
+        current: 11,
+      },
+      wp: {
+        max: 14,
+        current: 14,
+      },
+      san: {
+        max: 70,
+        current: 70,
+      },
+      bp: {
+        max: 56,
+        current: 56,
+      },
+    },
+    profession: "Computer Scientist",
+    skills: {
+      accounting: 50,
+      alertness: 20,
+      anthropology: 20,
+      archeology: 0,
+      art: [
+        {
+          label: "Writing",
+          skill: 20,
+        },
+      ],
+      artillery: 0,
+      athletics: 30,
+      bureaucracy: 70,
+      computerScience: 60,
+      craft: [
+        {
+          label: "Electrician",
+          skill: 30,
+        },
+        {
+          label: "Mechanic",
+          skill: 30,
+        },
+        {
+          label: "Microelectronics",
+          skill: 40,
+        },
+      ],
+      criminology: 10,
+      demolitions: 0,
+      disguise: 10,
+      dodge: 30,
+      drive: 20,
+      firearms: 20,
+      firstAid: 10,
+      foreignLanguage: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      forensics: 0,
+      heavyMachinery: 50,
+      heavyWeapons: 0,
+      history: 30,
+      humint: 30,
+      law: 60,
+      medicine: 0,
+      meleeWeapons: 30,
+      militaryScience: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      navigate: 10,
+      occult: 30,
+      persuade: 40,
+      pharmacy: 0,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 10,
+      ride: 10,
+      science: [
+        {
+          label: "Mathematics",
+          skill: 40,
+        },
+      ],
+      search: 20,
+      sigint: 40,
+      stealth: 10,
+      surgery: 0,
+      survival: 10,
+      swim: 20,
+      unarmedCombat: 40,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Teodora Violante, Wife",
+        value: 10,
+      },
+      {
+        name: "Abel Violante, Father-in-Law",
+        value: 10,
+      },
+      {
+        name: "Nicoletta Violante, Mother-in-Law",
+        value: 10,
+      },
+    ],
+    education: "Author",
+    name: "Adolfo Violante",
+    codename: "TONIC",
+    employer: "Palo Alto Networks",
+    nationality: "Italian",
+    sex: "M",
+    age: 42,
+    personality:
+      "Enthusiastic, loud, likes to speak his mind, likes to be inclusive",
+    motivations:
+      "To make his new family proud and stable. After Adolfo's parents died when he was young, he fought tooth and nail to achieve security again.",
+    unnaturalExperiences:
+      "Adolfo's side projects have intercepted signals that seem to be generated outside our known decipherable frequencies. He has 4 recordings of these signals and focuses on decoding them in his spare time. The last recording was intercepted by Delta Green.",
+    id: "c9d7dea8-56fc-43cb-8d69-c02ddb9e6d20",
+  },
+  {
+    stats: {
+      strength: 12,
+      constitution: 11,
+      dexterity: 10,
+      intelligence: 14,
+      power: 10,
+      charisma: 15,
+    },
+    attributes: {
+      hp: {
+        max: 12,
+        current: 12,
+      },
+      wp: {
+        max: 10,
+        current: 10,
+      },
+      san: {
+        max: 50,
+        current: 50,
+      },
+      bp: {
+        max: 40,
+        current: 40,
+      },
+    },
+    profession: "Anthropologist",
+    skills: {
+      accounting: 10,
+      alertness: 40,
+      anthropology: 50,
+      archeology: 0,
+      art: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      artillery: 0,
+      athletics: 50,
+      bureaucracy: 40,
+      computerScience: 0,
+      craft: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      criminology: 10,
+      demolitions: 0,
+      disguise: 10,
+      dodge: 30,
+      drive: 20,
+      firearms: 40,
+      firstAid: 10,
+      foreignLanguage: [
+        {
+          label: "Arabic",
+          skill: 50,
+        },
+        {
+          label: "Russian",
+          skill: 40,
+        },
+      ],
+      forensics: 0,
+      heavyMachinery: 10,
+      heavyWeapons: 0,
+      history: 40,
+      humint: 50,
+      law: 0,
+      medicine: 0,
+      meleeWeapons: 30,
+      militaryScience: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      navigate: 30,
+      occult: 40,
+      persuade: 40,
+      pharmacy: 0,
+      pilot: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      psychotherapy: 10,
+      ride: 30,
+      science: [
+        {
+          label: "",
+          skill: 0,
+        },
+      ],
+      search: 80,
+      sigint: 0,
+      stealth: 30,
+      surgery: 0,
+      survival: 30,
+      swim: 20,
+      unarmedCombat: 40,
+      unnatural: 0,
+    },
+    bonds: [
+      {
+        name: "Erin Johnston, Partner",
+        value: 15,
+      },
+      {
+        name: "Flynn Garrison, Colleague and Best Friend",
+        value: 15,
+      },
+      {
+        name: "Kodi Brask, Graduate Student",
+        value: 15,
+      },
+      {
+        name: "Milo, Cat",
+        value: 15,
+      },
+    ],
+    education: "Outdoorsman",
+    name: "Florence Johnston",
+    codename: "TABULA",
+    employer: "University of Chicago",
+    nationality: "American, Canadian",
+    sex: "F",
+    age: 38,
+    personality:
+      "Confident, likes to put in effort, stubborn, decisive, well-informed",
+    motivations:
+      "To learn all facets of humanity from our rituals to our practices.",
+    unnaturalExperiences:
+      "Her research has pointed towards a book called Livre d'Eibon. She has located the book to be at a few institutions but they never respond to her requests. Everyone seems to act like it doesn't exist. ",
+    id: "5bb06f97-9724-42b6-8699-e8119939626f",
+  },
+];

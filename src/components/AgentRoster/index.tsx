@@ -11,6 +11,7 @@ import {
   InputLabel,
   List,
   Modal,
+  Select,
   Stack,
   Text,
   Textarea,
@@ -29,19 +30,25 @@ import {
   IconShare,
   IconTrash,
   IconUserPlus,
+  IconUserQuestion,
+  IconUserScan,
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { premadeAgents } from "./data";
 
 export const AgentRoster = () => {
   const [{ currentCharacter, savedCharacters }, actions] =
     useCharacterContext();
   const [opened, setOpened] = useState(false);
+  const [openedGenerate, setOpenedGenerate] = useState(false);
   const [importString, setImportString] = useState("");
   const [viewport] = useViewportContext();
+  const [premade, setPremade] = useState({});
 
   const toggleImport = () => {
     setOpened(!opened);
+    setOpenedGenerate(false);
   };
 
   const handleExport = (character) => {
@@ -51,7 +58,7 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Exported",
       message: "Export string copied to clipboard",
-      position: "bottom-center",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
   };
 
@@ -75,7 +82,7 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Imported Successfully!",
       message: "Agent is available in Agent Roster",
-      position: "bottom-center",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
     toggleImport();
   };
@@ -89,16 +96,48 @@ export const AgentRoster = () => {
       color: "green",
       title: "Agent Deleted Successfully!",
       message: `Agent ${character.codename} has been removed from the Agent Roster.`,
-      position: "bottom-center",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
     localStorage.setItem("savedCharacters", JSON.stringify([...newArr]));
+  };
+  const togglePreMadeCharacter = () => {
+    setOpened(false);
+    setOpenedGenerate(!openedGenerate);
+  };
+
+  const handleSelectPreMade = (value) => {
+    let choice = premadeAgents.filter((agent) => agent.codename === value)[0];
+    setPremade({ ...choice });
+  };
+
+  const handleGenerateCharacter = () => {
+    let character = { ...premade };
+    const localSaved = localStorage.getItem("savedCharacters");
+    localSaved !== null
+      ? localStorage.setItem(
+          "savedCharacters",
+          JSON.stringify([...JSON.parse(localSaved), { ...character }])
+        )
+      : localStorage.setItem(
+          "savedCharacters",
+          JSON.stringify([{ ...character }])
+        );
+
+    actions.importCharacter({ ...character });
+    notifications.show({
+      color: "green",
+      title: "Pre-Made Agent Added Successfully!",
+      message: "Agent is available in Agent Roster",
+      position: viewport.width < 760 ? "top-center" : "bottom-center",
+    });
+    togglePreMadeCharacter();
   };
 
   return (
     <>
       <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
         <Grid.Col span={12}>
-          <Stack mt='md'>
+          <Stack mt="md">
             <Title>Agent Roster</Title>
             <Text>
               Delta Green recruits a new prospect only after confirming that
@@ -138,7 +177,13 @@ export const AgentRoster = () => {
                 bg="green"
                 leftSection={<IconUserPlus />}
               >
-                Add An Agent
+                Create An Agent
+              </Button>
+              <Button
+                leftSection={<IconUserScan />}
+                onClick={togglePreMadeCharacter}
+              >
+                {openedGenerate ? "Back to Roster" : "Add Default Agent"}
               </Button>
               <Button onClick={toggleImport} leftSection={<IconFileImport />}>
                 {opened ? "Back to Roster" : "Import Agent"}
@@ -156,6 +201,39 @@ export const AgentRoster = () => {
                   Import Agent
                 </Button>
               </Stack>
+            ) : openedGenerate ? (
+              <Card>
+                <Grid>
+                  <Grid.Col>
+                    <Stack>
+                      <Title order={3}>Pre-Made Characters</Title>
+                      <Text>
+                        These are basic pre-made characters that can be used for
+                        operations.
+                      </Text>
+                      <Text>
+                        Once added to the Agent Roster, you are welcome to
+                        change the character's details to fit your character
+                        idea.
+                      </Text>
+
+                      <Select
+                        label={"Pre-Made Characters"}
+                        data={premadeAgents.map((agent) => {
+                          return {
+                            label: `Agent ${agent.codename} (${agent.name}) | ${agent.profession}, ${agent.employer}`,
+                            value: agent.codename,
+                          };
+                        })}
+                        onChange={(e) => handleSelectPreMade(e)}
+                      />
+                      <Button onClick={handleGenerateCharacter}>
+                        Add Pre-Made Character
+                      </Button>
+                    </Stack>
+                  </Grid.Col>
+                </Grid>
+              </Card>
             ) : savedCharacters.length > 0 ? (
               <Stack>
                 {savedCharacters.map((agent) => (
