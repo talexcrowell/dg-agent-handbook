@@ -183,7 +183,7 @@ export const AgentRoster = () => {
                 leftSection={<IconUserScan />}
                 onClick={togglePreMadeCharacter}
               >
-                {openedGenerate ? "Back to Roster" : "Add Default Agent"}
+                {openedGenerate ? "Back to Roster" : "Add Pre-Made Agent"}
               </Button>
               <Button onClick={toggleImport} leftSection={<IconFileImport />}>
                 {opened ? "Back to Roster" : "Import Agent"}
