@@ -227,7 +227,7 @@ export const AgentRoster = () => {
                         })}
                         onChange={(e) => handleSelectPreMade(e)}
                       />
-                      <Button onClick={handleGenerateCharacter}>
+                      <Button onClick={handleGenerateCharacter} disabled={!premade?.codename}>
                         Add Pre-Made Character
                       </Button>
                     </Stack>
