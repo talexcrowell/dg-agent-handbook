@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { notifications } from "@mantine/notifications";
 import {
+  IconArrowBack,
   IconArrowUp,
   IconFile,
   IconFileExport,
@@ -165,6 +166,12 @@ export const AgentRoster = () => {
               </List.Item>
               <List.Item>Never reveal the existence of Delta Green</List.Item>
             </List>
+            <Text c="dimmed" size="sm">
+              NOTE: Agents are only available on the device that originally
+              created/added them. To share to another device, you will need to
+              export your Agent from the original device and import the copied
+              code into the new device.
+            </Text>
             <Divider />
           </Stack>
         </Grid.Col>
@@ -180,12 +187,19 @@ export const AgentRoster = () => {
                 Create An Agent
               </Button>
               <Button
-                leftSection={<IconUserScan />}
+                leftSection={
+                  openedGenerate ? <IconArrowBack /> : <IconUserScan />
+                }
                 onClick={togglePreMadeCharacter}
+                variant={openedGenerate ? "outline" : "filled"}
               >
                 {openedGenerate ? "Back to Roster" : "Add Pre-Made Agent"}
               </Button>
-              <Button onClick={toggleImport} leftSection={<IconFileImport />}>
+              <Button
+                onClick={toggleImport}
+                leftSection={opened ? <IconArrowBack /> : <IconFileImport />}
+                variant={opened ? "outline" : "filled"}
+              >
                 {opened ? "Back to Roster" : "Import Agent"}
               </Button>
             </Group>
@@ -206,19 +220,20 @@ export const AgentRoster = () => {
                 <Grid>
                   <Grid.Col>
                     <Stack>
-                      <Title order={3}>Pre-Made Characters</Title>
+                      <Title order={3}>Pre-Made Agents</Title>
                       <Text>
-                        These are basic pre-made characters that can be used for
-                        operations.
+                        These are basic pre-made Agents that can be used for
+                        operations. There are a wide variety of Agents that can
+                        be useful to Delta Green so explore the different
+                        options.
                       </Text>
                       <Text>
-                        Once added to the Agent Roster, you are welcome to
-                        change the character's details to fit your character
-                        idea.
+                        Once selected and added to your Agent Roster, you are
+                        welcome to change the Agent's details to fit your idea.
                       </Text>
 
                       <Select
-                        label={"Pre-Made Characters"}
+                        label={"Pre-Made Agent List"}
                         data={premadeAgents.map((agent) => {
                           return {
                             label: `Agent ${agent.codename} (${agent.name}) | ${agent.profession}, ${agent.employer}`,
@@ -226,8 +241,12 @@ export const AgentRoster = () => {
                           };
                         })}
                         onChange={(e) => handleSelectPreMade(e)}
+                        required={true}
                       />
-                      <Button onClick={handleGenerateCharacter} disabled={!premade?.codename}>
+                      <Button
+                        onClick={handleGenerateCharacter}
+                        disabled={!premade?.codename}
+                      >
                         Add Pre-Made Character
                       </Button>
                     </Stack>
