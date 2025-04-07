@@ -344,7 +344,7 @@ export const CreateAnAgent: React.FC = () => {
       break;
   }
   return (
-    <Box>
+    <Box px='0'>
       <Grid>
         {viewport.width > 992 && (
           <Grid.Col span={2}>

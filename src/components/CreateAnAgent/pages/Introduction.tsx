@@ -6,11 +6,12 @@ export const Introduction: React.FC<{
   handleProgressValue: (value: number) => void;
 }> = ({ handleProgressValue }) => {
   const [viewport] = useViewportContext();
-  
+
   return (
     <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "sm"}
+      py="md"
+      px={viewport.width > 760 ? "md" : 0}
+      gutter={viewport.width > 760 ? "md" : "sm"}
     >
       <Grid.Col span={12} ta="start">
         <Stack>

@@ -247,8 +247,9 @@ export const OtherProfessionalSkills: React.FC<{
 
   return (
     <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "sm"}
+    py="md"
+    px={viewport.width > 760 ? "md" : 0}
+    gutter={viewport.width > 760 ? "md" : "sm"}
     >
       <Grid.Col>
         <Stack ta="start">
@@ -875,20 +876,20 @@ export const OtherProfessionalSkills: React.FC<{
                         <Stack gap="0">
                           <Text c="dimmed">Skill Set:</Text>
                           <List spacing={"xs"}>
-                            {selectedPackage.professionalSkills.map((skill) => (
-                              <Tooltip
-                                w={250}
-                                label={
-                                  skillsMasterList.filter(
-                                    (item) => item.id === skill.id
-                                  )[0].definition
-                                }
-                                multiline
-                                openDelay={500}
-                                className={styles.tooltippedElement}
-                              >
+                            {selectedPackage?.professionalSkills.map((skill) => (
+                              // <Tooltip
+                              //   w={250}
+                              //   label={
+                              //     skillsMasterList.filter(
+                              //       (item) => item?.id === skill?.id
+                              //     )[0].definition
+                              //   }
+                              //   multiline
+                              //   openDelay={500}
+                              //   className={styles.tooltippedElement}
+                              // >
                                 <List.Item>{skill.name}</List.Item>
-                              </Tooltip>
+                              // </Tooltip>
                             ))}
                             {selectedPackage.personalSpecialty && (
                               <List.Item>
