@@ -24,7 +24,10 @@ function App() {
   return (
     <AppShell padding="sm">
       {pathname !== "/" && (
-        <AppShell.Header h={width > 992 ? 45 : 55}>
+        <AppShell.Header
+          h={width > 992 ? 45 : 55}
+          style={{ borderBottom: "none" }}
+        >
           <Navbar />
         </AppShell.Header>
       )}

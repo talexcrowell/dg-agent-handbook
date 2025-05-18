@@ -31,8 +31,7 @@ export const Armor = () => {
 
   return (
     <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
+      pt='sm'
       id="armor"
     >
       <Grid.Col span={12}>

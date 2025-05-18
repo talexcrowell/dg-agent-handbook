@@ -52,7 +52,6 @@ export const EquipmentAndServices = () => {
       >
         <Tabs
           defaultValue="overview"
-          orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/equipment-and-services/${value}`)}
         >

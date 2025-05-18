@@ -21,12 +21,8 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const Overview = () => {
   const [viewport] = useViewportContext();
   return (
-    <ScrollArea h={"93vh"}>
-      <Grid
-        p={viewport.width > 760 ? "md" : 0}
-        gutter={viewport.width > 760 ? "md" : "0"}
-        id="overview"
-      >
+    <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+      <Grid pt="sm" id="overview">
         <Grid.Col span={12}>
           <Stack>
             <Title td="underline">Equipment and Services</Title>

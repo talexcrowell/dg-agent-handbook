@@ -120,6 +120,19 @@ export const Search = () => {
     }
   };
 
+  const equipmentTypeColors = (value) => {
+    switch (value) {
+      case "gearAndServices":
+        return "green";
+      case "weapon":
+        return "pink";
+      case "armor":
+        return "blue";
+      case "vehicle":
+        return "purple";
+    }
+  };
+
   const calculateIcon = (expense) => {
     let str;
     switch (expense) {
@@ -229,404 +242,411 @@ export const Search = () => {
   };
 
   return (
-    <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
-    >
-      <Grid.Col span={12}>
-        <Stack>
-          <Title td="underline">Equipment and Services Search</Title>
-          <TextInput
-            label="Search by name"
-            leftSection={<IconSearch />}
-            onChange={(e) => setSearchTerm(e.currentTarget.value)}
-          />
-          <Stack gap={"0"}>
-            <InputLabel>Filter Options</InputLabel>
-            <Card>
-              <Group justify="space-evenly">
-                <Checkbox
-                  defaultChecked
-                  checked={filterOptions.weapon}
-                  label="Weapons"
-                  onChange={() => handleToggleFilter("weapon")}
-                />
-                <Checkbox
-                  defaultChecked
-                  checked={filterOptions.armor}
-                  label="Armor"
-                  onChange={() => handleToggleFilter("armor")}
-                />
-                <Checkbox
-                  defaultChecked
-                  checked={filterOptions.vehicle}
-                  label="Vehicles"
-                  onChange={() => handleToggleFilter("vehicle")}
-                />
-                <Checkbox
-                  defaultChecked
-                  checked={filterOptions.equipment}
-                  label="Gear and Services"
-                  onChange={() => handleToggleFilter("gearAndServices")}
-                />
-                <Checkbox
-                  defaultChecked
-                  checked={filterOptions.restricted}
-                  label="Restricted"
-                  onChange={() => handleToggleFilter("restricted")}
-                />
-                <MultiSelect
-                  placeholder="Filter by Expense..."
-                  data={[
-                    "Incidental",
-                    "Standard",
-                    "Unusual",
-                    "Major",
-                    "Extreme",
-                  ]}
-                  w={300}
-                  value={expenseFilter}
-                  onChange={handleExpenseFilter}
-                />
-              </Group>
-            </Card>
-            {/* <Button>Apply Filters</Button> */}
+    <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+      <Grid>
+        <Grid.Col span={12}>
+          <Stack>
+            <TextInput
+              label="Search by Name"
+              leftSection={<IconSearch />}
+              onChange={(e) => setSearchTerm(e.currentTarget.value)}
+              placeholder="Enter search term here..."
+            />
+            <Stack gap={"0"}>
+              <InputLabel>Filter Options</InputLabel>
+              <Card>
+                <Group justify="space-evenly">
+                  <Checkbox
+                    defaultChecked
+                    checked={filterOptions.weapon}
+                    label="Weapons"
+                    onChange={() => handleToggleFilter("weapon")}
+                  />
+                  <Checkbox
+                    defaultChecked
+                    checked={filterOptions.armor}
+                    label="Armor"
+                    onChange={() => handleToggleFilter("armor")}
+                  />
+                  <Checkbox
+                    defaultChecked
+                    checked={filterOptions.vehicle}
+                    label="Vehicles"
+                    onChange={() => handleToggleFilter("vehicle")}
+                  />
+                  <Checkbox
+                    defaultChecked
+                    checked={filterOptions.equipment}
+                    label="Gear and Services"
+                    onChange={() => handleToggleFilter("gearAndServices")}
+                  />
+                  <Checkbox
+                    defaultChecked
+                    checked={filterOptions.restricted}
+                    label="Restricted"
+                    onChange={() => handleToggleFilter("restricted")}
+                  />
+                  <MultiSelect
+                    placeholder="Filter by Expense..."
+                    data={[
+                      "Incidental",
+                      "Standard",
+                      "Unusual",
+                      "Major",
+                      "Extreme",
+                    ]}
+                    w={300}
+                    value={expenseFilter}
+                    onChange={handleExpenseFilter}
+                  />
+                </Group>
+              </Card>
+              {/* <Button>Apply Filters</Button> */}
+            </Stack>
+            <Divider />
           </Stack>
-          <Divider />
-        </Stack>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <ScrollArea h={650}>
-          <Accordion styles={{ panel: { backgroundColor: "#2e2e2e" } }}>
-            {searchTerm
-              ? filteredList
-                  .sort((a: any, b: any) => {
-                    const nameA = a.name.toUpperCase();
-                    const nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                      return -1;
-                    }
-                    if (nameA > nameB) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                  .map((item) => {
-                    return (
-                      <Accordion.Item value={item.name}>
-                        <Accordion.Control>
-                          <Group>
-                            {item.name}{" "}
-                            <Badge>{equipmentTypeLabels(item.type)}</Badge>
-                            {item?.weaponType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.weaponType)}
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <ScrollArea h={650}>
+            <Accordion styles={{ panel: { backgroundColor: "#2e2e2e" } }}>
+              {searchTerm
+                ? filteredList
+                    .sort((a: any, b: any) => {
+                      const nameA = a.name.toUpperCase();
+                      const nameB = b.name.toUpperCase();
+                      if (nameA < nameB) {
+                        return -1;
+                      }
+                      if (nameA > nameB) {
+                        return 1;
+                      }
+                      return 0;
+                    })
+                    .map((item) => {
+                      return (
+                        <Accordion.Item value={item.name}>
+                          <Accordion.Control>
+                            <Group>
+                              {item.name}{" "}
+                              <Badge color={equipmentTypeColors(item.type)}>
+                                {equipmentTypeLabels(item.type)}
                               </Badge>
-                            )}
-                            {item?.vehicleType && (
-                              <Badge color="grey">{item?.vehicleType}</Badge>
-                            )}
-                            {item?.gearAndServicesType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.gearAndServicesType)}
-                              </Badge>
-                            )}
-                            {item?.restricted && (
-                              <Badge color="red">Restricted</Badge>
-                            )}
-                          </Group>
-                        </Accordion.Control>
-                        <Accordion.Panel>
-                          <Grid>
-                            {item?.restricted && (
-                              <Grid.Col span={12}>
-                                <Text c="red" fw={700} td="underline">
-                                  {item?.weaponType === "firearms"
-                                    ? "[RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE]"
-                                    : "[RESTRICTED ITEM]"}
-                                </Text>
-                              </Grid.Col>
-                            )}
-                            {item?.skill && (
+                              {item?.weaponType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(item?.weaponType)}
+                                </Badge>
+                              )}
+                              {item?.vehicleType && (
+                                <Badge color="grey">{item?.vehicleType}</Badge>
+                              )}
+                              {item?.gearAndServicesType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(
+                                    item?.gearAndServicesType
+                                  )}
+                                </Badge>
+                              )}
+                              {item?.restricted && (
+                                <Badge color="red">Restricted</Badge>
+                              )}
+                            </Group>
+                          </Accordion.Control>
+                          <Accordion.Panel>
+                            <Grid>
+                              {item?.restricted && (
+                                <Grid.Col span={12}>
+                                  <Text c="red" fw={700} td="underline">
+                                    {item?.weaponType === "firearms"
+                                      ? "[RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE]"
+                                      : "[RESTRICTED ITEM]"}
+                                  </Text>
+                                </Grid.Col>
+                              )}
+                              {item?.skill && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Skill</InputLabel>
+                                    <Text tt="capitalize">
+                                      {skillKeyLabels(item?.skill)}
+                                    </Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.range > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Range</InputLabel>
+                                    <Text>{item?.range}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.uses && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Uses</InputLabel>
+                                    <Text>{item?.uses}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.radius && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Radius</InputLabel>
+                                    <Text>{item?.radius}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.penalty && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Target Penalty</InputLabel>
+                                    <Text>{item?.penalty}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.damage && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Damage</InputLabel>
+                                    <Text>{item?.damage}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.lethality > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Lethality</InputLabel>
+                                    <Text>{item?.lethality}%</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.ammoCapacity > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Ammo Capacity</InputLabel>
+                                    <Text>{item?.ammoCapacity}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.armorPiercing > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Armor Piercing</InputLabel>
+                                    <Text>{item?.armorPiercing}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
                               <Grid.Col span={"auto"}>
                                 <Stack gap="0">
-                                  <InputLabel>Skill</InputLabel>
+                                  <InputLabel>Expense</InputLabel>
                                   <Text tt="capitalize">
-                                    {skillKeyLabels(item?.skill)}
+                                    <Group>
+                                      <IconTriangleFilled
+                                        color={calculateIcon(
+                                          item?.expense.toLowerCase()
+                                        )}
+                                      />
+                                      {item?.expense}
+                                    </Group>
                                   </Text>
                                 </Stack>
                               </Grid.Col>
-                            )}
-                            {item?.range > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Range</InputLabel>
-                                  <Text>{item?.range}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.uses && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Uses</InputLabel>
-                                  <Text>{item?.uses}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.radius && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Radius</InputLabel>
-                                  <Text>{item?.radius}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.penalty && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Target Penalty</InputLabel>
-                                  <Text>{item?.penalty}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.damage && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Damage</InputLabel>
-                                  <Text>{item?.damage}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.lethality > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Lethality</InputLabel>
-                                  <Text>{item?.lethality}%</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.ammoCapacity > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Ammo Capacity</InputLabel>
-                                  <Text>{item?.ammoCapacity}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.armorPiercing > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Armor Piercing</InputLabel>
-                                  <Text>{item?.armorPiercing}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            <Grid.Col span={"auto"}>
-                              <Stack gap="0">
-                                <InputLabel>Expense</InputLabel>
-                                <Text tt="capitalize">
-                                  <Group>
-                                    <IconTriangleFilled
-                                      color={calculateIcon(
-                                        item?.expense.toLowerCase()
-                                      )}
-                                    />
-                                    {item?.expense}
-                                  </Group>
-                                </Text>
-                              </Stack>
-                            </Grid.Col>
-                            {item?.description && (
-                              <Grid.Col span={12}>
-                                <Stack gap="0">
-                                  <InputLabel>Description</InputLabel>
-                                  <Text>{item?.description}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                          </Grid>
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                    );
-                  })
-              : itemList
-                  .sort((a: any, b: any) => {
-                    const nameA = a.name.toUpperCase();
-                    const nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                      return -1;
-                    }
-                    if (nameA > nameB) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                  .map((item) => {
-                    return (
-                      <Accordion.Item value={item.name}>
-                        <Accordion.Control>
-                          <Group>
-                            {item.name}{" "}
-                            <Badge>{equipmentTypeLabels(item.type)}</Badge>
-                            {item?.weaponType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.weaponType)}
+                              {item?.description && (
+                                <Grid.Col span={12}>
+                                  <Stack gap="0">
+                                    <InputLabel>Description</InputLabel>
+                                    <Text>{item?.description}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                            </Grid>
+                          </Accordion.Panel>
+                        </Accordion.Item>
+                      );
+                    })
+                : itemList
+                    .sort((a: any, b: any) => {
+                      const nameA = a.name.toUpperCase();
+                      const nameB = b.name.toUpperCase();
+                      if (nameA < nameB) {
+                        return -1;
+                      }
+                      if (nameA > nameB) {
+                        return 1;
+                      }
+                      return 0;
+                    })
+                    .map((item) => {
+                      return (
+                        <Accordion.Item value={item.name}>
+                          <Accordion.Control>
+                            <Group>
+                              {item.name}{" "}
+                              <Badge color={equipmentTypeColors(item.type)}>
+                                {equipmentTypeLabels(item.type)}
                               </Badge>
-                            )}
-                            {item?.vehicleType && (
-                              <Badge color="grey">{item?.vehicleType}</Badge>
-                            )}
-                            {item?.gearAndServicesType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.gearAndServicesType)}
-                              </Badge>
-                            )}
-                            {item?.restricted && (
-                              <Badge color="red">Restricted</Badge>
-                            )}
-                          </Group>
-                        </Accordion.Control>
-                        <Accordion.Panel>
-                          <Grid>
-                            {item?.restricted && (
-                              <Grid.Col span={12}>
-                                <Text c="red" fw={700} td="underline">
-                                  {item?.weaponType === "firearms"
-                                    ? "[RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE]"
-                                    : "[RESTRICTED ITEM]"}
-                                </Text>
-                              </Grid.Col>
-                            )}
-                            {item?.skill && (
+                              {item?.weaponType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(item?.weaponType)}
+                                </Badge>
+                              )}
+                              {item?.vehicleType && (
+                                <Badge color="grey">{item?.vehicleType}</Badge>
+                              )}
+                              {item?.gearAndServicesType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(
+                                    item?.gearAndServicesType
+                                  )}
+                                </Badge>
+                              )}
+                              {item?.restricted && (
+                                <Badge color="red">Restricted</Badge>
+                              )}
+                            </Group>
+                          </Accordion.Control>
+                          <Accordion.Panel>
+                            <Grid>
+                              {item?.restricted && (
+                                <Grid.Col span={12}>
+                                  <Text c="red" fw={700} td="underline">
+                                    {item?.weaponType === "firearms"
+                                      ? "[RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE]"
+                                      : "[RESTRICTED ITEM]"}
+                                  </Text>
+                                </Grid.Col>
+                              )}
+                              {item?.skill && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Skill</InputLabel>
+                                    <Text tt="capitalize">
+                                      {skillKeyLabels(item?.skill)}
+                                    </Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.range > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Range</InputLabel>
+                                    <Text>{item?.range}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.uses && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Uses</InputLabel>
+                                    <Text>{item?.uses}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.radius && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Radius</InputLabel>
+                                    <Text>{item?.radius}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.penalty && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Target Penalty</InputLabel>
+                                    <Text>{item?.penalty}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.damage && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Damage</InputLabel>
+                                    <Text>{item?.damage}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.lethality > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Lethality</InputLabel>
+                                    <Text>{item?.lethality}%</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.ammoCapacity > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Ammo Capacity</InputLabel>
+                                    <Text>{item?.ammoCapacity}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.armorPiercing > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Armor Piercing</InputLabel>
+                                    <Text>{item?.armorPiercing}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.hp > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Hit Points</InputLabel>
+                                    <Text>{item?.hp}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.armor > 0 && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Armor</InputLabel>
+                                    <Text>{item?.armor}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                              {item?.speed && (
+                                <Grid.Col span={"auto"}>
+                                  <Stack gap="0">
+                                    <InputLabel>Armor</InputLabel>
+                                    <Text>{item?.speed}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
                               <Grid.Col span={"auto"}>
                                 <Stack gap="0">
-                                  <InputLabel>Skill</InputLabel>
+                                  <InputLabel>Expense</InputLabel>
                                   <Text tt="capitalize">
-                                    {skillKeyLabels(item?.skill)}
+                                    <Group>
+                                      <IconTriangleFilled
+                                        color={calculateIcon(
+                                          item?.expense.toLowerCase()
+                                        )}
+                                      />
+                                      {item?.expense}
+                                    </Group>
                                   </Text>
                                 </Stack>
                               </Grid.Col>
-                            )}
-                            {item?.range > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Range</InputLabel>
-                                  <Text>{item?.range}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.uses && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Uses</InputLabel>
-                                  <Text>{item?.uses}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.radius && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Radius</InputLabel>
-                                  <Text>{item?.radius}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.penalty && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Target Penalty</InputLabel>
-                                  <Text>{item?.penalty}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.damage && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Damage</InputLabel>
-                                  <Text>{item?.damage}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.lethality > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Lethality</InputLabel>
-                                  <Text>{item?.lethality}%</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.ammoCapacity > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Ammo Capacity</InputLabel>
-                                  <Text>{item?.ammoCapacity}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.armorPiercing > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Armor Piercing</InputLabel>
-                                  <Text>{item?.armorPiercing}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.hp > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Hit Points</InputLabel>
-                                  <Text>{item?.hp}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.armor > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Armor</InputLabel>
-                                  <Text>{item?.armor}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.speed && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="0">
-                                  <InputLabel>Armor</InputLabel>
-                                  <Text>{item?.speed}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            <Grid.Col span={"auto"}>
-                              <Stack gap="0">
-                                <InputLabel>Expense</InputLabel>
-                                <Text tt="capitalize">
-                                  <Group>
-                                    <IconTriangleFilled
-                                      color={calculateIcon(
-                                        item?.expense.toLowerCase()
-                                      )}
-                                    />
-                                    {item?.expense}
-                                  </Group>
-                                </Text>
-                              </Stack>
-                            </Grid.Col>
-                            {item?.description && (
-                              <Grid.Col span={12}>
-                                <Stack gap="0">
-                                  <InputLabel>Description</InputLabel>
-                                  <Text>{item?.description}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                          </Grid>
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                    );
-                  })}
-          </Accordion>
-        </ScrollArea>
-      </Grid.Col>
-    </Grid>
+                              {item?.description && (
+                                <Grid.Col span={12}>
+                                  <Stack gap="0">
+                                    <InputLabel>Description</InputLabel>
+                                    <Text>{item?.description}</Text>
+                                  </Stack>
+                                </Grid.Col>
+                              )}
+                            </Grid>
+                          </Accordion.Panel>
+                        </Accordion.Item>
+                      );
+                    })}
+            </Accordion>
+          </ScrollArea>
+        </Grid.Col>
+      </Grid>
+    </ScrollArea>
   );
 };
 

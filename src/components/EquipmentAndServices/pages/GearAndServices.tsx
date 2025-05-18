@@ -41,12 +41,8 @@ export const GearsAndServices = () => {
     return str;
   };
   return (
-    <ScrollArea h={"93vh"}>
-      <Grid
-        p={viewport.width > 600 ? "md" : 0}
-        gutter={viewport.width > 600 ? "md" : "0"}
-        id="gear-and-services"
-      >
+    <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+      <Grid pt="sm" id="gear-and-services">
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline" id="transportation">

@@ -17,6 +17,7 @@ import "@mantine/notifications/styles.css";
 import { ViewportProvider } from "./contexts/ViewportContext.tsx";
 import { FormattedLoader } from "./components/FormattedLoader.tsx";
 import { AgentProfessions } from "./components/AgentProfessions/index.tsx";
+import { TrainingVideo } from "./components/Rules/pages/TrainingVideo.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const Directory = lazy(() => import("./components/Directory/index.tsx"));
@@ -85,6 +86,8 @@ const router = createHashRouter([
           </Suspense>
         ),
       },
+
+      { path: "/training", element: <TrainingVideo /> },
 
       { path: "/agents", element: <Navigate to="/agents/roster" /> },
       { path: "/agents/roster", element: <AgentRoster /> },

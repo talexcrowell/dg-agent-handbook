@@ -1,16 +1,19 @@
-import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
+import {
+  Divider,
+  Grid,
+  ScrollArea,
+  Space,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Sanity = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
-      ta="start"
-      id="sanity"
-    >
+    <Grid pt="sm" ta="start" id="sanity">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" id="sanity-title">

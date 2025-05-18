@@ -1,4 +1,12 @@
-import { Divider, Grid, ScrollArea, Space, Stack, Text, Title } from "@mantine/core";
+import {
+  Divider,
+  Grid,
+  ScrollArea,
+  Space,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
@@ -6,8 +14,7 @@ export const Combat = () => {
   const [viewport] = useViewportContext();
   return (
     <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
+      pt="sm"
       ta="start"
       id="combat"
     >

@@ -1,16 +1,20 @@
 import {
   ActionIcon,
   ActionIconGroup,
+  Badge,
+  Button,
   Container,
   Drawer,
   Flex,
   Grid,
   Group,
   Image,
+  Menu,
   Modal,
   NavLink,
   Text,
   TextInput,
+  UnstyledButton,
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import {
@@ -42,7 +46,8 @@ export const Navbar = () => {
 
   return (
     <Container size="xl" h={"100%"}>
-      {width > 992 ? (
+      <Flex justify="space-between">
+        {/* {width > 992 ? (
         <Grid gutter={"0"} my={1}>
           <Grid.Col span={2}>
             <NavLink
@@ -187,7 +192,104 @@ export const Navbar = () => {
           </Grid.Col>
           <Grid.Col span={4} justify="end"></Grid.Col>
         </Grid>
-      )}
+      )} */}
+        <Group justify="space-between" pr="md">
+          <UnstyledButton component={Link} to="/directory">
+            <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={40} />
+          </UnstyledButton>
+          <Button
+            component={Link}
+            to="/delta-green"
+            variant="subtle"
+            c="white"
+            bg={location.pathname.includes("/delta-green") ? "gray" : ""}
+          >
+            Delta Green
+          </Button>
+          <Button
+            component={Link}
+            to="/rules"
+            variant="subtle"
+            c="white"
+            bg={location.pathname.includes("/rules") ? "gray" : ""}
+          >
+            Rules
+          </Button>
+          <Button
+            component={Link}
+            to="/equipment-and-services"
+            variant="subtle"
+            c="white"
+            bg={
+              location.pathname.includes("/equipment-and-services")
+                ? "gray"
+                : ""
+            }
+          >
+            Equipment & Services
+          </Button>
+          <Button
+            component={Link}
+            to="/training"
+            variant="subtle"
+            c="white"
+            bg={location.pathname.includes("/training") ? "gray" : ""}
+          >
+            Training
+          </Button>
+          <Menu trigger="click-hover" offset={2}>
+            <Menu.Target>
+              <Button
+                variant="subtle"
+                c="white"
+                bg={location.pathname.includes("/agents") ? "gray" : ""}
+              >
+                Agent Resources
+              </Button>
+            </Menu.Target>
+            <Menu.Dropdown w="175" ta="start">
+              <Menu.Item
+                leftSection={<IconBriefcase />}
+                component={Link}
+                to="/agents/professions"
+              >
+                Professions
+              </Menu.Item>
+              <Menu.Item
+                leftSection={<IconSpy />}
+                component={Link}
+                to="/agents/tradecraft"
+              >
+                Tradecraft
+              </Menu.Item>
+              <Menu.Item
+                leftSection={<IconUsers />}
+                component={Link}
+                to="/agents/roster"
+              >
+                Agent Roster
+              </Menu.Item>
+              <Menu.Item
+                leftSection={<IconUserPlus />}
+                component={Link}
+                to="/agents/new"
+              >
+                Create An Agent
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+          {/* <Button
+            component={Link}
+            to="/agents"
+            variant="subtle"
+            c="white"
+            bg={location.pathname.includes("/handler") ? "gray" : ""}
+          >
+            Handler Resources
+          </Button> */}
+        </Group>
+        <SearchBar />
+      </Flex>
       <Drawer
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}

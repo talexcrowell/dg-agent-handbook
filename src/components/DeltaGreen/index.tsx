@@ -46,7 +46,6 @@ export const DeltaGreen = () => {
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="overview"
-          orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
         >
@@ -74,7 +73,7 @@ export const DeltaGreen = () => {
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
               >
-               Delta Green Section List
+                Delta Green Section List
               </Button>
               <Modal
                 opened={mobileMenuOpen}
@@ -146,32 +145,32 @@ export const DeltaGreen = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="what-is-delta-green">
-            <ScrollArea>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <WhatIsDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-to-play-an-agent">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <HowToPlayAnAgent />
             </ScrollArea>
           </Tabs.Panel>
@@ -180,13 +179,13 @@ export const DeltaGreen = () => {
       {tabValue !== "overview" && viewport.width > 992 && (
         <Grid.Col span={2} pb={0}>
           <ScrollArea h={"93vh"}>
-            <Group py="xs">
+            <Group py="xs" align="middle">
               <IconList />
               <Text>Table of Contents</Text>
             </Group>
             <Divider />
             <TableOfContents
-              variant="none"
+              variant="light"
               color="blue"
               size="sm"
               radius="sm"

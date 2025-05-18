@@ -16,12 +16,7 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
-      ta="start"
-      id="home"
-    >
+    <Grid pt="sm" ta="start" id="home">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" id="home">

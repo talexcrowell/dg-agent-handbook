@@ -17,12 +17,7 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const HowToPlay = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
-      ta="start"
-      id="how-to-play"
-    >
+    <Grid ta="start" id="how-to-play" pt="sm">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" id="how-to-play">

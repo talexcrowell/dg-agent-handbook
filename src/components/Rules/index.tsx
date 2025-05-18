@@ -49,7 +49,6 @@ export const Rules = () => {
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="how-to-play"
-          orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/rules/${value}`)}
         >
@@ -59,7 +58,6 @@ export const Rules = () => {
               <Tabs.Tab value="combat">Combat</Tabs.Tab>
               <Tabs.Tab value="sanity">Sanity</Tabs.Tab>
               <Tabs.Tab value="home">Home</Tabs.Tab>
-              <Tabs.Tab value="training-video">Training Video</Tabs.Tab>
             </Tabs.List>
           ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
@@ -109,40 +107,29 @@ export const Rules = () => {
                     }}
                     active={location.pathname === "/rules/home"}
                   />
-                  <NavLink
-                    label="Training Video"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/rules/training-video");
-                    }}
-                    active={location.pathname === "/rules/training-video"}
-                  />
                 </Stack>
               </Modal>
             </Affix>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
               <HowToPlay />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
               <Combat />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
               <Sanity />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea h={"93vh"}>
+            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
               <Home />
             </ScrollArea>
-          </Tabs.Panel>
-          <Tabs.Panel value="training-video">
-            <TrainingVideo />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
