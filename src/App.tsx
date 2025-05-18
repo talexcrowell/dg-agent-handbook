@@ -32,7 +32,7 @@ function App() {
         </AppShell.Header>
       )}
       <AppShell.Main pt={width > 992 ? 45 : 55}>
-        <Container size="xl" px={width > 600 ? "md" : "0"}>
+        <Container size="xl" px={width > 992 ? "md" : "0"}>
           <Outlet />
         </Container>
       </AppShell.Main>

@@ -15,6 +15,7 @@ import {
   IconDice4,
   IconHistory,
   IconHome,
+  IconListCheck,
   IconPower,
   IconShare,
   IconTrash,
@@ -73,7 +74,6 @@ export const Settings = ({
               <Center>
                 <Stack>
                   <Button
-                    variant={inPerson ? "filled" : "outline"}
                     leftSection={<IconUsersGroup />}
                     fullWidth
                     onClick={handleInPerson}
@@ -120,7 +120,13 @@ export const Settings = ({
             ) : (
               <Stack>
                 <Button
-                  variant={inPerson ? "filled" : "outline"}
+                  onClick={handleExport}
+                  maw={375}
+                  leftSection={<IconShare />}
+                >
+                  Export Character
+                </Button>
+                <Button
                   leftSection={<IconUsersGroup />}
                   maw={375}
                   onClick={handleInPerson}
@@ -141,26 +147,30 @@ export const Settings = ({
                   <Button
                     onClick={handleRollFailures}
                     maw={375}
-                    leftSection={<IconDice4 />}
+                    leftSection={<IconListCheck />}
                   >
                     Roll/Clear Failures
                   </Button>
                 )}
-                <Button
-                  onClick={handleExport}
-                  maw={375}
-                  leftSection={<IconHome />}
-                  disabled
-                >
-                  Home Scene/Improvements
-                </Button>
-                <Button
-                  onClick={handleExport}
-                  maw={375}
-                  leftSection={<IconShare />}
-                >
-                  Export Character
-                </Button>
+                {inPerson && (
+                  <Button
+                    onClick={handleRollFailures}
+                    maw={375}
+                    leftSection={<IconDice4 />}
+                  >
+                    Dice Roller
+                  </Button>
+                )}
+                {inPerson && (
+                  <Button
+                    onClick={handleExport}
+                    maw={375}
+                    leftSection={<IconHome />}
+                    disabled
+                  >
+                    Home Scene/Improvements
+                  </Button>
+                )}
               </Stack>
             )}
           </Stack>

@@ -18,6 +18,7 @@ import { ViewportProvider } from "./contexts/ViewportContext.tsx";
 import { FormattedLoader } from "./components/FormattedLoader.tsx";
 import { AgentProfessions } from "./components/AgentProfessions/index.tsx";
 import { TrainingVideo } from "./components/Rules/pages/TrainingVideo.tsx";
+import Training from "./components/Training/index.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const Directory = lazy(() => import("./components/Directory/index.tsx"));
@@ -87,7 +88,16 @@ const router = createHashRouter([
         ),
       },
 
-      { path: "/training", element: <TrainingVideo /> },
+      { path: "/training", element: <Navigate to="/training/introduction" /> },
+      {
+        path: "/training/:tabValue",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Training />
+          </Suspense>
+        ),
+      },
+      
 
       { path: "/agents", element: <Navigate to="/agents/roster" /> },
       { path: "/agents/roster", element: <AgentRoster /> },
