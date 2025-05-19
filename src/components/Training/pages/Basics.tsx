@@ -113,34 +113,6 @@ export const Basics = () => {
             Sometimes it solely comes down to luck. Roll the dice with a 50%
             chance of success.
           </Text>
-          <Divider />
-          <Title order={2} td="underline">
-            Combat
-          </Title>
-          <Text>
-            Combat occurs and can take your Agent out of the game quickly and
-            permanently. Combat is resolved in turns with an Agent able to make
-            one action on their turn. Turn order is determined from highest DEX
-            to lowest DEX and repeats until combat is resolved.
-          </Text>
-          <Text>You can choose:</Text>
-          <List>
-            <List.Item>Aim</List.Item>
-            <List.Item>Attack</List.Item>
-            <List.Item>Called Shot</List.Item>
-            <List.Item>Disarm</List.Item>
-            <List.Item>Dodge</List.Item>
-            <List.Item>Escape</List.Item>
-            <List.Item>Fight Back</List.Item>
-            <List.Item>Move</List.Item>
-            <List.Item>Pin</List.Item>
-            <List.Item>Wait</List.Item>
-            <List.Item>Anything Else</List.Item>
-          </List>
-          <Divider />
-          <Title order={2} td="underline">
-            Sanity
-          </Title>
         </Stack>
       </Grid.Col>
     </Grid>

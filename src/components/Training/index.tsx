@@ -27,6 +27,7 @@ import { useViewportContext } from "../../contexts/ViewportContext";
 import { Introduction } from "./pages/Introduction";
 import { Basics } from "./pages/Basics";
 import { BeingAnAgent } from "./pages/BeingAnAgent";
+import { CombatSanityAndWillpower } from "./pages/CombatSanityAndWillpower";
 
 export const Training = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,6 +56,9 @@ export const Training = () => {
           <Tabs.List>
             <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
             <Tabs.Tab value="basics">Basics</Tabs.Tab>
+            <Tabs.Tab value="combat-sanity-and-willpower">
+              Combat, Sanity, and Willpower
+            </Tabs.Tab>
             <Tabs.Tab value="being-an-agent">Being an Agent</Tabs.Tab>
             <Tabs.Tab value="after-the-operation">After the Operation</Tabs.Tab>
           </Tabs.List>
@@ -118,6 +122,11 @@ export const Training = () => {
           <Tabs.Panel value="basics">
             <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <Basics />
+            </ScrollArea>
+          </Tabs.Panel>
+          <Tabs.Panel value="combat-sanity-and-willpower">
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+              <CombatSanityAndWillpower />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="being-an-agent">
