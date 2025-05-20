@@ -156,13 +156,6 @@ export const DeltaGreen = () => {
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="how-to-play-an-agent">
-            <ScrollArea
-              h={"91vh"}
-              scrollbars="y"
-              overscrollBehavior="y"
-            ></ScrollArea>
-          </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {tabValue !== "overview" && viewport.width > 992 && (
