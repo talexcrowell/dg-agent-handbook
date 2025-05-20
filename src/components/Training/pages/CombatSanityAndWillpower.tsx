@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Divider,
   Grid,
   Group,
@@ -13,6 +14,7 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const CombatSanityAndWillpower = () => {
   const [viewport] = useViewportContext();
@@ -42,13 +44,24 @@ export const CombatSanityAndWillpower = () => {
           <Title order={2} td="underline">
             Combat
           </Title>
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/rules/combat"
+              target="_blank"
+            >
+              Combat
+            </Anchor>{" "}
+            section in the Rules.
+          </Text>
           <Text>
             Combat is resolved in turns with an Agent able to make one action on
             their turn. Turn order is determined from highest DEX to lowest DEX
             and repeats until combat is resolved.
           </Text>
-          <Text>You can choose one action to perform:</Text>
           <List>
+            <Text fw={700}>You can choose one action to perform:</Text>
             <List.Item>Aim</List.Item>
             <List.Item>Attack</List.Item>
             <List.Item>Called Shot</List.Item>
@@ -112,6 +125,17 @@ export const CombatSanityAndWillpower = () => {
           <Title order={2} td="underline">
             Sanity
           </Title>
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/rules/sanity"
+              target="_blank"
+            >
+              Sanity
+            </Anchor>{" "}
+            section in the Rules.
+          </Text>
           <Text>
             Agents of Delta Green are as vulnerable to mental trauma as to
             physical threats. We track that vulnera- bility in Sanity Points
@@ -208,6 +232,16 @@ export const CombatSanityAndWillpower = () => {
           <Title order={2} td="underline">
             Willpower
           </Title>
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/rules/how-to-play#willpower-points"
+            >
+              Willpower
+            </Anchor>{" "}
+            section in the Rules.
+          </Text>
           <Text>
             Agents need Willpower points (WP) to withstand exhaustion and mental
             trauma, to resist interrogation and persuasion, and to enact

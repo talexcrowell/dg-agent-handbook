@@ -1,6 +1,8 @@
 import {
+  Anchor,
   Divider,
   Grid,
+  List,
   ScrollArea,
   Space,
   Stack,
@@ -9,6 +11,7 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const BeingAnAgent = () => {
   const [viewport] = useViewportContext();
@@ -17,10 +20,124 @@ export const BeingAnAgent = () => {
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline">Being an Agent</Title>
+          <Text>
+            Delta Green revolves around Agents. These Agents are greatly
+            detailed in their character sheets to help players bring them to
+            life.
+          </Text>
+          <Text>
+            Delta Green recruits a new prospect only after confirming that they
+            can handle the work and the unconventional demands the group makes.
+            They usually look to federal agents and special forces, adaptable
+            professionals trained to cope with overwhelming stress and danger.
+            Sometimes prospects are recruited from other fields, such as
+            science, anthropology, or medicine.
+          </Text>
+          <Text>
+            If the prospect has encountered the unnatural, all the better. Delta
+            Green wants people who recognize the depth of the danger. If your
+            first instinct is to go public with an unnatural discovery, it’s
+            likely you are not a Delta Green recruit but a Delta Green mission.
+          </Text>
+          <List>
+            <Text fw={700}>Agents’ main directives are:</Text>
+            <List.Item>Stop the unnatural.</List.Item>
+            <List.Item>Save lives.</List.Item>
+            <List.Item>Minimize exposure.</List.Item>
+            <List.Item>
+              Cover it up to save others from being exposed.
+            </List.Item>
+            <List.Item>Never reveal the existence of Delta Green.</List.Item>
+          </List>
           <Divider />
           <Title td="underline" order={2}>
-            Creating or Selecting an Agent
+            Creating an Agent
           </Title>
+          <Text>
+            A new Delta Green Agent takes only a few minutes to create.
+          </Text>
+          <Text>
+            You can use the{" "}
+            <Anchor to="/agents/new" component={Link}>
+              Create an Agent
+            </Anchor>{" "}
+            tool to guide you through the process and you can find all of your
+            created Agents in your{" "}
+            <Anchor to="/agents/roster" component={Link}>
+              Agent Roster
+            </Anchor>
+            .
+          </Text>
+          <List>
+            <Text fw={700}>Here are the steps for Character Creation:</Text>
+            <List.Item>
+              Choose a{" "}
+              <Anchor component={Link} to="/agents/professions/profession-list">
+                Profession
+              </Anchor>
+              .
+            </List.Item>
+            <List.Item>
+              Determine{" "}
+              <Anchor
+                component={Link}
+                to="/agents/professions/stats-and-skills#statistics"
+              >
+                Statistics
+              </Anchor>
+              .
+            </List.Item>
+            <List.Item>
+              Calculate Derived{" "}
+              <Anchor
+                component={Link}
+                to="/agents/professions/stats-and-skills#attributes"
+              >
+                Attributes
+              </Anchor>
+              .
+            </List.Item>
+            <List.Item>Name Bonds.</List.Item>
+            <List.Item>Define Motivations.</List.Item>
+            <List.Item>
+              Determine Professional{" "}
+              <Anchor
+                component={Link}
+                to="/agents/professions/stats-and-skills#skills"
+              >
+                Skills
+              </Anchor>
+              .
+            </List.Item>
+            <List.Item>
+              Choose{" "}
+              <Anchor
+                component={Link}
+                to="/agents/professions/bonus-skill-package-list"
+              >
+                Bonus Skills
+              </Anchor>
+              .
+            </List.Item>
+          </List>
+          <Text>
+            Talk with your Handler to ensure that your Agent works with the
+            scenario they have planned.
+          </Text>
+          <Text>
+            Review{" "}
+            <Anchor component={Link} to="/agents/tradecraft">
+              Tradecraft
+            </Anchor>{" "}
+            and explore how to creatively use your skills during an Operation.
+          </Text>
+          <Text>
+            A unspoken feature of Delta Green is the capability to utilize
+            different Agents for different Operations. This means that you
+            aren't committed to using only one Agent. You are encouraged to
+            explore different character ideas in different operations and see
+            what resonates with you.
+          </Text>
           <Divider />
           <Title td="underline" order={2}>
             Agent Etiquette

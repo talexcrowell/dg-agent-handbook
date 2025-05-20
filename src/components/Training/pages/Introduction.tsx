@@ -100,7 +100,7 @@ export const Introduction = () => {
             during the Operation.
           </Text>
           <Divider />
-          <Title order={2} td='underline'>Where to Start?</Title>
+          <Title order={2} td='underline'>Quick Start</Title>
           <Text>Basics</Text>
           <Text>Agents and Agent Creation</Text>
           <Text>Agent Etiquette</Text>

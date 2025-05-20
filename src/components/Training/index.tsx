@@ -28,6 +28,7 @@ import { Introduction } from "./pages/Introduction";
 import { Basics } from "./pages/Basics";
 import { BeingAnAgent } from "./pages/BeingAnAgent";
 import { CombatSanityAndWillpower } from "./pages/CombatSanityAndWillpower";
+import { AfterTheOperation } from "./pages/AfterTheOperation";
 
 export const Training = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -132,6 +133,11 @@ export const Training = () => {
           <Tabs.Panel value="being-an-agent">
             <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <BeingAnAgent />
+            </ScrollArea>
+          </Tabs.Panel>
+          <Tabs.Panel value="after-the-operation">
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+              <AfterTheOperation />
             </ScrollArea>
           </Tabs.Panel>
         </Tabs>

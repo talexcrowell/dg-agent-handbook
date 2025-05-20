@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Divider,
   Grid,
   Group,
@@ -13,6 +14,7 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const Basics = () => {
   const [viewport] = useViewportContext();
@@ -21,6 +23,18 @@ export const Basics = () => {
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline">Basics</Title>
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/rules/how-to-play"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              How to Play
+            </Anchor>{" "}
+            section in the Rules.
+          </Text>
           <Text>
             The rules for Delta Green are very simple and the typical gameplay
             is straightforward:
