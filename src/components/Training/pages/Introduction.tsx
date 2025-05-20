@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Divider,
   Grid,
   Group,
@@ -13,6 +14,7 @@ import {
 } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const Introduction = () => {
   const [viewport] = useViewportContext();
@@ -20,7 +22,7 @@ export const Introduction = () => {
     <Grid ta="start" id="introduction" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td='underline'>Introduction</Title>
+          <Title td="underline">Introduction</Title>
           <Text>
             Delta Green is a role-playing game about cosmic terror and deadly
             conspiracy. It’s about men and women making awful choices and doing
@@ -30,7 +32,9 @@ export const Introduction = () => {
             against them.
           </Text>
           <Divider />
-          <Title order={2} td='underline'>The Role-Playing</Title>
+          <Title order={2} td="underline">
+            The Role-Playing
+          </Title>
           <Text>
             Delta Green is played with a group either in person or over voice
             chats. One person is the Handler, they're responsible for presenting
@@ -69,7 +73,9 @@ export const Introduction = () => {
           </Text>
           <Text>That is Delta Green.</Text>
           <Divider />
-          <Title order={2} td='underline'>Ready to Play?</Title>
+          <Title order={2} td="underline">
+            Ready to Play?
+          </Title>
           <Text>
             The Handler will organize and prepare the game in the venue of their
             choice. They will act as a resource for the players for any major
@@ -99,11 +105,6 @@ export const Introduction = () => {
             These tasks will save your group some time and help with immersion
             during the Operation.
           </Text>
-          <Divider />
-          <Title order={2} td='underline'>Quick Start</Title>
-          <Text>Basics</Text>
-          <Text>Agents and Agent Creation</Text>
-          <Text>Agent Etiquette</Text>
         </Stack>
       </Grid.Col>
     </Grid>
