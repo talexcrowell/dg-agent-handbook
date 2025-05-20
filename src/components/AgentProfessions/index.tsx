@@ -55,7 +55,6 @@ export const AgentProfessions = () => {
       >
         <Tabs
           defaultValue="overview"
-          orientation="vertical"
           value={tabValue}
           onChange={(value) => navigate(`/agents/professions/${value}`)}
         >
