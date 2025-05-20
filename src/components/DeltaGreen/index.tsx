@@ -62,9 +62,6 @@ export const DeltaGreen = () => {
               <Tabs.Tab value="how-the-game-is-played">
                 How the Game is Played
               </Tabs.Tab>
-              <Tabs.Tab value="how-to-play-an-agent">
-                How to Play an Agent
-              </Tabs.Tab>
             </Tabs.List>
           ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
@@ -130,16 +127,6 @@ export const DeltaGreen = () => {
                       "/delta-green/how-the-game-is-played"
                     }
                   />
-                  <NavLink
-                    label="How to Play an Agent"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/how-to-play-an-agent");
-                    }}
-                    active={
-                      location.pathname === "/delta-green/how-to-play-an-agent"
-                    }
-                  />
                 </Stack>
               </Modal>
             </Affix>
@@ -170,9 +157,11 @@ export const DeltaGreen = () => {
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-to-play-an-agent">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
-              <HowToPlayAnAgent />
-            </ScrollArea>
+            <ScrollArea
+              h={"91vh"}
+              scrollbars="y"
+              overscrollBehavior="y"
+            ></ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>

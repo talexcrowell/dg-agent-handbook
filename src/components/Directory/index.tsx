@@ -55,12 +55,12 @@ export const Directory = () => {
               <Text>Game Rules</Text>
             </Group>
           </Card>
-          <Card component={Link} to="/rules/training-video">
+          <Card component={Link} to="/training">
             <Card.Section>
               <Image src={"https://i.imgur.com/c1Ne6Io.png"} h={150} />
             </Card.Section>
             <Group justify="space-between" mt="md" mb="xs">
-              <Text>Training Video</Text>
+              <Text>Training for New Players</Text>
             </Group>
           </Card>
           <Card component={Link} to="/equipment-and-services/overview">
