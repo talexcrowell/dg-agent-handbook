@@ -139,8 +139,10 @@ export const HowToPlay = () => {
           </Text>
           <List spacing={"xs"}>
             <ListItem>
-              <Text fw={700}>Roll When It Is Difficult:</Text>{" "}
               <Text>
+                <Text fw={700} span>
+                  Roll When It Is Difficult:
+                </Text>{" "}
                 A skill test means the Agent is attempting something difficult.
                 After all, even an expert in a skill might have only a 60% or
                 70% rating. A skill test is for a situation when an Agent lacks
@@ -149,16 +151,20 @@ export const HowToPlay = () => {
               </Text>
             </ListItem>
             <ListItem>
-              <Text fw={700}>Roll When The Situation Is Unpredictable</Text>
               <Text>
+                <Text fw={700} span>
+                  Roll When The Situation Is Unpredictable:
+                </Text>{" "}
                 Having to roll means the situation is out of control. Randomness
                 plays a major role. Surprising, possibly disastrous things can
                 happen, no matter how skillful you are.
               </Text>
             </ListItem>
             <ListItem>
-              <Text fw={700}>Roll When There Are Consequences</Text>
               <Text>
+                <Text fw={700} span>
+                  Roll When There Are Consequences:
+                </Text>{" "}
                 Failing a skill roll means ugly things are going to happen.
                 Maybe failing at the crisis is the punishment—or with a failed
                 roll, your Agent succeeds but the consequences are severe. The
@@ -338,8 +344,23 @@ export const HowToPlay = () => {
           </Title>
           <Text>
             On any skill or stat test, there are only four possible outcomes.
-            From best to worst they are: Critical Success, Success, Failure, and
-            Fumble.
+            From best to worst the possible results are:{" "}
+            <Text fw={700} span c="green">
+              Critical Success
+            </Text>
+            ,{" "}
+            <Text fw={700} span c="green">
+              Success
+            </Text>
+            ,{" "}
+            <Text fw={700} span c="red">
+              Failure
+            </Text>
+            , and{" "}
+            <Text fw={700} span c="red">
+              Fumble
+            </Text>
+            .
           </Text>
           <Title order={3} id="critical-success">
             Critical Success
@@ -379,31 +400,53 @@ export const HowToPlay = () => {
           <Text>Here are some possible consequences:</Text>
           <List spacing={"xs"}>
             <List.Item>
-              <Text fw={700}>Physical Strain</Text>
-              <Text>Lose 1D6 HP or temporarily lose 1D4 STR, CON, or DEX.</Text>
-            </List.Item>
-            <List.Item>
-              <Text fw={700}>Emotional Burnout</Text>
-              <Text>Lose 1D6 WP or temporarily lose 1D4 INT, POW, or CHA.</Text>
-            </List.Item>
-            <List.Item>
-              <Text fw={700}>Alienation</Text>
               <Text>
+                <Text fw={700} span>
+                  Physical Strain:
+                </Text>{" "}
+                Lose 1D6 HP or temporarily lose 1D4 STR, CON, or DEX.
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text>
+                <Text fw={700} span>
+                  Emotional Burnout:
+                </Text>{" "}
+                Lose 1D6 WP or temporarily lose 1D4 INT, POW, or CHA.
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text>
+                <Text fw={700} span>
+                  Alienation:
+                </Text>{" "}
                 Offend an important NPC. All CHA or Persuade tests with the NPC
                 automatically fail until the end of the operation.
               </Text>
             </List.Item>
             <List.Item>
-              <Text fw={700}>Exhaustion</Text>
-              <Text>Immediately become exhausted.</Text>
+              <Text>
+                <Text fw={700} span>
+                  Exhaustion:
+                </Text>{" "}
+                Immediately become exhausted.
+              </Text>
             </List.Item>
             <List.Item>
-              <Text fw={700}>Distraction</Text>
-              <Text>Suffer a −20% penalty to your next test.</Text>
+              <Text>
+                <Text fw={700} span>
+                  Distraction:
+                </Text>{" "}
+                Suffer a −20% penalty to your next test.
+              </Text>
             </List.Item>
             <List.Item>
-              <Text fw={700}>Confusion</Text>
-              <Text>You make a major error and gain false information.</Text>
+              <Text>
+                <Text fw={700} span>
+                  Confusion:
+                </Text>{" "}
+                You make a major error and gain false information.
+              </Text>
             </List.Item>
           </List>
           <Divider />
@@ -425,27 +468,41 @@ export const HowToPlay = () => {
             takes to perform a test.
           </Text>
           <Text>
-            <Text fw={700}>Turns:</Text> It takes a few combat turns or, at
-            most, sixty seconds. Combat, some skill tests, and most stat tests
-            are resolved in turns.
+            <Text fw={700} span>
+              Turns:
+            </Text>{" "}
+            It takes a few combat turns or, at most, sixty seconds. Combat, some
+            skill tests, and most stat tests are resolved in turns.
           </Text>
           <Text>
-            <Text fw={700}>Minutes:</Text> It takes a few minutes. You can’t do
-            it in combat, but otherwise, your Agent can get through it rapidly.
-            Many skill tests are resolved in minutes.
+            <Text fw={700} span>
+              Minutes:
+            </Text>{" "}
+            It takes a few minutes. You can’t do it in combat, but otherwise,
+            your Agent can get through it rapidly. Many skill tests are resolved
+            in minutes.
           </Text>
           <Text>
-            <Text fw={700}>Hours:</Text> It takes hours. Your Agent can
-            typically attempt two to four such tasks per day
+            <Text fw={700} span>
+              Hours:
+            </Text>{" "}
+            It takes hours. Your Agent can typically attempt two to four such
+            tasks per day
           </Text>
           <Text>
-            <Text fw={700}>Days:</Text> It takes a day or more. Some extended
-            skill tests, requiring multiple rolls, take days.
+            <Text fw={700} span>
+              Days:
+            </Text>{" "}
+            It takes a day or more. Some extended skill tests, requiring
+            multiple rolls, take days.
           </Text>
           <Text>
-            <Text fw={700}>Long-Term:</Text> Efforts that take place outside
-            normal gameplay, like research and training, fit here. It could be a
-            week, a month, or years. It’s up to the Handler.
+            <Text fw={700} span>
+              Long-Term:
+            </Text>{" "}
+            Efforts that take place outside normal gameplay, like research and
+            training, fit here. It could be a week, a month, or years. It’s up
+            to the Handler.
           </Text>
           <Divider />
           <Title order={2} td="underline" id="opposed-tests">
@@ -486,34 +543,45 @@ export const HowToPlay = () => {
             Consider these factors when engaged in a Pursuit or being Pursued:
           </Text>
           <Text>
-            <Text fw={700}>Which Skill Applies:</Text> A chase on foot requires
-            Athletics; one in vehicles uses Drive, Pilot, or even Heavy
-            Machinery; in the water, it uses Swim; on horseback, it uses Ride.
+            <Text fw={700} span>
+              Which Skill Applies:
+            </Text>{" "}
+            A chase on foot requires Athletics; one in vehicles uses Drive,
+            Pilot, or even Heavy Machinery; in the water, it uses Swim; on
+            horseback, it uses Ride.
           </Text>
           <Text>
-            <Text fw={700}>Aid and Advantanges:</Text> Coordinating with
-            multiple pursuers (whether they’re in sight of each other or have
-            constant radio contact), having air support in radio contact, or
-            being substantially faster and/or more maneuverable grants a +20%
-            bonus to each chase test, or +40% if the advantages are
-            overwhelming.
+            <Text fw={700} span>
+              Aid and Advantanges:
+            </Text>{" "}
+            Coordinating with multiple pursuers (whether they’re in sight of
+            each other or have constant radio contact), having air support in
+            radio contact, or being substantially faster and/or more
+            maneuverable grants a +20% bonus to each chase test, or +40% if the
+            advantages are overwhelming.
           </Text>
           <Text>
-            <Text fw={700}>Seeking an Edge:</Text> Instead of the usual roll to
-            catch up or get away, pursuer or quarry may attempt to gain some
-            advantage by testing a skill that applies to the situation, such as
-            Alertness, Navigate, Stealth, Survival, or Tactics. If this test
-            wins the contest, neither side gains a “win” but it grants a +20%
-            bonus to that character’s next chase roll, or +40% with a critical
-            success. Failure and fumbling have the usual effects.
+            <Text fw={700} span>
+              Seeking an Edge:
+            </Text>{" "}
+            Instead of the usual roll to catch up or get away, pursuer or quarry
+            may attempt to gain some advantage by testing a skill that applies
+            to the situation, such as Alertness, Navigate, Stealth, Survival, or
+            Tactics. If this test wins the contest, neither side gains a “win”
+            but it grants a +20% bonus to that character’s next chase roll, or
+            +40% with a critical success. Failure and fumbling have the usual
+            effects.
           </Text>
           <Text>
-            <Text fw={700}>Combat During a Chase:</Text> A passenger in a
-            vehicle in a chase can shoot at the opposition before the pursuer
-            and quarry roll to pursue and escape.Each contest in the chase is
-            equivalent to one combat turn. If your Agent is the driver or is on
-            foot, attacking instead of rolling to pursue or escape means the
-            opponent’s roll to pursue or escape automatically wins.
+            <Text fw={700} span>
+              Combat During a Chase:
+            </Text>{" "}
+            A passenger in a vehicle in a chase can shoot at the opposition
+            before the pursuer and quarry roll to pursue and escape.Each contest
+            in the chase is equivalent to one combat turn. If your Agent is the
+            driver or is on foot, attacking instead of rolling to pursue or
+            escape means the opponent’s roll to pursue or escape automatically
+            wins.
           </Text>
           <Divider />
           <Title order={2} td="underline" id="willpower-points">
@@ -543,13 +611,16 @@ export const HowToPlay = () => {
             night’s sleep cures exhaustion.
           </Text>
           <Text>
-            <Text fw={700}>Stimulants:</Text> Taking stimulants or chain-smoking
-            removes the exhaustion penalty for 1D6 hours. Harder, illegal drugs
-            offset it for 2D6 hours. During this time, your Agent can’t sleep.
-            An Agent can take more stimulants to keep going, but every dose
-            after the first costs 1D6 WP. Stimulants never restore WP. If your
-            Agent gains a new disorder while using stimulants, the Handler has
-            good reason to say the disorder takes the form of addiction to them.
+            <Text fw={700} span>
+              Stimulants:
+            </Text>{" "}
+            Taking stimulants or chain-smoking removes the exhaustion penalty
+            for 1D6 hours. Harder, illegal drugs offset it for 2D6 hours. During
+            this time, your Agent can’t sleep. An Agent can take more stimulants
+            to keep going, but every dose after the first costs 1D6 WP.
+            Stimulants never restore WP. If your Agent gains a new disorder
+            while using stimulants, the Handler has good reason to say the
+            disorder takes the form of addiction to them.
           </Text>
           <Title order={3} id="sleeplessness">
             Sleeplessness
@@ -561,14 +632,16 @@ export const HowToPlay = () => {
             regaining any WP for 24 hours.
           </Text>
           <Text>
-            <Text fw={700}>Sedatives:</Text> An Agent can drink heavily or take
-            sleeping pills to sleep despite trauma. This gives a +20% bonus to
-            the SAN test to get to sleep. If the test fails, the Agent gets no
-            rest despite taking sedatives. In addition, the Agent is sick the
-            next day, at a −20% penalty to all tests until he or she gets a full
-            night’s rest. If your Agent gains a new disorder while using
-            sedatives, the Handler has good reason to say the disorder takes the
-            form of an addiction to them.
+            <Text fw={700} span>
+              Sedatives:
+            </Text>{" "}
+            An Agent can drink heavily or take sleeping pills to sleep despite
+            trauma. This gives a +20% bonus to the SAN test to get to sleep. If
+            the test fails, the Agent gets no rest despite taking sedatives. In
+            addition, the Agent is sick the next day, at a −20% penalty to all
+            tests until he or she gets a full night’s rest. If your Agent gains
+            a new disorder while using sedatives, the Handler has good reason to
+            say the disorder takes the form of an addiction to them.
           </Text>
           <Space />
           <Space />

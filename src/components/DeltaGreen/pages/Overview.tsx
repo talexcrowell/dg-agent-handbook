@@ -17,7 +17,7 @@ export const Overview = () => {
     <Grid pt="sm">
       <Grid.Col span={12}>
         <Stack ta="start">
-          <Text>Welcome to Delta Green.</Text>
+          <Title>Welcome to Delta Green</Title>
           <Text>
             Players come to Delta Green for all kinds of reasons. They’re eager
             to solve a mystery, kill a villain, or destroy a monster. These

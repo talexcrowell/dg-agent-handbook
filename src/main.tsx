@@ -54,7 +54,7 @@ const router = createHashRouter([
 
       {
         path: "/delta-green",
-        element: <Navigate to="/delta-green/overview" />,
+        element: <Navigate to="/delta-green/welcome" />,
       },
       {
         path: "/delta-green/:tabValue",

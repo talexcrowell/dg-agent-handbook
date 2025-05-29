@@ -81,7 +81,11 @@ export const BonusSkillPackagesList = () => {
                             label={
                               skillsMasterList.filter(
                                 (item) => item.id === skill.id
-                              )[0].definition
+                              )[0]
+                                ? skillsMasterList.filter(
+                                    (item) => item.id === skill.id
+                                  )[0].definition
+                                : ""
                             }
                             multiline
                             openDelay={500}

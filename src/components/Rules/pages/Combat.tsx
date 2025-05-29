@@ -13,11 +13,7 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const Combat = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid
-      pt="sm"
-      ta="start"
-      id="combat"
-    >
+    <Grid pt="sm" ta="start" id="combat">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" id="combat">
@@ -89,12 +85,16 @@ export const Combat = () => {
             targets, the called shot affects only the first target.
           </Text>
           <Text>
-            <Text fw={700}>Partly Covered (-20%):</Text> The target is partially
-            covered (half the body).
+            <Text fw={700} span>
+              Partly Covered (-20%):
+            </Text>{" "}
+            The target is partially covered (half the body).
           </Text>
           <Text>
-            <Text fw={700}>Mostly Covered (-40%):</Text> The target is mostly
-            covered (all but a limb or head).
+            <Text fw={700} span>
+              Mostly Covered (-40%):
+            </Text>{" "}
+            The target is mostly covered (all but a limb or head).
           </Text>
           <Title order={3} id="disarm">
             Disarm
@@ -218,13 +218,17 @@ export const Combat = () => {
             even need to make a roll.
           </Text>
           <Text>
-            <Text fw={700}>Target is Helpless (Bound or Asleep)</Text>No roll is
-            needed to murder the target in one turn.
+            <Text fw={700} span>
+              Target is Helpless (Bound or Asleep):
+            </Text>{" "}
+            No roll is needed to murder the target in one turn.
           </Text>
           <Text>
-            <Text fw={700}>Target is Active but Unaware</Text>Make an attack
-            roll at +20%. Any success is a critical hit. If it fails, the attack
-            misses.
+            <Text fw={700} span>
+              Target is Active but Unaware:
+            </Text>{" "}
+            Make an attack roll at +20%. Any success is a critical hit. If it
+            fails, the attack misses.
           </Text>
           <Title order={3} id="shooting-into-a-crowd">
             Shooting into a Crowd
@@ -320,71 +324,94 @@ export const Combat = () => {
             from the target’s Hit Points.
           </Text>
           <Text>
-            <Text fw={700}>Damage Bonus:</Text> High or low Strength modifies
-            the damage of hand-to-hand attacks, to a minimum of 0
+            <Text fw={700} span>
+              Damage Bonus:
+            </Text>{" "}
+            High or low Strength modifies the damage of hand-to-hand attacks, to
+            a minimum of 0
           </Text>
           <Text>
-            <Text fw={700}>Stun:</Text> While stunned, your Agent can’t act.
-            When it’s your Agent’s turn, you may attempt a CON×5 test to recover
-            and act normally next turn. If any single attack inflicts half of
-            your Agent’s current HP, the Agent is stunned.
+            <Text fw={700} span>
+              Stun:
+            </Text>{" "}
+            While stunned, your Agent can’t act. When it’s your Agent’s turn,
+            you may attempt a CON×5 test to recover and act normally next turn.
+            If any single attack inflicts half of your Agent’s current HP, the
+            Agent is stunned.
           </Text>
           <Text>
-            <Text fw={700}>Unconsciousness:</Text> If your Agent is reduced to 2
-            or fewer HP, he or she falls unconscious. An unconscious Agent is
-            helpless and can be killed with a single attack without having to
-            roll. At 3 HP or more (or after an hour passes), the Agent regains
-            consciousness.
+            <Text fw={700} span>
+              Unconsciousness:
+            </Text>{" "}
+            If your Agent is reduced to 2 or fewer HP, he or she falls
+            unconscious. An unconscious Agent is helpless and can be killed with
+            a single attack without having to roll. At 3 HP or more (or after an
+            hour passes), the Agent regains consciousness.
           </Text>
           <Text>
-            <Text fw={700}>Permanent Injury:</Text> Any time your Agent is
-            reduced to 2 or fewer HP, make a CON×5 test. Failure indicates
-            permanent injury. The Handler selects a stat to be permanently
-            reduced by the number on the lowest ten-sided die of the failed
-            CON×5 roll, to a minimum score of 3. If STR or CON drop, adjust HP
-            accordingly.
+            <Text fw={700} span>
+              Permanent Injury:
+            </Text>{" "}
+            Any time your Agent is reduced to 2 or fewer HP, make a CON×5 test.
+            Failure indicates permanent injury. The Handler selects a stat to be
+            permanently reduced by the number on the lowest ten-sided die of the
+            failed CON×5 roll, to a minimum score of 3. If STR or CON drop,
+            adjust HP accordingly.
           </Text>
           <Text>
-            <Text fw={700}>Death:</Text> If an attack brings your Agent to 0 HP,
-            he or she is dead. HP do not go below 0.
+            <Text fw={700} span>
+              Death:
+            </Text>{" "}
+            If an attack brings your Agent to 0 HP, he or she is dead. HP do not
+            go below 0.
           </Text>
           <Title order={3} id="healing">
             Healing
           </Title>
           <Text>There are four types of healing:</Text>
           <Text>
-            <Text fw={700}>Resuscitation:</Text> If the Handler says
-            resuscitation is possible, someone must make a First Aid test. This
-            must occur within a number of minutes after death equal to the
-            victim’s CON score. If it succeeds, it restores 1D4 HP (doubled for
-            a critical success) and allows the patient to recover. If First Aid
-            fails, the victim dies and may not be resuscitated.
+            <Text fw={700} span>
+              Resuscitation:
+            </Text>{" "}
+            If the Handler says resuscitation is possible, someone must make a
+            First Aid test. This must occur within a number of minutes after
+            death equal to the victim’s CON score. If it succeeds, it restores
+            1D4 HP (doubled for a critical success) and allows the patient to
+            recover. If First Aid fails, the victim dies and may not be
+            resuscitated.
           </Text>
           <Text>
-            <Text fw={700}>Stabilization:</Text> Stabilizing a wounded character
-            with a successful First Aid test immediately heals 1D4 HP. A
-            critical success doubles the amount healed; a fumble inflicts 1D4
-            damage. Once your Agent receives first aid, success or failure, the
-            Agent can’t benefit from it again until he or she suffers damage
-            again.
+            <Text fw={700} span>
+              Stabilization:
+            </Text>{" "}
+            Stabilizing a wounded character with a successful First Aid test
+            immediately heals 1D4 HP. A critical success doubles the amount
+            healed; a fumble inflicts 1D4 damage. Once your Agent receives first
+            aid, success or failure, the Agent can’t benefit from it again until
+            he or she suffers damage again.
           </Text>
           <Text>
-            <Text fw={700}>Treatment:</Text> Treatment is medical care in a
-            hospital or aid station with extensive tools and medicines. A doctor
-            can attempt a Surgery or Medicine test once per week: Surgery for
-            critical care of severe wounds; Medicine for poison, disease, and
-            ongoing healing. If treatment succeeds, the patient recovers 1D4 HP.
-            This is doubled with a critical, while a fumble inflicts 1D4 HP
-            damage. At the Handler’s discretion, having less extensive tools and
-            medicines may incur a penalty.
+            <Text fw={700} span>
+              Treatment:
+            </Text>{" "}
+            Treatment is medical care in a hospital or aid station with
+            extensive tools and medicines. A doctor can attempt a Surgery or
+            Medicine test once per week: Surgery for critical care of severe
+            wounds; Medicine for poison, disease, and ongoing healing. If
+            treatment succeeds, the patient recovers 1D4 HP. This is doubled
+            with a critical, while a fumble inflicts 1D4 HP damage. At the
+            Handler’s discretion, having less extensive tools and medicines may
+            incur a penalty.
           </Text>
           <Text>
-            <Text fw={700}>Recuperation:</Text> Over time, the human body
-            repairs itself. A patient who rests in a safe place with proper food
-            and water can attempt a CON×5 test once per day to recover 1 HP (in
-            addition to any HP recovered due to medical treatment). On a
-            critical success, the patient regains 1D4; on a fumble, the patient
-            loses 1 HP.
+            <Text fw={700} span>
+              Recuperation:
+            </Text>{" "}
+            Over time, the human body repairs itself. A patient who rests in a
+            safe place with proper food and water can attempt a CON×5 test once
+            per day to recover 1 HP (in addition to any HP recovered due to
+            medical treatment). On a critical success, the patient regains 1D4;
+            on a fumble, the patient loses 1 HP.
           </Text>
           <Title order={3} id="complicaitons">
             Complications
@@ -436,16 +463,20 @@ export const Combat = () => {
             collateral damage is up to the Handler.
           </Text>
           <Text>
-            <Text fw={700}>Blast Zone Bonus:</Text> With explosive weapons, Kill
-            Radius attacks don’t need to be as precise as ordinary attacks;
-            hitting a zone within the Kill Radius of a target is enough. That
-            adds +20% to the chance to hit.
+            <Text fw={700} span>
+              Blast Zone Bonus:
+            </Text>{" "}
+            With explosive weapons, Kill Radius attacks don’t need to be as
+            precise as ordinary attacks; hitting a zone within the Kill Radius
+            of a target is enough. That adds +20% to the chance to hit.
           </Text>
           <Text>
-            <Text fw={700}>Many Targets:</Text> An attack with a Kill Radius
-            usually affects everyone in the Kill Radius. If that makes no sense
-            for the attack, the Handler can decide who gets hit or allow Luck
-            rolls for escaping harm.
+            <Text fw={700} span>
+              Many Targets:
+            </Text>{" "}
+            An attack with a Kill Radius usually affects everyone in the Kill
+            Radius. If that makes no sense for the attack, the Handler can
+            decide who gets hit or allow Luck rolls for escaping harm.
           </Text>
           <Text>
             The Handler is welcome to let players roll the Lethality results for
@@ -545,21 +576,27 @@ export const Combat = () => {
             body armor while behind a wall), add them all together.
           </Text>
           <Text>
-            <Text fw={700}>Body Armor:</Text> Body armor reduces the damage of
-            an ordinary attack by its Armor Rating. Body armor protects against
-            the damage of a failed Lethality roll, but does nothing whatsoever
-            against a successful Lethality roll.
+            <Text fw={700} span>
+              Body Armor:
+            </Text>{" "}
+            Body armor reduces the damage of an ordinary attack by its Armor
+            Rating. Body armor protects against the damage of a failed Lethality
+            roll, but does nothing whatsoever against a successful Lethality
+            roll.
           </Text>
           <Text>
-            <Text fw={700}>Cover:</Text> Finding cover means using a hard bar-
-            rier as armor against attack. Cover protects more completely than
-            body armor. If you have cover against a Lethality attack, the
-            Lethality roll automatically fails, but still inflicts the sum of
-            the dice as damage. Subtract the cover’s Armor rating from that
-            damage. What if your Agents are completely enclosed in a structure
-            or vehicle? That’s definitely cover, but it’s the Handler’s call.
-            Maybe they take damage reduced by the cover, or maybe they take no
-            damage until the cover is breached.
+            <Text fw={700} span>
+              Cover:
+            </Text>{" "}
+            Finding cover means using a hard bar- rier as armor against attack.
+            Cover protects more completely than body armor. If you have cover
+            against a Lethality attack, the Lethality roll automatically fails,
+            but still inflicts the sum of the dice as damage. Subtract the
+            cover’s Armor rating from that damage. What if your Agents are
+            completely enclosed in a structure or vehicle? That’s definitely
+            cover, but it’s the Handler’s call. Maybe they take damage reduced
+            by the cover, or maybe they take no damage until the cover is
+            breached.
           </Text>
           <Title order={3} id="huge">
             Huge
@@ -612,21 +649,26 @@ export const Combat = () => {
             ratings.
           </Text>
           <Text>
-            <Text fw={700}>Poisons:</Text> A poison has a Lethality rating. If
-            the Lethality roll fails, the victim makes a CON×5 test to withstand
-            harm. Success means half damage, and a critical success means the
-            victim loses only 1 HP. A fumble doubles the damage. Hospitalization
-            grants +20% to the victim’s CON test.
+            <Text fw={700} span>
+              Poisons:
+            </Text>{" "}
+            A poison has a Lethality rating. If the Lethality roll fails, the
+            victim makes a CON×5 test to withstand harm. Success means half
+            damage, and a critical success means the victim loses only 1 HP. A
+            fumble doubles the damage. Hospitalization grants +20% to the
+            victim’s CON test.
           </Text>
           <Text>
-            <Text fw={700}>Diseases:</Text> Diseases inflict HP damage. If your
-            Agent succeeds at a CON×5 test, he or she suffers half damage and
-            recovers from the disease, or no damage with a critical success. On
-            a failure, he or she suffers full damage and must make the CON×5
-            test again after another Speed interval. A fumbled CON test doubles
-            the damage. While under the effects of a disease, the Agent cannot
-            gain Hit Points back. Hospitalization grants a +20% bonus to the CON
-            test.
+            <Text fw={700} span>
+              Diseases:
+            </Text>{" "}
+            Diseases inflict HP damage. If your Agent succeeds at a CON×5 test,
+            he or she suffers half damage and recovers from the disease, or no
+            damage with a critical success. On a failure, he or she suffers full
+            damage and must make the CON×5 test again after another Speed
+            interval. A fumbled CON test doubles the damage. While under the
+            effects of a disease, the Agent cannot gain Hit Points back.
+            Hospitalization grants a +20% bonus to the CON test.
           </Text>
           <Text>
             Serious diseases may come with a penalty to the CON test. A
@@ -637,12 +679,15 @@ export const Combat = () => {
             Agent must make a CON×5 test to resist a resurgence.
           </Text>
           <Text>
-            <Text fw={700}>Antidotes:</Text> Many poisons and diseases can be
-            cured with medication. If a physician has the antidote for a poison
-            or the right antibiotics for a disease, a Medicine or Pharmacy test
-            before the ailment takes effect renders the poison or disease
-            harmless. An antidote given after the ailment takes effect halves
-            the Lethality rating and the HP damage.
+            <Text fw={700} span>
+              Antidotes:
+            </Text>{" "}
+            Many poisons and diseases can be cured with medication. If a
+            physician has the antidote for a poison or the right antibiotics for
+            a disease, a Medicine or Pharmacy test before the ailment takes
+            effect renders the poison or disease harmless. An antidote given
+            after the ailment takes effect halves the Lethality rating and the
+            HP damage.
           </Text>
           <Title order={3} id="falling">
             Falling

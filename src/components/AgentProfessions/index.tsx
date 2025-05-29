@@ -27,7 +27,12 @@ import {
 import styles from "../../Element.module.css";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { IconList, IconNotebook } from "@tabler/icons-react";
+import {
+  IconBriefcase,
+  IconChevronRight,
+  IconList,
+  IconNotebook,
+} from "@tabler/icons-react";
 import { Overview } from "./pages/Overview";
 import { ProfessionList } from "./pages/ProfessionList";
 import { BonusSkillPackagesList } from "./pages/BonusSkillPackagesList";
@@ -73,14 +78,22 @@ export const AgentProfessions = () => {
                 leftSection={<IconNotebook />}
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
+                tt="capitalize"
               >
-                Professions Section List
+                <Text size="sm" fw={500} truncate="end" maw={175}>
+                  Professions / {tabValue}
+                </Text>
               </Button>
               <Modal
                 opened={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 fullScreen
-                title="Section List"
+                title={
+                  <Group>
+                    <IconBriefcase />
+                    <Text fw={700}>Professions</Text>
+                  </Group>
+                }
               >
                 <Stack>
                   <NavLink
@@ -92,6 +105,7 @@ export const AgentProfessions = () => {
                       location.pathname === "/agents/professions/overview"
                     }
                     label="Overview"
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     onClick={() => {
@@ -103,6 +117,7 @@ export const AgentProfessions = () => {
                       "/agents/professions/stats-and-skills"
                     }
                     label="Stats and Skills"
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     onClick={() => {
@@ -114,6 +129,7 @@ export const AgentProfessions = () => {
                       "/agents/professions/profession-list"
                     }
                     label="Profession List"
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     onClick={() => {
@@ -125,6 +141,7 @@ export const AgentProfessions = () => {
                       "/agents/professions/bonus-skill-package-list"
                     }
                     label="Bonus Skill Package List"
+                    rightSection={<IconChevronRight size={16} />}
                   />
                 </Stack>
               </Modal>

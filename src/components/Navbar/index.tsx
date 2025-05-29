@@ -23,6 +23,7 @@ import {
   IconAddressBook,
   IconBook,
   IconBriefcase,
+  IconChevronRight,
   IconList,
   IconListDetails,
   IconMenu,
@@ -31,6 +32,7 @@ import {
   IconPackages,
   IconSearch,
   IconSpy,
+  IconStairs,
   IconUserPlus,
   IconUsers,
   IconVocabulary,
@@ -146,16 +148,19 @@ export const Navbar = () => {
           </Button> */}
           </Group>
         ) : (
-          <Group justify="space-between" w={"100%"}>
-            <ActionIcon onClick={() => setMobileMenuOpen(true)} variant="outline">
+          <Group justify="space-between" align="center" w={"100%"} h={45}>
+            <ActionIcon
+              onClick={() => setMobileMenuOpen(true)}
+              variant="outline"
+            >
               <IconList />
             </ActionIcon>
             <Center>
               <UnstyledButton component={Link} to="/directory">
-                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={40} />
+                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={35} />
               </UnstyledButton>
             </Center>
-            <Box w='24' />
+            <Box w="24" />
           </Group>
         )}
         {width > 992 && <SearchBar />}
@@ -163,7 +168,12 @@ export const Navbar = () => {
       <Drawer
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
-        title="Agent Handbook"
+        title={
+          <Group>
+            <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={35} />
+            <Text>Agent Handbook</Text>
+          </Group>
+        }
       >
         {mobileMenuOpen && <SearchBar setMobileMenuOpen={setMobileMenuOpen} />}
         <NavLink
@@ -199,28 +209,18 @@ export const Navbar = () => {
           leftSection={<IconPackages />}
         />
         <NavLink
+          label="Training"
+          component={Link}
+          to={`/training`}
+          active={location.pathname.includes("/training")}
+          onClick={() => setMobileMenuOpen(false)}
+          leftSection={<IconStairs />}
+        />
+        <NavLink
           label="Agent Resources"
           active={location.pathname.includes("/agents")}
           leftSection={<IconAddressBook />}
         >
-          <NavLink
-            autoContrast
-            label="Agent Roster"
-            component={Link}
-            to={`/agents`}
-            active={location.pathname.includes("/agents/roster")}
-            leftSection={<IconUsers />}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <NavLink
-            autoContrast
-            label="Create an Agent"
-            component={Link}
-            to={`/agents/new`}
-            active={location.pathname.includes("/agents/new")}
-            leftSection={<IconUserPlus />}
-            onClick={() => setMobileMenuOpen(false)}
-          />
           <NavLink
             autoContrast
             label="Professions"
@@ -241,11 +241,20 @@ export const Navbar = () => {
           />
           <NavLink
             autoContrast
-            label="Glossary"
+            label="Agent Roster"
             component={Link}
-            to={`/agents/glossary`}
-            active={location.pathname.includes("/agents/glossary")}
-            leftSection={<IconVocabulary />}
+            to={`/agents`}
+            active={location.pathname.includes("/agents/roster")}
+            leftSection={<IconUsers />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            autoContrast
+            label="Create an Agent"
+            component={Link}
+            to={`/agents/new`}
+            active={location.pathname.includes("/agents/new")}
+            leftSection={<IconUserPlus />}
             onClick={() => setMobileMenuOpen(false)}
           />
         </NavLink>

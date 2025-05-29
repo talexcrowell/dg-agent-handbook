@@ -19,7 +19,12 @@ import { WhatIsDeltaGreen } from "./pages/WhatIsDeltaGreen";
 import { Fundamentals } from "./pages/Fundamentals";
 import { HowTheGameIsPlayed } from "./pages/HowTheGameIsPlayed";
 import { HowToPlayAnAgent } from "./pages/HowToPlayAnAgent";
-import { IconList, IconNotebook } from "@tabler/icons-react";
+import {
+  IconChevronRight,
+  IconList,
+  IconNotebook,
+  IconWorld,
+} from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -36,7 +41,7 @@ export const DeltaGreen = () => {
 
   useEffect(() => {
     if (!tabValue) {
-      navigate("/delta-green/overview");
+      navigate("/delta-green/welcome");
     }
     reinitializeRef.current();
   }, [tabValue]);
@@ -45,13 +50,13 @@ export const DeltaGreen = () => {
     <Grid pb={0}>
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
         <Tabs
-          defaultValue="overview"
+          defaultValue="welcome"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
         >
           {viewport.width > 600 ? (
             <Tabs.List>
-              <Tabs.Tab value="overview">Overview</Tabs.Tab>
+              <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
               <Tabs.Tab value="the-world-of-delta-green">
                 The World of Delta Green
               </Tabs.Tab>
@@ -69,24 +74,43 @@ export const DeltaGreen = () => {
                 leftSection={<IconNotebook />}
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
+                tt="capitalize"
               >
-                Delta Green Section List
+                <Text size="sm" fw={500} truncate="end" maw={175}>
+                  Delta Green /{" "}
+                  {tabValue === "the-world-of-delta-green"
+                    ? "The World of Delta Green"
+                    : tabValue === "what-is-delta-green"
+                    ? "What is Delta Green?"
+                    : tabValue === "fundamentals"
+                    ? "The Fundamentals"
+                    : tabValue === "how-the-game-is-played"
+                    ? "How the Game is Played"
+                    : tabValue}
+                </Text>
               </Button>
               <Modal
                 opened={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 fullScreen
-                title="Section List"
+                title={
+                  <Group>
+                    <IconWorld />
+                    <Text fw={700}>Delta Green</Text>
+                  </Group>
+                }
               >
                 <Stack>
                   <NavLink
-                    label="Overview"
+                    label="Welcome"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/delta-green/overview");
+                      navigate("/delta-green/welcome");
                     }}
-                    active={location.pathname === "/delta-green/overview"}
+                    active={location.pathname === "/delta-green/welcome"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
+
                   <NavLink
                     label="The World of Delta Green"
                     onClick={() => {
@@ -97,6 +121,7 @@ export const DeltaGreen = () => {
                       location.pathname ===
                       "/delta-green/the-world-of-delta-green"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label=" What is Delta Green?"
@@ -107,6 +132,7 @@ export const DeltaGreen = () => {
                     active={
                       location.pathname === "/delta-green/what-is-delta-green"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="The Fundamentals"
@@ -115,6 +141,7 @@ export const DeltaGreen = () => {
                       navigate("/delta-green/fundamentals");
                     }}
                     active={location.pathname === "/delta-green/fundamentals"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="How the Game is Played"
@@ -126,12 +153,13 @@ export const DeltaGreen = () => {
                       location.pathname ===
                       "/delta-green/how-the-game-is-played"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                 </Stack>
               </Modal>
             </Affix>
           )}
-          <Tabs.Panel value="overview">
+          <Tabs.Panel value="welcome">
             <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
               <Overview />
             </ScrollArea>

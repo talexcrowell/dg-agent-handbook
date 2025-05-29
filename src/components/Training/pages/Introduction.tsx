@@ -1,5 +1,7 @@
 import {
   Anchor,
+  Button,
+  Center,
   Divider,
   Grid,
   Group,
@@ -15,6 +17,7 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { Link } from "react-router-dom";
+import { IconArrowForward, IconArrowRight } from "@tabler/icons-react";
 
 export const Introduction = () => {
   const [viewport] = useViewportContext();
@@ -105,6 +108,22 @@ export const Introduction = () => {
             These tasks will save your group some time and help with immersion
             during the Operation.
           </Text>
+          <Divider />
+          <Center>
+            <Button
+              rightSection={<IconArrowRight />}
+              variant="outline"
+              component={Link}
+              to='/training/basics'
+            >
+              Proceed to "Basics"
+            </Button>
+          </Center>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

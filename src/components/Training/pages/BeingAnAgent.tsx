@@ -1,5 +1,7 @@
 import {
   Anchor,
+  Button,
+  Center,
   Divider,
   Grid,
   List,
@@ -12,6 +14,7 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { Link } from "react-router-dom";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export const BeingAnAgent = () => {
   const [viewport] = useViewportContext();
@@ -214,7 +217,17 @@ export const BeingAnAgent = () => {
             You’re both here for the same reason: a suspenseful, horrifying game
             of Delta Green.
           </Text>
-          <Space />
+          <Divider />
+          <Center>
+            <Button
+              rightSection={<IconArrowRight />}
+              variant="outline"
+              component={Link}
+              to="/training/after-the-operation"
+            >
+              Proceed to "After the Operation"
+            </Button>
+          </Center>
           <Space />
           <Space />
           <Space />

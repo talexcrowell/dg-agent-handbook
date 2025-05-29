@@ -32,15 +32,54 @@ export const AfterTheOperation = () => {
           </Text>
           <Text>
             If you continue to play this Agent, you will be able to craft their
-            narrative during their time with Delta Green. You can improve your
-            Agent's skills that they failed to attempt during the previous
-            Operation by 1D4. You can also participate in a "Home" scene to
-            detail what your Agent does in-between Operations.
+            narrative during their time with Delta Green.
           </Text>
-          <Text>That's a story for you and your Handler to tell.</Text>
+          <Text>
+            You can improve your Agent's skills that they failed to attempt
+            during the previous Operation by 1D4.
+          </Text>
+          <Text>
+            You can also participate in a "Home" scene to detail what your Agent
+            does in-between Operations. That's a story for you and your Handler
+            to tell.
+          </Text>
           <Text>
             You are also welcome to "retire" your Agent if they didn't seem like
             a great fit for you. Delta Green can always use new Agents.
+          </Text>
+          <Divider />
+          <Title order={2} td="underline">
+            Rolling Failures
+          </Title>
+          <Text>
+            In Delta Green, Agents learn through failure and can improve skills
+            that failed during the previous Operation. These "failed" skills
+            should be marked with a check on the character sheet when the skill
+            test fails anytime during gameplay. Even if there are multiple
+            failures from using the same skill test, each skill can only be
+            checked once.
+          </Text>
+          <Text>
+            For each skill is checked, you will roll a 1D4 and add the result to
+            the respective skill score. For example:
+          </Text>
+          <Text fs="italic">
+            Agent COLTON checks his character sheet and notes that they failed
+            at{" "}
+            <Text inherit span fw={700}>
+              Athletics (50%), Firearms (40%), and Search (30%)
+            </Text>{" "}
+            during the previous operation. Agent COLTON rolls a 1D4 for each
+            skill resulting in{" "}
+            <Text inherit span fw={700}>
+              3, 6, and 1
+            </Text>
+            . Those values are added to the respective skill resulting in Agent
+            COLTON's skills to be{" "}
+            <Text inherit span fw={700}>
+              Athletics (53%), Firearms (46%), and Search (31%)
+            </Text>
+            .
           </Text>
           <Divider />
           <Title order={2} td="underline">
@@ -85,6 +124,11 @@ export const AfterTheOperation = () => {
             Recklessness in Operations can cause consequences such as being
             fired from your day job or being arrested/prosecuted.
           </Text>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

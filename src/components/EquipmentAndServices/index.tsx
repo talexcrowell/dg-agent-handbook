@@ -17,7 +17,13 @@ import {
   Title,
 } from "@mantine/core";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { IconList, IconNotebook } from "@tabler/icons-react";
+import {
+  IconChevronRight,
+  IconList,
+  IconNotebook,
+  IconPackage,
+  IconPackages,
+} from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import Overview from "./pages/Overview";
@@ -70,14 +76,25 @@ export const EquipmentAndServices = () => {
                 leftSection={<IconNotebook />}
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
+                tt="capitalize"
               >
-                Equipment and Services Section List
+                <Text size="sm" fw={500} truncate="end" maw={175}>
+                  E&S /{" "}
+                  {tabValue === "gear-and-services"
+                    ? "Gear and Services"
+                    : tabValue}
+                </Text>
               </Button>
               <Modal
                 opened={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 fullScreen
-                title="Section List"
+                title={
+                  <Group>
+                    <IconPackages />
+                    <Text fw={700}>Equipment and Services</Text>
+                  </Group>
+                }
               >
                 <Stack>
                   <NavLink
@@ -89,6 +106,7 @@ export const EquipmentAndServices = () => {
                     active={
                       location.pathname === "/equipment-and-services/overview"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Weapons"
@@ -99,6 +117,7 @@ export const EquipmentAndServices = () => {
                     active={
                       location.pathname === "/equipment-and-services/weapons"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Body Armor"
@@ -109,6 +128,7 @@ export const EquipmentAndServices = () => {
                     active={
                       location.pathname === "/equipment-and-services/armor"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Vehicles"
@@ -119,6 +139,7 @@ export const EquipmentAndServices = () => {
                     active={
                       location.pathname === "/equipment-and-services/vehicles"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Gear and Services"
@@ -130,6 +151,7 @@ export const EquipmentAndServices = () => {
                       location.pathname ===
                       "/equipment-and-services/gear-and-services"
                     }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                 </Stack>
               </Modal>

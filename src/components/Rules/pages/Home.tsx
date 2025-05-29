@@ -43,26 +43,37 @@ export const Home = () => {
             last operation.
           </Text>
           <Text>
-            <Text fw={700}>Bonds Damaged or Broken:</Text> Describe how each
-            relationship has deteriorated.
+            <Text fw={700} span>
+              Bonds Damaged or Broken:
+            </Text>{" "}
+            Describe how each relationship has deteriorated.
           </Text>
           <Text>
-            <Text fw={700}>Permanent Injuries:</Text> Describe what they look
-            like.
+            <Text fw={700} span>
+              Permanent Injuries:
+            </Text>{" "}
+            Describe what they look like.
           </Text>
           <Text>
-            <Text fw={700}>Disorders Gained:</Text>Did your Agent hit the
-            Breaking Point during the operation? Now’s the time for the Handler
-            to decide what disorder the Agent gains.
+            <Text fw={700} span>
+              Disorders Gained:
+            </Text>{" "}
+            Did your Agent hit the Breaking Point during the operation? Now’s
+            the time for the Handler to decide what disorder the Agent gains.
           </Text>
           <Text>
-            <Text fw={700}>Work:</Text>If your Agent misused his or her
-            contacts, authority, or resources from his or her day job, describe
-            how actions during the operation may have impacted your Agent’s
-            career.
+            <Text fw={700} span>
+              Work:
+            </Text>{" "}
+            If your Agent misused his or her contacts, authority, or resources
+            from his or her day job, describe how actions during the operation
+            may have impacted your Agent’s career.
           </Text>
           <Text>
-            <Text fw={700}>Prosecution:</Text>Did your Agent get arrested?
+            <Text fw={700} span>
+              Prosecution:
+            </Text>{" "}
+            Did your Agent get arrested?
           </Text>
           <Divider />
           <Title order={2} td="underline" id="personal-pursuits">

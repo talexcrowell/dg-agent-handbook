@@ -174,17 +174,21 @@ export const Sanity = () => {
             disorder, the Handler decides which comes to the fore.
           </Text>
           <Text>
-            <Text fw={700}>Repressing an Episode:</Text>When an acute episode
-            begins, your Agent can attempt to repress it by projecting the
-            stress and trauma onto a Bond.
+            <Text fw={700} span>
+              Repressing an Episode:{" "}
+            </Text>
+            When an acute episode begins, your Agent can attempt to repress it
+            by projecting the stress and trauma onto a Bond.
           </Text>
           <Text>
-            <Text fw={700}>Effects of an Episode:</Text>Suffering an acute
-            episode of a disorder often means your Agent can’t take some actions
-            (or can attempt them only with a penalty), or your Agent must take
-            some actions. The Handler always decides the exact repercussions,
-            and whether it happens immediately or builds gradually, in the
-            aftermath of the trauma.
+            <Text fw={700} span>
+              Effects of an Episode:{" "}
+            </Text>
+            Suffering an acute episode of a disorder often means your Agent
+            can’t take some actions (or can attempt them only with a penalty),
+            or your Agent must take some actions. The Handler always decides the
+            exact repercussions, and whether it happens immediately or builds
+            gradually, in the aftermath of the trauma.
           </Text>
           <Text>
             When your Agent is going through an acute episode, make sure it is
@@ -234,23 +238,30 @@ export const Sanity = () => {
             helplessness, your Agent becomes adapted to it.
           </Text>
           <Text>
-            <Text fw={700}>Adapting to Violence:</Text> Unfortunately, being
-            adapted to violence means your Agent’s empathy suffers. He or she
-            permanently loses 1D6 CHA and the same amount from each Bond.
+            <Text fw={700} span>
+              Adapting to Violence:
+            </Text>{" "}
+            Unfortunately, being adapted to violence means your Agent’s empathy
+            suffers. He or she permanently loses 1D6 CHA and the same amount
+            from each Bond.
           </Text>
           <Text>
-            <Text fw={700}>Adapting to Helplessness:</Text> Being adapted to
-            helplessness means your Agent’s personal drive suffers. As soon as
-            your Agent becomes adapted to helplessness, he or she permanently
-            loses 1D6 POW.
+            <Text fw={700} span>
+              Adapting to Helplessness:
+            </Text>{" "}
+            Being adapted to helplessness means your Agent’s personal drive
+            suffers. As soon as your Agent becomes adapted to helplessness, he
+            or she permanently loses 1D6 POW.
           </Text>
           <Text>
-            <Text fw={700}>Adapting to the Unnatural:</Text> There is no
-            adapting to the unnatural. Things that exist beyond human
-            comprehension are beyond “getting used to.” Every new encounter is a
-            fresh shock. The only way to “adapt” to the Unnatural is to reach 0
-            SAN, whereupon the horrors make perfect sense and no longer inflict
-            mental damage.
+            <Text fw={700} span>
+              Adapting to the Unnatural:
+            </Text>{" "}
+            There is no adapting to the unnatural. Things that exist beyond
+            human comprehension are beyond “getting used to.” Every new
+            encounter is a fresh shock. The only way to “adapt” to the Unnatural
+            is to reach 0 SAN, whereupon the horrors make perfect sense and no
+            longer inflict mental damage.
           </Text>
           <Title order={3} id="projecting-onto-a-bond">
             Projecting Onto a Bond

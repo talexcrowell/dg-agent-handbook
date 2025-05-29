@@ -1,4 +1,13 @@
-import { Divider, Grid, List, Space, Stack, Table, Text, Title } from "@mantine/core";
+import {
+  Divider,
+  Grid,
+  List,
+  Space,
+  Stack,
+  Table,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { skillsMasterList } from "../../../data";
 
@@ -178,7 +187,9 @@ export const StatsAndSkills = () => {
             you don’t.
           </Text>
           <Text>
-            <Text fw={700}>Using a Skill without a Roll:</Text>
+            <Text fw={700} span>
+              Using a Skill without a Roll:
+            </Text>{" "}
             When circumstances are calm and controlled, you don’t roll dice to
             have your Agent use a skill; the Handler just needs to know how high
             your Agent’s rating is. Landing an airplane when things are calm
@@ -188,7 +199,9 @@ export const StatsAndSkills = () => {
             questions.
           </Text>
           <Text>
-            <Text fw={700}>Using a Skill with a Roll:</Text>
+            <Text fw={700} span>
+              Using a Skill with a Roll:
+            </Text>{" "}
             Roll skill dice when the outcome is in doubt. That usually means
             there’s a crisis, the circumstances are not under your Agent’s
             control, or your Agent is not expert enough to succeed without a
@@ -236,7 +249,9 @@ export const StatsAndSkills = () => {
             Gaining an entirely new skill requires extensive training.
           </Text>
           <Text>
-            <Text fw={700}>Failing without Rolling:</Text>
+            <Text fw={700} span>
+              Failing without Rolling:
+            </Text>{" "}
             If your Agent attempts a challenging task that requires a certain
             level of skill but not a roll, and fails because the task requires
             more skill than your Agent has, put a check in the box.

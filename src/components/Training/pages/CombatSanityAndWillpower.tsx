@@ -1,5 +1,7 @@
 import {
   Anchor,
+  Button,
+  Center,
   Divider,
   Grid,
   Group,
@@ -15,6 +17,7 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { Link } from "react-router-dom";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export const CombatSanityAndWillpower = () => {
   const [viewport] = useViewportContext();
@@ -46,11 +49,7 @@ export const CombatSanityAndWillpower = () => {
           </Title>
           <Text c="dimmed">
             For more information, you can read the{" "}
-            <Anchor
-              component={Link}
-              to="/rules/combat"
-              target="_blank"
-            >
+            <Anchor component={Link} to="/rules/combat" target="_blank">
               Combat
             </Anchor>{" "}
             section in the Rules.
@@ -127,11 +126,7 @@ export const CombatSanityAndWillpower = () => {
           </Title>
           <Text c="dimmed">
             For more information, you can read the{" "}
-            <Anchor
-              component={Link}
-              to="/rules/sanity"
-              target="_blank"
-            >
+            <Anchor component={Link} to="/rules/sanity" target="_blank">
               Sanity
             </Anchor>{" "}
             section in the Rules.
@@ -234,10 +229,7 @@ export const CombatSanityAndWillpower = () => {
           </Title>
           <Text c="dimmed">
             For more information, you can read the{" "}
-            <Anchor
-              component={Link}
-              to="/rules/how-to-play#willpower-points"
-            >
+            <Anchor component={Link} to="/rules/how-to-play#willpower-points">
               Willpower
             </Anchor>{" "}
             section in the Rules.
@@ -269,6 +261,22 @@ export const CombatSanityAndWillpower = () => {
             to all skills, stat tests, and SAN rolls. A full night’s rest
             removes that penalty.
           </Text>
+          <Divider />
+          <Center>
+            <Button
+              rightSection={<IconArrowRight />}
+              variant="outline"
+              component={Link}
+              to="/training/being-an-agent"
+            >
+              Proceed to "Being an Agent"
+            </Button>
+          </Center>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>

@@ -22,6 +22,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   IconBook,
   IconBook2,
+  IconChevronRight,
   IconList,
   IconNotebook,
 } from "@tabler/icons-react";
@@ -65,14 +66,23 @@ export const Rules = () => {
                 leftSection={<IconNotebook />}
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
+                tt="capitalize"
               >
-                Rules Section List
+                <Text size="sm" fw={500} truncate="end" maw={175}>
+                  Rules /{" "}
+                  {tabValue === "how-to-play" ? "How to Play" : tabValue}
+                </Text>
               </Button>
               <Modal
                 opened={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 fullScreen
-                title="Section List"
+                title={
+                  <Group>
+                    <IconBook />
+                    <Text fw={700}>Rules</Text>
+                  </Group>
+                }
               >
                 <Stack>
                   <NavLink
@@ -82,6 +92,7 @@ export const Rules = () => {
                       navigate("/rules/how-to-play");
                     }}
                     active={location.pathname === "/rules/how-to-play"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Combat"
@@ -90,6 +101,7 @@ export const Rules = () => {
                       navigate("/rules/combat");
                     }}
                     active={location.pathname === "/rules/combat"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Sanity"
@@ -98,6 +110,7 @@ export const Rules = () => {
                       navigate("/rules/sanity");
                     }}
                     active={location.pathname === "/rules/sanity"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
                     label="Home"
@@ -106,28 +119,29 @@ export const Rules = () => {
                       navigate("/rules/home");
                     }}
                     active={location.pathname === "/rules/home"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                 </Stack>
               </Modal>
             </Affix>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <HowToPlay />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <Combat />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <Sanity />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea h={"91vh"} scrollbars='y' offsetScrollbars='y'>
+            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <Home />
             </ScrollArea>
           </Tabs.Panel>

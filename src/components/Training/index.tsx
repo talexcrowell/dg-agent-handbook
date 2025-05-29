@@ -18,8 +18,10 @@ import { useEffect, useRef, useState } from "react";
 import {
   IconBook,
   IconBook2,
+  IconChevronRight,
   IconList,
   IconNotebook,
+  IconStairs,
 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -53,68 +55,103 @@ export const Training = () => {
           value={tabValue}
           onChange={(value) => navigate(`/training/${value}`)}
         >
-          {/* {viewport.width > 600 ? ( */}
-          <Tabs.List>
-            <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
-            <Tabs.Tab value="basics">Basics</Tabs.Tab>
-            <Tabs.Tab value="combat-sanity-and-willpower">
-              Combat, Sanity, and Willpower
-            </Tabs.Tab>
-            <Tabs.Tab value="being-an-agent">Being an Agent</Tabs.Tab>
-            <Tabs.Tab value="after-the-operation">After the Operation</Tabs.Tab>
-          </Tabs.List>
-          {/* ) : (
+          {viewport.width > 600 ? (
+            <Tabs.List>
+              <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
+              <Tabs.Tab value="basics">Basics</Tabs.Tab>
+              <Tabs.Tab value="combat-sanity-and-willpower">
+                Combat, Sanity, and Willpower
+              </Tabs.Tab>
+              <Tabs.Tab value="being-an-agent">Being an Agent</Tabs.Tab>
+              <Tabs.Tab value="after-the-operation">
+                After the Operation
+              </Tabs.Tab>
+            </Tabs.List>
+          ) : (
             <Affix position={{ bottom: 20, right: 20 }}>
               <Button
                 leftSection={<IconNotebook />}
                 variant="gradient"
                 onClick={() => setMobileMenuOpen(true)}
+                tt="capitalize"
               >
-                Rules Section List
+                <Text size="sm" fw={600} truncate="end" maw={175}>
+                  Training /{" "}
+                  {tabValue === "combat-sanity-and-willpower"
+                    ? "Combat, Sanity, and Willpower"
+                    : tabValue === "being-an-agent"
+                    ? "Being an Agent"
+                    : tabValue === "after-the-operation"
+                    ? "After the Operation"
+                    : tabValue}
+                </Text>
               </Button>
               <Modal
                 opened={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}
                 fullScreen
-                title="Section List"
+                title={
+                  <Group>
+                    <IconStairs />
+                    <Text fw={700}>Training</Text>
+                  </Group>
+                }
               >
                 <Stack>
                   <NavLink
-                    label="How to Play"
+                    label="Introduction"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/rules/how-to-play");
+                      navigate("/training/introduction");
                     }}
-                    active={location.pathname === "/rules/how-to-play"}
+                    active={location.pathname === "/training/introduction"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
-                    label="Combat"
+                    label="Basics"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/rules/combat");
+                      navigate("/training/basics");
                     }}
-                    active={location.pathname === "/rules/combat"}
+                    active={location.pathname === "/training/basics"}
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
-                    label="Sanity"
+                    label="Combat, Sanity, and Willpower"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/rules/sanity");
+                      navigate("/training/combat-sanity-and-willpower");
                     }}
-                    active={location.pathname === "/rules/sanity"}
+                    active={
+                      location.pathname ===
+                      "/training/combat-sanity-and-willpower"
+                    }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                   <NavLink
-                    label="Home"
+                    label="Being an Agent"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/rules/home");
+                      navigate("/training/being-an-agent");
                     }}
-                    active={location.pathname === "/rules/home"}
+                    active={location.pathname === "/training/being-an-agent"}
+                    rightSection={<IconChevronRight size={16} />}
+                  />
+                  <NavLink
+                    label="After the Operation"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate("/training/after-the-operation");
+                    }}
+                    active={
+                      location.pathname === "/training/after-the-operation"
+                    }
+                    rightSection={<IconChevronRight size={16} />}
                   />
                 </Stack>
               </Modal>
             </Affix>
-          )} */}
+          )}
           <Tabs.Panel value="introduction">
             <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
               <Introduction />

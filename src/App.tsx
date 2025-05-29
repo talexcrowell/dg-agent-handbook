@@ -25,13 +25,12 @@ function App() {
     <AppShell padding="sm">
       {pathname !== "/" && (
         <AppShell.Header
-          h={width > 992 ? 45 : 55}
-          style={{ borderBottom: "none" }}
+          h={45}
         >
           <Navbar />
         </AppShell.Header>
       )}
-      <AppShell.Main pt={width > 992 ? 45 : 55}>
+      <AppShell.Main pt={45}>
         <Container size="xl" px={width > 992 ? "md" : "0"}>
           <Outlet />
         </Container>
