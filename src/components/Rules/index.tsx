@@ -64,7 +64,7 @@ export const Rules = () => {
             <Affix position={{ bottom: 20, right: 20 }}>
               <Button
                 leftSection={<IconNotebook />}
-                variant="gradient"
+                variant="filled"
                 onClick={() => setMobileMenuOpen(true)}
                 tt="capitalize"
               >
