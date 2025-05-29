@@ -55,7 +55,7 @@ export const Training = () => {
           value={tabValue}
           onChange={(value) => navigate(`/training/${value}`)}
         >
-          {viewport.width > 600 ? (
+          {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
               <Tabs.Tab value="basics">Basics</Tabs.Tab>

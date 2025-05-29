@@ -24,13 +24,11 @@ function App() {
   return (
     <AppShell padding="sm">
       {pathname !== "/" && (
-        <AppShell.Header
-          h={width > 600?45:55}
-        >
+        <AppShell.Header h={width > 760 ? 45 : 55}>
           <Navbar />
         </AppShell.Header>
       )}
-      <AppShell.Main pt={width > 600?45:55}>
+      <AppShell.Main pt={width > 760 ? 45 : 55}>
         <Container size="xl" px={width > 992 ? "md" : "0"}>
           <Outlet />
         </Container>

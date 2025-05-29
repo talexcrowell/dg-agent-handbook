@@ -51,7 +51,7 @@ export const Navbar = () => {
   return (
     <Container size="xl" h={"100%"}>
       <Flex justify="space-between">
-        {width > 992 ? (
+        {width > 760 ? (
           <Group justify="space-between">
             <UnstyledButton component={Link} to="/directory">
               <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={40} />

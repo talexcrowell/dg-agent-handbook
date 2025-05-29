@@ -54,7 +54,7 @@ export const DeltaGreen = () => {
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
         >
-          {viewport.width > 600 ? (
+          {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
               <Tabs.Tab value="the-world-of-delta-green">

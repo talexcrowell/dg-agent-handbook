@@ -53,7 +53,7 @@ export const Rules = () => {
           value={tabValue}
           onChange={(value) => navigate(`/rules/${value}`)}
         >
-          {viewport.width > 600 ? (
+          {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value="how-to-play">How to Play</Tabs.Tab>
               <Tabs.Tab value="combat">Combat</Tabs.Tab>
