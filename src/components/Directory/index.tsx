@@ -39,7 +39,7 @@ export const Directory = () => {
         <SimpleGrid
           cols={viewport.width > 760 ? 3 : viewport.width > 500 ? 2 : 1}
         >
-          <Card component={Link} to="/delta-green/overview">
+          <Card component={Link} to="/delta-green/welcome">
             <Card.Section>
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
             </Card.Section>
@@ -55,7 +55,7 @@ export const Directory = () => {
               <Text>Game Rules</Text>
             </Group>
           </Card>
-          <Card component={Link} to="/training">
+          <Card component={Link} to="/training/introduction">
             <Card.Section>
               <Image src={"https://i.imgur.com/c1Ne6Io.png"} h={150} />
             </Card.Section>
