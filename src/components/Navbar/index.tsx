@@ -148,7 +148,7 @@ export const Navbar = () => {
           </Button> */}
           </Group>
         ) : (
-          <Group justify="space-between" align="center" w={"100%"} h={45}>
+          <Group justify="space-between" align="center" w={"100%"} h={50}>
             <ActionIcon
               onClick={() => setMobileMenuOpen(true)}
               variant="outline"
@@ -157,7 +157,7 @@ export const Navbar = () => {
             </ActionIcon>
             <Center>
               <UnstyledButton component={Link} to="/directory">
-                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={35} />
+                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={40} />
               </UnstyledButton>
             </Center>
             <Box w="24" />
