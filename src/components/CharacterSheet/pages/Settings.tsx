@@ -1,7 +1,10 @@
 import {
   Button,
+  Card,
   Center,
+  FileButton,
   Grid,
+  Image,
   List,
   Modal,
   Stack,
@@ -19,11 +22,13 @@ import {
   IconPower,
   IconShare,
   IconTrash,
+  IconUserScan,
   IconUsersGroup,
   IconX,
 } from "@tabler/icons-react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { useState } from "react";
+import { useCharacterContext } from "../../../contexts/CharacterContext";
 
 export const Settings = ({
   currentCharacter,
@@ -33,6 +38,7 @@ export const Settings = ({
   handleFailedTests,
 }: any) => {
   const [viewport] = useViewportContext();
+  const [{ savedCharacters }, actions] = useCharacterContext();
   const [failuresModalOpen, setFailuresModalOpen] = useState<boolean>(false);
 
   const toggleFailuresModal = () => {
@@ -62,6 +68,24 @@ export const Settings = ({
     // handleFailedTests([]);
   };
 
+  function encodeImageFileAsURL(element) {
+    let newObj = { ...currentCharacter };
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      newObj.image = reader.result;
+      actions.updateCharacters({ ...newObj });
+      localStorage.setItem("currentCharacter", JSON.stringify({ ...newObj }));
+      localStorage.setItem(
+        "savedCharacters",
+        JSON.stringify([
+          ...savedCharacters.filter((item) => item.id !== newObj.id),
+          { ...newObj },
+        ])
+      );
+    };
+    reader.readAsDataURL(element);
+  }
+
   return (
     <>
       <Grid pt="sm" px={viewport.width > 760 ? "md" : "0"}>
@@ -73,6 +97,25 @@ export const Settings = ({
             {viewport.width < 760 ? (
               <Center>
                 <Stack>
+                  <Card withBorder>
+                    <Stack>
+                      <Center>
+                        {currentCharacter.image ? (
+                          <Image
+                            src={currentCharacter.image}
+                            h={200}
+                            w={200}
+                            radius="md"
+                          />
+                        ) : (
+                          <Card m="lg">No image uploaded</Card>
+                        )}
+                      </Center>
+                      <FileButton onChange={encodeImageFileAsURL}>
+                        {(props) => <Button {...props} leftSection={<IconUserScan />}>Change Image</Button>}
+                      </FileButton>
+                    </Stack>
+                  </Card>
                   <Button
                     onClick={handleExport}
                     fullWidth
@@ -130,6 +173,7 @@ export const Settings = ({
               </Center>
             ) : (
               <Stack>
+                <Image src={currentCharacter.image} h={200} w={200} />
                 <Button
                   onClick={handleExport}
                   maw={375}

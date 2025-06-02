@@ -1,5 +1,8 @@
 import {
   Button,
+  Card,
+  Center,
+  FileButton,
   Grid,
   Group,
   Image,
@@ -16,6 +19,7 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { IconUserScan } from "@tabler/icons-react";
 
 export const PersonalDetails: React.FC<{
   handleAgentPersonalDetails: (val: any, key: any) => void;
@@ -24,9 +28,7 @@ export const PersonalDetails: React.FC<{
 }> = ({ handleAgentPersonalDetails, handleCreateAgent, userAgent }) => {
   const [viewport] = useViewportContext();
   return (
-    <Grid
-      ta="start"
-    >
+    <Grid ta="start">
       <Grid.Col span={12}>
         <Stack>
           <Title>Personal Details</Title>
@@ -143,6 +145,28 @@ export const PersonalDetails: React.FC<{
             value={userAgent?.unnaturalExperiences}
             placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />
+          <Center>
+            <Card withBorder w={250}>
+              <Stack justify="space-between" h={250}>
+                <Center>
+                  {userAgent?.image ? (
+                    <Image src={userAgent.image} h={200} w={200} radius="md" />
+                  ) : (
+                    <Card m='lg'>No image uploaded</Card>
+                  )}
+                </Center>
+                <FileButton
+                  onChange={(e) => handleAgentPersonalDetails(e, "image")}
+                >
+                  {(props) => (
+                    <Button {...props} leftSection={<IconUserScan />}>
+                      Change Image
+                    </Button>
+                  )}
+                </FileButton>
+              </Stack>
+            </Card>
+          </Center>
           <Button
             component={Link}
             to={`/agents/sheet/${

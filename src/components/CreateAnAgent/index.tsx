@@ -255,6 +255,15 @@ export const CreateAnAgent: React.FC = () => {
     handleProgressValue(5);
   };
 
+  const handleAgentImage = (value, agent) => {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      agent.image = reader.result;
+      setUserAgent({ ...agent });
+    };
+    reader.readAsDataURL(value);
+    
+  };
   const handleAgentPersonalDetails = (value, key) => {
     let newObj = { ...userAgent };
     newObj[key] =
@@ -262,6 +271,8 @@ export const CreateAnAgent: React.FC = () => {
         ? value
         : key === "codename"
         ? value.target.value.toUpperCase()
+        : key === "image"
+        ? handleAgentImage(value, newObj)
         : value.target.value;
     setUserAgent({ ...newObj });
   };
