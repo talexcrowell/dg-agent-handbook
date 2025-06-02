@@ -291,7 +291,7 @@ export const Stats: React.FC<{
   const handleHighlight = (value: string) => {
     let professionalStats = [...professions, ...additionalProfessions].filter(
       (profession) => profession.name === userAgent.profession
-    )
+    )[0]
       ? [...professions, ...additionalProfessions].filter(
           (profession) => profession.name === userAgent.profession
         )[0].recommendedStats
