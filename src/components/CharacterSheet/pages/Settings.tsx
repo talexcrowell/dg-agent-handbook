@@ -64,7 +64,7 @@ export const Settings = ({
 
   return (
     <>
-      <Grid p="md">
+      <Grid pt="sm" px={viewport.width > 760 ? "md" : "0"}>
         <Grid.Col span={12}>
           <Stack>
             <Title order={4} td="underline">
@@ -74,10 +74,18 @@ export const Settings = ({
               <Center>
                 <Stack>
                   <Button
+                    onClick={handleExport}
+                    fullWidth
+                    leftSection={<IconShare />}
+                  >
+                    Export Character
+                  </Button>
+                  <Button
                     leftSection={<IconUsersGroup />}
                     fullWidth
                     onClick={handleInPerson}
                     color={inPerson ? "green" : "grey"}
+                    variant={inPerson ? "filled" : "outline"}
                   >
                     In-Person Mode {inPerson ? "ON" : "OFF"}
                   </Button>
@@ -86,7 +94,6 @@ export const Settings = ({
                       leftSection={<IconHistory />}
                       fullWidth
                       onClick={toggleRollLog}
-                      color="grey"
                     >
                       Roll Log
                     </Button>
@@ -95,26 +102,30 @@ export const Settings = ({
                     <Button
                       onClick={handleRollFailures}
                       fullWidth
-                      leftSection={<IconDice4 />}
-                      color="grey"
+                      leftSection={<IconListCheck />}
                     >
                       Roll/Clear Failures
                     </Button>
                   )}
-                  <Button
-                    onClick={handleExport}
-                    fullWidth
-                    leftSection={<IconHome />}
-                  >
-                    Home Scene/Improvements
-                  </Button>
-                  <Button
-                    onClick={handleExport}
-                    fullWidth
-                    leftSection={<IconShare />}
-                  >
-                    Export Character
-                  </Button>
+                  {inPerson && (
+                    <Button
+                      onClick={handleRollFailures}
+                      maw={375}
+                      leftSection={<IconDice4 />}
+                    >
+                      Dice Roller
+                    </Button>
+                  )}
+                  {inPerson && (
+                    <Button
+                      onClick={handleExport}
+                      fullWidth
+                      leftSection={<IconHome />}
+                      disabled
+                    >
+                      Home Scene/Improvements
+                    </Button>
+                  )}
                 </Stack>
               </Center>
             ) : (
@@ -131,6 +142,7 @@ export const Settings = ({
                   maw={375}
                   onClick={handleInPerson}
                   color={inPerson ? "green" : "grey"}
+                  variant={inPerson ? "filled" : "outline"}
                 >
                   In-Person Mode {inPerson ? "ON" : "OFF"}
                 </Button>

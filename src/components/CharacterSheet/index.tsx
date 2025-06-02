@@ -31,6 +31,7 @@ import { Notes } from "./pages/Notes";
 import {
   IconArrowLeft,
   IconBackpack,
+  IconDice4,
   IconExclamationCircle,
   IconExclamationMark,
   IconFile,
@@ -40,6 +41,7 @@ import {
   IconSettings,
   IconTrash,
   IconUser,
+  IconUsersGroup,
   IconVs,
   IconX,
 } from "@tabler/icons-react";
@@ -291,7 +293,7 @@ export const CharacterSheet: React.FC = () => {
     let characterObj = {
       ...character,
     };
-    
+
     setRollType(skill);
 
     let roll: any = new DiceRoll("2d10");
@@ -630,7 +632,70 @@ export const CharacterSheet: React.FC = () => {
           </Tabs.List>
         )}
         <Tabs.Panel value="all">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm" justify="space-between">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              <Group>
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Roll Log"
+                    onClick={toggleRollLog}
+                  >
+                    <IconHistory />
+                  </ActionIcon>
+                )}
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Dice Roller"
+                    // onClick={handleRollFailures}
+                  >
+                    <IconDice4 />
+                  </ActionIcon>
+                )}
+              </Group>
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -658,7 +723,70 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="personal">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm" justify="space-between">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              <Group>
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Roll Log"
+                    onClick={toggleRollLog}
+                  >
+                    <IconHistory />
+                  </ActionIcon>
+                )}
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Dice Roller"
+                    // onClick={handleRollFailures}
+                  >
+                    <IconDice4 />
+                  </ActionIcon>
+                )}
+              </Group>
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -668,7 +796,70 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="skills">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm" justify="space-between">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              <Group>
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Roll Log"
+                    onClick={toggleRollLog}
+                  >
+                    <IconHistory />
+                  </ActionIcon>
+                )}
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Dice Roller"
+                    // onClick={handleRollFailures}
+                  >
+                    <IconDice4 />
+                  </ActionIcon>
+                )}
+              </Group>
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Skills
               currentCharacter={character}
               handleStandardRoll={handleStandardRoll}
@@ -679,7 +870,68 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              {inPerson && (
+                <ActionIcon
+                  size="xl"
+                  aria-label="Roll Log"
+                  onClick={toggleRollLog}
+                >
+                  <IconHistory />
+                </ActionIcon>
+              )}
+              {inPerson && (
+                <ActionIcon
+                  size="xl"
+                  aria-label="Dice Roller"
+                  // onClick={handleRollFailures}
+                >
+                  <IconDice4 />
+                </ActionIcon>
+              )}
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller Log"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -687,7 +939,70 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="notes">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm" justify="space-between">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              <Group>
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Roll Log"
+                    onClick={toggleRollLog}
+                  >
+                    <IconHistory />
+                  </ActionIcon>
+                )}
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Dice Roller"
+                    // onClick={handleRollFailures}
+                  >
+                    <IconDice4 />
+                  </ActionIcon>
+                )}
+              </Group>
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -695,7 +1010,70 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment-notes">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"} scrollbars="y">
+          {viewport.width < 760 ? (
+            <Group my="sm" justify="space-between">
+              <ActionIcon
+                size="xl"
+                onClick={handleInPerson}
+                variant={inPerson ? "filled" : "outline"}
+                color={inPerson ? "green" : "gray"}
+                aria-label="In-Person"
+              >
+                <IconUsersGroup />
+              </ActionIcon>
+              <Group>
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Roll Log"
+                    onClick={toggleRollLog}
+                  >
+                    <IconHistory />
+                  </ActionIcon>
+                )}
+                {inPerson && (
+                  <ActionIcon
+                    size="xl"
+                    aria-label="Dice Roller"
+                    // onClick={handleRollFailures}
+                  >
+                    <IconDice4 />
+                  </ActionIcon>
+                )}
+              </Group>
+            </Group>
+          ) : (
+            <Group my="sm" mx="md">
+              <Button
+                leftSection={<IconUsersGroup />}
+                maw={375}
+                onClick={handleInPerson}
+                color={inPerson ? "green" : "grey"}
+              >
+                {viewport.width > 600 && "In-Person Mode"}
+              </Button>
+              {inPerson && (
+                <Button
+                  leftSection={<IconHistory />}
+                  maw={375}
+                  onClick={toggleRollLog}
+                >
+                  {viewport.width > 600 && "Roll Log"}
+                </Button>
+              )}
+              {inPerson && (
+                <Button
+                  // onClick={handleRollFailures}
+                  maw={375}
+                  leftSection={<IconDice4 />}
+                >
+                  {viewport.width > 600 && "Dice Roller"}
+                </Button>
+              )}
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -708,7 +1086,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings">
-          <ScrollArea h={viewport.width > 760 ? "92vh" : "85vh"}>
+          <ScrollArea h={"87vh"}>
             <Settings
               currentCharacter={character}
               handleInPerson={handleInPerson}
