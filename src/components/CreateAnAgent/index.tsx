@@ -8,6 +8,7 @@ import {
   RingProgress,
   ScrollArea,
   Stack,
+  Stepper,
   Text,
   Timeline,
 } from "@mantine/core";
@@ -29,6 +30,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IconExclamationCircle } from "@tabler/icons-react";
 
 export const CreateAnAgent: React.FC = () => {
+  const [creationMode, setCreationMode] = useState<"STATS" | "PROFESSION">(
+    "STATS"
+  );
   const [progressValue, setProgressValue] = useState(0);
   const [userAgent, setUserAgent] = useState({
     name: "",
@@ -84,7 +88,8 @@ export const CreateAnAgent: React.FC = () => {
   };
 
   const handleAgentStats = (stats: any) => {
-    let newObj = { stats };
+    let newObj = { ...userAgent };
+    newObj.stats = { ...stats };
     newObj.attributes = {
       hp: {
         max: Math.ceil((stats.strength + stats.constitution) / 2),
@@ -104,7 +109,7 @@ export const CreateAnAgent: React.FC = () => {
       },
     };
     setUserAgent({ ...newObj });
-    handleProgressValue(2);
+    handleProgressValue(creationMode === "PROFESSION" ? 3 : 2);
   };
 
   const handleAgentProfession = (profession: any) => {
@@ -134,7 +139,7 @@ export const CreateAnAgent: React.FC = () => {
       }
     }
     setUserAgent({ ...newObj });
-    handleProgressValue(3);
+    handleProgressValue(creationMode === "PROFESSION" ? 2 : 3);
   };
 
   const isSkillChoice = (skill) => {
@@ -308,16 +313,79 @@ export const CreateAnAgent: React.FC = () => {
     });
   };
 
+  const handleAgentCreationMode = (value: any) => {
+    setCreationMode(value);
+  };
+
+  const handleStart = (value: any) => {
+    handleAgentCreationMode(value);
+    handleProgressValue(1);
+  };
+
+  const handleVerifyStepNavigation = (value: number) => {
+    switch (value) {
+      case 1:
+        handleProgressValue(value);
+        break;
+      case 2:
+        creationMode === "PROFESSION"
+          ? userAgent.profession === ""
+            ? notifications.show({
+                color: "red",
+                title: "Error!",
+                message:
+                  "Agent must select Profession before switching to Stats.",
+                position: viewport.width < 760 ? "top-center" : "bottom-center",
+              })
+            : handleProgressValue(value)
+          : userAgent.stats.strength === 0
+          ? notifications.show({
+              color: "red",
+              title: "Error!",
+              message: "Agent must roll Stats before switching to Profession.",
+              position: viewport.width < 760 ? "top-center" : "bottom-center",
+            })
+          : handleProgressValue(value);
+        break;
+      case 3:
+      case 4:
+      case 5:
+        notifications.show({
+          color: "red",
+          title: "Error!",
+          message: "Can only change to Statistics or Profession.",
+          position: viewport.width < 760 ? "top-center" : "bottom-center",
+        });
+        break;
+    }
+  };
+
   let page;
   switch (progressValue) {
     case 0:
-      page = <Introduction handleProgressValue={handleProgressValue} />;
+      page = <Introduction handleStart={handleStart} />;
       break;
     case 1:
-      page = <Stats handleAgentStats={handleAgentStats} />;
+      page =
+        creationMode === "PROFESSION" ? (
+          <Profession
+            handleAgentProfession={handleAgentProfession}
+            userAgent={userAgent}
+          />
+        ) : (
+          <Stats handleAgentStats={handleAgentStats} userAgent={userAgent} />
+        );
       break;
     case 2:
-      page = <Profession handleAgentProfession={handleAgentProfession} />;
+      page =
+        creationMode === "PROFESSION" ? (
+          <Stats handleAgentStats={handleAgentStats} userAgent={userAgent} />
+        ) : (
+          <Profession
+            handleAgentProfession={handleAgentProfession}
+            userAgent={userAgent}
+          />
+        );
       break;
     case 3:
       page = (
@@ -344,36 +412,57 @@ export const CreateAnAgent: React.FC = () => {
       break;
   }
   return (
-    <Box px='0'>
-      <Grid>
-        {viewport.width > 992 && (
-          <Grid.Col span={2}>
-            <Timeline active={progressValue} pt={10}>
-              <Timeline.Item>
-                <Text>Introduction</Text>
-              </Timeline.Item>
-              <Timeline.Item>
-                <Text>Statistics</Text>
-              </Timeline.Item>
-              <Timeline.Item>
-                <Text>Profession</Text>
-              </Timeline.Item>
-              <Timeline.Item>
-                <Text>Skills</Text>
-              </Timeline.Item>
-              <Timeline.Item>
-                <Text>Bonds</Text>
-              </Timeline.Item>
-              <Timeline.Item>
-                <Text>Personal Details</Text>
-              </Timeline.Item>
-            </Timeline>
-          </Grid.Col>
-        )}
-        <Grid.Col span={viewport.width > 992 ? 10 : 12}>
-          <ScrollArea h={"93vh"}>{page}</ScrollArea>
+    <Grid>
+      {progressValue !== 0 && (
+        <Grid.Col span={12}>
+          <Stepper
+            active={progressValue - 1}
+            pt={10}
+            onStepClick={(value) => handleVerifyStepNavigation(value + 1)}
+            iconSize={viewport.width > 760 ? 42 : 32}
+          >
+            <Stepper.Step
+              label={
+                <Text size={viewport.width > 760 ? "md" : "sm"}>
+                  {creationMode === "PROFESSION" ? "Profession" : "Statistics"}
+                </Text>
+              }
+            />
+            <Stepper.Step
+              label={
+                <Text size={viewport.width > 760 ? "md" : "sm"}>
+                  {creationMode === "PROFESSION" ? "Statistics" : "Profession"}
+                </Text>
+              }
+            />
+            <Stepper.Step
+              label={
+                <Text size={viewport.width > 760 ? "md" : "sm"}>Skills</Text>
+              }
+            />
+            <Stepper.Step
+              label={
+                <Text size={viewport.width > 760 ? "md" : "sm"}>Bonds</Text>
+              }
+            />
+            <Stepper.Step
+              label={
+                <Text size={viewport.width > 760 ? "md" : "sm"}>
+                  Personal Details
+                </Text>
+              }
+            />
+          </Stepper>
         </Grid.Col>
-      </Grid>
+      )}
+      <Grid.Col span={12}>
+        <ScrollArea
+          h={viewport.width > 760 || progressValue === 0 ? "93vh" : "80vh"}
+          scrollbars={"y"}
+        >
+          {page}
+        </ScrollArea>
+      </Grid.Col>
       <Modal
         opened={blockerOpened}
         onClose={() => setBlockerOpened(false)}
@@ -399,7 +488,7 @@ export const CreateAnAgent: React.FC = () => {
           </Button>
         </Stack>
       </Modal>
-    </Box>
+    </Grid>
   );
 };
 

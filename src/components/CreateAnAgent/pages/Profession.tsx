@@ -35,8 +35,25 @@ import { IconSearch } from "@tabler/icons-react";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
-}> = ({ handleAgentProfession }) => {
-  const [selectedProfession, setSelectedProfession] = useState({});
+  userAgent: any;
+}> = ({ handleAgentProfession, userAgent }) => {
+  const [selectedProfession, setSelectedProfession] = useState(
+    [...professions, ...additionalProfessions].filter(
+      (profession) => profession.name === userAgent.profession
+    )
+      ? [...professions, ...additionalProfessions].filter(
+          (profession) => profession.name === userAgent.profession
+        )[0]
+      : {
+          name: "",
+          description: "",
+          recommendedStats: [],
+          professionalSkills: [],
+          optionalSkills: [],
+          numberOfOptionalSkills: 0,
+          bonds: 0,
+        }
+  );
   const [selectedSpecial, setSelectedSpecial] = useState("anthropology");
   const [skillDetails, setSkillDetails] = useState<{ [key: string]: any }>([]);
   const [optionalSkillDetails, setOptionalSkillDetails] = useState<{
@@ -187,7 +204,7 @@ export const Profession: React.FC<{
   };
 
   const professionCard = (profession) => {
-    if (profession.name) {
+    if (profession?.name) {
       return (
         <Card withBorder ta="start">
           <Stack>
@@ -432,9 +449,9 @@ export const Profession: React.FC<{
 
   return (
     <Grid
-    py="md"
-    px={viewport.width > 760 ? "md" : 0}
-    gutter={viewport.width > 760 ? "md" : "sm"}
+      py="md"
+      px={viewport.width > 760 ? "md" : 0}
+      gutter={viewport.width > 760 ? "md" : "sm"}
     >
       <Grid.Col span={12}>
         <Stack ta="start">
@@ -763,12 +780,12 @@ export const Profession: React.FC<{
           </Grid.Col>
         </>
       )}
-      {viewport.width < 600 && selectedProfession.name !== "" && (
+      {viewport.width < 600 && selectedProfession?.name !== "" && (
         <Drawer
           position="bottom"
           opened={opened}
           onClose={() => setOpened(false)}
-          size="xl"
+          size="fullscreen"
         >
           {professionCard(selectedProfession)}
         </Drawer>

@@ -21,18 +21,20 @@ import {
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { additionalProfessions, professions } from "../../../data";
 
 export const Stats: React.FC<{
   handleAgentStats: (stats: any) => void;
-}> = ({ handleAgentStats }) => {
+  userAgent: any;
+}> = ({ handleAgentStats, userAgent }) => {
   const [statType, setStatType] = useState("roll");
   const [stats, setStats] = useState<{ [key: string]: any }>({
-    strength: 0,
-    constitution: 0,
-    dexterity: 0,
-    intelligence: 0,
-    power: 0,
-    charisma: 0,
+    strength: userAgent.stats.strength,
+    constitution: userAgent.stats.constitution,
+    dexterity: userAgent.stats.dexterity,
+    intelligence: userAgent.stats.intelligence,
+    power: userAgent.stats.power,
+    charisma: userAgent.stats.charisma,
   });
   const [pointPool, setPointPool] = useState<number>(72);
   const [viewport] = useViewportContext();
@@ -42,7 +44,9 @@ export const Stats: React.FC<{
   });
 
   useEffect(() => {
-    handleReset();
+    if (userAgent.stats.strength === 0) {
+      handleReset();
+    }
   }, [statType]);
 
   const tableStatHeaders =
@@ -284,11 +288,42 @@ export const Stats: React.FC<{
     setPointPool(72);
   };
 
+  const handleHighlight = (value: string) => {
+    let professionalStats = [...professions, ...additionalProfessions].filter(
+      (profession) => profession.name === userAgent.profession
+    )
+      ? [...professions, ...additionalProfessions].filter(
+          (profession) => profession.name === userAgent.profession
+        )[0].recommendedStats
+      : [];
+    let chosenStat = value;
+    switch (value) {
+      case "Strength":
+        chosenStat = "STR";
+        break;
+      case "Constitution":
+        chosenStat = "CON";
+        break;
+      case "Dexterity":
+        chosenStat = "DEX";
+        break;
+      case "Intelligence":
+        chosenStat = "INT";
+        break;
+      case "Power":
+        chosenStat = "POW";
+        break;
+      case "Charisma":
+        chosenStat = "CHA";
+        break;
+      default:
+        break;
+    }
+    return professionalStats.includes(chosenStat) ? "green" : "white";
+  };
+
   return (
-    <Grid
-      py="md"
-      gutter={viewport.width > 760 ? "md" : "sm"}
-    >
+    <Grid>
       <Grid.Col span={12} ta="start">
         <Stack>
           <Title>Statistics</Title>
@@ -296,23 +331,30 @@ export const Stats: React.FC<{
             Every Agent has six core capabilities: Strength, Constitution,
             Dexterity, Intelligence, Power, and Charisma.
           </Text>
+          <Text>You can create your character's stats in few ways: </Text>
           <Text>
-            You can create your character's stats in few ways:
-            <List>
-              <List.Item>
-                Roll Stats: For each stat roll 4D6, drop the lowest of the four
-                dice, and add up the other three. Place the six rolls in
-                whichever stats you like.
-              </List.Item>
-              <List.Item>
-                Stat Pool: Divide 72 points among the six stats however you like
-                with a minimum of 3 and a maximum of 18.
-              </List.Item>
-              <List.Item>
-                Stat Sets: Pick one of the sets from a list and place each score
-                to the desired stat.
-              </List.Item>
-            </List>
+            <Text span fw={700}>
+              {" "}
+              Roll Stats:
+            </Text>{" "}
+            For each stat roll 4D6, drop the lowest of the four dice, and add up
+            the other three. Place the six rolls in whichever stats you like.
+          </Text>
+          <Text>
+            <Text span fw={700}>
+              {" "}
+              Stat Pool:
+            </Text>{" "}
+            Divide 72 points among the six stats however you like with a minimum
+            of 3 and a maximum of 18.
+          </Text>
+          <Text>
+            <Text span fw={700}>
+              {" "}
+              Stat Sets:
+            </Text>{" "}
+            Pick one of the sets from a list and place each score to the desired
+            stat.
           </Text>
           <Text>
             Your Agent's derived attributes will be calculated from your
@@ -321,7 +363,7 @@ export const Stats: React.FC<{
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
-        <Divider size={"xl"} />
+        <Divider />
       </Grid.Col>
       <Grid.Col span={12}>
         <Group>
@@ -346,7 +388,12 @@ export const Stats: React.FC<{
             <></>
           )}
           {statType === "roll" ? (
-            <Button onClick={handleStatRoll}>Roll</Button>
+            <Group>
+              <Button onClick={handleStatRoll}>Roll</Button>{" "}
+              <Button onClick={handleReset} bg="red">
+                Reset
+              </Button>
+            </Group>
           ) : (
             <Button onClick={handleReset} bg="red">
               Reset
@@ -396,7 +443,7 @@ export const Stats: React.FC<{
               {statLabelArr.map((stat) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>{stat}</Table.Td>
+                    <Table.Td c={handleHighlight(stat)} fw={700}>{stat}</Table.Td>
                     <Table.Td>
                       {scoreTableDetail(
                         viewport.width > 600
@@ -444,7 +491,7 @@ export const Stats: React.FC<{
               {derivedAttributesArr.map((attribute) => {
                 return (
                   <Table.Tr>
-                    <Table.Td>{attribute.label}</Table.Td>
+                    <Table.Td fw={700}>{attribute.label}</Table.Td>
                     <Table.Td ta="center">
                       {calculateAttribute(attribute.key)}
                     </Table.Td>

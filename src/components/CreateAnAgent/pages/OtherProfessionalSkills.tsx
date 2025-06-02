@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  Center,
   Checkbox,
   Divider,
   Drawer,
@@ -246,11 +247,7 @@ export const OtherProfessionalSkills: React.FC<{
   };
 
   return (
-    <Grid
-    py="md"
-    px={viewport.width > 760 ? "md" : 0}
-    gutter={viewport.width > 760 ? "md" : "sm"}
-    >
+    <Grid>
       <Grid.Col>
         <Stack ta="start">
           <Title>Skills</Title>
@@ -824,14 +821,15 @@ export const OtherProfessionalSkills: React.FC<{
               </>
             )}
             <Grid.Col span={12}>
-              <Button
-                onClick={() => handleAgentOtherSkills(skillChoices)}
-                disabled={count !== 0}
-                color={"green"}
-                fullWidth
-              >
-                Confirm Bonus Skills
-              </Button>
+              <Center>
+                <Button
+                  onClick={() => handleAgentOtherSkills(skillChoices)}
+                  disabled={count !== 0}
+                  color={"green"}
+                >
+                  Confirm Bonus Skills
+                </Button>
+              </Center>
             </Grid.Col>
           </>
         ) : (
@@ -876,21 +874,23 @@ export const OtherProfessionalSkills: React.FC<{
                         <Stack gap="0">
                           <Text c="dimmed">Skill Set:</Text>
                           <List spacing={"xs"}>
-                            {selectedPackage?.professionalSkills.map((skill) => (
-                              // <Tooltip
-                              //   w={250}
-                              //   label={
-                              //     skillsMasterList.filter(
-                              //       (item) => item?.id === skill?.id
-                              //     )[0].definition
-                              //   }
-                              //   multiline
-                              //   openDelay={500}
-                              //   className={styles.tooltippedElement}
-                              // >
+                            {selectedPackage?.professionalSkills.map(
+                              (skill) => (
+                                // <Tooltip
+                                //   w={250}
+                                //   label={
+                                //     skillsMasterList.filter(
+                                //       (item) => item?.id === skill?.id
+                                //     )[0].definition
+                                //   }
+                                //   multiline
+                                //   openDelay={500}
+                                //   className={styles.tooltippedElement}
+                                // >
                                 <List.Item>{skill.name}</List.Item>
-                              // </Tooltip>
-                            ))}
+                                // </Tooltip>
+                              )
+                            )}
                             {selectedPackage.personalSpecialty && (
                               <List.Item>
                                 And any {selectedPackage.personalSpecialty}{" "}
@@ -906,9 +906,14 @@ export const OtherProfessionalSkills: React.FC<{
                             )}
                           </List>
                         </Stack>
-                        <Button onClick={handleConfirmPackage} color={"green"}>
-                          Confirm Bonus Skills
-                        </Button>
+                        <Center>
+                          <Button
+                            onClick={handleConfirmPackage}
+                            color={"green"}
+                          >
+                            Confirm Bonus Skills
+                          </Button>
+                        </Center>
                       </Stack>
                     </Card>
                   )}
@@ -1086,7 +1091,7 @@ export const OtherProfessionalSkills: React.FC<{
           position="bottom"
           opened={opened}
           onClose={() => setOpened(false)}
-          size="xl"
+          size="fullscreen"
           title="Bonus Skill Package Details"
         >
           <Stack>

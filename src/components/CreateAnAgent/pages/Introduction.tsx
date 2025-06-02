@@ -1,18 +1,23 @@
-import { Button, Grid, Image, List, Stack, Text, Title } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Grid,
+  Group,
+  Image,
+  List,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import React from "react";
-import { useViewportContext } from "../../../contexts/ViewportContext";
+import { IconArrowRight, IconLogicOr } from "@tabler/icons-react";
 
 export const Introduction: React.FC<{
-  handleProgressValue: (value: number) => void;
-}> = ({ handleProgressValue }) => {
-  const [viewport] = useViewportContext();
+  handleStart: (value: any) => void;
+}> = ({ handleStart }) => {
 
   return (
-    <Grid
-      py="md"
-      px={viewport.width > 760 ? "md" : 0}
-      gutter={viewport.width > 760 ? "md" : "sm"}
-    >
+    <Grid>
       <Grid.Col span={12} ta="start">
         <Stack>
           <Title>Introduction</Title>
@@ -37,7 +42,7 @@ export const Introduction: React.FC<{
               <List.Item>Derived Attributes</List.Item>
               <List.Item>Profession</List.Item>
               <List.Item>Skills</List.Item>
-              <List.Item>Bonds*</List.Item>
+              <List.Item>Bonds</List.Item>
             </List>
           </Text>
           <Text>
@@ -45,14 +50,25 @@ export const Introduction: React.FC<{
             mould your idea for an agent. Those details, however, are at the
             discretion of the Handler.
           </Text>
-          <Text c="dimmed" size="sm">
-            *Note: Bonds are more significant in longer campaigns. For shorter
-            campaigns or one-shots, they are used to add more character depth to
-            your agent.
-          </Text>
-          <Button onClick={() => handleProgressValue(1)} bg={"green"}>
-            Continue to Agent Creation
-          </Button>
+          <Center>
+            <Group>
+              <Button
+                onClick={() => handleStart("STATS")}
+                rightSection={<IconArrowRight />}
+                variant="outline"
+              >
+                Start with Stats
+              </Button>
+              <Text fw={700}>OR</Text>
+              <Button
+                onClick={() => handleStart("PROFESSION")}
+                rightSection={<IconArrowRight />}
+                variant="outline"
+              >
+                Start with Profession
+              </Button>
+            </Group>
+          </Center>
         </Stack>
       </Grid.Col>
     </Grid>
