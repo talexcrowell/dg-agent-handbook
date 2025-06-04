@@ -695,7 +695,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -786,7 +786,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -859,7 +859,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Skills
               currentCharacter={character}
               handleStandardRoll={handleStandardRoll}
@@ -931,7 +931,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -1002,7 +1002,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -1073,7 +1073,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.width > 760 ? "85vh" : "80vh"} scrollbars="y">
+          <ScrollArea h={viewport.width > 760 ? "85vh" : "78vh"} scrollbars="y">
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -1086,7 +1086,7 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings">
-          <ScrollArea h={"87vh"}>
+          <ScrollArea h={"86vh"}>
             <Settings
               currentCharacter={character}
               handleInPerson={handleInPerson}
