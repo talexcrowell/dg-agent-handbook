@@ -28,7 +28,7 @@ function App() {
           <Navbar />
         </AppShell.Header>
       )}
-      <AppShell.Main pt={width > 760 ? 45 : 55}>
+      <AppShell.Main pt={width > 760 ? 45 : 55} pb='0'>
         <Container size="xl" px={width > 760 ? "md" : "0"}>
           <Outlet />
         </Container>
