@@ -160,6 +160,20 @@ export const Profession: React.FC<{
   const handleSetOptionalSkills = (skills) => {
     if (skills.length <= selectedProfession.numberOfOptionalSkills) {
       setSelectedOptionalSkills([...skills]);
+      [...skills].map((skill, index) =>
+        isSkillChoice({ id: skill })
+          ? handleOptionalDetail(
+              "",
+              {
+                id: skill,
+                value: selectedProfession.optionalSkills.filter(
+                  (optSkill) => optSkill.id === skill
+                )[0].value,
+              },
+              index
+            )
+          : null
+      );
     }
   };
 
@@ -447,6 +461,10 @@ export const Profession: React.FC<{
       : handleAgentProfession({ ...newObj });
   };
 
+  const validateProfessionSkills = () => {
+    return skillDetails.filter((skill) => skill.type === "").length > 0;
+  };
+
   return (
     <Grid
       py="md"
@@ -703,7 +721,7 @@ export const Profession: React.FC<{
               <Stack>
                 <Title order={3}>Details of Professional Skills</Title>
                 {selectedProfession?.professionalSkills
-                  .filter((skill) => isSkillChoice(skill))
+                  .filter((skill) => isSkillChoice(skill) && skill.type === "")
                   .map((skill, index) => (
                     <TextInput
                       tt="capitalize"
@@ -763,9 +781,9 @@ export const Profession: React.FC<{
               <Stack mt="lg" w={325}>
                 <Button
                   disabled={
+                    validateProfessionSkills() ||
                     selectedOptionalSkills.length !==
-                      selectedProfession.numberOfOptionalSkills ||
-                    skillDetails.filter((skill) => skill.type === "").length > 0
+                      selectedProfession.numberOfOptionalSkills
                   }
                   onClick={confirmAdditionalSkills}
                   color={"green"}

@@ -235,8 +235,10 @@ export const Stats: React.FC<{
 
   const handleStatValueSwap = (newStat: any, currStat: any) => {
     let newObj = { ...stats };
-    newObj[currStat] = stats[newStat];
-    newObj[newStat] = stats[currStat];
+    let currStatValue = stats[newStat];
+    let newStatValue = stats[currStat];
+    newObj[currStat] = currStatValue;
+    newObj[newStat] = newStatValue;
     setStats({ ...newObj });
   };
 
@@ -443,7 +445,9 @@ export const Stats: React.FC<{
               {statLabelArr.map((stat) => {
                 return (
                   <Table.Tr>
-                    <Table.Td c={handleHighlight(stat)} fw={700}>{stat}</Table.Td>
+                    <Table.Td c={handleHighlight(stat)} fw={700}>
+                      {stat}
+                    </Table.Td>
                     <Table.Td>
                       {scoreTableDetail(
                         viewport.width > 600
