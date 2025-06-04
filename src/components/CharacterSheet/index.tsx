@@ -644,6 +644,7 @@ export const CharacterSheet: React.FC = () => {
         defaultValue="all"
         inverted={viewport.width < 760}
         id="character-sheet"
+        px={isFullscreen ? "sm" : "0"}
       >
         {viewport.width > 760 && (
           <Tabs.List
