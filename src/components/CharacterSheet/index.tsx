@@ -30,6 +30,7 @@ import { Equipment } from "./pages/Equipment";
 import { Notes } from "./pages/Notes";
 import {
   IconArrowLeft,
+  IconArrowsMaximize,
   IconBackpack,
   IconDice4,
   IconExclamationCircle,
@@ -588,6 +589,23 @@ export const CharacterSheet: React.FC = () => {
     handleUpdateCharacter("failedTests", [...val]);
   };
 
+  function openFullscreen() {
+    let elem = document.getElementById("character-sheet"); // Replace "myElement" with your desired element's ID
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+
   if (!character?.name) {
     return (
       <Center h={"70vh"}>
@@ -606,6 +624,7 @@ export const CharacterSheet: React.FC = () => {
         variant="outline"
         defaultValue="all"
         inverted={viewport.width < 760}
+        id="character-sheet"
       >
         {viewport.width > 760 && (
           <Tabs.List
@@ -634,15 +653,24 @@ export const CharacterSheet: React.FC = () => {
         <Tabs.Panel value="all">
           {viewport.width < 760 ? (
             <Group my="sm" justify="space-between">
-              <ActionIcon
-                size="xl"
-                onClick={handleInPerson}
-                variant={inPerson ? "filled" : "outline"}
-                color={inPerson ? "green" : "gray"}
-                aria-label="In-Person"
-              >
-                <IconUsersGroup />
-              </ActionIcon>
+              <Group>
+                <ActionIcon
+                  size="xl"
+                  onClick={handleInPerson}
+                  variant={inPerson ? "filled" : "outline"}
+                  color={inPerson ? "green" : "gray"}
+                  aria-label="In-Person"
+                >
+                  <IconUsersGroup />
+                </ActionIcon>
+                <ActionIcon
+                  size="xl"
+                  onClick={openFullscreen}
+                  aria-label="Fullscreen"
+                >
+                  <IconArrowsMaximize />
+                </ActionIcon>
+              </Group>
               <Group>
                 {inPerson && (
                   <ActionIcon
@@ -665,7 +693,7 @@ export const CharacterSheet: React.FC = () => {
               </Group>
             </Group>
           ) : (
-            <Group my="sm" mx="md">
+            <Group my="sm" mx="md" justify="space-between">
               <Button
                 leftSection={<IconUsersGroup />}
                 maw={375}
@@ -674,24 +702,26 @@ export const CharacterSheet: React.FC = () => {
               >
                 {viewport.width > 600 && "In-Person Mode"}
               </Button>
-              {inPerson && (
-                <Button
-                  leftSection={<IconHistory />}
-                  maw={375}
-                  onClick={toggleRollLog}
-                >
-                  {viewport.width > 600 && "Roll Log"}
-                </Button>
-              )}
-              {inPerson && (
-                <Button
-                  // onClick={handleRollFailures}
-                  maw={375}
-                  leftSection={<IconDice4 />}
-                >
-                  {viewport.width > 600 && "Dice Roller"}
-                </Button>
-              )}
+              <Group>
+                {inPerson && (
+                  <Button
+                    leftSection={<IconHistory />}
+                    maw={375}
+                    onClick={toggleRollLog}
+                  >
+                    {viewport.width > 600 && "Roll Log"}
+                  </Button>
+                )}
+                {inPerson && (
+                  <Button
+                    // onClick={handleRollFailures}
+                    maw={375}
+                    leftSection={<IconDice4 />}
+                  >
+                    {viewport.width > 600 && "Dice Roller"}
+                  </Button>
+                )}
+              </Group>
             </Group>
           )}
           <Divider />
@@ -1104,7 +1134,10 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings">
-          <ScrollArea h={viewport.height - (viewport.width > 760 ? 0 : 100)}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 760 ? 0 : 102)}
+            scrollbars="y"
+          >
             <Settings
               currentCharacter={character}
               handleInPerson={handleInPerson}
