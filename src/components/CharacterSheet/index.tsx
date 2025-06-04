@@ -31,6 +31,7 @@ import { Notes } from "./pages/Notes";
 import {
   IconArrowLeft,
   IconArrowsMaximize,
+  IconArrowsMinimize,
   IconBackpack,
   IconDice4,
   IconExclamationCircle,
@@ -74,6 +75,7 @@ export const CharacterSheet: React.FC = () => {
   const [showRollLog, setShowRollLog] = useState(false);
   const [opened, { toggle, close }] = useDisclosure(false);
   const [modalType, setModalType] = useState("default");
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   // Fill potential missing fields
   useEffect(() => {
@@ -589,8 +591,8 @@ export const CharacterSheet: React.FC = () => {
     handleUpdateCharacter("failedTests", [...val]);
   };
 
-  function openFullscreen() {
-    let elem = document.getElementById("character-sheet"); // Replace "myElement" with your desired element's ID
+  const openFullscreen = () => {
+    let elem = document.getElementById("character-sheet");
 
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
@@ -604,7 +606,24 @@ export const CharacterSheet: React.FC = () => {
       /* IE/Edge */
       elem.msRequestFullscreen();
     }
-  }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen(); // For Safari
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen(); // For Firefox
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen(); // For IE/Edge
+    }
+  };
+
+  const handleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+    isFullscreen ? exitFullscreen() : openFullscreen();
+  };
 
   if (!character?.name) {
     return (
@@ -665,10 +684,14 @@ export const CharacterSheet: React.FC = () => {
                 </ActionIcon>
                 <ActionIcon
                   size="xl"
-                  onClick={openFullscreen}
+                  onClick={handleFullscreen}
                   aria-label="Fullscreen"
                 >
-                  <IconArrowsMaximize />
+                  {isFullscreen ? (
+                    <IconArrowsMinimize />
+                  ) : (
+                    <IconArrowsMaximize />
+                  )}
                 </ActionIcon>
               </Group>
               <Group>
