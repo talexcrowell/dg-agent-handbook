@@ -72,12 +72,12 @@ export const AfterTheOperation = () => {
             during the previous operation. Agent COLTON rolls a 1D4 for each
             skill resulting in{" "}
             <Text inherit span fw={700}>
-              3, 6, and 1
+              3, 4, and 1
             </Text>
             . Those values are added to the respective skill resulting in Agent
             COLTON's skills to be{" "}
             <Text inherit span fw={700}>
-              Athletics (53%), Firearms (46%), and Search (31%)
+              Athletics (53%), Firearms (44%), and Search (31%)
             </Text>
             .
           </Text>

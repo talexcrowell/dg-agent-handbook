@@ -49,6 +49,9 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
       case "Equipment and Services":
         chapter = "equipment-and-services";
         break;
+      case "Training":
+        chapter = "training";
+        break;
       case "Professions":
         chapter = "agents/professions";
         break;

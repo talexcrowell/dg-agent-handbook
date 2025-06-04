@@ -863,6 +863,145 @@ export const searchList = [
     header: "Public Safety (Official Requisition Only)",
   },
   {
+    chapter: "Training",
+    section: "Introduction",
+  },
+  {
+    chapter: "Training",
+    section: "Introduction",
+    header: "The Role-Playing",
+  },
+  {
+    chapter: "Training",
+    section: "Introduction",
+    header: "Ready to Play",
+  },
+  {
+    chapter: "Training",
+    section: "Basics",
+  },
+  {
+    chapter: "Training",
+    section: "Basics",
+    header: "Does it Require a Stat or a Skill",
+  },
+  {
+    chapter: "Training",
+    section: "Basics",
+    header: "Does it Require a Roll",
+  },
+  {
+    chapter: "Training",
+    section: "Basics",
+    header: "Roll Results",
+  },
+  {
+    chapter: "Training",
+    section: "Basics",
+    header: "Other Types of Rolls",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Combat",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Combat",
+    subheader: "Damage and Death",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+    subheader: "Insanity",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+    subheader: "Reducing Sanity Loss",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+    subheader: "Adapting to Sanity Loss",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+    subheader: "Repressing Symptoms of Insanity",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Sanity",
+    subheader: "Regaining Sanity Points",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Willpower",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Willpower",
+    subheader: "Low Willpower",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Willpower",
+    subheader: "Regaining Willpower",
+  },
+  {
+    chapter: "Training",
+    section: "Combat, Sanity, and Willpower",
+    header: "Willpower",
+    subheader: "Exhaustion",
+  },
+  {
+    chapter: "Training",
+    section: "Being an Agent",
+  },
+  {
+    chapter: "Training",
+    section: "Being an Agent",
+    header: "Creating an Agent",
+  },
+  {
+    chapter: "Training",
+    section: "Being an Agent",
+    header: "Agent Etiquette",
+  },
+  {
+    chapter: "Training",
+    section: "After the Operation",
+  },
+  {
+    chapter: "Training",
+    section: "After the Operation",
+    header: "Rolling Failures",
+  },
+  {
+    chapter: "Training",
+    section: "After the Operation",
+    header: "Home",
+  },
+  {
     chapter: "Professions",
     section: "Stats and Skills",
   },
