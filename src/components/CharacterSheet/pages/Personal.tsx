@@ -8,6 +8,7 @@ import {
   InputLabel,
   NumberInput,
   Stack,
+  Switch,
   Table,
   Text,
   Textarea,
@@ -17,6 +18,8 @@ import {
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { useState } from "react";
+import { IconEdit, IconPencil } from "@tabler/icons-react";
 
 export const Personal = ({
   currentCharacter,
@@ -25,6 +28,9 @@ export const Personal = ({
   inPerson,
 }: any) => {
   const [viewport] = useViewportContext();
+  const [editStats, setEditStats] = useState<boolean>(false);
+  const [editAttributes, setEditAttributes] = useState<boolean>(false);
+  const [editPsych, setEditPsych] = useState<boolean>(false);
 
   let data = { ...currentCharacter };
 
@@ -312,9 +318,17 @@ export const Personal = ({
       </Grid.Col>
       <Grid.Col span={viewport.width > 980 ? 6 : 12}>
         <Stack>
-          <Title order={4} ta="start" td="underline">
-            Statistical Data
-          </Title>
+          <Group justify="space-between">
+            <Title order={4} ta="start" td="underline">
+              Statistical Data
+            </Title>
+            <Switch
+              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+              size="md"
+              checked={editStats}
+              onChange={(e) => setEditStats(e.currentTarget.checked)}
+            />
+          </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -344,20 +358,24 @@ export const Personal = ({
                         stat
                       )}
                     </Table.Td>
-                    <Table.Td>
-                      <NumberInput
-                        value={data?.stats[stat.toLowerCase()]}
-                        min={3}
-                        max={18}
-                        clampBehavior="strict"
-                        onChange={(val) =>
-                          handleUpdateCharacter(
-                            "stats",
-                            val,
-                            stat.toLowerCase()
-                          )
-                        }
-                      />
+                    <Table.Td ta="center">
+                      {editStats ? (
+                        <NumberInput
+                          value={data?.stats[stat.toLowerCase()]}
+                          min={3}
+                          max={18}
+                          clampBehavior="strict"
+                          onChange={(val) =>
+                            handleUpdateCharacter(
+                              "stats",
+                              val,
+                              stat.toLowerCase()
+                            )
+                          }
+                        />
+                      ) : (
+                        data?.stats[stat.toLowerCase()]
+                      )}
                     </Table.Td>
                     <Table.Td ta="center">
                       {data.stats[stat.toLowerCase()] * 5}
@@ -372,9 +390,17 @@ export const Personal = ({
               })}
             </Table.Tbody>
           </Table>
-          <Title order={4} ta="start" td="underline">
-            Attributes
-          </Title>
+          <Group justify="space-between">
+            <Title order={4} ta="start" td="underline">
+              Attributes
+            </Title>
+            <Switch
+              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+              size="md"
+              checked={editAttributes}
+              onChange={(e) => setEditAttributes(e.currentTarget.checked)}
+            />
+          </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -410,15 +436,19 @@ export const Personal = ({
                     <Table.Td ta="center">
                       {data?.attributes[attribute].max}
                     </Table.Td>
-                    <Table.Td>
-                      <NumberInput
-                        value={data?.attributes[attribute].current}
-                        max={data?.attributes[attribute].max}
-                        min={0}
-                        onChange={(val) =>
-                          handleUpdateCharacter("attributes", val, attribute)
-                        }
-                      />
+                    <Table.Td ta="center">
+                      {editAttributes ? (
+                        <NumberInput
+                          value={data?.attributes[attribute].current}
+                          max={data?.attributes[attribute].max}
+                          min={0}
+                          onChange={(val) =>
+                            handleUpdateCharacter("attributes", val, attribute)
+                          }
+                        />
+                      ) : (
+                        data?.attributes[attribute].current
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );
@@ -457,9 +487,17 @@ export const Personal = ({
       </Grid.Col>
       <Grid.Col span={viewport.width > 980 ? 6 : 12}>
         <Stack>
-          <Title order={4} ta="start" td="underline">
-            Psychological Data
-          </Title>
+          <Group justify="space-between">
+            <Title order={4} ta="start" td="underline">
+              Psychological Data
+            </Title>{" "}
+            <Switch
+              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+              size="md"
+              checked={editPsych}
+              onChange={(e) => setEditPsych(e.currentTarget.checked)}
+            />
+          </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
@@ -477,8 +515,8 @@ export const Personal = ({
                 return (
                   <Table.Tr>
                     <Table.Td>{bond.name}</Table.Td>
-                    <Table.Td w={100}>
-                      {
+                    <Table.Td w={100} ta="center">
+                      {editPsych ? (
                         <NumberInput
                           value={bond.value}
                           max={data?.stats.charisma}
@@ -487,7 +525,9 @@ export const Personal = ({
                             handleUpdateCharacter("bonds", val, index)
                           }
                         />
-                      }
+                      ) : (
+                        bond.value
+                      )}
                     </Table.Td>
                   </Table.Tr>
                 );

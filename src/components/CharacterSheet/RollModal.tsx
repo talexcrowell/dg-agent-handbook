@@ -584,6 +584,7 @@ export const RollModalContainer = ({
         onClose={showRollLog ? toggleRollLog : close}
         size={"fullscreen"}
         position="bottom"
+        overlayProps={{ fixed: true }}
       >
         <RollModalContent
           character={character}

@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  Box,
   Button,
   Card,
   Center,
@@ -56,6 +57,7 @@ import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import { notifications } from "@mantine/notifications";
 import { useBlocker, useLocation, useNavigate } from "react-router-dom";
 import { RollModalContainer } from "./RollModal";
+import { UtilityMenu, UtiltyMenu } from "./UtilityMenu";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
@@ -128,6 +130,15 @@ export const CharacterSheet: React.FC = () => {
   const handleLeaveCharacterSheet = () => {
     setBlockerOpened(false);
     navigate("/agents/roster");
+  };
+
+  const handleClose = () => {
+    if (isFullscreen) {
+      const characterSheet = document.getElementById("character-sheet");
+      console.log(characterSheet);
+      character.style.display = "";
+    }
+    close();
   };
 
   const handleUpdateCharacter = (
@@ -583,7 +594,7 @@ export const CharacterSheet: React.FC = () => {
   };
 
   const toggleRollLog = () => {
-    setTimeout(() => setShowRollLog(!showRollLog), 250);
+    setShowRollLog(!showRollLog);
     toggle();
   };
 
@@ -591,7 +602,7 @@ export const CharacterSheet: React.FC = () => {
     handleUpdateCharacter("failedTests", [...val]);
   };
 
-  const openFullscreen = () => {
+  const handleCharacterSheetFullscreen = () => {
     let elem = document.getElementById("character-sheet");
 
     if (elem.requestFullscreen) {
@@ -622,7 +633,15 @@ export const CharacterSheet: React.FC = () => {
 
   const handleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
-    isFullscreen ? exitFullscreen() : openFullscreen();
+    isFullscreen ? exitFullscreen() : handleCharacterSheetFullscreen();
+  };
+  const handleModalFullscreen = (value) => {
+    notifications.show({
+      color: "green",
+      title: value,
+      message: "Rolling enabled on your character sheet.",
+      position: viewport.width > 760 ? "bottom-center" : "top-center",
+    });
   };
 
   if (!character?.name) {
@@ -644,7 +663,8 @@ export const CharacterSheet: React.FC = () => {
         defaultValue="all"
         inverted={viewport.width < 760}
         id="character-sheet"
-        px={isFullscreen ? "sm" : "0"}
+        px={0}
+        style={{ zIndex: 100 }}
       >
         {viewport.width > 760 && (
           <Tabs.List
@@ -670,84 +690,12 @@ export const CharacterSheet: React.FC = () => {
             </Tabs.Tab>
           </Tabs.List>
         )}
-        <Tabs.Panel value="all">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="all" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -779,84 +727,12 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="personal">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="personal" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -870,84 +746,12 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="skills">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="skills" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -962,84 +766,12 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="equipment">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="equipment" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -1051,84 +783,12 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="notes">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="notes" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -1140,84 +800,12 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="equipment-notes">
-          {viewport.width < 760 ? (
-            <Group my="sm" justify="space-between">
-              <Group>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleInPerson}
-                  variant={inPerson ? "filled" : "outline"}
-                  color={inPerson ? "green" : "gray"}
-                  aria-label="In-Person"
-                >
-                  <IconUsersGroup />
-                </ActionIcon>
-                <ActionIcon
-                  size="xl"
-                  onClick={handleFullscreen}
-                  aria-label="Fullscreen"
-                >
-                  {isFullscreen ? (
-                    <IconArrowsMinimize />
-                  ) : (
-                    <IconArrowsMaximize />
-                  )}
-                </ActionIcon>
-              </Group>
-              <Group>
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Roll Log"
-                    onClick={toggleRollLog}
-                  >
-                    <IconHistory />
-                  </ActionIcon>
-                )}
-                {inPerson && (
-                  <ActionIcon
-                    size="xl"
-                    aria-label="Dice Roller"
-                    // onClick={handleRollFailures}
-                  >
-                    <IconDice4 />
-                  </ActionIcon>
-                )}
-              </Group>
-            </Group>
-          ) : (
-            <Group my="sm" mx="md" justify="space-between">
-              <Button
-                leftSection={<IconUsersGroup />}
-                maw={375}
-                onClick={handleInPerson}
-                color={inPerson ? "green" : "grey"}
-              >
-                {viewport.width > 600 && "In-Person Mode"}
-              </Button>
-              <Group>
-                {inPerson && (
-                  <Button
-                    leftSection={<IconHistory />}
-                    maw={375}
-                    onClick={toggleRollLog}
-                  >
-                    {viewport.width > 600 && "Roll Log"}
-                  </Button>
-                )}
-                {/* {inPerson && (
-                  <Button
-                    // onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    {viewport.width > 600 && "Dice Roller"}
-                  </Button>
-                )} */}
-              </Group>
-            </Group>
-          )}
+        <Tabs.Panel value="equipment-notes" id="tab-panel">
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+          />
           <Divider />
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 110 : 170)}
@@ -1234,7 +822,7 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
-        <Tabs.Panel value="settings">
+        <Tabs.Panel value="settings" id="tab-panel">
           <ScrollArea
             h={viewport.height - (viewport.width > 760 ? 0 : 102)}
             scrollbars="y"
@@ -1248,6 +836,25 @@ export const CharacterSheet: React.FC = () => {
             />
           </ScrollArea>
         </Tabs.Panel>
+        <RollModalContainer
+          character={character}
+          rollType={rollType}
+          value={value}
+          opened={opened}
+          close={handleClose}
+          isMobile={viewport.width <= 760}
+          toggle={toggle}
+          modalType={modalType}
+          handleUpdateCharacter={handleUpdateCharacter}
+          handleDamageRoll={handleDamageRoll}
+          handleLethalityRoll={handleLethalityRoll}
+          handleSanityDamage={handleSanityDamage}
+          handleSanityDefense={handleSanityDefense}
+          showRollLog={showRollLog}
+          toggleRollLog={toggleRollLog}
+          setShowRollLog={setShowRollLog}
+          id="roll-modal"
+        />
         {viewport.width <= 760 && (
           <Tabs.List
             justify={viewport.width > 760 ? "flex-start" : "space-between"}
@@ -1269,26 +876,6 @@ export const CharacterSheet: React.FC = () => {
             </Tabs.Tab>
           </Tabs.List>
         )}
-
-        <RollModalContainer
-          character={character}
-          rollType={rollType}
-          value={value}
-          opened={opened}
-          close={close}
-          isMobile={viewport.width <= 760}
-          toggle={toggle}
-          modalType={modalType}
-          handleUpdateCharacter={handleUpdateCharacter}
-          handleDamageRoll={handleDamageRoll}
-          handleLethalityRoll={handleLethalityRoll}
-          handleSanityDamage={handleSanityDamage}
-          handleSanityDefense={handleSanityDefense}
-          showRollLog={showRollLog}
-          toggleRollLog={toggleRollLog}
-          setShowRollLog={setShowRollLog}
-        />
-
         <Modal
           opened={blockerOpened}
           onClose={() => setBlockerOpened(false)}
