@@ -82,11 +82,7 @@ export const StatsAndSkills = () => {
   ];
 
   return (
-    <Grid
-      p={viewport.width > 600 ? "md" : 0}
-      gutter={viewport.width > 600 ? "md" : "0"}
-      id="stats-and-skills"
-    >
+    <Grid p={viewport.width > 600 ? "md" : 0} id="stats-and-skills">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" order={2} id="statistics">
@@ -128,6 +124,13 @@ export const StatsAndSkills = () => {
               })}
             </Table.Tbody>
           </Table>
+        </Stack>
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Divider />
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Stack>
           <Title td="underline" order={2} id="attributes">
             Attributes
           </Title>
@@ -159,6 +162,13 @@ export const StatsAndSkills = () => {
               })}
             </Table.Tbody>
           </Table>
+        </Stack>
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Divider />
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Stack>
           <Title td="underline" order={2} id="skills">
             Skills
           </Title>
