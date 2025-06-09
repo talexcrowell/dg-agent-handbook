@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Button,
   Card,
   Center,
@@ -19,7 +20,8 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useViewportContext } from "../../../contexts/ViewportContext";
-import { IconUserScan } from "@tabler/icons-react";
+import { IconPencilPlus, IconUserScan } from "@tabler/icons-react";
+import { faker } from "@faker-js/faker";
 
 export const PersonalDetails: React.FC<{
   handleAgentPersonalDetails: (val: any, key: any) => void;
@@ -27,6 +29,30 @@ export const PersonalDetails: React.FC<{
   userAgent: any;
 }> = ({ handleAgentPersonalDetails, handleCreateAgent, userAgent }) => {
   const [viewport] = useViewportContext();
+
+  const handleGenerateRandomValue = (key: string) => {
+    let randomValue = "";
+    switch (key) {
+      case "name":
+        randomValue = faker.person.fullName();
+        handleAgentPersonalDetails({ target: { value: randomValue } }, key);
+        break;
+      case "codename":
+        randomValue = faker.word.noun();
+        handleAgentPersonalDetails({ target: { value: randomValue } }, key);
+        break;
+      case "employer":
+        let buzzword = faker.company.buzzNoun();
+        randomValue =
+          faker.company.name() +
+          " " +
+          String(buzzword).charAt(0).toUpperCase() +
+          String(buzzword).slice(1);
+        handleAgentPersonalDetails({ target: { value: randomValue } }, key);
+        break;
+    }
+  };
+
   return (
     <Grid ta="start">
       <Grid.Col span={12}>
@@ -39,7 +65,7 @@ export const PersonalDetails: React.FC<{
           </Text>
           <Text>
             While fleshing out your agent:
-            <List pr='md'>
+            <List pr="sm">
               <List.Item>
                 Consider something you like and something you dislike about your
                 agent.
@@ -56,71 +82,189 @@ export const PersonalDetails: React.FC<{
       </Grid.Col>
       <Grid.Col span={12}>
         <Stack>
-          <Group>
-            <TextInput
-              label="Name"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "name")}
-              value={userAgent?.name}
-              required
-            />
-            <TextInput
-              label="Codename"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "codename")}
-              value={userAgent?.codename}
-              required
-            />
-            <TextInput
-              label="Profession"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "profession")}
-              value={userAgent?.profession}
-              required
-            />
-          </Group>
-          <Group>
-            <TextInput
-              label="Employer"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "employer")}
-              value={userAgent?.employer}
-              required
-            />
-            <TextInput
-              label="Nationality"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "nationality")}
-              value={userAgent?.nationality}
-              required
-            />
-          </Group>
-          <Group>
-            <Select
-              label="Sex"
-              w={100}
-              onChange={(val) => handleAgentPersonalDetails(val, "sex")}
-              data={["M", "F", "DND"]}
-              value={userAgent?.sex}
-              required
-            />
-            <NumberInput
-              label="Age"
-              w={100}
-              min={25}
-              max={70}
-              onChange={(val) => handleAgentPersonalDetails(val, "age")}
-              value={userAgent?.age}
-              required
-            />
-            <TextInput
-              label="Edu/Occ History"
-              flex={1}
-              onChange={(val) => handleAgentPersonalDetails(val, "education")}
-              value={userAgent?.education}
-              required
-            />
-          </Group>
+          {viewport.width > 600 ? (
+            <>
+              <Group>
+                <TextInput
+                  label="Name"
+                  flex={1}
+                  onChange={(val) => handleAgentPersonalDetails(val, "name")}
+                  value={userAgent?.name}
+                  required
+                />
+                <TextInput
+                  label="Codename"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "codename")
+                  }
+                  value={userAgent?.codename}
+                  required
+                />
+                <TextInput
+                  label="Profession"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "profession")
+                  }
+                  value={userAgent?.profession}
+                  required
+                />
+              </Group>
+              <Group>
+                <TextInput
+                  label="Employer"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "employer")
+                  }
+                  value={userAgent?.employer}
+                  required
+                />
+                <TextInput
+                  label="Nationality"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "nationality")
+                  }
+                  value={userAgent?.nationality}
+                  required
+                />
+              </Group>
+              <Group>
+                <Select
+                  label="Sex"
+                  w={100}
+                  onChange={(val) => handleAgentPersonalDetails(val, "sex")}
+                  data={["M", "F", "DND"]}
+                  value={userAgent?.sex}
+                  required
+                />
+                <NumberInput
+                  label="Age"
+                  w={100}
+                  min={25}
+                  max={70}
+                  onChange={(val) => handleAgentPersonalDetails(val, "age")}
+                  value={userAgent?.age}
+                  required
+                />
+                <TextInput
+                  label="Education/Occupation History"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "education")
+                  }
+                  value={userAgent?.education}
+                  required
+                />
+              </Group>
+            </>
+          ) : (
+            <>
+              <Stack>
+                {" "}
+                <TextInput
+                  label="Name"
+                  flex={1}
+                  onChange={(val) => handleAgentPersonalDetails(val, "name")}
+                  value={userAgent?.name}
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("name")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
+                  required
+                />
+                <TextInput
+                  label="Codename"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "codename")
+                  }
+                  value={userAgent?.codename}
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("codename")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
+                  required
+                />
+                <TextInput
+                  label="Profession"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "profession")
+                  }
+                  value={userAgent?.profession}
+                  required
+                />
+                <TextInput
+                  label="Employer"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "employer")
+                  }
+                  value={userAgent?.employer}
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("employer")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
+                  required
+                />
+                <TextInput
+                  label="Nationality"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "nationality")
+                  }
+                  value={userAgent?.nationality}
+                  required
+                />
+                <Group justify="space-between">
+                  <Select
+                    label="Sex"
+                    w={"45%"}
+                    onChange={(val) => handleAgentPersonalDetails(val, "sex")}
+                    data={["M", "F", "DND"]}
+                    value={userAgent?.sex}
+                    required
+                  />
+                  <NumberInput
+                    label="Age"
+                    w={"45%"}
+                    min={30}
+                    max={60}
+                    onChange={(val) => handleAgentPersonalDetails(val, "age")}
+                    value={userAgent?.age}
+                    required
+                  />
+                </Group>
+                <TextInput
+                  label="Education/Occupation History"
+                  flex={1}
+                  onChange={(val) =>
+                    handleAgentPersonalDetails(val, "education")
+                  }
+                  value={userAgent?.education}
+                  required
+                />
+              </Stack>
+            </>
+          )}
           <Textarea
             label="Personality, Hobbies, Obsessions, etc."
             minRows={6}
@@ -157,15 +301,28 @@ export const PersonalDetails: React.FC<{
                     </Card>
                   )}
                 </Center>
-                <FileButton
-                  onChange={(e) => handleAgentPersonalDetails(e, "image")}
-                >
-                  {(props) => (
-                    <Button {...props} leftSection={<IconUserScan />}>
-                      Change Image
-                    </Button>
-                  )}
-                </FileButton>
+                <Stack>
+                  {/* <Button
+                    leftSection={<IconPencilPlus />}
+                    onClick={() =>
+                      handleAgentPersonalDetails(
+                        faker.image.personPortrait(),
+                        "image"
+                      )
+                    }
+                  >
+                    Generate Image
+                  </Button> */}
+                  <FileButton
+                    onChange={(e) => handleAgentPersonalDetails(e, "image")}
+                  >
+                    {(props) => (
+                      <Button {...props} leftSection={<IconUserScan />}>
+                        Change Image
+                      </Button>
+                    )}
+                  </FileButton>
+                </Stack>
               </Stack>
             </Card>
           </Center>

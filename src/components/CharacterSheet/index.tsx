@@ -698,7 +698,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Personal
@@ -735,7 +735,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Personal
@@ -754,7 +754,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Skills
@@ -774,7 +774,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Equipment
@@ -791,7 +791,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Notes
@@ -808,7 +808,7 @@ export const CharacterSheet: React.FC = () => {
           />
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 170)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
             scrollbars="y"
           >
             <Equipment
@@ -824,7 +824,7 @@ export const CharacterSheet: React.FC = () => {
         </Tabs.Panel>
         <Tabs.Panel value="settings" id="tab-panel">
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 0 : 102)}
+            h={viewport.height - (viewport.width > 760 ? 0 : 50)}
             scrollbars="y"
           >
             <Settings

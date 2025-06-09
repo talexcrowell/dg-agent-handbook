@@ -1,6 +1,12 @@
 import { ActionIcon, Button, Group } from "@mantine/core";
-import { IconDice4, IconHistory, IconUsersGroup } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconDice4,
+  IconHistory,
+  IconUsersGroup,
+} from "@tabler/icons-react";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const UtilityMenu = ({
   handleInPerson,
@@ -36,6 +42,16 @@ export const UtilityMenu = ({
             <IconDice4 />
           </ActionIcon>
         )}
+        <ActionIcon
+          size="xl"
+          variant={"light"}
+          color={"red"}
+          aria-label="Back to Roster"
+          component={Link}
+          to='/agents/roster'
+        >
+          <IconArrowLeft />
+        </ActionIcon>
       </Group>
     </Group>
   ) : (

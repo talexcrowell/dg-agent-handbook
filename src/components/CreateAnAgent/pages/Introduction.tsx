@@ -12,11 +12,12 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { IconArrowRight, IconLogicOr } from "@tabler/icons-react";
+import { useViewportContext } from "../../../contexts/ViewportContext";
 
 export const Introduction: React.FC<{
   handleStart: (value: any) => void;
 }> = ({ handleStart }) => {
-
+  const [viewport] = useViewportContext();
   return (
     <Grid>
       <Grid.Col span={12} ta="start">
@@ -52,23 +53,44 @@ export const Introduction: React.FC<{
             discretion of the Handler.
           </Text>
           <Center>
-            <Group>
-              <Button
-                onClick={() => handleStart("STATS")}
-                rightSection={<IconArrowRight />}
-                variant="outline"
-              >
-                Start with Stats
-              </Button>
-              <Text fw={700}>OR</Text>
-              <Button
-                onClick={() => handleStart("PROFESSION")}
-                rightSection={<IconArrowRight />}
-                variant="outline"
-              >
-                Start with Profession
-              </Button>
-            </Group>
+            {viewport.width > 760 ? (
+              <Group>
+                <Button
+                  onClick={() => handleStart("STATS")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Stats
+                </Button>
+                <Text fw={700}>OR</Text>
+                <Button
+                  onClick={() => handleStart("PROFESSION")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Profession
+                </Button>
+              </Group>
+            ) : (
+              <Stack>
+                {" "}
+                <Button
+                  onClick={() => handleStart("STATS")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Stats
+                </Button>
+                <Text fw={700} ta='center'>OR</Text>
+                <Button
+                  onClick={() => handleStart("PROFESSION")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Profession
+                </Button>
+              </Stack>
+            )}
           </Center>
           <Space />
           <Space />
