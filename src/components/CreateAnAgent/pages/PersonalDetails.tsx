@@ -127,15 +127,6 @@ export const PersonalDetails: React.FC<{
                   }
                   value={userAgent?.profession}
                   required
-                  rightSection={
-                    <ActionIcon
-                      variant="subtle"
-                      onClick={() => handleGenerateRandomValue("profession")}
-                      c="gray"
-                    >
-                      <IconPencilPlus />
-                    </ActionIcon>
-                  }
                 />
               </Group>
               <Group>
