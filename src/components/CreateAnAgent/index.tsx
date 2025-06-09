@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Center,
+  Divider,
   Grid,
   Group,
   Modal,
@@ -27,7 +28,14 @@ import { notifications } from "@mantine/notifications";
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IconExclamationCircle } from "@tabler/icons-react";
+import {
+  IconBriefcase,
+  IconExclamationCircle,
+  IconListDetails,
+  IconListLetters,
+  IconUserFilled,
+  IconUsers,
+} from "@tabler/icons-react";
 
 export const CreateAnAgent: React.FC = () => {
   const [creationMode, setCreationMode] = useState<"STATS" | "PROFESSION">(
@@ -262,7 +270,6 @@ export const CreateAnAgent: React.FC = () => {
       setUserAgent({ ...agent });
     };
     reader.readAsDataURL(value);
-    
   };
   const handleAgentPersonalDetails = (value, key) => {
     let newObj = { ...userAgent };
@@ -433,37 +440,83 @@ export const CreateAnAgent: React.FC = () => {
             iconSize={viewport.width > 760 ? 42 : 32}
           >
             <Stepper.Step
+              icon={
+                creationMode === "PROFESSION" ? (
+                  <IconBriefcase />
+                ) : (
+                  <IconListLetters />
+                )
+              }
               label={
-                <Text size={viewport.width > 760 ? "md" : "sm"}>
-                  {creationMode === "PROFESSION" ? "Profession" : "Statistics"}
-                </Text>
+                viewport.width > 600 ? (
+                  <Text size={viewport.width > 760 ? "md" : "sm"}>
+                    {creationMode === "PROFESSION"
+                      ? "Profession"
+                      : "Statistics"}
+                  </Text>
+                ) : (
+                  ""
+                )
               }
             />
             <Stepper.Step
+              icon={
+                creationMode === "PROFESSION" ? (
+                  <IconListLetters />
+                ) : (
+                  <IconBriefcase />
+                )
+              }
               label={
-                <Text size={viewport.width > 760 ? "md" : "sm"}>
-                  {creationMode === "PROFESSION" ? "Statistics" : "Profession"}
-                </Text>
+                viewport.width > 600 ? (
+                  <Text size={viewport.width > 760 ? "md" : "sm"}>
+                    {creationMode === "PROFESSION"
+                      ? "Statistics"
+                      : "Profession"}
+                  </Text>
+                ) : (
+                  ""
+                )
               }
             />
             <Stepper.Step
+              icon={<IconListDetails />}
               label={
-                <Text size={viewport.width > 760 ? "md" : "sm"}>Skills</Text>
+                viewport.width > 600 ? (
+                  <Text size={viewport.width > 760 ? "md" : "sm"}>Skills</Text>
+                ) : (
+                  ""
+                )
               }
             />
             <Stepper.Step
+              icon={<IconUsers />}
               label={
-                <Text size={viewport.width > 760 ? "md" : "sm"}>Bonds</Text>
+                viewport.width > 600 ? (
+                  <Text size={viewport.width > 760 ? "md" : "sm"}>Bonds</Text>
+                ) : (
+                  ""
+                )
               }
             />
             <Stepper.Step
+              icon={<IconUserFilled />}
               label={
-                <Text size={viewport.width > 760 ? "md" : "sm"}>
-                  Personal Details
-                </Text>
+                viewport.width > 600 ? (
+                  <Text size={viewport.width > 760 ? "md" : "sm"}>
+                    Personal Details
+                  </Text>
+                ) : (
+                  ""
+                )
               }
             />
           </Stepper>
+        </Grid.Col>
+      )}
+      {progressValue !== 0 && (
+        <Grid.Col span={12}>
+          <Divider />
         </Grid.Col>
       )}
       <Grid.Col span={12}>
