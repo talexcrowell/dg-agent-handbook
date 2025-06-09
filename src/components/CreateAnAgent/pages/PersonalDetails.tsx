@@ -39,7 +39,7 @@ export const PersonalDetails: React.FC<{
           </Text>
           <Text>
             While fleshing out your agent:
-            <List>
+            <List pr='md'>
               <List.Item>
                 Consider something you like and something you dislike about your
                 agent.
@@ -152,7 +152,9 @@ export const PersonalDetails: React.FC<{
                   {userAgent?.image ? (
                     <Image src={userAgent.image} h={200} w={200} radius="md" />
                   ) : (
-                    <Card m='lg'>No image uploaded</Card>
+                    <Card m="lg">
+                      <Text c="dimmed">No image uploaded</Text>
+                    </Card>
                   )}
                 </Center>
                 <FileButton

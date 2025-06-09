@@ -1,5 +1,6 @@
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import {
+  Anchor,
   Button,
   Card,
   Combobox,
@@ -22,6 +23,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { additionalProfessions, professions } from "../../../data";
+import { Link } from "react-router-dom";
 
 export const Stats: React.FC<{
   handleAgentStats: (stats: any) => void;
@@ -156,13 +158,19 @@ export const Stats: React.FC<{
           <Text ta="center">{stats[stat]}</Text>
           {
             <Select
-              placeholder="Swap with..."
+              placeholder="Swap Stat"
               data={[
-                ...statLabelArr.filter(
-                  (label) => label.toLowerCase() !== stat.toLowerCase()
-                ),
+                ...statLabelArr.filter((label) => {
+                  console.log(handleMobileStats(label.toLowerCase()), stat);
+                  return (
+                    (viewport.width > 600
+                      ? label.toLowerCase()
+                      : handleMobileStats(label.toLowerCase())) !==
+                    stat.toLowerCase()
+                  );
+                }),
               ]}
-              w={125}
+              w={110}
               value={""}
               onChange={(_value, option) =>
                 handleStatValueSwap(_value?.toLowerCase(), stat.toLowerCase())
@@ -235,10 +243,12 @@ export const Stats: React.FC<{
 
   const handleStatValueSwap = (newStat: any, currStat: any) => {
     let newObj = { ...stats };
-    let currStatValue = stats[newStat];
-    let newStatValue = stats[currStat];
+    let currStatValue =
+      newObj[viewport.width > 600 ? newStat : handleMobileStats(newStat)];
+    let newStatValue = newObj[currStat];
+    newObj[viewport.width > 600 ? newStat : handleMobileStats(newStat)] =
+      newStatValue;
     newObj[currStat] = currStatValue;
-    newObj[newStat] = newStatValue;
     setStats({ ...newObj });
   };
 
@@ -361,6 +371,27 @@ export const Stats: React.FC<{
           <Text>
             Your Agent's derived attributes will be calculated from your
             statistics.
+          </Text>
+          <Text>
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/agents/professions/stats-and-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Stats
+            </Anchor>{" "}
+           and{" "}
+            <Anchor
+              component={Link}
+              to="/agents/professions/stats-and-skills#attributes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Attributes
+            </Anchor>{" "} sections
+            in Agent Professions.
           </Text>
         </Stack>
       </Grid.Col>

@@ -437,7 +437,7 @@ export const CreateAnAgent: React.FC = () => {
             active={progressValue - 1}
             pt={10}
             onStepClick={(value) => handleVerifyStepNavigation(value + 1)}
-            iconSize={viewport.width > 760 ? 42 : 32}
+            iconSize={viewport.width > 760 ? 42: 34}
           >
             <Stepper.Step
               icon={
@@ -521,7 +521,7 @@ export const CreateAnAgent: React.FC = () => {
       )}
       <Grid.Col span={12}>
         <ScrollArea
-          h={viewport.width > 760 || progressValue === 0 ? "93vh" : "80vh"}
+          h={viewport.width > 760 || progressValue === 0 ? "93vh" : "79vh"}
           scrollbars={"y"}
         >
           {page}

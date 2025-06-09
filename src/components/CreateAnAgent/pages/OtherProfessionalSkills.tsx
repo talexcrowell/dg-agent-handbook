@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Button,
   Card,
   Center,
@@ -30,6 +31,7 @@ import {
 } from "../../../data";
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const OtherProfessionalSkills: React.FC<{
   handleAgentOtherSkills: (newSkills: any) => void;
@@ -264,6 +266,18 @@ export const OtherProfessionalSkills: React.FC<{
           <Text>
             You can also pick a Bonus Skill Package to save time choosing bonus
             skills.
+          </Text>
+          <Text>
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/agents/professions/stats-and-skills#skills"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Skills
+            </Anchor>{" "}
+            section in Agent Professions.
           </Text>
         </Stack>
       </Grid.Col>

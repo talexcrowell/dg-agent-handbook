@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Button,
   Card,
   Center,
@@ -32,6 +33,7 @@ import {
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { IconSearch } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 
 export const Profession: React.FC<{
   handleAgentProfession: (profession: any) => void;
@@ -488,6 +490,18 @@ export const Profession: React.FC<{
             nearly any profession might stumble into a Delta Green operation and
             prove crucial.
           </Text>
+          <Text>
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/agents/professions/overview"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Professions
+            </Anchor>{" "}
+            list in Agent Professions.
+          </Text>
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
@@ -804,8 +818,115 @@ export const Profession: React.FC<{
           opened={opened}
           onClose={() => setOpened(false)}
           size="fullscreen"
+          title={<Title order={4}>{selectedProfession?.name}</Title>}
         >
-          {professionCard(selectedProfession)}
+          <Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Description</InputLabel>
+              <Text fs="italic">{selectedProfession?.description}</Text>
+            </Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Recommended Stats</InputLabel>
+              <Text>
+                {selectedProfession?.recommendedStats.map(
+                  (stat: string, i: number) =>
+                    i !== selectedProfession?.recommendedStats.length - 1
+                      ? stat + ", "
+                      : stat
+                )}
+              </Text>
+            </Stack>
+            <Stack gap="0">
+              <InputLabel c="dimmed">Bonds</InputLabel>
+              <Text>{selectedProfession?.bonds}</Text>
+            </Stack>
+            <Group align="top">
+              <Stack gap="0">
+                <InputLabel c="dimmed">Professional Skills:</InputLabel>
+                <List spacing={"xs"}>
+                  {selectedProfession?.professionalSkills.map((skill) => (
+                    <Tooltip
+                      w={250}
+                      label={
+                        skillsMasterList.filter(
+                          (item) => item.id === skill.id
+                        )[0]
+                          ? skillsMasterList.filter(
+                              (item) => item.id === skill.id
+                            )[0].definition
+                          : ""
+                      }
+                      multiline
+                      openDelay={500}
+                    >
+                      {isSkillChoice(skill) ? (
+                        <List.Item className={styles.tooltippedElement}>
+                          <Group justify="space-between">
+                            <Text>
+                              {skill.name} (
+                              {skill.type ? skill.type : "Choose One"})
+                            </Text>
+                            <Text>{skill.value}%</Text>
+                          </Group>
+                        </List.Item>
+                      ) : (
+                        <List.Item className={styles.tooltippedElement}>
+                          <Group justify="space-between">
+                            <Text>{skill.name}</Text>{" "}
+                            <Text>{skill.value}%</Text>
+                          </Group>
+                        </List.Item>
+                      )}
+                    </Tooltip>
+                  ))}
+                </List>
+              </Stack>
+              {selectedProfession?.optionalSkills.length > 0 && (
+                <Stack gap="0">
+                  <InputLabel c="dimmed">
+                    Choose {selectedProfession?.numberOfOptionalSkills} of these
+                    skills:
+                  </InputLabel>
+                  <List spacing={"xs"}>
+                    {selectedProfession?.optionalSkills.map((skill) => (
+                      <Tooltip
+                        w={250}
+                        label={
+                          skillsMasterList.filter(
+                            (item) => item.id === skill.id
+                          )[0].definition
+                        }
+                        multiline
+                        openDelay={500}
+                      >
+                        {isSkillChoice(skill) ? (
+                          <List.Item className={styles.tooltippedElement}>
+                            <Group justify="space-between">
+                              <Text>
+                                {skill.name} (
+                                {skill.type ? skill.type : "Choose One"})
+                              </Text>
+                              <Text>{skill.value}%</Text>
+                            </Group>
+                          </List.Item>
+                        ) : (
+                          <List.Item className={styles.tooltippedElement}>
+                            <Group justify="space-between">
+                              <Text>{skill.name}</Text>{" "}
+                              <Text>{skill.value}%</Text>
+                            </Group>
+                          </List.Item>
+                        )}
+                      </Tooltip>
+                    ))}
+                  </List>
+                </Stack>
+              )}
+            </Group>
+            <Button onClick={() => confirmProfession()} bg={"green"}>
+              Confirm Profession
+            </Button>
+          </Stack>
         </Drawer>
       )}
     </Grid>

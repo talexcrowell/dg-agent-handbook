@@ -5,6 +5,7 @@ import {
   Group,
   Image,
   List,
+  Space,
   Stack,
   Text,
   Title,
@@ -69,6 +70,11 @@ export const Introduction: React.FC<{
               </Button>
             </Group>
           </Center>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
         </Stack>
       </Grid.Col>
     </Grid>
