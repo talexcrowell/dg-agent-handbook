@@ -91,6 +91,15 @@ export const PersonalDetails: React.FC<{
                   onChange={(val) => handleAgentPersonalDetails(val, "name")}
                   value={userAgent?.name}
                   required
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("name")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
                 />
                 <TextInput
                   label="Codename"
@@ -100,6 +109,15 @@ export const PersonalDetails: React.FC<{
                   }
                   value={userAgent?.codename}
                   required
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("codename")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
                 />
                 <TextInput
                   label="Profession"
@@ -109,6 +127,15 @@ export const PersonalDetails: React.FC<{
                   }
                   value={userAgent?.profession}
                   required
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("profession")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
                 />
               </Group>
               <Group>
@@ -120,6 +147,15 @@ export const PersonalDetails: React.FC<{
                   }
                   value={userAgent?.employer}
                   required
+                  rightSection={
+                    <ActionIcon
+                      variant="subtle"
+                      onClick={() => handleGenerateRandomValue("employer")}
+                      c="gray"
+                    >
+                      <IconPencilPlus />
+                    </ActionIcon>
+                  }
                 />
                 <TextInput
                   label="Nationality"
