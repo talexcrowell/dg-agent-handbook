@@ -300,6 +300,11 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
+    const successAudio = new Audio(
+      "https://docs.google.com/uc?export=open&id=1kJPzCWWDtZeO9mu9io-99IkOhcqUV9I2"
+    );
+    successAudio.play();
+    console.log(successAudio)
     toggle();
   };
 

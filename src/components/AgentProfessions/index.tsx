@@ -47,7 +47,7 @@ export const AgentProfessions = () => {
 
   useEffect(() => {
     if (!tabValue) {
-      navigate("/agents/professions/overview");
+      navigate("/training/professions/overview");
     }
     reinitializeRef.current();
   }, [tabValue]);
@@ -61,7 +61,7 @@ export const AgentProfessions = () => {
         <Tabs
           defaultValue="overview"
           value={tabValue}
-          onChange={(value) => navigate(`/agents/professions/${value}`)}
+          onChange={(value) => navigate(`/training/professions/${value}`)}
         >
           {viewport.width > 760 ? (
             <Tabs.List>
@@ -99,10 +99,10 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/agents/professions/overview");
+                      navigate("/training/professions/overview");
                     }}
                     active={
-                      location.pathname === "/agents/professions/overview"
+                      location.pathname === "/training/professions/overview"
                     }
                     label="Overview"
                     rightSection={<IconChevronRight size={16} />}
@@ -110,11 +110,11 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/agents/professions/stats-and-skills");
+                      navigate("/training/professions/stats-and-skills");
                     }}
                     active={
                       location.pathname ===
-                      "/agents/professions/stats-and-skills"
+                      "/training/professions/stats-and-skills"
                     }
                     label="Stats and Skills"
                     rightSection={<IconChevronRight size={16} />}
@@ -122,11 +122,11 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/agents/professions/profession-list");
+                      navigate("/training/professions/profession-list");
                     }}
                     active={
                       location.pathname ===
-                      "/agents/professions/profession-list"
+                      "/training/professions/profession-list"
                     }
                     label="Profession List"
                     rightSection={<IconChevronRight size={16} />}
@@ -134,11 +134,11 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/agents/professions/bonus-skill-package-list");
+                      navigate("/training/professions/bonus-skill-package-list");
                     }}
                     active={
                       location.pathname ===
-                      "/agents/professions/bonus-skill-package-list"
+                      "/training/professions/bonus-skill-package-list"
                     }
                     label="Bonus Skill Package List"
                     rightSection={<IconChevronRight size={16} />}

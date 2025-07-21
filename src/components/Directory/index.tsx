@@ -44,7 +44,7 @@ export const Directory = () => {
               <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
             </Card.Section>
             <Group justify="space-between" mt="md" mb="xs">
-              <Text>Delta Green</Text>
+              <Text>Welcome to Delta Green</Text>
             </Group>
           </Card>
           <Card component={Link} to="/rules/how-to-play">

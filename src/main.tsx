@@ -97,7 +97,30 @@ const router = createHashRouter([
           </Suspense>
         ),
       },
-      
+      {
+        path: "/training/professions",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <AgentProfessions />
+          </Suspense>
+        ),
+      },
+            {
+        path: "/training/professions/:tabValue",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <AgentProfessions />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/training/tradecraft",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Tradecraft />
+          </Suspense>
+        ),
+      },
 
       { path: "/agents", element: <Navigate to="/agents/roster" /> },
       { path: "/agents/roster", element: <AgentRoster /> },
@@ -114,30 +137,6 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <CharacterSheet />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/agents/professions",
-        element: (
-          <Suspense fallback={<FormattedLoader />}>
-            <AgentProfessions />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/agents/professions/:tabValue",
-        element: (
-          <Suspense fallback={<FormattedLoader />}>
-            <AgentProfessions />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/agents/tradecraft",
-        element: (
-          <Suspense fallback={<FormattedLoader />}>
-            <Tradecraft />
           </Suspense>
         ),
       },

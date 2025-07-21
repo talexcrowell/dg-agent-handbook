@@ -1,6 +1,7 @@
 import {
   ActionIcon,
   ActionIconGroup,
+  Avatar,
   Badge,
   Box,
   Button,
@@ -22,6 +23,7 @@ import { useViewportSize } from "@mantine/hooks";
 import {
   IconAddressBook,
   IconBook,
+  IconBook2,
   IconBriefcase,
   IconChevronRight,
   IconList,
@@ -41,10 +43,12 @@ import {
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
+import { useCharacterContext } from "../../contexts/CharacterContext";
 
 export const Navbar = () => {
   const location = useLocation();
   const { width } = useViewportSize();
+  const [{ currentCharacter }] = useCharacterContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -87,15 +91,47 @@ export const Navbar = () => {
             >
               Equipment & Services
             </Button>
-            <Button
-              component={Link}
-              to="/training"
-              variant="subtle"
-              c="white"
-              bg={location.pathname.includes("/training") ? "gray" : ""}
-            >
-              Training
-            </Button>
+            <Menu trigger="click-hover" offset={2}>
+              <Menu.Target>
+                <Button
+                  variant="subtle"
+                  c="white"
+                  bg={location.pathname.includes("/training") ? "gray" : ""}
+                >
+                  Training
+                </Button>
+              </Menu.Target>
+              <Menu.Dropdown w="175" ta="start">
+                <Menu.Item
+                  leftSection={<IconNotebook />}
+                  component={Link}
+                  to="/training/introduction"
+                >
+                  Training Guide
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconBriefcase />}
+                  component={Link}
+                  to="/training/professions"
+                >
+                  Professions
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconSpy />}
+                  component={Link}
+                  to="/training/tradecraft"
+                >
+                  Tradecraft
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconBook2 />}
+                  component={Link}
+                  to="/training/Glossary"
+                >
+                  Glossary
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
             <Menu trigger="click-hover" offset={2}>
               <Menu.Target>
                 <Button
@@ -107,22 +143,25 @@ export const Navbar = () => {
                 </Button>
               </Menu.Target>
               <Menu.Dropdown w="175" ta="start">
+                {currentCharacter && (
+                  <>
+                    <Menu.Label>Current Agent</Menu.Label>
+                    <Menu.Item
+                      px="xs"
+                      leftSection={
+                        <Avatar size="sm" src={currentCharacter.image} />
+                      }
+                      component={Link}
+                      to={`/agents/sheet/${currentCharacter.codename}`}
+                    >
+                      Agent {currentCharacter.codename}
+                    </Menu.Item>
+                    <Menu.Divider />
+                    <Menu.Label>Agents</Menu.Label>
+                  </>
+                )}
                 <Menu.Item
-                  leftSection={<IconBriefcase />}
-                  component={Link}
-                  to="/agents/professions"
-                >
-                  Professions
-                </Menu.Item>
-                <Menu.Item
-                  leftSection={<IconSpy />}
-                  component={Link}
-                  to="/agents/tradecraft"
-                >
-                  Tradecraft
-                </Menu.Item>
-                <Menu.Item
-                  leftSection={<IconUsers />}
+                  leftSection={<IconAddressBook />}
                   component={Link}
                   to="/agents/roster"
                 >
