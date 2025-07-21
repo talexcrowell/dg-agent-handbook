@@ -301,7 +301,7 @@ export const AgentRoster = () => {
                                   h={148}
                                   color="gray"
                                 >
-                                  <IconUserScan size="32" />
+                                  <IconUserQuestion size="32" />
                                 </Button>
                               )}
                             </FileButton>
