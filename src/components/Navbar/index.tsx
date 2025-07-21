@@ -7,11 +7,13 @@ import {
   Button,
   Center,
   Container,
+  Divider,
   Drawer,
   Flex,
   Grid,
   Group,
   Image,
+  InputLabel,
   Menu,
   Modal,
   NavLink,
@@ -249,23 +251,24 @@ export const Navbar = () => {
         />
         <NavLink
           label="Training"
-          component={Link}
-          to={`/training`}
           active={location.pathname.includes("/training")}
-          onClick={() => setMobileMenuOpen(false)}
           leftSection={<IconStairs />}
-        />
-        <NavLink
-          label="Agent Resources"
-          active={location.pathname.includes("/agents")}
-          leftSection={<IconAddressBook />}
         >
+          <NavLink
+            autoContrast
+            label="Training Guide"
+            component={Link}
+            to={`/training/introduction`}
+            active={location.pathname.includes("/training/introduction")}
+            leftSection={<IconNotebook />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
           <NavLink
             autoContrast
             label="Professions"
             component={Link}
-            to={`/agents/professions`}
-            active={location.pathname.includes("/agents/professions")}
+            to={`/training/professions`}
+            active={location.pathname.includes("/training/professions")}
             leftSection={<IconBriefcase />}
             onClick={() => setMobileMenuOpen(false)}
           />
@@ -273,16 +276,40 @@ export const Navbar = () => {
             autoContrast
             label="Tradecraft"
             component={Link}
-            to={`/agents/tradecraft`}
-            active={location.pathname.includes("/agents/tradecraft")}
+            to={`/training/tradecraft`}
+            active={location.pathname.includes("/training/tradecraft")}
             leftSection={<IconSpy />}
             onClick={() => setMobileMenuOpen(false)}
           />
+        </NavLink>
+
+        <NavLink
+          label="Agent Resources"
+          active={location.pathname.includes("/agents")}
+          leftSection={<IconAddressBook />}
+        >
+          {currentCharacter && (
+            <>
+              <InputLabel size="xs" c="dimmed">
+                Current Agent
+              </InputLabel>
+              <NavLink
+                autoContrast
+                label={`Agent ${currentCharacter.codename}`}
+                component={Link}
+                to={`/agents/sheet/${currentCharacter.codename}`}
+                active={location.pathname.includes("/agents/sheet")}
+                leftSection={<Avatar src={currentCharacter.image} size="sm" />}
+                onClick={() => setMobileMenuOpen(false)}
+              />
+            </>
+          )}
+          <Divider />
           <NavLink
             autoContrast
             label="Agent Roster"
             component={Link}
-            to={`/agents`}
+            to={`/agents/roster`}
             active={location.pathname.includes("/agents/roster")}
             leftSection={<IconUsers />}
             onClick={() => setMobileMenuOpen(false)}

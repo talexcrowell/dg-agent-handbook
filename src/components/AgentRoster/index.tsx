@@ -199,30 +199,37 @@ export const AgentRoster = () => {
       <Grid.Col span={12}>
         <Stack>
           <Group>
-            <Button
-              component={Link}
-              to="/agents/new"
-              bg="green"
-              leftSection={<IconUserPlus />}
-            >
-              Create An Agent
-            </Button>
-            <Button
-              leftSection={
-                openedGenerate ? <IconArrowBack /> : <IconUserScan />
-              }
-              onClick={togglePreMadeCharacter}
-              variant={openedGenerate ? "outline" : "filled"}
-            >
-              {openedGenerate ? "Back to Roster" : "Add Pre-Made Agent"}
-            </Button>
-            <Button
-              onClick={toggleImport}
-              leftSection={opened ? <IconArrowBack /> : <IconFileImport />}
-              variant={opened ? "outline" : "filled"}
-            >
-              {opened ? "Back to Roster" : "Import Agent"}
-            </Button>
+            {!opened && !openedGenerate && (
+              <Button
+                component={Link}
+                to="/agents/new"
+                color="green"
+                leftSection={<IconUserPlus />}
+                variant="outline"
+              >
+                Create An Agent
+              </Button>
+            )}
+            {!opened && (
+              <Button
+                leftSection={
+                  openedGenerate ? <IconArrowBack /> : <IconUserScan />
+                }
+                onClick={togglePreMadeCharacter}
+                variant={openedGenerate ? "filled" : "outline"}
+              >
+                {openedGenerate ? "Back to Roster" : "Add Pre-Made Agent"}
+              </Button>
+            )}
+            {!openedGenerate && (
+              <Button
+                onClick={toggleImport}
+                leftSection={opened ? <IconArrowBack /> : <IconFileImport />}
+                variant={opened ? "filled" : "outline"}
+              >
+                {opened ? "Back to Roster" : "Import Agent"}
+              </Button>
+            )}
           </Group>
           {opened ? (
             <Stack>
@@ -405,19 +412,22 @@ export const AgentRoster = () => {
                                 actions.changeCurrentCharacter({ ...agent })
                               }
                               leftSection={<IconFile />}
+                              variant="outline"
                             >
                               View
                             </Button>
                             <Button
                               onClick={() => handleExport({ ...agent })}
                               leftSection={<IconShare />}
+                              variant="outline"
                             >
                               Export
                             </Button>
                             <Button
                               onClick={() => handleRemoveSavedCharacter(agent)}
-                              bg="red"
+                              color="red"
                               leftSection={<IconTrash />}
+                              variant="outline"
                             >
                               Delete
                             </Button>
@@ -436,7 +446,7 @@ export const AgentRoster = () => {
                               w={100}
                               fit="contain"
                               radius="md"
-                              px='xs'
+                              px="xs"
                             />
                           ) : (
                             <FileButton

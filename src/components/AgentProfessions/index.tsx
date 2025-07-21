@@ -1,32 +1,20 @@
 import {
   Affix,
   Button,
-  Card,
   Divider,
   Grid,
   Group,
-  InputLabel,
-  List,
   Modal,
   NavLink,
   ScrollArea,
-  SegmentedControl,
   Stack,
   TableOfContents,
   Tabs,
   Text,
-  Title,
-  Tooltip,
 } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
-import {
-  additionalProfessions,
-  professions,
-  skillsMasterList,
-} from "../../data";
-import styles from "../../Element.module.css";
 import { useViewportContext } from "../../contexts/ViewportContext";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   IconBriefcase,
   IconChevronRight,
