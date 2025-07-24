@@ -105,7 +105,7 @@ const router = createHashRouter([
           </Suspense>
         ),
       },
-            {
+      {
         path: "/training/professions/:tabValue",
         element: (
           <Suspense fallback={<FormattedLoader />}>
@@ -118,6 +118,14 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <Tradecraft />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/training/glossary",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <Glossary />
           </Suspense>
         ),
       },
@@ -137,14 +145,6 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <CharacterSheet />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/agents/glossary",
-        element: (
-          <Suspense fallback={<FormattedLoader />}>
-            <Glossary />
           </Suspense>
         ),
       },
