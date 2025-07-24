@@ -5,6 +5,7 @@ import {
   Group,
   List,
   ScrollArea,
+  Space,
   Stack,
   TableOfContents,
   Text,
@@ -25,8 +26,8 @@ export const Tradecraft = () => {
   return (
     <Grid gutter={"md"}>
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
-        <ScrollArea h={"92vh"} w={"auto"} scrollbars="y">
-          <Stack id="tradecraft" px="md">
+        <ScrollArea h={"93vh"} scrollbars="y">
+          <Stack id="tradecraft">
             <Title td="underline">Tradecraft</Title>
             <Text>
               Usually in a Delta Green operation, Agents must maintain a cover
@@ -437,6 +438,13 @@ export const Tradecraft = () => {
               Box only as a contingency while the team finds a more secure
               solution.
             </Text>
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
+            <Space />
           </Stack>
         </ScrollArea>
       </Grid.Col>

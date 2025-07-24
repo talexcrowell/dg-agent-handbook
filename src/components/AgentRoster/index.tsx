@@ -12,6 +12,7 @@ import {
   Grid,
   Group,
   Image,
+  Indicator,
   InputLabel,
   List,
   Modal,
@@ -42,6 +43,7 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { premadeAgents } from "./data";
+import { AgentRosterCard } from "./AgentRosterCard";
 
 export const AgentRoster = () => {
   const [{ currentCharacter, savedCharacters }, actions] =
@@ -97,12 +99,16 @@ export const AgentRoster = () => {
     let newArr = savedCharacters.filter(
       (item: any) => item.id !== character.id
     );
+    if (character.id === currentCharacter.id) {
+      actions.changeCurrentCharacter();
+    }
+
     actions.updateCharacters({ savedCharacters: [...newArr] });
     notifications.show({
       color: "green",
       title: "Agent Deleted Successfully!",
       message: `Agent ${character.codename} has been removed from the Agent Roster.`,
-      position: viewport.width < 760 ? "top-center" : "bottom-center",
+      position: viewport.width > 760 ? "top-center" : "bottom-center",
     });
     localStorage.setItem("savedCharacters", JSON.stringify([...newArr]));
   };
@@ -138,26 +144,6 @@ export const AgentRoster = () => {
     });
     togglePreMadeCharacter();
   };
-
-  function encodeImageFileAsURL(element, character) {
-    const reader = new FileReader();
-    reader.onloadend = function () {
-      character.image = reader.result;
-      actions.updateCharacters({ ...character });
-      localStorage.setItem(
-        "currentCharacter",
-        JSON.stringify({ ...character })
-      );
-      localStorage.setItem(
-        "savedCharacters",
-        JSON.stringify([
-          ...savedCharacters.filter((item) => item.id !== character.id),
-          { ...character },
-        ])
-      );
-    };
-    reader.readAsDataURL(element);
-  }
 
   return (
     <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
@@ -282,316 +268,29 @@ export const AgentRoster = () => {
             </Card>
           ) : savedCharacters.length > 0 ? (
             <Stack>
-              {savedCharacters.map((agent) => (
-                <Card withBorder radius={"md"}>
-                  {viewport.width > 992 ? (
-                    <Grid justify="space-between" gutter={0}>
-                      <Grid.Col span={1}>
-                        <Center>
-                          {agent.image ? (
-                            <Image
-                              src={agent.image}
-                              h={148}
-                              w={100}
-                              fit="contain"
-                              radius="md"
-                            />
-                          ) : (
-                            <FileButton
-                              onChange={(e) => encodeImageFileAsURL(e, agent)}
-                            >
-                              {(props) => (
-                                <Button
-                                  {...props}
-                                  variant="outline"
-                                  w={100}
-                                  h={148}
-                                  color="gray"
-                                >
-                                  <IconUserQuestion size="32" />
-                                </Button>
-                              )}
-                            </FileButton>
-                          )}
-                        </Center>
-                      </Grid.Col>
-                      <Grid.Col span={2}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Codename
-                          </InputLabel>
-                          <Text>{agent.codename}</Text>
-                          <Divider />
-                          <InputLabel fw={700} td="underline">
-                            Name
-                          </InputLabel>
-                          <Text>{agent.name}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Grid.Col span={2}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Profession
-                          </InputLabel>
-                          <Text>{agent.profession}</Text>
-                          <Divider />
-                          <InputLabel fw={700} td="underline">
-                            Education/Occupation History
-                          </InputLabel>
-                          <Text>{agent.education}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Divider orientation="vertical" />
-
-                      <Grid.Col span={1}>
-                        <Stack gap="0">
-                          <Group justify="space-between">
-                            <Text fw={700}>STR: </Text>
-                            <Text>{agent.stats.strength}</Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>CON: </Text>
-                            <Text>{agent.stats.constitution}</Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>DEX: </Text>
-                            <Text>{agent.stats.dexterity}</Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>INT: </Text>
-                            <Text>{agent.stats.intelligence}</Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>POW: </Text>
-                            <Text>{agent.stats.power}</Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>CHA: </Text>
-                            <Text>{agent.stats.charisma}</Text>
-                          </Group>
-                        </Stack>
-                      </Grid.Col>
-                      <Grid.Col span={1}>
-                        <Stack gap="0">
-                          <Group justify="space-between">
-                            <Text fw={700}>HP: </Text>
-                            <Text>
-                              {agent.attributes.hp.current}/
-                              {agent.attributes.hp.max}
-                            </Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>WP: </Text>
-                            <Text>
-                              {agent.attributes.wp.current}/
-                              {agent.attributes.wp.max}
-                            </Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>SAN: </Text>
-                            <Text>
-                              {agent.attributes.san.current}/
-                              {agent.attributes.san.max}
-                            </Text>
-                          </Group>
-                          <Group justify="space-between">
-                            <Text fw={700}>BP: </Text>
-                            <Text>{agent.attributes.bp.current}</Text>
-                          </Group>
-                        </Stack>
-                      </Grid.Col>
-
-                      <Divider orientation="vertical" />
-                      <Grid.Col span={2}>
-                        <Flex justify="center">
-                          <Stack>
-                            <Button
-                              component={Link}
-                              to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                              onClick={() =>
-                                actions.changeCurrentCharacter({ ...agent })
-                              }
-                              leftSection={<IconFile />}
-                              variant="outline"
-                            >
-                              View
-                            </Button>
-                            <Button
-                              onClick={() => handleExport({ ...agent })}
-                              leftSection={<IconShare />}
-                              variant="outline"
-                            >
-                              Export
-                            </Button>
-                            <Button
-                              onClick={() => handleRemoveSavedCharacter(agent)}
-                              color="red"
-                              leftSection={<IconTrash />}
-                              variant="outline"
-                            >
-                              Delete
-                            </Button>
-                          </Stack>
-                        </Flex>
-                      </Grid.Col>
-                    </Grid>
-                  ) : (
-                    <Grid>
-                      <Grid.Col span={viewport.width > 600 ? 2 : 3}>
-                        <Center>
-                          {agent.image ? (
-                            <Image
-                              src={agent.image}
-                              h={148}
-                              w={100}
-                              fit="contain"
-                              radius="md"
-                              px="xs"
-                            />
-                          ) : (
-                            <FileButton
-                              onChange={(e) => encodeImageFileAsURL(e, agent)}
-                            >
-                              {(props) => (
-                                <Button
-                                  {...props}
-                                  variant="outline"
-                                  w={100}
-                                  h={148}
-                                  color="gray"
-                                >
-                                  <IconUserScan size="32" />
-                                </Button>
-                              )}
-                            </FileButton>
-                          )}
-                        </Center>
-                      </Grid.Col>
-                      <Grid.Col span={viewport.width > 600 ? 3 : 4}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Codename
-                          </InputLabel>
-                          <Text>{agent.codename}</Text>
-                          <Divider />
-                          <InputLabel fw={700} td="underline">
-                            Name
-                          </InputLabel>
-                          <Text>{agent.name}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      <Grid.Col span={viewport.width > 600 ? 3 : 5}>
-                        <Stack gap="xs">
-                          <InputLabel fw={700} td="underline">
-                            Profession
-                          </InputLabel>
-                          <Text>{agent.profession}</Text>
-                          <Divider />
-                          <InputLabel td="underline">
-                            <Text fw={700} truncate="end" size="sm">
-                              Education/Occupation History
-                            </Text>
-                          </InputLabel>
-                          <Text>{agent.education}</Text>
-                        </Stack>
-                      </Grid.Col>
-                      {viewport.width > 600 && (
-                        <Grid.Col span={2}>
-                          <Stack gap="0">
-                            <Group justify="space-between">
-                              <Text fw={700}>STR: </Text>
-                              <Text>{agent.stats.strength}</Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>CON: </Text>
-                              <Text>{agent.stats.constitution}</Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>DEX: </Text>
-                              <Text>{agent.stats.dexterity}</Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>INT: </Text>
-                              <Text>{agent.stats.intelligence}</Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>POW: </Text>
-                              <Text>{agent.stats.power}</Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>CHA: </Text>
-                              <Text>{agent.stats.charisma}</Text>
-                            </Group>
-                          </Stack>
-                        </Grid.Col>
-                      )}
-                      {viewport.width > 600 && (
-                        <Grid.Col span={2}>
-                          <Stack gap="0">
-                            <Group justify="space-between">
-                              <Text fw={700}>HP: </Text>
-                              <Text>
-                                {agent.attributes.hp.current}/
-                                {agent.attributes.hp.max}
-                              </Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>WP: </Text>
-                              <Text>
-                                {agent.attributes.wp.current}/
-                                {agent.attributes.wp.max}
-                              </Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>SAN: </Text>
-                              <Text>
-                                {agent.attributes.san.current}/
-                                {agent.attributes.san.max}
-                              </Text>
-                            </Group>
-                            <Group justify="space-between">
-                              <Text fw={700}>BP: </Text>
-                              <Text>{agent.attributes.bp.current}</Text>
-                            </Group>
-                          </Stack>
-                        </Grid.Col>
-                      )}
-                      <Grid.Col>
-                        <Divider />
-                      </Grid.Col>
-                      <Grid.Col span={12}>
-                        <Flex justify="center">
-                          <Group>
-                            <Button
-                              component={Link}
-                              to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                              onClick={() =>
-                                actions.changeCurrentCharacter({ ...agent })
-                              }
-                              leftSection={<IconFile />}
-                            >
-                              View
-                            </Button>
-                            <Button
-                              onClick={() => handleExport(agent)}
-                              leftSection={<IconShare />}
-                            >
-                              Export
-                            </Button>
-                            <Button
-                              onClick={() => handleRemoveSavedCharacter(agent)}
-                              bg="red"
-                              leftSection={<IconTrash />}
-                            >
-                              Delete
-                            </Button>
-                          </Group>
-                        </Flex>
-                      </Grid.Col>
-                    </Grid>
-                  )}
-                </Card>
-              ))}
+              {savedCharacters.map((agent) =>
+                currentCharacter.name === agent.name ? (
+                  <Indicator
+                    position="top-center"
+                    processing
+                    color="green"
+                    label="Current Agent"
+                    size="xl"
+                  >
+                    <AgentRosterCard
+                      agent={agent}
+                      handleExport={handleExport}
+                      handleRemoveSavedCharacter={handleRemoveSavedCharacter}
+                    />
+                  </Indicator>
+                ) : (
+                  <AgentRosterCard
+                    agent={agent}
+                    handleExport={handleExport}
+                    handleRemoveSavedCharacter={handleRemoveSavedCharacter}
+                  />
+                )
+              )}
             </Stack>
           ) : (
             <Stack py="lg">

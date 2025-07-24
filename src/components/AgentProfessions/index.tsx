@@ -24,7 +24,6 @@ import {
 import { Overview } from "./pages/Overview";
 import { ProfessionList } from "./pages/ProfessionList";
 import { BonusSkillPackagesList } from "./pages/BonusSkillPackagesList";
-import { StatsAndSkills } from "./pages/StatsAndSkills";
 
 export const AgentProfessions = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,7 +42,7 @@ export const AgentProfessions = () => {
   return (
     <Grid pb={0}>
       <Grid.Col
-        span={tabValue === "stats-and-skills" && viewport.width > 992 ? 10 : 12}
+        span={viewport.width > 992 ? 10 : 12}
         pb="0"
       >
         <Tabs
@@ -54,7 +53,6 @@ export const AgentProfessions = () => {
           {viewport.width > 760 ? (
             <Tabs.List>
               <Tabs.Tab value="overview">Overview</Tabs.Tab>
-              <Tabs.Tab value="stats-and-skills">Stats and Skills</Tabs.Tab>
               <Tabs.Tab value="profession-list">Profession List</Tabs.Tab>
               <Tabs.Tab value="bonus-skill-package-list">
                 Bonus Skill Package List
@@ -98,18 +96,6 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/training/professions/stats-and-skills");
-                    }}
-                    active={
-                      location.pathname ===
-                      "/training/professions/stats-and-skills"
-                    }
-                    label="Stats and Skills"
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    onClick={() => {
-                      setMobileMenuOpen(false);
                       navigate("/training/professions/profession-list");
                     }}
                     active={
@@ -140,11 +126,6 @@ export const AgentProfessions = () => {
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
-          <Tabs.Panel value="stats-and-skills">
-            <ScrollArea h={"93vh"}>
-              <StatsAndSkills />
-            </ScrollArea>
-          </Tabs.Panel>
           <Tabs.Panel value="profession-list">
             <ScrollArea h={"93vh"}>
               <ProfessionList />
@@ -157,31 +138,6 @@ export const AgentProfessions = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue === "stats-and-skills" && viewport.width > 992 && (
-        <Grid.Col span={2} pb={0}>
-          <ScrollArea h={"93vh"}>
-            <Group py="xs">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
-            <TableOfContents
-              variant="none"
-              color="blue"
-              size="sm"
-              radius="sm"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#stats-and-skills :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () => data.getNode().scrollIntoView(),
-                children: data.value,
-              })}
-            />
-          </ScrollArea>
-        </Grid.Col>
-      )}
     </Grid>
   );
 };

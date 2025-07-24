@@ -75,7 +75,10 @@ export const BeingAnAgent = () => {
             <Text fw={700}>Here are the steps for Character Creation:</Text>
             <List.Item>
               Choose a{" "}
-              <Anchor component={Link} to="/training/professions/profession-list">
+              <Anchor
+                component={Link}
+                to="/training/professions/profession-list"
+              >
                 Profession
               </Anchor>
               .
@@ -84,7 +87,7 @@ export const BeingAnAgent = () => {
               Determine{" "}
               <Anchor
                 component={Link}
-                to="/training/professions/stats-and-skills#statistics"
+                to="/training/stats-and-skills#statistics"
               >
                 Statistics
               </Anchor>
@@ -94,7 +97,7 @@ export const BeingAnAgent = () => {
               Calculate Derived{" "}
               <Anchor
                 component={Link}
-                to="/training/professions/stats-and-skills#attributes"
+                to="/training/stats-and-skills#attributes"
               >
                 Attributes
               </Anchor>
@@ -104,10 +107,7 @@ export const BeingAnAgent = () => {
             <List.Item>Define Motivations.</List.Item>
             <List.Item>
               Determine Professional{" "}
-              <Anchor
-                component={Link}
-                to="/training/professions/stats-and-skills#skills"
-              >
+              <Anchor component={Link} to="/training/stats-and-skills#skills">
                 Skills
               </Anchor>
               .

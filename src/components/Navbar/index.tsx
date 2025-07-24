@@ -28,6 +28,7 @@ import {
   IconBook2,
   IconBriefcase,
   IconChevronRight,
+  IconClipboardData,
   IconList,
   IconListDetails,
   IconMenu,
@@ -104,12 +105,22 @@ export const Navbar = () => {
                 </Button>
               </Menu.Target>
               <Menu.Dropdown w="175" ta="start">
+                <Menu.Label>Introduction</Menu.Label>
                 <Menu.Item
                   leftSection={<IconNotebook />}
                   component={Link}
                   to="/training/introduction"
                 >
                   Training Guide
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Label>Core Resources</Menu.Label>
+                <Menu.Item
+                  leftSection={<IconClipboardData />}
+                  component={Link}
+                  to="/training/stats-and-skills"
+                >
+                  Stats and Skills
                 </Menu.Item>
                 <Menu.Item
                   leftSection={<IconBriefcase />}
@@ -118,6 +129,8 @@ export const Navbar = () => {
                 >
                   Professions
                 </Menu.Item>
+                <Menu.Divider />
+                <Menu.Label>Supplemental Resources</Menu.Label>
                 <Menu.Item
                   leftSection={<IconSpy />}
                   component={Link}
@@ -128,7 +141,7 @@ export const Navbar = () => {
                 <Menu.Item
                   leftSection={<IconBook2 />}
                   component={Link}
-                  to="/training/Glossary"
+                  to="/training/glossary"
                 >
                   Glossary
                 </Menu.Item>
@@ -141,11 +154,11 @@ export const Navbar = () => {
                   c="white"
                   bg={location.pathname.includes("/agents") ? "gray" : ""}
                 >
-                  Agent Resources
+                  Agents
                 </Button>
               </Menu.Target>
               <Menu.Dropdown w="175" ta="start">
-                {currentCharacter && (
+                {currentCharacter.name && (
                   <>
                     <Menu.Label>Current Agent</Menu.Label>
                     <Menu.Item
@@ -159,9 +172,9 @@ export const Navbar = () => {
                       Agent {currentCharacter.codename}
                     </Menu.Item>
                     <Menu.Divider />
-                    <Menu.Label>Agents</Menu.Label>
                   </>
                 )}
+                <Menu.Label>Personnel Records</Menu.Label>
                 <Menu.Item
                   leftSection={<IconAddressBook />}
                   component={Link}
@@ -254,6 +267,9 @@ export const Navbar = () => {
           active={location.pathname.includes("/training")}
           leftSection={<IconStairs />}
         >
+          <InputLabel size="xs" c="dimmed">
+            Introduction
+          </InputLabel>
           <NavLink
             autoContrast
             label="Training Guide"
@@ -261,6 +277,19 @@ export const Navbar = () => {
             to={`/training/introduction`}
             active={location.pathname.includes("/training/introduction")}
             leftSection={<IconNotebook />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <Divider />
+          <InputLabel size="xs" c="dimmed">
+            Core Resources
+          </InputLabel>
+          <NavLink
+            autoContrast
+            label="Stats and Skills"
+            component={Link}
+            to={`/training/stats-and-skills`}
+            active={location.pathname.includes("/training/stats-and-skills")}
+            leftSection={<IconBriefcase />}
             onClick={() => setMobileMenuOpen(false)}
           />
           <NavLink
@@ -272,6 +301,10 @@ export const Navbar = () => {
             leftSection={<IconBriefcase />}
             onClick={() => setMobileMenuOpen(false)}
           />
+          <Divider />
+          <InputLabel size="xs" c="dimmed">
+            Supplementary Resources
+          </InputLabel>
           <NavLink
             autoContrast
             label="Tradecraft"
@@ -281,10 +314,19 @@ export const Navbar = () => {
             leftSection={<IconSpy />}
             onClick={() => setMobileMenuOpen(false)}
           />
+          <NavLink
+            autoContrast
+            label="Glossary"
+            component={Link}
+            to={`/training/glossary`}
+            active={location.pathname.includes("/training/glossary")}
+            leftSection={<IconBook2 />}
+            onClick={() => setMobileMenuOpen(false)}
+          />
         </NavLink>
 
         <NavLink
-          label="Agent Resources"
+          label="Agents"
           active={location.pathname.includes("/agents")}
           leftSection={<IconAddressBook />}
         >
@@ -305,6 +347,9 @@ export const Navbar = () => {
             </>
           )}
           <Divider />
+          <InputLabel size="xs" c="dimmed">
+            Personnel Records
+          </InputLabel>
           <NavLink
             autoContrast
             label="Agent Roster"

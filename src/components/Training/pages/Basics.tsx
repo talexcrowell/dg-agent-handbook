@@ -58,6 +58,18 @@ export const Basics = () => {
           <Title order={2} td="underline">
             Does It Require a Stat or a Skill?
           </Title>
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/training/stats-and-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Stats and Skills
+            </Anchor>{" "}
+            section in the Training resources.
+          </Text>
           <Text>
             Based on the Agent's intended action, the Handler will determine if
             requires a stat, a skill, or just effort.

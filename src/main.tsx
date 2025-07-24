@@ -36,6 +36,7 @@ const CreateAnAgent = lazy(
 const AgentRoster = lazy(() => import("./components/AgentRoster/index.tsx"));
 const Tradecraft = lazy(() => import("./components/Tradecraft/index.tsx"));
 const Glossary = lazy(() => import("./components/Glossary/index.tsx"));
+const StatsAndSkills = lazy(() => import("./components/StatsAndSkills/index.tsx"));
 
 const router = createHashRouter([
   {
@@ -94,6 +95,14 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={<FormattedLoader />}>
             <Training />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/training/stats-and-skills",
+        element: (
+          <Suspense fallback={<FormattedLoader />}>
+            <StatsAndSkills />
           </Suspense>
         ),
       },

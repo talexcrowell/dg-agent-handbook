@@ -32,16 +32,11 @@ export const AfterTheOperation = () => {
           </Text>
           <Text>
             If you continue to play this Agent, you will be able to craft their
-            narrative during their time with Delta Green.
-          </Text>
-          <Text>
-            You can improve your Agent's skills that they failed to attempt
-            during the previous Operation by 1D4.
-          </Text>
-          <Text>
-            You can also participate in a "Home" scene to detail what your Agent
-            does in-between Operations. That's a story for you and your Handler
-            to tell.
+            narrative during their time with Delta Green. You can improve your
+            Agent's skills that they failed to attempt during the previous
+            Operation ("rolling failures") and participate in a Home scene to
+            detail what your Agent does in-between Operations. That's a story
+            for you and your Handler to tell.
           </Text>
           <Text>
             You are also welcome to "retire" your Agent if they didn't seem like
@@ -77,7 +72,7 @@ export const AfterTheOperation = () => {
             . Those values are added to the respective skill resulting in Agent
             COLTON's skills to be{" "}
             <Text inherit span fw={700}>
-              Athletics (53%), Firearms (44%), and Search (31%)
+              Athletics (50 + 3 = 53%), Firearms (40 + 4 = 44%), and Search (30 + 1 = 31%)
             </Text>
             .
           </Text>
