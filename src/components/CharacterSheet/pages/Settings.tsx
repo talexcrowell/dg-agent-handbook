@@ -3,6 +3,7 @@ import {
   Card,
   Center,
   FileButton,
+  Flex,
   Grid,
   Image,
   List,
@@ -36,6 +37,8 @@ export const Settings = ({
   inPerson,
   toggleRollLog,
   handleFailedTests,
+  setCharacter,
+  toggleDiceRoller
 }: any) => {
   const [viewport] = useViewportContext();
   const [{ savedCharacters }, actions] = useCharacterContext();
@@ -73,6 +76,7 @@ export const Settings = ({
     const reader = new FileReader();
     reader.onloadend = function () {
       newObj.image = reader.result;
+      setCharacter({ ...newObj });
       actions.updateCharacters({ ...newObj });
       localStorage.setItem("currentCharacter", JSON.stringify({ ...newObj }));
       localStorage.setItem(
@@ -101,18 +105,30 @@ export const Settings = ({
                     <Stack>
                       <Center>
                         {currentCharacter.image ? (
-                          <Image
-                            src={currentCharacter.image}
-                            h={200}
-                            w={200}
-                            radius="md"
-                          />
+                          <Card withBorder w="225">
+                            <Center>
+                              <Image
+                                src={currentCharacter.image}
+                                h={200}
+                                w={200}
+                                radius="md"
+                              />
+                            </Center>
+                          </Card>
                         ) : (
                           <Card m="lg">No image uploaded</Card>
                         )}
                       </Center>
                       <FileButton onChange={encodeImageFileAsURL}>
-                        {(props) => <Button {...props} leftSection={<IconUserScan />}>Change Image</Button>}
+                        {(props) => (
+                          <Button
+                            {...props}
+                            leftSection={<IconUserScan />}
+                            variant="outline"
+                          >
+                            Change Image
+                          </Button>
+                        )}
                       </FileButton>
                     </Stack>
                   </Card>
@@ -120,6 +136,7 @@ export const Settings = ({
                     onClick={handleExport}
                     fullWidth
                     leftSection={<IconShare />}
+                    variant="outline"
                   >
                     Export Character
                   </Button>
@@ -134,9 +151,20 @@ export const Settings = ({
                   </Button>
                   {inPerson && (
                     <Button
+                      onClick={toggleDiceRoller}
+                      maw={375}
+                      leftSection={<IconDice4 />}
+                      variant="outline"
+                    >
+                      Dice Roller
+                    </Button>
+                  )}
+                  {inPerson && (
+                    <Button
                       leftSection={<IconHistory />}
                       fullWidth
                       onClick={toggleRollLog}
+                      variant="outline"
                     >
                       Roll Log
                     </Button>
@@ -146,17 +174,10 @@ export const Settings = ({
                       onClick={handleRollFailures}
                       fullWidth
                       leftSection={<IconListCheck />}
+                      variant="outline"
+                      disabled
                     >
                       Roll/Clear Failures
-                    </Button>
-                  )}
-                  {inPerson && (
-                    <Button
-                      onClick={handleRollFailures}
-                      maw={375}
-                      leftSection={<IconDice4 />}
-                    >
-                      Dice Roller
                     </Button>
                   )}
                   {inPerson && (
@@ -166,18 +187,64 @@ export const Settings = ({
                       leftSection={<IconHome />}
                       disabled
                     >
-                      Home Scene/Improvements
+                      Home Scene
                     </Button>
                   )}
                 </Stack>
               </Center>
             ) : (
               <Stack>
-                <Image src={currentCharacter.image} h={200} w={200} />
+                <Stack>
+                  {currentCharacter.image ? (
+                    <Card withBorder w="225">
+                      <Center>
+                        <Image
+                          src={currentCharacter.image}
+                          h={200}
+                          w={200}
+                          radius="md"
+                        />
+                      </Center>
+                      <FileButton onChange={encodeImageFileAsURL}>
+                        {(props) => (
+                          <Button
+                            {...props}
+                            leftSection={<IconUserScan />}
+                            variant="outline"
+                            maw={375}
+                          >
+                            Change Image
+                          </Button>
+                        )}
+                      </FileButton>
+                    </Card>
+                  ) : (
+                    <Card m="lg" h={200} w={200}>
+                      <Stack justify="space-between" h="100%">
+                        <Text c="dimmed" my="auto" ta="center">
+                          No image uploaded
+                        </Text>
+                        <FileButton onChange={encodeImageFileAsURL}>
+                          {(props) => (
+                            <Button
+                              {...props}
+                              leftSection={<IconUserScan />}
+                              variant="outline"
+                              maw={375}
+                            >
+                              Upload Image
+                            </Button>
+                          )}
+                        </FileButton>
+                      </Stack>
+                    </Card>
+                  )}
+                </Stack>
                 <Button
                   onClick={handleExport}
                   maw={375}
                   leftSection={<IconShare />}
+                  variant="outline"
                 >
                   Export Character
                 </Button>
@@ -192,9 +259,20 @@ export const Settings = ({
                 </Button>
                 {inPerson && (
                   <Button
+                    onClick={toggleDiceRoller}
+                    maw={375}
+                    leftSection={<IconDice4 />}
+                    variant="outline"
+                  >
+                    Dice Roller
+                  </Button>
+                )}
+                {inPerson && (
+                  <Button
                     leftSection={<IconHistory />}
                     maw={375}
                     onClick={toggleRollLog}
+                    variant="outline"
                   >
                     Roll Log
                   </Button>
@@ -204,17 +282,10 @@ export const Settings = ({
                     onClick={handleRollFailures}
                     maw={375}
                     leftSection={<IconListCheck />}
+                    variant="outline"
+                    disabled
                   >
                     Roll/Clear Failures
-                  </Button>
-                )}
-                {inPerson && (
-                  <Button
-                    onClick={handleRollFailures}
-                    maw={375}
-                    leftSection={<IconDice4 />}
-                  >
-                    Dice Roller
                   </Button>
                 )}
                 {inPerson && (
@@ -222,9 +293,10 @@ export const Settings = ({
                     onClick={handleExport}
                     maw={375}
                     leftSection={<IconHome />}
+                    variant="outline"
                     disabled
                   >
-                    Home Scene/Improvements
+                    Home Scene
                   </Button>
                 )}
               </Stack>

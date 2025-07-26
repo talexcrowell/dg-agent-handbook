@@ -12,6 +12,7 @@ export const UtilityMenu = ({
   handleInPerson,
   inPerson,
   toggleRollLog,
+  toggleDiceRoller,
 }: any) => {
   const [viewport] = useViewportContext();
   return viewport.width < 760 ? (
@@ -29,17 +30,23 @@ export const UtilityMenu = ({
       </Group>
       <Group>
         {inPerson && (
-          <ActionIcon size="xl" aria-label="Roll Log" onClick={toggleRollLog}>
-            <IconHistory />
+          <ActionIcon
+            size="xl"
+            aria-label="Dice Roller"
+            variant="outline"
+            onClick={toggleDiceRoller}
+          >
+            <IconDice4 />
           </ActionIcon>
         )}
         {inPerson && (
           <ActionIcon
             size="xl"
-            aria-label="Dice Roller"
-            // onClick={handleRollFailures}
+            aria-label="Roll Log"
+            variant="outline"
+            onClick={toggleRollLog}
           >
-            <IconDice4 />
+            <IconHistory />
           </ActionIcon>
         )}
         <ActionIcon
@@ -48,7 +55,7 @@ export const UtilityMenu = ({
           color={"red"}
           aria-label="Back to Roster"
           component={Link}
-          to='/agents/roster'
+          to="/agents/roster"
         >
           <IconArrowLeft />
         </ActionIcon>
@@ -61,15 +68,27 @@ export const UtilityMenu = ({
         maw={375}
         onClick={handleInPerson}
         color={inPerson ? "green" : "grey"}
+        variant={inPerson ? "filled" : "outline"}
       >
         {viewport.width > 600 && "In-Person Mode"}
       </Button>
       <Group>
         {inPerson && (
           <Button
+            leftSection={<IconDice4 />}
+            maw={375}
+            variant={"outline"}
+            onClick={toggleDiceRoller}
+          >
+            {viewport.width > 600 && "Dice Roller"}
+          </Button>
+        )}
+        {inPerson && (
+          <Button
             leftSection={<IconHistory />}
             maw={375}
             onClick={toggleRollLog}
+            variant={"outline"}
           >
             {viewport.width > 600 && "Roll Log"}
           </Button>

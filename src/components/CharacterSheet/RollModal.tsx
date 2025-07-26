@@ -1,3 +1,4 @@
+import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import {
   Button,
   ButtonGroup,
@@ -13,6 +14,7 @@ import {
   Select,
   Stack,
   Text,
+  TextInput,
   Title,
 } from "@mantine/core";
 import { IconHistory, IconTrash, IconVs, IconX } from "@tabler/icons-react";
@@ -32,8 +34,13 @@ const RollModalContent = ({
   handleLethalityRoll,
   handleSanityDamage,
   handleSanityDefense,
+  toggleDiceRoller,
+  showDiceRoller,
 }: any) => {
-  const [diceNotation, setDiceNotation] = useState("1d4");
+  const [diceNotation, setDiceNotation] = useState("d4");
+  const [diceNumber, setDiceNumber] = useState(1);
+  const [diceRoll, setDiceRoll] = useState();
+  const [modifier, setModifier] = useState(0);
   const [lethality, setLethality] = useState(false);
   const [lethalityRating, setLethalityRating] = useState(10);
   const [bond, setBond] = useState("");
@@ -186,12 +193,30 @@ const RollModalContent = ({
     }
   };
 
+  const handleCustomRoll = (input: string) => {
+    let roll: any = new DiceRoll(input);
+    let rollObj = roll.export(exportFormats.OBJECT);
+    console.log(rollObj);
+    setDiceRoll({ ...rollObj });
+  };
+
+  const handleCustomDiceRoll = () => {
+    handleCustomRoll(
+      diceNumber.toString() +
+        diceNotation.toString() +
+        (modifier > 0 ? `+${modifier}` : "")
+    );
+  };
+  const handleDiceValue = (val) => {
+    setDiceNotation(val);
+  };
+
   if (showRollLog) {
     return (
       <Stack justify="space-between">
         <Title order={3}>Roll Log</Title>
         <Divider />
-        <ScrollArea h={"63vh"}>
+        <ScrollArea h={"70vh"}>
           <Stack align="center">
             {character.rollLog.length > 0 &&
               character.rollLog.reverse().map((item) => {
@@ -284,6 +309,79 @@ const RollModalContent = ({
             Close
           </Button>
         </Stack>
+      </Stack>
+    );
+  } else if (showDiceRoller) {
+    return (
+      <Stack gap="lg">
+        <Title>Dice Roller</Title>
+        <Group>
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Notation
+              </InputLabel>
+              <Text>{diceRoll?.notation}</Text>
+            </Stack>
+          )}
+          {diceRoll && <Divider orientation="vertical" />}
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Rolled Values
+              </InputLabel>
+              <Group>
+                {diceRoll?.rolls[0].rolls.map((item) => {
+                  return <Text>{item.value}</Text>;
+                })}
+              </Group>
+            </Stack>
+          )}
+          {diceRoll && <Divider orientation="vertical" />}
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Total Value
+              </InputLabel>
+              <Text>{diceRoll?.total}</Text>
+            </Stack>
+          )}
+        </Group>
+        <Group justify="space-between" align="end">
+          <Group>
+            <NumberInput
+              label="Number of Dice"
+              value={diceNumber}
+              onChange={setDiceNumber}
+              min={1}
+              max={8}
+              w={100}
+            />
+            <Select
+              label="Type of Dice"
+              data={["d4", "d6", "d8", "d10", "d20", "d100"]}
+              onChange={handleDiceValue}
+              value={diceNotation}
+              w={100}
+            />
+            <NumberInput
+              label="Modifier"
+              value={modifier}
+              onChange={setModifier}
+              min={0}
+              max={8}
+              w={100}
+            />
+          </Group>
+          <Group>
+            <Button onClick={handleCustomDiceRoll} variant="outline">
+              Roll Dice
+            </Button>
+            <Button variant="outline" color="red" onClick={toggleDiceRoller}>
+              Close
+            </Button>
+          </Group>
+        </Group>
       </Stack>
     );
   } else {
@@ -571,6 +669,8 @@ export const RollModalContainer = ({
   handleSanityDefense,
   toggleRollLog,
   setShowRollLog,
+  toggleDiceRoller,
+  showDiceRoller,
 }: any) => {
   const handleShowRollLog = () => {
     setShowRollLog(!showRollLog);
@@ -581,7 +681,13 @@ export const RollModalContainer = ({
       <Drawer
         opened={opened}
         withCloseButton={false}
-        onClose={showRollLog ? toggleRollLog : close}
+        onClose={
+          showRollLog
+            ? toggleRollLog
+            : showDiceRoller
+            ? toggleDiceRoller
+            : close
+        }
         size={"fullscreen"}
         position="bottom"
         overlayProps={{ fixed: true }}
@@ -600,6 +706,8 @@ export const RollModalContainer = ({
           handleLethalityRoll={handleLethalityRoll}
           handleSanityDamage={handleSanityDamage}
           handleSanityDefense={handleSanityDefense}
+          toggleDiceRoller={toggleDiceRoller}
+          showDiceRoller={showDiceRoller}
         />
       </Drawer>
     );
@@ -608,7 +716,13 @@ export const RollModalContainer = ({
       <Modal
         opened={opened}
         withCloseButton={false}
-        onClose={showRollLog ? toggleRollLog : close}
+        onClose={
+          showRollLog
+            ? toggleRollLog
+            : showDiceRoller
+            ? toggleDiceRoller
+            : close
+        }
         size={"lg"}
       >
         <RollModalContent
@@ -625,6 +739,8 @@ export const RollModalContainer = ({
           handleLethalityRoll={handleLethalityRoll}
           handleSanityDamage={handleSanityDamage}
           handleSanityDefense={handleSanityDefense}
+          toggleDiceRoller={toggleDiceRoller}
+          showDiceRoller={showDiceRoller}
         />
       </Modal>
     );

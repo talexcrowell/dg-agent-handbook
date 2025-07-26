@@ -75,6 +75,7 @@ export const CharacterSheet: React.FC = () => {
   const [value, setValue] = useState([]);
   const [rollType, setRollType] = useState("");
   const [showRollLog, setShowRollLog] = useState(false);
+  const [showDiceRoller, setShowDiceRoller] = useState(false);
   const [opened, { toggle, close }] = useDisclosure(false);
   const [modalType, setModalType] = useState("default");
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
@@ -106,6 +107,9 @@ export const CharacterSheet: React.FC = () => {
     if (!currentCharacter.inPersonMode) {
       newObj.inPersonMode = false;
     }
+    if (!currentCharacter.image) {
+      newObj.image = "";
+    }
     setCharacter({ ...newObj });
   }, [currentCharacter]);
 
@@ -135,7 +139,6 @@ export const CharacterSheet: React.FC = () => {
   const handleClose = () => {
     if (isFullscreen) {
       const characterSheet = document.getElementById("character-sheet");
-      console.log(characterSheet);
       character.style.display = "";
     }
     close();
@@ -195,13 +198,15 @@ export const CharacterSheet: React.FC = () => {
         title: "In Person Mode Activated!",
         message: "Rolling enabled on your character sheet.",
         position: viewport.width > 760 ? "bottom-center" : "top-center",
+        autoClose: 2000,
       });
     } else {
       notifications.show({
-        color: "green",
+        color: "grey",
         title: "In Person Mode Deactivated!",
         message: "Rolling disabled on your character sheet.",
         position: viewport.width > 760 ? "bottom-center" : "top-center",
+        autoClose: 2000,
       });
     }
     setInPerson(!inPerson);
@@ -300,11 +305,10 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ])
     );
-    const successAudio = new Audio(
-      "https://docs.google.com/uc?export=open&id=1kJPzCWWDtZeO9mu9io-99IkOhcqUV9I2"
-    );
-    successAudio.play();
-    console.log(successAudio)
+    // const successAudio = new Audio(
+    //   "https://docs.google.com/uc?export=open&id=1kJPzCWWDtZeO9mu9io-99IkOhcqUV9I2"
+    // );
+    // successAudio.play();
     toggle();
   };
 
@@ -392,7 +396,7 @@ export const CharacterSheet: React.FC = () => {
     );
     notifications.show({
       message: `You dealt ${diceRoll} damage to your target.`,
-      autoClose: 7000,
+      autoClose: 3000,
       color: "green",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
@@ -441,7 +445,7 @@ export const CharacterSheet: React.FC = () => {
         parseInt(diceRoll.join("")) <= rating
           ? "You killed your target."
           : `You dealt ${lethalityDamage} damage to your target.`,
-      autoClose: 7000,
+      autoClose: 3000,
       color: "green",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
@@ -523,7 +527,7 @@ export const CharacterSheet: React.FC = () => {
       message: `You have taken ${sanDifference} sanity damage. You projected ${
         parseInt(damageValue.replace(" Damage", "")) - sanDifference
       } bond loss to ${selectedBond}.`,
-      autoClose: 7000,
+      autoClose: 5000,
       color: "red",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
@@ -559,7 +563,7 @@ export const CharacterSheet: React.FC = () => {
         " Damage",
         ""
       )} sanity damage`,
-      autoClose: 7000,
+      autoClose: 5000,
       color: "red",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
@@ -601,6 +605,11 @@ export const CharacterSheet: React.FC = () => {
   const toggleRollLog = () => {
     setShowRollLog(!showRollLog);
     toggle();
+  };
+
+  const toggleDiceRoller = () => {
+    toggle();
+    setShowDiceRoller(!showDiceRoller);
   };
 
   const handleFailedTests = (val) => {
@@ -700,6 +709,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -737,6 +747,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -756,6 +767,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -776,6 +788,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -793,6 +806,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -810,6 +824,7 @@ export const CharacterSheet: React.FC = () => {
             handleInPerson={handleInPerson}
             inPerson={inPerson}
             toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
           />
           <Divider />
           <ScrollArea
@@ -838,6 +853,8 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               handleFailedTests={handleFailedTests}
+              setCharacter={setCharacter}
+              toggleDiceRoller={toggleDiceRoller}
             />
           </ScrollArea>
         </Tabs.Panel>
@@ -858,6 +875,8 @@ export const CharacterSheet: React.FC = () => {
           showRollLog={showRollLog}
           toggleRollLog={toggleRollLog}
           setShowRollLog={setShowRollLog}
+          toggleDiceRoller={toggleDiceRoller}
+          showDiceRoller={showDiceRoller}
           id="roll-modal"
         />
         {viewport.width <= 760 && (

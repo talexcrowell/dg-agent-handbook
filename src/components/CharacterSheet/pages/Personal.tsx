@@ -1,5 +1,6 @@
 import {
   Button,
+  Card,
   Checkbox,
   CheckboxGroup,
   Divider,
@@ -114,6 +115,24 @@ export const Personal = ({
     ].filter((item) => item.key === attribute)[0].label;
 
   const tableBondHeaders = ["Bonds", "Score"];
+
+  const calculateLowValues = (key: string) => {
+    switch (key) {
+      case "hp":
+      case "wp":
+        if (
+          data?.attributes[key].current < 3 &&
+          data?.attributes[key].current > 0
+        ) {
+          return "yellow";
+        } else if (data?.attributes[key].current === 0) {
+          return "red";
+        } else {
+          return "dark.0";
+        }
+    }
+  };
+
   return (
     <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
@@ -436,7 +455,7 @@ export const Personal = ({
                     <Table.Td ta="center">
                       {data?.attributes[attribute].max}
                     </Table.Td>
-                    <Table.Td ta="center">
+                    <Table.Td ta="center" c={calculateLowValues(attribute)}>
                       {editAttributes ? (
                         <NumberInput
                           value={data?.attributes[attribute].current}
@@ -483,6 +502,12 @@ export const Personal = ({
               </Table.Tr>
             </Table.Tbody>
           </Table>
+          <Card py="xs">
+            <Group justify="space-between">
+              <Text fw={700}>Status</Text>
+              <Text>Healthy</Text>
+            </Group>
+          </Card>
         </Stack>
       </Grid.Col>
       <Grid.Col span={viewport.width > 980 ? 6 : 12}>
