@@ -371,16 +371,38 @@ export const additionalProfessions = [
     numberOfOptionalSkills: 4,
     bonds: 4,
   },
-  // {
-  //   name: "Media Specialist",
-  //   description:
-  //     "You might be an author, an editor, a researcher for a company or any branch of the government, a blogger, a TV reporter, or a scholar of rare texts. With the unnatural, you’ve uncovered the story of a lifetime.",
-  //   recommendedStats: ["INT", "CHA"],
-  //   professionalSkills: [{ id: "", name: "", value: 0 }],
-  //   optionalSkills: [{ id: "", name: "", value: 0 }],
-  //   numberOfOptionalSkills: 5,
-  //   bonds: 4,
-  // },
+  {
+    name: "Media Specialist",
+    description:
+      "You might be an author, an editor, a researcher for a company or any branch of the government, a blogger, a TV reporter, or a scholar of rare texts. With the unnatural, you’ve uncovered the story of a lifetime.",
+    recommendedStats: ["INT", "CHA"],
+    professionalSkills: [
+      {
+        id: "art",
+        name: "Art",
+        type: "",
+        value: 60,
+      },
+      { id: "history", name: "History", value: 40 },
+      { id: "humint", name: "HUMINT", value: 40 },
+      { id: "persuade", name: "Persuade", value: 50 },
+    ],
+    optionalSkills: [
+      { id: "anthropology", name: "Anthropology", value: 40 },
+      { id: "archeology", name: "Archeology", value: 40 },
+      { id: "art", name: "Art", value: 40, type: "" },
+      { id: "bureaucracy", name: "Bureaucracy", value: 50 },
+      { id: "computerScience", name: "Computer Science", value: 40 },
+      { id: "criminology", name: "Criminology", value: 50 },
+      { id: "foreignLanguage", name: "Foreign Language", value: 40, type: "" },
+      { id: "law", name: "Law", value: 40 },
+      { id: "militaryScience", name: "Military Science", value: 40, type: "" },
+      { id: "occult", name: "Occult", value: 50 },
+      { id: "science", name: "Science", value: 40, type: "" },
+    ],
+    numberOfOptionalSkills: 5,
+    bonds: 4,
+  },
   {
     name: "Nurse or Paramedic",
     description:
