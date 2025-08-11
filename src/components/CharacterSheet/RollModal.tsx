@@ -236,41 +236,40 @@ const RollModalContent = ({
                     w={325}
                   >
                     <Stack>
-                      <Group justify="space-between">
-                        <Stack gap={0}>
-                          <InputLabel c="dimmed">Test</InputLabel>
-                          <Text tt="capitalize">
-                            {skillKeyLabels(item.skill)} {item?.label}
-                          </Text>
-                        </Stack>
-                        <Stack gap={0} ta="end">
-                          <InputLabel c="dimmed">Result</InputLabel>
-                          <Text fw={700}>
-                            {calculateRollLogEntryLanguage(item)}
-                          </Text>
-                        </Stack>
-                      </Group>
-                      <Divider />
-                      <Group justify="space-between">
-                        <Stack gap="0">
-                          <InputLabel c="dimmed">Rating</InputLabel>
-                          <Text tt="capitalize">
-                            {item.skill == "luck"
-                              ? 50
-                              : item.skill == "san"
-                              ? character.attributes[item.skill].current
-                              : isStat(item.skill)
-                              ? character.stats[item.skill] * 5
-                              : isSkillChoice(item.skill)
-                              ? character.skills[item.skill][0].skill
-                              : character.skills[item.skill]}
-                          </Text>
-                        </Stack>
-                        <IconVs size={32} />
-                        <Stack gap="0" ta="end">
-                          <InputLabel c="dimmed">Roll</InputLabel>
-                          <Text>{item.rolledValue}</Text>
-                        </Stack>
+                      <Text fw={700} ta="center">
+                        {calculateRollLogEntryLanguage(item)}
+                      </Text>
+                      <Group>
+                        <Group w='125'>
+                          <Stack gap={0}>
+                            <InputLabel c="dimmed">Test</InputLabel>
+                            <Text tt="capitalize">
+                              {skillKeyLabels(item.skill)} {item?.label}
+                            </Text>
+                          </Stack>
+                          <Divider orientation="vertical" />
+                        </Group>
+                        <Group w='125'>
+                          <Stack gap="0">
+                            <InputLabel c="dimmed">Rating</InputLabel>
+                            <Text tt="capitalize">
+                              {item.skill == "luck"
+                                ? 50
+                                : item.skill == "san"
+                                ? character.attributes[item.skill].current
+                                : isStat(item.skill)
+                                ? character.stats[item.skill] * 5
+                                : isSkillChoice(item.skill)
+                                ? character.skills[item.skill][0].skill
+                                : character.skills[item.skill]}
+                            </Text>
+                          </Stack>
+                          <IconVs size={32} />
+                          <Stack gap="0" ta="end">
+                            <InputLabel c="dimmed">Roll</InputLabel>
+                            <Text>{item.rolledValue}</Text>
+                          </Stack>
+                        </Group>
                       </Group>
                       {item.damage && (
                         <>
@@ -402,30 +401,46 @@ const RollModalContent = ({
           {calculateCurrentRollLanguage()}
         </Title>
         {/* Roll Card */}
-        <Card>
-          <Stack>
-            <Group justify="space-between">
-              <Text fw={700}>Dice Roll</Text>
-              <Group fw={700}>{value.join("")}</Group>
-            </Group>
-            <Divider label={<IconVs />} />
-            <Stack>
-              <Group justify="space-between">
-                <Text tt="capitalize" fw={700}>
-                  {character.rollLog.length > 0 &&
-                    skillKeyLabels(
-                      character.rollLog[character.rollLog.length - 1].skill
-                    )}{" "}
-                  {character.rollLog.length > 0 &&
-                    character?.rollLog[character.rollLog.length - 1].label}
+        <Card p="xs">
+          <Stack ta="center">
+            <Card.Section py="sm">
+              <Text c="dimmed" size="sm">
+                Dice Roll
+              </Text>
+            </Card.Section>
+            <Card.Section>
+              <Stack>
+                <Text
+                  fw={700}
+                  style={{ fontSize: "4em" }}
+                  c={
+                    calculateCurrentRollLanguage() === "CRITICAL SUCCESS" ||
+                    calculateCurrentRollLanguage() === "SUCCESS"
+                      ? "green"
+                      : "red"
+                  }
+                >
+                  {value.join("")}
                 </Text>
-                <Text fw={700}>
+                <Divider label={<IconVs size={42} />} />
+                <Text fw={700} style={{ fontSize: "4em" }}>
                   {character.rollLog.length > 0 &&
                     character?.rollLog[character.rollLog.length - 1]
                       .ratingValue}
                 </Text>
-              </Group>
-            </Stack>
+              </Stack>
+            </Card.Section>
+            <Card.Section py="sm">
+              <Text tt="capitalize" c="dimmed" size="sm">
+                Agent's{" "}
+                {character.rollLog.length > 0 &&
+                  skillKeyLabels(
+                    character.rollLog[character.rollLog.length - 1].skill
+                  )}{" "}
+                {character.rollLog.length > 0 &&
+                  character?.rollLog[character.rollLog.length - 1].label}
+              </Text>
+            </Card.Section>
           </Stack>
         </Card>
         {/* Damage Card */}

@@ -133,6 +133,63 @@ export const Personal = ({
     }
   };
 
+  const calculateStatusText = () => {
+    let status = "Healthy";
+    if (
+      data?.attributes["wp"].current < data?.attributes["wp"].max / 2 &&
+      data?.attributes["wp"].current >= 3
+    ) {
+      status = "Tired";
+    }
+    if (
+      data?.attributes["wp"].current < 3 &&
+      data?.attributes["wp"].current > 0
+    ) {
+      status = "Emotional Breakdown";
+    }
+    if (data?.attributes["wp"].current === 0) {
+      status = "Unconscious";
+    }
+    if (data?.attributes["bp"].current > data?.attributes["san"].current) {
+      status = "Temporary Insanity";
+    }
+    if (
+      data?.attributes["hp"].current < data?.attributes["hp"].max / 2 &&
+      data?.attributes["hp"].current >= 3
+    ) {
+      status = "Hurt";
+    }
+    if (
+      data?.attributes["hp"].current < 3 &&
+      data?.attributes["hp"].current > 0
+    ) {
+      status = "Fainting";
+    }
+    if (data?.attributes["hp"].current === 0) {
+      status = "Dead";
+    }
+    return status;
+  };
+  const calculateStatusTextColor = (status: string) => {
+    let color = "";
+    switch (status) {
+      case "Tired":
+      case "Hurt":
+        color = "yellow";
+        break;
+      case "Emotional Breakdown":
+      case "Fainting":
+        color = "orange";
+        break;
+      case "Unconscious":
+      case "Temporary Insanity":
+      case "Dead":
+        color = "red";
+        break;
+    }
+    return color;
+  };
+
   return (
     <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
@@ -505,7 +562,12 @@ export const Personal = ({
           <Card py="xs">
             <Group justify="space-between">
               <Text fw={700}>Status</Text>
-              <Text>Healthy</Text>
+              <Text
+                fw={600}
+                c={calculateStatusTextColor(calculateStatusText())}
+              >
+                {calculateStatusText()}
+              </Text>
             </Group>
           </Card>
         </Stack>
