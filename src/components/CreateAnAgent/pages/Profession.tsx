@@ -150,7 +150,7 @@ export const Profession: React.FC<{
         skillName = "Science";
         break;
     }
-    newArr[index.toString()] = {
+    newArr[index] = {
       type: e,
       name: skillName,
       id: skill.id,
@@ -778,7 +778,7 @@ export const Profession: React.FC<{
                                   handleOptionalDetail(
                                     e.target.value,
                                     skill,
-                                    index
+                                    selectedOptionalSkills.indexOf(skill.id)
                                   )
                                 }
                               />
