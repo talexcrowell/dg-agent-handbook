@@ -136,7 +136,7 @@ export const Personal = ({
   const calculateStatusText = () => {
     let status = "Healthy";
     if (
-      data?.attributes["wp"].current < data?.attributes["wp"].max / 2 &&
+      data?.attributes["wp"].current <= data?.attributes["wp"].max / 2 &&
       data?.attributes["wp"].current >= 3
     ) {
       status = "Tired";
@@ -154,7 +154,7 @@ export const Personal = ({
       status = "Temporary Insanity";
     }
     if (
-      data?.attributes["hp"].current < data?.attributes["hp"].max / 2 &&
+      data?.attributes["hp"].current <= data?.attributes["hp"].max / 2 &&
       data?.attributes["hp"].current >= 3
     ) {
       status = "Hurt";
