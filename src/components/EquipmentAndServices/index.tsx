@@ -23,6 +23,7 @@ import {
   IconNotebook,
   IconPackage,
   IconPackages,
+  IconTriangleFilled,
 } from "@tabler/icons-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
@@ -209,6 +210,56 @@ export const EquipmentAndServices = () => {
                 children: data.value,
               })}
             />
+            {tabValue !=='overview' && <Table withColumnBorders withTableBorder striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Expense</Table.Th>
+                  <Table.Th>Definition</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                <Table.Tr>
+                  <Table.Td ta="center">
+                    <IconTriangleFilled color="green" />
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="xs">Incidental (&lt;$150)</Text>
+                  </Table.Td>
+                </Table.Tr>
+                <Table.Tr>
+                  <Table.Td ta="center">
+                    <IconTriangleFilled color="blue" />
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="xs">Standard ($200-$800)</Text>
+                  </Table.Td>
+                </Table.Tr>
+                <Table.Tr>
+                  <Table.Td ta="center">
+                    <IconTriangleFilled color="yellow" />
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="xs">Unusual ($1000-$5000)</Text>
+                  </Table.Td>
+                </Table.Tr>
+                <Table.Tr>
+                  <Table.Td ta="center">
+                    <IconTriangleFilled color="orange" />
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="xs">Major ($6000-$30,000)</Text>
+                  </Table.Td>
+                </Table.Tr>
+                <Table.Tr>
+                  <Table.Td ta="center">
+                    <IconTriangleFilled color="red" />
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="xs">Extreme (&gt;$36000)</Text>
+                  </Table.Td>
+                </Table.Tr>
+              </Table.Tbody>
+            </Table>}
           </ScrollArea>
         </Grid.Col>
       )}

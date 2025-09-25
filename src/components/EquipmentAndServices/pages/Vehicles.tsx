@@ -92,10 +92,10 @@ export const Vehicles = () => {
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th>Item</Table.Th>
-                  <Table.Th>Hit Points</Table.Th>
-                  <Table.Th>Armor</Table.Th>
-                  <Table.Th>Speed</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th ta="center">Hit Points</Table.Th>
+                  <Table.Th ta="center">Armor</Table.Th>
+                  <Table.Th ta="center">Speed</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -105,16 +105,13 @@ export const Vehicles = () => {
                     return (
                       <Table.Tr>
                         <Table.Td>{item.name}</Table.Td>
-                        <Table.Td>{item.hp}</Table.Td>
-                        <Table.Td>{item.armor}</Table.Td>
-                        <Table.Td>{item.speed}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
+                        <Table.Td ta="center">{item.hp}</Table.Td>
+                        <Table.Td ta="center">{item.armor}</Table.Td>
+                        <Table.Td ta="center">{item.speed}</Table.Td>
+                        <Table.Td tt="capitalize" ta="center">
+                          <IconTriangleFilled
+                            color={calculateIcon(item.expense)}
+                          />
                         </Table.Td>
                       </Table.Tr>
                     );
@@ -128,10 +125,10 @@ export const Vehicles = () => {
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th>Item</Table.Th>
-                  <Table.Th>Hit Points</Table.Th>
-                  <Table.Th>Armor</Table.Th>
-                  <Table.Th>Speed</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th ta="center">Hit Points</Table.Th>
+                  <Table.Th ta="center">Armor</Table.Th>
+                  <Table.Th ta="center">Speed</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -141,16 +138,13 @@ export const Vehicles = () => {
                     return (
                       <Table.Tr>
                         <Table.Td>{item.name}</Table.Td>
-                        <Table.Td>{item.hp}</Table.Td>
-                        <Table.Td>{item.armor}</Table.Td>
-                        <Table.Td>{item.speed}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
+                        <Table.Td ta="center">{item.hp}</Table.Td>
+                        <Table.Td ta="center">{item.armor}</Table.Td>
+                        <Table.Td ta="center">{item.speed}</Table.Td>
+                        <Table.Td tt="capitalize" ta="center">
+                          <IconTriangleFilled
+                            color={calculateIcon(item.expense)}
+                          />
                         </Table.Td>
                       </Table.Tr>
                     );
@@ -164,10 +158,10 @@ export const Vehicles = () => {
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th>Item</Table.Th>
-                  <Table.Th>Hit Points</Table.Th>
-                  <Table.Th>Armor</Table.Th>
-                  <Table.Th>Speed</Table.Th>
-                  <Table.Th>Expense</Table.Th>
+                  <Table.Th ta="center">Hit Points</Table.Th>
+                  <Table.Th ta="center">Armor</Table.Th>
+                  <Table.Th ta="center">Speed</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -177,16 +171,13 @@ export const Vehicles = () => {
                     return (
                       <Table.Tr>
                         <Table.Td>{item.name}</Table.Td>
-                        <Table.Td>{item.hp}</Table.Td>
-                        <Table.Td>{item.armor}</Table.Td>
-                        <Table.Td>{item.speed}</Table.Td>
-                        <Table.Td tt="capitalize">
-                          <Group>
-                            <IconTriangleFilled
-                              color={calculateIcon(item.expense)}
-                            />
-                            {item.expense}
-                          </Group>
+                        <Table.Td ta="center">{item.hp}</Table.Td>
+                        <Table.Td ta="center">{item.armor}</Table.Td>
+                        <Table.Td ta="center">{item.speed}</Table.Td>
+                        <Table.Td tt="capitalize" ta="center">
+                          <IconTriangleFilled
+                            color={calculateIcon(item.expense)}
+                          />
                         </Table.Td>
                       </Table.Tr>
                     );

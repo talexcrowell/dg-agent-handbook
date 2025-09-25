@@ -2254,7 +2254,7 @@ export const vehicleList = [
     vehicleType: "air",
   },
   {
-    name: "Figther jet",
+    name: "Fighter jet",
     hp: 40,
     armor: 0,
     speed: "Special",
@@ -2411,7 +2411,7 @@ export const otherGearAndServicesList = [
     gearAndServicesType: "research",
   },
   {
-    name: "Credentials for unescorted entry into a restricted site",
+    name: "Credentials for unescorted entry into a restricted site (Research)",
     expense: "standard",
     type: "gearAndServices",
     gearAndServicesType: "research",
@@ -3051,7 +3051,7 @@ export const otherGearAndServicesList = [
   },
 
   {
-    name: "Credentials for unescorted entry into a restricted site",
+    name: "Credentials for unescorted entry into a restricted site (Public Safety)",
     expense: "standard",
     type: "gearAndServices",
     gearAndServicesType: "publicSafety",

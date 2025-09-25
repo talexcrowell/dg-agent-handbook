@@ -302,11 +302,42 @@ export const Search = () => {
               </Group>
             </Card>
           </Stack>
+          <Stack gap={"0"}>
+            <InputLabel>Expenses</InputLabel>
+            <Card>
+              <Group justify='space-evenly'>
+                <Group>
+                  <IconTriangleFilled color={"green"} />
+                  <Text size="sm">Incidental (&lt;$150)</Text>
+                </Group>
+                <Group>
+                  <IconTriangleFilled color={"blue"} />
+                  <Text size="sm">Standard ($200-$800)</Text>
+                </Group>
+                <Group>
+                  <IconTriangleFilled color={"yellow"} />
+                  <Text size="sm">Unusual ($1000-$5000)</Text>
+                </Group>
+                <Group>
+                  <IconTriangleFilled color={"orange"} />
+                  <Text size="sm">Major ($6000-$30,000)</Text>
+                </Group>
+                <Group>
+                  <IconTriangleFilled color={"red"} />
+                  <Text size="sm">Extreme (&gt;$36000)</Text>
+                </Group>
+              </Group>
+            </Card>
+          </Stack>
           <Divider />
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
-        <ScrollArea h={viewport.height - 300} scrollbars="y" offsetScrollbars="y">
+        <ScrollArea
+          h={viewport.height - 400}
+          scrollbars="y"
+          offsetScrollbars="y"
+        >
           <Stack>
             {searchTerm
               ? filteredList
@@ -626,122 +657,9 @@ export const Search = () => {
                     return (
                       <Card>
                         <Stack>
-                          <Group>
-                            <Text fw={600}>{item.name}</Text>
-                            <Badge color={equipmentTypeColors(item.type)}>
-                              {equipmentTypeLabels(item.type)}
-                            </Badge>
-                            {item?.weaponType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.weaponType)}
-                              </Badge>
-                            )}
-                            {item?.vehicleType && (
-                              <Badge color="grey">{item?.vehicleType}</Badge>
-                            )}
-                            {item?.gearAndServicesType && (
-                              <Badge color="grey">
-                                {equipmentTypeLabels(item?.gearAndServicesType)}
-                              </Badge>
-                            )}
-                            {item?.restricted && (
-                              <Badge color="red">Restricted</Badge>
-                            )}
-                          </Group>
-                          <Divider />
-                          <Grid>
-                            {item?.weaponType === "firearms" &&
-                              item?.restricted && (
-                                <Grid.Col span={12}>
-                                  <Text c="red" fw={700} td="underline">
-                                    [RESTRICTED ITEM IF CAPABLE OF AUTOMATIC
-                                    FIRE]
-                                  </Text>
-                                </Grid.Col>
-                              )}
-                            {item?.skill && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Skill</InputLabel>
-                                  <Text tt="capitalize">
-                                    {skillKeyLabels(item?.skill)}
-                                  </Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.range > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Range</InputLabel>
-                                  <Text>{item?.range}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.uses && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Uses</InputLabel>
-                                  <Text>{item?.uses}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.radius && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Radius</InputLabel>
-                                  <Text>{item?.radius}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.penalty && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">
-                                    Target Penalty
-                                  </InputLabel>
-                                  <Text>{item?.penalty}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.damage && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Damage</InputLabel>
-                                  <Text>{item?.damage}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.lethality > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">Lethality</InputLabel>
-                                  <Text>{item?.lethality}%</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.ammoCapacity > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">
-                                    Ammo Capacity
-                                  </InputLabel>
-                                  <Text>{item?.ammoCapacity}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            {item?.armorPiercing > 0 && (
-                              <Grid.Col span={"auto"}>
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">
-                                    Armor Piercing
-                                  </InputLabel>
-                                  <Text>{item?.armorPiercing}</Text>
-                                </Stack>
-                              </Grid.Col>
-                            )}
-                            <Grid.Col span={2}>
+                          <Group justify="space-between">
+                            <Group>
                               <Stack gap="xs">
-                                <InputLabel c="dimmed">Expense</InputLabel>
                                 <Text tt="capitalize">
                                   <Group>
                                     <IconTriangleFilled
@@ -749,26 +667,188 @@ export const Search = () => {
                                         item?.expense.toLowerCase()
                                       )}
                                     />
-                                    {item?.expense}
                                   </Group>
                                 </Text>
                               </Stack>
-                            </Grid.Col>
-                            {item?.description && (
-                              <Grid.Col
-                                span={
-                                  item?.weaponType === "firearms" ? 12 : "auto"
-                                }
-                              >
-                                <Stack gap="xs">
-                                  <InputLabel c="dimmed">
-                                    Description
-                                  </InputLabel>
-                                  <Text>{item?.description}</Text>
-                                </Stack>
-                              </Grid.Col>
+                              <Text fw={600}>{item.name}</Text>
+                            </Group>
+                            <Group>
+                              <Badge color={equipmentTypeColors(item.type)}>
+                                {equipmentTypeLabels(item.type)}
+                              </Badge>
+                              {item?.weaponType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(item?.weaponType)}
+                                </Badge>
+                              )}
+                              {item?.vehicleType && (
+                                <Badge color="grey">{item?.vehicleType}</Badge>
+                              )}
+                              {item?.gearAndServicesType && (
+                                <Badge color="grey">
+                                  {equipmentTypeLabels(
+                                    item?.gearAndServicesType
+                                  )}
+                                </Badge>
+                              )}
+                              {item?.restricted && (
+                                <Badge color="red">Restricted</Badge>
+                              )}
+                            </Group>
+                          </Group>
+                          {item.type !== "gearAndServices" &&
+                            !item.description && (
+                              <>
+                                <Divider />
+                                <Grid>
+                                  {item?.weaponType === "firearms" &&
+                                    item?.restricted && (
+                                      <Grid.Col span={12}>
+                                        <Text c="red" fw={700} td="underline">
+                                          [RESTRICTED ITEM IF CAPABLE OF
+                                          AUTOMATIC FIRE]
+                                        </Text>
+                                      </Grid.Col>
+                                    )}
+                                  {item?.skill && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Skill
+                                        </InputLabel>
+                                        <Text tt="capitalize">
+                                          {skillKeyLabels(item?.skill)}
+                                        </Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.range > 0 && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Range
+                                        </InputLabel>
+                                        <Text>{item?.range}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.uses && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">Uses</InputLabel>
+                                        <Text>{item?.uses}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.radius && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Radius
+                                        </InputLabel>
+                                        <Text>{item?.radius}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.penalty && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Target Penalty
+                                        </InputLabel>
+                                        <Text>{item?.penalty}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.damage && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Damage
+                                        </InputLabel>
+                                        <Text>{item?.damage}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.lethality > 0 && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Lethality
+                                        </InputLabel>
+                                        <Text>{item?.lethality}%</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.ammoCapacity > 0 && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Ammo Capacity
+                                        </InputLabel>
+                                        <Text>{item?.ammoCapacity}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.armorPiercing > 0 && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Armor Piercing
+                                        </InputLabel>
+                                        <Text>{item?.armorPiercing}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.hp && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Hit Points
+                                        </InputLabel>
+                                        <Text>{item?.hp}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.armor > -1 && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Armor
+                                        </InputLabel>
+                                        <Text>{item?.armor}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.speed && (
+                                    <Grid.Col span={"auto"}>
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Speed
+                                        </InputLabel>
+                                        <Text>{item?.speed}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                  {item?.description && (
+                                    <Grid.Col
+                                      span={
+                                        item?.weaponType === "firearms"
+                                          ? 12
+                                          : "auto"
+                                      }
+                                    >
+                                      <Stack gap="xs">
+                                        <InputLabel c="dimmed">
+                                          Description
+                                        </InputLabel>
+                                        <Text>{item?.description}</Text>
+                                      </Stack>
+                                    </Grid.Col>
+                                  )}
+                                </Grid>
+                              </>
                             )}
-                          </Grid>
                         </Stack>
                       </Card>
                     );

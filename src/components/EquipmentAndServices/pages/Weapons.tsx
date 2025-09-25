@@ -141,9 +141,9 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Base Damage</Table.Th>
-                    <Table.Th>Armor Piercing</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Base Damage</Table.Th>
+                    <Table.Th ta='center'>Armor Piercing</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -179,7 +179,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -249,11 +248,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Uses</Table.Th>
+                    <Table.Th ta='center'>Radius</Table.Th>
+                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -289,7 +288,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -359,11 +357,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Uses</Table.Th>
+                    <Table.Th ta='center'>Radius</Table.Th>
+                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -399,7 +397,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -467,10 +464,10 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Uses</Table.Th>
-                    <Table.Th>Victim's Penalty</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Uses</Table.Th>
+                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -497,15 +494,14 @@ export const Weapons = () => {
                           <Table.Td tt="capitalize">
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
-                          <Table.Td>{item.range}m</Table.Td>
-                          <Table.Td>{item.uses}</Table.Td>
-                          <Table.Td>{item.penalty}</Table.Td>
+                          <Table.Td ta='center'>{item.range}m</Table.Td>
+                          <Table.Td ta='center'>{item.uses}</Table.Td>
+                          <Table.Td ta='center'>{item.penalty}</Table.Td>
                           <Table.Td tt="capitalize">
                             <Stack align="center">
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -669,12 +665,12 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Damage</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Lethality</Table.Th>
-                    <Table.Th>Ammo Capacity</Table.Th>
-                    <Table.Th>Armor Piercing</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Damage</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Lethality</Table.Th>
+                    <Table.Th ta='center'>Ammo Capacity</Table.Th>
+                    <Table.Th ta='center'>Armor Piercing</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -717,7 +713,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -796,12 +791,12 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Lethality</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Ammo Capacity</Table.Th>
-                    <Table.Th>Armor Piercing</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Lethality</Table.Th>
+                    <Table.Th ta='center'>Radius</Table.Th>
+                    <Table.Th ta='center'>Ammo Capacity</Table.Th>
+                    <Table.Th ta='center'>Armor Piercing</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -842,7 +837,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -909,11 +903,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Lethality</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Armor Piercing</Table.Th>
-                    <Table.Th>Expense</Table.Th>
+                    <Table.Th ta='center'>Range</Table.Th>
+                    <Table.Th ta='center'>Lethality</Table.Th>
+                    <Table.Th ta='center'>Radius</Table.Th>
+                    <Table.Th ta='center'>Armor Piercing</Table.Th>
+                    <Table.Th ta='center'>Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -953,7 +947,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>
@@ -1066,7 +1059,6 @@ export const Weapons = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           </Table.Td>
                         </Table.Tr>

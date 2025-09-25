@@ -47,7 +47,7 @@ export const Armor = () => {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Item</Table.Th>
-                <Table.Th>Armor Rating</Table.Th>
+                <Table.Th ta='center'>Armor Rating</Table.Th>
                 <Table.Th>Description</Table.Th>
                 <Table.Th>Expense</Table.Th>
               </Table.Tr>
@@ -57,14 +57,13 @@ export const Armor = () => {
                 return (
                   <Table.Tr>
                     <Table.Td>{item.name}</Table.Td>
-                    <Table.Td>{item.armorRating}</Table.Td>
+                    <Table.Td ta='center'>{item.armorRating}</Table.Td>
                     <Table.Td>{item.description}</Table.Td>
                     <Table.Td tt="capitalize">
                       <Stack align="center">
                         <IconTriangleFilled
                           color={calculateIcon(item.expense)}
                         />
-                        {item.expense}
                       </Stack>
                     </Table.Td>
                   </Table.Tr>
