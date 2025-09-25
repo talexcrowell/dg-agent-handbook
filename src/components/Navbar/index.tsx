@@ -330,7 +330,7 @@ export const Navbar = () => {
           active={location.pathname.includes("/agents")}
           leftSection={<IconAddressBook />}
         >
-          {currentCharacter && (
+          {currentCharacter.name && (
             <>
               <InputLabel size="xs" c="dimmed">
                 Current Agent
