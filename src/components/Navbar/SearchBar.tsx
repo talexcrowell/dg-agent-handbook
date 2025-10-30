@@ -35,8 +35,11 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
     subheaderString?: string
   ) => {
     let chapter;
-    let section = sectionString.toLowerCase().replace(/ /g, "-");
-    let header = headerString?.toLowerCase().replace(/ /g, "-");
+    let section = sectionString?.replace(/,/g, "").toLowerCase().replace(/ /g, "-");
+    let header = headerString
+      ?.replace(",", "")
+      .toLowerCase()
+      .replace(/ /g, "-");
     let subheader = subheaderString?.toLowerCase().replace(/ /g, "-");
 
     switch (chapterString) {
