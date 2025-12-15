@@ -174,8 +174,8 @@ export const AgentRoster = () => {
           <SegmentedControl
             data={[
               { label: "Agent Roster", value: "roster" },
-              { label: "Add Pre-Made Agent", value: "premade" },
-              { label: "Import Agent", value: "import" },
+              { label: "Add Pre-Made", value: "premade" },
+              { label: "Import", value: "import" },
             ]}
             onChange={(e) => setPage(e)}
             value={page}
