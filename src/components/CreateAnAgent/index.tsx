@@ -345,24 +345,24 @@ export const CreateAnAgent: React.FC = () => {
           break;
       }
     }
-    notifications.show({
-      color: "green",
-      title: "Agent Created Successfully!",
-      message: `Agent ${userAgent.codename} has been added to the Agent Roster.`,
-      position: "top-center",
-    });
-    localStorage.setItem("currentCharacter", JSON.stringify({ ...userAgent }));
+    localStorage.setItem("currentCharacter", JSON.stringify({ ...newObj }));
     const localSaved = localStorage.getItem("savedCharacters");
 
     localSaved !== null
       ? localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([...JSON.parse(localSaved), { ...userAgent }])
+          JSON.stringify([...JSON.parse(localSaved), { ...newObj }])
         )
       : localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([{ ...userAgent }])
+          JSON.stringify([{ ...newObj }])
         );
+    notifications.show({
+      color: "green",
+      title: "Agent Created Successfully!",
+      message: `Agent ${newObj.codename} has been added to the Agent Roster.`,
+      position: "top-center",
+    });
 
     setUserAgent({
       name: "",

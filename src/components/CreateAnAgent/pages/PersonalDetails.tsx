@@ -500,9 +500,9 @@ export const PersonalDetails: React.FC<{
                     <Group>
                       <Text>Sanity:</Text>
                       <Group>
-                        <Text>{userAgent.attributes.san.current}</Text>
+                        <Text>{userAgent.attributes?.san.current}</Text>
                         <IconArrowRight />
-                        <Text>{userAgent.attributes.san.current - 5}</Text>
+                        <Text>{userAgent.attributes?.san.current - 5}</Text>
                       </Group>
                     </Group>
                   </ListItem>
@@ -520,9 +520,9 @@ export const PersonalDetails: React.FC<{
                     <Group>
                       <Text>Bond Values:</Text>
                       <Group>
-                        <Text>{userAgent.bonds[0].value}</Text>
+                        <Text>{userAgent.bonds[0]?.value}</Text>
                         <IconArrowRight />
-                        <Text>{userAgent.bonds[0].value - 3}</Text>
+                        <Text>{userAgent.bonds[0]?.value - 3}</Text>
                       </Group>
                     </Group>
                   </ListItem>
@@ -559,9 +559,9 @@ export const PersonalDetails: React.FC<{
                     <Group>
                       <Text>Sanity:</Text>
                       <Group>
-                        <Text>{userAgent.attributes.san.current}</Text>
+                        <Text>{userAgent.attributes?.san.current}</Text>
                         <IconArrowRight />
-                        <Text>{userAgent.attributes.san.current - 5}</Text>
+                        <Text>{userAgent.attributes?.san.current - 5}</Text>
                       </Group>
                     </Group>
                   </ListItem>
@@ -609,9 +609,9 @@ export const PersonalDetails: React.FC<{
                       <Group>
                         <Text>Sanity:</Text>
                         <Group>
-                          <Text>{userAgent.attributes.san.current}</Text>
+                          <Text>{userAgent.attributes?.san.current}</Text>
                           <IconArrowRight />
-                          <Text>{userAgent.attributes.san.current - 5}</Text>
+                          <Text>{userAgent.attributes?.san.current - 5}</Text>
                         </Group>
                       </Group>
                     </ListItem>
@@ -682,10 +682,10 @@ export const PersonalDetails: React.FC<{
                       <Group>
                         <Text>Sanity:</Text>
                         <Group>
-                          <Text>{userAgent.attributes.san.current}</Text>
+                          <Text>{userAgent.attributes?.san.current}</Text>
                           <IconArrowRight />
                           <Text>
-                            {userAgent.attributes.san.current -
+                            {userAgent.attributes?.san.current -
                               userAgent.stats.power}
                           </Text>
                         </Group>
@@ -695,10 +695,10 @@ export const PersonalDetails: React.FC<{
                       <Group>
                         <Text>Breaking Point:</Text>
                         <Group>
-                          <Text>{userAgent.attributes.bp.current}</Text>
+                          <Text>{userAgent?.attributes?.bp.current}</Text>
                           <IconArrowRight />
                           <Text>
-                            {userAgent.attributes.san.current -
+                            {userAgent?.attributes?.san.current -
                               userAgent.stats.power -
                               userAgent.stats.power}
                           </Text>
