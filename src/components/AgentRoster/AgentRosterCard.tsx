@@ -61,34 +61,33 @@ export const AgentRosterCard: React.FC<{
           </Grid.Col> */}
           <Grid.Col span={2}>
             <Stack gap="xs">
-              <InputLabel fw={700} td="underline">
+              <InputLabel fw={700} c='dimmed'>
                 Codename
               </InputLabel>
               <Text>{agent.codename}</Text>
               <Divider />
-              <InputLabel fw={700} td="underline">
+              <InputLabel fw={700} c='dimmed'>
                 Name
               </InputLabel>
-              <Text>{agent.name}</Text>
+              <Text truncate='end'>{agent.name}</Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={2}>
             <Stack gap="xs">
-              <InputLabel fw={700} td="underline">
+              <InputLabel fw={700} c='dimmed'>
                 Profession
               </InputLabel>
-              <Text>{agent.profession}</Text>
+              <Text truncate='end'>{agent.profession}</Text>
               <Divider />
-              <InputLabel td="underline">
+              <InputLabel c='dimmed'>
                 <Text fw={700} size="sm" truncate="end">
                   Education/Occupation History
                 </Text>
               </InputLabel>
-              <Text>{agent.education}</Text>
+              <Text truncate='end'>{agent.education}</Text>
             </Stack>
           </Grid.Col>
           <Divider orientation="vertical" />
-
           <Grid.Col span={1}>
             <Stack gap="0">
               <Group justify="space-between">
@@ -143,109 +142,86 @@ export const AgentRosterCard: React.FC<{
               </Group>
             </Stack>
           </Grid.Col>
-          <Divider orientation="vertical" />
           <Grid.Col span={2}>
-            <Flex justify="center">
-              <Stack>
+            <Stack>
+              <Button
+                component={Link}
+                to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+                onClick={() => {
+                  actions.changeCurrentCharacter({ ...agent });
+                  localStorage.setItem(
+                    "currentCharacter",
+                    JSON.stringify({ ...agent })
+                  );
+                }}
+                leftSection={<IconFile />}
+                variant="outline"
+              >
+                {handleGenerateCharacter ? "Preview" : "View"}
+              </Button>
+              {handleExport && (
                 <Button
-                  component={Link}
-                  to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                  onClick={() => {
-                    actions.changeCurrentCharacter({ ...agent });
-                    localStorage.setItem(
-                      "currentCharacter",
-                      JSON.stringify({ ...agent })
-                    );
-                  }}
-                  leftSection={<IconFile />}
+                  onClick={() => handleExport({ ...agent })}
+                  leftSection={<IconShare />}
                   variant="outline"
                 >
-                  {handleGenerateCharacter ? "Preview" : "View"}
+                  Export
                 </Button>
-                {handleExport && (
-                  <Button
-                    onClick={() => handleExport({ ...agent })}
-                    leftSection={<IconShare />}
-                    variant="outline"
-                  >
-                    Export
-                  </Button>
-                )}
-                {handleRemoveSavedCharacter && (
-                  <Button
-                    onClick={() => handleRemoveSavedCharacter(agent)}
-                    color="red"
-                    leftSection={<IconTrash />}
-                    variant="outline"
-                  >
-                    Delete
-                  </Button>
-                )}
-                {handleGenerateCharacter && (
-                  <Button
-                    onClick={() => handleGenerateCharacter(agent)}
-                    leftSection={<IconUserPlus />}
-                    variant="outline"
-                    color="green"
-                  >
-                    Add to Roster
-                  </Button>
-                )}
-              </Stack>
-            </Flex>
+              )}
+              {handleRemoveSavedCharacter && (
+                <Button
+                  onClick={() => handleRemoveSavedCharacter(agent)}
+                  color="red"
+                  leftSection={<IconTrash />}
+                  variant="outline"
+                >
+                  Delete
+                </Button>
+              )}
+              {handleGenerateCharacter && (
+                <Button
+                  onClick={() => handleGenerateCharacter(agent)}
+                  leftSection={<IconUserPlus />}
+                  variant="outline"
+                  color="green"
+                >
+                  Add to Roster
+                </Button>
+              )}
+            </Stack>
           </Grid.Col>
         </Grid>
       ) : (
         <Grid>
-          <Grid.Col span={viewport.width > 600 ? 2 : 3}>
-            <Center>
-              {agent.image ? (
-                <Image
-                  src={agent.image}
-                  h={148}
-                  w={100}
-                  fit="contain"
-                  radius="md"
-                  px="xs"
-                />
-              ) : (
-                <Card withBorder w={100} h={148}>
-                  <Group justify="center" my="auto">
-                    <IconUserQuestion size="62" />
-                  </Group>
-                </Card>
-              )}
-            </Center>
-          </Grid.Col>
-          <Grid.Col span={viewport.width > 600 ? 3 : 4}>
+          <Grid.Col span={6}>
             <Stack gap="xs">
-              <InputLabel fw={700} td="underline">
+              <InputLabel fw={700} c='dimmed'>
                 Codename
               </InputLabel>
               <Text>{agent.codename}</Text>
               <Divider />
-              <InputLabel fw={700} td="underline">
-                Name
-              </InputLabel>
-              <Text>{agent.name}</Text>
-            </Stack>
-          </Grid.Col>
-          <Grid.Col span={viewport.width > 600 ? 3 : 5}>
-            <Stack gap="xs">
-              <InputLabel fw={700} td="underline">
+              <InputLabel fw={700} c='dimmed'>
                 Profession
               </InputLabel>
-              <Text>{agent.profession}</Text>
+              <Text truncate='end'>{agent.profession}</Text>
+            </Stack>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Stack gap="xs">
+              <InputLabel fw={700} c='dimmed'>
+                Name
+              </InputLabel>
+              <Text truncate='end'>{agent.name}</Text>
               <Divider />
-              <InputLabel td="underline">
+              <InputLabel c='dimmed' >
                 <Text fw={700} truncate="end" size="sm">
                   Education/Occupation History
                 </Text>
               </InputLabel>
-              <Text>{agent.education}</Text>
+              <Text truncate='end'>{agent.education}</Text>
             </Stack>
           </Grid.Col>
-          {viewport.width > 600 && (
+          {/* {viewport.width > 600 && (
             <Grid.Col span={2}>
               <Stack gap="0">
                 <Group justify="space-between">
@@ -302,36 +278,57 @@ export const AgentRosterCard: React.FC<{
                 </Group>
               </Stack>
             </Grid.Col>
-          )}
-          <Grid.Col>
+          )} */}
+          <Grid.Col span={12}>
             <Divider />
           </Grid.Col>
           <Grid.Col span={12}>
-            <Flex justify="center">
-              <Group>
+            <Group justify="space-evenly">
+              <Button
+                component={Link}
+                to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+                onClick={() => {
+                  actions.changeCurrentCharacter({ ...agent });
+                  localStorage.setItem(
+                    "currentCharacter",
+                    JSON.stringify({ ...agent })
+                  );
+                }}
+                leftSection={<IconFile />}
+                variant="outline"
+              >
+                {handleGenerateCharacter ? "Preview" : "View"}
+              </Button>
+              {handleExport && (
                 <Button
-                  component={Link}
-                  to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                  onClick={() => actions.changeCurrentCharacter({ ...agent })}
-                  leftSection={<IconFile />}
-                >
-                  View
-                </Button>
-                <Button
-                  onClick={() => handleExport(agent)}
+                  onClick={() => handleExport({ ...agent })}
                   leftSection={<IconShare />}
+                  variant="outline"
                 >
                   Export
                 </Button>
+              )}
+              {handleRemoveSavedCharacter && (
                 <Button
                   onClick={() => handleRemoveSavedCharacter(agent)}
-                  bg="red"
+                  color="red"
                   leftSection={<IconTrash />}
+                  variant="outline"
                 >
                   Delete
                 </Button>
-              </Group>
-            </Flex>
+              )}
+              {handleGenerateCharacter && (
+                <Button
+                  onClick={() => handleGenerateCharacter(agent)}
+                  leftSection={<IconUserPlus />}
+                  variant="outline"
+                  color="green"
+                >
+                  Add to Roster
+                </Button>
+              )}
+            </Group>
           </Grid.Col>
         </Grid>
       )}
