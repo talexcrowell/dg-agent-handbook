@@ -51,7 +51,7 @@ import { useCharacterContext } from "../../contexts/CharacterContext";
 export const Navbar = () => {
   const location = useLocation();
   const { width } = useViewportSize();
-  const [{ currentCharacter }] = useCharacterContext();
+  const [{ currentCharacter, savedCharacters }] = useCharacterContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -158,22 +158,25 @@ export const Navbar = () => {
                 </Button>
               </Menu.Target>
               <Menu.Dropdown w="175" ta="start">
-                {currentCharacter.name && (
-                  <>
-                    <Menu.Label>Current Agent</Menu.Label>
-                    <Menu.Item
-                      px="xs"
-                      leftSection={
-                        <Avatar size="sm" src={currentCharacter.image} />
-                      }
-                      component={Link}
-                      to={`/agents/sheet/${currentCharacter.codename}`}
-                    >
-                      Agent {currentCharacter.codename}
-                    </Menu.Item>
-                    <Menu.Divider />
-                  </>
-                )}
+                {currentCharacter.name &&
+                  savedCharacters.filter(
+                    (agent) => agent.name === currentCharacter.name
+                  ).length !== 0 && (
+                    <>
+                      <Menu.Label>Current Agent</Menu.Label>
+                      <Menu.Item
+                        px="xs"
+                        leftSection={
+                          <Avatar size="sm" src={currentCharacter.image} />
+                        }
+                        component={Link}
+                        to={`/agents/sheet/${currentCharacter.codename}`}
+                      >
+                        Agent {currentCharacter.codename}
+                      </Menu.Item>
+                      <Menu.Divider />
+                    </>
+                  )}
                 <Menu.Label>Personnel Records</Menu.Label>
                 <Menu.Item
                   leftSection={<IconAddressBook />}
@@ -330,22 +333,27 @@ export const Navbar = () => {
           active={location.pathname.includes("/agents")}
           leftSection={<IconAddressBook />}
         >
-          {currentCharacter.name && (
-            <>
-              <InputLabel size="xs" c="dimmed">
-                Current Agent
-              </InputLabel>
-              <NavLink
-                autoContrast
-                label={`Agent ${currentCharacter.codename}`}
-                component={Link}
-                to={`/agents/sheet/${currentCharacter.codename}`}
-                active={location.pathname.includes("/agents/sheet")}
-                leftSection={<Avatar src={currentCharacter.image} size="sm" />}
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </>
-          )}
+          {currentCharacter.name &&
+            savedCharacters.filter(
+              (agent) => agent.name === currentCharacter.name
+            ).length !== 0 && (
+              <>
+                <InputLabel size="xs" c="dimmed">
+                  Current Agent
+                </InputLabel>
+                <NavLink
+                  autoContrast
+                  label={`Agent ${currentCharacter.codename}`}
+                  component={Link}
+                  to={`/agents/sheet/${currentCharacter.codename}`}
+                  active={location.pathname.includes("/agents/sheet")}
+                  leftSection={
+                    <Avatar src={currentCharacter.image} size="sm" />
+                  }
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+              </>
+            )}
           <Divider />
           <InputLabel size="xs" c="dimmed">
             Personnel Records

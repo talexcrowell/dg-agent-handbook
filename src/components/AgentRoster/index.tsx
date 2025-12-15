@@ -16,6 +16,9 @@ import {
   InputLabel,
   List,
   Modal,
+  ScrollArea,
+  ScrollAreaAutosize,
+  SegmentedControl,
   Select,
   Stack,
   Text,
@@ -48,16 +51,9 @@ import { AgentRosterCard } from "./AgentRosterCard";
 export const AgentRoster = () => {
   const [{ currentCharacter, savedCharacters }, actions] =
     useCharacterContext();
-  const [opened, setOpened] = useState(false);
-  const [openedGenerate, setOpenedGenerate] = useState(false);
+  const [page, setPage] = useState("roster");
   const [importString, setImportString] = useState("");
   const [viewport] = useViewportContext();
-  const [premade, setPremade] = useState({});
-
-  const toggleImport = () => {
-    setOpened(!opened);
-    setOpenedGenerate(false);
-  };
 
   const handleExport = (character) => {
     let jsonObj = JSON.stringify({ ...character });
@@ -92,7 +88,7 @@ export const AgentRoster = () => {
       message: "Agent is available in Agent Roster",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
-    toggleImport();
+    setPage("roster");
   };
 
   const handleRemoveSavedCharacter = (character: any) => {
@@ -112,18 +108,9 @@ export const AgentRoster = () => {
     });
     localStorage.setItem("savedCharacters", JSON.stringify([...newArr]));
   };
-  const togglePreMadeCharacter = () => {
-    setOpened(false);
-    setOpenedGenerate(!openedGenerate);
-  };
 
-  const handleSelectPreMade = (value) => {
-    let choice = premadeAgents.filter((agent) => agent.codename === value)[0];
-    setPremade({ ...choice });
-  };
-
-  const handleGenerateCharacter = () => {
-    let character = { ...premade };
+  const handleGenerateCharacter = (agent) => {
+    let character = { ...agent };
     const localSaved = localStorage.getItem("savedCharacters");
     localSaved !== null
       ? localStorage.setItem(
@@ -136,13 +123,13 @@ export const AgentRoster = () => {
         );
 
     actions.importCharacter({ ...character });
+    setPage("roster");
     notifications.show({
       color: "green",
       title: "Pre-Made Agent Added Successfully!",
       message: "Agent is available in Agent Roster",
       position: viewport.width < 760 ? "top-center" : "bottom-center",
     });
-    togglePreMadeCharacter();
   };
 
   return (
@@ -184,88 +171,49 @@ export const AgentRoster = () => {
       </Grid.Col>
       <Grid.Col span={12}>
         <Stack>
-          <Group>
-            {!opened && !openedGenerate && (
-              <Button
-                component={Link}
-                to="/agents/new"
-                color="green"
-                leftSection={<IconUserPlus />}
-                variant="outline"
-              >
-                Create An Agent
-              </Button>
-            )}
-            {!opened && (
-              <Button
-                leftSection={
-                  openedGenerate ? <IconArrowBack /> : <IconUserScan />
-                }
-                onClick={togglePreMadeCharacter}
-                variant={openedGenerate ? "filled" : "outline"}
-              >
-                {openedGenerate ? "Back to Roster" : "Add Pre-Made Agent"}
-              </Button>
-            )}
-            {!openedGenerate && (
-              <Button
-                onClick={toggleImport}
-                leftSection={opened ? <IconArrowBack /> : <IconFileImport />}
-                variant={opened ? "filled" : "outline"}
-              >
-                {opened ? "Back to Roster" : "Import Agent"}
-              </Button>
-            )}
-          </Group>
-          {opened ? (
+          <SegmentedControl
+            data={[
+              { label: "Agent Roster", value: "roster" },
+              { label: "Add Pre-Made Agent", value: "premade" },
+              { label: "Import Agent", value: "import" },
+            ]}
+            onChange={(e) => setPage(e)}
+            value={page}
+          />
+          {page === "import" ? (
             <Stack>
+              <Text c="dimmed" size="sm">
+                If you have created an Agent on another device, you can add them
+                to this device by copying and pasting the export string into the
+                input below.
+              </Text>
               <Textarea
-                label="Paste import string here"
                 rows={10}
                 value={importString}
                 onChange={(e) => setImportString(e.currentTarget.value)}
+                placeholder="Paste import string here..."
               />
               <Button onClick={() => handleImport(importString)}>
                 Import Agent
               </Button>
             </Stack>
-          ) : openedGenerate ? (
-            <Card>
-              <Grid>
-                <Grid.Col>
+          ) : page === "premade" ? (
+            <Grid>
+              <Grid.Col>
+                <ScrollAreaAutosize h="700">
                   <Stack>
-                    <Title order={3}>Pre-Made Agents</Title>
-                    <Text>
-                      These are basic pre-made Agents that can be used for
-                      operations. There are a wide variety of Agents that can be
-                      useful to Delta Green so explore the different options.
-                    </Text>
-                    <Text>
-                      Once selected and added to your Agent Roster, you are
-                      welcome to change the Agent's details to fit your idea.
-                    </Text>
-
-                    <Select
-                      label={"Pre-Made Agent List"}
-                      data={premadeAgents.map((agent) => {
-                        return {
-                          label: `Agent ${agent.codename} (${agent.name}) | ${agent.profession}, ${agent.employer}`,
-                          value: agent.codename,
-                        };
-                      })}
-                      onChange={(e) => handleSelectPreMade(e)}
-                      required={true}
-                    />
-                    <Button
-                      onClick={handleGenerateCharacter}
-                      disabled={!premade?.codename}
-                    >
-                      Add Pre-Made Character
-                    </Button>
+                    {premadeAgents.map((agent) => {
+                      return (
+                        <AgentRosterCard
+                          agent={agent}
+                          handleGenerateCharacter={handleGenerateCharacter}
+                        />
+                      );
+                    })}
                   </Stack>
-                </Grid.Col>
-              </Grid>
-            </Card>
+                </ScrollAreaAutosize>
+              </Grid.Col>
+            </Grid>
           ) : savedCharacters.length > 0 ? (
             <Stack>
               {savedCharacters.map((agent) =>
@@ -291,14 +239,34 @@ export const AgentRoster = () => {
                   />
                 )
               )}
+              <Button
+                component={Link}
+                to="/agents/new"
+                color="green"
+                leftSection={<IconUserPlus />}
+                variant="outline"
+              >
+                Create An Agent
+              </Button>
             </Stack>
           ) : (
-            <Stack py="lg">
+            <Stack>
               <Card withBorder p="xl">
-                <Text ta="center" c="dimmed">
-                  You have not created any Delta Green agents
-                </Text>
+                <Stack>
+                  <Text ta="center" c="dimmed">
+                    There are no Delta Green agents in your roster.
+                  </Text>
+                </Stack>
               </Card>
+              <Button
+                component={Link}
+                to="/agents/new"
+                color="green"
+                leftSection={<IconUserPlus />}
+                variant="outline"
+              >
+                Create An Agent
+              </Button>
             </Stack>
           )}
         </Stack>

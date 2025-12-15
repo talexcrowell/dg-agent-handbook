@@ -15,6 +15,7 @@ import {
   IconFile,
   IconShare,
   IconTrash,
+  IconUserPlus,
   IconUserQuestion,
 } from "@tabler/icons-react";
 import { useViewportContext } from "../../contexts/ViewportContext";
@@ -24,16 +25,22 @@ import React from "react";
 
 export const AgentRosterCard: React.FC<{
   agent: any;
-  handleExport: any;
-  handleRemoveSavedCharacter: any;
-}> = ({ agent, handleExport, handleRemoveSavedCharacter }) => {
+  handleExport?: any;
+  handleRemoveSavedCharacter?: any;
+  handleGenerateCharacter?: any;
+}> = ({
+  agent,
+  handleExport,
+  handleRemoveSavedCharacter,
+  handleGenerateCharacter,
+}) => {
   const [, actions] = useCharacterContext();
   const [viewport] = useViewportContext();
   return (
     <Card withBorder radius={"md"}>
       {viewport.width > 992 ? (
         <Grid justify="space-between" gutter={0}>
-          <Grid.Col span={1}>
+          {/* <Grid.Col span={1}>
             <Center>
               {agent.image ? (
                 <Image
@@ -51,7 +58,7 @@ export const AgentRosterCard: React.FC<{
                 </Card>
               )}
             </Center>
-          </Grid.Col>
+          </Grid.Col> */}
           <Grid.Col span={2}>
             <Stack gap="xs">
               <InputLabel fw={700} td="underline">
@@ -136,7 +143,6 @@ export const AgentRosterCard: React.FC<{
               </Group>
             </Stack>
           </Grid.Col>
-
           <Divider orientation="vertical" />
           <Grid.Col span={2}>
             <Flex justify="center">
@@ -154,23 +160,37 @@ export const AgentRosterCard: React.FC<{
                   leftSection={<IconFile />}
                   variant="outline"
                 >
-                  View
+                  {handleGenerateCharacter ? "Preview" : "View"}
                 </Button>
-                <Button
-                  onClick={() => handleExport({ ...agent })}
-                  leftSection={<IconShare />}
-                  variant="outline"
-                >
-                  Export
-                </Button>
-                <Button
-                  onClick={() => handleRemoveSavedCharacter(agent)}
-                  color="red"
-                  leftSection={<IconTrash />}
-                  variant="outline"
-                >
-                  Delete
-                </Button>
+                {handleExport && (
+                  <Button
+                    onClick={() => handleExport({ ...agent })}
+                    leftSection={<IconShare />}
+                    variant="outline"
+                  >
+                    Export
+                  </Button>
+                )}
+                {handleRemoveSavedCharacter && (
+                  <Button
+                    onClick={() => handleRemoveSavedCharacter(agent)}
+                    color="red"
+                    leftSection={<IconTrash />}
+                    variant="outline"
+                  >
+                    Delete
+                  </Button>
+                )}
+                {handleGenerateCharacter && (
+                  <Button
+                    onClick={() => handleGenerateCharacter(agent)}
+                    leftSection={<IconUserPlus />}
+                    variant="outline"
+                    color="green"
+                  >
+                    Add to Roster
+                  </Button>
+                )}
               </Stack>
             </Flex>
           </Grid.Col>
