@@ -38,7 +38,7 @@ export const OtherProfessionalSkills: React.FC<{
   handleAgentSkillPackage: (selectedPackage: any) => void;
   userAgent: any;
 }> = ({ handleAgentOtherSkills, handleAgentSkillPackage, userAgent }) => {
-  const [statSystem, setStatSystem] = useState("custom");
+  const [statSystem, setStatSystem] = useState("packages");
   const [count, setCount] = useState(8);
   const [selectedPackage, setSelectedPackage] = useState();
   const [confirmedPackage, setConfirmedPackage] = useState(false);
@@ -271,7 +271,7 @@ export const OtherProfessionalSkills: React.FC<{
             For more information, you can read the{" "}
             <Anchor
               component={Link}
-              to="/agents/professions/stats-and-skills#skills"
+              to="/training/stats-and-skills#skills"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -287,8 +287,8 @@ export const OtherProfessionalSkills: React.FC<{
       <Grid.Col span={12}>
         <SegmentedControl
           data={[
-            { label: "Custom", value: "custom" },
             { label: "Packages", value: "packages" },
+            { label: "Custom", value: "custom" },
           ]}
           onChange={setStatSystem}
           disabled={confirmedPackage}
@@ -946,7 +946,7 @@ export const OtherProfessionalSkills: React.FC<{
               <Title order={3}>{selectedPackage.name}</Title>
             </Stack>
           </Grid.Col>
-          <Grid.Col span={6}>
+          <Grid.Col span={12}>
             <Table withColumnBorders withTableBorder>
               <Table.Thead>
                 <Table.Tr>

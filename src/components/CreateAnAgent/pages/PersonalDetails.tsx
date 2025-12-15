@@ -1,27 +1,48 @@
 import {
+  Accordion,
+  AccordionControl,
+  AccordionItem,
+  AccordionPanel,
   ActionIcon,
+  Anchor,
   Button,
   Card,
   Center,
+  CloseButton,
+  Combobox,
+  Divider,
   FileButton,
   Grid,
   Group,
   Image,
   Input,
+  InputBase,
+  InputLabel,
   List,
+  ListItem,
+  MultiSelect,
   NumberInput,
   Select,
   Stack,
+  Switch,
   Text,
   TextInput,
   Textarea,
   Title,
+  useCombobox,
 } from "@mantine/core";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useViewportContext } from "../../../contexts/ViewportContext";
-import { IconPencilPlus, IconUserScan } from "@tabler/icons-react";
+import {
+  IconArrowRight,
+  IconCheck,
+  IconPencilPlus,
+  IconUserScan,
+  IconX,
+} from "@tabler/icons-react";
 import { faker } from "@faker-js/faker";
+import { skillsMasterList } from "../../../data";
 
 export const PersonalDetails: React.FC<{
   handleAgentPersonalDetails: (val: any, key: any) => void;
@@ -29,6 +50,22 @@ export const PersonalDetails: React.FC<{
   userAgent: any;
 }> = ({ handleAgentPersonalDetails, handleCreateAgent, userAgent }) => {
   const [viewport] = useViewportContext();
+  const combobox = useCombobox({
+    onDropdownClose: () => combobox.resetSelectedOption(),
+  });
+  const [checked, setChecked] = useState(false);
+
+  const [value, setValue] = useState<string | null>(null);
+  const [veteranValues, setVeteranValues] = useState<any>({
+    bond: "",
+    skills: [],
+    wounds: "",
+  });
+  const handleVeteranValues = (key, val) => {
+    let newObj = { ...veteranValues };
+    newObj[key] = val;
+    setVeteranValues({ ...newObj });
+  };
 
   const handleGenerateRandomValue = (key: string) => {
     let randomValue = "";
@@ -52,6 +89,53 @@ export const PersonalDetails: React.FC<{
         break;
     }
   };
+
+  const veteransList = [
+    {
+      label: "Extreme Violence",
+      value: "violence",
+      description:
+        "Add +10% to your Agent’s Occult skill. Reduce SAN by 5. Subtract 3 from your Agent’s CHA and each Bond. Your Agent is adapted to violence.",
+    },
+    {
+      label: "Captivity or Imprisonment",
+      value: "imprisonment",
+      description:
+        "Add +10% to your Agent’s Occult skill. Reduce SAN by 5. Subtract 3 from your Agent’s POW. Your Agent is adapted to helplessness.",
+    },
+    {
+      label: "Hard Experience",
+      value: "experience",
+      description:
+        "Add +10% to your Agent’s Occult and +10% to any five skills other than Unnatural. This can bring no skill higher than 90%. Reduce your Agent’s SAN by 5. Remove one Bond.",
+    },
+    {
+      label: "Things Man Was Not Meant to Know",
+      value: "unknown",
+      description:
+        "Your Agent gains 10% in the Unnatural skill and adds +20% to Occult. Reduce your Agent’s SAN by his or her POW. Your Agent gains a new disorder caused by the Unnatural. Reset your Agent’s Breaking Point to his or her new SAN minus POW.",
+    },
+  ];
+
+  const selectedOption = veteransList.find((item) => item.value === value);
+  const SelectOption = ({ label, description }: any) => {
+    return (
+      <Stack gap="xs">
+        <Text size="sm" fw={700}>
+          {label}
+        </Text>
+        <Text size="sm">{description}</Text>
+      </Stack>
+    );
+  };
+
+  const options = veteransList.map((item) => {
+    return (
+      <Combobox.Option value={item.value} key={item.value}>
+        <SelectOption {...item} />
+      </Combobox.Option>
+    );
+  });
 
   return (
     <Grid ta="start">
@@ -316,7 +400,340 @@ export const PersonalDetails: React.FC<{
             value={userAgent?.unnaturalExperiences}
             placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />
-          <Center>
+          {/* PREVIOUS DELTA GREEN OPERATION EXPERIENCE */}
+          <Switch
+            checked={checked}
+            thumbIcon={
+              checked ? (
+                <IconCheck
+                  size={12}
+                  color="var(--mantine-color-teal-6)"
+                  stroke={3}
+                />
+              ) : (
+                <IconX
+                  size={12}
+                  color="var(--mantine-color-red-6)"
+                  stroke={3}
+                />
+              )
+            }
+            size="md"
+            onChange={(event) => setChecked(event.currentTarget.checked)}
+            label={
+              <Group>
+                <Text>
+                  Has this Agent previously participated in a Delta Green
+                  Operation or have past experience with unnatural forces?
+                </Text>
+                <Text c="dimmed">*FOR EXPERIENCED PLAYERS ONLY</Text>
+              </Group>
+            }
+          />
+          {checked && (
+            <Stack>
+              <Divider />
+              <Text>
+                If you’re playing a Delta Green Agent with some past experience
+                with unnatural forces, you don’t need to describe exactly what
+                happened but you need a sense of that past investigation or
+                encounter. Choose from one of four options to best summarize
+                that experience.
+              </Text>
+              <Combobox
+                store={combobox}
+                withinPortal={false}
+                onOptionSubmit={(val) => {
+                  setValue(val);
+                  handleAgentPersonalDetails(val, "veteran");
+                  combobox.closeDropdown();
+                }}
+              >
+                <Combobox.Target>
+                  <InputBase
+                    component="button"
+                    type="button"
+                    pointer
+                    rightSection={
+                      value !== null ? (
+                        <CloseButton
+                          size="md"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={() => setValue(null)}
+                          aria-label="Clear value"
+                        />
+                      ) : (
+                        <Combobox.Chevron />
+                      )
+                    }
+                    onClick={() => combobox.toggleDropdown()}
+                    rightSectionPointerEvents={value === null ? "none" : "all"}
+                    label="Type of Experience"
+                    multiline
+                  >
+                    {selectedOption ? (
+                      <Input.Label>{selectedOption.label}</Input.Label>
+                    ) : (
+                      <Input.Placeholder>Select an option</Input.Placeholder>
+                    )}
+                  </InputBase>
+                </Combobox.Target>
+
+                <Combobox.Dropdown>
+                  <Combobox.Options>{options}</Combobox.Options>
+                </Combobox.Dropdown>
+              </Combobox>
+              {value === "violence" && (
+                <List>
+                  <Text>Effects:</Text>
+                  <ListItem>
+                    <Group>
+                      <Text>Occult:</Text>
+                      <Group>
+                        <Text>{userAgent.skills.occult}%</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.skills.occult + 10}%</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Group>
+                      <Text>Sanity:</Text>
+                      <Group>
+                        <Text>{userAgent.attributes.san.current}</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.attributes.san.current - 5}</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Group>
+                      <Text>Charisma:</Text>
+                      <Group>
+                        <Text>{userAgent.stats.charisma}</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.stats.charisma - 3}</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Group>
+                      <Text>Bond Values:</Text>
+                      <Group>
+                        <Text>{userAgent.bonds[0].value}</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.bonds[0].value - 3}</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Text>
+                      Agent is{" "}
+                      <Anchor
+                        component={Link}
+                        to="/rules/sanity#adapting-to-sanity-loss"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        adapted
+                      </Anchor>{" "}
+                      to violence.
+                    </Text>
+                  </ListItem>
+                </List>
+              )}
+              {value === "imprisonment" && (
+                <List>
+                  <Text>Effects:</Text>
+                  <ListItem>
+                    <Group>
+                      <Text>Occult:</Text>
+                      <Group>
+                        <Text>{userAgent.skills.occult}%</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.skills.occult + 10}%</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Group>
+                      <Text>Sanity:</Text>
+                      <Group>
+                        <Text>{userAgent.attributes.san.current}</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.attributes.san.current - 5}</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Group>
+                      <Text>Power:</Text>
+                      <Group>
+                        <Text>{userAgent.stats.power}</Text>
+                        <IconArrowRight />
+                        <Text>{userAgent.stats.power - 3}</Text>
+                      </Group>
+                    </Group>
+                  </ListItem>
+                  <ListItem>
+                    <Text>
+                      Agent is{" "}
+                      <Anchor
+                        component={Link}
+                        to="/rules/sanity#adapting-to-sanity-loss"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        adapted
+                      </Anchor>{" "}
+                      to helplessness.
+                    </Text>
+                  </ListItem>
+                </List>
+              )}
+              {value === "experience" && (
+                <>
+                  <List>
+                    <Text>Effects:</Text>
+                    <ListItem>
+                      <Group>
+                        <Text>Occult:</Text>
+                        <Group>
+                          <Text>{userAgent.skills.occult}%</Text>
+                          <IconArrowRight />
+                          <Text>{userAgent.skills.occult + 10}%</Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Group>
+                        <Text>Sanity:</Text>
+                        <Group>
+                          <Text>{userAgent.attributes.san.current}</Text>
+                          <IconArrowRight />
+                          <Text>{userAgent.attributes.san.current - 5}</Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Text>
+                        Add 10% to any five skills other than Unnatural. The
+                        skill can be no higher than 90%.
+                      </Text>
+                    </ListItem>
+                    <ListItem>
+                      <Text>Remove one Bond.</Text>
+                    </ListItem>
+                  </List>
+                  <MultiSelect
+                    label="Skills to boost by 10%"
+                    placeholder="Select a skill to boost..."
+                    data={skillsMasterList
+                      .filter((skill) => skill.id !== "unnatural")
+                      .map((skill) => {
+                        return {
+                          label: `${skill.name}  ${
+                            userAgent.skills[skill.id]
+                          }%`,
+                          value: skill.id,
+                        };
+                      })}
+                    onChange={(e) => handleVeteranValues("skills", e)}
+                    maxValues={5}
+                  />
+                  <Select
+                    label="Bond"
+                    placeholder="Select a bond to be removed..."
+                    data={[
+                      ...userAgent.bonds.map((bond) => {
+                        return bond.name;
+                      }),
+                    ]}
+                    onChange={(e) => handleVeteranValues("bond", e)}
+                  />
+                </>
+              )}
+              {value === "unknown" && (
+                <>
+                  {" "}
+                  <List>
+                    <Text>Effects:</Text>
+                    <ListItem>
+                      <Group>
+                        <Text>Unnatural:</Text>
+                        <Group>
+                          <Text>{userAgent.skills.unnatural}%</Text>
+                          <IconArrowRight />
+                          <Text>{userAgent.skills.unnatural + 10}%</Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Group>
+                        <Text>Occult:</Text>
+                        <Group>
+                          <Text>{userAgent.skills.occult}%</Text>
+                          <IconArrowRight />
+                          <Text>{userAgent.skills.occult + 20}%</Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Group>
+                        <Text>Sanity:</Text>
+                        <Group>
+                          <Text>{userAgent.attributes.san.current}</Text>
+                          <IconArrowRight />
+                          <Text>
+                            {userAgent.attributes.san.current -
+                              userAgent.stats.power}
+                          </Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Group>
+                        <Text>Breaking Point:</Text>
+                        <Group>
+                          <Text>{userAgent.attributes.bp.current}</Text>
+                          <IconArrowRight />
+                          <Text>
+                            {userAgent.attributes.san.current -
+                              userAgent.stats.power -
+                              userAgent.stats.power}
+                          </Text>
+                        </Group>
+                      </Group>
+                    </ListItem>
+                    <ListItem>
+                      <Text>
+                        Agent gains a new{" "}
+                        <Anchor
+                          component={Link}
+                          to="/rules/sanity#disorders"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          disorder
+                        </Anchor>
+                        .
+                      </Text>
+                    </ListItem>
+                  </List>
+                  <TextInput
+                    label="Describe your disorder caused by the unnatural"
+                    placeholder="Agoraphobia, Pyromania, etc."
+                    value={veteranValues.wounds}
+                    onChange={(e) =>
+                      handleVeteranValues("wounds", e.currentTarget.value)
+                    }
+                  />
+                </>
+              )}
+              <Divider />
+            </Stack>
+          )}
+          {/* <Center>
             <Card withBorder w={250}>
               <Stack justify="space-between" h={250}>
                 <Center>
@@ -329,17 +746,6 @@ export const PersonalDetails: React.FC<{
                   )}
                 </Center>
                 <Stack>
-                  {/* <Button
-                    leftSection={<IconPencilPlus />}
-                    onClick={() =>
-                      handleAgentPersonalDetails(
-                        faker.image.personPortrait(),
-                        "image"
-                      )
-                    }
-                  >
-                    Generate Image
-                  </Button> */}
                   <FileButton
                     onChange={(e) => handleAgentPersonalDetails(e, "image")}
                   >
@@ -352,7 +758,7 @@ export const PersonalDetails: React.FC<{
                 </Stack>
               </Stack>
             </Card>
-          </Center>
+          </Center> */}
           <Button
             component={Link}
             to={`/agents/sheet/${
@@ -365,7 +771,11 @@ export const PersonalDetails: React.FC<{
               !userAgent?.age ||
               !userAgent?.education
             }
-            onClick={handleCreateAgent}
+            onClick={() =>
+              value === "experience" || value === "unknown"
+                ? handleCreateAgent(veteranValues)
+                : handleCreateAgent()
+            }
             color={"green"}
           >
             Create Agent

@@ -161,7 +161,6 @@ export const Stats: React.FC<{
               placeholder="Swap Stat"
               data={[
                 ...statLabelArr.filter((label) => {
-                  console.log(handleMobileStats(label.toLowerCase()), stat);
                   return (
                     (viewport.width > 600
                       ? label.toLowerCase()
@@ -376,7 +375,7 @@ export const Stats: React.FC<{
             For more information, you can read the{" "}
             <Anchor
               component={Link}
-              to="/agents/professions/stats-and-skills"
+              to="/training/stats-and-skills"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -385,7 +384,7 @@ export const Stats: React.FC<{
            and{" "}
             <Anchor
               component={Link}
-              to="/agents/professions/stats-and-skills#attributes"
+              to="/training/stats-and-skills#attributes"
               target="_blank"
               rel="noopener noreferrer"
             >

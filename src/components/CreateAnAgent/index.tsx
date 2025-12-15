@@ -25,7 +25,7 @@ import { CharacterSheet } from "../CharacterSheet";
 import { useCharacterContext } from "../../contexts/CharacterContext";
 import { v4 } from "uuid";
 import { notifications } from "@mantine/notifications";
-import { useViewportSize } from "@mantine/hooks";
+import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -64,10 +64,12 @@ export const CreateAnAgent: React.FC = () => {
     },
     skills: { ...defaultSkillValues },
     bonds: 0,
+    adaptation: { violence: 0, helplessness: 0 },
   });
   const [{}, actions] = useCharacterContext();
   const [viewport] = useViewportContext();
   const [blockerOpened, setBlockerOpened] = useState(false);
+  const [, scrollTo] = useWindowScroll();
 
   let location = useLocation();
   const navigate = useNavigate();
@@ -85,6 +87,10 @@ export const CreateAnAgent: React.FC = () => {
       });
     };
   }, [location]);
+
+  useEffect(() => {
+    scrollTo({ y: 0 });
+  }, [progressValue]);
 
   const handleLeaveCharacterCreator = () => {
     setBlockerOpened(false);
@@ -274,20 +280,71 @@ export const CreateAnAgent: React.FC = () => {
   const handleAgentPersonalDetails = (value, key) => {
     let newObj = { ...userAgent };
     newObj[key] =
-      key === "age" || key === "sex"
+      key === "age" || key === "sex" || key === "veteran"
         ? value
         : key === "codename"
         ? value.target.value.toUpperCase()
-        : key === "image"
-        ? handleAgentImage(value, newObj)
         : value.target.value;
     setUserAgent({ ...newObj });
   };
 
-  const handleCreateAgent = () => {
+  const handleCreateAgent = (veteranValues?: any) => {
     let newObj = { ...userAgent };
     newObj.id = v4();
-    actions.createCharacterObj({ ...newObj });
+    if (newObj.veteran !== "") {
+      switch (newObj.veteran) {
+        case "violence":
+          newObj.skills.occult = userAgent.skills.occult + 10;
+          newObj.attributes.san.max = userAgent.attributes.san.max - 5;
+          newObj.attributes.san.current = userAgent.attributes.san.current - 5;
+          newObj.stats.charisma = userAgent.stats.charisma - 3;
+          newObj.bonds = [
+            ...userAgent.bonds.map((bond) => {
+              return { ...bond, value: bond.value - 3 };
+            }),
+          ];
+          newObj.adaptation = { violence: 3, helplessness: 0 };
+          break;
+        case "imprisonment":
+          newObj.skills.occult = userAgent.skills.occult + 10;
+          newObj.attributes.san.max = userAgent.attributes.san.max - 5;
+          newObj.attributes.san.current = userAgent.attributes.san.current - 5;
+          newObj.stats.power = userAgent.stats.power - 3;
+          newObj.adaptation = { violence: 0, helplessness: 3 };
+          actions.createCharacterObj({ ...newObj });
+          break;
+        case "experience":
+          newObj.skills.occult = userAgent.skills.occult + 10;
+          veteranValues.skills.forEach(
+            (arrValue) => (newObj.skills[arrValue] = userAgent.skills[arrValue])
+          );
+          newObj.attributes.san.max = userAgent.attributes.san.max - 5;
+          newObj.attributes.san.current = userAgent.attributes.san.current - 5;
+          newObj.bonds = userAgent.bonds.filter(
+            (bond) => bond.name !== veteranValues.bond
+          );
+          actions.createCharacterObj({ ...newObj });
+          break;
+        case "unknown":
+          newObj.skills.unnatural = userAgent.skills.unnatural + 10;
+          newObj.skills.occult = userAgent.skills.occult + 20;
+          newObj.attributes.san.max =
+            userAgent.attributes.san.max - userAgent.stats.power;
+          newObj.attributes.san.current =
+            userAgent.attributes.san.current - userAgent.stats.power;
+          newObj.wounds = veteranValues.wounds;
+          newObj.attributes.bp.max =
+            userAgent.attributes.bp.max -
+            userAgent.stats.power -
+            userAgent.stats.power;
+          newObj.attributes.bp.current =
+            userAgent.attributes.bp.current -
+            userAgent.stats.power -
+            userAgent.stats.power;
+          actions.createCharacterObj({ ...newObj });
+          break;
+      }
+    }
     notifications.show({
       color: "green",
       title: "Agent Created Successfully!",
@@ -328,6 +385,7 @@ export const CreateAnAgent: React.FC = () => {
       },
       skills: { ...defaultSkillValues },
       bonds: 0,
+      adaptation: { violence: 0, helplessness: 0 },
     });
   };
 
@@ -435,7 +493,7 @@ export const CreateAnAgent: React.FC = () => {
         <Grid.Col span={12}>
           <Stepper
             active={progressValue - 1}
-            pt={'md'}
+            pt={"md"}
             onStepClick={(value) => handleVerifyStepNavigation(value + 1)}
             iconSize={viewport.width > 760 ? 42 : 34}
           >

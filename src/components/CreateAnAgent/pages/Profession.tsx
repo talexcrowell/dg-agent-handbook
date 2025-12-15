@@ -494,7 +494,7 @@ export const Profession: React.FC<{
             For more information, you can read the{" "}
             <Anchor
               component={Link}
-              to="/agents/professions/overview"
+              to="/training/professions/overview"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -761,7 +761,50 @@ export const Profession: React.FC<{
                   value={selectedOptionalSkills}
                   onChange={handleSetOptionalSkills}
                 >
-                  <Stack>
+                  <Table
+                    withTableBorder
+                    withRowBorders
+                    withColumnBorders
+                    highlightOnHover
+                  >
+                    <Table.Thead>
+                      <Table.Tr>
+                        <Table.Th>Skill</Table.Th>
+                        <Table.Th>Type</Table.Th>
+                        <Table.Th>Value</Table.Th>
+                      </Table.Tr>
+                    </Table.Thead>
+                    <Table.Tbody ta="center">
+                      {" "}
+                      {selectedProfession.optionalSkills
+                        .filter((skill) => skill.id !== selectedSpecial)
+                        .map((skill, index) => (
+                          <Table.Tr>
+                            <Table.Td>
+                              <Checkbox value={skill.id} label={skill.name} />
+                            </Table.Td>
+                            <Table.Td>
+                              {isSkillChoice(skill) ? (
+                                <TextInput
+                                  placeholder="Enter Type Here..."
+                                  onChange={(e) =>
+                                    handleOptionalDetail(
+                                      e.target.value,
+                                      skill,
+                                      selectedOptionalSkills.indexOf(skill.id)
+                                    )
+                                  }
+                                />
+                              ) : (
+                                "-"
+                              )}
+                            </Table.Td>
+                            <Table.Td>{skill.value}%</Table.Td>
+                          </Table.Tr>
+                        ))}
+                    </Table.Tbody>
+                  </Table>
+                  {/* <Stack>
                     {selectedProfession.optionalSkills
                       .filter((skill) => skill.id !== selectedSpecial)
                       .map((skill, index) => (
@@ -785,7 +828,7 @@ export const Profession: React.FC<{
                             )}
                         </Group>
                       ))}
-                  </Stack>
+                  </Stack> */}
                 </CheckboxGroup>
               </Stack>
             )}
