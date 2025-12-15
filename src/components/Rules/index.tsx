@@ -126,22 +126,22 @@ export const Rules = () => {
             </Affix>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <HowToPlay />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <Combat />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <Sanity />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <Home />
             </ScrollArea>
           </Tabs.Panel>

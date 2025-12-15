@@ -109,7 +109,7 @@ export const StatsAndSkills = () => {
 
   return (
     <Grid gutter={"md"} id="stats-and-skills">
-      <Grid.Col span={10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <ScrollArea h={"93vh"} scrollbars="y">
           <Stack>
             <Title td="underline" order={2} id="statistics">

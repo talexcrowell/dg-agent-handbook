@@ -90,7 +90,7 @@ export const Weapons = () => {
   };
 
   return (
-    <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+    <ScrollArea h={"91vh"} scrollbars="y">
       <Grid pt="sm" id="weapons">
         <Grid.Col span={12}>
           <Stack gap="lg">

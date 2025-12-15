@@ -160,27 +160,27 @@ export const DeltaGreen = () => {
             </Affix>
           )}
           <Tabs.Panel value="welcome">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="what-is-delta-green">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <WhatIsDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea h={"91vh"} scrollbars="y" overscrollBehavior="y">
+            <ScrollArea h={"91vh"} scrollbars="y">
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
