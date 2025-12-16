@@ -336,7 +336,7 @@ export const CharacterSheet: React.FC = () => {
       ...character,
     };
 
-    setRollType(skill);
+    setRollType(skill + "." + type.label);
 
     let roll: any = new DiceRoll("2d10");
     let rollObj = roll.export(exportFormats.OBJECT);
@@ -370,7 +370,10 @@ export const CharacterSheet: React.FC = () => {
       parseInt(diceRoll.join("")) > ratingValue
       //   !characterObj.failedTests.includes(skill)
     ) {
-      characterObj.failedTests = [...character.failedTests, skill];
+      characterObj.failedTests = [
+        ...character.failedTests,
+        skill + "." + type.label,
+      ];
     }
 
     characterObj.rollLog = [...newRollLog];

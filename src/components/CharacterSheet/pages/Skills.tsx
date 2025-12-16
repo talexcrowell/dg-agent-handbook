@@ -149,9 +149,9 @@ export const Skills = ({
                             size="sm"
                           >
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].label !== ""
+                              ? currentCharacter.skills[key][0]?.label !== ""
                                 ? `${skillKeyLabels(key)} (${
-                                    currentCharacter.skills[key][0].label
+                                    currentCharacter.skills[key][0]?.label
                                   })`
                                 : skillKeyLabels(key)
                               : skillKeyLabels(key)}{" "}
@@ -171,13 +171,13 @@ export const Skills = ({
                           variant="outline"
                           disabled={
                             (isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]) === 0
                           }
                         >
                           <Text ta="center" size="sm">
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]}
                             %
                           </Text>
@@ -185,7 +185,7 @@ export const Skills = ({
                       ) : (
                         <Text ta="center">
                           {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
+                            ? currentCharacter.skills[key][0]?.skill
                             : currentCharacter.skills[key]}
                           %
                         </Text>
@@ -246,9 +246,9 @@ export const Skills = ({
                             size="sm"
                           >
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].label !== ""
+                              ? currentCharacter.skills[key][0]?.label !== ""
                                 ? `${skillKeyLabels(key)} (${
-                                    currentCharacter.skills[key][0].label
+                                    currentCharacter.skills[key][0]?.label
                                   })`
                                 : skillKeyLabels(key)
                               : skillKeyLabels(key)}{" "}
@@ -268,13 +268,13 @@ export const Skills = ({
                           variant="outline"
                           disabled={
                             (isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]) === 0
                           }
                         >
                           <Text ta="center" size="sm">
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]}
                             %
                           </Text>
@@ -282,7 +282,7 @@ export const Skills = ({
                       ) : (
                         <Text ta="center">
                           {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
+                            ? currentCharacter.skills[key][0]?.skill
                             : currentCharacter.skills[key]}
                           %
                         </Text>
@@ -343,9 +343,9 @@ export const Skills = ({
                             size="sm"
                           >
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].label !== ""
+                              ? currentCharacter.skills[key][0]?.label !== ""
                                 ? `${skillKeyLabels(key)} (${
-                                    currentCharacter.skills[key][0].label
+                                    currentCharacter.skills[key][0]?.label
                                   })`
                                 : skillKeyLabels(key)
                               : skillKeyLabels(key)}{" "}
@@ -365,13 +365,13 @@ export const Skills = ({
                           variant="outline"
                           disabled={
                             (isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]) === 0
                           }
                         >
                           <Text ta="center" size="sm">
                             {isSkillChoice(key)
-                              ? currentCharacter.skills[key][0].skill
+                              ? currentCharacter.skills[key][0]?.skill
                               : currentCharacter.skills[key]}
                             %
                           </Text>
@@ -379,7 +379,7 @@ export const Skills = ({
                       ) : (
                         <Text ta="center">
                           {isSkillChoice(key)
-                            ? currentCharacter.skills[key][0].skill
+                            ? currentCharacter.skills[key][0]?.skill
                             : currentCharacter.skills[key]}
                           %
                         </Text>
@@ -559,9 +559,9 @@ export const Skills = ({
                                 size="sm"
                               >
                                 {isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0].label !== ""
+                                  ? currentCharacter.skills[key][0]?.label !== ""
                                     ? `${skillKeyLabels(key)} (${
-                                        currentCharacter.skills[key][0].label
+                                        currentCharacter.skills[key][0]?.label
                                       })`
                                     : skillKeyLabels(key)
                                   : skillKeyLabels(key)}{" "}
@@ -582,13 +582,13 @@ export const Skills = ({
                               variant="outline"
                               disabled={
                                 (isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0].skill
+                                  ? currentCharacter.skills[key][0]?.skill
                                   : currentCharacter.skills[key]) === 0
                               }
                             >
                               <Text ta="center" size="sm">
                                 {isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0].skill
+                                  ? currentCharacter.skills[key][0]?.skill
                                   : currentCharacter.skills[key]}
                                 %
                               </Text>
@@ -596,7 +596,7 @@ export const Skills = ({
                           ) : (
                             <Text ta="center">
                               {isSkillChoice(key)
-                                ? currentCharacter.skills[key][0].skill
+                                ? currentCharacter.skills[key][0]?.skill
                                 : currentCharacter.skills[key]}
                               %
                             </Text>
@@ -661,10 +661,10 @@ export const Skills = ({
                                   size="sm"
                                 >
                                   {isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].label !==
+                                    ? currentCharacter.skills[key][0]?.label !==
                                       ""
                                       ? `${skillKeyLabels(key)} (${
-                                          currentCharacter.skills[key][0].label
+                                          currentCharacter.skills[key][0]?.label
                                         })`
                                       : skillKeyLabels(key)
                                     : skillKeyLabels(key)}{" "}
@@ -687,13 +687,13 @@ export const Skills = ({
                                 variant="outline"
                                 disabled={
                                   (isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].skill
+                                    ? currentCharacter.skills[key][0]?.skill
                                     : currentCharacter.skills[key]) === 0
                                 }
                               >
                                 <Text ta="center" size="sm">
                                   {isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].skill
+                                    ? currentCharacter.skills[key][0]?.skill
                                     : currentCharacter.skills[key]}
                                   %
                                 </Text>
@@ -701,7 +701,7 @@ export const Skills = ({
                             ) : (
                               <Text ta="center">
                                 {isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0].skill
+                                  ? currentCharacter.skills[key][0]?.skill
                                   : currentCharacter.skills[key]}
                                 %
                               </Text>
@@ -866,10 +866,10 @@ export const Skills = ({
                                   size="sm"
                                 >
                                   {isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].label !==
+                                    ? currentCharacter.skills[key][0]?.label !==
                                       ""
                                       ? `${skillKeyLabels(key)} (${
-                                          currentCharacter.skills[key][0].label
+                                          currentCharacter.skills[key][0]?.label
                                         })`
                                       : skillKeyLabels(key)
                                     : skillKeyLabels(key)}{" "}
@@ -892,13 +892,13 @@ export const Skills = ({
                                 variant="outline"
                                 disabled={
                                   (isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].skill
+                                    ? currentCharacter.skills[key][0]?.skill
                                     : currentCharacter.skills[key]) === 0
                                 }
                               >
                                 <Text ta="center" size="sm">
                                   {isSkillChoice(key)
-                                    ? currentCharacter.skills[key][0].skill
+                                    ? currentCharacter.skills[key][0]?.skill
                                     : currentCharacter.skills[key]}
                                   %
                                 </Text>
@@ -906,7 +906,7 @@ export const Skills = ({
                             ) : (
                               <Text ta="center">
                                 {isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0].skill
+                                  ? currentCharacter.skills[key][0]?.skill
                                   : currentCharacter.skills[key]}
                                 %
                               </Text>
@@ -948,20 +948,13 @@ export const Skills = ({
                         <Table.Tr>
                           <Table.Td>
                             <Group>
-                              <Checkbox />
-                              <Text tt="capitalize" ta="start">
+                              <Checkbox checked={currentCharacter.failedTests.includes(key+"."+type.label)}/>
+                              <Text tt="capitalize" ta="start" size='sm'>
                                 {isSkillChoice(key)
                                   ? type.label !== ""
                                     ? `${skillKeyLabels(key)} (${type.label})`
                                     : skillKeyLabels(key)
                                   : skillKeyLabels(key)}{" "}
-                              </Text>
-                              <Text c="dimmed">
-                                (
-                                {isSkillChoice(key)
-                                  ? type.skill
-                                  : defaultSkillValues[key]}
-                                %)
                               </Text>
                             </Group>
                           </Table.Td>

@@ -152,9 +152,16 @@ const RollModalContent = ({
         ? character.attributes[rollType].current
         : isStat(rollType)
         ? character.stats[rollType] * 5
-        : isSkillChoice(rollType)
-        ? character.skills[rollType][0].skill
+        : isSkillChoice(
+            rollType.includes(".") ? rollType.split(".")[0] : rollType
+          )
+        ? rollType.includes(".")
+          ? character.skills[rollType.split(".")[0]].filter((subskill) => {
+              return subskill.label === rollType.split(".")[1];
+            })[0]?.skill
+          : character.skills[rollType][0].skill
         : character.skills[rollType];
+
     if (userValue >= parseInt(value.join(""))) {
       if (value[0] === value[1] || parseInt(value.join("")) === 1) {
         return "CRITICAL SUCCESS";
@@ -164,6 +171,7 @@ const RollModalContent = ({
       if (value[0] === value[1] || parseInt(value.join("")) === 0) {
         return "FUMBLE";
       }
+      console.log(userValue, parseInt(value.join("")));
       return "FAILURE";
     }
   };
@@ -176,8 +184,14 @@ const RollModalContent = ({
         ? character.attributes[item.skill].current
         : isStat(rollType)
         ? character.stats[item.skill] * 5
-        : isSkillChoice(item.skill)
-        ? character.skills[item.skill][0].skill
+        : isSkillChoice(
+            rollType.includes(".") ? rollType.split(".")[0] : rollType
+          )
+        ? rollType.includes(".")
+          ? character.skills[rollType.split(".")[0]].filter((subskill) => {
+              return subskill.label === rollType.split(".")[1];
+            })[0]?.skill
+          : character.skills[rollType][0].skill
         : character.skills[item.skill];
 
     if (userValue >= item.rolledValue) {
@@ -240,7 +254,7 @@ const RollModalContent = ({
                         {calculateRollLogEntryLanguage(item)}
                       </Text>
                       <Group>
-                        <Group w='125'>
+                        <Group w="125">
                           <Stack gap={0}>
                             <InputLabel c="dimmed">Test</InputLabel>
                             <Text tt="capitalize">
@@ -249,7 +263,7 @@ const RollModalContent = ({
                           </Stack>
                           <Divider orientation="vertical" />
                         </Group>
-                        <Group w='125'>
+                        <Group w="125">
                           <Stack gap="0">
                             <InputLabel c="dimmed">Rating</InputLabel>
                             <Text tt="capitalize">
