@@ -47,7 +47,7 @@ export const CreateAnAgent: React.FC = () => {
     codename: "",
     profession: "",
     employer: "",
-    nationality: "",
+    nationality: "American",
     sex: "",
     age: "",
     education: "",
@@ -348,6 +348,7 @@ export const CreateAnAgent: React.FC = () => {
           break;
       }
     }
+    actions.createCharacterObj({ ...newObj });
     localStorage.setItem("currentCharacter", JSON.stringify({ ...newObj }));
     const localSaved = localStorage.getItem("savedCharacters");
 
@@ -372,7 +373,7 @@ export const CreateAnAgent: React.FC = () => {
       codename: "",
       profession: "",
       employer: "",
-      nationality: "",
+      nationality: "American",
       sex: "",
       age: "",
       education: "",
