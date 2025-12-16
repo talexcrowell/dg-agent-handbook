@@ -1,8 +1,12 @@
-import { Grid, Stack, Textarea, Title } from "@mantine/core";
+import { Grid, InputLabel, Stack, Textarea, Title } from "@mantine/core";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 
-export const Notes = ({ currentCharacter, handleUpdateCharacter }: any) => {
+export const Notes = ({
+  currentCharacter,
+  handleUpdateCharacter,
+  IsPreview,
+}: any) => {
   let data = { ...currentCharacter };
   const [viewport] = useViewportContext();
   return (
@@ -13,36 +17,50 @@ export const Notes = ({ currentCharacter, handleUpdateCharacter }: any) => {
             Notes
           </Title>
           <Textarea
-            label="Personal Details and Notes"
+            label={
+              <InputLabel c="dimmed">Personal Details and Notes</InputLabel>
+            }
             ta="start"
             rows={10}
             value={data?.personality}
             onChange={(e) => {
               handleUpdateCharacter("personality", e.currentTarget.value);
             }}
+            disabled={IsPreview()}
           />
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
         <Textarea
-          label="Experiences with the Unnatural"
+          label={
+            <InputLabel c="dimmed">Experiences with the Unnatural</InputLabel>
+          }
           ta="start"
           rows={10}
           value={data?.unnaturalExperiences}
           onChange={(e) => {
-            handleUpdateCharacter("unnaturalExperiences", e.currentTarget.value);
+            handleUpdateCharacter(
+              "unnaturalExperiences",
+              e.currentTarget.value
+            );
           }}
+          disabled={IsPreview()}
         />
       </Grid.Col>
       <Grid.Col span={12}>
         <Textarea
-          label="Developments Which Affect Home and Family"
+          label={
+            <InputLabel c="dimmed">
+              Developments Which Affect Home and Family
+            </InputLabel>
+          }
           ta="start"
           rows={10}
           value={data?.lifeDevelopments}
           onChange={(e) => {
             handleUpdateCharacter("lifeDevelopments", e.currentTarget.value);
           }}
+          disabled={IsPreview()}
         />
       </Grid.Col>
     </Grid>

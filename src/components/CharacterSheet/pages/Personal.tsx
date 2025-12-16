@@ -2,12 +2,12 @@ import {
   Button,
   Card,
   Checkbox,
-  CheckboxGroup,
   Divider,
   Grid,
   Group,
   InputLabel,
   NumberInput,
+  Rating,
   Stack,
   Switch,
   Table,
@@ -16,19 +16,24 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { useCharacterContext } from "../../../contexts/CharacterContext";
-import { useViewportSize } from "@mantine/hooks";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { useState } from "react";
-import { IconEdit, IconPencil } from "@tabler/icons-react";
+import {
+  IconBoxAlignTop,
+  IconCheckbox,
+  IconPencil,
+  IconSquare,
+} from "@tabler/icons-react";
 
 export const Personal = ({
   currentCharacter,
   handleUpdateCharacter,
   handleStandardRoll,
   inPerson,
+  IsPreview,
 }: any) => {
   const [viewport] = useViewportContext();
+  const [editPersonal, setEditPersonal] = useState<boolean>(false);
   const [editStats, setEditStats] = useState<boolean>(false);
   const [editAttributes, setEditAttributes] = useState<boolean>(false);
   const [editPsych, setEditPsych] = useState<boolean>(false);
@@ -194,9 +199,19 @@ export const Personal = ({
     <Grid py="md" px={viewport.width > 760 ? "md" : 0}>
       <Grid.Col span={12}>
         <Stack>
-          <Title order={4} ta="start" td="underline">
-            Personal Data
-          </Title>
+          <Group justify="space-between">
+            <Title order={4} ta="start" td="underline">
+              Personal Data
+            </Title>
+            {!IsPreview() && (
+              <Switch
+                thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+                size="md"
+                checked={editPersonal}
+                onChange={(e) => setEditPersonal(e.currentTarget.checked)}
+              />
+            )}
+          </Group>
           {viewport.width > 760 ? (
             <>
               <Group ta="start">
@@ -209,7 +224,12 @@ export const Personal = ({
                   flex={1}
                   value={data?.name}
                   onChange={(e) =>
-                    handleUpdateCharacter("name", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter("name", e.currentTarget.value)
+                      : ""
+                  }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
                   }
                 />
                 <TextInput
@@ -220,7 +240,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
-                  styles={{ input: { cursor: "not-allowed" } }}
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -233,7 +255,15 @@ export const Personal = ({
                   flex={1}
                   value={data?.profession}
                   onChange={(e) =>
-                    handleUpdateCharacter("profession", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter(
+                          "profession",
+                          e.currentTarget.value
+                        )
+                      : ""
+                  }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
                   }
                 />
                 <TextInput
@@ -245,7 +275,12 @@ export const Personal = ({
                   flex={1}
                   value={data?.employer}
                   onChange={(e) =>
-                    handleUpdateCharacter("employer", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter("employer", e.currentTarget.value)
+                      : ""
+                  }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
                   }
                 />
                 <TextInput
@@ -256,7 +291,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
-                  styles={{ input: { cursor: "not-allowed" } }}
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -287,7 +324,15 @@ export const Personal = ({
                   flex={1}
                   value={data?.education}
                   onChange={(e) =>
-                    handleUpdateCharacter("education", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter(
+                          "education",
+                          e.currentTarget.value
+                        )
+                      : ""
+                  }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
                   }
                 />
               </Group>
@@ -306,6 +351,9 @@ export const Personal = ({
                   onChange={(e) =>
                     handleUpdateCharacter("name", e.currentTarget.value)
                   }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
                 <TextInput
                   label={
@@ -315,7 +363,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.codename}
-                  styles={{ input: { cursor: "not-allowed" } }}
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -330,6 +380,9 @@ export const Personal = ({
                   onChange={(e) =>
                     handleUpdateCharacter("profession", e.currentTarget.value)
                   }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
                 <TextInput
                   label={
@@ -342,6 +395,9 @@ export const Personal = ({
                   onChange={(e) =>
                     handleUpdateCharacter("employer", e.currentTarget.value)
                   }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
               </Group>
               <Group ta="start">
@@ -353,7 +409,9 @@ export const Personal = ({
                   }
                   flex={1}
                   value={data?.nationality}
-                  styles={{ input: { cursor: "not-allowed" } }}
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
+                  }
                 />
                 <TextInput
                   label={
@@ -365,6 +423,9 @@ export const Personal = ({
                   value={data?.education}
                   onChange={(e) =>
                     handleUpdateCharacter("education", e.currentTarget.value)
+                  }
+                  styles={
+                    !editPersonal ? { input: { cursor: "not-allowed" } } : {}
                   }
                 />
               </Group>
@@ -398,20 +459,22 @@ export const Personal = ({
             <Title order={4} ta="start" td="underline">
               Statistical Data
             </Title>
-            <Switch
-              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-              size="md"
-              checked={editStats}
-              onChange={(e) => setEditStats(e.currentTarget.checked)}
-            />
+            {!IsPreview() && (
+              <Switch
+                thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+                size="md"
+                checked={editStats}
+                onChange={(e) => setEditStats(e.currentTarget.checked)}
+              />
+            )}
           </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
                 {tableStatHeaders.map((header) => {
                   return (
-                    <Table.Th>
-                      <Table.Td>{header}</Table.Td>
+                    <Table.Th ta="center" c="dimmed">
+                      {header}
                     </Table.Th>
                   );
                 })}
@@ -470,20 +533,22 @@ export const Personal = ({
             <Title order={4} ta="start" td="underline">
               Attributes
             </Title>
-            <Switch
-              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-              size="md"
-              checked={editAttributes}
-              onChange={(e) => setEditAttributes(e.currentTarget.checked)}
-            />
+            {!IsPreview() && (
+              <Switch
+                thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+                size="md"
+                checked={editAttributes}
+                onChange={(e) => setEditAttributes(e.currentTarget.checked)}
+              />
+            )}
           </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
                 {tableAttributeHeaders.map((header) => {
                   return (
-                    <Table.Th>
-                      <Table.Td ta="center">{header}</Table.Td>
+                    <Table.Th ta="center" c="dimmed">
+                      {header}
                     </Table.Th>
                   );
                 })}
@@ -561,7 +626,9 @@ export const Personal = ({
           </Table>
           <Card py="xs">
             <Group justify="space-between">
-              <Text fw={700}>Status</Text>
+              <Text fw={700} c="dimmed">
+                Status
+              </Text>
               <Text
                 fw={600}
                 c={calculateStatusTextColor(calculateStatusText())}
@@ -578,20 +645,22 @@ export const Personal = ({
             <Title order={4} ta="start" td="underline">
               Psychological Data
             </Title>{" "}
-            <Switch
-              thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-              size="md"
-              checked={editPsych}
-              onChange={(e) => setEditPsych(e.currentTarget.checked)}
-            />
+            {!IsPreview() && (
+              <Switch
+                thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
+                size="md"
+                checked={editPsych}
+                onChange={(e) => setEditPsych(e.currentTarget.checked)}
+              />
+            )}
           </Group>
           <Table withColumnBorders withTableBorder>
             <Table.Thead>
               <Table.Tr>
                 {tableBondHeaders.map((header) => {
                   return (
-                    <Table.Th>
-                      <Table.Td>{header}</Table.Td>
+                    <Table.Th ta="center" c="dimmed">
+                      {header}
                     </Table.Th>
                   );
                 })}
@@ -622,30 +691,53 @@ export const Personal = ({
             </Table.Tbody>
           </Table>
           <Textarea
-            label="Motivations and Mental Disorders"
+            label={
+              <InputLabel c="dimmed">
+                Motivations and Mental Disorders
+              </InputLabel>
+            }
             ta="start"
             rows={5}
             value={data?.motivations}
             onChange={(e) =>
               handleUpdateCharacter("motivations", e.currentTarget.value)
             }
+            disabled={IsPreview()}
           />
-          <Stack>
-            <InputLabel ta="start">
-              Incidents of SAN Loss Without going Insane
+          <Stack gap={"xs"}>
+            <InputLabel ta="start" c="dimmed">
+              Incidents of Sanity loss without going Insane
             </InputLabel>
             <Group justify="space-between">
               <Group>
-                <InputLabel>Violence</InputLabel>
-                <Checkbox />
-                <Checkbox />
-                <Checkbox />
+                <InputLabel
+                  onClick={() => handleUpdateCharacter("violence", 0)}
+                  style={{ cursor: "pointer" }}
+                >
+                  Violence
+                </InputLabel>
+                <Rating
+                  emptySymbol={<IconSquare size="24" />}
+                  fullSymbol={<IconCheckbox size="24" />}
+                  count={3}
+                  value={data?.adaptation.violence}
+                  onChange={(e) => handleUpdateCharacter("violence", e)}
+                />
               </Group>
               <Group>
-                <InputLabel>Helplessness</InputLabel>
-                <Checkbox />
-                <Checkbox />
-                <Checkbox />
+                <InputLabel
+                  onClick={() => handleUpdateCharacter("helplessness", 0)}
+                  style={{ cursor: "pointer" }}
+                >
+                  Helplessness
+                </InputLabel>
+                <Rating
+                  emptySymbol={<IconSquare size="24" />}
+                  fullSymbol={<IconCheckbox size="24" />}
+                  count={3}
+                  value={data?.adaptation.helplessness}
+                  onChange={(e) => handleUpdateCharacter("helplessness", e)}
+                />
               </Group>
             </Group>
           </Stack>
@@ -654,13 +746,14 @@ export const Personal = ({
             Injuries
           </Title>
           <Textarea
-            label="Wounds and Ailments"
+            label={<InputLabel c="dimmed">Wounds and Ailments</InputLabel>}
             ta="start"
             rows={5}
             value={data?.wounds}
             onChange={(e) =>
               handleUpdateCharacter("wounds", e.currentTarget.value)
             }
+            disabled={IsPreview()}
           />
         </Stack>
       </Grid.Col>

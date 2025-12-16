@@ -103,8 +103,12 @@ export const Skills = ({
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Skill Name</Table.Th>
-                  <Table.Th>Score</Table.Th>
+                  <Table.Th ta="center" c="dimmed">
+                    Skill Name
+                  </Table.Th>
+                  <Table.Th ta="center" c="dimmed">
+                    Score
+                  </Table.Th>
                 </Table.Tr>
               </Table.Thead>
               {skillKeysArr.slice(0, 15).map((key) => {
@@ -196,8 +200,8 @@ export const Skills = ({
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Skill Name</Table.Th>
-                  <Table.Th>Score</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Score</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               {skillKeysArr.slice(15, 30).map((key) => {
@@ -289,8 +293,8 @@ export const Skills = ({
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Skill Name</Table.Th>
-                  <Table.Th>Score</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Score</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               {skillKeysArr.slice(30, skillKeysArr.length).map((key) => {
@@ -394,8 +398,8 @@ export const Skills = ({
               <Table withTableBorder withColumnBorders>
                 <Table.Thead>
                   <Table.Tr>
-                    <Table.Th>Skill Name</Table.Th>
-                    <Table.Th>Score</Table.Th>
+                    <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                    <Table.Th ta="center" c="dimmed">Score</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 {filteredList.map((key) => {
@@ -495,8 +499,8 @@ export const Skills = ({
                 <Table withTableBorder withColumnBorders>
                   <Table.Thead>
                     <Table.Tr>
-                      <Table.Th>Skill Name</Table.Th>
-                      <Table.Th>Score</Table.Th>
+                      <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                      <Table.Th ta="center" c="dimmed">Score</Table.Th>
                     </Table.Tr>
                   </Table.Thead>
                   {skillKeysArr.slice(0, skillKeysArr.length / 2).map((key) => {
@@ -591,8 +595,8 @@ export const Skills = ({
                 <Table withTableBorder withColumnBorders>
                   <Table.Thead>
                     <Table.Tr>
-                      <Table.Th>Skill Name</Table.Th>
-                      <Table.Th>Score</Table.Th>
+                      <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                      <Table.Th ta="center" c="dimmed">Score</Table.Th>
                     </Table.Tr>
                   </Table.Thead>
                   {skillKeysArr
@@ -702,8 +706,8 @@ export const Skills = ({
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Skill Name (Base Rating)</Table.Th>
-                  <Table.Th>Score</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Score</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -904,8 +908,8 @@ export const Skills = ({
               <Table withTableBorder withColumnBorders>
                 <Table.Thead>
                   <Table.Tr>
-                    <Table.Th>Skill Name</Table.Th>
-                    <Table.Th>Score</Table.Th>
+                    <Table.Th ta="center" c="dimmed">Skill Name</Table.Th>
+                    <Table.Th ta="center" c="dimmed">Score</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 {additionalSkills.map((key) => {
@@ -933,7 +937,7 @@ export const Skills = ({
                               </Text>
                             </Group>
                           </Table.Td>
-                          <Table.Td>
+                          <Table.Td ta="center">
                             {inPerson ? (
                               <Button
                                 fullWidth
@@ -978,8 +982,8 @@ export const Skills = ({
             <Table withTableBorder withColumnBorders>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>Special Training</Table.Th>
-                  <Table.Th>Skill or Stat Used</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Special Training</Table.Th>
+                  <Table.Th ta="center" c="dimmed">Skill or Stat Used</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>

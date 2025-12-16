@@ -39,7 +39,11 @@ import Fuse from "fuse.js";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { notifications } from "@mantine/notifications";
 
-export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
+export const Equipment = ({
+  currentCharacter,
+  handleUpdateCharacter,
+  IsPreview,
+}: any) => {
   const [viewport] = useViewportContext();
   const [opened, setOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -204,7 +208,7 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
             Equipment
           </Title>
           <Stack gap="xs">
-            <InputLabel>Inventory</InputLabel>
+            <InputLabel c="dimmed">Inventory</InputLabel>
             {currentCharacter.equipment.length > 0 ? (
               currentCharacter.equipment.map((item) => {
                 return (
@@ -247,102 +251,108 @@ export const Equipment = ({ currentCharacter, handleUpdateCharacter }: any) => {
                 </Text>
               </Card>
             )}
-            <Accordion
-              styles={{
-                root: {
-                  backgroundColor: "	#2e2e2e",
-                  border: "1px solid #3b3b3b",
-                  borderRadius: "6px",
-                },
-                panel: { backgroundColor: "	#242424" },
-              }}
-              p="0"
-            >
-              <Accordion.Item value={"add-equipment"}>
-                <Accordion.Control className={styles.hoverElement}>
-                  <Group justify="center">
-                    <IconPlus />
-                    <Text>Add Equipment and Gear</Text>
-                  </Group>
-                </Accordion.Control>
-                <Accordion.Panel>
-                  <Stack>
-                    <TextInput
-                      leftSection={<IconSearch />}
-                      placeholder="Search for name of equipment..."
-                      onChange={(e) => setSearchTerm(e.currentTarget.value)}
-                      label="Equipment Search"
-                    />
-                    <Divider />
+            {!IsPreview() && (
+              <Accordion
+                styles={{
+                  root: {
+                    backgroundColor: "	#2e2e2e",
+                    border: "1px solid #3b3b3b",
+                    borderRadius: "6px",
+                  },
+                  panel: { backgroundColor: "	#242424" },
+                }}
+                p="0"
+              >
+                <Accordion.Item value={"add-equipment"}>
+                  <Accordion.Control className={styles.hoverElement}>
+                    <Group justify="center">
+                      <IconPlus />
+                      <Text>Add Equipment and Gear</Text>
+                    </Group>
+                  </Accordion.Control>
+                  <Accordion.Panel>
                     <Stack>
-                      {searchTerm ? (
-                        filteredList.length > 0 ? (
-                          filteredList.slice(0, 5).map((result) => {
-                            return (
-                              <Card withBorder>
-                                <Group justify="space-between">
-                                  <SimpleGrid
-                                    cols={viewport.width < 600 ? 2 : 3}
-                                    w={"80%"}
-                                  >
-                                    <Stack gap="0">
-                                      <InputLabel c="dimmed">Name</InputLabel>
-                                      <Text>{result?.name}</Text>
-                                    </Stack>
-                                    <Stack gap="0">
-                                      <InputLabel c="dimmed">Type</InputLabel>
-                                      <Text>
-                                        {handleEquipmentType(result).type}
-                                      </Text>
-                                    </Stack>
-                                    {viewport.width >= 600 && (
+                      <TextInput
+                        leftSection={<IconSearch />}
+                        placeholder="Search for name of equipment..."
+                        onChange={(e) => setSearchTerm(e.currentTarget.value)}
+                        label="Equipment Search"
+                      />
+                      <Divider />
+                      <Stack>
+                        {searchTerm ? (
+                          filteredList.length > 0 ? (
+                            filteredList.slice(0, 5).map((result) => {
+                              return (
+                                <Card withBorder>
+                                  <Group justify="space-between">
+                                    <SimpleGrid
+                                      cols={viewport.width < 600 ? 2 : 3}
+                                      w={"80%"}
+                                    >
                                       <Stack gap="0">
-                                        <InputLabel c="dimmed">
-                                          Subtype
-                                        </InputLabel>
-                                        <Text tt="capitalize">
-                                          {handleEquipmentType(result).subtype}
+                                        <InputLabel c="dimmed">Name</InputLabel>
+                                        <Text>{result?.name}</Text>
+                                      </Stack>
+                                      <Stack gap="0">
+                                        <InputLabel c="dimmed">Type</InputLabel>
+                                        <Text>
+                                          {handleEquipmentType(result).type}
                                         </Text>
                                       </Stack>
-                                    )}
-                                  </SimpleGrid>
-                                  <Group>
-                                    <ActionIcon
-                                      color="grey"
-                                      onClick={() =>
-                                        handleInspectEquipment(result)
-                                      }
-                                    >
-                                      <IconDots />
-                                    </ActionIcon>
+                                      {viewport.width >= 600 && (
+                                        <Stack gap="0">
+                                          <InputLabel c="dimmed">
+                                            Subtype
+                                          </InputLabel>
+                                          <Text tt="capitalize">
+                                            {
+                                              handleEquipmentType(result)
+                                                .subtype
+                                            }
+                                          </Text>
+                                        </Stack>
+                                      )}
+                                    </SimpleGrid>
+                                    <Group>
+                                      <ActionIcon
+                                        color="grey"
+                                        onClick={() =>
+                                          handleInspectEquipment(result)
+                                        }
+                                      >
+                                        <IconDots />
+                                      </ActionIcon>
+                                    </Group>
                                   </Group>
-                                </Group>
-                                {/* </Group> */}
-                              </Card>
-                            );
-                          })
+                                  {/* </Group> */}
+                                </Card>
+                              );
+                            })
+                          ) : (
+                            <Card c="dimmed">No results found</Card>
+                          )
                         ) : (
-                          <Card c="dimmed">No results found</Card>
-                        )
-                      ) : (
-                        <Card c="dimmed" ta="center">
-                          Enter a name to start searching...
-                        </Card>
-                      )}
+                          <Card c="dimmed" ta="center">
+                            Enter a name to start searching...
+                          </Card>
+                        )}
+                      </Stack>
                     </Stack>
-                  </Stack>
-                </Accordion.Panel>
-              </Accordion.Item>
-            </Accordion>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            )}
           </Stack>
           <Textarea
-            label="Other Gear"
+            label={<InputLabel c="dimmed">Other Gear</InputLabel>}
             rows={10}
             ta="start"
             value={currentCharacter?.otherGear}
             onChange={(e) => {
               handleUpdateCharacter("otherGear", e.currentTarget.value);
             }}
+            disabled={IsPreview()}
           />
         </Stack>
       </Grid.Col>

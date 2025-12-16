@@ -5,6 +5,7 @@ import {
   FileButton,
   Flex,
   Grid,
+  Group,
   Image,
   List,
   Modal,
@@ -28,8 +29,9 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
+import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 
 export const Settings = ({
   currentCharacter,
@@ -38,11 +40,14 @@ export const Settings = ({
   toggleRollLog,
   handleFailedTests,
   setCharacter,
-  toggleDiceRoller
+  toggleDiceRoller,
+  handleUpdateCharacter,
 }: any) => {
   const [viewport] = useViewportContext();
   const [{ savedCharacters }, actions] = useCharacterContext();
+  const [failures, setFailures] = useState([]);
   const [failuresModalOpen, setFailuresModalOpen] = useState<boolean>(false);
+  const [diceRoll, setDiceRoll] = useState(null);
 
   const toggleFailuresModal = () => {
     setFailuresModalOpen(!failuresModalOpen);
@@ -60,7 +65,18 @@ export const Settings = ({
   };
 
   const handleRollFailures = () => {
-    toggleFailuresModal();
+    let roll: any = new DiceRoll(failures.length.toString() + "d4");
+    let rollObj = roll.export(exportFormats.OBJECT);
+    setDiceRoll({ ...rollObj });
+    failures.map((item, index) => {
+      return handleUpdateCharacter(
+        "skills",
+        currentCharacter.skills[item] + rollObj.rolls[0].rolls[index].value,
+        item
+      );
+    });
+    handleUpdateCharacter("failedTests", []);
+    // toggleFailuresModal();
     // notifications.show({
     //   color: "green",
     //   title: "Rolled Failures",
@@ -90,6 +106,11 @@ export const Settings = ({
     reader.readAsDataURL(element);
   }
 
+  useEffect(() => {
+    setDiceRoll(null);
+    setFailures([...currentCharacter.failedTests]);
+  }, [failuresModalOpen]);
+
   return (
     <>
       <Grid pt="sm" px={viewport.width > 760 ? "md" : "0"}>
@@ -101,7 +122,7 @@ export const Settings = ({
             {viewport.width < 760 ? (
               <Center>
                 <Stack>
-                  <Card withBorder>
+                  {/* <Card withBorder>
                     <Stack>
                       <Center>
                         {currentCharacter.image ? (
@@ -131,7 +152,7 @@ export const Settings = ({
                         )}
                       </FileButton>
                     </Stack>
-                  </Card>
+                  </Card> */}
                   <Button
                     onClick={handleExport}
                     fullWidth
@@ -171,11 +192,11 @@ export const Settings = ({
                   )}
                   {inPerson && (
                     <Button
-                      onClick={handleRollFailures}
+                      onClick={toggleFailuresModal}
                       fullWidth
                       leftSection={<IconListCheck />}
                       variant="outline"
-                      disabled
+                      disabled={currentCharacter.failedTests.length === 0}
                     >
                       Roll/Clear Failures
                     </Button>
@@ -194,7 +215,7 @@ export const Settings = ({
               </Center>
             ) : (
               <Stack>
-                <Stack>
+                {/* <Stack>
                   {currentCharacter.image ? (
                     <Card withBorder w="225">
                       <Center>
@@ -239,15 +260,7 @@ export const Settings = ({
                       </Stack>
                     </Card>
                   )}
-                </Stack>
-                <Button
-                  onClick={handleExport}
-                  maw={375}
-                  leftSection={<IconShare />}
-                  variant="outline"
-                >
-                  Export Character
-                </Button>
+                </Stack> */}
                 <Button
                   leftSection={<IconUsersGroup />}
                   maw={375}
@@ -256,6 +269,14 @@ export const Settings = ({
                   variant={inPerson ? "filled" : "outline"}
                 >
                   In-Person Mode {inPerson ? "ON" : "OFF"}
+                </Button>
+                <Button
+                  onClick={handleExport}
+                  maw={375}
+                  leftSection={<IconShare />}
+                  variant="outline"
+                >
+                  Export Character
                 </Button>
                 {inPerson && (
                   <Button
@@ -279,11 +300,11 @@ export const Settings = ({
                 )}
                 {inPerson && (
                   <Button
-                    onClick={handleRollFailures}
+                    onClick={toggleFailuresModal}
                     maw={375}
                     leftSection={<IconListCheck />}
                     variant="outline"
-                    disabled
+                    disabled={currentCharacter.failedTests.length === 0}
                   >
                     Roll/Clear Failures
                   </Button>
@@ -319,9 +340,33 @@ export const Settings = ({
             (This mechanic is used in-between operations.)
           </Text>
           <List>
-            {currentCharacter.failedTests.length > 0 ? (
-              currentCharacter.failedTests.map((item) => {
-                return <List.Item tt="capitalize">{item}</List.Item>;
+            {failures.length > 0 ? (
+              failures.map((item, index) => {
+                return (
+                  <List.Item tt="capitalize">
+                    <Group justify="space-between">
+                      <Text>{item}</Text>
+                      {diceRoll ? (
+                        <Text>
+                          {currentCharacter.skills[item] -
+                            diceRoll.rolls[0].rolls[index].value}
+                          %
+                        </Text>
+                      ) : (
+                        <Text>{currentCharacter.skills[item]}%</Text>
+                      )}
+
+                      {diceRoll && (
+                        <>
+                          <Text>+</Text>
+                          <Text>{diceRoll.rolls[0].rolls[index].value}</Text>
+                          <Text>=</Text>
+                          <Text>{currentCharacter.skills[item]}%</Text>
+                        </>
+                      )}
+                    </Group>
+                  </List.Item>
+                );
               })
             ) : (
               <Text c="dimmed" ta="center">
@@ -329,7 +374,12 @@ export const Settings = ({
               </Text>
             )}
           </List>
-          <Button variant="outline" leftSection={<IconDice4 />}>
+          <Button
+            variant="outline"
+            leftSection={<IconDice4 />}
+            onClick={handleRollFailures}
+            disabled={currentCharacter.failedTests.length === 0}
+          >
             Roll
           </Button>
           <Button
