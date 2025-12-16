@@ -332,7 +332,10 @@ export const CreateAnAgent: React.FC = () => {
             userAgent.attributes.san.max - userAgent.stats.power;
           newObj.attributes.san.current =
             userAgent.attributes.san.current - userAgent.stats.power;
-          newObj.wounds = veteranValues.wounds;
+          newObj.motivations =
+            (userAgent.motivations.length > 0
+              ? userAgent.motivations + "\n"
+              : "") + veteranValues.wounds;
           newObj.attributes.bp.max =
             userAgent.attributes.bp.max -
             userAgent.stats.power -
