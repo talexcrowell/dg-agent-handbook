@@ -178,10 +178,18 @@ export const CharacterSheet: React.FC = () => {
         characterObj[key] = [...val];
         break;
       case "violence":
-        characterObj.adaptation.violence = val;
+        if (characterObj.adaptation.violence === 1 && val === 1) {
+          characterObj.adaptation.violence = 0;
+        } else {
+          characterObj.adaptation.violence = val;
+        }
         break;
       case "helplessness":
-        characterObj.adaptation.helplessness = val;
+        if (characterObj.adaptation.helplessness === 1 && val === 1) {
+          characterObj.adaptation.helplessness = 0;
+        } else {
+          characterObj.adaptation.helplessness = val;
+        }
         break;
       default:
         characterObj[key] = val;
