@@ -186,7 +186,7 @@ export const DeltaGreen = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "overview" && viewport.width > 992 && (
+      {tabValue !== "welcome" && viewport.width > 992 && (
         <Grid.Col span={2} pb={0}>
           <ScrollArea h={"93vh"}>
             <Group py="xs" align="middle">

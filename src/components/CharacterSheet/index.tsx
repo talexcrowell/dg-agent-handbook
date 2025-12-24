@@ -735,13 +735,17 @@ export const CharacterSheet: React.FC = () => {
           </Tabs.List>
         )}
         <Tabs.Panel value="all" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
@@ -778,13 +782,17 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="personal" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
@@ -801,13 +809,17 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="skills" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
@@ -824,13 +836,17 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
@@ -845,13 +861,17 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="notes" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
@@ -866,13 +886,17 @@ export const CharacterSheet: React.FC = () => {
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment-notes" id="tab-panel">
-          {!IsPreview() && (
+          {!IsPreview() ? (
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
             />
+          ) : (
+            <Group justify="center" c='' py='xs'>
+              <Title order={3} c="dimmed">Preview Mode</Title>
+            </Group>
           )}
           <Divider />
           <ScrollArea
