@@ -198,7 +198,7 @@ export const Home = () => {
             <Text>You can read more about special training in</Text>
             <Anchor
               component={Link}
-              to="/agents/professions/stats-and-skills#special-training"
+              to="/training/stats-and-skills#special-training"
             >
               Professions.
             </Anchor>
