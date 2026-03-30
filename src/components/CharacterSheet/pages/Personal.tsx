@@ -258,7 +258,7 @@ export const Personal = ({
                     editPersonal
                       ? handleUpdateCharacter(
                           "profession",
-                          e.currentTarget.value
+                          e.currentTarget.value,
                         )
                       : ""
                   }
@@ -327,7 +327,7 @@ export const Personal = ({
                     editPersonal
                       ? handleUpdateCharacter(
                           "education",
-                          e.currentTarget.value
+                          e.currentTarget.value,
                         )
                       : ""
                   }
@@ -349,7 +349,9 @@ export const Personal = ({
                   flex={1}
                   value={data?.name}
                   onChange={(e) =>
-                    handleUpdateCharacter("name", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter("name", e.currentTarget.value)
+                      : ""
                   }
                   styles={
                     !editPersonal ? { input: { cursor: "not-allowed" } } : {}
@@ -378,7 +380,12 @@ export const Personal = ({
                   flex={1}
                   value={data?.profession}
                   onChange={(e) =>
-                    handleUpdateCharacter("profession", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter(
+                          "profession",
+                          e.currentTarget.value,
+                        )
+                      : ""
                   }
                   styles={
                     !editPersonal ? { input: { cursor: "not-allowed" } } : {}
@@ -393,7 +400,9 @@ export const Personal = ({
                   flex={1}
                   value={data?.employer}
                   onChange={(e) =>
-                    handleUpdateCharacter("employer", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter("employer", e.currentTarget.value)
+                      : ""
                   }
                   styles={
                     !editPersonal ? { input: { cursor: "not-allowed" } } : {}
@@ -422,7 +431,12 @@ export const Personal = ({
                   flex={1}
                   value={data?.education}
                   onChange={(e) =>
-                    handleUpdateCharacter("education", e.currentTarget.value)
+                    editPersonal
+                      ? handleUpdateCharacter(
+                          "education",
+                          e.currentTarget.value,
+                        )
+                      : ""
                   }
                   styles={
                     !editPersonal ? { input: { cursor: "not-allowed" } } : {}
@@ -508,7 +522,7 @@ export const Personal = ({
                             handleUpdateCharacter(
                               "stats",
                               val,
-                              stat.toLowerCase()
+                              stat.toLowerCase(),
                             )
                           }
                         />

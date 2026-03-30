@@ -47,6 +47,8 @@ export const UtilityMenu = ({
         ]}
         size='md'
         allowDeselect={false}
+
+        w='175'
       />
       <ActionIcon
         size="xl"
