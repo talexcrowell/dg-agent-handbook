@@ -24,7 +24,7 @@ function App() {
   return (
     <AppShell padding="sm">
       {pathname !== "/" && (!pathname.includes("sheet") || width > 760) && (
-        <AppShell.Header h={width > 760 ? 45 : 55}>
+        <AppShell.Header h={width > 760 ? 45 : 'auto'}>
           <Navbar />
         </AppShell.Header>
       )}
