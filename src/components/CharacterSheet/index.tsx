@@ -68,7 +68,7 @@ export const CharacterSheet: React.FC = () => {
 
   // Settings
   const [inPerson, setInPerson] = useState(
-    currentCharacter.inPersonMode ? currentCharacter.inPersonMode : false
+    currentCharacter.inPersonMode ? currentCharacter.inPersonMode : false,
   );
 
   // Rolls
@@ -78,7 +78,7 @@ export const CharacterSheet: React.FC = () => {
   const [showDiceRoller, setShowDiceRoller] = useState(false);
   const [opened, { toggle, close }] = useDisclosure(false);
   const [modalType, setModalType] = useState("default");
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [tabValue, setTabValue] = useState("all");
 
   // Fill potential missing fields
   useEffect(() => {
@@ -150,7 +150,7 @@ export const CharacterSheet: React.FC = () => {
   const handleUpdateCharacter = (
     key: string,
     val: any,
-    secondaryKey?: string
+    secondaryKey?: string,
   ) => {
     let characterObj = { ...character };
     switch (key) {
@@ -170,7 +170,7 @@ export const CharacterSheet: React.FC = () => {
         break;
       case "equipmentDelete":
         let newArr = characterObj.equipment.filter(
-          (item) => item.name !== val.name
+          (item) => item.name !== val.name,
         );
         characterObj.equipment = [...newArr];
         break;
@@ -199,14 +199,14 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
   };
 
@@ -216,7 +216,7 @@ export const CharacterSheet: React.FC = () => {
         color: "green",
         title: "In Person Mode Activated!",
         message: "Rolling enabled on your character sheet.",
-        position: viewport.width > 760 ? "bottom-center" : "top-center",
+        position: "bottom-center",
         autoClose: 2000,
       });
     } else {
@@ -224,7 +224,7 @@ export const CharacterSheet: React.FC = () => {
         color: "grey",
         title: "In Person Mode Deactivated!",
         message: "Rolling disabled on your character sheet.",
-        position: viewport.width > 760 ? "bottom-center" : "top-center",
+        position: "bottom-center",
         autoClose: 2000,
       });
     }
@@ -256,12 +256,12 @@ export const CharacterSheet: React.FC = () => {
       skill === "luck"
         ? 50
         : skill === "san"
-        ? character.attributes[skill].current
-        : isStat(skill)
-        ? character.stats[skill] * 5
-        : isSkillChoice(skill)
-        ? character.skills[skill][0].skill
-        : character.skills[skill];
+          ? character.attributes[skill].current
+          : isStat(skill)
+            ? character.stats[skill] * 5
+            : isSkillChoice(skill)
+              ? character.skills[skill][0].skill
+              : character.skills[skill];
 
     let roll: any = new DiceRoll("2d10");
     let rollObj = roll.export(exportFormats.OBJECT);
@@ -283,12 +283,12 @@ export const CharacterSheet: React.FC = () => {
           skill === "luck"
             ? 50
             : skill === "san"
-            ? character.attributes[skill].current
-            : isStat(skill)
-            ? character.stats[skill] * 5
-            : isSkillChoice(skill)
-            ? character.skills[skill][0].skill
-            : character.skills[skill],
+              ? character.attributes[skill].current
+              : isStat(skill)
+                ? character.stats[skill] * 5
+                : isSkillChoice(skill)
+                  ? character.skills[skill][0].skill
+                  : character.skills[skill],
         skill,
         label: isSkillChoice(skill)
           ? `(${character.skills[skill][0].label})`
@@ -315,14 +315,14 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     // const successAudio = new Audio(
     //   "https://docs.google.com/uc?export=open&id=1kJPzCWWDtZeO9mu9io-99IkOhcqUV9I2"
@@ -381,14 +381,14 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     toggle();
   };
@@ -407,20 +407,20 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     notifications.show({
       message: `You dealt ${diceRoll} damage to your target.`,
       autoClose: 3000,
       color: "green",
-      position: viewport.width < 760 ? "top-center" : "bottom-center",
+      position: "bottom-center",
     });
   };
 
@@ -453,14 +453,14 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     notifications.show({
       message:
@@ -469,7 +469,7 @@ export const CharacterSheet: React.FC = () => {
           : `You dealt ${lethalityDamage} damage to your target.`,
       autoClose: 3000,
       color: "green",
-      position: viewport.width < 760 ? "top-center" : "bottom-center",
+      position: "bottom-center",
     });
   };
 
@@ -488,11 +488,11 @@ export const CharacterSheet: React.FC = () => {
         : parseInt(damageValue.replace(" Damage", "")) - parseInt(diceRoll);
 
     let bondFilter = characterObj.bonds.filter(
-      (bond) => bond.name === selectedBond
+      (bond) => bond.name === selectedBond,
     )[0];
 
     let bondOthersFilter = characterObj.bonds.filter(
-      (bond) => bond.name !== selectedBond
+      (bond) => bond.name !== selectedBond,
     );
 
     // Willpower calculation
@@ -536,14 +536,14 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     notifications.show({
       message: `You have taken ${sanDifference} sanity damage. You projected ${
@@ -551,7 +551,7 @@ export const CharacterSheet: React.FC = () => {
       } bond loss to ${selectedBond}.`,
       autoClose: 5000,
       color: "red",
-      position: viewport.width < 760 ? "top-center" : "bottom-center",
+      position: "bottom-center",
     });
   };
 
@@ -571,23 +571,23 @@ export const CharacterSheet: React.FC = () => {
     actions.updateCharacters({ ...characterObj });
     localStorage.setItem(
       "currentCharacter",
-      JSON.stringify({ ...characterObj })
+      JSON.stringify({ ...characterObj }),
     );
     localStorage.setItem(
       "savedCharacters",
       JSON.stringify([
         ...savedCharacters.filter((item) => item.id !== characterObj.id),
         { ...characterObj },
-      ])
+      ]),
     );
     notifications.show({
       message: `You have taken ${damageValue.replace(
         " Damage",
-        ""
+        "",
       )} sanity damage`,
       autoClose: 5000,
       color: "red",
-      position: viewport.width < 760 ? "top-center" : "bottom-center",
+      position: "bottom-center",
     });
   };
 
@@ -638,54 +638,16 @@ export const CharacterSheet: React.FC = () => {
     handleUpdateCharacter("failedTests", [...val]);
   };
 
-  const handleCharacterSheetFullscreen = () => {
-    let elem = document.getElementById("character-sheet");
-
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      /* Chrome, Safari & Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      /* IE/Edge */
-      elem.msRequestFullscreen();
-    }
-  };
-
-  const exitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen(); // For Safari
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen(); // For Firefox
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen(); // For IE/Edge
-    }
-  };
-
-  const handleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-    isFullscreen ? exitFullscreen() : handleCharacterSheetFullscreen();
-  };
-  const handleModalFullscreen = (value) => {
-    notifications.show({
-      color: "green",
-      title: value,
-      message: "Rolling enabled on your character sheet.",
-      position: viewport.width > 760 ? "bottom-center" : "top-center",
-    });
-  };
-
   const IsPreview = () => {
     return savedCharacters.filter(
-      (character) => character.name === currentCharacter.name
+      (character) => character.name === currentCharacter.name,
     ).length >= 1
       ? false
       : true;
+  };
+
+  const handleMobileTab = (val) => {
+    setTabValue(val);
   };
 
   if (!character?.name) {
@@ -709,6 +671,7 @@ export const CharacterSheet: React.FC = () => {
         id="character-sheet"
         px={0}
         style={{ zIndex: 100 }}
+        value={tabValue}
       >
         {viewport.width > 760 && (
           <Tabs.List
@@ -741,15 +704,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+            h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Personal
@@ -788,15 +755,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Personal
@@ -815,15 +786,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Skills
@@ -842,15 +817,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Equipment
@@ -867,15 +846,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+             h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Notes
@@ -892,15 +875,19 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               toggleRollLog={toggleRollLog}
               toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
             />
           ) : (
-            <Group justify="center" c='' py='xs'>
-              <Title order={3} c="dimmed">Preview Mode</Title>
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
             </Group>
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 120)}
+              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
             scrollbars="y"
           >
             <Equipment
@@ -921,6 +908,14 @@ export const CharacterSheet: React.FC = () => {
             h={viewport.height - (viewport.width > 760 ? 0 : 50)}
             scrollbars="y"
           >
+            <UtilityMenu
+              handleInPerson={handleInPerson}
+              inPerson={inPerson}
+              toggleRollLog={toggleRollLog}
+              toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
+            />
             <Settings
               currentCharacter={character}
               handleInPerson={handleInPerson}
@@ -954,27 +949,6 @@ export const CharacterSheet: React.FC = () => {
           showDiceRoller={showDiceRoller}
           id="roll-modal"
         />
-        {viewport.width <= 760 && (
-          <Tabs.List
-            justify={viewport.width > 760 ? "flex-start" : "space-between"}
-          >
-            <Tabs.Tab value="all" leftSection={<IconFile />}>
-              {viewport.width > 760 && "All"}
-            </Tabs.Tab>
-            <Tabs.Tab value="personal" leftSection={<IconUser />}>
-              {viewport.width > 760 && "Personal"}
-            </Tabs.Tab>
-            <Tabs.Tab value="skills" leftSection={<IconList />}>
-              {viewport.width > 760 && "Skills"}
-            </Tabs.Tab>
-            <Tabs.Tab value="equipment-notes" leftSection={<IconNotes />}>
-              {viewport.width > 760 && "Notes"}
-            </Tabs.Tab>
-            <Tabs.Tab value="settings" leftSection={<IconSettings />}>
-              {viewport.width > 760 && "Settings"}
-            </Tabs.Tab>
-          </Tabs.List>
-        )}
         <Modal
           opened={blockerOpened}
           onClose={() => setBlockerOpened(false)}

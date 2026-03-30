@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group } from "@mantine/core";
+import { ActionIcon, Button, Group, Select } from "@mantine/core";
 import {
   IconArrowLeft,
   IconDice4,
@@ -13,53 +13,50 @@ export const UtilityMenu = ({
   inPerson,
   toggleRollLog,
   toggleDiceRoller,
+  handleMobileTab,
+  tabValue,
 }: any) => {
   const [viewport] = useViewportContext();
   return viewport.width < 760 ? (
     <Group my="sm" justify="space-between">
-      <Group>
-        <ActionIcon
-          size="xl"
-          onClick={handleInPerson}
-          variant={inPerson ? "filled" : "outline"}
-          color={inPerson ? "green" : "gray"}
-          aria-label="In-Person"
-        >
-          <IconUsersGroup />
-        </ActionIcon>
-      </Group>
-      <Group>
-        {inPerson && (
-          <ActionIcon
-            size="xl"
-            aria-label="Dice Roller"
-            variant="outline"
-            onClick={toggleDiceRoller}
-          >
-            <IconDice4 />
-          </ActionIcon>
-        )}
-        {inPerson && (
-          <ActionIcon
-            size="xl"
-            aria-label="Roll Log"
-            variant="outline"
-            onClick={toggleRollLog}
-          >
-            <IconHistory />
-          </ActionIcon>
-        )}
-        <ActionIcon
-          size="xl"
-          variant={"light"}
-          color={"red"}
-          aria-label="Back to Roster"
-          component={Link}
-          to="/agents/roster"
-        >
-          <IconArrowLeft />
-        </ActionIcon>
-      </Group>
+      <ActionIcon
+        size="xl"
+        onClick={handleInPerson}
+        variant={inPerson ? "filled" : "outline"}
+        color={inPerson ? "green" : "gray"}
+        aria-label="In-Person"
+      >
+        <IconUsersGroup />
+      </ActionIcon>
+
+      <Select
+        value={tabValue}
+        onChange={(val, opt) => handleMobileTab(val)}
+        data={[
+          { label: "Character Sheet", value: "all" },
+          { label: "Settings", value: "settings" },
+          {
+            group: "Sheet Sections",
+            items: [
+              { label: "Personal", value: "personal" },
+              { label: "Skills", value: "skills" },
+              { label: "Equipment", value: "equipment" },
+              { label: "Notes", value: "notes" },
+            ],
+          },
+        ]}
+        allowDeselect={false}
+      />
+      <ActionIcon
+        size="xl"
+        variant={"light"}
+        color={"red"}
+        aria-label="Back to Roster"
+        component={Link}
+        to="/agents/roster"
+      >
+        <IconArrowLeft />
+      </ActionIcon>
     </Group>
   ) : (
     <Group my="sm" mx="md" justify="space-between">

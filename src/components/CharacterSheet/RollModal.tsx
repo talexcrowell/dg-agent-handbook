@@ -149,18 +149,20 @@ const RollModalContent = ({
       rollType == "luck"
         ? 50
         : rollType == "san"
-        ? character.attributes[rollType].current
-        : isStat(rollType)
-        ? character.stats[rollType] * 5
-        : isSkillChoice(
-            rollType.includes(".") ? rollType.split(".")[0] : rollType
-          )
-        ? rollType.includes(".")
-          ? character.skills[rollType.split(".")[0]].filter((subskill) => {
-              return subskill.label === rollType.split(".")[1];
-            })[0]?.skill
-          : character.skills[rollType][0].skill
-        : character.skills[rollType];
+          ? character.attributes[rollType].current
+          : isStat(rollType)
+            ? character.stats[rollType] * 5
+            : isSkillChoice(
+                  rollType.includes(".") ? rollType.split(".")[0] : rollType,
+                )
+              ? rollType.includes(".")
+                ? character.skills[rollType.split(".")[0]].filter(
+                    (subskill) => {
+                      return subskill.label === rollType.split(".")[1];
+                    },
+                  )[0]?.skill
+                : character.skills[rollType][0].skill
+              : character.skills[rollType];
 
     if (userValue >= parseInt(value.join(""))) {
       if (value[0] === value[1] || parseInt(value.join("")) === 1) {
@@ -181,18 +183,20 @@ const RollModalContent = ({
       item.skill == "luck"
         ? 50
         : item.skill === "san"
-        ? character.attributes[item.skill].current
-        : isStat(rollType)
-        ? character.stats[item.skill] * 5
-        : isSkillChoice(
-            rollType.includes(".") ? rollType.split(".")[0] : rollType
-          )
-        ? rollType.includes(".")
-          ? character.skills[rollType.split(".")[0]].filter((subskill) => {
-              return subskill.label === rollType.split(".")[1];
-            })[0]?.skill
-          : character.skills[rollType][0].skill
-        : character.skills[item.skill];
+          ? character.attributes[item.skill].current
+          : isStat(rollType)
+            ? character.stats[item.skill] * 5
+            : isSkillChoice(
+                  rollType.includes(".") ? rollType.split(".")[0] : rollType,
+                )
+              ? rollType.includes(".")
+                ? character.skills[rollType.split(".")[0]].filter(
+                    (subskill) => {
+                      return subskill.label === rollType.split(".")[1];
+                    },
+                  )[0]?.skill
+                : character.skills[rollType][0].skill
+              : character.skills[item.skill];
 
     if (userValue >= item.rolledValue) {
       if (item.rolledValue.toString()[0] === item.rolledValue.toString()[1]) {
@@ -218,7 +222,7 @@ const RollModalContent = ({
     handleCustomRoll(
       diceNumber.toString() +
         diceNotation.toString() +
-        (modifier > 0 ? `+${modifier}` : "")
+        (modifier > 0 ? `+${modifier}` : ""),
     );
   };
   const handleDiceValue = (val) => {
@@ -270,12 +274,12 @@ const RollModalContent = ({
                               {item.skill == "luck"
                                 ? 50
                                 : item.skill == "san"
-                                ? character.attributes[item.skill].current
-                                : isStat(item.skill)
-                                ? character.stats[item.skill] * 5
-                                : isSkillChoice(item.skill)
-                                ? character.skills[item.skill][0].skill
-                                : character.skills[item.skill]}
+                                  ? character.attributes[item.skill].current
+                                  : isStat(item.skill)
+                                    ? character.stats[item.skill] * 5
+                                    : isSkillChoice(item.skill)
+                                      ? character.skills[item.skill][0].skill
+                                      : character.skills[item.skill]}
                             </Text>
                           </Stack>
                           <IconVs size={32} />
@@ -328,39 +332,7 @@ const RollModalContent = ({
     return (
       <Stack gap="lg">
         <Title>Dice Roller</Title>
-        <Group>
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Notation
-              </InputLabel>
-              <Text>{diceRoll?.notation}</Text>
-            </Stack>
-          )}
-          {diceRoll && <Divider orientation="vertical" />}
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Rolled Values
-              </InputLabel>
-              <Group>
-                {diceRoll?.rolls[0].rolls.map((item) => {
-                  return <Text>{item.value}</Text>;
-                })}
-              </Group>
-            </Stack>
-          )}
-          {diceRoll && <Divider orientation="vertical" />}
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Total Value
-              </InputLabel>
-              <Text>{diceRoll?.total}</Text>
-            </Stack>
-          )}
-        </Group>
-        <Group justify="space-between" align="end">
+        <Group justify="space-between">
           <Group>
             <NumberInput
               label="Number of Dice"
@@ -394,6 +366,40 @@ const RollModalContent = ({
               Close
             </Button>
           </Group>
+        </Group>
+        <Group w={"100%"} justify="space-between">
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Notation
+              </InputLabel>
+              <Text>{diceRoll?.notation}</Text>
+            </Stack>
+          )}
+          {diceRoll && <Divider orientation="vertical" />}
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Rolled Values
+              </InputLabel>
+              <Group justify="center">
+                {diceRoll?.rolls[0].rolls.map((item) => {
+                  return <Text>{item.value}</Text>;
+                })}
+              </Group>
+            </Stack>
+          )}
+          {diceRoll && <Divider orientation="vertical" />}
+          {diceRoll && (
+            <Stack gap="xs">
+              <InputLabel c="dimmed" size="sm">
+                Total Value
+              </InputLabel>
+              <Group justify="center">
+                <Text>{diceRoll?.total}</Text>
+              </Group>
+            </Stack>
+          )}
         </Group>
       </Stack>
     );
@@ -449,7 +455,7 @@ const RollModalContent = ({
                 Agent's{" "}
                 {character.rollLog.length > 0 &&
                   skillKeyLabels(
-                    character.rollLog[character.rollLog.length - 1].skill
+                    character.rollLog[character.rollLog.length - 1].skill,
                   )}{" "}
                 {character.rollLog.length > 0 &&
                   character?.rollLog[character.rollLog.length - 1].label}
@@ -472,7 +478,8 @@ const RollModalContent = ({
                       label="Does your weapon have a Lethality Rating?"
                       checked={
                         isLethalCombat(
-                          character?.rollLog[character.rollLog.length - 1].skill
+                          character?.rollLog[character.rollLog.length - 1]
+                            .skill,
                         ) || lethality
                       }
                       onChange={() => setLethality(!lethality)}
@@ -482,7 +489,7 @@ const RollModalContent = ({
                     />
                   )}
                   {isLethalCombat(
-                    character?.rollLog[character.rollLog.length - 1].skill
+                    character?.rollLog[character.rollLog.length - 1].skill,
                   ) || lethality ? (
                     <Group align="end" justify="space-between">
                       <NumberInput
@@ -598,7 +605,7 @@ const RollModalContent = ({
                     {parseInt(
                       character?.rollLog[
                         character.rollLog.length - 1
-                      ].damage.replace(" Damage", "")
+                      ].damage.replace(" Damage", ""),
                     ) >= 5 && "(Temporary Insanity)"}
                   </Text>
                 )}
@@ -621,7 +628,7 @@ const RollModalContent = ({
                               handleSanityDefense(
                                 character?.rollLog[character.rollLog.length - 1]
                                   .damage,
-                                bond
+                                bond,
                               )
                             }
                             disabled={!bond}
@@ -633,7 +640,7 @@ const RollModalContent = ({
                             onClick={() =>
                               handleSanityDamage(
                                 character?.rollLog[character.rollLog.length - 1]
-                                  .damage
+                                  .damage,
                               )
                             }
                           >
@@ -714,8 +721,8 @@ export const RollModalContainer = ({
           showRollLog
             ? toggleRollLog
             : showDiceRoller
-            ? toggleDiceRoller
-            : close
+              ? toggleDiceRoller
+              : close
         }
         size={"fullscreen"}
         position="bottom"
@@ -749,8 +756,8 @@ export const RollModalContainer = ({
           showRollLog
             ? toggleRollLog
             : showDiceRoller
-            ? toggleDiceRoller
-            : close
+              ? toggleDiceRoller
+              : close
         }
         size={"lg"}
       >

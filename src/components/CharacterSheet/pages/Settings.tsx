@@ -122,45 +122,6 @@ export const Settings = ({
             {viewport.width < 760 ? (
               <Center>
                 <Stack>
-                  {/* <Card withBorder>
-                    <Stack>
-                      <Center>
-                        {currentCharacter.image ? (
-                          <Card withBorder w="225">
-                            <Center>
-                              <Image
-                                src={currentCharacter.image}
-                                h={200}
-                                w={200}
-                                radius="md"
-                              />
-                            </Center>
-                          </Card>
-                        ) : (
-                          <Card m="lg">No image uploaded</Card>
-                        )}
-                      </Center>
-                      <FileButton onChange={encodeImageFileAsURL}>
-                        {(props) => (
-                          <Button
-                            {...props}
-                            leftSection={<IconUserScan />}
-                            variant="outline"
-                          >
-                            Change Image
-                          </Button>
-                        )}
-                      </FileButton>
-                    </Stack>
-                  </Card> */}
-                  <Button
-                    onClick={handleExport}
-                    fullWidth
-                    leftSection={<IconShare />}
-                    variant="outline"
-                  >
-                    Export Character
-                  </Button>
                   <Button
                     leftSection={<IconUsersGroup />}
                     fullWidth
@@ -170,7 +131,7 @@ export const Settings = ({
                   >
                     In-Person Mode {inPerson ? "ON" : "OFF"}
                   </Button>
-                  {inPerson && (
+                  
                     <Button
                       onClick={toggleDiceRoller}
                       maw={375}
@@ -179,8 +140,8 @@ export const Settings = ({
                     >
                       Dice Roller
                     </Button>
-                  )}
-                  {inPerson && (
+                 
+                 
                     <Button
                       leftSection={<IconHistory />}
                       fullWidth
@@ -189,8 +150,8 @@ export const Settings = ({
                     >
                       Roll Log
                     </Button>
-                  )}
-                  {inPerson && (
+                  
+                  {/* {inPerson && (
                     <Button
                       onClick={toggleFailuresModal}
                       fullWidth
@@ -200,17 +161,7 @@ export const Settings = ({
                     >
                       Roll/Clear Failures
                     </Button>
-                  )}
-                  {inPerson && (
-                    <Button
-                      onClick={handleExport}
-                      fullWidth
-                      leftSection={<IconHome />}
-                      disabled
-                    >
-                      Home Scene
-                    </Button>
-                  )}
+                  )} */}
                 </Stack>
               </Center>
             ) : (
