@@ -24,13 +24,17 @@ import {
 import { useViewportSize } from "@mantine/hooks";
 import {
   IconAddressBook,
+  IconBackpack,
   IconBook,
   IconBook2,
+  IconBookFilled,
   IconBriefcase,
   IconChevronRight,
   IconClipboardData,
+  IconJacket,
   IconList,
   IconListDetails,
+  IconListSearch,
   IconMenu,
   IconMenu2,
   IconNotebook,
@@ -38,6 +42,8 @@ import {
   IconSearch,
   IconSpy,
   IconStairs,
+  IconSword,
+  IconTank,
   IconUserPlus,
   IconUsers,
   IconVocabulary,
@@ -209,6 +215,7 @@ export const Navbar = () => {
             <ActionIcon
               onClick={() => setMobileMenuOpen(true)}
               variant="outline"
+              size='lg'
             >
               <IconList />
             </ActionIcon>

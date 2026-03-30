@@ -664,10 +664,9 @@ export const CharacterSheet: React.FC = () => {
   } else {
     return (
       <Tabs
-        orientation={viewport.width > 760 ? "vertical" : "horizontal"}
+        orientation={"vertical"}
         variant="outline"
         defaultValue="all"
-        inverted={viewport.width < 760}
         id="character-sheet"
         px={0}
         style={{ zIndex: 100 }}
