@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@dice-roller/rpg-dice-roller": "^5.5.0",
-    "@mantine/core": "^8.0.1",
-    "@mantine/hooks": "^8.0.1",
-    "@mantine/notifications": "^8.0.1",
+    "@mantine/core": "^8.3.18",
+    "@mantine/hooks": "^8.3.18",
+    "@mantine/notifications": "^8.3.18",
     "@tabler/icons": "^3.26.0",
     "@tabler/icons-react": "^3.26.0",
     "fuse.js": "^7.1.0",
@@ -33,7 +33,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "postcss": "^8.4.40",
-    "postcss-preset-mantine": "^1.17.0",
+    "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
