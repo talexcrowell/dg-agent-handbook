@@ -45,6 +45,7 @@ export const UtilityMenu = ({
             ],
           },
         ]}
+        size='md'
         allowDeselect={false}
       />
       <ActionIcon
