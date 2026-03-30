@@ -54,6 +54,7 @@ export const Training = () => {
           defaultValue="introduction"
           value={tabValue}
           onChange={(value) => navigate(`/training/${value}`)}
+          keepMounted={false}
         >
           {viewport.width > 760 ? (
             <Tabs.List>

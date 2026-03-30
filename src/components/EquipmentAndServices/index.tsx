@@ -61,6 +61,7 @@ export const EquipmentAndServices = () => {
           defaultValue="overview"
           value={tabValue}
           onChange={(value) => navigate(`/equipment-and-services/${value}`)}
+          keepMounted={false}
         >
           {viewport.width > 760 ? (
             <Tabs.List>

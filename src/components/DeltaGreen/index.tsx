@@ -53,6 +53,7 @@ export const DeltaGreen = () => {
           defaultValue="welcome"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
+          keepMounted={false}
         >
           {viewport.width > 760 ? (
             <Tabs.List>

@@ -52,6 +52,7 @@ export const Rules = () => {
           defaultValue="how-to-play"
           value={tabValue}
           onChange={(value) => navigate(`/rules/${value}`)}
+          keepMounted={false}
         >
           {viewport.width > 760 ? (
             <Tabs.List>
