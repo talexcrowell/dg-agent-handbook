@@ -166,7 +166,7 @@ export const Navbar = () => {
               <Menu.Dropdown w="175" ta="start">
                 {currentCharacter.name &&
                   savedCharacters.filter(
-                    (agent) => agent.name === currentCharacter.name
+                    (agent) => agent.name === currentCharacter.name,
                   ).length !== 0 && (
                     <>
                       <Menu.Label>Current Agent</Menu.Label>
@@ -215,16 +215,16 @@ export const Navbar = () => {
             <ActionIcon
               onClick={() => setMobileMenuOpen(true)}
               variant="outline"
-              size='lg'
+              size="lg"
             >
               <IconList />
             </ActionIcon>
             <Center>
               <UnstyledButton component={Link} to="/directory">
-                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={40} />
+                <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={45} />
               </UnstyledButton>
             </Center>
-            <Box w="24" />
+            <Box w="45" />
           </Group>
         )}
         {width > 992 && <SearchBar />}
@@ -250,28 +250,107 @@ export const Navbar = () => {
         />
         <NavLink
           label="Delta Green"
-          component={Link}
-          to={`/delta-green`}
           active={location.pathname.includes("/delta-green")}
-          onClick={() => setMobileMenuOpen(false)}
           leftSection={<IconWorld />}
-        />
+        >
+          <NavLink
+            label="Welcome"
+            component={Link}
+            to={`/delta-green/welcome`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="The World of Delta Green"
+            component={Link}
+            to={`/delta-green/the-world-of-delta-green`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="What is Delta Green?"
+            component={Link}
+            to={`/delta-green/what-is-delta-green`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Fundamentals"
+            component={Link}
+            to={`/delta-green/fundamentals`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="How the Game is Played"
+            component={Link}
+            to={`/delta-green/how-the-game-is-played`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        </NavLink>
         <NavLink
           label="Rules"
-          component={Link}
-          to={`/rules`}
           active={location.pathname.includes("/rules")}
-          onClick={() => setMobileMenuOpen(false)}
           leftSection={<IconBook />}
-        />
+        >
+          <NavLink
+            label="How to Play"
+            component={Link}
+            to={`/rules/how-to-play`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Combat"
+            component={Link}
+            to={`/rules/combat`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Sanity"
+            component={Link}
+            to={`/rules/sanity`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Home"
+            component={Link}
+            to={`/rules/home`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        </NavLink>
         <NavLink
           label="Equipment and Services"
-          component={Link}
-          to={`/equipment-and-services`}
           active={location.pathname.includes("/equipment-and-services")}
-          onClick={() => setMobileMenuOpen(false)}
           leftSection={<IconPackages />}
-        />
+        >
+          <NavLink
+            label="Overview"
+            component={Link}
+            to={`/equipment-and-services/overview`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Weapons"
+            component={Link}
+            to={`/equipment-and-services/weapons`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Body Armor"
+            component={Link}
+            to={`/equipment-and-services/armor`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Vehicles"
+            component={Link}
+            to={`/equipment-and-services/vehicles`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <NavLink
+            label="Gear and Services"
+            component={Link}
+            to={`/equipment-and-services/gear-and-services`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        </NavLink>
+
         <NavLink
           label="Training"
           active={location.pathname.includes("/training")}
@@ -342,7 +421,7 @@ export const Navbar = () => {
         >
           {currentCharacter.name &&
             savedCharacters.filter(
-              (agent) => agent.name === currentCharacter.name
+              (agent) => agent.name === currentCharacter.name,
             ).length !== 0 && (
               <>
                 <InputLabel size="xs" c="dimmed">

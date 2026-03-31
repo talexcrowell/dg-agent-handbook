@@ -47,15 +47,15 @@ export const DeltaGreen = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={0}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
+    <Grid>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} py="0">
         <Tabs
           defaultValue="welcome"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
           keepMounted={false}
         >
-          {viewport.width > 760 ? (
+          {viewport.width > 760 && (
             <Tabs.List>
               <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
               <Tabs.Tab value="the-world-of-delta-green">
@@ -69,126 +69,51 @@ export const DeltaGreen = () => {
                 How the Game is Played
               </Tabs.Tab>
             </Tabs.List>
-          ) : (
-            <Affix position={{ bottom: 20, right: 20 }}>
-              <Button
-                leftSection={<IconNotebook />}
-                variant="filled"
-                onClick={() => setMobileMenuOpen(true)}
-                tt="capitalize"
-              >
-                <Text size="sm" fw={500} truncate="end" maw={175}>
-                  Delta Green /{" "}
-                  {tabValue === "the-world-of-delta-green"
-                    ? "The World of Delta Green"
-                    : tabValue === "what-is-delta-green"
-                    ? "What is Delta Green?"
-                    : tabValue === "fundamentals"
-                    ? "The Fundamentals"
-                    : tabValue === "how-the-game-is-played"
-                    ? "How the Game is Played"
-                    : tabValue}
-                </Text>
-              </Button>
-              <Modal
-                opened={mobileMenuOpen}
-                onClose={() => setMobileMenuOpen(false)}
-                fullScreen
-                title={
-                  <Group>
-                    <IconWorld />
-                    <Text fw={700}>Delta Green</Text>
-                  </Group>
-                }
-              >
-                <Stack>
-                  <NavLink
-                    label="Welcome"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/welcome");
-                    }}
-                    active={location.pathname === "/delta-green/welcome"}
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-
-                  <NavLink
-                    label="The World of Delta Green"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/the-world-of-delta-green");
-                    }}
-                    active={
-                      location.pathname ===
-                      "/delta-green/the-world-of-delta-green"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label=" What is Delta Green?"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/what-is-delta-green");
-                    }}
-                    active={
-                      location.pathname === "/delta-green/what-is-delta-green"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="The Fundamentals"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/fundamentals");
-                    }}
-                    active={location.pathname === "/delta-green/fundamentals"}
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="How the Game is Played"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/delta-green/how-the-game-is-played");
-                    }}
-                    active={
-                      location.pathname ===
-                      "/delta-green/how-the-game-is-played"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                </Stack>
-              </Modal>
-            </Affix>
           )}
           <Tabs.Panel value="welcome">
-            <ScrollArea h={"91vh"} scrollbars="y">
+            <ScrollArea
+              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+              scrollbars="y"
+            >
               <Overview />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea h={"91vh"} scrollbars="y">
+            <ScrollArea
+              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+              scrollbars="y"
+            >
               <WorldOfDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="what-is-delta-green">
-            <ScrollArea h={"91vh"} scrollbars="y">
+            <ScrollArea
+              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+              scrollbars="y"
+            >
               <WhatIsDeltaGreen />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea h={"91vh"} scrollbars="y">
+            <ScrollArea
+              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+              scrollbars="y"
+            >
               <Fundamentals />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea h={"91vh"} scrollbars="y">
+            <ScrollArea
+              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+              scrollbars="y"
+            >
               <HowTheGameIsPlayed />
             </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {tabValue !== "welcome" && viewport.width > 992 && (
-        <Grid.Col span={2} pb={0}>
+        <Grid.Col span={2} py="0">
           <ScrollArea h={"93vh"}>
             <Group py="xs" align="middle">
               <IconList />

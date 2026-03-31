@@ -12,21 +12,21 @@ import {
   Title,
 } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const Tradecraft = () => {
   const reinitializeRef = useRef(() => {});
   const [viewport] = useViewportContext();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     reinitializeRef.current();
   }, []);
 
   return (
     <Grid gutter={"md"}>
       <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
-        <ScrollArea h={"93vh"} scrollbars="y">
+        <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 75)} scrollbars="y">
           <Stack id="tradecraft">
             <Title td="underline">Tradecraft</Title>
             <Text>

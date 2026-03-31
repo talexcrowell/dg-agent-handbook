@@ -90,8 +90,11 @@ export const Weapons = () => {
   };
 
   return (
-    <ScrollArea h={"91vh"} scrollbars="y">
-      <Grid pt="sm" id="weapons">
+    <ScrollArea
+      h={viewport.height - (viewport.width > 992 ? 90 : 65)}
+      scrollbars="y"
+    >
+      <Grid id="weapons">
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline" id="weapons">
@@ -141,9 +144,9 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Base Damage</Table.Th>
-                    <Table.Th ta='center'>Armor Piercing</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Base Damage</Table.Th>
+                    <Table.Th ta="center">Armor Piercing</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -248,11 +251,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Uses</Table.Th>
-                    <Table.Th ta='center'>Radius</Table.Th>
-                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Uses</Table.Th>
+                    <Table.Th ta="center">Radius</Table.Th>
+                    <Table.Th ta="center">Victim's Penalty</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -357,11 +360,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Uses</Table.Th>
-                    <Table.Th ta='center'>Radius</Table.Th>
-                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Uses</Table.Th>
+                    <Table.Th ta="center">Radius</Table.Th>
+                    <Table.Th ta="center">Victim's Penalty</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -464,10 +467,10 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Uses</Table.Th>
-                    <Table.Th ta='center'>Victim's Penalty</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Uses</Table.Th>
+                    <Table.Th ta="center">Victim's Penalty</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -494,9 +497,9 @@ export const Weapons = () => {
                           <Table.Td tt="capitalize">
                             {skillKeyLabels(item.skill)}
                           </Table.Td>
-                          <Table.Td ta='center'>{item.range}m</Table.Td>
-                          <Table.Td ta='center'>{item.uses}</Table.Td>
-                          <Table.Td ta='center'>{item.penalty}</Table.Td>
+                          <Table.Td ta="center">{item.range}m</Table.Td>
+                          <Table.Td ta="center">{item.uses}</Table.Td>
+                          <Table.Td ta="center">{item.penalty}</Table.Td>
                           <Table.Td tt="capitalize">
                             <Stack align="center">
                               <IconTriangleFilled
@@ -665,12 +668,12 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Damage</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Lethality</Table.Th>
-                    <Table.Th ta='center'>Ammo Capacity</Table.Th>
-                    <Table.Th ta='center'>Armor Piercing</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Damage</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Lethality</Table.Th>
+                    <Table.Th ta="center">Ammo Capacity</Table.Th>
+                    <Table.Th ta="center">Armor Piercing</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -791,12 +794,12 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Lethality</Table.Th>
-                    <Table.Th ta='center'>Radius</Table.Th>
-                    <Table.Th ta='center'>Ammo Capacity</Table.Th>
-                    <Table.Th ta='center'>Armor Piercing</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Lethality</Table.Th>
+                    <Table.Th ta="center">Radius</Table.Th>
+                    <Table.Th ta="center">Ammo Capacity</Table.Th>
+                    <Table.Th ta="center">Armor Piercing</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -903,11 +906,11 @@ export const Weapons = () => {
                   <Table.Tr>
                     <Table.Th>Item</Table.Th>
                     <Table.Th>Skill</Table.Th>
-                    <Table.Th ta='center'>Range</Table.Th>
-                    <Table.Th ta='center'>Lethality</Table.Th>
-                    <Table.Th ta='center'>Radius</Table.Th>
-                    <Table.Th ta='center'>Armor Piercing</Table.Th>
-                    <Table.Th ta='center'>Expense</Table.Th>
+                    <Table.Th ta="center">Range</Table.Th>
+                    <Table.Th ta="center">Lethality</Table.Th>
+                    <Table.Th ta="center">Radius</Table.Th>
+                    <Table.Th ta="center">Armor Piercing</Table.Th>
+                    <Table.Th ta="center">Expense</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>

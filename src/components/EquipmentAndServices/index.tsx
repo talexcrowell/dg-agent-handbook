@@ -52,10 +52,10 @@ export const EquipmentAndServices = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={0}>
+    <Grid>
       <Grid.Col
         span={viewport.width > 992 && tabValue !== "search" ? 10 : 12}
-        pb="0"
+        py="0"
       >
         <Tabs
           defaultValue="overview"
@@ -63,7 +63,7 @@ export const EquipmentAndServices = () => {
           onChange={(value) => navigate(`/equipment-and-services/${value}`)}
           keepMounted={false}
         >
-          {viewport.width > 760 ? (
+          {viewport.width > 760 && (
             <Tabs.List>
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
               <Tabs.Tab value={"weapons"}>Weapons</Tabs.Tab>
@@ -72,92 +72,6 @@ export const EquipmentAndServices = () => {
               <Tabs.Tab value={"gear-and-services"}>Gear and Services</Tabs.Tab>
               <Tabs.Tab value={"search"}>Search</Tabs.Tab>
             </Tabs.List>
-          ) : (
-            <Affix position={{ bottom: 20, right: 20 }}>
-              <Button
-                leftSection={<IconNotebook />}
-                variant="gradient"
-                onClick={() => setMobileMenuOpen(true)}
-                tt="capitalize"
-              >
-                <Text size="sm" fw={500} truncate="end" maw={175}>
-                  E&S /{" "}
-                  {tabValue === "gear-and-services"
-                    ? "Gear and Services"
-                    : tabValue}
-                </Text>
-              </Button>
-              <Modal
-                opened={mobileMenuOpen}
-                onClose={() => setMobileMenuOpen(false)}
-                fullScreen
-                title={
-                  <Group>
-                    <IconPackages />
-                    <Text fw={700}>Equipment and Services</Text>
-                  </Group>
-                }
-              >
-                <Stack>
-                  <NavLink
-                    label="Overview"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/equipment-and-services/overview");
-                    }}
-                    active={
-                      location.pathname === "/equipment-and-services/overview"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Weapons"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/equipment-and-services/weapons");
-                    }}
-                    active={
-                      location.pathname === "/equipment-and-services/weapons"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Body Armor"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/equipment-and-services/armor");
-                    }}
-                    active={
-                      location.pathname === "/equipment-and-services/armor"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Vehicles"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/equipment-and-services/vehicles");
-                    }}
-                    active={
-                      location.pathname === "/equipment-and-services/vehicles"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Gear and Services"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/equipment-and-services/gear-and-services");
-                    }}
-                    active={
-                      location.pathname ===
-                      "/equipment-and-services/gear-and-services"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                </Stack>
-              </Modal>
-            </Affix>
           )}
           <Tabs.Panel value="overview">
             <Overview />
@@ -190,7 +104,7 @@ export const EquipmentAndServices = () => {
         </Tabs>
       </Grid.Col>
       {viewport.width > 992 && tabValue !== "search" && (
-        <Grid.Col span={2} pb={0}>
+        <Grid.Col span={2} py="0">
           <ScrollArea h={"93vh"}>
             <Group py="xs">
               <IconList />
@@ -211,56 +125,58 @@ export const EquipmentAndServices = () => {
                 children: data.value,
               })}
             />
-            {tabValue !=='overview' && <Table withColumnBorders withTableBorder striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Expense</Table.Th>
-                  <Table.Th>Definition</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                <Table.Tr>
-                  <Table.Td ta="center">
-                    <IconTriangleFilled color="green" />
-                  </Table.Td>
-                  <Table.Td>
-                    <Text size="xs">Incidental (&lt;$150)</Text>
-                  </Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td ta="center">
-                    <IconTriangleFilled color="blue" />
-                  </Table.Td>
-                  <Table.Td>
-                    <Text size="xs">Standard ($200-$800)</Text>
-                  </Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td ta="center">
-                    <IconTriangleFilled color="yellow" />
-                  </Table.Td>
-                  <Table.Td>
-                    <Text size="xs">Unusual ($1000-$5000)</Text>
-                  </Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td ta="center">
-                    <IconTriangleFilled color="orange" />
-                  </Table.Td>
-                  <Table.Td>
-                    <Text size="xs">Major ($6000-$30,000)</Text>
-                  </Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td ta="center">
-                    <IconTriangleFilled color="red" />
-                  </Table.Td>
-                  <Table.Td>
-                    <Text size="xs">Extreme (&gt;$36000)</Text>
-                  </Table.Td>
-                </Table.Tr>
-              </Table.Tbody>
-            </Table>}
+            {tabValue !== "overview" && (
+              <Table withColumnBorders withTableBorder striped>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Expense</Table.Th>
+                    <Table.Th>Definition</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  <Table.Tr>
+                    <Table.Td ta="center">
+                      <IconTriangleFilled color="green" />
+                    </Table.Td>
+                    <Table.Td>
+                      <Text size="xs">Incidental (&lt;$150)</Text>
+                    </Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td ta="center">
+                      <IconTriangleFilled color="blue" />
+                    </Table.Td>
+                    <Table.Td>
+                      <Text size="xs">Standard ($200-$800)</Text>
+                    </Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td ta="center">
+                      <IconTriangleFilled color="yellow" />
+                    </Table.Td>
+                    <Table.Td>
+                      <Text size="xs">Unusual ($1000-$5000)</Text>
+                    </Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td ta="center">
+                      <IconTriangleFilled color="orange" />
+                    </Table.Td>
+                    <Table.Td>
+                      <Text size="xs">Major ($6000-$30,000)</Text>
+                    </Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td ta="center">
+                      <IconTriangleFilled color="red" />
+                    </Table.Td>
+                    <Table.Td>
+                      <Text size="xs">Extreme (&gt;$36000)</Text>
+                    </Table.Td>
+                  </Table.Tr>
+                </Table.Tbody>
+              </Table>
+            )}
           </ScrollArea>
         </Grid.Col>
       )}

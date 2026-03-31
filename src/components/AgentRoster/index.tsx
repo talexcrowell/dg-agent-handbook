@@ -136,7 +136,7 @@ export const AgentRoster = () => {
   };
 
   return (
-    <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
+    <Grid ta="start">
       <Grid.Col span={12}>
         <Stack>
           <Title>Agent Roster</Title>

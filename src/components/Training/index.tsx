@@ -48,8 +48,8 @@ export const Training = () => {
   }, [tabValue]);
 
   return (
-    <Grid pb={0}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} pb="0">
+    <Grid>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} py='0'>
         <Tabs
           defaultValue="introduction"
           value={tabValue}
@@ -154,35 +154,35 @@ export const Training = () => {
             </Affix>
           )}
           <Tabs.Panel value="introduction">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
               <Introduction />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="basics">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
               <Basics />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="combat-sanity-and-willpower">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
               <CombatSanityAndWillpower />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="being-an-agent">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
               <BeingAnAgent />
             </ScrollArea>
           </Tabs.Panel>
           <Tabs.Panel value="after-the-operation">
-            <ScrollArea h={"91vh"} scrollbars="y" offsetScrollbars="y">
+            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
               <AfterTheOperation />
             </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {tabValue !== "training-video" && viewport.width > 992 && (
-        <Grid.Col span={2} pb={0}>
-          <ScrollArea h={"93vh"}>
+        <Grid.Col span={2} py='0'>
+          <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)}>
             <Group py="xs">
               <IconList />
               <Text>Table of Contents</Text>

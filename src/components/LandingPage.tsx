@@ -42,6 +42,7 @@ export const LandingPage = () => {
               color="grey"
               component={Link}
               to="/directory"
+              size='xl'
               // onClick={() => setOpened(true)}
             >
               ENTER

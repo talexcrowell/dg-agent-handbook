@@ -31,7 +31,6 @@ export const Armor = () => {
 
   return (
     <Grid
-      pt='sm'
       id="armor"
     >
       <Grid.Col span={12}>
