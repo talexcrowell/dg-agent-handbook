@@ -141,7 +141,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -297,7 +296,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -349,7 +347,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -508,7 +505,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -616,7 +612,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -719,7 +714,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -827,7 +821,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>
@@ -879,7 +872,6 @@ export const GearsAndServices = () => {
                               <IconTriangleFilled
                                 color={calculateIcon(item.expense)}
                               />
-                              {item.expense}
                             </Stack>
                           )}
                         </Table.Td>

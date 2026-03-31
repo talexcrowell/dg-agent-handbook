@@ -40,8 +40,7 @@ export const Vehicles = () => {
   return (
     <ScrollArea h={"91vh"} scrollbars="y">
       <Grid
-        p={viewport.width > 600 ? "md" : 0}
-        gutter={viewport.width > 600 ? "md" : "0"}
+        pt={'sm'}
         id="vehicles"
       >
         <Grid.Col span={12}>
