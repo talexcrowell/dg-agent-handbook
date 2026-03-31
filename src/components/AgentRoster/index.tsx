@@ -1,6 +1,8 @@
 import {
+  Accordion,
   ActionIcon,
   ActionIconGroup,
+  Alert,
   Button,
   ButtonGroup,
   Card,
@@ -36,6 +38,7 @@ import {
   IconFile,
   IconFileExport,
   IconFileImport,
+  IconInfoCircle,
   IconPhotoPlus,
   IconShare,
   IconTrash,
@@ -74,11 +77,11 @@ export const AgentRoster = () => {
     localSaved !== null
       ? localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([...JSON.parse(localSaved), { ...character }])
+          JSON.stringify([...JSON.parse(localSaved), { ...character }]),
         )
       : localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([{ ...character }])
+          JSON.stringify([{ ...character }]),
         );
 
     actions.importCharacter({ ...character });
@@ -93,7 +96,7 @@ export const AgentRoster = () => {
 
   const handleRemoveSavedCharacter = (character: any) => {
     let newArr = savedCharacters.filter(
-      (item: any) => item.id !== character.id
+      (item: any) => item.id !== character.id,
     );
     if (character.id === currentCharacter.id) {
       actions.changeCurrentCharacter();
@@ -115,11 +118,11 @@ export const AgentRoster = () => {
     localSaved !== null
       ? localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([...JSON.parse(localSaved), { ...character }])
+          JSON.stringify([...JSON.parse(localSaved), { ...character }]),
         )
       : localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([{ ...character }])
+          JSON.stringify([{ ...character }]),
         );
 
     actions.importCharacter({ ...character });
@@ -135,46 +138,61 @@ export const AgentRoster = () => {
   return (
     <Grid ta="start" pt={viewport.width > 600 ? 0 : 10}>
       <Grid.Col span={12}>
-        <Stack mt="md">
+        <Stack>
           <Title>Agent Roster</Title>
-          <Text>
-            Delta Green recruits a new prospect only after confirming that they
-            can handle the work and the unconventional demands the group makes.
-            They usually look to federal agents and special forces, adaptable
-            professionals trained to cope with overwhelming stress and danger.
-            Sometimes prospects are recruited from other fields, such as
-            science, anthropology, or medicine.
-          </Text>
-          <Text>
-            If the prospect has encountered the unnatural, all the better. Delta
-            Green wants people who recognize the depth of the danger. If your
-            first instinct is to go public with an unnatural discovery, it’s
-            likely you are not a Delta Green recruit but a Delta Green mission.
-          </Text>
-
-          <List>
-            <Text fw={700}>Agents’ main directives are:</Text>
-            <List.Item>Stop the Unnatural</List.Item>
-            <List.Item>Minimize exposure</List.Item>
-            <List.Item>Save lives</List.Item>
-            <List.Item>Cover it up to save others from being exposed</List.Item>
-            <List.Item>Never reveal the existence of Delta Green</List.Item>
-          </List>
-          <Text c="dimmed" size="sm">
-            NOTE: Agents are only available on the device that originally
-            created/added them. To share to another device, you will need to
-            export your Agent from the original device and import the copied
-            code into the new device.
-          </Text>
-          <Divider />
+          {viewport.width > 600 ? (
+            <Alert title="Where is my Agent?" icon={<IconInfoCircle />}>
+              The Agent Roster ONLY shows Agents that have been created or saved
+              to this specific device. If you have created an Agent on another
+              device, you can add them to this device by copying the export
+              string using the "Export" button from the respective Agent,
+              sending it to yourself, and pasting the export string into the
+              text box located in the "Import" section.
+            </Alert>
+          ) : (
+            <Card p="0" bg="">
+              <Accordion>
+                <Accordion.Item key="detail" value="detail">
+                  <Accordion.Control icon={<IconInfoCircle size="18" />}>
+                    <Text fw={700} size="sm">
+                      Where is my Agent?
+                    </Text>
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text>
+                      The Agent Roster ONLY shows Agents that have been created
+                      or saved to this specific device. If you have created an
+                      Agent on another device, you can add them to this device
+                      by copying the export string using the "Export" button
+                      from the respective Agent, sending it to yourself, and
+                      pasting the export string into the text box located in the
+                      "Import" section.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
+          )}
+          <Center>
+            <Button
+              component={Link}
+              to="/agents/new"
+              color="green"
+              leftSection={<IconUserPlus />}
+              variant="outline"
+              maw={375}
+            >
+              Create An Agent
+            </Button>
+          </Center>
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
         <Stack>
           <SegmentedControl
             data={[
-              { label: "Agent Roster", value: "roster" },
-              { label: "Add Pre-Made", value: "premade" },
+              { label: "Roster", value: "roster" },
+              { label: "Pre-Made", value: "premade" },
               { label: "Import", value: "import" },
             ]}
             onChange={(e) => setPage(e)}
@@ -184,8 +202,8 @@ export const AgentRoster = () => {
             <Stack>
               <Text c="dimmed" size="sm">
                 If you have created an Agent on another device, you can add them
-                to this device by copying and pasting the export string into the
-                input below.
+                to this device by copying the export string from the other
+                device and pasting the export string into the input below.
               </Text>
               <Textarea
                 rows={10}
@@ -200,7 +218,7 @@ export const AgentRoster = () => {
           ) : page === "premade" ? (
             <Grid>
               <Grid.Col>
-                <ScrollAreaAutosize h="700">
+                <ScrollAreaAutosize>
                   <Stack>
                     {premadeAgents.map((agent) => {
                       return (
@@ -237,17 +255,8 @@ export const AgentRoster = () => {
                     handleExport={handleExport}
                     handleRemoveSavedCharacter={handleRemoveSavedCharacter}
                   />
-                )
+                ),
               )}
-              <Button
-                component={Link}
-                to="/agents/new"
-                color="green"
-                leftSection={<IconUserPlus />}
-                variant="outline"
-              >
-                Create An Agent
-              </Button>
             </Stack>
           ) : (
             <Stack>

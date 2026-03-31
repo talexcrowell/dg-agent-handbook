@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Card,
   Center,
   Divider,
@@ -40,25 +41,6 @@ export const AgentRosterCard: React.FC<{
     <Card withBorder radius={"md"}>
       {viewport.width > 992 ? (
         <Grid justify="space-between" gutter={0}>
-          {/* <Grid.Col span={1}>
-            <Center>
-              {agent.image ? (
-                <Image
-                  src={agent.image}
-                  h={148}
-                  w={100}
-                  fit="contain"
-                  radius="md"
-                />
-              ) : (
-                <Card withBorder w={100} h={148}>
-                  <Group justify="center" my="auto">
-                    <IconUserQuestion size="62" />
-                  </Group>
-                </Card>
-              )}
-            </Center>
-          </Grid.Col> */}
           <Grid.Col span={2}>
             <Stack gap="xs">
               <InputLabel fw={700} c="dimmed">
@@ -151,7 +133,7 @@ export const AgentRosterCard: React.FC<{
                   actions.changeCurrentCharacter({ ...agent });
                   localStorage.setItem(
                     "currentCharacter",
-                    JSON.stringify({ ...agent })
+                    JSON.stringify({ ...agent }),
                   );
                 }}
                 leftSection={<IconFile />}
@@ -283,8 +265,9 @@ export const AgentRosterCard: React.FC<{
             <Divider />
           </Grid.Col>
           <Grid.Col span={12}>
-            <Center>
-              <Button.Group>
+            {viewport.width > 600 ? (
+              <Stack>
+                {" "}
                 <Button
                   component={Link}
                   to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
@@ -292,7 +275,7 @@ export const AgentRosterCard: React.FC<{
                     actions.changeCurrentCharacter({ ...agent });
                     localStorage.setItem(
                       "currentCharacter",
-                      JSON.stringify({ ...agent })
+                      JSON.stringify({ ...agent }),
                     );
                   }}
                   leftSection={<IconFile />}
@@ -329,8 +312,57 @@ export const AgentRosterCard: React.FC<{
                     Add to Roster
                   </Button>
                 )}
-              </Button.Group>
-            </Center>
+              </Stack>
+            ) : (
+              <Center>
+                <ButtonGroup>
+                  <Button
+                    component={Link}
+                    to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+                    onClick={() => {
+                      actions.changeCurrentCharacter({ ...agent });
+                      localStorage.setItem(
+                        "currentCharacter",
+                        JSON.stringify({ ...agent }),
+                      );
+                    }}
+                    leftSection={<IconFile />}
+                    variant="outline"
+                  >
+                    {handleGenerateCharacter ? "Preview" : "View"}
+                  </Button>
+                  {handleExport && (
+                    <Button
+                      onClick={() => handleExport({ ...agent })}
+                      leftSection={<IconShare />}
+                      variant="outline"
+                    >
+                      Export
+                    </Button>
+                  )}
+                  {handleRemoveSavedCharacter && (
+                    <Button
+                      onClick={() => handleRemoveSavedCharacter(agent)}
+                      color="red"
+                      leftSection={<IconTrash />}
+                      variant="outline"
+                    >
+                      Delete
+                    </Button>
+                  )}
+                  {handleGenerateCharacter && (
+                    <Button
+                      onClick={() => handleGenerateCharacter(agent)}
+                      leftSection={<IconUserPlus />}
+                      variant="outline"
+                      color="green"
+                    >
+                      Add to Roster
+                    </Button>
+                  )}
+                </ButtonGroup>
+              </Center>
+            )}
           </Grid.Col>
         </Grid>
       )}
