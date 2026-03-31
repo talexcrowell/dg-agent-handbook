@@ -23,20 +23,18 @@ function App() {
   const { width } = useViewportSize();
   return (
     <AppShell
-      padding="sm"
+      padding="xs"
       header={{
         height: width > 760 ? 45 : 55,
-        collapsed: pathname === "/" && (pathname.includes("sheet")|| width < 760)
-          
+        collapsed:
+          pathname === "/" || (pathname.includes("sheet") && width < 760),
       }}
     >
-      {pathname !== "/" && (!pathname.includes("sheet") || width > 760) && (
-        <AppShell.Header>
-          <Navbar />
-        </AppShell.Header>
-      )}
+      <AppShell.Header>
+        <Navbar />
+      </AppShell.Header>
       <AppShell.Main>
-        <Container size="xl" px={width > 760 ? "md" : "0"}>
+        <Container size="xl" px='0'>
           <Outlet />
         </Container>
       </AppShell.Main>
