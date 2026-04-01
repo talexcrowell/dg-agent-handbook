@@ -108,290 +108,290 @@ export const StatsAndSkills = () => {
   };
 
   return (
-    <Grid gutter={"md"} id="stats-and-skills">
+    <Grid type="container" id="stats-and-skills">
       <Grid.Col span={viewport.width > 992 ? 10 : 12}>
-        <ScrollArea h={"93vh"} scrollbars="y">
-          <Stack>
-            <Title td="underline" order={2} id="statistics">
-              Statistics
-            </Title>
-            <Text>
-              Every Agent has six core capabilities: Strength, Constitution,
-              Dexterity, Intelligence, Power, and Charisma. Each statistic
-              (stat) has a test score equal to the stat × 5: STR×5, INT×5,
-              POW×5, etc. This means roll five times the stat or less on
-              percentile dice (1D100) to succeed. When your Agent attempts a
-              difficult action and no skill covers it, the Handler may ask you
-              to roll a stat test for whatever stat is the closest fit.
-            </Text>
-            <Title order={3}>Distinguishing Features</Title>
-            <Text>
-              A stat below 9 or above 12 is exceptional. Spare a word or two to
-              describe stats outside the average. These help give your Agent
-              personality.
-            </Text>
-            <Title td="underline" order={2} id="statistic-definitions">
-              Statistic Definitions
-            </Title>
-            <Table withTableBorder withColumnBorders highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Statistic</Table.Th>
-                  <Table.Th>Definition</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {masterStatList.map((stat) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>{stat.name}</Table.Td>
-                      <Table.Td>{stat.definition}</Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Divider />
-            <Title td="underline" order={2} id="attributes">
-              Attributes
-            </Title>
-            <Text>
-              The derived attributes—Hit Points, Willpower Points, Sanity
-              Points, and Breaking Point—represent your Agent’s physical and
-              mental toughness.
-            </Text>
-            <Title td="underline" order={2} id="attribute-definitions">
-              Attribute Definitions
-            </Title>
-            <Table withTableBorder withColumnBorders highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Attribute</Table.Th>
-                  <Table.Th>Calculation</Table.Th>
-                  <Table.Th>Definition</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {masterAttributeList.map((attribute) => {
-                  return (
-                    <Table.Tr>
-                      <Table.Td>{attribute.name}</Table.Td>
-                      <Table.Td>{attribute.calculation}</Table.Td>
-                      <Table.Td>{attribute.definition}</Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-            <Divider />
-            <Title td="underline" order={2} id="skills">
-              Skills
-            </Title>
-            <Text>
-              A skill represents expertise gained with intensive training or
-              study. Roll your Agent’s skill or lower on 1D100 to use the skill
-              under dire circumstances. Making a skill roll means doing
-              something that would leave untrained people lost. Anyone can
-              attempt a DEX×5 test to keep from falling over in a out-of-control
-              aircraft; only someone who’s been trained in the Pilot skill can
-              fly the airplane away from the grasping, howling thing tearing at
-              its hull.
-            </Text>
-            <Title order={3} id="base-rating">
-              Base Rating
-            </Title>
-            <Text>
-              Every skill lists its base rating. If it has a base rating of 1%
-              or greater, anyone can attempt it. A skill at 0% can’t be used at
-              all. No skill can be higher than 99%.
-            </Text>
-            <Title order={3} id="how-skills-work">
-              How Skills Work
-            </Title>
-            <Text>
-              When your Agent uses a skill, sometimes you roll dice and
-              sometimes you don’t.
-            </Text>
-            <Text>
-              <Text fw={700} span>
-                Using a Skill without a Roll:
-              </Text>{" "}
-              When circumstances are calm and controlled, you don’t roll dice to
-              have your Agent use a skill; the Handler just needs to know how
-              high your Agent’s rating is. Landing an airplane when things are
-              calm simply requires a certain amount in the Pilot skill. Using a
-              skill without rolling means randomness is not a factor. It’s about
-              having the right skill, looking in the right place, and asking the
-              right questions.
-            </Text>
-            <Text>
-              <Text fw={700} span>
-                Using a Skill with a Roll:
-              </Text>{" "}
-              Roll skill dice when the outcome is in doubt. That usually means
-              there’s a crisis, the circumstances are not under your Agent’s
-              control, or your Agent is not expert enough to succeed without a
-              roll.
-            </Text>
-            <Title order={3} id="common-knowledge">
-              Common Knowledge
-            </Title>
-            <Text>
-              Most Agents took a few science classes in school. Any Agent can
-              sing badly or draw a crooked sketch. Skills represents deep,
-              specialized training or education. Calling on common knowledge,
-              whether it’s common to everyone or just everyone in the Agent’s
-              occupation, may require an INT×5 test or having a certain level of
-              INT. Charming someone with unskilled art is usually a CHA or DEX
-              test. Other efforts use other stats. The Handler decides whether a
-              task requires the general ability of a stat or the specialization
-              of a skill.
-            </Text>
-            <Title order={3} id="using-libraries">
-              Using Libraries
-            </Title>
-            <Text>
-              There’s no designated skill for library use. Whether your Agent is
-              sifting through microfilm or a database, look to the particular
-              skill that’s involved in the research: History, Science, Medicine,
-              etc. Some research may not need a skill (combing recent news
-              archives, for instance), only a certain amount of INT and time.
-            </Text>
-            <Title order={3} id="improving-skills">
-              Improving Skills
-            </Title>
-            <Text>
-              We learn from failure. If your Agent has at least 1% in a skill
-              (any except Unnatural), it can improve when your Agents attempts
-              to use it and fails.
-            </Text>
-            <Text>
-              On the character sheet, next to every skill except Unnatural,
-              there is a check box. When your Agent tries to use a skill and
-              fails, mark that skill’s box. At the end of each session, add 1D4
-              percentage points to every skill that has a check next to it. Then
-              erase the check.
-            </Text>
-            <Text>
-              Gaining an entirely new skill requires extensive training.
-            </Text>
-            <Text>
-              <Text fw={700} span>
-                Failing without Rolling:
-              </Text>{" "}
-              If your Agent attempts a challenging task that requires a certain
-              level of skill but not a roll, and fails because the task requires
-              more skill than your Agent has, put a check in the box.
-            </Text>
-            <Title order={3} id="special-training">
-              Special Training
-            </Title>
-            <Text>
-              Some specialized knowledge requires extensive training but not a
-              dedicated skill rating. This often means at least 10 to 20 hours
-              of instruction and practice. With special training, your Agent can
-              use an existing stat or skill in a new way. It may allow use of
-              one function of a skill without mastering the skill itself.
-            </Text>
-            <Text>
-              The penalty for using a skill without required special training is
-              up to the Handler. It may mean there’s no chance at all; or it may
-              have a reduced chance, require a stat test, or incur some other
-              drawback.
-            </Text>
-            <Text>
-              An Agent might start the game with special training. A Special
-              Forces soldier knows how to use hand grenades; a SWAT team member
-              knows how to use tear gas; an Agent with any amount of Craft
-              (Locksmithing) skill knows how to use lockpicks.
-            </Text>
-            <Stack gap="0">
-              <Text fw={700}>Examples of Special Training:</Text>
-              <List>
-                <List.Item>Parachuting (Athletics or DEX)</List.Item>
-                <List.Item>Skiing (Athletics)</List.Item>
-                <List.Item>SCUBA gear (Swim)</List.Item>
-                <List.Item>Space suit operation (INT)</List.Item>
-                <List.Item>An exotic hand weapon (Melee Weapons)</List.Item>
-                <List.Item>An exotic pistol or rifle (Firearms)</List.Item>
-                <List.Item>Hand grenades (Athletics)</List.Item>
-                <List.Item>Deep knowledge of a subculture (INT)</List.Item>
-                <List.Item>Another country’s criminal codes (Law)</List.Item>
-                <List.Item>Lockpicks (DEX)</List.Item>
-                <List.Item>Electronic security systems (INT)</List.Item>
-                <List.Item>
-                  Inside knowledge of a conspiracy (Criminology)
-                </List.Item>
-                <List.Item>
-                  Fluency in a rare dialect (Foreign Language)
-                </List.Item>
-                <List.Item>Black markets (Criminology or CHA)</List.Item>
-              </List>
-            </Stack>
-            <Title order={3} id="skill-(types)">
-              Skill (Types)
-            </Title>
-            <Text>
-              Art, Craft, Foreign Language, Military Science, Pilot, and Science
-              skills are named with types. The skills are deliberately vague and
-              are not meant to be restrictive. If a skill type seems close to
-              what’s required, we encourage the Handler to let it apply.
-            </Text>
-            <Title td="underline" order={2} id="skill-definitions">
-              Skill Definitions
-            </Title>
-            <TextInput
-              py={3}
-              mx={3}
-              leftSection={<IconSearch />}
-              onChange={(e) => handleSearchTerm(e.currentTarget.value)}
-              placeholder="Search for Skill"
-            />
-            <Table withTableBorder withColumnBorders highlightOnHover striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Skill</Table.Th>
-                  <Table.Th>Definition</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {searchTerm.length > 0
-                  ? results.map((skill) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>{skill.item.name}</Table.Td>
-                          <Table.Td>{skill.item.definition}</Table.Td>
-                        </Table.Tr>
-                      );
-                    })
-                  : skillsMasterList.map((skill) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>{skill.name}</Table.Td>
-                          <Table.Td>{skill.definition}</Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-              </Table.Tbody>
-            </Table>
-            <Space />
-            <Space />
-            <Space />
-            <Space />
-            <Space />
+        <Stack>
+          <Title td="underline" order={2} id="statistics" style={{ scrollMarginTop: 50 }}>
+            Statistics
+          </Title>
+          <Text>
+            Every Agent has six core capabilities: Strength, Constitution,
+            Dexterity, Intelligence, Power, and Charisma. Each statistic (stat)
+            has a test score equal to the stat × 5: STR×5, INT×5, POW×5, etc.
+            This means roll five times the stat or less on percentile dice
+            (1D100) to succeed. When your Agent attempts a difficult action and
+            no skill covers it, the Handler may ask you to roll a stat test for
+            whatever stat is the closest fit.
+          </Text>
+          <Title order={3}>Distinguishing Features</Title>
+          <Text>
+            A stat below 9 or above 12 is exceptional. Spare a word or two to
+            describe stats outside the average. These help give your Agent
+            personality.
+          </Text>
+          <Title td="underline" order={2} id="statistic-definitions" style={{ scrollMarginTop: 50 }}>
+            Statistic Definitions
+          </Title>
+          <Table withTableBorder withColumnBorders highlightOnHover striped>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Statistic</Table.Th>
+                <Table.Th>Definition</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {masterStatList.map((stat) => {
+                return (
+                  <Table.Tr>
+                    <Table.Td>{stat.name}</Table.Td>
+                    <Table.Td>{stat.definition}</Table.Td>
+                  </Table.Tr>
+                );
+              })}
+            </Table.Tbody>
+          </Table>
+          <Divider />
+          <Title td="underline" order={2} id="attributes"  style={{ scrollMarginTop: 50 }}>
+            Attributes
+          </Title>
+          <Text>
+            The derived attributes—Hit Points, Willpower Points, Sanity Points,
+            and Breaking Point—represent your Agent’s physical and mental
+            toughness.
+          </Text>
+          <Title td="underline" order={2} id="attribute-definitions" style={{ scrollMarginTop: 50 }}>
+            Attribute Definitions
+          </Title>
+          <Table withTableBorder withColumnBorders highlightOnHover striped>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Attribute</Table.Th>
+                <Table.Th>Calculation</Table.Th>
+                <Table.Th>Definition</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {masterAttributeList.map((attribute) => {
+                return (
+                  <Table.Tr>
+                    <Table.Td>{attribute.name}</Table.Td>
+                    <Table.Td>{attribute.calculation}</Table.Td>
+                    <Table.Td>{attribute.definition}</Table.Td>
+                  </Table.Tr>
+                );
+              })}
+            </Table.Tbody>
+          </Table>
+          <Divider />
+          <Title td="underline" order={2} id="skills" style={{ scrollMarginTop: 50 }}>
+            Skills
+          </Title>
+          <Text>
+            A skill represents expertise gained with intensive training or
+            study. Roll your Agent’s skill or lower on 1D100 to use the skill
+            under dire circumstances. Making a skill roll means doing something
+            that would leave untrained people lost. Anyone can attempt a DEX×5
+            test to keep from falling over in a out-of-control aircraft; only
+            someone who’s been trained in the Pilot skill can fly the airplane
+            away from the grasping, howling thing tearing at its hull.
+          </Text>
+          <Title order={3} id="base-rating"  style={{ scrollMarginTop: 50 }}>
+            Base Rating
+          </Title>
+          <Text>
+            Every skill lists its base rating. If it has a base rating of 1% or
+            greater, anyone can attempt it. A skill at 0% can’t be used at all.
+            No skill can be higher than 99%.
+          </Text>
+          <Title order={3} id="how-skills-work" style={{ scrollMarginTop: 50 }}>
+            How Skills Work
+          </Title>
+          <Text>
+            When your Agent uses a skill, sometimes you roll dice and sometimes
+            you don’t.
+          </Text>
+          <Text>
+            <Text fw={700} span>
+              Using a Skill without a Roll:
+            </Text>{" "}
+            When circumstances are calm and controlled, you don’t roll dice to
+            have your Agent use a skill; the Handler just needs to know how high
+            your Agent’s rating is. Landing an airplane when things are calm
+            simply requires a certain amount in the Pilot skill. Using a skill
+            without rolling means randomness is not a factor. It’s about having
+            the right skill, looking in the right place, and asking the right
+            questions.
+          </Text>
+          <Text>
+            <Text fw={700} span>
+              Using a Skill with a Roll:
+            </Text>{" "}
+            Roll skill dice when the outcome is in doubt. That usually means
+            there’s a crisis, the circumstances are not under your Agent’s
+            control, or your Agent is not expert enough to succeed without a
+            roll.
+          </Text>
+          <Title order={3} id="common-knowledge" style={{ scrollMarginTop: 50 }}>
+            Common Knowledge
+          </Title>
+          <Text>
+            Most Agents took a few science classes in school. Any Agent can sing
+            badly or draw a crooked sketch. Skills represents deep, specialized
+            training or education. Calling on common knowledge, whether it’s
+            common to everyone or just everyone in the Agent’s occupation, may
+            require an INT×5 test or having a certain level of INT. Charming
+            someone with unskilled art is usually a CHA or DEX test. Other
+            efforts use other stats. The Handler decides whether a task requires
+            the general ability of a stat or the specialization of a skill.
+          </Text>
+          <Title order={3} id="using-libraries" style={{ scrollMarginTop: 50 }}>
+            Using Libraries
+          </Title>
+          <Text>
+            There’s no designated skill for library use. Whether your Agent is
+            sifting through microfilm or a database, look to the particular
+            skill that’s involved in the research: History, Science, Medicine,
+            etc. Some research may not need a skill (combing recent news
+            archives, for instance), only a certain amount of INT and time.
+          </Text>
+          <Title order={3} id="improving-skills" style={{ scrollMarginTop: 50 }}>
+            Improving Skills
+          </Title>
+          <Text>
+            We learn from failure. If your Agent has at least 1% in a skill (any
+            except Unnatural), it can improve when your Agents attempts to use
+            it and fails.
+          </Text>
+          <Text>
+            On the character sheet, next to every skill except Unnatural, there
+            is a check box. When your Agent tries to use a skill and fails, mark
+            that skill’s box. At the end of each session, add 1D4 percentage
+            points to every skill that has a check next to it. Then erase the
+            check.
+          </Text>
+          <Text>
+            Gaining an entirely new skill requires extensive training.
+          </Text>
+          <Text>
+            <Text fw={700} span>
+              Failing without Rolling:
+            </Text>{" "}
+            If your Agent attempts a challenging task that requires a certain
+            level of skill but not a roll, and fails because the task requires
+            more skill than your Agent has, put a check in the box.
+          </Text>
+          <Title order={3} id="special-training" style={{ scrollMarginTop: 50 }}>
+            Special Training
+          </Title>
+          <Text>
+            Some specialized knowledge requires extensive training but not a
+            dedicated skill rating. This often means at least 10 to 20 hours of
+            instruction and practice. With special training, your Agent can use
+            an existing stat or skill in a new way. It may allow use of one
+            function of a skill without mastering the skill itself.
+          </Text>
+          <Text>
+            The penalty for using a skill without required special training is
+            up to the Handler. It may mean there’s no chance at all; or it may
+            have a reduced chance, require a stat test, or incur some other
+            drawback.
+          </Text>
+          <Text>
+            An Agent might start the game with special training. A Special
+            Forces soldier knows how to use hand grenades; a SWAT team member
+            knows how to use tear gas; an Agent with any amount of Craft
+            (Locksmithing) skill knows how to use lockpicks.
+          </Text>
+          <Stack gap="0">
+            <Text fw={700}>Examples of Special Training:</Text>
+            <List>
+              <List.Item>Parachuting (Athletics or DEX)</List.Item>
+              <List.Item>Skiing (Athletics)</List.Item>
+              <List.Item>SCUBA gear (Swim)</List.Item>
+              <List.Item>Space suit operation (INT)</List.Item>
+              <List.Item>An exotic hand weapon (Melee Weapons)</List.Item>
+              <List.Item>An exotic pistol or rifle (Firearms)</List.Item>
+              <List.Item>Hand grenades (Athletics)</List.Item>
+              <List.Item>Deep knowledge of a subculture (INT)</List.Item>
+              <List.Item>Another country’s criminal codes (Law)</List.Item>
+              <List.Item>Lockpicks (DEX)</List.Item>
+              <List.Item>Electronic security systems (INT)</List.Item>
+              <List.Item>
+                Inside knowledge of a conspiracy (Criminology)
+              </List.Item>
+              <List.Item>
+                Fluency in a rare dialect (Foreign Language)
+              </List.Item>
+              <List.Item>Black markets (Criminology or CHA)</List.Item>
+            </List>
           </Stack>
-        </ScrollArea>
+          <Title order={3} id="skill-(types)" style={{ scrollMarginTop: 50 }}>
+            Skill (Types)
+          </Title>
+          <Text>
+            Art, Craft, Foreign Language, Military Science, Pilot, and Science
+            skills are named with types. The skills are deliberately vague and
+            are not meant to be restrictive. If a skill type seems close to
+            what’s required, we encourage the Handler to let it apply.
+          </Text>
+          <Title td="underline" order={2} id="skill-definitions" style={{ scrollMarginTop: 50 }}>
+            Skill Definitions
+          </Title>
+          <TextInput
+            py={3}
+            mx={3}
+            leftSection={<IconSearch />}
+            onChange={(e) => handleSearchTerm(e.currentTarget.value)}
+            placeholder="Search for Skill"
+          />
+          <Table withTableBorder withColumnBorders highlightOnHover striped>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Skill</Table.Th>
+                <Table.Th>Definition</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {searchTerm.length > 0
+                ? results.map((skill) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>{skill.item.name}</Table.Td>
+                        <Table.Td>{skill.item.definition}</Table.Td>
+                      </Table.Tr>
+                    );
+                  })
+                : skillsMasterList.map((skill) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>{skill.name}</Table.Td>
+                        <Table.Td>{skill.definition}</Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+            </Table.Tbody>
+          </Table>
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+          <Space />
+        </Stack>
       </Grid.Col>
       {viewport.width > 992 && (
         <Grid.Col span={2}>
-          <ScrollArea h={"85vh"}>
-            <Group py="xs">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap='xs'>
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
             <TableOfContents
-              variant="none"
+              variant="light"
               color="blue"
               size="sm"
               radius="sm"
@@ -404,7 +404,7 @@ export const StatsAndSkills = () => {
                 children: data.value,
               })}
             />
-          </ScrollArea>
+          </Stack>
         </Grid.Col>
       )}
     </Grid>
