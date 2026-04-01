@@ -19,28 +19,34 @@ import { FormattedLoader } from "./components/FormattedLoader.tsx";
 import { AgentProfessions } from "./components/AgentProfessions/index.tsx";
 import { TrainingVideo } from "./components/Rules/pages/TrainingVideo.tsx";
 import Training from "./components/Training/index.tsx";
+import { Tools } from "./components/Tools/index.tsx";
+import { Finale } from "./Finale.tsx";
+import { Error } from "./Error.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const Directory = lazy(() => import("./components/Directory/index.tsx"));
 const DeltaGreen = lazy(() => import("./components/DeltaGreen/index.tsx"));
 const Rules = lazy(() => import("./components/Rules/index.tsx"));
 const EquipmentAndServices = lazy(
-  () => import("./components/EquipmentAndServices/index.tsx")
+  () => import("./components/EquipmentAndServices/index.tsx"),
 );
 const CharacterSheet = lazy(
-  () => import("./components/CharacterSheet/index.tsx")
+  () => import("./components/CharacterSheet/index.tsx"),
 );
 const CreateAnAgent = lazy(
-  () => import("./components/CreateAnAgent/index.tsx")
+  () => import("./components/CreateAnAgent/index.tsx"),
 );
 const AgentRoster = lazy(() => import("./components/AgentRoster/index.tsx"));
 const Tradecraft = lazy(() => import("./components/Tradecraft/index.tsx"));
 const Glossary = lazy(() => import("./components/Glossary/index.tsx"));
-const StatsAndSkills = lazy(() => import("./components/StatsAndSkills/index.tsx"));
+const StatsAndSkills = lazy(
+  () => import("./components/StatsAndSkills/index.tsx"),
+);
 
 const router = createHashRouter([
   {
     path: "/",
+    ErrorBoundary: Error,
     element: <App />,
     children: [
       { path: "/", element: <LandingPage /> },
@@ -157,6 +163,14 @@ const router = createHashRouter([
           </Suspense>
         ),
       },
+      // {
+      //   path: "/finale",
+      //   element: (
+      //     <Suspense fallback={<FormattedLoader />}>
+      //       <Finale />
+      //     </Suspense>
+      //   ),
+      // },
     ],
   },
 ]);
@@ -169,5 +183,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <RouterProvider router={router} />
       </MantineProvider>
     </CharacterProvider>
-  </ViewportProvider>
+  </ViewportProvider>,
 );
