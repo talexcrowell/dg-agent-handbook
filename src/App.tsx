@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useViewportSize } from "@mantine/hooks";
 import { useEffect } from "react";
+
 function App() {
   const { pathname, hash, key } = useLocation();
   useEffect(() => {
@@ -34,7 +35,7 @@ function App() {
         <Navbar />
       </AppShell.Header>
       <AppShell.Main>
-        <Container size="xl" px='0'>
+        <Container size="xl" strategy="grid">
           <Outlet />
         </Container>
       </AppShell.Main>
