@@ -713,7 +713,10 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.height - 130}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            scrollbars="y"
+          >
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -761,7 +764,10 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.height - 130}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            scrollbars="y"
+          >
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -789,7 +795,10 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.height - 130}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            scrollbars="y"
+          >
             <Skills
               currentCharacter={character}
               handleStandardRoll={handleStandardRoll}
@@ -817,7 +826,10 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.height - 130}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            scrollbars="y"
+          >
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -843,7 +855,10 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea h={viewport.height - 130}>
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            scrollbars="y"
+          >
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
