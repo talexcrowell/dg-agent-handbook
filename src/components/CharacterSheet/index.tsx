@@ -714,10 +714,6 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -745,7 +741,6 @@ export const CharacterSheet: React.FC = () => {
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="personal" id="tab-panel">
           {!IsPreview() ? (
@@ -765,10 +760,6 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -776,7 +767,6 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               IsPreview={IsPreview}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="skills" id="tab-panel">
           {!IsPreview() ? (
@@ -796,10 +786,6 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Skills
               currentCharacter={character}
               handleStandardRoll={handleStandardRoll}
@@ -807,7 +793,6 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               handleFailedTests={handleFailedTests}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment" id="tab-panel">
           {!IsPreview() ? (
@@ -827,16 +812,11 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="notes" id="tab-panel">
           {!IsPreview() ? (
@@ -856,16 +836,11 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-             h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment-notes" id="tab-panel">
           {!IsPreview() ? (
@@ -885,10 +860,6 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
-          <ScrollArea
-              h={viewport.height - (viewport.width > 760 ? 110 : 80)}
-            scrollbars="y"
-          >
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -900,13 +871,8 @@ export const CharacterSheet: React.FC = () => {
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings" id="tab-panel">
-          <ScrollArea
-            h={viewport.height - (viewport.width > 760 ? 0 : 50)}
-            scrollbars="y"
-          >
             <UtilityMenu
               handleInPerson={handleInPerson}
               inPerson={inPerson}
@@ -925,7 +891,6 @@ export const CharacterSheet: React.FC = () => {
               toggleDiceRoller={toggleDiceRoller}
               handleUpdateCharacter={handleUpdateCharacter}
             />
-          </ScrollArea>
         </Tabs.Panel>
         <RollModalContainer
           character={character}
