@@ -714,7 +714,7 @@ export const CharacterSheet: React.FC = () => {
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            h={viewport.height - (viewport.width > 700 ? 130 : 60)}
             scrollbars="y"
           >
             <Personal
@@ -765,7 +765,7 @@ export const CharacterSheet: React.FC = () => {
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            h={viewport.height - (viewport.width > 700 ? 130 : 60)}
             scrollbars="y"
           >
             <Personal
@@ -796,7 +796,7 @@ export const CharacterSheet: React.FC = () => {
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            h={viewport.height - (viewport.width > 700 ? 130 : 60)}
             scrollbars="y"
           >
             <Skills
@@ -827,7 +827,7 @@ export const CharacterSheet: React.FC = () => {
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            h={viewport.height - (viewport.width > 700 ? 130 : 60)}
             scrollbars="y"
           >
             <Equipment
@@ -856,7 +856,7 @@ export const CharacterSheet: React.FC = () => {
           )}
           <Divider />
           <ScrollArea
-            h={viewport.height - (viewport.width > 700 ? 130 : 80)}
+            h={viewport.height - (viewport.width > 700 ? 130 : 60)}
             scrollbars="y"
           >
             <Notes
