@@ -20,7 +20,7 @@ export const HowToPlay = () => {
     <Grid ta="start" id="how-to-play" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline" id="how-to-play">
+          <Title td="underline" id="how-to-play" style={{ scrollMarginTop: 80 }}>
             How to Play
           </Title>
           <Text>
@@ -37,7 +37,7 @@ export const HowToPlay = () => {
             life. You fight to live one more day.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="using-skills">
+          <Title order={2} td="underline" id="using-skills" style={{ scrollMarginTop: 80 }}>
             Using Skills
           </Title>
           <Text>
@@ -52,7 +52,7 @@ export const HowToPlay = () => {
             determines success or failure.
           </Text>
           <Stack py="md">
-            <Title order={3} id="resolving-a-test-without-dice">
+            <Title order={3} id="resolving-a-test-without-dice" style={{ scrollMarginTop: 80 }}>
               Resolving a Test Without Dice
             </Title>
             <Text>
@@ -125,7 +125,7 @@ export const HowToPlay = () => {
               </Table.Tbody>
             </Table>
           </Stack>
-          <Title order={3} id="resolving-a-test-with-a-dice">
+          <Title order={3} id="resolving-a-test-with-a-dice" style={{ scrollMarginTop: 80 }}>
             Resolving a Test With Dice
           </Title>
           <Text>
@@ -177,7 +177,7 @@ export const HowToPlay = () => {
             use it. It requires specialized training or education that your
             Agent lacks.
           </Text>
-          <Title order={3} id="using-a-stat">
+          <Title order={3} id="using-a-stat" style={{ scrollMarginTop: 80 }}>
             Using a Stat
           </Title>
           <Text>
@@ -250,7 +250,7 @@ export const HowToPlay = () => {
               </Table.Tr>
             </Table.Tbody>
           </Table>
-          <Title order={3} id="bonuses-and-penalties">
+          <Title order={3} id="bonuses-and-penalties" style={{ scrollMarginTop: 80 }}>
             Bonuses & Penalties
           </Title>
           <Text>
@@ -323,7 +323,7 @@ export const HowToPlay = () => {
               </Table.Tr>
             </Table.Tbody>
           </Table>
-          <Title order={3} id="group-rolls">
+          <Title order={3} id="group-rolls" style={{ scrollMarginTop: 80 }}>
             Group Rolls
           </Title>
           <Text>
@@ -339,7 +339,7 @@ export const HowToPlay = () => {
             or fails, each player rolls.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="success-and-failure">
+          <Title order={2} td="underline" id="success-and-failure" style={{ scrollMarginTop: 80 }}>
             Success and Failure
           </Title>
           <Text>
@@ -362,7 +362,7 @@ export const HowToPlay = () => {
             </Text>
             .
           </Text>
-          <Title order={3} id="critical-success">
+          <Title order={3} id="critical-success"style={{ scrollMarginTop: 80 }}>
             Critical Success
           </Title>
           <Text>
@@ -371,14 +371,14 @@ export const HowToPlay = () => {
             expectations. A critical is twice as good as an ordinary success.
             What twice as good means must be taken in context of the action.
           </Text>
-          <Title order={3} id="success">
+          <Title order={3} id="success" style={{ scrollMarginTop: 80 }}>
             Success
           </Title>
           <Text>
             A success is a roll equal to or less than the test chance. With a
             success, your Agent accomplishes what he or she set out to achieve.
           </Text>
-          <Title order={3} id="failure">
+          <Title order={3} id="failure" style={{ scrollMarginTop: 80 }}>
             Failure
           </Title>
           <Text>
@@ -389,7 +389,7 @@ export const HowToPlay = () => {
             There may be times when a failed roll means an Agent achieves what
             he or she wanted—but it comes with an unpleasant complication.
           </Text>
-          <Title order={3} id="fumble">
+          <Title order={3} id="fumble" style={{ scrollMarginTop: 80 }}>
             Fumble
           </Title>
           <Text>
@@ -450,7 +450,7 @@ export const HowToPlay = () => {
             </List.Item>
           </List>
           <Divider />
-          <Title order={2} td="underline" id="luck-roll">
+          <Title order={2} td="underline" id="luck-roll" style={{ scrollMarginTop: 80 }}>
             The Luck Roll
           </Title>
           <Text>
@@ -460,7 +460,7 @@ export const HowToPlay = () => {
             or bad.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="time-required">
+          <Title order={2} td="underline" id="time-required" style={{ scrollMarginTop: 80 }}>
             Time Required
           </Title>
           <Text>
@@ -505,7 +505,7 @@ export const HowToPlay = () => {
             to the Handler.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="opposed-tests">
+          <Title order={2} td="underline" id="opposed-tests" style={{ scrollMarginTop: 80 }}>
             Opposed Tests
           </Title>
           <Text>
@@ -516,7 +516,7 @@ export const HowToPlay = () => {
             other but neither needs to roll, the higher rating wins.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="pursuit">
+          <Title order={2} td="underline" id="pursuit" style={{ scrollMarginTop: 80 }}>
             Pursuit
           </Title>
           <Text>
@@ -584,7 +584,7 @@ export const HowToPlay = () => {
             wins.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="willpower-points">
+          <Title order={2} td="underline" id="willpower-points" style={{ scrollMarginTop: 80 }}>
             Willpower Points
           </Title>
           <Text>
@@ -593,7 +593,7 @@ export const HowToPlay = () => {
             resist the effects of terror and mental disorders, and, on rare
             occasions, to resist or enact unnatural rituals.
           </Text>
-          <Title order={3} id="exhaustion">
+          <Title order={3} id="exhaustion" style={{ scrollMarginTop: 80 }}>
             Exhaustion
           </Title>
           <Text>
@@ -622,7 +622,7 @@ export const HowToPlay = () => {
             while using stimulants, the Handler has good reason to say the
             disorder takes the form of addiction to them.
           </Text>
-          <Title order={3} id="sleeplessness">
+          <Title order={3} id="sleeplessness" style={{ scrollMarginTop: 80 }}>
             Sleeplessness
           </Title>
           <Text>
@@ -643,11 +643,9 @@ export const HowToPlay = () => {
             a new disorder while using sedatives, the Handler has good reason to
             say the disorder takes the form of an addiction to them.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 60 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

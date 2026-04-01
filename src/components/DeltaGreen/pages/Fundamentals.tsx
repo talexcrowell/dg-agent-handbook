@@ -16,7 +16,13 @@ export const Fundamentals = () => {
     <Grid ta="start" pt="sm" id="fundamentals">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">The Fundamentals</Title>
+          <Title
+            td="underline"
+            id="fundamentals"
+            style={{ scrollMarginTop: 80 }}
+          >
+            The Fundamentals
+          </Title>
           <Text>
             The mission sounds simple: Save lives, neutralize unnatural threats,
             and conceal the threats so they can’t harm anyone again. In
@@ -24,7 +30,11 @@ export const Fundamentals = () => {
             Green operations but they all share the following qualities.
           </Text>
           <Divider />
-          <Title order={2} id="investigation-and-uncertainty">
+          <Title
+            order={2}
+            id="investigation-and-uncertainty"
+            style={{ scrollMarginTop: 80 }}
+          >
             Investigation and Uncertainty
           </Title>
           <Text>
@@ -38,7 +48,11 @@ export const Fundamentals = () => {
             must be completed.
           </Text>
           <Divider />
-          <Title order={2} id="suspense-and-horror">
+          <Title
+            order={2}
+            id="suspense-and-horror"
+            style={{ scrollMarginTop: 80 }}
+          >
             Suspense and Horror
           </Title>
           <Text>
@@ -53,7 +67,11 @@ export const Fundamentals = () => {
             impossible is real and crippling. Few agents last long.
           </Text>
           <Divider />
-          <Title order={2} id="violence-and-moral-choices">
+          <Title
+            order={2}
+            id="violence-and-moral-choices"
+            style={{ scrollMarginTop: 80 }}
+          >
             Violence and Moral Choices
           </Title>
           <Text>
@@ -67,7 +85,11 @@ export const Fundamentals = () => {
             tell the difference until the bullets are flying.
           </Text>
           <Divider />
-          <Title order={2} id="sanity-and-comprehension">
+          <Title
+            order={2}
+            id="sanity-and-comprehension"
+            style={{ scrollMarginTop: 80 }}
+          >
             Sanity and Comprehension
           </Title>
           <Text>
@@ -79,7 +101,7 @@ export const Fundamentals = () => {
             the few facts required to survive.
           </Text>
           <Divider />
-          <Title order={2} id="keeping-secrets">
+          <Title order={2} id="keeping-secrets" style={{ scrollMarginTop: 80 }}>
             Keeping Secrets
           </Title>
           <Text>
@@ -90,7 +112,11 @@ export const Fundamentals = () => {
             rank and file of humanity believe it to be.
           </Text>
           <Divider />
-          <Title order={2} id="personal-and-professional-consequences">
+          <Title
+            order={2}
+            id="personal-and-professional-consequences"
+            style={{ scrollMarginTop: 80 }}
+          >
             Personal and Professional Consequences
           </Title>
           <Text>
@@ -103,11 +129,9 @@ export const Fundamentals = () => {
             reveal the group’s secrets, no matter the circumstances, you become
             the operation.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 70 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

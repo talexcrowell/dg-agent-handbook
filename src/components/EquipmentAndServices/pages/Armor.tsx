@@ -35,7 +35,7 @@ export const Armor = () => {
     >
       <Grid.Col span={12}>
         <Stack gap="lg">
-          <Title td="underline">Body Armor</Title>
+          <Title td="underline" id='body-armor'>Body Armor</Title>
           <Text>
             While modern construction and materials such as Kevlar and ceramics
             have come a long way, they cannot protect you against all threats,

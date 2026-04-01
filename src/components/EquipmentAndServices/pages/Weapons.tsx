@@ -90,14 +90,10 @@ export const Weapons = () => {
   };
 
   return (
-    <ScrollArea
-      h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-      scrollbars="y"
-    >
       <Grid id="weapons">
         <Grid.Col span={12}>
           <Stack gap="lg">
-            <Title td="underline" id="weapons">
+            <Title td="underline" id="weapons" style={{ scrollMarginTop: 80 }}>
               Weapons
             </Title>
             <Text>
@@ -105,7 +101,7 @@ export const Weapons = () => {
               Their usefulness on Delta Green ops is limited, of course,
               depending on who or what the Agents face.
             </Text>
-            <Title td="underline" order={3} id="concealment">
+            <Title td="underline" order={3} id="concealment" style={{ scrollMarginTop: 80 }}>
               Concealment
             </Title>
             <Text>
@@ -119,7 +115,7 @@ export const Weapons = () => {
               There’s no way to conceal a full-size rifle or a large melee
               weapon.
             </Text>
-            <Title td="underline" order={3} id="bright-lights">
+            <Title td="underline" order={3} id="bright-lights" style={{ scrollMarginTop: 80 }}>
               Bright Lights
             </Title>
             <Text>
@@ -130,7 +126,7 @@ export const Weapons = () => {
               to all actions for 1D6 turns.
             </Text>
             <Divider />
-            <Title td="underline" order={2} id="hand-to-hand-weapons">
+            <Title td="underline" order={2} id="hand-to-hand-weapons" style={{ scrollMarginTop: 80 }}>
               Hand-to-Hand Weapons
             </Title>
             <Text>
@@ -234,7 +230,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="tear-gas-and-pepper-spray">
+            <Title td="underline" order={2} id="tear-gas-and-pepper-spray" style={{ scrollMarginTop: 80 }}>
               Tear Gas and Pepper Spray
             </Title>
             <Text>
@@ -343,7 +339,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="stun-grenades">
+            <Title td="underline" order={2} id="stun-grenades" style={{ scrollMarginTop: 80 }}>
               Stun Grenades
             </Title>
             <Text>
@@ -451,7 +447,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="electroshock-weapons">
+            <Title td="underline" order={2} id="electroshock-weapons" style={{ scrollMarginTop: 80 }}>
               Electroshock Weapons
             </Title>
             <Text>
@@ -556,7 +552,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="firearms">
+            <Title td="underline" order={2} id="firearms" style={{ scrollMarginTop: 80 }}>
               Firearms
             </Title>
             <Text>
@@ -588,7 +584,7 @@ export const Weapons = () => {
                 underbarrel shotgun or grenade launcher.
               </Text>
             </Flex>
-            <Title order={3}>Pistols</Title>
+            <Title order={3} id='pistols' style={{ scrollMarginTop: 80 }}>Pistols</Title>
             <Text>
               Lightweight pistols fire low-powered cartridges and are of limited
               use even against humans. Medium pistols are the standard sidearms
@@ -600,7 +596,7 @@ export const Weapons = () => {
               although 17 or even 20 is not uncommon. Large-caliber pistols
               often carry less. A typical figure for a heavy pistol is eight.
             </Text>
-            <Title order={3}>Shotguns</Title>
+            <Title order={3} id="shotguns" style={{ scrollMarginTop: 80 }}>Shotguns</Title>
             <Text>
               A typical pump-action shotgun holds five shots, although there are
               many with extended magazines for eight or more. Double-barrel
@@ -627,7 +623,7 @@ export const Weapons = () => {
               shotgun firing buckshot. Modify the damage by +2 for a heavier
               blast or −2 for a lighter one.
             </Text>
-            <Title order={3}>Submachine Guns</Title>
+            <Title order={3} id='submachine-guns' style={{ scrollMarginTop: 80 }}>Submachine Guns</Title>
             <Flex>
               <Text>
                 Submachine guns fire full automatic bursts, but are often also
@@ -645,7 +641,7 @@ export const Weapons = () => {
                 .)
               </Text>
             </Flex>
-            <Title order={3}>Rifles and Carbines</Title>
+            <Title order={3} id='rifles-and-carbines' style={{ scrollMarginTop: 80 }}>Rifles and Carbines</Title>
             <Text>
               Rifles fire more powerful cartridges than pistols or submachine
               guns, meaning better penetration, wounding, and range. Some
@@ -767,7 +763,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="heavy-weapons">
+            <Title td="underline" order={2} id="heavy-weapons" style={{ scrollMarginTop: 80 }}>
               Heavy Weapons
             </Title>
             <Text>
@@ -891,7 +887,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="demolitions">
+            <Title td="underline" order={2} id="demolitions" style={{ scrollMarginTop: 80 }}>
               Demolitions
             </Title>
             <Text>
@@ -1001,7 +997,7 @@ export const Weapons = () => {
               </Table>
             )}
             <Divider />
-            <Title td="underline" order={2} id="artillery">
+            <Title td="underline" order={2} id="artillery" style={{ scrollMarginTop: 80 }}>
               Artillery
             </Title>
             <Text>
@@ -1112,11 +1108,9 @@ export const Weapons = () => {
                 </Table.Tbody>
               </Table>
             )}
+          {Array.from({ length: 45 }, (_, i) => (
             <Space />
-            <Space />
-            <Space />
-            <Space />
-            <Space />
+          ))}
           </Stack>
         </Grid.Col>
         <Drawer
@@ -1208,7 +1202,6 @@ export const Weapons = () => {
           </Stack>
         </Drawer>
       </Grid>
-    </ScrollArea>
   );
 };
 

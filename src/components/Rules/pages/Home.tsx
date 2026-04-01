@@ -19,7 +19,7 @@ export const Home = () => {
     <Grid pt="sm" ta="start" id="home">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline" id="home">
+          <Title td="underline" id="home" style={{ scrollMarginTop: 80 }}>
             Home
           </Title>
           <Text>
@@ -35,7 +35,7 @@ export const Home = () => {
             is appropriate.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="what-changed">
+          <Title order={2} td="underline" id="what-changed" style={{ scrollMarginTop: 80 }}>
             What Changed
           </Title>
           <Text>
@@ -76,10 +76,10 @@ export const Home = () => {
             Did your Agent get arrested?
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="personal-pursuits">
+          <Title order={2} td="underline" id="personal-pursuits" style={{ scrollMarginTop: 80 }}>
             Personal Pursuits
           </Title>
-          <Title order={3} id="fulfill-responsibilities">
+          <Title order={3} id="fulfill-responsibilities" style={{ scrollMarginTop: 80 }}>
             Fulfill Responsibilities
           </Title>
           <Text>
@@ -92,7 +92,7 @@ export const Home = () => {
             related to your Agent’s involvement with Delta Green—reduces the
             Bond by 1D4 and your SAN by 1.
           </Text>
-          <Title order={3} id="back-to-nature">
+          <Title order={3} id="back-to-nature" style={{ scrollMarginTop: 80 }}>
             Back to Nature
           </Title>
           <Text>
@@ -106,7 +106,7 @@ export const Home = () => {
             adds 1 SAN. A fumble costs 1D4 SAN. Describe the impact of this time
             alone.
           </Text>
-          <Title order={3} id="establish-a-new-bond">
+          <Title order={3} id="establish-a-new-bond" style={{ scrollMarginTop: 80 }}>
             Establish a New Bond
           </Title>
           <Text>
@@ -118,7 +118,7 @@ export const Home = () => {
             new Bond reduces the value of one other Bond (other than a Bond for
             Delta Green) by 1.
           </Text>
-          <Title order={3} id="go-to-therapy">
+          <Title order={3} id="go-to-therapy" style={{ scrollMarginTop: 80 }}>
             Go to Therapy
           </Title>
           <Text>
@@ -159,7 +159,7 @@ export const Home = () => {
             test. If that fails, the “cured” disorder returns in full force
             alongside the new one.
           </Text>
-          <Title order={3} id="improve-skills-or-stats">
+          <Title order={3} id="improve-skills-or-stats" style={{ scrollMarginTop: 80 }}>
             Improve Skills or Stats
           </Title>
           <Text>
@@ -176,7 +176,7 @@ export const Home = () => {
             than a Bond for Delta Green) by 1 as you let other responsibilities
             lapse.
           </Text>
-          <Title order={3} id="personal-motivation">
+          <Title order={3} id="personal-motivation"  style={{ scrollMarginTop: 80 }}>
             Personal Motivation
           </Title>
           <Text>
@@ -186,7 +186,7 @@ export const Home = () => {
             Delta Green) by 1 as you let other responsibilities lapse. A fumble
             costs 1 SAN.
           </Text>
-          <Title order={3} id="special-training">
+          <Title order={3} id="special-training" style={{ scrollMarginTop: 80 }}>
             Special Training
           </Title>
           <Text>
@@ -203,7 +203,7 @@ export const Home = () => {
               Professions.
             </Anchor>
           </Group>
-          <Title order={3} id="stay-on-the-case">
+          <Title order={3} id="stay-on-the-case" style={{ scrollMarginTop: 80 }}>
             Stay On the Case
           </Title>
           <Text>
@@ -219,7 +219,7 @@ export const Home = () => {
             happened—or in obsessing over it self-destructively if the roll
             means a loss of SAN.
           </Text>
-          <Title order={3} id="study-the-unnatural">
+          <Title order={3} id="study-the-unnatural" style={{ scrollMarginTop: 80 }}>
             Study the Unnatural
           </Title>
           <Text>
@@ -231,7 +231,7 @@ export const Home = () => {
             points as your Agent spends more and more time on awful things.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="getting-fired">
+          <Title order={2} td="underline" id="getting-fired" style={{ scrollMarginTop: 80 }}>
             Getting Fired
           </Title>
           <Text>
@@ -257,7 +257,7 @@ export const Home = () => {
             job.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="prosecution">
+          <Title order={2} td="underline" id="prosecution" style={{ scrollMarginTop: 80 }}>
             Prosecution
           </Title>
           <Text>
@@ -296,11 +296,9 @@ export const Home = () => {
             your Agent winds up in prison, on probation, and/or hit with
             catastrophic fines is up to the Handler.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 60 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

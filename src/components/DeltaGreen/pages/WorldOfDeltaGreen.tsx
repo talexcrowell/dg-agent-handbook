@@ -16,7 +16,13 @@ export const WorldOfDeltaGreen = () => {
     <Grid ta="start" pt="sm" id="the-world-of-delta-green">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">The World of Delta Green</Title>
+          <Title
+            id="the-world-of-delta-green"
+            td="underline"
+            style={{ scrollMarginTop: 80 }}
+          >
+            The World of Delta Green
+          </Title>
           <Text>
             Delta Green is a covert group inside the United States federal
             government. Its mission is to investigate, contain, and conceal
@@ -38,7 +44,12 @@ export const WorldOfDeltaGreen = () => {
             nothing more. That’s the first rule of Delta Green.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="the-unnatural-in-the-modern-era">
+          <Title
+            order={2}
+            td="underline"
+            id="the-unnatural-in-the-modern-era"
+            style={{ scrollMarginTop: 80 }}
+          >
             The Unnatural in the Modern Era
           </Title>
           <Text>
@@ -67,11 +78,9 @@ export const WorldOfDeltaGreen = () => {
             Taken together, these add up to the illusion of order that covers
             our haunted world.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 60 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

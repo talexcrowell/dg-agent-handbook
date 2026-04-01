@@ -14,7 +14,7 @@ import {
   NavLink,
 } from "@mantine/core";
 import { TrainingVideo } from "./pages/TrainingVideo";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   IconBook,
   IconBook2,
@@ -44,20 +44,27 @@ export const Training = () => {
     if (!tabValue) {
       navigate("/training/introduction");
     }
+  }, [tabValue]);
+
+  useLayoutEffect(() => {
     reinitializeRef.current();
   }, [tabValue]);
 
   return (
-    <Grid>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} py='0'>
+    <Grid type="container" py={0}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12} py="0">
         <Tabs
           defaultValue="introduction"
           value={tabValue}
           onChange={(value) => navigate(`/training/${value}`)}
           keepMounted={false}
+          mt={0}
         >
           {viewport.width > 760 ? (
-            <Tabs.List>
+            <Tabs.List
+              style={{ position: "sticky", top: 45 }}
+              bg="var(--mantine-color-dark-7)"
+            >
               <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
               <Tabs.Tab value="basics">Basics</Tabs.Tab>
               <Tabs.Tab value="combat-sanity-and-willpower">
@@ -81,10 +88,10 @@ export const Training = () => {
                   {tabValue === "combat-sanity-and-willpower"
                     ? "Combat, Sanity, and Willpower"
                     : tabValue === "being-an-agent"
-                    ? "Being an Agent"
-                    : tabValue === "after-the-operation"
-                    ? "After the Operation"
-                    : tabValue}
+                      ? "Being an Agent"
+                      : tabValue === "after-the-operation"
+                        ? "After the Operation"
+                        : tabValue}
                 </Text>
               </Button>
               <Modal
@@ -154,42 +161,36 @@ export const Training = () => {
             </Affix>
           )}
           <Tabs.Panel value="introduction">
-            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
-              <Introduction />
-            </ScrollArea>
+            <Introduction />
           </Tabs.Panel>
           <Tabs.Panel value="basics">
-            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
-              <Basics />
-            </ScrollArea>
+            <Basics />
           </Tabs.Panel>
           <Tabs.Panel value="combat-sanity-and-willpower">
-            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
-              <CombatSanityAndWillpower />
-            </ScrollArea>
+            <CombatSanityAndWillpower />
           </Tabs.Panel>
           <Tabs.Panel value="being-an-agent">
-            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
-              <BeingAnAgent />
-            </ScrollArea>
+            <BeingAnAgent />
           </Tabs.Panel>
           <Tabs.Panel value="after-the-operation">
-            <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)} scrollbars="y" offsetScrollbars="y">
-              <AfterTheOperation />
-            </ScrollArea>
+            <AfterTheOperation />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "training-video" && viewport.width > 992 && (
-        <Grid.Col span={2} py='0'>
-          <ScrollArea h={viewport.height - (viewport.width > 992 ? 90 : 65)}>
-            <Group py="xs">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
+      {viewport.width > 992 && (
+        <Grid.Col span={2}>
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="xs">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
             <TableOfContents
-              variant="none"
+              variant="light"
               color="blue"
               size="sm"
               radius="sm"
@@ -202,7 +203,7 @@ export const Training = () => {
                 children: data.value,
               })}
             />
-          </ScrollArea>
+          </Stack>
         </Grid.Col>
       )}
     </Grid>

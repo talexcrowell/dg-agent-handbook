@@ -16,7 +16,7 @@ export const Combat = () => {
     <Grid pt="sm" ta="start" id="combat">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline" id="combat">
+          <Title td="underline" id="combat" style={{ scrollMarginTop: 80 }}>
             Combat
           </Title>
           <Text>
@@ -33,7 +33,7 @@ export const Combat = () => {
             resolves any unnatural threat.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="the-turn">
+          <Title order={2} td="underline" id="the-turn" style={{ scrollMarginTop: 80 }}>
             The Turn
           </Title>
           <Text>
@@ -49,7 +49,7 @@ export const Combat = () => {
           <Text>
             During a turn, a combatant can attempt one of the following actions:
           </Text>
-          <Title order={3} id="aim">
+          <Title order={3} id="aim" style={{ scrollMarginTop: 80 }}>
             Aim
           </Title>
           <Text>
@@ -57,7 +57,7 @@ export const Combat = () => {
             Aiming requires no roll. After the next turn, or if your Agent
             suffers any damage before attempting it, the bonus is lost.
           </Text>
-          <Title order={3} id="attack">
+          <Title order={3} id="attack" style={{ scrollMarginTop: 80 }}>
             Attack
           </Title>
           <Text>
@@ -74,7 +74,7 @@ export const Combat = () => {
             semi-automatic firearm might fire three quick shots—but it’s always
             a single attack roll and a single damage roll.
           </Text>
-          <Title order={3} id="called-shot">
+          <Title order={3} id="called-shot" style={{ scrollMarginTop: 80 }}>
             Called Shot
           </Title>
           <Text>
@@ -96,7 +96,7 @@ export const Combat = () => {
             </Text>{" "}
             The target is mostly covered (all but a limb or head).
           </Text>
-          <Title order={3} id="disarm">
+          <Title order={3} id="disarm" style={{ scrollMarginTop: 80 }}>
             Disarm
           </Title>
           <Text>
@@ -105,7 +105,7 @@ export const Combat = () => {
             hand-to-hand range. Attempting to disarm also means your Agent is
             parrying and blocking.
           </Text>
-          <Title order={3} id="dodge">
+          <Title order={3} id="dodge" style={{ scrollMarginTop: 80 }}>
             Dodge
           </Title>
           <Text>
@@ -115,7 +115,7 @@ export const Combat = () => {
             avoids harm. If the Handler agrees, an Agent can dodge while jogging
             or running as described in the MOVE action on this page.
           </Text>
-          <Title order={3} id="escape">
+          <Title order={3} id="escape" style={{ scrollMarginTop: 80 }}>
             Escape
           </Title>
           <Text>
@@ -128,7 +128,7 @@ export const Combat = () => {
             it fails, your Agent remains pinned and the escape roll does not
             defend against attacks.
           </Text>
-          <Title order={3} id="fight-back">
+          <Title order={3} id="fight-back" style={{ scrollMarginTop: 80 }}>
             Fight Back
           </Title>
           <Text>
@@ -136,7 +136,7 @@ export const Combat = () => {
             (not a ranged attack or an explosive), your Agent can fight back
             with Unarmed Combat or Melee Weapons to block and counterattack.
           </Text>
-          <Title order={3} id="move">
+          <Title order={3} id="move" style={{ scrollMarginTop: 80 }}>
             Move
           </Title>
           <Text>
@@ -157,7 +157,7 @@ export const Combat = () => {
             happens. That requires a Dodge roll if the attack happens in the
             same turn.
           </Text>
-          <Title order={3} id="pin">
+          <Title order={3} id="pin" style={{ scrollMarginTop: 80 }}>
             Pin
           </Title>
           <Text>
@@ -175,7 +175,7 @@ export const Combat = () => {
           <Text>
             A pinned target can attempt escape once per turn but nothing else.
           </Text>
-          <Title order={3} id="wait">
+          <Title order={3} id="wait" style={{ scrollMarginTop: 80 }}>
             Wait
           </Title>
           <Text>
@@ -186,7 +186,7 @@ export const Combat = () => {
             resolved, but your Agent can jump in before the other character’s
             turn comes up.
           </Text>
-          <Title order={3} id="anything-else">
+          <Title order={3} id="anything-else" style={{ scrollMarginTop: 80 }}>
             Anything Else
           </Title>
           <Text>
@@ -194,7 +194,7 @@ export const Combat = () => {
             whether it requires a stat or skill test.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="attack-rolls">
+          <Title order={2} td="underline" id="attack-rolls" style={{ scrollMarginTop: 80 }}>
             Attack Rolls
           </Title>
           <Text>
@@ -209,7 +209,7 @@ export const Combat = () => {
             circumstances. No matter the bonus or penalty, a roll of 01 always
             hits and a roll of 00 (100) always misses.
           </Text>
-          <Title order={3} id="surprise-attacks">
+          <Title order={3} id="surprise-attacks" style={{ scrollMarginTop: 80 }}>
             Surprise Attacks
           </Title>
           <Text>
@@ -230,7 +230,7 @@ export const Combat = () => {
             Make an attack roll at +20%. Any success is a critical hit. If it
             fails, the attack misses.
           </Text>
-          <Title order={3} id="shooting-into-a-crowd">
+          <Title order={3} id="shooting-into-a-crowd" style={{ scrollMarginTop: 80 }}>
             Shooting into a Crowd
           </Title>
           <Text>
@@ -238,14 +238,14 @@ export const Combat = () => {
             ranged attack. Otherwise a random member of the crowd takes the hit.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="defense-rolls">
+          <Title order={2} td="underline" id="defense-rolls" style={{ scrollMarginTop: 80 }}>
             Defense Rolls
           </Title>
           <Text>
             Dodging and hand-to-hand combat (with unarmed or with melee weapons)
             are tests that protect your Agent by opposing an attack roll.
           </Text>
-          <Title order={3} id="dodging-and-fighting-back">
+          <Title order={3} id="dodging-and-fighting-back" style={{ scrollMarginTop: 80 }}>
             Dodging and Fighting Back
           </Title>
           <Text>
@@ -276,7 +276,7 @@ export const Combat = () => {
             your Agent can’t see or hear the attacker, your Agent can’t Dodge or
             fight back.
           </Text>
-          <Title order={3} id="dodging-ranged-attacks">
+          <Title order={3} id="dodging-ranged-attacks"  style={{ scrollMarginTop: 80 }}>
             Dodging Ranged Attacks
           </Title>
           <Text>
@@ -288,7 +288,7 @@ export const Combat = () => {
             Dodging does no good. This is why people get nervous when guns come
             out.
           </Text>
-          <Title order={3} id="defending-after-attacking">
+          <Title order={3} id="defending-after-attacking" style={{ scrollMarginTop: 80 }}>
             Defending After Attacking
           </Title>
           <Text>
@@ -315,7 +315,7 @@ export const Combat = () => {
             against your Agent.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="damage">
+          <Title order={2} td="underline" id="damage" style={{ scrollMarginTop: 80 }}>
             Damage
           </Title>
           <Text>
@@ -365,7 +365,7 @@ export const Combat = () => {
             If an attack brings your Agent to 0 HP, he or she is dead. HP do not
             go below 0.
           </Text>
-          <Title order={3} id="healing">
+          <Title order={3} id="healing" style={{ scrollMarginTop: 80 }}>
             Healing
           </Title>
           <Text>There are four types of healing:</Text>
@@ -413,7 +413,7 @@ export const Combat = () => {
             medical treatment). On a critical success, the patient regains 1D4;
             on a fumble, the patient loses 1 HP.
           </Text>
-          <Title order={3} id="complicaitons">
+          <Title order={3} id="complicaitons" style={{ scrollMarginTop: 80 }}>
             Complications
           </Title>
           <Text>
@@ -422,7 +422,7 @@ export const Combat = () => {
             physical stat or skill test) inflicts 1D4 HP damage as sutures rip,
             broken bones shift, or fever sets in.
           </Text>
-          <Title order={3} id="recovering-stat-points">
+          <Title order={3} id="recovering-stat-points" style={{ scrollMarginTop: 80 }}>
             Recovering Stat Points
           </Title>
           <Text>
@@ -430,7 +430,7 @@ export const Combat = () => {
             restored at 1 point per day.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="lethality-rating">
+          <Title order={2} td="underline" id="lethality-rating" style={{ scrollMarginTop: 80 }}>
             Lethality Rating
           </Title>
           <Text>
@@ -448,7 +448,7 @@ export const Combat = () => {
             Lethality rating, and double the HP damage if the Lethality roll
             fails.
           </Text>
-          <Title order={3} id="kill-radius">
+          <Title order={3} id="kill-radius" style={{ scrollMarginTop: 80 }}>
             Kill Radius
           </Title>
           <Text>
@@ -486,7 +486,7 @@ export const Combat = () => {
             safe to just assume that most humans caught in a Kill Radius are
             either dead or incapacitated.
           </Text>
-          <Title order={3} id="suppression">
+          <Title order={3} id="suppression" style={{ scrollMarginTop: 80 }}>
             Suppression
           </Title>
           <Text>
@@ -507,7 +507,7 @@ export const Combat = () => {
             ground when suppressed. Only insane, hardened, or fanatical enemies
             stand up in the face of fire.
           </Text>
-          <Title order={3} id="selective-fire">
+          <Title order={3} id="selective-fire" style={{ scrollMarginTop: 80 }}>
             Selective Fire
           </Title>
           <Text>
@@ -524,7 +524,7 @@ export const Combat = () => {
             larger Kill Radius. Some firearms allow only single shots or short
             bursts.
           </Text>
-          <Title order={3} id="blowing-things-up">
+          <Title order={3} id="blowing-things-up" style={{ scrollMarginTop: 80 }}>
             Blowing Things Up
           </Title>
           <Text>
@@ -535,7 +535,7 @@ export const Combat = () => {
             targets.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="protection-in-combat">
+          <Title order={2} td="underline" id="protection-in-combat" style={{ scrollMarginTop: 80 }}>
             Protection in Combat
           </Title>
           <Text>
@@ -543,7 +543,7 @@ export const Combat = () => {
             easy an Agent or other creature is to harm, regardless of their
             ability to get out of the way.
           </Text>
-          <Title order={3} id="fragile">
+          <Title order={3} id="fragile" style={{ scrollMarginTop: 80 }}>
             Fragile
           </Title>
           <Text>
@@ -552,7 +552,7 @@ export const Combat = () => {
             Fragile and may, at the Handler’s discretion, be reduced to 0 HP
             with one attack without bothering to roll damage.
           </Text>
-          <Title order={3} id="exposed">
+          <Title order={3} id="exposed" style={{ scrollMarginTop: 80 }}>
             Exposed
           </Title>
           <Text>
@@ -561,7 +561,7 @@ export const Combat = () => {
             any real protection. Attacks operate normally against Exposed
             targets.
           </Text>
-          <Title order={3} id="armored">
+          <Title order={3} id="armored" style={{ scrollMarginTop: 80 }}>
             Armored
           </Title>
           <Text>
@@ -598,7 +598,7 @@ export const Combat = () => {
             by the cover, or maybe they take no damage until the cover is
             breached.
           </Text>
-          <Title order={3} id="huge">
+          <Title order={3} id="huge" style={{ scrollMarginTop: 80 }}>
             Huge
           </Title>
           <Text>
@@ -607,7 +607,7 @@ export const Combat = () => {
             they do a human sized target. Instead, the Lethality attack does
             flat HP damage equal to the Lethality rating.
           </Text>
-          <Title order={3} id="transcendent">
+          <Title order={3} id="transcendent" style={{ scrollMarginTop: 80 }}>
             Transcendent
           </Title>
           <Text>
@@ -620,7 +620,7 @@ export const Combat = () => {
             unnatural techniques, under extremely dangerous and limited
             situations, can humans become Transcendent.
           </Text>
-          <Title order={3} id="armor-piercing-weapons">
+          <Title order={3} id="armor-piercing-weapons" style={{ scrollMarginTop: 80 }}>
             Armor Piercing Weapons
           </Title>
           <Text>
@@ -630,10 +630,10 @@ export const Combat = () => {
             specific target, not to victims in its Kill Radius.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="other-threats">
+          <Title order={2} td="underline" id="other-threats" style={{ scrollMarginTop: 80 }}>
             Other Threats
           </Title>
-          <Title order={3} id="poison-and-disease">
+          <Title order={3} id="poison-and-disease" style={{ scrollMarginTop: 80 }}>
             Poison and Disease
           </Title>
           <Text>
@@ -689,7 +689,7 @@ export const Combat = () => {
             after the ailment takes effect halves the Lethality rating and the
             HP damage.
           </Text>
-          <Title order={3} id="falling">
+          <Title order={3} id="falling" style={{ scrollMarginTop: 80 }}>
             Falling
           </Title>
           <Text>
@@ -699,7 +699,7 @@ export const Combat = () => {
             that, a fall instead has a Lethality rating of 1% per meter fallen.
             An agent who survives a fall must make a CON×5 test or be stunned.
           </Text>
-          <Title order={3} id="impact">
+          <Title order={3} id="impact" style={{ scrollMarginTop: 80 }}>
             Impact
           </Title>
           <Text>
@@ -708,7 +708,7 @@ export const Combat = () => {
             if your Agent slams into a wall and there’s nowhere to tumble. An
             Agent who survives an impact must make a CON×5 test or be stunned.
           </Text>
-          <Title order={3} id="suffocation">
+          <Title order={3} id="suffocation" style={{ scrollMarginTop: 80 }}>
             Suffocation
           </Title>
           <Text>
@@ -725,7 +725,7 @@ export const Combat = () => {
             starts immediately and lasts until someone clears his or her airway
             with a First Aid test.
           </Text>
-          <Title order={3} id="fire">
+          <Title order={3} id="fire" style={{ scrollMarginTop: 80 }}>
             Fire
           </Title>
           <Text>
@@ -738,7 +738,7 @@ export const Combat = () => {
             half damage each turn until extinguished. Being surrounded by a
             raging fire also causes suffocation as the fire consumes oxygen.
           </Text>
-          <Title order={3} id="cold">
+          <Title order={3} id="cold" style={{ scrollMarginTop: 80 }}>
             Cold
           </Title>
           <Text>
@@ -757,11 +757,9 @@ export const Combat = () => {
             Exposure to warmth and shelter restores 1 point of CON per minute.
             Hit Points heal normally.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 60 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

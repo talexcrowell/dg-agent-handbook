@@ -64,7 +64,10 @@ export const EquipmentAndServices = () => {
           keepMounted={false}
         >
           {viewport.width > 760 && (
-            <Tabs.List>
+            <Tabs.List
+              style={{ position: "sticky", top: 45 }}
+              bg="var(--mantine-color-dark-7)"
+            >
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
               <Tabs.Tab value={"weapons"}>Weapons</Tabs.Tab>
               <Tabs.Tab value={"armor"}>Body Armor</Tabs.Tab>
@@ -105,14 +108,18 @@ export const EquipmentAndServices = () => {
       </Grid.Col>
       {viewport.width > 992 && tabValue !== "search" && (
         <Grid.Col span={2} py="0">
-          <ScrollArea h={"93vh"}>
-            <Group py="xs">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="xs">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
             <TableOfContents
-              variant="none"
+              variant="light"
               color="blue"
               size="sm"
               radius="sm"
@@ -177,7 +184,7 @@ export const EquipmentAndServices = () => {
                 </Table.Tbody>
               </Table>
             )}
-          </ScrollArea>
+          </Stack>
         </Grid.Col>
       )}
     </Grid>

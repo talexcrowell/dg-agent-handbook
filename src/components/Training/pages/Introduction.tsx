@@ -25,7 +25,7 @@ export const Introduction = () => {
     <Grid ta="start" id="introduction" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Introduction</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>Introduction</Title>
           <Text>
             Delta Green is a role-playing game about cosmic terror and deadly
             conspiracy. It’s about men and women making awful choices and doing
@@ -35,7 +35,7 @@ export const Introduction = () => {
             against them.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline"  style={{ scrollMarginTop: 80 }}>
             The Role-Playing
           </Title>
           <Text>
@@ -76,7 +76,7 @@ export const Introduction = () => {
           </Text>
           <Text>That is Delta Green.</Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Ready to Play?
           </Title>
           <Text>
@@ -108,22 +108,9 @@ export const Introduction = () => {
             These tasks will save your group some time and help with immersion
             during the Operation.
           </Text>
-          <Divider />
-          <Center>
-            <Button
-              rightSection={<IconArrowRight />}
-              variant="outline"
-              component={Link}
-              to='/training/basics'
-            >
-              Proceed to "Basics"
-            </Button>
-          </Center>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 55 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

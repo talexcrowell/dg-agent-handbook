@@ -25,7 +25,9 @@ export const CombatSanityAndWillpower = () => {
     <Grid ta="start" id="combat-sanity-and-willpower" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Combat, Sanity, and Willpower</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            Combat, Sanity, and Willpower
+          </Title>
           <Text>
             When things harm your Agent, we measure it in derived attributes:
             Hit Points, Sanity Points, and Willpower Points.
@@ -44,7 +46,7 @@ export const CombatSanityAndWillpower = () => {
             be used for unnatural rituals.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Combat
           </Title>
           <Text c="dimmed">
@@ -100,7 +102,9 @@ export const CombatSanityAndWillpower = () => {
             attacker. While the roll defends against all attackers, the
             offensive action affects only a single target.
           </Text>
-          <Title order={3}>Damage and Death</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Damage and Death
+          </Title>
           <Text>
             A successful attack inflicts damage, which reduces the victim’s Hit
             Points. Damage depends on the weapon.
@@ -121,7 +125,7 @@ export const CombatSanityAndWillpower = () => {
             appropriate, restores 1D4 HP once a week.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Sanity
           </Title>
           <Text c="dimmed">
@@ -146,7 +150,9 @@ export const CombatSanityAndWillpower = () => {
             possible. If you fail, your Agent suffers the higher loss; with a
             critical failure, your Agent loses the maximum possible.
           </Text>
-          <Title order={3}>Insanity</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Insanity
+          </Title>
           <Text>
             Insanity is what happens when you lose too many Sanity Points.
           </Text>
@@ -176,7 +182,9 @@ export const CombatSanityAndWillpower = () => {
             The Agent becomes a Handler character and it’s time to make up a new
             one.
           </Text>
-          <Title order={3}>Reducing Sanity Loss</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Reducing Sanity Loss
+          </Title>
           <Text>
             When there is a SAN loss, your Agent can attempt to reduce it by
             projecting it onto a crucial personal relationship, damaging a Bond.
@@ -192,7 +200,9 @@ export const CombatSanityAndWillpower = () => {
             importance and meaning? The stresses faced by Delta Green agents
             often wreck the families and friendships that give them strength.
           </Text>
-          <Title order={3}>Adapting to Sanity Loss</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Adapting to Sanity Loss
+          </Title>
           <Text>
             An Agent who loses SAN from a threat three times without going
             insane becomes adapted. If your Agent loses SAN due to Helplessness
@@ -205,7 +215,9 @@ export const CombatSanityAndWillpower = () => {
             a threat changes your Agent, and not for the better. No Agent can
             adapt to the Unnatural.
           </Text>
-          <Title order={3}>Repressing Symptoms of Insanity</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Repressing Symptoms of Insanity
+          </Title>
           <Text>
             When suffering temporary insanity or an acute episode of a disorder,
             your Agent can try to repress it by focusing on the people who
@@ -215,7 +227,9 @@ export const CombatSanityAndWillpower = () => {
             character after all. The next time your Agent interacts with that
             Bond, describe how the relationship has worsened.
           </Text>
-          <Title order={3}>Regaining Sanity Points</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Regaining Sanity Points
+          </Title>
           <Text>
             Agents gain SAN by seeking therapy between opera- tions (which can
             raise SAN no higher than the Agent’s POW×5) and by overcoming
@@ -224,7 +238,7 @@ export const CombatSanityAndWillpower = () => {
             core rulebook.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Willpower
           </Title>
           <Text c="dimmed">
@@ -239,19 +253,25 @@ export const CombatSanityAndWillpower = () => {
             trauma, to resist interrogation and persuasion, and to enact
             unnatural rituals.
           </Text>
-          <Title order={3}>Low Willpower</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Low Willpower
+          </Title>
           <Text>
             At 1 or 2 WP your Agent has an emotional break- down, suffering a
             –20% penalty to all actions until WP rises above 2. At 0 WP your
             Agent collapses, incapacitated and perhaps unconscious, and cannot
             succeed at any tests—including SAN rolls.
           </Text>
-          <Title order={3}>Regaining Willpower</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Regaining Willpower
+          </Title>
           <Text>
             Fulfilling a personal motivation in a way that the Handler finds
             compelling restores 1 WP. A full night’s sleep restores 1D6 WP.
           </Text>
-          <Title order={3}>Exhaustion</Title>
+          <Title order={3} style={{ scrollMarginTop: 80 }}>
+            Exhaustion
+          </Title>
           <Text>
             The first time your Agent tries to sleep after suffering temporary
             insanity or reaching the Breaking Point, you must make a Sanity test
@@ -261,22 +281,9 @@ export const CombatSanityAndWillpower = () => {
             to all skills, stat tests, and SAN rolls. A full night’s rest
             removes that penalty.
           </Text>
-          <Divider />
-          <Center>
-            <Button
-              rightSection={<IconArrowRight />}
-              variant="outline"
-              component={Link}
-              to="/training/being-an-agent"
-            >
-              Proceed to "Being an Agent"
-            </Button>
-          </Center>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 70 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

@@ -16,7 +16,11 @@ export const Sanity = () => {
     <Grid pt="sm" ta="start" id="sanity">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline" id="sanity-title">
+          <Title
+            td="underline"
+            id="sanity-title"
+            style={{ scrollMarginTop: 80 }}
+          >
             Sanity
           </Title>
           <Text>
@@ -31,7 +35,12 @@ export const Sanity = () => {
             Agent is forever lost.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="rules-of-thumb-for-san-loss">
+          <Title
+            order={2}
+            td="underline"
+            id="rules-of-thumb-for-san-loss"
+            style={{ scrollMarginTop: 80 }}
+          >
             Rules of Thumb for SAN Loss
           </Title>
           <Text>
@@ -49,14 +58,19 @@ export const Sanity = () => {
             points.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="threats-to-san">
+          <Title
+            order={2}
+            td="underline"
+            id="threats-to-san"
+            style={{ scrollMarginTop: 80 }}
+          >
             Threats to SAN
           </Title>
           <Text>
             The three major threats to SAN are violence, helplessness and the
             Unnatural. These categories can overlap.
           </Text>
-          <Title order={3} id="violence">
+          <Title order={3} id="violence" style={{ scrollMarginTop: 80 }}>
             Violence
           </Title>
           <Text>
@@ -71,7 +85,7 @@ export const Sanity = () => {
             happens in that fight. Outside of combat, every individual incident
             triggers its own SAN loss.
           </Text>
-          <Title order={3} id="helplessness">
+          <Title order={3} id="helplessness" style={{ scrollMarginTop: 80 }}>
             Helplessness
           </Title>
           <Text>
@@ -82,7 +96,7 @@ export const Sanity = () => {
             Note that helplessness often makes violence worse, just like
             violence makes helplessness worse.
           </Text>
-          <Title order={3} id="the-unnatural">
+          <Title order={3} id="the-unnatural" style={{ scrollMarginTop: 80 }}>
             The Unnatural
           </Title>
           <Text>
@@ -93,7 +107,12 @@ export const Sanity = () => {
             cosmos, the harder it is to navigate the human world.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="insanity-and-disorders">
+          <Title
+            order={2}
+            td="underline"
+            id="insanity-and-disorders"
+            style={{ scrollMarginTop: 80 }}
+          >
             Insanity and Disorders
           </Title>
           <Text>
@@ -101,7 +120,12 @@ export const Sanity = () => {
             insanity and mental disorders.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="temporary-insanity">
+          <Title
+            order={2}
+            td="underline"
+            id="temporary-insanity"
+            style={{ scrollMarginTop: 80 }}
+          >
             Temporary Insanity
           </Title>
           <Text>
@@ -117,7 +141,7 @@ export const Sanity = () => {
             can talk your Agent down from temporary insanity. Otherwise your
             Agent loses control until the insanity runs its course.
           </Text>
-          <Title order={3} id="flee">
+          <Title order={3} id="flee" style={{ scrollMarginTop: 80 }}>
             Flee
           </Title>
           <Text>
@@ -128,7 +152,7 @@ export const Sanity = () => {
             happens first. This is a common reaction against Unnatural and
             violence SAN threats.
           </Text>
-          <Title order={3} id="struggle">
+          <Title order={3} id="struggle" style={{ scrollMarginTop: 80 }}>
             Struggle
           </Title>
           <Text>
@@ -138,7 +162,7 @@ export const Sanity = () => {
             or restrained. This is a common reaction against helplessness and
             violence SAN threats.
           </Text>
-          <Title order={3} id="submit">
+          <Title order={3} id="submit" style={{ scrollMarginTop: 80 }}>
             Submit
           </Title>
           <Text>
@@ -150,7 +174,12 @@ export const Sanity = () => {
             common reaction against Unnatural and helplessness SAN threats.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="disorders">
+          <Title
+            order={2}
+            td="underline"
+            id="disorders"
+            style={{ scrollMarginTop: 80 }}
+          >
             Disorders
           </Title>
           <Text>
@@ -160,7 +189,7 @@ export const Sanity = () => {
             intolerable stress. Indulging in it helps your Agent cope. It’s
             possible to suffer from multiple disorders at the same time.
           </Text>
-          <Title order={3} id="acute-episodes">
+          <Title order={3} id="acute-episodes" style={{ scrollMarginTop: 80 }}>
             Acute Episodes
           </Title>
           <Text>
@@ -196,7 +225,12 @@ export const Sanity = () => {
             can diagnose your Agent’s particular disorder.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="permanent-insanity">
+          <Title
+            order={2}
+            td="underline"
+            id="permanent-insanity"
+            style={{ scrollMarginTop: 80 }}
+          >
             Permanent Insanity
           </Title>
           <Text>
@@ -208,7 +242,12 @@ export const Sanity = () => {
             therapy or treatment will ever bring them back.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="resisting-insanity">
+          <Title
+            order={2}
+            td="underline"
+            id="resisting-insanity"
+            style={{ scrollMarginTop: 80 }}
+          >
             Resisting Insanity
           </Title>
           <Text>
@@ -216,7 +255,11 @@ export const Sanity = () => {
             the strength of Bonds. But suffering a trauma always comes with a
             cost.
           </Text>
-          <Title order={3} id="adapting-to-sanity-loss">
+          <Title
+            order={3}
+            id="adapting-to-sanity-loss"
+            style={{ scrollMarginTop: 80 }}
+          >
             Adapting to Sanity Loss
           </Title>
           <Text>
@@ -263,7 +306,11 @@ export const Sanity = () => {
             is to reach 0 SAN, whereupon the horrors make perfect sense and no
             longer inflict mental damage.
           </Text>
-          <Title order={3} id="projecting-onto-a-bond">
+          <Title
+            order={3}
+            id="projecting-onto-a-bond"
+            style={{ scrollMarginTop: 80 }}
+          >
             Projecting Onto a Bond
           </Title>
           <Text>
@@ -279,7 +326,11 @@ export const Sanity = () => {
             Agent interacts with the subject of the Bond, decide what shape the
             projection takes.
           </Text>
-          <Title order={3} id="repressing-insanity">
+          <Title
+            order={3}
+            id="repressing-insanity"
+            style={{ scrollMarginTop: 80 }}
+          >
             Repressing Insanity
           </Title>
           <Text>
@@ -298,11 +349,20 @@ export const Sanity = () => {
             insanity or disorder and behaves normally.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="recovery">
+          <Title
+            order={2}
+            td="underline"
+            id="recovery"
+            style={{ scrollMarginTop: 80 }}
+          >
             Recovery
           </Title>
           <Text>There are only a few ways to restore mental health.</Text>
-          <Title order={3} id="therapy-or-home-life">
+          <Title
+            order={3}
+            id="therapy-or-home-life"
+            style={{ scrollMarginTop: 80 }}
+          >
             Therapy or Home Life
           </Title>
           <Text>
@@ -310,7 +370,11 @@ export const Sanity = () => {
             professional help or by focusing on his or her Bonds; the things
             that give your Agent strength.
           </Text>
-          <Title order={3} id="destroying-the-unnatural">
+          <Title
+            order={3}
+            id="destroying-the-unnatural"
+            style={{ scrollMarginTop: 80 }}
+          >
             Destroying the Unnatural
           </Title>
           <Text>
@@ -324,11 +388,9 @@ export const Sanity = () => {
             it. This can mean your Agent gains more SAN from overcoming the
             threat than he or she actually lost from facing it.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 70 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

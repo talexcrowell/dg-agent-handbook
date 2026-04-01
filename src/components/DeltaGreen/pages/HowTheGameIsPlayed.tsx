@@ -16,7 +16,7 @@ export const HowTheGameIsPlayed = () => {
     <Grid ta="start" pt="sm" id="how-the-game-is-played">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">How The Game Is Played</Title>
+          <Title td="underline"  style={{ scrollMarginTop: 80 }}>How The Game Is Played</Title>
           <Text>
             Delta Green is a tabletop roleplaying game, composed of players
             creating and taking the roles of Agents investigating an unnatural
@@ -28,7 +28,7 @@ export const HowTheGameIsPlayed = () => {
             show a number between 01 and 00 (meaning 100).
           </Text>
           <Divider />
-          <Title order={2} id="your-agent-in-the-game">
+          <Title order={2} id="your-agent-in-the-game"  style={{ scrollMarginTop: 80 }}>
             Your Agent In the Game
           </Title>
           <Text>
@@ -57,7 +57,7 @@ export const HowTheGameIsPlayed = () => {
             Agent sane, but deteriorate as your Agent suffers trauma.
           </Text>
           <Divider />
-          <Title order={2} id="the-handler">
+          <Title order={2} id="the-handler"  style={{ scrollMarginTop: 80 }}>
             The Handler
           </Title>
           <Text>
@@ -94,11 +94,9 @@ export const HowTheGameIsPlayed = () => {
             the operation: the events that will lead your Agent to confront
             unnatural horror.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 50 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

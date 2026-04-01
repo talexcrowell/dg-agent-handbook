@@ -22,7 +22,9 @@ export const BeingAnAgent = () => {
     <Grid ta="start" pt="sm" id="being-an-agent">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Being an Agent</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            Being an Agent
+          </Title>
           <Text>
             Delta Green revolves around Agents. These Agents are greatly
             detailed in their character sheets to help players bring them to
@@ -53,7 +55,7 @@ export const BeingAnAgent = () => {
             <List.Item>Never reveal the existence of Delta Green.</List.Item>
           </List>
           <Divider />
-          <Title td="underline" order={2}>
+          <Title td="underline" order={2} style={{ scrollMarginTop: 80 }}>
             Creating an Agent
           </Title>
           <Text>
@@ -142,14 +144,18 @@ export const BeingAnAgent = () => {
             what resonates with you.
           </Text>
           <Divider />
-          <Title td="underline" order={2}>
+          <Title td="underline" order={2} style={{ scrollMarginTop: 80 }}>
             Agent Etiquette
           </Title>
           <Text>
             As a player, you speak in your Agent’s voice and work with your
             friends at the table to make sure it’s a game that everyone enjoys.
           </Text>
-          <Title order={3} id="describe-your-agent's-actions ">
+          <Title
+            order={3}
+            id="describe-your-agent's-actions"
+            style={{ scrollMarginTop: 80 }}
+          >
             Describe Your Agent’s Actions
           </Title>
           <Text>
@@ -165,14 +171,18 @@ export const BeingAnAgent = () => {
             achieve what you wanted. Fail, and you don’t. Either way, the
             Handler takes that into account to describe what happens next.
           </Text>
-          <Title order={3} id="respond-quickly">
+          <Title order={3} id="respond-quickly" style={{ scrollMarginTop: 80 }}>
             Respond Quickly
           </Title>
           <Text>
             Don’t let the game bog down while you decide the best way out of a
             bad situation. Act on your Agent’s instincts. Keep the game moving.
           </Text>
-          <Title order={3} id="speak-for-your-agent">
+          <Title
+            order={3}
+            id="speak-for-your-agent"
+            style={{ scrollMarginTop: 80 }}
+          >
             Speak for Your Agent
           </Title>
           <Text>
@@ -183,7 +193,11 @@ export const BeingAnAgent = () => {
             break. But remember that you and the other players are here for a
             horror game.
           </Text>
-          <Title order={3} id="respect-the-mood">
+          <Title
+            order={3}
+            id="respect-the-mood"
+            style={{ scrollMarginTop: 80 }}
+          >
             Respect the Mood
           </Title>
           <Text>
@@ -192,7 +206,11 @@ export const BeingAnAgent = () => {
             eagerness to get a laugh ruin the chilling suspense of confronting
             cosmic terrors.
           </Text>
-          <Title order={3} id="work-with-other-players">
+          <Title
+            order={3}
+            id="work-with-other-players"
+            style={{ scrollMarginTop: 80 }}
+          >
             Work With the Other Players
           </Title>
           <Text>
@@ -210,28 +228,20 @@ export const BeingAnAgent = () => {
             the Handler’s interpretation of the rules, let it slide. If you
             think it’s critical, talk to the Handler about it.
           </Text>
-          <Title order={3} id="trust-the-handler">
+          <Title
+            order={3}
+            id="trust-the-handler"
+            style={{ scrollMarginTop: 80 }}
+          >
             Trust the Handler
           </Title>
           <Text>
             You’re both here for the same reason: a suspenseful, horrifying game
             of Delta Green.
           </Text>
-          <Divider />
-          <Center>
-            <Button
-              rightSection={<IconArrowRight />}
-              variant="outline"
-              component={Link}
-              to="/training/after-the-operation"
-            >
-              Proceed to "After the Operation"
-            </Button>
-          </Center>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 70 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

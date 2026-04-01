@@ -22,7 +22,9 @@ export const AfterTheOperation = () => {
     <Grid ta="start" id="after-the-operation" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">After the Operation</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            After the Operation
+          </Title>
           <Text>
             If your Agent survives and completes the Operation, you are
             generally awarded Sanity points and your Agent is released to return
@@ -43,7 +45,7 @@ export const AfterTheOperation = () => {
             a great fit for you. Delta Green can always use new Agents.
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Rolling Failures
           </Title>
           <Text>
@@ -72,12 +74,13 @@ export const AfterTheOperation = () => {
             . Those values are added to the respective skill resulting in Agent
             COLTON's skills to be{" "}
             <Text inherit span fw={700}>
-              Athletics (50 + 3 = 53%), Firearms (40 + 4 = 44%), and Search (30 + 1 = 31%)
+              Athletics (50 + 3 = 53%), Firearms (40 + 4 = 44%), and Search (30
+              + 1 = 31%)
             </Text>
             .
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Home
           </Title>
           <Text c="dimmed">
@@ -119,11 +122,9 @@ export const AfterTheOperation = () => {
             Recklessness in Operations can cause consequences such as being
             fired from your day job or being arrested/prosecuted.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 50 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>

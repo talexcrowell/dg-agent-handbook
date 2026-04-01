@@ -55,7 +55,10 @@ export const Rules = () => {
           keepMounted={false}
         >
           {viewport.width > 760 && (
-            <Tabs.List>
+            <Tabs.List
+              style={{ position: "sticky", top: 45 }}
+              bg="var(--mantine-color-dark-7)"
+            >
               <Tabs.Tab value="how-to-play">How to Play</Tabs.Tab>
               <Tabs.Tab value="combat">Combat</Tabs.Tab>
               <Tabs.Tab value="sanity">Sanity</Tabs.Tab>
@@ -63,62 +66,48 @@ export const Rules = () => {
             </Tabs.List>
           )}
           <Tabs.Panel value="how-to-play">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <HowToPlay />
-            </ScrollArea>
+            <HowToPlay />
           </Tabs.Panel>
           <Tabs.Panel value="combat">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <Combat />
-            </ScrollArea>
+            <Combat />
           </Tabs.Panel>
           <Tabs.Panel value="sanity">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <Sanity />
-            </ScrollArea>
+            <Sanity />
           </Tabs.Panel>
           <Tabs.Panel value="home">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <Home />
-            </ScrollArea>
+            <Home />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "training-video" && viewport.width > 992 && (
-        <Grid.Col span={2} py="0">
-          <ScrollArea h={viewport.height - 70}>
-            <Group py="xs" align="center">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
-            <TableOfContents
-              variant="none"
-              color="blue"
-              size="sm"
-              radius="sm"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () => data.getNode().scrollIntoView(),
-                children: data.value,
-              })}
-            />
-          </ScrollArea>
+      {viewport.width > 992 && (
+        <Grid.Col span={2}>
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="xs">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
+            <ScrollArea h={viewport.height - 100} type='hover'>
+              <TableOfContents
+                variant="light"
+                color="blue"
+                size="sm"
+                radius="sm"
+                reinitializeRef={reinitializeRef}
+                scrollSpyOptions={{
+                  selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+                }}
+                getControlProps={({ data }) => ({
+                  onClick: () => data.getNode().scrollIntoView(),
+                  children: data.value,
+                })}
+              />
+            </ScrollArea>
+          </Stack>
         </Grid.Col>
       )}
     </Grid>

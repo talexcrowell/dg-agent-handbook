@@ -71,70 +71,51 @@ export const DeltaGreen = () => {
             </Tabs.List>
           )}
           <Tabs.Panel value="welcome">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <Overview />
-            </ScrollArea>
+            <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <WorldOfDeltaGreen />
-            </ScrollArea>
+            <WorldOfDeltaGreen />
           </Tabs.Panel>
           <Tabs.Panel value="what-is-delta-green">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <WhatIsDeltaGreen />
-            </ScrollArea>
+            <WhatIsDeltaGreen />
           </Tabs.Panel>
           <Tabs.Panel value="fundamentals">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <Fundamentals />
-            </ScrollArea>
+            <Fundamentals />
           </Tabs.Panel>
           <Tabs.Panel value="how-the-game-is-played">
-            <ScrollArea
-              h={viewport.height - (viewport.width > 992 ? 90 : 65)}
-              scrollbars="y"
-            >
-              <HowTheGameIsPlayed />
-            </ScrollArea>
+            <HowTheGameIsPlayed />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
       {tabValue !== "welcome" && viewport.width > 992 && (
         <Grid.Col span={2} py="0">
-          <ScrollArea h={"93vh"}>
-            <Group py="xs" align="middle">
-              <IconList />
-              <Text>Table of Contents</Text>
-            </Group>
-            <Divider />
-            <TableOfContents
-              variant="light"
-              color="blue"
-              size="sm"
-              radius="sm"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () => data.getNode().scrollIntoView(),
-                children: data.value,
-              })}
-            />
-          </ScrollArea>
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="xs">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
+            <ScrollArea h={viewport.height - 100} type='hover'>
+              <TableOfContents
+                variant="light"
+                color="blue"
+                size="sm"
+                radius="sm"
+                reinitializeRef={reinitializeRef}
+                scrollSpyOptions={{
+                  selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+                }}
+                getControlProps={({ data }) => ({
+                  onClick: () => data.getNode().scrollIntoView(),
+                  children: data.value,
+                })}
+              />
+            </ScrollArea>
+          </Stack>
         </Grid.Col>
       )}
     </Grid>

@@ -25,7 +25,7 @@ export const Basics = () => {
     <Grid ta="start" id="basics" pt="sm">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline">Basics</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>Basics</Title>
           <Text c="dimmed">
             For more information, you can read the{" "}
             <Anchor
@@ -55,7 +55,7 @@ export const Basics = () => {
             succeed or not?
           </Text>
           <Divider />
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Does It Require a Stat or a Skill?
           </Title>
           <Text c="dimmed">
@@ -90,7 +90,7 @@ export const Basics = () => {
             training, that may require not a skill but instead a certain score
             in a stat.
           </Text>
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Does It Require a Roll?
           </Title>
           <Text>
@@ -98,7 +98,7 @@ export const Basics = () => {
             that can determine if a roll is necessary such as the environment,
             moments of crisis, or actions of NPCs.
           </Text>
-          <Title order={2} td="underline">
+          <Title order={2} td="underline"  style={{ scrollMarginTop: 80 }}>
             Roll Results
           </Title>
           <Text>
@@ -149,7 +149,7 @@ export const Basics = () => {
             Result is a failure and the numbers match or is equal to 00(100).
             The action fails and the Agent will suffer another detriment.
           </Text>
-          <Title order={2} td="underline">
+          <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
             Other Types of Rolls
           </Title>
           <Text>
@@ -179,21 +179,9 @@ export const Basics = () => {
             Sometimes it solely comes down to luck. Roll the dice with a 50%
             chance of success.
           </Text>
-          <Divider />
-          <Center>
-            <Button
-              rightSection={<IconArrowRight />}
-              variant="outline"
-              component={Link}
-              to="/training/combat-sanity-and-willpower"
-            >
-              Proceed to "Combat, Sanity, and Willpower"
-            </Button>
-          </Center>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {Array.from({ length: 60 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
     </Grid>
