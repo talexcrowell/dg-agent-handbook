@@ -665,12 +665,11 @@ export const CharacterSheet: React.FC = () => {
     return (
       <Tabs
         orientation={"vertical"}
-        variant="outline"
         defaultValue="all"
         id="character-sheet"
         px={0}
-        style={{ zIndex: 100 }}
         value={tabValue}
+        onChange={setTabValue}
       >
         {viewport.width > 760 && (
           <Tabs.List
@@ -714,6 +713,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
+          <ScrollArea h={viewport.height - 130}>
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -741,6 +741,7 @@ export const CharacterSheet: React.FC = () => {
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
+          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="personal" id="tab-panel">
           {!IsPreview() ? (
@@ -760,6 +761,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
+          <ScrollArea h={viewport.height - 130}>
             <Personal
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
@@ -767,6 +769,7 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               IsPreview={IsPreview}
             />
+          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="skills" id="tab-panel">
           {!IsPreview() ? (
@@ -786,6 +789,7 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
+          <ScrollArea h={viewport.height - 130}>
             <Skills
               currentCharacter={character}
               handleStandardRoll={handleStandardRoll}
@@ -793,6 +797,7 @@ export const CharacterSheet: React.FC = () => {
               inPerson={inPerson}
               handleFailedTests={handleFailedTests}
             />
+          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="equipment" id="tab-panel">
           {!IsPreview() ? (
@@ -812,11 +817,13 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
+          <ScrollArea h={viewport.height - 130}>
             <Equipment
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
+          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="notes" id="tab-panel">
           {!IsPreview() ? (
@@ -836,61 +843,33 @@ export const CharacterSheet: React.FC = () => {
             </Group>
           )}
           <Divider />
+          <ScrollArea h={viewport.height - 130}>
             <Notes
               currentCharacter={character}
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
-        </Tabs.Panel>
-        <Tabs.Panel value="equipment-notes" id="tab-panel">
-          {!IsPreview() ? (
-            <UtilityMenu
-              handleInPerson={handleInPerson}
-              inPerson={inPerson}
-              toggleRollLog={toggleRollLog}
-              toggleDiceRoller={toggleDiceRoller}
-              handleMobileTab={handleMobileTab}
-              tabValue={tabValue}
-            />
-          ) : (
-            <Group justify="center" c="" py="xs">
-              <Title order={3} c="dimmed">
-                Preview Mode
-              </Title>
-            </Group>
-          )}
-          <Divider />
-            <Equipment
-              currentCharacter={character}
-              handleUpdateCharacter={handleUpdateCharacter}
-              IsPreview={IsPreview}
-            />
-            <Divider />
-            <Notes
-              currentCharacter={character}
-              handleUpdateCharacter={handleUpdateCharacter}
-              IsPreview={IsPreview}
-            />
+          </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings" id="tab-panel">
-            <UtilityMenu
-              handleInPerson={handleInPerson}
-              inPerson={inPerson}
-              toggleRollLog={toggleRollLog}
-              toggleDiceRoller={toggleDiceRoller}
-              handleMobileTab={handleMobileTab}
-              tabValue={tabValue}
-            />
-            <Settings
-              currentCharacter={character}
-              handleInPerson={handleInPerson}
-              inPerson={inPerson}
-              toggleRollLog={toggleRollLog}
-              handleFailedTests={handleFailedTests}
-              setCharacter={setCharacter}
-              toggleDiceRoller={toggleDiceRoller}
-              handleUpdateCharacter={handleUpdateCharacter}
-            />
+          <UtilityMenu
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+            toggleDiceRoller={toggleDiceRoller}
+            handleMobileTab={handleMobileTab}
+            tabValue={tabValue}
+          />
+          <Settings
+            currentCharacter={character}
+            handleInPerson={handleInPerson}
+            inPerson={inPerson}
+            toggleRollLog={toggleRollLog}
+            handleFailedTests={handleFailedTests}
+            setCharacter={setCharacter}
+            toggleDiceRoller={toggleDiceRoller}
+            handleUpdateCharacter={handleUpdateCharacter}
+          />
         </Tabs.Panel>
         <RollModalContainer
           character={character}
