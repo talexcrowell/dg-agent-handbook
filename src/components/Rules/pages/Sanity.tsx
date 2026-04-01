@@ -388,7 +388,7 @@ export const Sanity = () => {
             it. This can mean your Agent gains more SAN from overcoming the
             threat than he or she actually lost from facing it.
           </Text>
-          {Array.from({ length: 70 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 70 }, (_, i) => (
             <Space />
           ))}
         </Stack>

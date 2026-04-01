@@ -480,45 +480,8 @@ export const Tradecraft = () => {
             strangers or police. It’s smartest to use a Green Box only as a
             contingency while the team finds a more secure solution.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {viewport.width > 992 &&
+            Array.from({ length: 50 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
       {viewport.width > 992 && (

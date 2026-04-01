@@ -643,7 +643,7 @@ export const HowToPlay = () => {
             a new disorder while using sedatives, the Handler has good reason to
             say the disorder takes the form of an addiction to them.
           </Text>
-          {Array.from({ length: 60 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 60 }, (_, i) => (
             <Space />
           ))}
         </Stack>

@@ -371,11 +371,9 @@ export const StatsAndSkills = () => {
                   })}
             </Table.Tbody>
           </Table>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {viewport.width > 992 && Array.from({ length: 50 }, (_, i) => (
+            <Space />
+          ))}
         </Stack>
       </Grid.Col>
       {viewport.width > 992 && (

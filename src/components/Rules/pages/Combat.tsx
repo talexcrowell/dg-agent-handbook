@@ -757,7 +757,7 @@ export const Combat = () => {
             Exposure to warmth and shelter restores 1 point of CON per minute.
             Hit Points heal normally.
           </Text>
-          {Array.from({ length: 60 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 60 }, (_, i) => (
             <Space />
           ))}
         </Stack>

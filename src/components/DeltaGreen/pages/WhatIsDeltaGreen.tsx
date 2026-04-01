@@ -16,7 +16,9 @@ export const WhatIsDeltaGreen = () => {
     <Grid ta="start" pt="sm" id="what-is-delta-green">
       <Grid.Col span={12}>
         <Stack>
-          <Title td="underline"  style={{ scrollMarginTop: 80 }}>What Is Delta Green?</Title>
+          <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            What Is Delta Green?
+          </Title>
           <Text>
             Ask any two Delta Green agents “What is Delta Green?” and you’ll get
             two very different answers. It is an enigma. Its mission requires
@@ -49,7 +51,12 @@ export const WhatIsDeltaGreen = () => {
             that is common, but your experience may be very different.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="potential-recruits"  style={{ scrollMarginTop: 80 }}>
+          <Title
+            order={2}
+            td="underline"
+            id="potential-recruits"
+            style={{ scrollMarginTop: 80 }}
+          >
             Potential Recruits
           </Title>
           <Text>
@@ -70,7 +77,12 @@ export const WhatIsDeltaGreen = () => {
             likely you are not a Delta Green recruit but a Delta Green mission.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="operational-briefing"  style={{ scrollMarginTop: 80 }}>
+          <Title
+            order={2}
+            td="underline"
+            id="operational-briefing"
+            style={{ scrollMarginTop: 80 }}
+          >
             Operational Briefing
           </Title>
           <Text>
@@ -97,7 +109,12 @@ export const WhatIsDeltaGreen = () => {
             nowhere in these orders and reassignments.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="on-the-ground"  style={{ scrollMarginTop: 80 }}>
+          <Title
+            order={2}
+            td="underline"
+            id="on-the-ground"
+            style={{ scrollMarginTop: 80 }}
+          >
             On the Ground
           </Title>
           <Text>
@@ -127,7 +144,12 @@ export const WhatIsDeltaGreen = () => {
             may need to be eliminated.
           </Text>
           <Divider />
-          <Title order={2} td="underline" id="retirement"  style={{ scrollMarginTop: 80 }}>
+          <Title
+            order={2}
+            td="underline"
+            id="retirement"
+            style={{ scrollMarginTop: 80 }}
+          >
             Retirement
           </Title>
           <Text>
@@ -139,11 +161,8 @@ export const WhatIsDeltaGreen = () => {
             Delta Green the mission comes first, and death is the only sure way
             out.
           </Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
+          {viewport.width > 992 &&
+            Array.from({ length: 50 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

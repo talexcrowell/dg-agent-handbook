@@ -296,7 +296,7 @@ export const Home = () => {
             your Agent winds up in prison, on probation, and/or hit with
             catastrophic fines is up to the Handler.
           </Text>
-          {Array.from({ length: 60 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 60 }, (_, i) => (
             <Space />
           ))}
         </Stack>

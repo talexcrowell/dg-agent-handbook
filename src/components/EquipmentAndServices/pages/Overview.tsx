@@ -334,7 +334,7 @@ export const Overview = () => {
             Costs on the black market are typically high. Make a Luck roll. If
             it fails, the item is one expense level greater than usual.
           </Text>
-          {Array.from({ length: 50 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 50 }, (_, i) => (
             <Space />
           ))}
         </Stack>
