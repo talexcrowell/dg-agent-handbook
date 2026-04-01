@@ -860,6 +860,7 @@ export const CharacterSheet: React.FC = () => {
             handleMobileTab={handleMobileTab}
             tabValue={tabValue}
           />
+          <Divider />
           <Settings
             currentCharacter={character}
             handleInPerson={handleInPerson}
