@@ -129,7 +129,7 @@ export const Fundamentals = () => {
             reveal the group’s secrets, no matter the circumstances, you become
             the operation.
           </Text>
-          {Array.from({ length: 70 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 70 }, (_, i) => (
             <Space />
           ))}
         </Stack>

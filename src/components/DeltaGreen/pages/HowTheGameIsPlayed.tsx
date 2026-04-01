@@ -94,7 +94,7 @@ export const HowTheGameIsPlayed = () => {
             the operation: the events that will lead your Agent to confront
             unnatural horror.
           </Text>
-          {Array.from({ length: 50 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 50 }, (_, i) => (
             <Space />
           ))}
         </Stack>
