@@ -13,11 +13,15 @@ import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const Glossary = () => {
   const reinitializeRef = useRef(() => {});
+  const [viewport] = useViewportContext();
+
   return (
     <Grid type="container">
-      <Grid.Col span={10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Stack id="glossary">
-          <Title td="underline" style={{ scrollMarginTop: 50 }}>Glossary</Title>
+          <Title td="underline" style={{ scrollMarginTop: 50 }}>
+            Glossary
+          </Title>
           <Text>
             Every sub-culture develops its own specialized language that
             confuses and confounds outsiders, and the world of counterterrorism,
@@ -261,36 +265,38 @@ export const Glossary = () => {
           </Table>
         </Stack>
       </Grid.Col>
-      <Grid.Col span={2}>
-        <Stack
-          maw={200}
-          style={{ position: "sticky", top: 55 }}
-          justify="space-between"
-          gap="0"
-        >
-          <Stack gap="sm">
-            <Text fw={600}>Table of Contents</Text>
-            <Divider />
+      {viewport.width > 992 && (
+        <Grid.Col span={2}>
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="sm">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
+            <TableOfContents
+              variant="light"
+              color="blue"
+              size="sm"
+              radius="0"
+              reinitializeRef={reinitializeRef}
+              scrollSpyOptions={{
+                selector: `#glossary :is(h1, h2, h3, h4, h5, h6)`,
+              }}
+              getControlProps={({ data }) => ({
+                onClick: () =>
+                  data
+                    .getNode()
+                    .scrollIntoView({ behavior: "smooth", block: "start" }),
+                children: data.value,
+              })}
+            />
           </Stack>
-          <TableOfContents
-            variant="light"
-            color="blue"
-            size="sm"
-            radius="0"
-            reinitializeRef={reinitializeRef}
-            scrollSpyOptions={{
-              selector: `#glossary :is(h1, h2, h3, h4, h5, h6)`,
-            }}
-            getControlProps={({ data }) => ({
-              onClick: () =>
-                data
-                  .getNode()
-                  .scrollIntoView({ behavior: "smooth", block: "start" }),
-              children: data.value,
-            })}
-          />
-        </Stack>
-      </Grid.Col>
+        </Grid.Col>
+      )}
     </Grid>
   );
 };

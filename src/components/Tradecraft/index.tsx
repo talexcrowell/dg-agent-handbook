@@ -12,16 +12,18 @@ import {
 import { useScrollIntoView } from "@mantine/hooks";
 import { IconList } from "@tabler/icons-react";
 import { useLayoutEffect, useRef } from "react";
+import { useViewportContext } from "../../contexts/ViewportContext";
 
 export const Tradecraft = () => {
   const reinitializeRef = useRef(() => {});
+  const [viewport] = useViewportContext();
 
   useScrollIntoView();
 
   useLayoutEffect(() => {}, []);
   return (
     <Grid type="container">
-      <Grid.Col span={10}>
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Stack id="tradecraft" maw={1080}>
           <Title td="underline" style={{ scrollMarginTop: 50 }}>
             Tradecraft
@@ -519,36 +521,38 @@ export const Tradecraft = () => {
           <Space />
         </Stack>
       </Grid.Col>
-      <Grid.Col span={2}>
-        <Stack
-          maw={200}
-          style={{ position: "sticky", top: 55 }}
-          justify="space-between"
-          gap='0'
-        >
-          <Stack gap="sm">
-            <Text fw={600}>Table of Contents</Text>
-            <Divider />
+      {viewport.width > 992 && (
+        <Grid.Col span={2}>
+          <Stack
+            maw={200}
+            style={{ position: "sticky", top: 55 }}
+            justify="space-between"
+            gap="0"
+          >
+            <Stack gap="sm">
+              <Text fw={600}>Table of Contents</Text>
+              <Divider />
+            </Stack>
+            <TableOfContents
+              variant="light"
+              color="blue"
+              size="sm"
+              radius="0"
+              reinitializeRef={reinitializeRef}
+              scrollSpyOptions={{
+                selector: `#tradecraft :is(h1, h2, h3, h4, h5, h6)`,
+              }}
+              getControlProps={({ data }) => ({
+                onClick: () =>
+                  data
+                    .getNode()
+                    .scrollIntoView({ behavior: "smooth", block: "start" }),
+                children: data.value,
+              })}
+            />
           </Stack>
-          <TableOfContents
-            variant="light"
-            color="blue"
-            size="sm"
-            radius="0"
-            reinitializeRef={reinitializeRef}
-            scrollSpyOptions={{
-              selector: `#tradecraft :is(h1, h2, h3, h4, h5, h6)`,
-            }}
-            getControlProps={({ data }) => ({
-              onClick: () =>
-                data
-                  .getNode()
-                  .scrollIntoView({ behavior: "smooth", block: "start" }),
-              children: data.value,
-            })}
-          />
-        </Stack>
-      </Grid.Col>
+        </Grid.Col>
+      )}
     </Grid>
   );
 };
