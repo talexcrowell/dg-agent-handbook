@@ -206,7 +206,7 @@ export const Personal = ({
             {!IsPreview() && (
               <Switch
                 thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-                size="md"
+                size="lg"
                 checked={editPersonal}
                 onChange={(e) => setEditPersonal(e.currentTarget.checked)}
               />
@@ -476,7 +476,7 @@ export const Personal = ({
             {!IsPreview() && (
               <Switch
                 thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-                size="md"
+                size="lg"
                 checked={editStats}
                 onChange={(e) => setEditStats(e.currentTarget.checked)}
               />
@@ -550,7 +550,7 @@ export const Personal = ({
             {!IsPreview() && (
               <Switch
                 thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-                size="md"
+                size="lg"
                 checked={editAttributes}
                 onChange={(e) => setEditAttributes(e.currentTarget.checked)}
               />
@@ -662,7 +662,7 @@ export const Personal = ({
             {!IsPreview() && (
               <Switch
                 thumbIcon={<IconPencil color="black" size={12} stroke={3} />}
-                size="md"
+                size="lg"
                 checked={editPsych}
                 onChange={(e) => setEditPsych(e.currentTarget.checked)}
               />

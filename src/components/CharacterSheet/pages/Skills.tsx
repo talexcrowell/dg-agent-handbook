@@ -400,6 +400,8 @@ export const Skills = ({
               mb="md"
               onChange={(e) => handleSearch(e.currentTarget.value)}
             />
+
+            EGGS
           </Grid.Col>
           {searchTerm ? (
             <Grid.Col span={12}>
@@ -476,7 +478,7 @@ export const Skills = ({
                         {inPerson ? (
                           <Button
                             fullWidth
-                            onClick={() => handleStandardRoll(key)}
+                            onClick={() => handleStandardRoll(key.name)}
                             variant="outline"
                             disabled={
                               (isSkillChoice(key.name)
@@ -799,7 +801,7 @@ export const Skills = ({
                             {inPerson ? (
                               <Button
                                 fullWidth
-                                onClick={() => handleStandardRoll(key)}
+                                onClick={() => handleStandardRoll(key.name)}
                                 variant="outline"
                                 disabled={
                                   (isSkillChoice(key.name)

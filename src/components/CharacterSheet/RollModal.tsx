@@ -153,7 +153,7 @@ const RollModalContent = ({
           : isStat(rollType)
             ? character.stats[rollType] * 5
             : isSkillChoice(
-                  rollType.includes(".") ? rollType.split(".")[0] : rollType,
+                  rollType?.includes(".") ? rollType.split(".")[0] : rollType,
                 )
               ? rollType.includes(".")
                 ? character.skills[rollType.split(".")[0]].filter(
@@ -173,7 +173,6 @@ const RollModalContent = ({
       if (value[0] === value[1] || parseInt(value.join("")) === 0) {
         return "FUMBLE";
       }
-      console.log(userValue, parseInt(value.join("")));
       return "FAILURE";
     }
   };
@@ -214,7 +213,6 @@ const RollModalContent = ({
   const handleCustomRoll = (input: string) => {
     let roll: any = new DiceRoll(input);
     let rollObj = roll.export(exportFormats.OBJECT);
-    console.log(rollObj);
     setDiceRoll({ ...rollObj });
   };
 
@@ -332,33 +330,67 @@ const RollModalContent = ({
     return (
       <Stack gap="lg">
         <Title>Dice Roller</Title>
-        <Group justify="space-between">
-          <Group>
-            <NumberInput
-              label="Number of Dice"
-              value={diceNumber}
-              onChange={setDiceNumber}
-              min={1}
-              max={8}
-              w={100}
-            />
-            <Select
-              label="Type of Dice"
-              data={["d4", "d6", "d8", "d10", "d20", "d100"]}
-              onChange={handleDiceValue}
-              value={diceNotation}
-              w={100}
-            />
-            <NumberInput
-              label="Modifier"
-              value={modifier}
-              onChange={setModifier}
-              min={0}
-              max={8}
-              w={100}
-            />
-          </Group>
-          <Group>
+        <Stack justify="space-between">
+          <Stack>
+            <Group>
+              <NumberInput
+                label="Number of Dice"
+                value={diceNumber}
+                onChange={setDiceNumber}
+                min={1}
+                max={8}
+                w={100}
+              />
+              <Select
+                label="Type of Dice"
+                data={["d4", "d6", "d8", "d10", "d20", "d100"]}
+                onChange={handleDiceValue}
+                value={diceNotation}
+                w={100}
+              />
+              <NumberInput
+                label="Modifier"
+                value={modifier}
+                onChange={setModifier}
+                min={0}
+                max={8}
+                w={100}
+              />
+            </Group>
+            <Stack w={"100%"} justify="space-between">
+              {diceRoll && (
+                <Stack gap="xs">
+                  <InputLabel c="dimmed" size="sm">
+                    Notation
+                  </InputLabel>
+                  <Text>{diceRoll?.notation}</Text>
+                </Stack>
+              )}
+              {diceRoll && (
+                <Stack gap="xs">
+                  <InputLabel c="dimmed" size="sm">
+                    Rolled Values
+                  </InputLabel>
+                  <Group gap="xs">
+                    {diceRoll?.rolls[0].rolls.map((item) => {
+                      return <Text>{item.value}</Text>;
+                    })}
+                  </Group>
+                </Stack>
+              )}
+              {diceRoll && (
+                <Stack gap="xs">
+                  <InputLabel c="dimmed" size="sm">
+                    Total Value
+                  </InputLabel>
+                  <Group>
+                    <Text>{diceRoll?.total}</Text>
+                  </Group>
+                </Stack>
+              )}
+            </Stack>
+          </Stack>
+          <Group justify="space-evenly">
             <Button onClick={handleCustomDiceRoll} variant="outline">
               Roll Dice
             </Button>
@@ -366,41 +398,7 @@ const RollModalContent = ({
               Close
             </Button>
           </Group>
-        </Group>
-        <Group w={"100%"} justify="space-between">
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Notation
-              </InputLabel>
-              <Text>{diceRoll?.notation}</Text>
-            </Stack>
-          )}
-          {diceRoll && <Divider orientation="vertical" />}
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Rolled Values
-              </InputLabel>
-              <Group justify="center">
-                {diceRoll?.rolls[0].rolls.map((item) => {
-                  return <Text>{item.value}</Text>;
-                })}
-              </Group>
-            </Stack>
-          )}
-          {diceRoll && <Divider orientation="vertical" />}
-          {diceRoll && (
-            <Stack gap="xs">
-              <InputLabel c="dimmed" size="sm">
-                Total Value
-              </InputLabel>
-              <Group justify="center">
-                <Text>{diceRoll?.total}</Text>
-              </Group>
-            </Stack>
-          )}
-        </Group>
+        </Stack>
       </Stack>
     );
   } else {
@@ -464,7 +462,7 @@ const RollModalContent = ({
           </Stack>
         </Card>
         {/* Damage Card */}
-        {character.rollLog.length > 0 &&
+        {/* {character.rollLog.length > 0 &&
           character.rollLog[character.rollLog.length - 1].rolledValue <=
             character.rollLog[character.rollLog.length - 1].ratingValue &&
           isCombat(character.rollLog[character.rollLog.length - 1].skill) && (
@@ -560,9 +558,9 @@ const RollModalContent = ({
                 </Text>
               </Stack>
             </Card>
-          )}
+          )} */}
         {/* Sanity Card */}
-        {character.rollLog.length > 0 &&
+        {/* {character.rollLog.length > 0 &&
           character.rollLog[character.rollLog.length - 1].rolledValue >
             character.rollLog[character.rollLog.length - 1].ratingValue &&
           character.rollLog[character.rollLog.length - 1].skill === "san" && (
@@ -665,7 +663,7 @@ const RollModalContent = ({
                 )}
               </Stack>
             </Card>
-          )}
+          )} */}
         <Stack>
           <Button
             variant="outline"

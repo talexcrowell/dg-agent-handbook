@@ -45,21 +45,20 @@ export const UtilityMenu = ({
             ],
           },
         ]}
-        size='md'
+        size="md"
         allowDeselect={false}
-
-        w='175'
+        w="175"
       />
-      <ActionIcon
-        size="xl"
-        variant={"light"}
-        color={"red"}
-        aria-label="Back to Roster"
-        component={Link}
-        to="/agents/roster"
-      >
-        <IconArrowLeft />
-      </ActionIcon>
+      {inPerson && (
+        <ActionIcon
+          size="xl"
+          variant={"light"}
+          aria-label="Back to Roster"
+          onClick={toggleDiceRoller}
+        >
+          <IconDice4 />
+        </ActionIcon>
+      )}
     </Group>
   ) : (
     <Group my="sm" mx="md" justify="space-between">
