@@ -78,7 +78,7 @@ export const WorldOfDeltaGreen = () => {
             Taken together, these add up to the illusion of order that covers
             our haunted world.
           </Text>
-          {Array.from({ length: 60 }, (_, i) => (
+          {viewport.width > 992 && Array.from({ length: 60 }, (_, i) => (
             <Space />
           ))}
         </Stack>
