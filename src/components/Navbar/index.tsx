@@ -62,7 +62,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <Container size="xl" h={"100%"} strategy="grid">
+    <Container size="xl" h={"100%"}>
       <Flex justify="space-between">
         {width > 760 ? (
           <Group justify="space-between">
