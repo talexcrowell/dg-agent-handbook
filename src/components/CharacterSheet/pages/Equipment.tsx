@@ -66,7 +66,7 @@ export const Equipment = ({
           item.gearAndServicesType === "accessories") &&
         item.name !== "Hire a hacker to defeat basic encryption" &&
         item.name !== "Hire a hacker to defeat advanced encryption" &&
-        item.name !== "Exclusive use of a dedicated communications satellite"
+        item.name !== "Exclusive use of a dedicated communications satellite",
     ),
   ];
 
@@ -174,6 +174,7 @@ export const Equipment = ({
         position: "bottom-center",
       });
     } else {
+      console.log(item)
       handleUpdateCharacter("equipment", item);
       notifications.show({
         color: "green",
@@ -214,7 +215,7 @@ export const Equipment = ({
                 return (
                   <Card withBorder>
                     <Group justify="space-between">
-                      <SimpleGrid cols={viewport.width < 600 ? 2 : 3} w={"85%"}>
+                      <SimpleGrid cols={viewport.width < 600 ? 2 : 4} w="100%">
                         <Stack gap="0">
                           <InputLabel c="dimmed">Name</InputLabel>
                           <Text>{item?.name}</Text>
@@ -232,14 +233,23 @@ export const Equipment = ({
                             </Text>
                           </Stack>
                         )}
+                        <Group justify="end">
+                          {" "}
+                          <ActionIcon
+                            color="grey"
+                            onClick={() => handleInspectEquipment(item)}
+                            size="lg"
+                          >
+                            <IconDots />
+                          </ActionIcon>
+                          <ActionIcon
+                            onClick={() => deleteEquipment(item)}
+                            size="lg"
+                          >
+                            <IconTrash />
+                          </ActionIcon>
+                        </Group>
                       </SimpleGrid>
-
-                      <ActionIcon
-                        color="grey"
-                        onClick={() => handleInspectEquipment(item)}
-                      >
-                        <IconDots />
-                      </ActionIcon>
                     </Group>
                   </Card>
                 );
@@ -320,8 +330,18 @@ export const Equipment = ({
                                         onClick={() =>
                                           handleInspectEquipment(result)
                                         }
+                                        size="lg"
                                       >
                                         <IconDots />
+                                      </ActionIcon>{" "}
+                                      <ActionIcon
+                                        color="green"
+                                        onClick={() =>
+                                          validateEquipment(result)
+                                        }
+                                        size="lg"
+                                      >
+                                        <IconPlus />
                                       </ActionIcon>
                                     </Group>
                                   </Group>
@@ -478,7 +498,7 @@ export const Equipment = ({
               )}
             </Stack>
             {currentCharacter.equipment.filter(
-              (item) => item.name === equipmentItem.name
+              (item) => item.name === equipmentItem.name,
             ).length > 0 ? (
               <Button
                 leftSection={<IconTrash />}
@@ -617,7 +637,7 @@ export const Equipment = ({
               </Stack>
             )}
             {currentCharacter.equipment.filter(
-              (item) => item.name === equipmentItem.name
+              (item) => item.name === equipmentItem.name,
             ).length > 0 ? (
               <Button
                 leftSection={<IconTrash />}

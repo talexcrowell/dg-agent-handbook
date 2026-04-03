@@ -70,7 +70,11 @@ export const DeltaGreen = () => {
               </Tabs.Tab>
             </Tabs.List>
           )}
-          <Tabs.Panel value="welcome">
+          <Tabs.Panel
+            value="welcome"
+            style={{ position: "sticky", top: 45 }}
+            bg="var(--mantine-color-dark-7)"
+          >
             <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
@@ -99,7 +103,7 @@ export const DeltaGreen = () => {
               <Text fw={600}>Table of Contents</Text>
               <Divider />
             </Stack>
-            <ScrollArea h={viewport.height - 100} type='hover'>
+            <ScrollArea h={viewport.height - 100} type="hover">
               <TableOfContents
                 variant="light"
                 color="blue"
