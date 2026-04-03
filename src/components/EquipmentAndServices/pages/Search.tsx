@@ -302,7 +302,7 @@ export const Search = () => {
               </Group>
             </Card>
           </Stack>
-          <Stack gap={"0"}>
+          {viewport.width > 700 && <Stack gap={"0"}>
             <InputLabel>Expenses</InputLabel>
             <Card>
               <Group justify="space-evenly">
@@ -328,15 +328,14 @@ export const Search = () => {
                 </Group>
               </Group>
             </Card>
-          </Stack>
+          </Stack>}
           <Divider />
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>
         <ScrollArea
-          h={viewport.height - 400}
+          h={viewport.height - 350}
           scrollbars="y"
-          offsetScrollbars="y"
         >
           <Stack>
             {searchTerm

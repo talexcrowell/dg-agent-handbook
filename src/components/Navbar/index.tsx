@@ -62,7 +62,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <Container size="xl" h={"100%"}>
+    <Container size="xl" h={"100%"} strategy="grid">
       <Flex justify="space-between">
         {width > 760 ? (
           <Group justify="space-between">
@@ -347,6 +347,13 @@ export const Navbar = () => {
             label="Gear and Services"
             component={Link}
             to={`/equipment-and-services/gear-and-services`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          <NavLink
+            label="Search"
+            component={Link}
+            to={`/equipment-and-services/search`}
             onClick={() => setMobileMenuOpen(false)}
           />
         </NavLink>

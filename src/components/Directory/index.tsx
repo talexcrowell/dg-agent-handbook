@@ -1,9 +1,12 @@
 import {
+  Anchor,
   Button,
   Card,
+  Center,
   Grid,
   Group,
   Image,
+  List,
   SimpleGrid,
   Stack,
   Text,
@@ -35,59 +38,95 @@ export const Directory = () => {
           </Text>
         </Stack>
       </Grid.Col>
-      <Grid.Col>
-        <SimpleGrid
-          cols={viewport.width > 760 ? 3 : viewport.width > 500 ? 2 : 1}
-        >
-          <Card component={Link} to="/delta-green/welcome">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/4st6AO9.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Welcome to Delta Green</Text>
-            </Group>
-          </Card>
-          <Card component={Link} to="/rules/how-to-play">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/usnj5MR.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Game Rules</Text>
-            </Group>
-          </Card>
-          <Card component={Link} to="/training/introduction">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/c1Ne6Io.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Training for New Players</Text>
-            </Group>
-          </Card>
-          <Card component={Link} to="/equipment-and-services/overview">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/dIQQX1X.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Equipment and Services</Text>
-            </Group>
-          </Card>
-          <Card component={Link} to="/agents">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/7pu9wM0.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Agent Roster</Text>
-            </Group>
-          </Card>
-          <Card component={Link} to="/agents/new">
-            <Card.Section>
-              <Image src={"https://i.imgur.com/CqrNu4c.png"} h={150} />
-            </Card.Section>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text>Create an Agent</Text>
-            </Group>
-          </Card>
-        </SimpleGrid>
+      <Grid.Col span={viewport.width >= 700 ? 4 : 12}>
+        <Stack>
+          <Stack gap="xs">
+            <Title order={2}>Getting Started</Title>
+            <List>
+              <List.Item>
+                <Anchor href="/#/delta-green/welcome">
+                  Welcome to Delta Green
+                </Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/training/introduction">
+                  Training for New Players
+                </Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/rules/how-to-play">How to Play</Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/training/tradecraft">Tradecraft</Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/training/glossary">Glossary</Anchor>
+              </List.Item>
+            </List>
+          </Stack>
+          <Stack gap="xs">
+            <Title order={2}>Tools</Title>
+            <List>
+              <List.Item>
+                <Anchor href="/#/agents/new">Create An Agent</Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/agents/roster">Agent Roster</Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor href="/#/equipment-and-services/search">
+                  Equipment Search
+                </Anchor>
+              </List.Item>
+            </List>
+          </Stack>
+          <Stack gap="xs">
+            <Title order={2}>External Resources</Title>
+            <List>
+              <List.Item>
+                <Anchor
+                  href="https://www.delta-green.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Official Delta Green Site (Support the Creators!)
+                </Anchor>
+              </List.Item>
+              <List.Item>
+                <Anchor
+                  href="http://fairfieldproject.wikidot.com/shotgun-scenarios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Shotgun Scenarios (Handlers Only)
+                </Anchor>
+              </List.Item>
+            </List>
+          </Stack>
+        </Stack>
+      </Grid.Col>
+      <Grid.Col span={viewport.width >= 700 ? 8 : 12}>
+        <Stack>
+          <Title order={2}>Onboarding</Title>
+          <Stack gap="0">
+            <iframe
+              width={viewport.width >= 600 ? 500 : 375}
+              height={viewport.width >= 600 ? 315 : 198}
+              src="https://www.youtube.com/embed/Albop3XB8-o"
+            ></iframe>
+            <Text size="sm" c="dimmed">
+              All credit for this video belongs to{" "}
+              <Anchor
+                href={"https://www.youtube.com/@TheNubiS"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @TheNubiS
+              </Anchor>
+              .
+            </Text>
+          </Stack>
+        </Stack>
       </Grid.Col>
     </Grid>
   );
