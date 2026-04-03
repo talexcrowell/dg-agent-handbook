@@ -401,7 +401,7 @@ export const PersonalDetails: React.FC<{
             placeholder="Encountered a strange creature, witnessed a ritual, investigated a mysterious relic..."
           />
           {/* PREVIOUS DELTA GREEN OPERATION EXPERIENCE */}
-          <Switch
+          {/* <Switch
             checked={checked}
             thumbIcon={
               checked ? (
@@ -732,7 +732,7 @@ export const PersonalDetails: React.FC<{
               )}
               <Divider />
             </Stack>
-          )}
+          )} */}
           {/* <Center>
             <Card withBorder w={250}>
               <Stack justify="space-between" h={250}>
