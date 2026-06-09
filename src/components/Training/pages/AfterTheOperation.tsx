@@ -128,8 +128,9 @@ export const AfterTheOperation = () => {
               fired from your day job or being arrested/prosecuted.
             </Text>
           </Stack>
-          {viewport.width > 760 &&
-            Array.from({ length: 60 }, (_, i) => <Space />)}
+          {viewport.width < 760 &&
+            Array.from({ length: 35 }, (_, i) => <Space />)}
+        </Stack>
       </Grid.Col>
     </Grid>
   );
