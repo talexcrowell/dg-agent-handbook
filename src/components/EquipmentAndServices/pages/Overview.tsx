@@ -358,8 +358,8 @@ export const Overview = () => {
               it fails, the item is one expense level greater than usual.
             </Text>
           </Stack>
-          {viewport.width > 992 &&
-            Array.from({ length: 35 }, (_, i) => <Space />)}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

@@ -438,8 +438,8 @@ export const Sanity = () => {
               overcoming the threat than he or she actually lost from facing it.
             </Text>
           </Stack>
-          {viewport.width > 992 &&
-            Array.from({ length: 70 }, (_, i) => <Space />)}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

@@ -264,9 +264,8 @@ export const BeingAnAgent = () => {
               game of Delta Green.
             </Text>
           </Stack>
-          {viewport.width < 760 && Array.from({ length: 35 }, (_, i) => (
-            <Space />
-          ))}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

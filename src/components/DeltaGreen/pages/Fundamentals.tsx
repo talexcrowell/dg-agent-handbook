@@ -147,8 +147,8 @@ export const Fundamentals = () => {
               become the operation.
             </Text>
           </Stack>
-          {viewport.width > 992 &&
-            Array.from({ length: 70 }, (_, i) => <Space />)}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

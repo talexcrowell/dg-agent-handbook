@@ -522,8 +522,8 @@ export const Tradecraft = () => {
               solution.
             </Text>
           </Stack>
-          {viewport.width > 992 &&
-            Array.from({ length: 35 }, (_, i) => <Space />)}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
       {viewport.width > 992 && (

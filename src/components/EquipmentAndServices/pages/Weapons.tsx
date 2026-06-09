@@ -1186,9 +1186,8 @@ export const Weapons = () => {
               </Table.Tbody>
             </Table>
           )}
-          {Array.from({ length: 45 }, (_, i) => (
-            <Space />
-          ))}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
       <Drawer

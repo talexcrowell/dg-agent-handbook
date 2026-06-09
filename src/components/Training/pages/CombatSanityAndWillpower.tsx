@@ -306,9 +306,8 @@ export const CombatSanityAndWillpower = () => {
               night’s rest removes that penalty.
             </Text>
           </Stack>
-          {viewport.width < 760 && Array.from({ length: 35 }, (_, i) => (
-            <Space />
-          ))}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

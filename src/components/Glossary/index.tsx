@@ -2,6 +2,7 @@ import {
   Button,
   Divider,
   Grid,
+  Space,
   Stack,
   Table,
   TableOfContents,
@@ -265,6 +266,8 @@ export const Glossary = () => {
               )}
             </Table.Tbody>
           </Table>
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
       {viewport.width > 992 && (

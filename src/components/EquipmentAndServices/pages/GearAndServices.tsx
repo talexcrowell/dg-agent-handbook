@@ -1173,8 +1173,8 @@ export const GearsAndServices = () => {
                 })}
             </Table.Tbody>
           </Table>
-          {viewport.width > 992 &&
-            Array.from({ length: 50 }, (_, i) => <Space />)}
+          {viewport.width > 760 &&
+            Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
     </Grid>

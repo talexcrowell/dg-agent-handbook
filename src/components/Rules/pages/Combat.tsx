@@ -924,7 +924,7 @@ export const Combat = () => {
               Hit Points heal normally.
             </Text>
           </Stack>
-          {viewport.width > 992 &&
+          {viewport.width > 760 &&
             Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>

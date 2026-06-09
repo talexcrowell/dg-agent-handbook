@@ -65,11 +65,6 @@ export const Overview = () => {
             the end of everything—and how much of it you’ll live to see.
           </Text>
           <Text> Welcome.</Text>
-          <Space />
-          <Space />
-          <Space />
-          <Space />
-          <Space />
         </Stack>
       </Grid.Col>
     </Grid>
