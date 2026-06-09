@@ -17,9 +17,12 @@ import { useState } from "react";
 import { searchList } from "./SearchList";
 import { Link } from "react-router-dom";
 import styles from "../../Element.module.css";
+import { useViewportSize } from "@mantine/hooks";
 
 export const SearchBar = ({ setMobileMenuOpen }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { width } = useViewportSize();
 
   const fuse = new Fuse(searchList, {
     keys: ["section", "header", "subheader"],
@@ -32,10 +35,13 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
     chapterString: string,
     sectionString: string,
     headerString?: string,
-    subheaderString?: string
+    subheaderString?: string,
   ) => {
     let chapter;
-    let section = sectionString?.replace(/,/g, "").toLowerCase().replace(/ /g, "-");
+    let section = sectionString
+      ?.replace(/,/g, "")
+      .toLowerCase()
+      .replace(/ /g, "-");
     let header = headerString
       ?.replace(",", "")
       .toLowerCase()
@@ -65,8 +71,8 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
     return subheaderString
       ? `/${chapter}/${section}#${subheader}`
       : headerString
-      ? `/${chapter}${section ? "/" + section : ""}#${header}`
-      : `/${chapter}/${section}`;
+        ? `/${chapter}${section ? "/" + section : ""}#${header}`
+        : `/${chapter}/${section}`;
   };
 
   const handleSearchTerm = (val) => {
@@ -82,10 +88,10 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
           leftSection={<IconSearch />}
           onChange={(e) => handleSearchTerm(e.currentTarget.value)}
           placeholder="Search Handbook"
-          maw={200}
+          maw={width < 600 ? "100%" : 200}
         />
       </Popover.Target>
-      <Popover.Dropdown p="0">
+      <Popover.Dropdown p="0" maw={width < 600 ? "90%" : 200}>
         {results.length > 0 ? (
           <Stack gap="0" px="0">
             <Group p="xs" styles={{ root: { backgroundColor: "#3b3b3b" } }}>
@@ -97,6 +103,7 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
             {results.slice(0, 5).map((result: any) => {
               return (
                 <NavLink
+                  mb="sm"
                   label={
                     <Breadcrumbs>
                       <Text size="xs">
@@ -124,7 +131,7 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
                     result.item.chapter,
                     result.item.section,
                     result.item.header,
-                    result.item.subheader
+                    result.item.subheader,
                   )}
                   className={styles.hoverElement}
                   onClick={() => setMobileMenuOpen(false)}

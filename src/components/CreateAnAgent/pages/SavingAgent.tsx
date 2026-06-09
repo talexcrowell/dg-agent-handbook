@@ -13,7 +13,7 @@ export const SavingAgent: React.FC<{ userAgent }> = ({ userAgent }) => {
           userAgent.codename ? userAgent.codename.toUpperCase() : ""
         }`,
       );
-    }, 30000);
+    }, 34000);
     return () => clearTimeout(timer);
   }, []);
   return (
@@ -42,8 +42,10 @@ export const SavingAgent: React.FC<{ userAgent }> = ({ userAgent }) => {
           "Agent application status: APPROVED",
           "Adding Agent to Agent Roster...",
           "...",
-          "Agent added",
-          "Navigating to Agent Roster...",
+          "...",
+          "...",
+          "Agent successfully added",
+          `Navigating to Agent ${userAgent.codename}'s Personnel File...`,
         ]}
       />
     </Stack>
