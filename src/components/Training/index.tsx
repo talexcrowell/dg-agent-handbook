@@ -14,6 +14,7 @@ import {
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   IconChevronRight,
+  IconList,
   IconNotebook,
   IconStairs,
 } from "@tabler/icons-react";
@@ -53,7 +54,7 @@ export const Training = () => {
           keepMounted={false}
           mt={0}
         >
-          {viewport.width > 760 ? (
+          {viewport.width > 760 && (
             <Tabs.List
               style={{ position: "sticky", top: 45 }}
               bg="var(--mantine-color-dark-7)"
@@ -68,90 +69,6 @@ export const Training = () => {
                 After the Operation
               </Tabs.Tab>
             </Tabs.List>
-          ) : (
-            <Affix position={{ bottom: 20, right: 20 }}>
-              <Button
-                leftSection={<IconNotebook />}
-                variant="filled"
-                onClick={() => setMobileMenuOpen(true)}
-                tt="capitalize"
-              >
-                <Text size="sm" fw={600} truncate="end" maw={175}>
-                  Training /{" "}
-                  {tabValue === "combat-sanity-and-willpower"
-                    ? "Combat, Sanity, and Willpower"
-                    : tabValue === "being-an-agent"
-                      ? "Being an Agent"
-                      : tabValue === "after-the-operation"
-                        ? "After the Operation"
-                        : tabValue}
-                </Text>
-              </Button>
-              <Modal
-                opened={mobileMenuOpen}
-                onClose={() => setMobileMenuOpen(false)}
-                fullScreen
-                title={
-                  <Group>
-                    <IconStairs />
-                    <Text fw={700}>Training</Text>
-                  </Group>
-                }
-              >
-                <Stack>
-                  <NavLink
-                    label="Introduction"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/training/introduction");
-                    }}
-                    active={location.pathname === "/training/introduction"}
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Basics"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/training/basics");
-                    }}
-                    active={location.pathname === "/training/basics"}
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Combat, Sanity, and Willpower"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/training/combat-sanity-and-willpower");
-                    }}
-                    active={
-                      location.pathname ===
-                      "/training/combat-sanity-and-willpower"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="Being an Agent"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/training/being-an-agent");
-                    }}
-                    active={location.pathname === "/training/being-an-agent"}
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                  <NavLink
-                    label="After the Operation"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate("/training/after-the-operation");
-                    }}
-                    active={
-                      location.pathname === "/training/after-the-operation"
-                    }
-                    rightSection={<IconChevronRight size={16} />}
-                  />
-                </Stack>
-              </Modal>
-            </Affix>
           )}
           <Tabs.Panel value="introduction">
             <Introduction />
@@ -171,31 +88,38 @@ export const Training = () => {
         </Tabs>
       </Grid.Col>
       {viewport.width > 992 && (
-        <Grid.Col span={2}>
+        <Grid.Col span={2} py="0">
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 55 }}
+            style={{ position: "sticky", top: 44 }}
             justify="space-between"
             gap="0"
           >
-            <Stack gap="xs">
-              <Text fw={600}>Table of Contents</Text>
-              <Divider />
+            <Stack gap="0">
+              <Button
+                variant="transparent"
+                leftSection={<IconList />}
+                ta="start"
+                mx="0"
+              >
+                Table of Contents
+              </Button>
+              <Divider size="sm"/>
+              <TableOfContents
+                variant="light"
+                color="blue"
+                size="sm"
+                radius="sm"
+                reinitializeRef={reinitializeRef}
+                scrollSpyOptions={{
+                  selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+                }}
+                getControlProps={({ data }) => ({
+                  onClick: () => data.getNode().scrollIntoView(),
+                  children: data.value,
+                })}
+              />
             </Stack>
-            <TableOfContents
-              variant="light"
-              color="blue"
-              size="sm"
-              radius="sm"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () => data.getNode().scrollIntoView(),
-                children: data.value,
-              })}
-            />
           </Stack>
         </Grid.Col>
       )}

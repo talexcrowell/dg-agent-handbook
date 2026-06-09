@@ -1,6 +1,7 @@
 import "@mantine/core/styles.css";
 import '@gfazioli/mantine-text-animate/styles.css';
 import '@gfazioli/mantine-spinner/styles.css';
+import '@mantine-bites/lightbox/styles.css';
 import { AppShell, Container } from "@mantine/core";
 import { Navbar } from "./components/Navbar";
 import { Outlet, useLocation } from "react-router-dom";

@@ -56,7 +56,10 @@ export const DeltaGreen = () => {
           keepMounted={false}
         >
           {viewport.width > 760 && (
-            <Tabs.List    style={{ position: "sticky", top: 45 }}  bg="var(--mantine-color-dark-7)">
+            <Tabs.List
+              style={{ position: "sticky", top: 45 }}
+              bg="var(--mantine-color-dark-7)"
+            >
               <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
               <Tabs.Tab value="the-world-of-delta-green">
                 The World of Delta Green
@@ -70,9 +73,7 @@ export const DeltaGreen = () => {
               </Tabs.Tab>
             </Tabs.List>
           )}
-          <Tabs.Panel
-            value="welcome"
-          >
+          <Tabs.Panel value="welcome">
             <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="the-world-of-delta-green">
@@ -93,30 +94,36 @@ export const DeltaGreen = () => {
         <Grid.Col span={2} py="0">
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 55 }}
+            style={{ position: "sticky", top: 44 }}
             justify="space-between"
-            gap="0"
           >
-            <Stack gap="xs">
-              <Text fw={600}>Table of Contents</Text>
-              <Divider />
+            <Stack gap="0">
+              <Button
+                variant="transparent"
+                leftSection={<IconList />}
+                ta="start"
+                mx="0"
+              >
+                Table of Contents
+              </Button>
+              <Divider size="sm" />
+              <ScrollArea h={viewport.height - 100} type="hover">
+                <TableOfContents
+                  variant="light"
+                  color="blue"
+                  size="sm"
+                  radius="sm"
+                  reinitializeRef={reinitializeRef}
+                  scrollSpyOptions={{
+                    selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
+                  }}
+                  getControlProps={({ data }) => ({
+                    onClick: () => data.getNode().scrollIntoView(),
+                    children: data.value,
+                  })}
+                />
+              </ScrollArea>
             </Stack>
-            <ScrollArea h={viewport.height - 100} type="hover">
-              <TableOfContents
-                variant="light"
-                color="blue"
-                size="sm"
-                radius="sm"
-                reinitializeRef={reinitializeRef}
-                scrollSpyOptions={{
-                  selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
-                }}
-                getControlProps={({ data }) => ({
-                  onClick: () => data.getNode().scrollIntoView(),
-                  children: data.value,
-                })}
-              />
-            </ScrollArea>
           </Stack>
         </Grid.Col>
       )}

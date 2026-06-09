@@ -5,27 +5,26 @@ import {
   Card,
   Center,
   Grid,
-  Group,
   Image,
   List,
-  SimpleGrid,
   Stack,
   Text,
   Title,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import {
-  IconBadge,
-  IconMan,
   IconNetwork,
-  IconPlayCard,
+  IconPlayerPlayFilled,
   IconTools,
   IconUserQuestion,
 } from "@tabler/icons-react";
+import { Lightbox } from "@mantine-bites/lightbox";
+import { useState } from "react";
 
 export const Directory = () => {
   const [viewport] = useViewportContext();
+  const [opened, setOpened] = useState(false);
+
   return (
     <Grid mt="sm">
       <Grid.Col>
@@ -72,27 +71,49 @@ export const Directory = () => {
       </Grid.Col> */}
       <Grid.Col span={12}>
         <Center>
-          <Stack gap="0">
-            
-            <iframe
-              width={viewport.width >= 600 ? 500 : 360}
-              height={viewport.width >= 600 ? 315 : 198}
-              src="https://www.youtube.com/embed/Albop3XB8-o"
-            ></iframe>
-            <Text size="sm" c="dimmed">
-              All credit for this video belongs to{" "}
-              <Anchor
-                href={"https://www.youtube.com/@TheNubiS"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                @TheNubiS
-              </Anchor>
-              .
-            </Text>
+          <Stack>
+            <Card
+              w={viewport.width >= 600 ? 500 : 360}
+              h={viewport.width >= 600 ? 315 : 198}
+              withBorder
+            >
+              <Stack gap="md">
+                <Center>
+                  <Image
+                    src="https://i.imgur.com/M6abaUa.png"
+                    h="auto"
+                    w={150}
+                  />
+                </Center>
+                <Text ta="center" size="xl">
+                  Delta Green Onboarding Video
+                </Text>
+                <Center>
+                  <Button
+                    variant="outline"
+                    leftSection={<IconPlayerPlayFilled />}
+                    w="200"
+                    onClick={() => setOpened(true)}
+                  >
+                    Watch
+                  </Button>
+                </Center>
+                <Text size="sm" c="dimmed" ta="center">
+                  All credit for this video belongs to{" "}
+                  <Anchor
+                    href={"https://www.youtube.com/@TheNubiS"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @TheNubiS
+                  </Anchor>
+                  .
+                </Text>
+              </Stack>
+            </Card>
           </Stack>
         </Center>
-        <Accordion transitionDuration={1000}>
+        <Accordion transitionDuration={500}>
           <Accordion.Item value="getting-started">
             <Accordion.Control icon={<IconUserQuestion />}>
               <Text size="xl">Getting Started</Text>
@@ -169,6 +190,48 @@ export const Directory = () => {
             </Accordion.Panel>
           </Accordion.Item>
         </Accordion>
+        <Lightbox.Root
+          opened={opened}
+          onClose={() => setOpened(false)}
+          initialSlide={0}
+          withZoom={false}
+          withFullscreen={false}
+        >
+          <Lightbox.Toolbar />
+          <Lightbox.Slides>
+            <Lightbox.Slide key="0">
+              <div
+                style={{
+                  width: "100%",
+                  maxWidth: 1080,
+                  aspectRatio: "16 / 9",
+                }}
+              >
+                <iframe
+                  title={"Delta Green Onboarding Video"}
+                  width={"100%"}
+                  height={"100%"}
+                  src="https://www.youtube.com/embed/Albop3XB8-o?autoplay=1"
+                  allow="autoplay"
+                  allowFullScreen
+                />
+              </div>
+
+              <Lightbox.Caption>
+                <Text size="sm" c="dimmed" ta="center">
+                  All credit for this video belongs to{" "}
+                  <Anchor
+                    href={"https://www.youtube.com/@TheNubiS"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @TheNubiS
+                  </Anchor>
+                </Text>
+              </Lightbox.Caption>
+            </Lightbox.Slide>
+          </Lightbox.Slides>
+        </Lightbox.Root>
       </Grid.Col>
     </Grid>
   );

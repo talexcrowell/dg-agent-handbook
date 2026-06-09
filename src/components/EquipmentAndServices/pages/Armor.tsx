@@ -30,23 +30,25 @@ export const Armor = () => {
   };
 
   return (
-    <Grid
-      id="armor" pt="sm"
-    >
+    <Grid id="armor" pt="sm">
       <Grid.Col span={12}>
-        <Stack gap="lg">
-          <Title td="underline" id='body-armor'>Body Armor</Title>
-          <Text>
-            While modern construction and materials such as Kevlar and ceramics
-            have come a long way, they cannot protect you against all threats,
-            and usually also cover only a very small part of you. It’s always
-            better to stay behind cover and not get hit.
-          </Text>
+        <Stack>
+          <Stack gap="xs">
+            <Title td="underline" id="body-armor">
+              Body Armor
+            </Title>
+            <Text>
+              While modern construction and materials such as Kevlar and
+              ceramics have come a long way, they cannot protect you against all
+              threats, and usually also cover only a very small part of you.
+              It’s always better to stay behind cover and not get hit.
+            </Text>
+          </Stack>
           <Table withTableBorder highlightOnHover striped>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Item</Table.Th>
-                <Table.Th ta='center'>Armor Rating</Table.Th>
+                <Table.Th ta="center">Armor Rating</Table.Th>
                 <Table.Th>Description</Table.Th>
                 <Table.Th>Expense</Table.Th>
               </Table.Tr>
@@ -56,7 +58,7 @@ export const Armor = () => {
                 return (
                   <Table.Tr>
                     <Table.Td>{item.name}</Table.Td>
-                    <Table.Td ta='center'>{item.armorRating}</Table.Td>
+                    <Table.Td ta="center">{item.armorRating}</Table.Td>
                     <Table.Td>{item.description}</Table.Td>
                     <Table.Td tt="capitalize">
                       <Stack align="center">

@@ -9,6 +9,7 @@ import {
   Image,
   Modal,
   PasswordInput,
+  Space,
   Stack,
   Text,
   TextInput,
@@ -75,26 +76,34 @@ export const LandingPage = () => {
                     w={150}
                   />
                 </Center>
-                {error && (
+                {error ? (
                   <Text c={"red"} fw={700} ta="center">
                     ACCESS DENIED
                   </Text>
+                ) : (
+                  <Space my="sm" />
                 )}
-                <TextInput
-                  label="Username"
-                  onChange={(e) => handleUsername(e.currentTarget.value)}
-                  value={username}
-                />
-                <PasswordInput
-                  label="Password"
-                  onChange={(e) => handlePassword(e.currentTarget.value)}
-                  value={password}
-                />
-                <Center>
-                  <Button variant="outline" onClick={handleSubmit}>
-                    CONNECT
-                  </Button>
-                </Center>
+                <form onSubmit={handleSubmit}>
+                  <TextInput
+                    label="Username"
+                    onChange={(e) => handleUsername(e.currentTarget.value)}
+                    value={username}
+                  />
+                  <PasswordInput
+                    label="Password"
+                    onChange={(e) => handlePassword(e.currentTarget.value)}
+                    value={password}
+                  />
+                  <Center>
+                    <Button
+                      variant="outline"
+                      onClick={handleSubmit}
+                      type="submit"
+                    >
+                      CONNECT
+                    </Button>
+                  </Center>
+                </form>
               </Stack>
             </Card>
           </Center>
@@ -139,11 +148,11 @@ export const LandingPage = () => {
                   component={Link}
                   to="/directory"
                   size="lg"
-                  w={150}
+                  w={325}
                   // onClick={() => setOpened(true)}
                   style={{ ...styles }}
                 >
-                  ACCESS DIRECTORY
+                  ENTER
                 </Button>
               )}
             </Transition>

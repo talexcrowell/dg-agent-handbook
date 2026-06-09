@@ -177,7 +177,6 @@ export const AgentRoster = () => {
             <Button
               component={Link}
               to="/agents/new"
-              color="green"
               leftSection={<IconUserPlus />}
               variant="outline"
               maw={375}
@@ -267,15 +266,6 @@ export const AgentRoster = () => {
                   </Text>
                 </Stack>
               </Card>
-              <Button
-                component={Link}
-                to="/agents/new"
-                color="green"
-                leftSection={<IconUserPlus />}
-                variant="outline"
-              >
-                Create An Agent
-              </Button>
             </Stack>
           )}
         </Stack>

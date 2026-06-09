@@ -90,9 +90,10 @@ export const Weapons = () => {
   };
 
   return (
-      <Grid id="weapons" pt="sm">
-        <Grid.Col span={12}>
-          <Stack gap="lg">
+    <Grid id="weapons" pt="sm">
+      <Grid.Col span={12}>
+        <Stack>
+          <Stack gap="xs">
             <Title td="underline" id="weapons" style={{ scrollMarginTop: 80 }}>
               Weapons
             </Title>
@@ -101,7 +102,14 @@ export const Weapons = () => {
               Their usefulness on Delta Green ops is limited, of course,
               depending on who or what the Agents face.
             </Text>
-            <Title td="underline" order={3} id="concealment" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={3}
+              id="concealment"
+              style={{ scrollMarginTop: 80 }}
+            >
               Concealment
             </Title>
             <Text>
@@ -115,7 +123,14 @@ export const Weapons = () => {
               There’s no way to conceal a full-size rifle or a large melee
               weapon.
             </Text>
-            <Title td="underline" order={3} id="bright-lights" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={3}
+              id="bright-lights"
+              style={{ scrollMarginTop: 80 }}
+            >
               Bright Lights
             </Title>
             <Text>
@@ -125,8 +140,15 @@ export const Weapons = () => {
               by the target’s DEX×5 test. A dazzled target is at a −20% penalty
               to all actions for 1D6 turns.
             </Text>
-            <Divider />
-            <Title td="underline" order={2} id="hand-to-hand-weapons" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="hand-to-hand-weapons"
+              style={{ scrollMarginTop: 80 }}
+            >
               Hand-to-Hand Weapons
             </Title>
             <Text>
@@ -134,103 +156,108 @@ export const Weapons = () => {
               Unarmed Combat skill. All melee weapons use the Melee Weapons
               skill.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Base Damage</Table.Th>
-                    <Table.Th ta="center">Armor Piercing</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "handToHand")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>{skillKeyLabels(item.skill)}</Table.Td>
-                          <Table.Td ta="center">{item.damage}</Table.Td>
-                          <Table.Td ta="center">
-                            {item.armorPiercing === 0
-                              ? "N/A"
-                              : item.armorPiercing}
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "handToHand")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="tear-gas-and-pepper-spray" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Base Damage</Table.Th>
+                  <Table.Th ta="center">Armor Piercing</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "handToHand")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>{skillKeyLabels(item.skill)}</Table.Td>
+                        <Table.Td ta="center">{item.damage}</Table.Td>
+                        <Table.Td ta="center">
+                          {item.armorPiercing === 0
+                            ? "N/A"
+                            : item.armorPiercing}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "handToHand")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="tear-gas-and-pepper-spray"
+              style={{ scrollMarginTop: 80 }}
+            >
               Tear Gas and Pepper Spray
             </Title>
             <Text>
@@ -241,105 +268,110 @@ export const Weapons = () => {
               half the usual penalty. Wearing a gas mask protects against these
               effects but incurs a −20% penalty to Alertness and Search tests.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Uses</Table.Th>
-                    <Table.Th ta="center">Radius</Table.Th>
-                    <Table.Th ta="center">Victim's Penalty</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "tearGasPepperSpray")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.uses}</Table.Td>
-                          <Table.Td ta="center">{item.radius}</Table.Td>
-                          <Table.Td ta="center">{item.penalty}</Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "tearGasPepperSpray")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="stun-grenades" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Uses</Table.Th>
+                  <Table.Th ta="center">Radius</Table.Th>
+                  <Table.Th ta="center">Victim's Penalty</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "tearGasPepperSpray")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.uses}</Table.Td>
+                        <Table.Td ta="center">{item.radius}</Table.Td>
+                        <Table.Td ta="center">{item.penalty}</Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "tearGasPepperSpray")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="stun-grenades"
+              style={{ scrollMarginTop: 80 }}
+            >
               Stun Grenades
             </Title>
             <Text>
@@ -350,104 +382,109 @@ export const Weapons = () => {
               penalty to all actions for 1D6 turns. (Having eye or ear
               protection reduces the penalty to −20%.)
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Uses</Table.Th>
-                    <Table.Th ta="center">Radius</Table.Th>
-                    <Table.Th ta="center">Victim's Penalty</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "stunGrenade")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.uses}</Table.Td>
-                          <Table.Td ta="center">{item.radius}</Table.Td>
-                          <Table.Td ta="center">{item.penalty}</Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "stunGrenade")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="electroshock-weapons" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Uses</Table.Th>
+                  <Table.Th ta="center">Radius</Table.Th>
+                  <Table.Th ta="center">Victim's Penalty</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "stunGrenade")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.uses}</Table.Td>
+                        <Table.Td ta="center">{item.radius}</Table.Td>
+                        <Table.Td ta="center">{item.penalty}</Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "stunGrenade")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="electroshock-weapons"
+              style={{ scrollMarginTop: 80 }}
+            >
               Electroshock Weapons
             </Title>
             <Text>
@@ -457,102 +494,107 @@ export const Weapons = () => {
               test to resist being stunned. After the stun wears off, the victim
               suffers a −20% penalty to all actions for 1D20 turns.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Uses</Table.Th>
-                    <Table.Th ta="center">Victim's Penalty</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "electroshock")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.uses}</Table.Td>
-                          <Table.Td ta="center">{item.penalty}</Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "electroshock")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="firearms" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Uses</Table.Th>
+                  <Table.Th ta="center">Victim's Penalty</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "electroshock")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.uses}</Table.Td>
+                        <Table.Td ta="center">{item.penalty}</Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "electroshock")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="firearms"
+              style={{ scrollMarginTop: 80 }}
+            >
               Firearms
             </Title>
             <Text>
@@ -584,7 +626,11 @@ export const Weapons = () => {
                 underbarrel shotgun or grenade launcher.
               </Text>
             </Flex>
-            <Title order={3} id='pistols' style={{ scrollMarginTop: 80 }}>Pistols</Title>
+          </Stack>
+          <Stack gap="xs">
+            <Title order={3} id="pistols" style={{ scrollMarginTop: 80 }}>
+              Pistols
+            </Title>
             <Text>
               Lightweight pistols fire low-powered cartridges and are of limited
               use even against humans. Medium pistols are the standard sidearms
@@ -596,7 +642,11 @@ export const Weapons = () => {
               although 17 or even 20 is not uncommon. Large-caliber pistols
               often carry less. A typical figure for a heavy pistol is eight.
             </Text>
-            <Title order={3} id="shotguns" style={{ scrollMarginTop: 80 }}>Shotguns</Title>
+          </Stack>
+          <Stack gap="xs">
+            <Title order={3} id="shotguns" style={{ scrollMarginTop: 80 }}>
+              Shotguns
+            </Title>
             <Text>
               A typical pump-action shotgun holds five shots, although there are
               many with extended magazines for eight or more. Double-barrel
@@ -623,7 +673,15 @@ export const Weapons = () => {
               shotgun firing buckshot. Modify the damage by +2 for a heavier
               blast or −2 for a lighter one.
             </Text>
-            <Title order={3} id='submachine-guns' style={{ scrollMarginTop: 80 }}>Submachine Guns</Title>
+          </Stack>
+          <Stack gap="xs">
+            <Title
+              order={3}
+              id="submachine-guns"
+              style={{ scrollMarginTop: 80 }}
+            >
+              Submachine Guns
+            </Title>
             <Flex>
               <Text>
                 Submachine guns fire full automatic bursts, but are often also
@@ -641,7 +699,15 @@ export const Weapons = () => {
                 .)
               </Text>
             </Flex>
-            <Title order={3} id='rifles-and-carbines' style={{ scrollMarginTop: 80 }}>Rifles and Carbines</Title>
+          </Stack>
+          <Stack gap="xs">
+            <Title
+              order={3}
+              id="rifles-and-carbines"
+              style={{ scrollMarginTop: 80 }}
+            >
+              Rifles and Carbines
+            </Title>
             <Text>
               Rifles fire more powerful cartridges than pistols or submachine
               guns, meaning better penetration, wounding, and range. Some
@@ -658,112 +724,115 @@ export const Weapons = () => {
               no benefit from the Aim action in the turn immediately after it’s
               fired.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Damage</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Lethality</Table.Th>
-                    <Table.Th ta="center">Ammo Capacity</Table.Th>
-                    <Table.Th ta="center">Armor Piercing</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "firearms")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip
-                                  label={"RESTRICTED IF FULLY AUTOMATIC"}
-                                >
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.damage}</Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.lethality}%</Table.Td>
-                          <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
-                          <Table.Td ta="center">
-                            {item.armorPiercing === 0
-                              ? "N/A"
-                              : item.armorPiercing}
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "firearms")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="heavy-weapons" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Damage</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Lethality</Table.Th>
+                  <Table.Th ta="center">Ammo Capacity</Table.Th>
+                  <Table.Th ta="center">Armor Piercing</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "firearms")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED IF FULLY AUTOMATIC"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.damage}</Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.lethality}%</Table.Td>
+                        <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
+                        <Table.Td ta="center">
+                          {item.armorPiercing === 0
+                            ? "N/A"
+                            : item.armorPiercing}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "firearms")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="heavy-weapons"
+              style={{ scrollMarginTop: 80 }}
+            >
               Heavy Weapons
             </Title>
             <Text>
@@ -784,110 +853,115 @@ export const Weapons = () => {
               vehicle-mounted or allocated to military support units that are
               not typically engaged in direct action.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Lethality</Table.Th>
-                    <Table.Th ta="center">Radius</Table.Th>
-                    <Table.Th ta="center">Ammo Capacity</Table.Th>
-                    <Table.Th ta="center">Armor Piercing</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "heavyWeapons")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.lethality}%</Table.Td>
-                          <Table.Td ta="center">{item.radius}</Table.Td>
-                          <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
-                          <Table.Td ta="center">
-                            {item.armorPiercing === 0
-                              ? "N/A"
-                              : item.armorPiercing}
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "heavyWeapons")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="demolitions" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Lethality</Table.Th>
+                  <Table.Th ta="center">Radius</Table.Th>
+                  <Table.Th ta="center">Ammo Capacity</Table.Th>
+                  <Table.Th ta="center">Armor Piercing</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "heavyWeapons")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.lethality}%</Table.Td>
+                        <Table.Td ta="center">{item.radius}</Table.Td>
+                        <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
+                        <Table.Td ta="center">
+                          {item.armorPiercing === 0
+                            ? "N/A"
+                            : item.armorPiercing}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "heavyWeapons")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="demolitions"
+              style={{ scrollMarginTop: 80 }}
+            >
               Demolitions
             </Title>
             <Text>
@@ -896,108 +970,113 @@ export const Weapons = () => {
               machine gun fired without a bipod, tripod, or vehicle mount has
               half Base Range.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th ta="center">Range</Table.Th>
-                    <Table.Th ta="center">Lethality</Table.Th>
-                    <Table.Th ta="center">Radius</Table.Th>
-                    <Table.Th ta="center">Armor Piercing</Table.Th>
-                    <Table.Th ta="center">Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "demolitions")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}m</Table.Td>
-                          <Table.Td ta="center">{item.lethality}%</Table.Td>
-                          <Table.Td ta="center">{item.radius}</Table.Td>
-                          <Table.Td ta="center">
-                            {item.armorPiercing === 0
-                              ? "N/A"
-                              : item.armorPiercing}
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "demolitions")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
-            <Divider />
-            <Title td="underline" order={2} id="artillery" style={{ scrollMarginTop: 80 }}>
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Range</Table.Th>
+                  <Table.Th ta="center">Lethality</Table.Th>
+                  <Table.Th ta="center">Radius</Table.Th>
+                  <Table.Th ta="center">Armor Piercing</Table.Th>
+                  <Table.Th ta="center">Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "demolitions")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}m</Table.Td>
+                        <Table.Td ta="center">{item.lethality}%</Table.Td>
+                        <Table.Td ta="center">{item.radius}</Table.Td>
+                        <Table.Td ta="center">
+                          {item.armorPiercing === 0
+                            ? "N/A"
+                            : item.armorPiercing}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "demolitions")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
+          <Divider />
+          <Stack gap="xs">
+            <Title
+              td="underline"
+              order={2}
+              id="artillery"
+              style={{ scrollMarginTop: 80 }}
+            >
               Artillery
             </Title>
             <Text>
@@ -1006,202 +1085,198 @@ export const Weapons = () => {
               machine gun fired without a bipod, tripod, or vehicle mount has
               half Base Range.
             </Text>
-            {viewport.width > 760 ? (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Skill</Table.Th>
-                    <Table.Th>Range</Table.Th>
-                    <Table.Th>Lethality</Table.Th>
-                    <Table.Th>Radius</Table.Th>
-                    <Table.Th>Ammo Capacity</Table.Th>
-                    <Table.Th>Armor Piercing</Table.Th>
-                    <Table.Th>Expense</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "artillery")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            {skillKeyLabels(item.skill)}
-                          </Table.Td>
-                          <Table.Td ta="center">{item.range}</Table.Td>
-                          <Table.Td ta="center">{item.lethality}%</Table.Td>
-                          <Table.Td ta="center">{item.radius}</Table.Td>
-                          <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
-                          <Table.Td ta="center">
-                            {item.armorPiercing === 0
-                              ? "N/A"
-                              : item.armorPiercing}
-                          </Table.Td>
-                          <Table.Td tt="capitalize">
-                            <Stack align="center">
-                              <IconTriangleFilled
-                                color={calculateIcon(item.expense)}
-                              />
-                            </Stack>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                </Table.Tbody>
-              </Table>
-            ) : (
-              <Table withTableBorder highlightOnHover striped>
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Item</Table.Th>
-                    <Table.Th>Details</Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {weaponsLists
-                    .filter((item) => item.weaponType === "artillery")
-                    .map((item) => {
-                      return (
-                        <Table.Tr>
-                          <Table.Td>
-                            <Group>
-                              {item.name}
-                              {item.description && (
-                                <Tooltip label={item.description} multiline>
-                                  <IconInfoCircle />
-                                </Tooltip>
-                              )}
-                              {item.restricted && (
-                                <Tooltip label={"RESTRICTED"}>
-                                  <IconCancel color="red" />
-                                </Tooltip>
-                              )}
-                            </Group>
-                          </Table.Td>
-                          <Table.Td>
-                            <ActionIcon
-                              onClick={() => handleMobileSelect(item)}
-                            >
-                              <IconDots />
-                            </ActionIcon>
-                          </Table.Td>
-                        </Table.Tr>
-                      );
-                    })}
-                  <Table.Tr></Table.Tr>
-                </Table.Tbody>
-              </Table>
-            )}
+          </Stack>
+          {viewport.width > 760 ? (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th>Range</Table.Th>
+                  <Table.Th>Lethality</Table.Th>
+                  <Table.Th>Radius</Table.Th>
+                  <Table.Th>Ammo Capacity</Table.Th>
+                  <Table.Th>Armor Piercing</Table.Th>
+                  <Table.Th>Expense</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "artillery")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          {skillKeyLabels(item.skill)}
+                        </Table.Td>
+                        <Table.Td ta="center">{item.range}</Table.Td>
+                        <Table.Td ta="center">{item.lethality}%</Table.Td>
+                        <Table.Td ta="center">{item.radius}</Table.Td>
+                        <Table.Td ta="center">{item.ammoCapacity}</Table.Td>
+                        <Table.Td ta="center">
+                          {item.armorPiercing === 0
+                            ? "N/A"
+                            : item.armorPiercing}
+                        </Table.Td>
+                        <Table.Td tt="capitalize">
+                          <Stack align="center">
+                            <IconTriangleFilled
+                              color={calculateIcon(item.expense)}
+                            />
+                          </Stack>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+              </Table.Tbody>
+            </Table>
+          ) : (
+            <Table withTableBorder highlightOnHover striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Item</Table.Th>
+                  <Table.Th>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {weaponsLists
+                  .filter((item) => item.weaponType === "artillery")
+                  .map((item) => {
+                    return (
+                      <Table.Tr>
+                        <Table.Td>
+                          <Group>
+                            {item.name}
+                            {item.description && (
+                              <Tooltip label={item.description} multiline>
+                                <IconInfoCircle />
+                              </Tooltip>
+                            )}
+                            {item.restricted && (
+                              <Tooltip label={"RESTRICTED"}>
+                                <IconCancel color="red" />
+                              </Tooltip>
+                            )}
+                          </Group>
+                        </Table.Td>
+                        <Table.Td>
+                          <ActionIcon onClick={() => handleMobileSelect(item)}>
+                            <IconDots />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                <Table.Tr></Table.Tr>
+              </Table.Tbody>
+            </Table>
+          )}
           {Array.from({ length: 45 }, (_, i) => (
             <Space />
           ))}
-          </Stack>
-        </Grid.Col>
-        <Drawer
-          position={"bottom"}
-          opened={mobileWeaponsMenuOpen}
-          onClose={() => setMobileWeaponsMenuOpen(false)}
-          title={
-            <Title order={2}>
-              {mobileWeapon?.name}{" "}
-              {mobileWeapon?.restricted && (
-                <Text c="red" fw={700} td="underline">
-                  {mobileWeapon?.weaponType === "firearms"
-                    ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE"
-                    : "RESTRICTED ITEM"}
+        </Stack>
+      </Grid.Col>
+      <Drawer
+        position={"bottom"}
+        opened={mobileWeaponsMenuOpen}
+        onClose={() => setMobileWeaponsMenuOpen(false)}
+        title={
+          <Title order={2}>
+            {mobileWeapon?.name}{" "}
+            {mobileWeapon?.restricted && (
+              <Text c="red" fw={700} td="underline">
+                {mobileWeapon?.weaponType === "firearms"
+                  ? "RESTRICTED ITEM IF CAPABLE OF AUTOMATIC FIRE"
+                  : "RESTRICTED ITEM"}
+              </Text>
+            )}
+          </Title>
+        }
+      >
+        <Stack gap="lg">
+          <SimpleGrid cols={viewport.width > 450 ? 3 : 2} verticalSpacing="xl">
+            {mobileWeapon?.skill && (
+              <Stack gap="0">
+                <InputLabel>Skill</InputLabel>
+                <Text tt="capitalize">
+                  {skillKeyLabels(mobileWeapon?.skill)}
                 </Text>
-              )}
-            </Title>
-          }
-        >
-          <Stack gap="lg">
-            <SimpleGrid
-              cols={viewport.width > 450 ? 3 : 2}
-              verticalSpacing="xl"
-            >
-              {mobileWeapon?.skill && (
-                <Stack gap="0">
-                  <InputLabel>Skill</InputLabel>
-                  <Text tt="capitalize">
-                    {skillKeyLabels(mobileWeapon?.skill)}
-                  </Text>
-                </Stack>
-              )}
-              {mobileWeapon?.damage && (
-                <Stack gap="0">
-                  <InputLabel>Base Damage</InputLabel>
-                  <Text>{mobileWeapon?.damage}</Text>
-                </Stack>
-              )}
-              {mobileWeapon?.armorPiercing !== undefined && (
-                <Stack gap="0">
-                  <InputLabel>Armor Piercing</InputLabel>
-                  <Text>
-                    {mobileWeapon?.armorPiercing === 0
-                      ? "N/A"
-                      : mobileWeapon?.armorPiercing}
-                  </Text>
-                </Stack>
-              )}
-              {mobileWeapon?.range && (
-                <Stack gap="0">
-                  <InputLabel>Range</InputLabel>
-                  <Text>{mobileWeapon?.range}</Text>
-                </Stack>
-              )}
-              {mobileWeapon?.uses && (
-                <Stack gap="0">
-                  <InputLabel>Uses</InputLabel>
-                  <Text>{mobileWeapon?.uses}</Text>
-                </Stack>
-              )}
-              {mobileWeapon?.radius && (
-                <Stack gap="0">
-                  <InputLabel>Radius</InputLabel>
-                  <Text>{mobileWeapon?.radius}</Text>
-                </Stack>
-              )}
-              {mobileWeapon?.penalty && (
-                <Stack gap="0">
-                  <InputLabel>Penalty</InputLabel>
-                  <Text>{mobileWeapon?.penalty}</Text>
-                </Stack>
-              )}
-              <Stack gap="0">
-                <InputLabel>Expense</InputLabel>
-                <Group>
-                  <IconTriangleFilled
-                    color={calculateIcon(mobileWeapon?.expense)}
-                  />
-                  <Text tt="capitalize">{mobileWeapon?.expense}</Text>
-                </Group>
-              </Stack>
-            </SimpleGrid>
-            {mobileWeapon?.description && (
-              <Stack gap="0">
-                <InputLabel>Additional Info</InputLabel>
-                <Text c="dimmed">{mobileWeapon?.description}</Text>
               </Stack>
             )}
-          </Stack>
-        </Drawer>
-      </Grid>
+            {mobileWeapon?.damage && (
+              <Stack gap="0">
+                <InputLabel>Base Damage</InputLabel>
+                <Text>{mobileWeapon?.damage}</Text>
+              </Stack>
+            )}
+            {mobileWeapon?.armorPiercing !== undefined && (
+              <Stack gap="0">
+                <InputLabel>Armor Piercing</InputLabel>
+                <Text>
+                  {mobileWeapon?.armorPiercing === 0
+                    ? "N/A"
+                    : mobileWeapon?.armorPiercing}
+                </Text>
+              </Stack>
+            )}
+            {mobileWeapon?.range && (
+              <Stack gap="0">
+                <InputLabel>Range</InputLabel>
+                <Text>{mobileWeapon?.range}</Text>
+              </Stack>
+            )}
+            {mobileWeapon?.uses && (
+              <Stack gap="0">
+                <InputLabel>Uses</InputLabel>
+                <Text>{mobileWeapon?.uses}</Text>
+              </Stack>
+            )}
+            {mobileWeapon?.radius && (
+              <Stack gap="0">
+                <InputLabel>Radius</InputLabel>
+                <Text>{mobileWeapon?.radius}</Text>
+              </Stack>
+            )}
+            {mobileWeapon?.penalty && (
+              <Stack gap="0">
+                <InputLabel>Penalty</InputLabel>
+                <Text>{mobileWeapon?.penalty}</Text>
+              </Stack>
+            )}
+            <Stack gap="0">
+              <InputLabel>Expense</InputLabel>
+              <Group>
+                <IconTriangleFilled
+                  color={calculateIcon(mobileWeapon?.expense)}
+                />
+                <Text tt="capitalize">{mobileWeapon?.expense}</Text>
+              </Group>
+            </Stack>
+          </SimpleGrid>
+          {mobileWeapon?.description && (
+            <Stack gap="0">
+              <InputLabel>Additional Info</InputLabel>
+              <Text c="dimmed">{mobileWeapon?.description}</Text>
+            </Stack>
+          )}
+        </Stack>
+      </Drawer>
+    </Grid>
   );
 };
 

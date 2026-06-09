@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   Grid,
   Stack,
@@ -10,6 +11,7 @@ import {
 import { useEffect, useRef } from "react";
 import { GlossaryTerms } from "../../data";
 import { useViewportContext } from "../../contexts/ViewportContext";
+import { IconList } from "@tabler/icons-react";
 
 export const Glossary = () => {
   const reinitializeRef = useRef(() => {});
@@ -269,31 +271,37 @@ export const Glossary = () => {
         <Grid.Col span={2}>
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 55 }}
+            style={{ position: "sticky", top: 44 }}
             justify="space-between"
-            gap="0"
           >
-            <Stack gap="sm">
-              <Text fw={600}>Table of Contents</Text>
-              <Divider />
+            <Stack gap="0">
+              <Button
+                variant="transparent"
+                leftSection={<IconList />}
+                ta="start"
+                mx="0"
+              >
+                Table of Contents
+              </Button>
+              <Divider size="sm" />
+              <TableOfContents
+                variant="light"
+                color="blue"
+                size="sm"
+                radius="0"
+                reinitializeRef={reinitializeRef}
+                scrollSpyOptions={{
+                  selector: `#glossary :is(h1, h2, h3, h4, h5, h6)`,
+                }}
+                getControlProps={({ data }) => ({
+                  onClick: () =>
+                    data
+                      .getNode()
+                      .scrollIntoView({ behavior: "smooth", block: "start" }),
+                  children: data.value,
+                })}
+              />
             </Stack>
-            <TableOfContents
-              variant="light"
-              color="blue"
-              size="sm"
-              radius="0"
-              reinitializeRef={reinitializeRef}
-              scrollSpyOptions={{
-                selector: `#glossary :is(h1, h2, h3, h4, h5, h6)`,
-              }}
-              getControlProps={({ data }) => ({
-                onClick: () =>
-                  data
-                    .getNode()
-                    .scrollIntoView({ behavior: "smooth", block: "start" }),
-                children: data.value,
-              })}
-            />
           </Stack>
         </Grid.Col>
       )}

@@ -16,7 +16,7 @@ export const Overview = () => {
   return (
     <Grid pt="sm">
       <Grid.Col span={12}>
-        <Stack ta="start">
+        <Stack ta="start" gap='xs'>
           <Title>Welcome to Delta Green</Title>
           <Text>
             Players come to Delta Green for all kinds of reasons. They’re eager
