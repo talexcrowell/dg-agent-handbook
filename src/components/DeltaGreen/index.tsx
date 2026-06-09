@@ -56,7 +56,7 @@ export const DeltaGreen = () => {
           keepMounted={false}
         >
           {viewport.width > 760 && (
-            <Tabs.List>
+            <Tabs.List    style={{ position: "sticky", top: 45 }}  bg="var(--mantine-color-dark-7)">
               <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
               <Tabs.Tab value="the-world-of-delta-green">
                 The World of Delta Green
@@ -72,8 +72,6 @@ export const DeltaGreen = () => {
           )}
           <Tabs.Panel
             value="welcome"
-            style={{ position: "sticky", top: 45 }}
-            bg="var(--mantine-color-dark-7)"
           >
             <Overview />
           </Tabs.Panel>

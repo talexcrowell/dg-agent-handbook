@@ -39,7 +39,7 @@ export const Vehicles = () => {
   };
 
   return (
-    <Grid pt={"sm"} id="vehicles">
+    <Grid pt={"sm"} id="vehicles" >
       <Grid.Col span={12}>
         <Stack gap="lg">
           <Title td="underline" id="vehicles" style={{ scrollMarginTop: 80 }}>

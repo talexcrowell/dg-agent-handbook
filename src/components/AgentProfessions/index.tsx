@@ -1,14 +1,12 @@
 import {
   Affix,
   Button,
-  Divider,
   Grid,
   Group,
   Modal,
   NavLink,
   ScrollArea,
   Stack,
-  TableOfContents,
   Tabs,
   Text,
 } from "@mantine/core";
@@ -18,7 +16,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   IconBriefcase,
   IconChevronRight,
-  IconList,
   IconNotebook,
 } from "@tabler/icons-react";
 import { Overview } from "./pages/Overview";
@@ -141,3 +138,5 @@ export const AgentProfessions = () => {
     </Grid>
   );
 };
+export default AgentProfessions;
+

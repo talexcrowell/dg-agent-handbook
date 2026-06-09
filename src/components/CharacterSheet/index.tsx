@@ -297,19 +297,26 @@ export const CharacterSheet: React.FC = () => {
       },
     ];
 
+    
     if (
       !isStat(skill) &&
       (skill !== "san" || skill !== "luck") &&
       parseInt(diceRoll.join("")) > playerValue &&
-      !characterObj.failedTests.includes(skill)
+      !characterObj.failedTests.filter((test) =>
+        isSkillChoice(skill) ? test?.name === skill : test === skill,
+      ).length
     ) {
-      characterObj.failedTests = [...character.failedTests, skill];
+      isSkillChoice(skill)
+        ? (characterObj.failedTests = [
+            ...character.failedTests,
+            { name: skill, type: currentCharacter.skills[skill][0].label },
+          ])
+        : (characterObj.failedTests = [...character.failedTests, skill]);
     }
 
     if (isCombat(skill)) {
       setModalType("combat");
     }
-
     characterObj.rollLog = [...newRollLog];
     setCharacter({ ...characterObj });
     actions.updateCharacters({ ...characterObj });
@@ -324,10 +331,6 @@ export const CharacterSheet: React.FC = () => {
         { ...characterObj },
       ]),
     );
-    // const successAudio = new Audio(
-    //   "https://docs.google.com/uc?export=open&id=1kJPzCWWDtZeO9mu9io-99IkOhcqUV9I2"
-    // );
-    // successAudio.play();
     toggle();
   };
 

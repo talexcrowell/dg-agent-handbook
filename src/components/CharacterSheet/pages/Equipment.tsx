@@ -3,6 +3,7 @@ import {
   ActionIcon,
   Button,
   Card,
+  Collapse,
   Divider,
   Drawer,
   Flex,
@@ -27,6 +28,7 @@ import {
   IconPlus,
   IconSearch,
   IconTrash,
+  IconX,
 } from "@tabler/icons-react";
 import styles from "../../../Element.module.css";
 import { useState } from "react";
@@ -174,13 +176,13 @@ export const Equipment = ({
         position: "bottom-center",
       });
     } else {
-      console.log(item)
+      console.log(item);
       handleUpdateCharacter("equipment", item);
       notifications.show({
         color: "green",
         title: "Equipment Added!",
         message: `Equipment added to inventory.`,
-        position: "bottom-center",
+        position: "top-center",
       });
     }
   };
@@ -192,7 +194,7 @@ export const Equipment = ({
       color: "green",
       title: "Equipment Removed!",
       message: `Equipment removed from Agent ${currentCharacter.codename}'s inventory.`,
-      position: "bottom-center",
+      position: "top-center",
     });
   };
 
@@ -213,7 +215,7 @@ export const Equipment = ({
             {currentCharacter.equipment.length > 0 ? (
               currentCharacter.equipment.map((item) => {
                 return (
-                  <Card withBorder>
+                  <Card withBorder padding={"xs"}>
                     <Group justify="space-between">
                       <SimpleGrid cols={viewport.width < 600 ? 2 : 4} w="100%">
                         <Stack gap="0">
@@ -245,6 +247,7 @@ export const Equipment = ({
                           <ActionIcon
                             onClick={() => deleteEquipment(item)}
                             size="lg"
+                            color="red"
                           >
                             <IconTrash />
                           </ActionIcon>
@@ -262,106 +265,181 @@ export const Equipment = ({
               </Card>
             )}
             {!IsPreview() && (
-              <Accordion
-                styles={{
-                  root: {
-                    backgroundColor: "	#2e2e2e",
-                    border: "1px solid #3b3b3b",
-                    borderRadius: "6px",
-                  },
-                  panel: { backgroundColor: "	#242424" },
-                }}
-                p="0"
-              >
-                <Accordion.Item value={"add-equipment"}>
-                  <Accordion.Control className={styles.hoverElement}>
-                    <Group justify="center">
-                      <IconPlus />
-                      <Text>Add Equipment and Gear</Text>
-                    </Group>
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Stack>
-                      <TextInput
-                        leftSection={<IconSearch />}
-                        placeholder="Search for name of equipment..."
-                        onChange={(e) => setSearchTerm(e.currentTarget.value)}
-                        label="Equipment Search"
-                      />
-                      <Divider />
-                      <Stack>
-                        {searchTerm ? (
-                          filteredList.length > 0 ? (
-                            filteredList.slice(0, 5).map((result) => {
-                              return (
-                                <Card withBorder>
-                                  <Group justify="space-between">
-                                    <SimpleGrid
-                                      cols={viewport.width < 600 ? 2 : 3}
-                                      w={"80%"}
-                                    >
-                                      <Stack gap="0">
-                                        <InputLabel c="dimmed">Name</InputLabel>
-                                        <Text>{result?.name}</Text>
-                                      </Stack>
-                                      <Stack gap="0">
-                                        <InputLabel c="dimmed">Type</InputLabel>
-                                        <Text>
-                                          {handleEquipmentType(result).type}
-                                        </Text>
-                                      </Stack>
-                                      {viewport.width >= 600 && (
-                                        <Stack gap="0">
-                                          <InputLabel c="dimmed">
-                                            Subtype
-                                          </InputLabel>
-                                          <Text tt="capitalize">
-                                            {
-                                              handleEquipmentType(result)
-                                                .subtype
-                                            }
-                                          </Text>
-                                        </Stack>
-                                      )}
-                                    </SimpleGrid>
-                                    <Group>
-                                      <ActionIcon
-                                        color="grey"
-                                        onClick={() =>
-                                          handleInspectEquipment(result)
-                                        }
-                                        size="lg"
-                                      >
-                                        <IconDots />
-                                      </ActionIcon>{" "}
-                                      <ActionIcon
-                                        color="green"
-                                        onClick={() =>
-                                          validateEquipment(result)
-                                        }
-                                        size="lg"
-                                      >
-                                        <IconPlus />
-                                      </ActionIcon>
-                                    </Group>
-                                  </Group>
-                                  {/* </Group> */}
-                                </Card>
-                              );
-                            })
-                          ) : (
-                            <Card c="dimmed">No results found</Card>
-                          )
-                        ) : (
-                          <Card c="dimmed" ta="center">
-                            Enter a name to start searching...
-                          </Card>
-                        )}
-                      </Stack>
+              // <Accordion
+              //   styles={{
+              //     root: {
+              //       backgroundColor: "	#2e2e2e",
+              //       border: "1px solid #3b3b3b",
+              //       borderRadius: "6px",
+              //     },
+              //     panel: { backgroundColor: "	#242424" },
+              //   }}
+              //   p="0"
+              // >
+              //   <Accordion.Item value={"add-equipment"}>
+              //     <Accordion.Control className={styles.hoverElement}>
+              //       <Group justify="center">
+              //         <IconPlus />
+              //         <Text>Add Equipment and Gear</Text>
+              //       </Group>
+              //     </Accordion.Control>
+              //     <Accordion.Panel>
+              //       <Stack>
+              //         <TextInput
+              //           leftSection={<IconSearch />}
+              //           placeholder="Search for name of equipment..."
+              //           onChange={(e) => setSearchTerm(e.currentTarget.value)}
+              //           label="Equipment Search"
+              //         />
+              //         <Divider />
+              //         <Stack>
+              //           {searchTerm ? (
+              //             filteredList.length > 0 ? (
+              //               filteredList.slice(0, 5).map((result) => {
+              //                 return (
+              //                   <Card withBorder>
+              //                     <Group justify="space-between">
+              //                       <SimpleGrid
+              //                         cols={viewport.width < 600 ? 2 : 3}
+              //                         w={"80%"}
+              //                       >
+              //                         <Stack gap="0">
+              //                           <InputLabel c="dimmed">Name</InputLabel>
+              //                           <Text>{result?.name}</Text>
+              //                         </Stack>
+              //                         <Stack gap="0">
+              //                           <InputLabel c="dimmed">Type</InputLabel>
+              //                           <Text>
+              //                             {handleEquipmentType(result).type}
+              //                           </Text>
+              //                         </Stack>
+              //                         {viewport.width >= 600 && (
+              //                           <Stack gap="0">
+              //                             <InputLabel c="dimmed">
+              //                               Subtype
+              //                             </InputLabel>
+              //                             <Text tt="capitalize">
+              //                               {
+              //                                 handleEquipmentType(result)
+              //                                   .subtype
+              //                               }
+              //                             </Text>
+              //                           </Stack>
+              //                         )}
+              //                       </SimpleGrid>
+              //                       <Group>
+              //                         <ActionIcon
+              //                           color="grey"
+              //                           onClick={() =>
+              //                             handleInspectEquipment(result)
+              //                           }
+              //                           size="lg"
+              //                         >
+              //                           <IconDots />
+              //                         </ActionIcon>{" "}
+              //                         <ActionIcon
+              //                           color="green"
+              //                           onClick={() =>
+              //                             validateEquipment(result)
+              //                           }
+              //                           size="lg"
+              //                         >
+              //                           <IconPlus />
+              //                         </ActionIcon>
+              //                       </Group>
+              //                     </Group>
+              //                     {/* </Group> */}
+              //                   </Card>
+              //                 );
+              //               })
+              //             ) : (
+              //               <Card c="dimmed">No results found</Card>
+              //             )
+              //           ) : (
+              //             <Card c="dimmed" ta="center">
+              //               Enter a name to start searching...
+              //             </Card>
+              //           )}
+              //         </Stack>
+              //       </Stack>
+              //     </Accordion.Panel>
+              //   </Accordion.Item>
+              // </Accordion>
+
+              <Stack>
+                <TextInput
+                  leftSection={<IconSearch />}
+                  placeholder="Search for name of equipment..."
+                  onChange={(e) => setSearchTerm(e.currentTarget.value)}
+                  label={
+                    <Text c="dimmed" size="sm">
+                      Equipment Search
+                    </Text>
+                  }
+                />
+                <Collapse expanded={searchTerm.length > 0}>
+                  <Card py='xs'>
+                    <Stack gap="xs">
+                      {filteredList.length > 0 ? (
+                        filteredList.slice(0, 5).map((result, index) => {
+                          return (
+                            <Stack gap='xs'>
+                              <Group justify="space-between">
+                                <SimpleGrid
+                                  cols={viewport.width < 600 ? 2 : 3}
+                                  w={"80%"}
+                                >
+                                  <Stack gap="0">
+                                    <InputLabel c="dimmed">Name</InputLabel>
+                                    <Text>{result?.name}</Text>
+                                  </Stack>
+                                  <Stack gap="0">
+                                    <InputLabel c="dimmed">Type</InputLabel>
+                                    <Text>
+                                      {handleEquipmentType(result).type}
+                                    </Text>
+                                  </Stack>
+                                  {viewport.width >= 600 && (
+                                    <Stack gap="0">
+                                      <InputLabel c="dimmed">
+                                        Subtype
+                                      </InputLabel>
+                                      <Text tt="capitalize">
+                                        {handleEquipmentType(result).subtype}
+                                      </Text>
+                                    </Stack>
+                                  )}
+                                </SimpleGrid>
+                                <Group>
+                                  <ActionIcon
+                                    color="grey"
+                                    onClick={() =>
+                                      handleInspectEquipment(result)
+                                    }
+                                    size="lg"
+                                  >
+                                    <IconDots />
+                                  </ActionIcon>{" "}
+                                  <ActionIcon
+                                    color="green"
+                                    onClick={() => validateEquipment(result)}
+                                    size="lg"
+                                  >
+                                    <IconPlus />
+                                  </ActionIcon>
+                                </Group>
+                              </Group>
+                              {index !== 4 && <Divider />}
+                            </Stack>
+                          );
+                        })
+                      ) : (
+                        <Card c="dimmed" padding='xs'>No results found</Card>
+                      )}
                     </Stack>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
+                  </Card>
+                </Collapse>
+              </Stack>
             )}
           </Stack>
           <Textarea
@@ -573,7 +651,7 @@ export const Equipment = ({
                   </Stack>
                 </>
               )}
-              {equipmentItem?.lethality && (
+              {equipmentItem?.lethality !== undefined && (
                 <>
                   <Stack gap="0">
                     <InputLabel c="dimmed">Lethality</InputLabel>
@@ -629,32 +707,36 @@ export const Equipment = ({
             {equipmentItem?.description && (
               <Stack gap="0">
                 <InputLabel c="dimmed">Description</InputLabel>
-                <Text>
-                  {equipmentItem?.description.length > 85
-                    ? equipmentItem?.description.slice(0, 85) + "..."
-                    : equipmentItem?.description}
-                </Text>
+                <Text>{equipmentItem?.description}</Text>
               </Stack>
             )}
-            {currentCharacter.equipment.filter(
-              (item) => item.name === equipmentItem.name,
-            ).length > 0 ? (
+            <Group justify="center">
+              {currentCharacter.equipment.filter(
+                (item) => item.name === equipmentItem.name,
+              ).length > 0 ? (
+                <Button
+                  leftSection={<IconTrash />}
+                  color="red"
+                  onClick={() => deleteEquipment(equipmentItem)}
+                >
+                  Delete
+                </Button>
+              ) : (
+                <Button
+                  leftSection={<IconPlus />}
+                  color="green"
+                  onClick={() => validateEquipment(equipmentItem)}
+                >
+                  Add
+                </Button>
+              )}{" "}
               <Button
-                leftSection={<IconTrash />}
-                color="red"
-                onClick={() => deleteEquipment(equipmentItem)}
+                leftSection={<IconX />}
+                onClick={() => setOpened(!opened)}
               >
-                Delete
+                Close
               </Button>
-            ) : (
-              <Button
-                leftSection={<IconPlus />}
-                color="green"
-                onClick={() => validateEquipment(equipmentItem)}
-              >
-                Add Equipment
-              </Button>
-            )}
+            </Group>
           </Stack>
         </Modal>
       )}

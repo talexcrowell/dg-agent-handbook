@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Button,
   Grid,
   Group,
@@ -16,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { additionalProfessions, professions } from "../../../data";
 import { useViewportContext } from "../../../contexts/ViewportContext";
+import { Link } from "react-router-dom";
 
 export const Bonds: React.FC<{
   handleAgentBonds: (bonds: any) => void;
@@ -140,32 +142,18 @@ export const Bonds: React.FC<{
       <Grid.Col span={12}>
         <Stack>
           <Title>Bonds</Title>
-          <Text>
-            Bonds measure your Agent’s relationships with the vital people in
-            his or her life: loved ones, family members and close friends. A
-            Bond can protect your Agent from SAN loss or offer a chance to
-            repress the effects of a disorder or temporary insanity.
+          <Text c="dimmed">
+            For more information, you can read the{" "}
+            <Anchor
+              component={Link}
+              to="/training/professions/overview"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bonds
+            </Anchor>{" "}
+            section in Agent Professions.
           </Text>
-          <Text>
-            Bonds are your Agent’s connection to humanity. Your Agent’s
-            profession determines how many Bonds your Agent begins with. The
-            more trying and time consuming the profession, the fewer Bonds your
-            Agent is able to maintain. An Agent with no Bonds is more
-            susceptible to psychological trauma than one who has people waiting
-            back home.
-          </Text>
-          <Text>
-            Each Bond begins with a score equal to your Agent’s CHA. Bonds’
-            scores often deteriorate because of your Agent’s involvement in
-            Delta Green. Green. A Bond increases if it is cultivated between
-            operations during Home scenes. A Bond can never have a score higher
-            than your Agent’s CHA. Any time CHA drops, each Bond drops by the
-            same amount.
-          </Text>
-        </Stack>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Stack>
           {bondInputs}
           <Button
             onClick={() => handleAgentBonds(bonds)}

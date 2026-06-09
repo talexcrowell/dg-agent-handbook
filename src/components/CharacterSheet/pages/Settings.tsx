@@ -1,30 +1,21 @@
 import {
   Button,
-  Card,
   Center,
-  FileButton,
-  Flex,
   Grid,
   Group,
-  Image,
   List,
   Modal,
   Stack,
-  Switch,
   Text,
   Title,
 } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import {
-  IconCross,
   IconDice4,
   IconHistory,
   IconHome,
   IconListCheck,
-  IconPower,
   IconShare,
-  IconTrash,
-  IconUserScan,
   IconUsersGroup,
   IconX,
 } from "@tabler/icons-react";
@@ -53,6 +44,20 @@ export const Settings = ({
     setFailuresModalOpen(!failuresModalOpen);
   };
 
+  const isSkillChoice = (skill) => {
+    switch (skill) {
+      case "art":
+      case "craft":
+      case "foreignLanguage":
+      case "militaryScience":
+      case "pilot":
+      case "science":
+        return true;
+      default:
+        return false;
+    }
+  };
+
   const handleExport = () => {
     let jsonObj = JSON.stringify(currentCharacter);
     navigator.clipboard.writeText(btoa(jsonObj));
@@ -69,11 +74,17 @@ export const Settings = ({
     let rollObj = roll.export(exportFormats.OBJECT);
     setDiceRoll({ ...rollObj });
     failures.map((item, index) => {
-      return handleUpdateCharacter(
-        "skills",
-        currentCharacter.skills[item] + rollObj.rolls[0].rolls[index].value,
-        item
-      );
+      isSkillChoice(item)
+        ? handleUpdateCharacter(
+            "skills",
+            currentCharacter.skills[item] + rollObj.rolls[0].rolls[index].value,
+            item,
+          )
+        : handleUpdateCharacter(
+            "skills",
+            currentCharacter.skills[item] + rollObj.rolls[0].rolls[index].value,
+            item,
+          );
     });
     handleUpdateCharacter("failedTests", []);
     // toggleFailuresModal();
@@ -86,25 +97,6 @@ export const Settings = ({
     // });
     // handleFailedTests([]);
   };
-
-  function encodeImageFileAsURL(element) {
-    let newObj = { ...currentCharacter };
-    const reader = new FileReader();
-    reader.onloadend = function () {
-      newObj.image = reader.result;
-      setCharacter({ ...newObj });
-      actions.updateCharacters({ ...newObj });
-      localStorage.setItem("currentCharacter", JSON.stringify({ ...newObj }));
-      localStorage.setItem(
-        "savedCharacters",
-        JSON.stringify([
-          ...savedCharacters.filter((item) => item.id !== newObj.id),
-          { ...newObj },
-        ])
-      );
-    };
-    reader.readAsDataURL(element);
-  }
 
   useEffect(() => {
     setDiceRoll(null);
@@ -131,27 +123,26 @@ export const Settings = ({
                   >
                     In-Person Mode {inPerson ? "ON" : "OFF"}
                   </Button>
-                  
-                    <Button
-                      onClick={toggleDiceRoller}
-                      maw={375}
-                      leftSection={<IconDice4 />}
-                      variant="outline"
-                    >
-                      Dice Roller
-                    </Button>
-                 
-                 
-                    <Button
-                      leftSection={<IconHistory />}
-                      fullWidth
-                      onClick={toggleRollLog}
-                      variant="outline"
-                    >
-                      Roll Log
-                    </Button>
-                  
-                  {/* {inPerson && (
+
+                  <Button
+                    onClick={toggleDiceRoller}
+                    maw={375}
+                    leftSection={<IconDice4 />}
+                    variant="outline"
+                  >
+                    Dice Roller
+                  </Button>
+
+                  <Button
+                    leftSection={<IconHistory />}
+                    fullWidth
+                    onClick={toggleRollLog}
+                    variant="outline"
+                  >
+                    Roll Log
+                  </Button>
+
+                  {inPerson && (
                     <Button
                       onClick={toggleFailuresModal}
                       fullWidth
@@ -161,7 +152,7 @@ export const Settings = ({
                     >
                       Roll/Clear Failures
                     </Button>
-                  )} */}
+                  )}
                 </Stack>
               </Center>
             ) : (

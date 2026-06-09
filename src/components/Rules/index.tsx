@@ -47,7 +47,7 @@ export const Rules = () => {
 
   return (
     <Grid>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} py="0">
+      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
         <Tabs
           defaultValue="how-to-play"
           value={tabValue}

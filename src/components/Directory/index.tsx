@@ -18,7 +18,7 @@ import { useViewportContext } from "../../contexts/ViewportContext";
 export const Directory = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid>
+    <Grid mt='sm'>
       <Grid.Col>
         <Stack>
           <Title>Agent Handbook Directory</Title>

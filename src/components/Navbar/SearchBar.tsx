@@ -82,6 +82,7 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
           leftSection={<IconSearch />}
           onChange={(e) => handleSearchTerm(e.currentTarget.value)}
           placeholder="Search Handbook"
+          maw={200}
         />
       </Popover.Target>
       <Popover.Dropdown p="0">

@@ -90,7 +90,7 @@ export const Weapons = () => {
   };
 
   return (
-      <Grid id="weapons">
+      <Grid id="weapons" pt="sm">
         <Grid.Col span={12}>
           <Stack gap="lg">
             <Title td="underline" id="weapons" style={{ scrollMarginTop: 80 }}>

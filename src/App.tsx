@@ -1,4 +1,6 @@
 import "@mantine/core/styles.css";
+import '@gfazioli/mantine-text-animate/styles.css';
+import '@gfazioli/mantine-spinner/styles.css';
 import { AppShell, Container } from "@mantine/core";
 import { Navbar } from "./components/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
@@ -24,9 +26,8 @@ function App() {
   const { width } = useViewportSize();
   return (
     <AppShell
-      padding="xs"
       header={{
-        height: width > 760 ? 45 : 55,
+        height: width < 760 ? 55: 45,
         collapsed:
           pathname === "/" || (pathname.includes("sheet") && width < 760),
       }}
@@ -35,7 +36,7 @@ function App() {
         <Navbar />
       </AppShell.Header>
       <AppShell.Main>
-        <Container size="xl" strategy="grid">
+        <Container size="xl" strategy="grid" px={width < 760 ? 'md' : 'lg'} >
           <Outlet />
         </Container>
       </AppShell.Main>

@@ -43,6 +43,7 @@ import {
 } from "@tabler/icons-react";
 import { faker } from "@faker-js/faker";
 import { skillsMasterList } from "../../../data";
+import { TextAnimate } from "@gfazioli/mantine-text-animate";
 
 export const PersonalDetails: React.FC<{
   handleAgentPersonalDetails: (val: any, key: any) => void;
@@ -53,6 +54,7 @@ export const PersonalDetails: React.FC<{
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
+  const [isSaving, setIsSaving] = useState(false);
   const [checked, setChecked] = useState(false);
 
   const [value, setValue] = useState<string | null>(null);
@@ -142,30 +144,6 @@ export const PersonalDetails: React.FC<{
       <Grid.Col span={12}>
         <Stack>
           <Title>Personal Details</Title>
-          <Text>
-            Don’t try to make the perfect Agent. Engaging with your Agent as a
-            character, not as a tool to “win” the game, is what makes the
-            terrifying catastrophes of Delta Green matter.
-          </Text>
-          <Text>
-            While fleshing out your agent:
-            <List pr="sm">
-              <List.Item>
-                Consider something you like and something you dislike about your
-                agent.
-              </List.Item>
-              <List.Item>
-                Consider what brought your agent to work for Delta Green.
-              </List.Item>
-              <List.Item>
-                Consider why you think Delta Green trusts your agent.
-              </List.Item>
-            </List>
-          </Text>
-        </Stack>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Stack>
           {viewport.width > 600 ? (
             <>
               <Group>
@@ -760,10 +738,10 @@ export const PersonalDetails: React.FC<{
             </Card>
           </Center> */}
           <Button
-            component={Link}
-            to={`/agents/sheet/${
-              userAgent.codename ? userAgent.codename.toUpperCase() : ""
-            }`}
+            // component={Link}
+            // to={`/agents/sheet/${
+            //   userAgent.codename ? userAgent.codename.toUpperCase() : ""
+            // }`}
             disabled={
               !userAgent?.name ||
               !userAgent?.codename ||
@@ -771,16 +749,18 @@ export const PersonalDetails: React.FC<{
               !userAgent?.age ||
               !userAgent?.education
             }
-            onClick={() =>
-              value === "experience" || value === "unknown"
-                ? handleCreateAgent(veteranValues)
-                : handleCreateAgent()
-            }
+            onClick={() => {
+              handleCreateAgent();
+              // value === "experience" || value === "unknown"
+              //   ? handleCreateAgent(veteranValues)
+              //   : handleCreateAgent()
+            }}
             color={"green"}
           >
             Create Agent
           </Button>
         </Stack>
+        
       </Grid.Col>
     </Grid>
   );

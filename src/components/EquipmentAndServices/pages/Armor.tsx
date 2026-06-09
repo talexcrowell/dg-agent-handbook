@@ -31,7 +31,7 @@ export const Armor = () => {
 
   return (
     <Grid
-      id="armor"
+      id="armor" pt="sm"
     >
       <Grid.Col span={12}>
         <Stack gap="lg">

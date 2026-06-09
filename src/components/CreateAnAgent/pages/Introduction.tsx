@@ -55,39 +55,40 @@ export const Introduction: React.FC<{
           <Center>
             {viewport.width > 760 ? (
               <Group>
-                <Button
-                  onClick={() => handleStart("STATS")}
-                  rightSection={<IconArrowRight />}
-                  variant="outline"
-                >
-                  Start with Stats
-                </Button>
-                <Text fw={700}>OR</Text>
+                {" "}
                 <Button
                   onClick={() => handleStart("PROFESSION")}
                   rightSection={<IconArrowRight />}
                   variant="outline"
                 >
                   Start with Profession
+                </Button>
+                <Text fw={700}>OR</Text>
+                <Button
+                  onClick={() => handleStart("STATS")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Stats
                 </Button>
               </Group>
             ) : (
               <Stack>
                 {" "}
                 <Button
-                  onClick={() => handleStart("STATS")}
-                  rightSection={<IconArrowRight />}
-                  variant="outline"
-                >
-                  Start with Stats
-                </Button>
-                <Text fw={700} ta='center'>OR</Text>
-                <Button
                   onClick={() => handleStart("PROFESSION")}
                   rightSection={<IconArrowRight />}
                   variant="outline"
                 >
                   Start with Profession
+                </Button>
+                <Text fw={700}>OR</Text>
+                <Button
+                  onClick={() => handleStart("STATS")}
+                  rightSection={<IconArrowRight />}
+                  variant="outline"
+                >
+                  Start with Stats
                 </Button>
               </Stack>
             )}

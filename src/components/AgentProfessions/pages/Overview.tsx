@@ -24,10 +24,12 @@ export const Overview = () => {
             prove crucial.
           </Text>
           <Text>
-            <Text fw={700} span>Recommended Stats:</Text> Some professions require
-            people who are particularly fit, stable, or smart. This means the
-            recommended stats should be 10 or higher—or at least they were when
-            your Agent first got the job.
+            <Text fw={700} span>
+              Recommended Stats:
+            </Text>{" "}
+            Some professions require people who are particularly fit, stable, or
+            smart. This means the recommended stats should be 10 or higher—or at
+            least they were when your Agent first got the job.
           </Text>
           <Text>
             <Text fw={700} span>
@@ -43,6 +45,15 @@ export const Overview = () => {
             </Text>{" "}
             Each profession dictates the number of Bonds your Agent begins with.
             Difficult and trying professions mean fewer Bonds but more skills.
+            Bonds measure your Agent’s relationships with the vital people in
+            his or her life: loved ones, family members and close friends. A
+            Bond can protect your Agent from SAN loss or offer a chance to
+            repress the effects of a disorder or temporary insanity. Each Bond
+            begins with a score equal to your Agent’s CHA. Bonds’ scores often
+            deteriorate because of your Agent’s involvement in Delta Green.
+            Green. A Bond increases if it is cultivated between operations
+            during Home scenes. A Bond can never have a score higher than your
+            Agent’s CHA. Any time CHA drops, each Bond drops by the same amount.
           </Text>
           <Text>
             <Text fw={700} span>

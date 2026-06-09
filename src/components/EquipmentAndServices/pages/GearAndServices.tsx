@@ -41,7 +41,7 @@ export const GearsAndServices = () => {
     return str;
   };
   return (
-    <Grid id="gear-and-services">
+    <Grid id="gear-and-services" pt="sm">
       <Grid.Col span={12}>
         <Stack gap="lg">
           <Title

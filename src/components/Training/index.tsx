@@ -1,10 +1,8 @@
 import {
   Grid,
-  ScrollArea,
   Stack,
   Tabs,
   Text,
-  Title,
   TableOfContents,
   Group,
   Divider,
@@ -13,17 +11,12 @@ import {
   Modal,
   NavLink,
 } from "@mantine/core";
-import { TrainingVideo } from "./pages/TrainingVideo";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  IconBook,
-  IconBook2,
   IconChevronRight,
-  IconList,
   IconNotebook,
   IconStairs,
 } from "@tabler/icons-react";
-import { useViewportSize } from "@mantine/hooks";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useViewportContext } from "../../contexts/ViewportContext";
 import { Introduction } from "./pages/Introduction";

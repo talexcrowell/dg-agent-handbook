@@ -1,7 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Button, Center, Stack, Text } from "@mantine/core";
 import {
-  IconError404,
   IconMoodSadFilled,
   IconRefresh,
 } from "@tabler/icons-react";
@@ -16,7 +15,9 @@ export const Error = () => {
             Oh no!
           </Text>
           <Text>There appears to have been an error.</Text>
-          <Text tt="capitalize" c='dimmed'>[ Error Code: {faker.animal.type()} ]</Text>
+          <Text tt="capitalize" c="dimmed">
+            [ Error Code: {faker.animal.type().toUpperCase()} ]
+          </Text>
         </Stack>
         <Button
           variant="outline"
@@ -31,3 +32,5 @@ export const Error = () => {
     </Center>
   );
 };
+
+export default Error;

@@ -21,7 +21,7 @@ import { useViewportContext } from "../../../contexts/ViewportContext";
 export const Overview = () => {
   const [viewport] = useViewportContext();
   return (
-    <Grid id="overview">
+    <Grid id="overview" pt="sm">
       <Grid.Col span={12}>
         <Stack>
           <Title td="underline" style={{ scrollMarginTop: 80 }}>Equipment and Services</Title>

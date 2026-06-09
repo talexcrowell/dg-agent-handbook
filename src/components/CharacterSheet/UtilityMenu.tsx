@@ -18,7 +18,7 @@ export const UtilityMenu = ({
 }: any) => {
   const [viewport] = useViewportContext();
   return viewport.width < 760 ? (
-    <Group mb="sm" justify="space-between">
+    <Group my='sm' justify="space-between">
       <ActionIcon
         size="xl"
         onClick={handleInPerson}

@@ -41,10 +41,10 @@ export const Profession: React.FC<{
 }> = ({ handleAgentProfession, userAgent }) => {
   const [selectedProfession, setSelectedProfession] = useState(
     [...professions, ...additionalProfessions].filter(
-      (profession) => profession.name === userAgent.profession
+      (profession) => profession.name === userAgent.profession,
     )
       ? [...professions, ...additionalProfessions].filter(
-          (profession) => profession.name === userAgent.profession
+          (profession) => profession.name === userAgent.profession,
         )[0]
       : {
           name: "",
@@ -54,7 +54,7 @@ export const Profession: React.FC<{
           optionalSkills: [],
           numberOfOptionalSkills: 0,
           bonds: 0,
-        }
+        },
   );
   const [selectedSpecial, setSelectedSpecial] = useState("anthropology");
   const [skillDetails, setSkillDetails] = useState<{ [key: string]: any }>([]);
@@ -62,7 +62,7 @@ export const Profession: React.FC<{
     [key: string]: any;
   }>([]);
   const [selectedOptionalSkills, setSelectedOptionalSkills] = useState<any[]>(
-    []
+    [],
   );
   const [confirmedProfession, setConfirmedProfession] = useState(false);
 
@@ -95,7 +95,7 @@ export const Profession: React.FC<{
     setOpened(false);
     selectedProfession.numberOfOptionalSkills > 0 ||
     selectedProfession.professionalSkills.filter(
-      (item) => isSkillChoice(item) && item.type === ""
+      (item) => isSkillChoice(item) && item.type === "",
     ).length > 0
       ? setConfirmedProfession(true)
       : handleAgentProfession(selectedProfession);
@@ -169,12 +169,12 @@ export const Profession: React.FC<{
               {
                 id: skill,
                 value: selectedProfession.optionalSkills.filter(
-                  (optSkill) => optSkill.id === skill
+                  (optSkill) => optSkill.id === skill,
                 )[0].value,
               },
-              index
+              index,
             )
-          : null
+          : null,
       );
     }
   };
@@ -187,18 +187,18 @@ export const Profession: React.FC<{
       .map(
         (professionSkill) =>
           selectedProfession.optionalSkills.filter(
-            (optionalSkill) => optionalSkill.id === professionSkill
-          )[0]
+            (optionalSkill) => optionalSkill.id === professionSkill,
+          )[0],
       )
       .filter((skill) => !isSkillChoice(skill));
 
     // Handle "Additional" Skills (Crafts, Languages, Sciences, etc.)
     let additionalSkills = Object.keys(skillDetails).map(
-      (item) => skillDetails[item]
+      (item) => skillDetails[item],
     );
 
     let optionalAdditionalSkills = Object.keys(selectedOptionalSkills).map(
-      (item) => optionalSkillDetails[item]
+      (item) => optionalSkillDetails[item],
     );
 
     // Finalized and Organized Skills Object
@@ -219,6 +219,23 @@ export const Profession: React.FC<{
     handleAgentProfession({ ...newObj });
   };
 
+  const translateStat = (stat) => {
+    switch (stat) {
+      case "STR":
+        return "Strength";
+      case "CON":
+        return "Constitution";
+      case "POW":
+        return "Power";
+      case "INT":
+        return "Intelligence";
+      case "CHA":
+        return "Charisma";
+      case "DEX":
+        return "Dexterity";
+    }
+  };
+
   const professionCard = (profession) => {
     if (profession?.name) {
       return (
@@ -232,20 +249,22 @@ export const Profession: React.FC<{
               <InputLabel c="dimmed">Description</InputLabel>
               <Text fs="italic">{profession.description}</Text>
             </Stack>
-            <Stack gap="0">
-              <InputLabel c="dimmed">Recommended Stats</InputLabel>
-              <Text>
-                {profession.recommendedStats.map((stat: string, i: number) =>
-                  i !== profession.recommendedStats.length - 1
-                    ? stat + ", "
-                    : stat
-                )}
-              </Text>
-            </Stack>
-            <Stack gap="0">
-              <InputLabel c="dimmed">Bonds</InputLabel>
-              <Text>{profession.bonds}</Text>
-            </Stack>
+            <Group>
+              <Stack gap="0" w="50%">
+                <InputLabel c="dimmed">Recommended Stats</InputLabel>
+                <Text>
+                  {profession.recommendedStats.map((stat: string, i: number) =>
+                    i !== profession.recommendedStats.length - 1
+                      ? translateStat(stat) + ", "
+                      : translateStat(stat),
+                  )}
+                </Text>
+              </Stack>
+              <Stack gap="0">
+                <InputLabel c="dimmed">Bonds</InputLabel>
+                <Text>{profession.bonds}</Text>
+              </Stack>
+            </Group>
             <Group align="top">
               <Stack gap="0">
                 <InputLabel c="dimmed">Professional Skills:</InputLabel>
@@ -255,10 +274,10 @@ export const Profession: React.FC<{
                       w={250}
                       label={
                         skillsMasterList.filter(
-                          (item) => item.id === skill.id
+                          (item) => item.id === skill.id,
                         )[0]
                           ? skillsMasterList.filter(
-                              (item) => item.id === skill.id
+                              (item) => item.id === skill.id,
                             )[0].definition
                           : ""
                       }
@@ -290,7 +309,7 @@ export const Profession: React.FC<{
                         w={250}
                         label={
                           skillsMasterList.filter(
-                            (item) => item.id === skill.id
+                            (item) => item.id === skill.id,
                           )[0].definition
                         }
                         multiline
@@ -395,7 +414,7 @@ export const Profession: React.FC<{
       setCustomSkillValues({ ...newObj });
     } else {
       let removedSkill = Object.keys(customSkillValues).filter(
-        (key) => !val.includes(key)
+        (key) => !val.includes(key),
       );
       let removedSkillValue = customSkillValues[removedSkill];
       let difference = customSkillPoints.current + removedSkillValue;
@@ -457,7 +476,7 @@ export const Profession: React.FC<{
     setSelectedProfession({ ...newObj });
 
     newObj?.professionalSkills.filter(
-      (item) => isSkillChoice(item) && item.type === ""
+      (item) => isSkillChoice(item) && item.type === "",
     ).length > 0
       ? setConfirmedProfession(true)
       : handleAgentProfession({ ...newObj });
@@ -468,29 +487,11 @@ export const Profession: React.FC<{
   };
 
   return (
-    <Grid
-      py="md"
-      px={viewport.width > 760 ? "md" : 0}
-      gutter={viewport.width > 760 ? "md" : "sm"}
-    >
+    <Grid>
       <Grid.Col span={12}>
         <Stack ta="start">
           <Title>Profession</Title>
-          <Text>
-            A profession says a lot about an Agent. It grants a “kit” of
-            appropriate skills. Many Delta Green Agents are federal special
-            agents and special-forces operators. Special agents are highly
-            educated investigators trained in interviewing, weighing evidence,
-            and self-defense; special operators have stood up to the most
-            intense pressures imaginable and can handle any crisis.{" "}
-          </Text>
-          <Text>
-            But academics are necessary, too: computer and engineering experts,
-            historians, anthropologists, physicians, scientists. Someone from
-            nearly any profession might stumble into a Delta Green operation and
-            prove crucial.
-          </Text>
-          <Text>
+          <Text c="dimmed">
             For more information, you can read the{" "}
             <Anchor
               component={Link}
@@ -503,9 +504,6 @@ export const Profession: React.FC<{
             list in Agent Professions.
           </Text>
         </Stack>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Divider size={"xl"} />
       </Grid.Col>
       {!confirmedProfession ? (
         <>
@@ -629,7 +627,7 @@ export const Profession: React.FC<{
                             }
                             data={[...customProfessionSelectData].slice(
                               0,
-                              customProfessionSelectData.length - 1
+                              customProfessionSelectData.length - 1,
                             )}
                             searchable
                             rightSection={<IconSearch />}
@@ -715,7 +713,7 @@ export const Profession: React.FC<{
         <>
           <Grid.Col span={12}>
             {selectedProfession?.professionalSkills.filter(
-              (skill) => skill.id === "special"
+              (skill) => skill.id === "special",
             ).length > 0 && (
               <Stack mb="lg">
                 <Title order={3}>Select Specialty</Title>
@@ -730,7 +728,7 @@ export const Profession: React.FC<{
               </Stack>
             )}
             {selectedProfession?.professionalSkills.filter(
-              (skill) => isSkillChoice(skill) && skill.type === ""
+              (skill) => isSkillChoice(skill) && skill.type === "",
             ).length > 0 && (
               <Stack>
                 <Title order={3}>Details of Professional Skills</Title>
@@ -791,7 +789,7 @@ export const Profession: React.FC<{
                                     handleOptionalDetail(
                                       e.target.value,
                                       skill,
-                                      selectedOptionalSkills.indexOf(skill.id)
+                                      selectedOptionalSkills.indexOf(skill.id),
                                     )
                                   }
                                 />
@@ -875,7 +873,7 @@ export const Profession: React.FC<{
                   (stat: string, i: number) =>
                     i !== selectedProfession?.recommendedStats.length - 1
                       ? stat + ", "
-                      : stat
+                      : stat,
                 )}
               </Text>
             </Stack>
@@ -892,10 +890,10 @@ export const Profession: React.FC<{
                       w={250}
                       label={
                         skillsMasterList.filter(
-                          (item) => item.id === skill.id
+                          (item) => item.id === skill.id,
                         )[0]
                           ? skillsMasterList.filter(
-                              (item) => item.id === skill.id
+                              (item) => item.id === skill.id,
                             )[0].definition
                           : ""
                       }
@@ -936,7 +934,7 @@ export const Profession: React.FC<{
                         w={250}
                         label={
                           skillsMasterList.filter(
-                            (item) => item.id === skill.id
+                            (item) => item.id === skill.id,
                           )[0].definition
                         }
                         multiline

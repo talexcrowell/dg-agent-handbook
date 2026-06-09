@@ -334,7 +334,7 @@ export const Search = () => {
       </Grid.Col>
       <Grid.Col span={12}>
         <ScrollArea
-          h={viewport.height - 350}
+          h={viewport.height - 375}
           scrollbars="y"
         >
           <Stack>

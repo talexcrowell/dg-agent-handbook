@@ -780,12 +780,12 @@ export const skillPackages = [
     professionalSkills: [
       { id: "criminology", name: "Criminology" },
       {
-        id: "foreign Languages",
+        id: "foreignLanguage",
         name: "Foreign Language",
         type: "",
       },
       {
-        id: "foreign Languages",
+        id: "foreignLanguage",
         name: "Foreign Language",
         type: "",
       },

@@ -73,7 +73,7 @@ export const Skills = ({
     if (isSkillChoice(key) && currentCharacter.skills[key].length > 1) {
       return currentCharacter.skills[key].slice(
         1,
-        currentCharacter.skills[key].length
+        currentCharacter.skills[key].length,
       );
     }
   });
@@ -127,7 +127,7 @@ export const Skills = ({
                                 ])
                               : handleFailedTests([
                                   ...currentCharacter.failedTests.filter(
-                                    (test) => test !== key
+                                    (test) => test !== key,
                                   ),
                                 ])
                           }
@@ -136,7 +136,7 @@ export const Skills = ({
                           w={250}
                           label={
                             skillsMasterList.filter(
-                              (skill) => skill.id === key
+                              (skill) => skill.id === key,
                             )[0].definition
                           }
                           multiline
@@ -224,7 +224,7 @@ export const Skills = ({
                                 ])
                               : handleFailedTests([
                                   ...currentCharacter.failedTests.filter(
-                                    (test) => test !== key
+                                    (test) => test !== key,
                                   ),
                                 ])
                           }
@@ -233,7 +233,7 @@ export const Skills = ({
                           w={250}
                           label={
                             skillsMasterList.filter(
-                              (skill) => skill.id === key
+                              (skill) => skill.id === key,
                             )[0].definition
                           }
                           multiline
@@ -321,7 +321,7 @@ export const Skills = ({
                                 ])
                               : handleFailedTests([
                                   ...currentCharacter.failedTests.filter(
-                                    (test) => test !== key
+                                    (test) => test !== key,
                                   ),
                                 ])
                           }
@@ -330,7 +330,7 @@ export const Skills = ({
                           w={250}
                           label={
                             skillsMasterList.filter(
-                              (skill) => skill.id === key
+                              (skill) => skill.id === key,
                             )[0].definition
                           }
                           multiline
@@ -400,7 +400,6 @@ export const Skills = ({
               mb="md"
               onChange={(e) => handleSearch(e.currentTarget.value)}
             />
-
             EGGS
           </Grid.Col>
           {searchTerm ? (
@@ -424,7 +423,7 @@ export const Skills = ({
                           <Checkbox
                             value={key.name}
                             checked={currentCharacter.failedTests.includes(
-                              key.name
+                              key.name,
                             )}
                             onChange={(e) =>
                               e.currentTarget.checked
@@ -434,7 +433,7 @@ export const Skills = ({
                                   ])
                                 : handleFailedTests([
                                     ...currentCharacter.failedTests.filter(
-                                      (test) => test !== key.name
+                                      (test) => test !== key.name,
                                     ),
                                   ])
                             }
@@ -443,7 +442,7 @@ export const Skills = ({
                             w={250}
                             label={
                               skillsMasterList.filter(
-                                (skill) => skill.id === key.name
+                                (skill) => skill.id === key.name,
                               )[0].definition
                             }
                             multiline
@@ -529,7 +528,7 @@ export const Skills = ({
                             <Checkbox
                               value={key}
                               checked={currentCharacter.failedTests.includes(
-                                key
+                                key,
                               )}
                               onChange={(e) =>
                                 e.currentTarget.checked
@@ -539,7 +538,7 @@ export const Skills = ({
                                     ])
                                   : handleFailedTests([
                                       ...currentCharacter.failedTests.filter(
-                                        (test) => test !== key
+                                        (test) => test !== key,
                                       ),
                                     ])
                               }
@@ -548,7 +547,7 @@ export const Skills = ({
                               w={250}
                               label={
                                 skillsMasterList.filter(
-                                  (skill) => skill.id === key
+                                  (skill) => skill.id === key,
                                 )[0].definition
                               }
                               multiline
@@ -561,7 +560,8 @@ export const Skills = ({
                                 size="sm"
                               >
                                 {isSkillChoice(key)
-                                  ? currentCharacter.skills[key][0]?.label !== ""
+                                  ? currentCharacter.skills[key][0]?.label !==
+                                    ""
                                     ? `${skillKeyLabels(key)} (${
                                         currentCharacter.skills[key][0]?.label
                                       })`
@@ -631,7 +631,7 @@ export const Skills = ({
                               <Checkbox
                                 value={key}
                                 checked={currentCharacter.failedTests.includes(
-                                  key
+                                  key,
                                 )}
                                 onChange={(e) =>
                                   e.currentTarget.checked
@@ -641,7 +641,7 @@ export const Skills = ({
                                       ])
                                     : handleFailedTests([
                                         ...currentCharacter.failedTests.filter(
-                                          (test) => test !== key
+                                          (test) => test !== key,
                                         ),
                                       ])
                                 }
@@ -650,7 +650,7 @@ export const Skills = ({
                                 w={250}
                                 label={
                                   skillsMasterList.filter(
-                                    (skill) => skill.id === key
+                                    (skill) => skill.id === key,
                                   )[0].definition
                                 }
                                 multiline
@@ -746,7 +746,7 @@ export const Skills = ({
                               <Checkbox
                                 value={key.name}
                                 checked={currentCharacter.failedTests.includes(
-                                  key.name
+                                  key.name,
                                 )}
                                 onChange={(e) =>
                                   e.currentTarget.checked
@@ -756,7 +756,7 @@ export const Skills = ({
                                       ])
                                     : handleFailedTests([
                                         ...currentCharacter.failedTests.filter(
-                                          (test) => test !== key.name
+                                          (test) => test !== key.name,
                                         ),
                                       ])
                                 }
@@ -765,7 +765,7 @@ export const Skills = ({
                                 w={250}
                                 label={
                                   skillsMasterList.filter(
-                                    (skill) => skill.id === key.name
+                                    (skill) => skill.id === key.name,
                                   )[0].definition
                                 }
                                 multiline
@@ -836,7 +836,7 @@ export const Skills = ({
                               <Checkbox
                                 value={key}
                                 checked={currentCharacter.failedTests.includes(
-                                  key
+                                  key,
                                 )}
                                 onChange={(e) =>
                                   e.currentTarget.checked
@@ -846,7 +846,7 @@ export const Skills = ({
                                       ])
                                     : handleFailedTests([
                                         ...currentCharacter.failedTests.filter(
-                                          (test) => test !== key
+                                          (test) => test !== key,
                                         ),
                                       ])
                                 }
@@ -855,7 +855,7 @@ export const Skills = ({
                                 w={250}
                                 label={
                                   skillsMasterList.filter(
-                                    (skill) => skill.id === key
+                                    (skill) => skill.id === key,
                                   )[0].definition
                                 }
                                 multiline
@@ -950,8 +950,12 @@ export const Skills = ({
                         <Table.Tr>
                           <Table.Td>
                             <Group>
-                              <Checkbox checked={currentCharacter.failedTests.includes(key+"."+type.label)}/>
-                              <Text tt="capitalize" ta="start" size='sm'>
+                              <Checkbox
+                                checked={currentCharacter.failedTests.includes(
+                                  key + "." + type.label,
+                                )}
+                              />
+                              <Text tt="capitalize" ta="start" size="sm">
                                 {isSkillChoice(key)
                                   ? type.label !== ""
                                     ? `${skillKeyLabels(key)} (${type.label})`
@@ -996,7 +1000,7 @@ export const Skills = ({
                 })}
               </Table>
             ) : (
-              <Text fs="italic" pt="0" pb="md" c='dimmed'>
+              <Text fs="italic" pt="0" pb="md" c="dimmed">
                 None
               </Text>
             )}
@@ -1016,10 +1020,14 @@ export const Skills = ({
               <Table.Tbody>
                 <Table.Tr>
                   <Table.Td>
-                    <Text c="dimmed" ta='center'>None</Text>
+                    <Text c="dimmed" ta="center">
+                      None
+                    </Text>
                   </Table.Td>
                   <Table.Td>
-                    <Text c="dimmed" ta='center'>-</Text>
+                    <Text c="dimmed" ta="center">
+                      -
+                    </Text>
                   </Table.Td>
                 </Table.Tr>
               </Table.Tbody>

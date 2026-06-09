@@ -1,5 +1,6 @@
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
 import {
+  Alert,
   Anchor,
   Button,
   Card,
@@ -24,6 +25,7 @@ import React, { useEffect, useState } from "react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { additionalProfessions, professions } from "../../../data";
 import { Link } from "react-router-dom";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 export const Stats: React.FC<{
   handleAgentStats: (stats: any) => void;
@@ -56,7 +58,7 @@ export const Stats: React.FC<{
       ? ["Statistic", "Score", "x5", "Distinguishing Features"]
       : ["Stat", "Score", "x5", "Features"];
 
-  const tableAttributeHeaders = ["Attribute", "Score"];
+  const tableAttributeHeaders = ["Attribute", "Equation", "Score"];
 
   const statLabelArr =
     viewport.width > 600
@@ -71,10 +73,10 @@ export const Stats: React.FC<{
       : ["STR", "CON", "DEX", "INT", "POW", "CHA"];
 
   const derivedAttributesArr = [
-    { label: "Hit Points (HP)", key: "hp" },
-    { label: "Willpower Points (WP)", key: "wp" },
-    { label: "Sanity Points (SAN)", key: "san" },
-    { label: "Breaking Point (BP)", key: "bp" },
+    { label: "Hit Points (HP)", key: "hp", equation: "(STR + CON) / 2" },
+    { label: "Willpower Points (WP)", key: "wp", equation: "POW" },
+    { label: "Sanity Points (SAN)", key: "san", equation: "POW * 5" },
+    { label: "Breaking Point (BP)", key: "bp", equation: "SAN - POW" },
   ];
 
   const distinguishingFeatures: { [key: string]: any } = {
@@ -154,8 +156,10 @@ export const Stats: React.FC<{
       );
     } else {
       return (
-        <Stack align="center">
-          <Text ta="center">{stats[stat]}</Text>
+        <Group justify='space-evenly'>
+          <Text ta="center">
+            {stats[stat]}
+          </Text>
           {
             <Select
               placeholder="Swap Stat"
@@ -176,7 +180,7 @@ export const Stats: React.FC<{
               }
             />
           }
-        </Stack>
+        </Group>
       );
     }
   };
@@ -301,10 +305,10 @@ export const Stats: React.FC<{
 
   const handleHighlight = (value: string) => {
     let professionalStats = [...professions, ...additionalProfessions].filter(
-      (profession) => profession.name === userAgent.profession
+      (profession) => profession.name === userAgent.profession,
     )[0]
       ? [...professions, ...additionalProfessions].filter(
-          (profession) => profession.name === userAgent.profession
+          (profession) => profession.name === userAgent.profession,
         )[0].recommendedStats
       : [];
     let chosenStat = value;
@@ -338,40 +342,7 @@ export const Stats: React.FC<{
       <Grid.Col span={12} ta="start">
         <Stack>
           <Title>Statistics</Title>
-          <Text>
-            Every Agent has six core capabilities: Strength, Constitution,
-            Dexterity, Intelligence, Power, and Charisma.
-          </Text>
-          <Text>You can create your character's stats in few ways: </Text>
-          <Text>
-            <Text span fw={700}>
-              {" "}
-              Roll Stats:
-            </Text>{" "}
-            For each stat roll 4D6, drop the lowest of the four dice, and add up
-            the other three. Place the six rolls in whichever stats you like.
-          </Text>
-          <Text>
-            <Text span fw={700}>
-              {" "}
-              Stat Pool:
-            </Text>{" "}
-            Divide 72 points among the six stats however you like with a minimum
-            of 3 and a maximum of 18.
-          </Text>
-          <Text>
-            <Text span fw={700}>
-              {" "}
-              Stat Sets:
-            </Text>{" "}
-            Pick one of the sets from a list and place each score to the desired
-            stat.
-          </Text>
-          <Text>
-            Your Agent's derived attributes will be calculated from your
-            statistics.
-          </Text>
-          <Text>
+          <Text c="dimmed">
             For more information, you can read the{" "}
             <Anchor
               component={Link}
@@ -381,7 +352,7 @@ export const Stats: React.FC<{
             >
               Stats
             </Anchor>{" "}
-           and{" "}
+            and{" "}
             <Anchor
               component={Link}
               to="/training/stats-and-skills#attributes"
@@ -389,8 +360,8 @@ export const Stats: React.FC<{
               rel="noopener noreferrer"
             >
               Attributes
-            </Anchor>{" "} sections
-            in Agent Professions.
+            </Anchor>{" "}
+            sections in Agent Professions.
           </Text>
         </Stack>
       </Grid.Col>
@@ -398,76 +369,92 @@ export const Stats: React.FC<{
         <Divider />
       </Grid.Col>
       <Grid.Col span={12}>
-        <Group>
-          <SegmentedControl
-            value={statType}
-            data={[
-              { label: "Roll", value: "roll" },
-              { label: "Stat Pool", value: "pool" },
-              { label: "Stat Sets", value: "sets" },
-            ]}
-            onChange={setStatType}
-          />
-          {statType === "pool" ? (
-            <Text>{pointPool} Points remaining</Text>
-          ) : statType === "sets" ? (
-            <Select
-              placeholder="Select a Stat Set..."
-              data={["Well-rounded", "Focused", "Highly Focused"]}
-              onChange={handleChangeStatSet}
+        <Stack>
+          <Group>
+            <SegmentedControl
+              value={statType}
+              data={[
+                { label: "Roll", value: "roll" },
+                { label: "Stat Pool", value: "pool" },
+                { label: "Stat Sets", value: "sets" },
+              ]}
+              onChange={setStatType}
             />
-          ) : (
-            <></>
-          )}
-          {statType === "roll" ? (
-            <Group>
-              <Button onClick={handleStatRoll}>Roll</Button>{" "}
+            {statType === "pool" ? (
+              <Text>{pointPool} Points remaining</Text>
+            ) : statType === "sets" ? (
+              <Select
+                placeholder="Select a Stat Set..."
+                data={["Well-rounded", "Focused", "Highly Focused"]}
+                onChange={handleChangeStatSet}
+              />
+            ) : (
+              <></>
+            )}
+            {statType === "roll" ? (
+              <Group>
+                <Button onClick={handleStatRoll}>Roll</Button>{" "}
+                <Button onClick={handleReset} bg="red">
+                  Reset
+                </Button>
+              </Group>
+            ) : (
               <Button onClick={handleReset} bg="red">
                 Reset
               </Button>
-            </Group>
-          ) : (
-            <Button onClick={handleReset} bg="red">
-              Reset
-            </Button>
+            )}
+          </Group>
+          {statType === "roll" && (
+            <Alert title="Roll" icon={<IconInfoCircle />}>
+              For each stat roll 4D6, drop the lowest of the four dice, and add
+              up the other three. Place the six rolls in whichever stats you
+              like.
+            </Alert>
           )}
-        </Group>
+          {statType === "pool" && (
+            <Alert title="Stat Pool" icon={<IconInfoCircle />}>
+              Divide 72 points among the six stats however you like with a
+              minimum of 3 and a maximum of 18.
+            </Alert>
+          )}
+          {statType === "sets" && (
+            <Alert title="Stat Sets" icon={<IconInfoCircle />}>
+              <Stack gap="xs">
+                <Text>
+                  Pick one of the sets from the list and place each score to the
+                  desired stat.
+                </Text>
+                <Group>
+                  <Text fw={700}>Well-rounded:</Text>
+                  {[13, 13, 12, 12, 11, 11].map((roll) => (
+                    <Text>{roll}</Text>
+                  ))}
+                </Group>
+                <Group>
+                  <Text fw={700}>Focused:</Text>
+                  {[15, 14, 12, 11, 10, 10].map((roll) => (
+                    <Text>{roll}</Text>
+                  ))}
+                </Group>
+                <Group>
+                  <Text fw={700}> Highly Focused:</Text>
+                  {[17, 14, 12, 10, 10, 9].map((roll) => (
+                    <Text>{roll}</Text>
+                  ))}
+                </Group>
+              </Stack>
+            </Alert>
+          )}
+        </Stack>
       </Grid.Col>
-      {statType === "sets" && (
-        <Grid.Col span={12}>
-          {" "}
-          <Card withBorder>
-            <Stack gap="xs">
-              <Group>
-                <Text fw={700}>Well-rounded:</Text>
-                {[13, 13, 12, 12, 11, 11].map((roll) => (
-                  <Text>{roll}</Text>
-                ))}
-              </Group>
-              <Group>
-                <Text fw={700}>Focused:</Text>
-                {[15, 14, 12, 11, 10, 10].map((roll) => (
-                  <Text>{roll}</Text>
-                ))}
-              </Group>
-              <Group>
-                <Text fw={700}> Highly Focused:</Text>
-                {[17, 14, 12, 10, 10, 9].map((roll) => (
-                  <Text>{roll}</Text>
-                ))}
-              </Group>
-            </Stack>
-          </Card>
-        </Grid.Col>
-      )}
-      <Grid.Col span={viewport.width > 992 ? 6 : 12}>
+      <Grid.Col span={12}>
         <Stack>
           <Title order={2}>Statistics</Title>
-          <Table withColumnBorders withTableBorder>
+          <Table withColumnBorders withTableBorder highlightOnHover>
             <Table.Thead>
               <Table.Tr>
                 {tableStatHeaders.map((header) => {
-                  return <Table.Th>{header}</Table.Th>;
+                  return <Table.Th ta="center" w='25%'>{header}</Table.Th>;
                 })}
               </Table.Tr>
             </Table.Thead>
@@ -475,14 +462,14 @@ export const Stats: React.FC<{
               {statLabelArr.map((stat) => {
                 return (
                   <Table.Tr>
-                    <Table.Td c={handleHighlight(stat)} fw={700}>
+                    <Table.Td c={handleHighlight(stat)} ta="center">
                       {stat}
                     </Table.Td>
                     <Table.Td>
                       {scoreTableDetail(
                         viewport.width > 600
                           ? stat.toLowerCase()
-                          : handleMobileStats(stat.toLowerCase())
+                          : handleMobileStats(stat.toLowerCase()),
                       )}
                     </Table.Td>
                     <Table.Td ta="center">
@@ -496,7 +483,7 @@ export const Stats: React.FC<{
                       {handleDistinguishingFeatures(
                         viewport.width > 600
                           ? stat.toLowerCase()
-                          : handleMobileStats(stat.toLowerCase())
+                          : handleMobileStats(stat.toLowerCase()),
                       )}
                     </Table.Td>
                   </Table.Tr>
@@ -506,18 +493,14 @@ export const Stats: React.FC<{
           </Table>
         </Stack>
       </Grid.Col>
-      <Grid.Col span={viewport.width > 992 ? 6 : 12}>
+      <Grid.Col span={12}>
         <Stack>
           <Title order={2}>Derived Attributes</Title>
-          <Table withColumnBorders withTableBorder>
+          <Table withColumnBorders withTableBorder highlightOnHover>
             <Table.Thead>
               <Table.Tr>
                 {tableAttributeHeaders.map((header) => {
-                  return (
-                    <Table.Th ta={header === "Score" ? "center" : ""}>
-                      {header}
-                    </Table.Th>
-                  );
+                  return <Table.Th ta="center" w='33%'>{header}</Table.Th>;
                 })}
               </Table.Tr>
             </Table.Thead>
@@ -525,7 +508,8 @@ export const Stats: React.FC<{
               {derivedAttributesArr.map((attribute) => {
                 return (
                   <Table.Tr>
-                    <Table.Td fw={700}>{attribute.label}</Table.Td>
+                    <Table.Td ta="center">{attribute.label}</Table.Td>
+                    <Table.Td ta="center">{attribute.equation}</Table.Td>
                     <Table.Td ta="center">
                       {calculateAttribute(attribute.key)}
                     </Table.Td>

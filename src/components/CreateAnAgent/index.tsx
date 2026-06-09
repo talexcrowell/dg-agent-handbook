@@ -36,10 +36,12 @@ import {
   IconUserFilled,
   IconUsers,
 } from "@tabler/icons-react";
+import { TextAnimate } from "@gfazioli/mantine-text-animate";
+import { SavingAgent } from "./pages/SavingAgent";
 
 export const CreateAnAgent: React.FC = () => {
   const [creationMode, setCreationMode] = useState<"STATS" | "PROFESSION">(
-    "STATS"
+    "STATS",
   );
   const [progressValue, setProgressValue] = useState(0);
   const [userAgent, setUserAgent] = useState({
@@ -177,7 +179,7 @@ export const CreateAnAgent: React.FC = () => {
     for (let i = 0; i < filteredArr.length; i++) {
       if (isSkillChoice(filteredArr[i].name)) {
         let userAgentSkillChoiceArr = newObj[filteredArr[i].name].filter(
-          (item) => item.label !== filteredArr[i].label
+          (item) => item.label !== filteredArr[i].label,
         );
         newObj[filteredArr[i].name] = [
           ...userAgentSkillChoiceArr,
@@ -185,10 +187,10 @@ export const CreateAnAgent: React.FC = () => {
             label: filteredArr[i].label,
             skill:
               newObj[filteredArr[i].name].filter(
-                (item) => item.label === filteredArr[i].label
+                (item) => item.label === filteredArr[i].label,
               ).length > 0
                 ? newObj[filteredArr[i].name].filter(
-                    (item) => item.label === filteredArr[i].label
+                    (item) => item.label === filteredArr[i].label,
                   )[0].skill + filteredArr[i].value
                 : filteredArr[i].value,
           },
@@ -203,7 +205,7 @@ export const CreateAnAgent: React.FC = () => {
 
     for (let i = 0; i < filteredArrAdditional.length; i++) {
       let userAgentSkillChoiceArr = newObj[filteredArrAdditional[i].id].filter(
-        (item) => item.label !== filteredArrAdditional[i].label
+        (item) => item.label !== filteredArrAdditional[i].label,
       );
       newObj[filteredArrAdditional[i].id] = [
         ...userAgentSkillChoiceArr,
@@ -211,7 +213,7 @@ export const CreateAnAgent: React.FC = () => {
           label: filteredArrAdditional[i].label,
           skill:
             newObj[filteredArrAdditional[i].id].filter(
-              (item) => item.label === filteredArrAdditional[i].label
+              (item) => item.label === filteredArrAdditional[i].label,
             )[0].skill + filteredArrAdditional[i].value,
         },
       ].sort((a, b) => (a.label < b.label ? -1 : a.label > b.label ? 1 : 0));
@@ -233,7 +235,7 @@ export const CreateAnAgent: React.FC = () => {
                 label: filteredArr[i].type,
                 skill:
                   [...filteredArr[i].id].filter(
-                    (item) => item.label === filteredArr[i].type
+                    (item) => item.label === filteredArr[i].type,
                   ).length > 1
                     ? filteredArr[i].id.skill + 20 > 80
                       ? 80
@@ -283,8 +285,8 @@ export const CreateAnAgent: React.FC = () => {
       key === "age" || key === "sex" || key === "veteran"
         ? value
         : key === "codename"
-        ? value.target.value.toUpperCase()
-        : value.target.value;
+          ? value.target.value.toUpperCase()
+          : value.target.value;
     setUserAgent({ ...newObj });
   };
 
@@ -316,12 +318,13 @@ export const CreateAnAgent: React.FC = () => {
         case "experience":
           newObj.skills.occult = userAgent.skills.occult + 10;
           veteranValues.skills.forEach(
-            (arrValue) => (newObj.skills[arrValue] = userAgent.skills[arrValue])
+            (arrValue) =>
+              (newObj.skills[arrValue] = userAgent.skills[arrValue]),
           );
           newObj.attributes.san.max = userAgent.attributes.san.max - 5;
           newObj.attributes.san.current = userAgent.attributes.san.current - 5;
           newObj.bonds = userAgent.bonds.filter(
-            (bond) => bond.name !== veteranValues.bond
+            (bond) => bond.name !== veteranValues.bond,
           );
           actions.createCharacterObj({ ...newObj });
           break;
@@ -355,42 +358,14 @@ export const CreateAnAgent: React.FC = () => {
     localSaved !== null
       ? localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([...JSON.parse(localSaved), { ...newObj }])
+          JSON.stringify([...JSON.parse(localSaved), { ...newObj }]),
         )
       : localStorage.setItem(
           "savedCharacters",
-          JSON.stringify([{ ...newObj }])
+          JSON.stringify([{ ...newObj }]),
         );
-    notifications.show({
-      color: "green",
-      title: "Agent Created Successfully!",
-      message: `Agent ${newObj.codename} has been added to the Agent Roster.`,
-      position: "top-center",
-    });
-
-    setUserAgent({
-      name: "",
-      codename: "",
-      profession: "",
-      employer: "",
-      nationality: "American",
-      sex: "",
-      age: "",
-      education: "",
-      personality: "",
-      motivations: "",
-      stats: {
-        strength: 0,
-        constitution: 0,
-        dexterity: 0,
-        intelligence: 0,
-        power: 0,
-        charisma: 0,
-      },
-      skills: { ...defaultSkillValues },
-      bonds: 0,
-      adaptation: { violence: 0, helplessness: 0 },
-    });
+    setUserAgent({ ...newObj });
+    handleProgressValue(6);
   };
 
   const handleAgentCreationMode = (value: any) => {
@@ -405,38 +380,45 @@ export const CreateAnAgent: React.FC = () => {
   const handleVerifyStepNavigation = (value: number) => {
     switch (value) {
       case 1:
-        handleProgressValue(value);
+        if (progressValue !== 6) {
+          handleProgressValue(value);
+        }
         break;
       case 2:
-        creationMode === "PROFESSION"
-          ? userAgent.profession === ""
-            ? notifications.show({
-                color: "red",
-                title: "Error!",
-                message:
-                  "Agent must select Profession before switching to Stats.",
-                position: viewport.width < 760 ? "top-center" : "bottom-center",
-              })
-            : handleProgressValue(value)
-          : userAgent.stats.strength === 0
-          ? notifications.show({
-              color: "red",
-              title: "Error!",
-              message: "Agent must roll Stats before switching to Profession.",
-              position: viewport.width < 760 ? "top-center" : "bottom-center",
-            })
-          : handleProgressValue(value);
+        if (progressValue !== 6) {
+          creationMode === "PROFESSION"
+            ? userAgent.profession === ""
+              ? notifications.show({
+                  color: "red",
+                  title: "Error!",
+                  message:
+                    "Agent must select Profession before switching to Stats.",
+                  position: "top-center",
+                })
+              : handleProgressValue(value)
+            : userAgent.stats.strength === 0
+              ? notifications.show({
+                  color: "red",
+                  title: "Error!",
+                  message:
+                    "Agent must roll Stats before switching to Profession.",
+                  position: "top-center",
+                })
+              : handleProgressValue(value);
+        }
         break;
       case 3:
       case 4:
       case 5:
-        notifications.show({
-          color: "red",
-          title: "Error!",
-          message: "Can only change to Statistics or Profession.",
-          position: viewport.width < 760 ? "top-center" : "bottom-center",
-        });
-        break;
+        if (progressValue !== 6) {
+          notifications.show({
+            color: "red",
+            title: "Error!",
+            message: "Can only change to Statistics or Profession.",
+            position: "top-center",
+          });
+          break;
+        }
     }
   };
 
@@ -490,107 +472,106 @@ export const CreateAnAgent: React.FC = () => {
         />
       );
       break;
+
+    case 6:
+      page = <SavingAgent userAgent={userAgent} />;
+      break;
   }
   return (
-    <Grid>
+    <Grid gap={"sm"}>
       {progressValue !== 0 && (
-        <Grid.Col span={12}>
-          <Stepper
-            active={progressValue - 1}
-            pt={"md"}
-            onStepClick={(value) => handleVerifyStepNavigation(value + 1)}
-            iconSize={viewport.width > 760 ? 42 : 34}
-          >
-            <Stepper.Step
-              icon={
-                creationMode === "PROFESSION" ? (
-                  <IconBriefcase />
-                ) : (
-                  <IconListLetters />
-                )
-              }
-              label={
-                viewport.width > 600 ? (
-                  <Text size={viewport.width > 760 ? "md" : "sm"}>
-                    {creationMode === "PROFESSION"
-                      ? "Profession"
-                      : "Statistics"}
-                  </Text>
-                ) : (
-                  ""
-                )
-              }
-            />
-            <Stepper.Step
-              icon={
-                creationMode === "PROFESSION" ? (
-                  <IconListLetters />
-                ) : (
-                  <IconBriefcase />
-                )
-              }
-              label={
-                viewport.width > 600 ? (
-                  <Text size={viewport.width > 760 ? "md" : "sm"}>
-                    {creationMode === "PROFESSION"
-                      ? "Statistics"
-                      : "Profession"}
-                  </Text>
-                ) : (
-                  ""
-                )
-              }
-            />
-            <Stepper.Step
-              icon={<IconListDetails />}
-              label={
-                viewport.width > 600 ? (
-                  <Text size={viewport.width > 760 ? "md" : "sm"}>Skills</Text>
-                ) : (
-                  ""
-                )
-              }
-            />
-            <Stepper.Step
-              icon={<IconUsers />}
-              label={
-                viewport.width > 600 ? (
-                  <Text size={viewport.width > 760 ? "md" : "sm"}>Bonds</Text>
-                ) : (
-                  ""
-                )
-              }
-            />
-            <Stepper.Step
-              icon={<IconUserFilled />}
-              label={
-                viewport.width > 600 ? (
-                  <Text size={viewport.width > 760 ? "md" : "sm"}>
-                    Personal Details
-                  </Text>
-                ) : (
-                  ""
-                )
-              }
-            />
-          </Stepper>
-        </Grid.Col>
-      )}
-      {progressValue !== 0 && (
-        <Grid.Col span={12}>
-          <Divider />
-        </Grid.Col>
-      )}
-      <Grid.Col span={12}>
-        <ScrollArea
-          h={
-            progressValue !== 0 ? viewport.height - 150 : viewport.height - 100
-          }
-          scrollbars={"y"}
+        <Grid.Col
+          span={12}
+          style={{ position: "sticky", top: viewport.width < 600 ? 55 : 45 }}
+          bg="var(--mantine-color-dark-7)"
         >
-          {page}
-        </ScrollArea>
-      </Grid.Col>
+          <Stack pt="sm">
+            <Stepper
+              active={progressValue - 1}
+              onStepClick={(value) => handleVerifyStepNavigation(value + 1)}
+              iconSize={viewport.width > 760 ? 38 : 34}
+              style={{ zIndex: 99 }}
+            >
+              <Stepper.Step
+                icon={
+                  creationMode === "PROFESSION" ? (
+                    <IconBriefcase />
+                  ) : (
+                    <IconListLetters />
+                  )
+                }
+                label={
+                  viewport.width > 600 ? (
+                    <Text size={viewport.width > 760 ? "md" : "sm"}>
+                      {creationMode === "PROFESSION"
+                        ? "Profession"
+                        : "Statistics"}
+                    </Text>
+                  ) : (
+                    ""
+                  )
+                }
+              />
+              <Stepper.Step
+                icon={
+                  creationMode === "PROFESSION" ? (
+                    <IconListLetters />
+                  ) : (
+                    <IconBriefcase />
+                  )
+                }
+                label={
+                  viewport.width > 600 ? (
+                    <Text size={viewport.width > 760 ? "md" : "sm"}>
+                      {creationMode === "PROFESSION"
+                        ? "Statistics"
+                        : "Profession"}
+                    </Text>
+                  ) : (
+                    ""
+                  )
+                }
+              />
+              <Stepper.Step
+                icon={<IconListDetails />}
+                label={
+                  viewport.width > 600 ? (
+                    <Text size={viewport.width > 760 ? "md" : "sm"}>
+                      Skills
+                    </Text>
+                  ) : (
+                    ""
+                  )
+                }
+              />
+              <Stepper.Step
+                icon={<IconUsers />}
+                label={
+                  viewport.width > 600 ? (
+                    <Text size={viewport.width > 760 ? "md" : "sm"}>Bonds</Text>
+                  ) : (
+                    ""
+                  )
+                }
+              />
+              <Stepper.Step
+                icon={<IconUserFilled />}
+                label={
+                  viewport.width > 600 ? (
+                    <Text size={viewport.width > 760 ? "md" : "sm"}>
+                      Personal Details
+                    </Text>
+                  ) : (
+                    ""
+                  )
+                }
+              />
+            </Stepper>
+            <Divider />
+          </Stack>
+        </Grid.Col>
+      )}
+      <Grid.Col span={12}>{page}</Grid.Col>
       <Modal
         opened={blockerOpened}
         onClose={() => setBlockerOpened(false)}
