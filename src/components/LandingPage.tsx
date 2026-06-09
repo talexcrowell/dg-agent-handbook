@@ -54,7 +54,8 @@ export const LandingPage = () => {
     }
   }, [opened]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e:any) => {
+    e.preventDefault()
     if (username.length === 0 || password.length === 0) {
       setError(true);
     } else {
@@ -68,7 +69,7 @@ export const LandingPage = () => {
         {!opened ? (
           <Center>
             <Card withBorder>
-              <Stack w="325" justify="center">
+              <Stack w="325" justify="center" gap="xs">
                 <Center>
                   <Image
                     src="https://i.imgur.com/M6abaUa.png"
@@ -83,26 +84,24 @@ export const LandingPage = () => {
                 ) : (
                   <Space my="sm" />
                 )}
-                <form onSubmit={handleSubmit}>
-                  <TextInput
-                    label="Username"
-                    onChange={(e) => handleUsername(e.currentTarget.value)}
-                    value={username}
-                  />
-                  <PasswordInput
-                    label="Password"
-                    onChange={(e) => handlePassword(e.currentTarget.value)}
-                    value={password}
-                  />
-                  <Center>
-                    <Button
-                      variant="outline"
-                      onClick={handleSubmit}
-                      type="submit"
-                    >
-                      CONNECT
-                    </Button>
-                  </Center>
+                <form onSubmit={e => handleSubmit(e)}>
+                  <Stack>
+                    <TextInput
+                      label="Username"
+                      onChange={(e) => handleUsername(e.currentTarget.value)}
+                      value={username}
+                    />
+                    <PasswordInput
+                      label="Password"
+                      onChange={(e) => handlePassword(e.currentTarget.value)}
+                      value={password}
+                    />
+                    <Center>
+                      <Button variant="outline" type="submit">
+                        CONNECT
+                      </Button>
+                    </Center>
+                  </Stack>
                 </form>
               </Stack>
             </Card>
