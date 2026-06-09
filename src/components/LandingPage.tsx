@@ -137,7 +137,7 @@ export const LandingPage = () => {
                   c="green"
                   color="green"
                   component={Link}
-                  to="#/directory"
+                  to="/directory"
                   size="lg"
                   w={150}
                   // onClick={() => setOpened(true)}
