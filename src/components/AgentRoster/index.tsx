@@ -136,12 +136,16 @@ export const AgentRoster = () => {
   };
 
   return (
-    <Grid ta="start" mt='sm'>
+    <Grid ta="start" mt="sm">
       <Grid.Col span={12}>
         <Stack>
           <Title>Agent Roster</Title>
           {viewport.width > 600 ? (
-            <Alert title="Where is my Agent?" icon={<IconInfoCircle />}>
+            <Alert
+              title="Where is my Agent?"
+              icon={<IconInfoCircle />}
+              variant="outline"
+            >
               The Agent Roster ONLY shows Agents that have been created or saved
               to this specific device. If you have created an Agent on another
               device, you can add them to this device by copying the export
@@ -173,17 +177,15 @@ export const AgentRoster = () => {
               </Accordion>
             </Card>
           )}
-          <Center>
-            <Button
-              component={Link}
-              to="/agents/new"
-              leftSection={<IconUserPlus />}
-              variant="outline"
-              maw={375}
-            >
-              Create An Agent
-            </Button>
-          </Center>
+          <Button
+            component={Link}
+            to="/agents/new"
+            leftSection={<IconUserPlus />}
+            variant="outline"
+            size='lg'
+          >
+            Create An Agent
+          </Button>
         </Stack>
       </Grid.Col>
       <Grid.Col span={12}>

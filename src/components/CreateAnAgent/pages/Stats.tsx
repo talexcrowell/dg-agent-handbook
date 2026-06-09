@@ -405,20 +405,20 @@ export const Stats: React.FC<{
             )}
           </Group>
           {statType === "roll" && (
-            <Alert title="Roll" icon={<IconInfoCircle />}>
+            <Alert title="Roll" icon={<IconInfoCircle />} variant="outline">
               For each stat roll 4D6, drop the lowest of the four dice, and add
               up the other three. Place the six rolls in whichever stats you
               like.
             </Alert>
           )}
           {statType === "pool" && (
-            <Alert title="Stat Pool" icon={<IconInfoCircle />}>
+            <Alert title="Stat Pool" icon={<IconInfoCircle />} variant="outline">
               Divide 72 points among the six stats however you like with a
               minimum of 3 and a maximum of 18.
             </Alert>
           )}
           {statType === "sets" && (
-            <Alert title="Stat Sets" icon={<IconInfoCircle />}>
+            <Alert title="Stat Sets" icon={<IconInfoCircle />} variant="outline">
               <Stack gap="xs">
                 <Text>
                   Pick one of the sets from the list and place each score to the

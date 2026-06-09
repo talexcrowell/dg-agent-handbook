@@ -287,13 +287,17 @@ export const OtherProfessionalSkills: React.FC<{
             disabled={confirmedPackage}
           />
           {statSystem === "packages" && (
-            <Alert title="Skill Packages" icon={<IconInfoCircle />}>
+            <Alert
+              title="Skill Packages"
+              icon={<IconInfoCircle />}
+              variant="outline"
+            >
               You can select a set of skills to be boosted for your Agent by
               choosing one of the Bonus Skills Packages from the list.
             </Alert>
           )}
           {statSystem === "custom" && (
-            <Alert title="Custom" icon={<IconInfoCircle />}>
+            <Alert title="Custom" icon={<IconInfoCircle />} variant="outline">
               Pick eight skills (except Unnatural) and increase each of them by
               20 points. You can even boost a single skill more than once,
               adding +20 each time. However, no skill can start higher than 80%.
