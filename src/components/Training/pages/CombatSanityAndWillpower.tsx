@@ -62,9 +62,9 @@ export const CombatSanityAndWillpower = () => {
             <Text>
               Combat is resolved in turns with an Agent able to make one action
               on their turn. Turn order is determined from highest DEX to lowest
-              DEX and repeats until combat is resolved. You can choose one
-              action to perform:
+              DEX and repeats until combat is resolved.
             </Text>
+            <Text>You can choose one action to perform:</Text>
             <List>
               <List.Item>Aim</List.Item>
               <List.Item>Attack</List.Item>

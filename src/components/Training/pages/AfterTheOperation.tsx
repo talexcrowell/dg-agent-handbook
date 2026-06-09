@@ -111,8 +111,8 @@ export const AfterTheOperation = () => {
               one is appropriate. During this time you can engage in Personal
               Pursuits to improve your Agent (at a cost to one of your Bonds).
             </Text>
+            <Text>These Personal Pursuits are:</Text>
             <List>
-              <Text fw={700}>These Personal Pursuits are:</Text>
               <List.Item>Fulfill Resposibilities</List.Item>
               <List.Item>Back to Nature</List.Item>
               <List.Item>Establish a New Bond</List.Item>

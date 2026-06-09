@@ -94,7 +94,13 @@ export const HowToPlay = () => {
               both History and some other relevant skill at 40%.
             </Text>
             <Center>
-              <Table withTableBorder withColumnBorders w={325} striped>
+              <Table
+                withTableBorder
+                withColumnBorders
+                maw={600}
+                striped
+                my="lg"
+              >
                 <Table.Thead>
                   <Table.Tr>
                     <Table.Th>How Much Skill Does the Task Require?</Table.Th>
@@ -106,7 +112,7 @@ export const HowToPlay = () => {
                       <Text>Only a little training; a hobbyist</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>20%</Text>
+                      <Text ta="center">20%</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -114,7 +120,7 @@ export const HowToPlay = () => {
                       <Text>Basic training or a college minor</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>30%</Text>
+                      <Text ta="center">30%</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -122,7 +128,7 @@ export const HowToPlay = () => {
                       <Text>Years of experience or a college major</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>40%</Text>
+                      <Text ta="center">40%</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -130,7 +136,7 @@ export const HowToPlay = () => {
                       <Text>Decades of experience or graduate degrees</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>60%</Text>
+                      <Text ta="center">60%</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -138,7 +144,7 @@ export const HowToPlay = () => {
                       <Text>A lifetime’s mastery</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>80%</Text>
+                      <Text ta="center">80%</Text>
                     </Table.Td>
                   </Table.Tr>
                 </Table.Tbody>
@@ -230,7 +236,13 @@ export const HowToPlay = () => {
               18.
             </Text>
             <Center>
-              <Table withTableBorder withColumnBorders w={325} striped>
+              <Table
+                withTableBorder
+                withColumnBorders
+                maw={600}
+                striped
+                my="lg"
+              >
                 <Table.Thead>
                   <Table.Tr>
                     <Table.Th>How Much Stat Does the Task Require?</Table.Th>
@@ -242,7 +254,7 @@ export const HowToPlay = () => {
                       <Text>Anyone could do it</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>3-4</Text>
+                      <Text ta="center">3-4</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -250,7 +262,7 @@ export const HowToPlay = () => {
                       <Text>Nearly anyone could do it</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>5–8</Text>
+                      <Text ta="center">5–8</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -258,7 +270,7 @@ export const HowToPlay = () => {
                       <Text>An average person could do it</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>9–12</Text>
+                      <Text ta="center">9–12</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -266,7 +278,7 @@ export const HowToPlay = () => {
                       <Text>Only an unusually gifted person could do it</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>13–16</Text>
+                      <Text ta="center">13–16</Text>
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
@@ -274,7 +286,7 @@ export const HowToPlay = () => {
                       <Text>Only a prodigy could do it</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>17–18</Text>
+                      <Text ta="center">17–18</Text>
                     </Table.Td>
                   </Table.Tr>
                 </Table.Tbody>
@@ -294,7 +306,13 @@ export const HowToPlay = () => {
               or (rarely) +40%/−40%.
             </Text>
             <Center>
-              <Table withTableBorder withColumnBorders w={325} striped>
+              <Table
+                withTableBorder
+                withColumnBorders
+                maw={600}
+                striped
+                my="lg"
+              >
                 <Table.Thead>
                   <Table.Tr>
                     <Table.Th>Bonus or Penalty</Table.Th>
@@ -305,7 +323,7 @@ export const HowToPlay = () => {
                 <Table.Tbody>
                   <Table.Tr>
                     <Table.Td>
-                      <Text>+40%</Text>
+                      <Text ta="center">+40%</Text>
                     </Table.Td>
                     <Table.Td>
                       <Text>Rare</Text>
@@ -316,7 +334,7 @@ export const HowToPlay = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Text>+20%</Text>
+                      <Text ta="center">+20%</Text>
                     </Table.Td>
                     <Table.Td>
                       <Text>Uncommon</Text>
@@ -327,10 +345,10 @@ export const HowToPlay = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Text>None</Text>
+                      <Text ta="center">None</Text>
                     </Table.Td>
                     <Table.Td>
-                      <Text>Most circumstances</Text>
+                      <Text>Common</Text>
                     </Table.Td>
                     <Table.Td>
                       <Text>The action is difficult and unpredictable.</Text>
@@ -338,7 +356,7 @@ export const HowToPlay = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Text>-20%</Text>
+                      <Text ta="center">-20%</Text>
                     </Table.Td>
                     <Table.Td>
                       <Text>Uncommon</Text>
@@ -351,7 +369,7 @@ export const HowToPlay = () => {
                   </Table.Tr>
                   <Table.Tr>
                     <Table.Td>
-                      <Text>-40%</Text>
+                      <Text ta="center">-40%</Text>
                     </Table.Td>
                     <Table.Td>
                       <Text>Rare</Text>
