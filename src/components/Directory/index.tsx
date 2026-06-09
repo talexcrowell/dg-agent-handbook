@@ -110,7 +110,7 @@ export const Directory = () => {
           <Title order={2}>Onboarding</Title>
           <Stack gap="0">
             <iframe
-              width={viewport.width >= 600 ? 500 : 375}
+              width={viewport.width >= 600 ? 500 : 360}
               height={viewport.width >= 600 ? 315 : 198}
               src="https://www.youtube.com/embed/Albop3XB8-o"
             ></iframe>
