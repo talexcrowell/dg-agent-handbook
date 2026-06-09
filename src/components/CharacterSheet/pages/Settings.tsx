@@ -11,18 +11,22 @@ import {
 } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import {
+  IconArrowLeft,
+  IconArrowLeftToArc,
   IconDice4,
   IconHistory,
   IconHome,
   IconListCheck,
   IconShare,
   IconUsersGroup,
+  IconUTurnLeft,
   IconX,
 } from "@tabler/icons-react";
 import { useViewportContext } from "../../../contexts/ViewportContext";
 import { useEffect, useState } from "react";
 import { useCharacterContext } from "../../../contexts/CharacterContext";
 import { DiceRoll, exportFormats } from "@dice-roller/rpg-dice-roller";
+import { Link } from "react-router-dom";
 
 export const Settings = ({
   currentCharacter,
@@ -153,6 +157,15 @@ export const Settings = ({
                       Roll/Clear Failures
                     </Button>
                   )}
+                  <Button
+                    leftSection={<IconArrowLeft />}
+                    component={Link}
+                    to={"/agents/roster"}
+                    fullWidth
+                    variant="outline"
+                  >
+                    Back to Roster
+                  </Button>
                 </Stack>
               </Center>
             ) : (
