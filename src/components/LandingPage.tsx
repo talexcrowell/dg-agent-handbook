@@ -27,11 +27,6 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
 
-  const pauseAt = useMemo(
-    () => ({ 24: 1000, 25: 500, 26: 500, 27: 1000, 105: 1000 }),
-    [],
-  );
-
   const handleUsername = (val: string) => {
     if (val.length < 15) {
       setUsername(val.toUpperCase());
@@ -50,13 +45,6 @@ export const LandingPage = () => {
   };
 
   useEffect(() => {
-    const rememberDevice = localStorage.getItem("rememberDevice");
-    if (rememberDevice) {
-      navigate("/directory");
-    }
-  }, []);
-
-  useEffect(() => {
     if (opened) {
       const timer = setTimeout(() => {
         setShowButton(true);
@@ -64,6 +52,14 @@ export const LandingPage = () => {
       return () => clearTimeout(timer);
     }
   }, [opened]);
+
+  const handleSubmit = () => {
+    if (username.length === 0 || password.length === 0) {
+      setError(true);
+    } else {
+      setOpened(true);
+    }
+  };
 
   return (
     <Grid py="lg">
@@ -79,6 +75,11 @@ export const LandingPage = () => {
                     w={150}
                   />
                 </Center>
+                {error && (
+                  <Text c={"red"} fw={700} ta="center">
+                    ACCESS DENIED
+                  </Text>
+                )}
                 <TextInput
                   label="Username"
                   onChange={(e) => handleUsername(e.currentTarget.value)}
@@ -89,19 +90,8 @@ export const LandingPage = () => {
                   onChange={(e) => handlePassword(e.currentTarget.value)}
                   value={password}
                 />
-                <Checkbox
-                  label="Remember this Device"
-                  checked={checked}
-                  onChange={(e) =>
-                    handleRememberDevice(e.currentTarget.checked)
-                  }
-                />
                 <Center>
-                  <Button
-                    variant="outline"
-                    onClick={() => setOpened(true)}
-                    disabled={username.length === 0 || password.length === 0}
-                  >
+                  <Button variant="outline" onClick={handleSubmit}>
                     CONNECT
                   </Button>
                 </Center>
