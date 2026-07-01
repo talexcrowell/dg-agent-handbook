@@ -144,7 +144,7 @@ export const CombatSanityAndWillpower = () => {
             </Text>
             <Text>
               Agents of Delta Green are as vulnerable to mental trauma as to
-              physical threats. We track that vulnera- bility in Sanity Points
+              physical threats. We track that vulnerability in Sanity Points
               (SAN). When SAN drops sharply, the Agent loses self-control and
               the player loses control of the Agent.
             </Text>
@@ -247,7 +247,7 @@ export const CombatSanityAndWillpower = () => {
               Regaining Sanity Points
             </Title>
             <Text>
-              Agents gain SAN by seeking therapy between opera- tions (which can
+              Agents gain SAN by seeking therapy between operations (which can
               raise SAN no higher than the Agent’s POW×5) and by overcoming
               unnatural threats (which can raise SAN as high as 99 minus the
               Agent’s Unnatural skill rating). These options are detailed in the
@@ -277,7 +277,7 @@ export const CombatSanityAndWillpower = () => {
               Low Willpower
             </Title>
             <Text>
-              At 1 or 2 WP your Agent has an emotional break- down, suffering a
+              At 1 or 2 WP your Agent has an emotional breakdown, suffering a
               –20% penalty to all actions until WP rises above 2. At 0 WP your
               Agent collapses, incapacitated and perhaps unconscious, and cannot
               succeed at any tests—including SAN rolls.
