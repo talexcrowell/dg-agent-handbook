@@ -63,7 +63,7 @@ export const Navbar = () => {
 
   return (
     <Container size="xl" h={"100%"}>
-      <Flex justify="space-between" align='center'>
+      <Flex justify="space-between" align="center">
         {width > 760 ? (
           <Group justify="space-between">
             <UnstyledButton component={Link} to="/directory">
@@ -100,9 +100,11 @@ export const Navbar = () => {
             >
               Equipment & Services
             </Button>
-            <Menu trigger="click-hover" offset={2}>
+            <Menu trigger="hover" offset={2}>
               <Menu.Target>
                 <Button
+                  component={Link}
+                  to="/training"
                   variant="subtle"
                   c="white"
                   bg={location.pathname.includes("/training") ? "gray" : ""}
@@ -153,9 +155,11 @@ export const Navbar = () => {
                 </Menu.Item>
               </Menu.Dropdown>
             </Menu>
-            <Menu trigger="click-hover" offset={2}>
+            <Menu trigger="hover" offset={2}>
               <Menu.Target>
                 <Button
+                  component={Link}
+                  to="/agents"
                   variant="subtle"
                   c="white"
                   bg={location.pathname.includes("/agents") ? "gray" : ""}

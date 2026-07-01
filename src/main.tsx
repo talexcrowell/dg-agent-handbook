@@ -8,6 +8,8 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import App from "./App.tsx";
+import { AgentsLandingPage } from "./components/AgentsLandingPage.tsx";
+import { TrainingLandingPage } from "./components/TrainingLandingPAge.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const FormattedLoader = lazy(() => import("./components/FormattedLoader.tsx"));
@@ -67,7 +69,7 @@ const router = createHashRouter([
         path: "/equipment-and-services/:tabValue",
         element: <EquipmentAndServices />,
       },
-      { path: "/training", element: <Navigate to="/training/introduction" /> },
+      { path: "/training", element: <TrainingLandingPage /> },
       {
         path: "/training/:tabValue",
         element: <Training />,
@@ -92,7 +94,7 @@ const router = createHashRouter([
         path: "/training/glossary",
         element: <Glossary />,
       },
-      { path: "/agents", element: <Navigate to="/agents/roster" /> },
+      { path: "/agents", element: <AgentsLandingPage /> },
       { path: "/agents/roster", element: <AgentRoster /> },
       {
         path: "/agents/new",
