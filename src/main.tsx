@@ -9,7 +9,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import App from "./App.tsx";
 import { AgentsLandingPage } from "./components/AgentsLandingPage.tsx";
-import { TrainingLandingPage } from "./components/TrainingLandingPAge.tsx";
+import { TrainingLandingPage } from "./components/TrainingLandingPage.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const FormattedLoader = lazy(() => import("./components/FormattedLoader.tsx"));
