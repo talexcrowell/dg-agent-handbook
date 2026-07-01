@@ -77,12 +77,12 @@ export const Directory = () => {
               h={viewport.width >= 600 ? 315 : 198}
               withBorder
             >
-              <Stack gap="md">
+              <Stack gap={viewport.width >= 600 ? "md" : "xs"}>
                 <Center>
                   <Image
                     src="https://i.imgur.com/M6abaUa.png"
                     h="auto"
-                    w={150}
+                    w={viewport.width >= 600 ? 150 : 80}
                   />
                 </Center>
                 <Text ta="center" size="xl">
