@@ -40,6 +40,7 @@ import {
   IconFile,
   IconHistory,
   IconList,
+  IconMap,
   IconNotes,
   IconSettings,
   IconTrash,
@@ -58,6 +59,7 @@ import { notifications } from "@mantine/notifications";
 import { useBlocker, useLocation, useNavigate } from "react-router-dom";
 import { RollModalContainer } from "./RollModal";
 import { UtilityMenu, UtiltyMenu } from "./UtilityMenu";
+import { Guide } from "./pages/Guide";
 
 export const CharacterSheet: React.FC = () => {
   const [viewport] = useViewportContext();
@@ -297,7 +299,6 @@ export const CharacterSheet: React.FC = () => {
       },
     ];
 
-    
     if (
       !isStat(skill) &&
       (skill !== "san" || skill !== "luck") &&
@@ -693,6 +694,9 @@ export const CharacterSheet: React.FC = () => {
             <Tabs.Tab value="notes" leftSection={<IconNotes />}>
               {viewport.width > 600 && "Notes"}
             </Tabs.Tab>
+            <Tabs.Tab value="guide" leftSection={<IconMap />}>
+              {viewport.width > 600 && "Guide"}
+            </Tabs.Tab>
             <Tabs.Tab value="settings" leftSection={<IconSettings />}>
               {viewport.width > 600 && "Settings"}
             </Tabs.Tab>
@@ -867,6 +871,31 @@ export const CharacterSheet: React.FC = () => {
               handleUpdateCharacter={handleUpdateCharacter}
               IsPreview={IsPreview}
             />
+          </ScrollArea>
+        </Tabs.Panel>
+        <Tabs.Panel value="guide" id="tab-panel">
+          {!IsPreview() ? (
+            <UtilityMenu
+              handleInPerson={handleInPerson}
+              inPerson={inPerson}
+              toggleRollLog={toggleRollLog}
+              toggleDiceRoller={toggleDiceRoller}
+              handleMobileTab={handleMobileTab}
+              tabValue={tabValue}
+            />
+          ) : (
+            <Group justify="center" c="" py="xs">
+              <Title order={3} c="dimmed">
+                Preview Mode
+              </Title>
+            </Group>
+          )}
+          <Divider />
+          <ScrollArea
+            h={viewport.height - (viewport.width > 700 ? 130 : 70)}
+            scrollbars="y"
+          >
+            <Guide />
           </ScrollArea>
         </Tabs.Panel>
         <Tabs.Panel value="settings" id="tab-panel">

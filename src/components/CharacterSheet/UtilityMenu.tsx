@@ -34,6 +34,7 @@ export const UtilityMenu = ({
         onChange={(val, opt) => handleMobileTab(val)}
         data={[
           { label: "Character Sheet", value: "all" },
+          { label: "Guide", value: "guide" },
           { label: "Settings", value: "settings" },
           {
             group: "Sheet Sections",

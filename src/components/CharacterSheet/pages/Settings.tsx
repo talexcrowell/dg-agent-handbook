@@ -1,11 +1,13 @@
 import {
   Button,
   Center,
+  Checkbox,
   Grid,
   Group,
   List,
   Modal,
   Stack,
+  Table,
   Text,
   Title,
 } from "@mantine/core";
@@ -43,6 +45,8 @@ export const Settings = ({
   const [failures, setFailures] = useState([]);
   const [failuresModalOpen, setFailuresModalOpen] = useState<boolean>(false);
   const [diceRoll, setDiceRoll] = useState(null);
+  const [diceValues, setDiceValues] = useState([{ value: 0 }]);
+  const [confirmation, setConfirmation] = useState(false);
 
   const toggleFailuresModal = () => {
     setFailuresModalOpen(!failuresModalOpen);
@@ -77,6 +81,7 @@ export const Settings = ({
     let roll: any = new DiceRoll(failures.length.toString() + "d4");
     let rollObj = roll.export(exportFormats.OBJECT);
     setDiceRoll({ ...rollObj });
+    setDiceValues([...rollObj.rolls[0].rolls]);
     failures.map((item, index) => {
       isSkillChoice(item)
         ? handleUpdateCharacter(
@@ -104,6 +109,14 @@ export const Settings = ({
 
   useEffect(() => {
     setDiceRoll(null);
+    let fillerArr = Array.from(
+      { length: currentCharacter.failedTests.length },
+      (_, i) => {
+        return { value: 0 };
+      },
+    );
+
+    setDiceValues([...fillerArr]);
     setFailures([...currentCharacter.failedTests]);
   }, [failuresModalOpen]);
 
@@ -285,66 +298,87 @@ export const Settings = ({
         onClose={toggleFailuresModal}
         fullScreen={viewport.width <= 760}
         withCloseButton={false}
+        title={<Title order={3}>Roll Failures</Title>}
       >
-        <Stack>
-          <Title order={3}>Roll Failures</Title>
+        <Stack gap="lg">
           <Text>
             Would you like to roll failures to improve your Agent's skills?
           </Text>
-          <Text size="sm" c="dimmed">
-            (This mechanic is used in-between operations.)
-          </Text>
-          <List>
-            {failures.length > 0 ? (
-              failures.map((item, index) => {
-                return (
-                  <List.Item tt="capitalize">
-                    <Group justify="space-between">
-                      <Text>{item}</Text>
-                      {diceRoll ? (
-                        <Text>
-                          {currentCharacter.skills[item] -
-                            diceRoll.rolls[0].rolls[index].value}
-                          %
-                        </Text>
-                      ) : (
-                        <Text>{currentCharacter.skills[item]}%</Text>
-                      )}
-
-                      {diceRoll && (
-                        <>
-                          <Text>+</Text>
-                          <Text>{diceRoll.rolls[0].rolls[index].value}</Text>
-                          <Text>=</Text>
-                          <Text>{currentCharacter.skills[item]}%</Text>
-                        </>
-                      )}
-                    </Group>
-                  </List.Item>
-                );
-              })
-            ) : (
-              <Text c="dimmed" ta="center">
-                No failures found
-              </Text>
-            )}
-          </List>
-          <Button
-            variant="outline"
-            leftSection={<IconDice4 />}
-            onClick={handleRollFailures}
-            disabled={currentCharacter.failedTests.length === 0}
-          >
-            Roll
-          </Button>
-          <Button
-            variant="outline"
-            onClick={toggleFailuresModal}
-            color="red"
-            leftSection={<IconX />}
-          >
-            Close
-          </Button>
+          <Stack>
+            <Table withTableBorder striped>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th>Skill</Table.Th>
+                  <Table.Th ta="center">Current</Table.Th>
+                  <Table.Th ta="center">1d4</Table.Th>
+                  <Table.Th ta="center">Total</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {failures.length > 0 ? (
+                  failures.map((item, index) => {
+                    return (
+                      <Table.Tr tt="capitalize">
+                        <Table.Td>
+                          <Text>{item}</Text>
+                        </Table.Td>
+                        <Table.Td ta="center">
+                          {diceValues ? (
+                            <Text>
+                              {currentCharacter.skills[item] -
+                                diceValues[index].value}
+                              %
+                            </Text>
+                          ) : (
+                            <Text>{currentCharacter.skills[item]}%</Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td ta="center">
+                          {diceValues && (
+                            <Text>+{diceValues[index].value}%</Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td ta="center">
+                          {diceValues && (
+                            <Text>{currentCharacter.skills[item]}%</Text>
+                          )}
+                        </Table.Td>
+                      </Table.Tr>
+                    );
+                  })
+                ) : (
+                  <Table.Td>
+                    <Text c="dimmed">No skill failures found</Text>
+                  </Table.Td>
+                )}
+              </Table.Tbody>
+            </Table>
+            <Checkbox
+              label="My Agent is currently in-between operations"
+              checked={confirmation}
+              onChange={(event) => setConfirmation(event.currentTarget.checked)}
+            />
+          </Stack>
+          <Stack>
+            <Button
+              variant="outline"
+              leftSection={<IconDice4 />}
+              onClick={handleRollFailures}
+              disabled={
+                currentCharacter.failedTests.length === 0 || !confirmation
+              }
+            >
+              Roll
+            </Button>
+            <Button
+              variant="outline"
+              onClick={toggleFailuresModal}
+              color="red"
+              leftSection={<IconX />}
+            >
+              Close
+            </Button>
+          </Stack>
         </Stack>
       </Modal>
     </>
