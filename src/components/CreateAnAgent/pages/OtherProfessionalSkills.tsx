@@ -107,6 +107,7 @@ export const OtherProfessionalSkills: React.FC<{
   };
 
   const handleConfirmPackage = () => {
+    handleAgentSkillPackage(selectedPackage)
     setOpened(false);
     setConfirmedPackage(!confirmedPackage);
   };
@@ -1078,16 +1079,14 @@ export const OtherProfessionalSkills: React.FC<{
           opened={opened}
           onClose={() => setOpened(false)}
           size="fullscreen"
-          title="Bonus Skill Package Details"
+          title={<Title order={3}>{selectedPackage?.name}</Title>}
         >
           <Stack>
             <Title order={3}></Title>
             {selectedPackage && (
-              <Card withBorder ta="start">
-                <Stack>
-                  <Title order={3}>{selectedPackage?.name}</Title>
-                  <List spacing={"xs"} p={0}>
-                    {/* <Text fw={700} td={"underline"}>
+              <Stack>
+                <List spacing={"xs"} p={0}>
+                  {/* <Text fw={700} td={"underline"}>
                       These skills get +20%:
                     </Text>
                     {selectedPackage?.professionalSkills.map((skill) => (
@@ -1105,144 +1104,141 @@ export const OtherProfessionalSkills: React.FC<{
                         <List.Item>{skill.name}</List.Item>
                       </Tooltip>
                     ))} */}
-                    <Table withColumnBorders withTableBorder>
-                      <Table.Thead>
-                        <Table.Tr>
-                          <Table.Th>Skill</Table.Th>
-                          <Table.Th ta="center">Current</Table.Th>
-                          <Table.Th ta="center">Bonus</Table.Th>
-                          <Table.Th ta="center">Result</Table.Th>
+                  <Table withColumnBorders withTableBorder striped>
+                    <Table.Thead>
+                      <Table.Tr>
+                        <Table.Th>Skill</Table.Th>
+                        <Table.Th ta="center">Current</Table.Th>
+                        <Table.Th ta="center">Bonus</Table.Th>
+                        <Table.Th ta="center">Result</Table.Th>
+                      </Table.Tr>
+                    </Table.Thead>
+                    <Table.Tbody>
+                      {selectedPackage.professionalSkills
+                        .filter((skill) => skill.id !== "special")
+                        .map((skill, index) => {
+                          return isSkillChoice(skill.id) ? (
+                            <Table.Tr justify="start" align="middle">
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (item) => item.id === skill.id,
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                                className={styles.tooltippedElement}
+                              >
+                                <Table.Td>
+                                  <Group>
+                                    {skill.name}
+                                    <TextInput
+                                      onChange={(e) =>
+                                        handleSkillTypeForSkillPackage(
+                                          index,
+                                          e.target.value,
+                                        )
+                                      }
+                                      placeholder="Enter type here..."
+                                    />
+                                  </Group>
+                                </Table.Td>
+                              </Tooltip>
+                              <Table.Td>0%</Table.Td>
+                              <Table.Td>+20%</Table.Td>
+                              <Table.Td>20%</Table.Td>
+                            </Table.Tr>
+                          ) : (
+                            <Table.Tr align="middle">
+                              <Tooltip
+                                w={250}
+                                label={
+                                  skillsMasterList.filter(
+                                    (item) => item.id === skill.id,
+                                  )[0].definition
+                                }
+                                multiline
+                                openDelay={500}
+                                className={styles.tooltippedElement}
+                              >
+                                <Table.Td ta="start">{skill.name}</Table.Td>
+                              </Tooltip>
+                              <Table.Td>{userAgent.skills[skill.id]}%</Table.Td>
+                              <Table.Td>+20%</Table.Td>
+                              <Table.Td>
+                                {userAgent.skills[skill.id] + 20}%
+                              </Table.Td>
+                            </Table.Tr>
+                          );
+                        })}
+                      {selectedPackage.professionalSkills.filter(
+                        (skill) => skill.id === "special",
+                      ).length > 0 && (
+                        <Table.Tr align="middle">
+                          <Table.Td>
+                            <Select
+                              placeholder={
+                                selectedPackage.professionalSkills.filter(
+                                  (skill) => skill.id === "special",
+                                )[0].name
+                              }
+                              data={
+                                selectedPackage.professionalSkills.filter(
+                                  (skill) => skill.id === "special",
+                                )[0].name === "Anthropology or Archeology"
+                                  ? [
+                                      {
+                                        value: "anthropology",
+                                        label: "Anthropology",
+                                      },
+                                      {
+                                        value: "archeology",
+                                        label: "Archeology",
+                                      },
+                                    ]
+                                  : [
+                                      {
+                                        value: "accounting",
+                                        label: "Accounting",
+                                      },
+                                      {
+                                        value: "forensics",
+                                        label: "Forensics",
+                                      },
+                                      { value: "law", label: "Law" },
+                                      {
+                                        value: "pharmacy",
+                                        label: "Pharmacy",
+                                      },
+                                    ]
+                              }
+                              onChange={(v, o) =>
+                                handleSpecialChoiceForSkillPackage(v, o)
+                              }
+                            />
+                          </Table.Td>
+                          <Table.Td>{userAgent.skills[special.id]}%</Table.Td>
+                          <Table.Td>+20%</Table.Td>
+                          <Table.Td>
+                            {userAgent.skills[special.id] + 20}%
+                          </Table.Td>
                         </Table.Tr>
-                      </Table.Thead>
-                      <Table.Tbody>
-                        {selectedPackage.professionalSkills
-                          .filter((skill) => skill.id !== "special")
-                          .map((skill, index) => {
-                            return isSkillChoice(skill.id) ? (
-                              <Table.Tr justify="start" align="middle">
-                                <Tooltip
-                                  w={250}
-                                  label={
-                                    skillsMasterList.filter(
-                                      (item) => item.id === skill.id,
-                                    )[0].definition
-                                  }
-                                  multiline
-                                  openDelay={500}
-                                  className={styles.tooltippedElement}
-                                >
-                                  <Table.Td>
-                                    <Group>
-                                      {skill.name}
-                                      <TextInput
-                                        onChange={(e) =>
-                                          handleSkillTypeForSkillPackage(
-                                            index,
-                                            e.target.value,
-                                          )
-                                        }
-                                        placeholder="Enter type here..."
-                                      />
-                                    </Group>
-                                  </Table.Td>
-                                </Tooltip>
-                                <Table.Td>0%</Table.Td>
-                                <Table.Td>+20%</Table.Td>
-                                <Table.Td>20%</Table.Td>
-                              </Table.Tr>
-                            ) : (
-                              <Table.Tr align="middle">
-                                <Tooltip
-                                  w={250}
-                                  label={
-                                    skillsMasterList.filter(
-                                      (item) => item.id === skill.id,
-                                    )[0].definition
-                                  }
-                                  multiline
-                                  openDelay={500}
-                                  className={styles.tooltippedElement}
-                                >
-                                  <Table.Td ta="start">{skill.name}</Table.Td>
-                                </Tooltip>
-                                <Table.Td>
-                                  {userAgent.skills[skill.id]}%
-                                </Table.Td>
-                                <Table.Td>+20%</Table.Td>
-                                <Table.Td>
-                                  {userAgent.skills[skill.id] + 20}%
-                                </Table.Td>
-                              </Table.Tr>
-                            );
-                          })}
-                        {selectedPackage.professionalSkills.filter(
-                          (skill) => skill.id === "special",
-                        ).length > 0 && (
-                          <Table.Tr align="middle">
-                            <Table.Td>
-                              <Select
-                                placeholder={
-                                  selectedPackage.professionalSkills.filter(
-                                    (skill) => skill.id === "special",
-                                  )[0].name
-                                }
-                                data={
-                                  selectedPackage.professionalSkills.filter(
-                                    (skill) => skill.id === "special",
-                                  )[0].name === "Anthropology or Archeology"
-                                    ? [
-                                        {
-                                          value: "anthropology",
-                                          label: "Anthropology",
-                                        },
-                                        {
-                                          value: "archeology",
-                                          label: "Archeology",
-                                        },
-                                      ]
-                                    : [
-                                        {
-                                          value: "accounting",
-                                          label: "Accounting",
-                                        },
-                                        {
-                                          value: "forensics",
-                                          label: "Forensics",
-                                        },
-                                        { value: "law", label: "Law" },
-                                        {
-                                          value: "pharmacy",
-                                          label: "Pharmacy",
-                                        },
-                                      ]
-                                }
-                                onChange={(v, o) =>
-                                  handleSpecialChoiceForSkillPackage(v, o)
-                                }
-                              />
-                            </Table.Td>
-                            <Table.Td>{userAgent.skills[special.id]}%</Table.Td>
-                            <Table.Td>+20%</Table.Td>
-                            <Table.Td>
-                              {userAgent.skills[special.id] + 20}%
-                            </Table.Td>
-                          </Table.Tr>
-                        )}
-                      </Table.Tbody>
-                    </Table>
-                    {selectedPackage?.personalSpecialty && (
-                      <List.Item>
-                        And any {selectedPackage.personalSpecialty} other
-                        {selectedPackage.personalSpecialty > 1 && "s"} as{" "}
-                        {selectedPackage.personalSpecialty > 1
-                          ? "personal specialties"
-                          : "a personal specialty"}
-                        .
-                      </List.Item>
-                    )}
-                  </List>
-                </Stack>
-              </Card>
+                      )}
+                    </Table.Tbody>
+                  </Table>
+                  {selectedPackage?.personalSpecialty && (
+                    <List.Item>
+                      And any {selectedPackage.personalSpecialty} other
+                      {selectedPackage.personalSpecialty > 1 && "s"} as{" "}
+                      {selectedPackage.personalSpecialty > 1
+                        ? "personal specialties"
+                        : "a personal specialty"}
+                      .
+                    </List.Item>
+                  )}
+                </List>
+              </Stack>
             )}
             <Button onClick={handleConfirmPackage} color={"green"}>
               Confirm Bonus Skills

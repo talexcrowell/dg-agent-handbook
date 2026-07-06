@@ -1,6 +1,9 @@
 import {
+  ActionIcon,
+  ActionIconGroup,
   Anchor,
   Button,
+  ButtonGroup,
   Card,
   Center,
   Checkbox,
@@ -32,7 +35,7 @@ import {
 } from "../../../data";
 import styles from "../../../Element.module.css";
 import { useViewportContext } from "../../../contexts/ViewportContext";
-import { IconSearch } from "@tabler/icons-react";
+import { IconMinus, IconPlus, IconSearch } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 export const Profession: React.FC<{
@@ -388,21 +391,24 @@ export const Profession: React.FC<{
     }),
   ];
 
-  const handleCustomBondChange = (val) => {
-    if ((customBonds === 1 && val === 1) || (customBonds === 4 && val === 4)) {
-      return;
-    } else {
-      let newObj = { ...customSkillPoints };
-      customBonds > val
-        ? setCustomSkillPoints({
-            current: newObj.current + 50,
-            max: newObj.max + 50,
-          })
-        : setCustomSkillPoints({
-            current: newObj.current - 50,
-            max: newObj.max - 50,
-          });
-      setCustomBonds(val);
+  const handleIncrementBond = () => {
+    let newObj = { ...customSkillPoints };
+    if (customBonds >= 1 && customBonds < 4) {
+      setCustomBonds(customBonds + 1);
+      setCustomSkillPoints({
+        current: newObj.current - 50,
+        max: newObj.max - 50,
+      });
+    }
+  };
+  const handleDecrementBond = () => {
+    let newObj = { ...customSkillPoints };
+    if (customBonds > 1 && customBonds <= 4) {
+      setCustomBonds(customBonds - 1);
+      setCustomSkillPoints({
+        current: newObj.current + 50,
+        max: newObj.max + 50,
+      });
     }
   };
 
@@ -425,23 +431,44 @@ export const Profession: React.FC<{
     setCustomSkillChoices([...val]);
   };
 
-  const handleAddPoints = (skill, val) => {
+  const handleAddPoints = (skill) => {
     if (
-      val +
+      5 +
         (isSkillChoice({ id: skill })
           ? defaultSkillValues[skill][0].skill
           : defaultSkillValues[skill]) >
         60 ||
-      val < 0 ||
-      customSkillPoints.current + (customSkillValues[skill] - val) < 0
+      5 < 0 ||
+      customSkillPoints.current + (customSkillValues[skill] - 5) < 0
     ) {
       return;
     }
 
     let newObj = { ...customSkillValues };
     let pointObj = { ...customSkillPoints };
-    let difference = newObj[skill] - val;
-    newObj[skill] = val;
+    let difference = newObj[skill] + 5;
+    newObj[skill] = 5;
+    setCustomSkillValues(newObj);
+    setCustomSkillPoints({
+      ...pointObj,
+      current: pointObj.current + difference,
+    });
+  };
+  const handleSubtractPoints = (skill) => {
+    if (
+      5 +
+        (isSkillChoice({ id: skill })
+          ? defaultSkillValues[skill][0].skill
+          : defaultSkillValues[skill]) >
+        60
+    ) {
+      return;
+    }
+
+    let newObj = { ...customSkillValues };
+    let pointObj = { ...customSkillPoints };
+    let difference = newObj[skill] - 5;
+    newObj[skill] = 5;
     setCustomSkillValues(newObj);
     setCustomSkillPoints({
       ...pointObj,
@@ -507,15 +534,18 @@ export const Profession: React.FC<{
       </Grid.Col>
       {!confirmedProfession ? (
         <>
+          <Grid.Col>
+            <SegmentedControl
+              data={["Standard", "Additional", "Custom"]}
+              value={professionsType}
+              onChange={handleProfessionTypes}
+              fullWidth
+            />
+          </Grid.Col>
           <Grid.Col span={viewport.width > 600 ? 5 : 12}>
             <Stack>
               <Group>
                 <Title order={3}>Professions List</Title>
-                <SegmentedControl
-                  data={["Standard", "Additional", "Custom"]}
-                  value={professionsType}
-                  onChange={handleProfessionTypes}
-                />
               </Group>
               <Stack gap="0">
                 {professionsType === "Standard" &&
@@ -573,9 +603,10 @@ export const Profession: React.FC<{
                       skill may be higher than 60%.
                     </Text>
                     <Text>
-                      For each additional bond (to a maximum of 4), reduce
-                      professional skill points by 50. For each bond removed (to
-                      a minimum of 1), add 50 professional skill points.
+                      For each additional bond (to a maximum of 4), the
+                      professional skill points will reduce by 50. For each bond
+                      removed (to a minimum of 1), the professional skill points
+                      will increase by 50.
                     </Text>
                   </Stack>
                 )}
@@ -611,14 +642,26 @@ export const Profession: React.FC<{
                             }
                             value={customProfessionName}
                           />
-                          <NumberInput
-                            max={4}
-                            min={1}
-                            label={"Number of Bonds"}
-                            value={customBonds}
-                            onChange={handleCustomBondChange}
-                            clampBehavior="strict"
-                          />
+                          <Stack gap="xs">
+                            <InputLabel>Number of Bonds</InputLabel>
+                            <Group justify="space-between" pl="sm">
+                              <Text>{customBonds}</Text>
+                              <ActionIconGroup>
+                                <ActionIcon
+                                  variant="outline"
+                                  onClick={handleIncrementBond}
+                                >
+                                  <IconPlus />
+                                </ActionIcon>
+                                <ActionIcon
+                                  variant="outline"
+                                  onClick={handleDecrementBond}
+                                >
+                                  <IconMinus />
+                                </ActionIcon>
+                              </ActionIconGroup>
+                            </Group>
+                          </Stack>
                           <MultiSelect
                             label="Professional Skills"
                             placeholder={
@@ -658,15 +701,29 @@ export const Profession: React.FC<{
                                         %)
                                       </Table.Td>
                                       <Table.Td>
-                                        <NumberInput
-                                          prefix="+ "
-                                          suffix="%"
-                                          step={5}
-                                          value={customSkillValues[skill]}
-                                          onChange={(e) =>
-                                            handleAddPoints(skill, e)
-                                          }
-                                        />
+                                        <Group justify="space-between" pl="sm">
+                                          <Text>
+                                            + {customSkillValues[skill]}%
+                                          </Text>
+                                          <ActionIconGroup>
+                                            <ActionIcon
+                                              variant="outline"
+                                              onClick={() =>
+                                                handleAddPoints(skill)
+                                              }
+                                            >
+                                              <IconPlus />
+                                            </ActionIcon>
+                                            <ActionIcon
+                                              variant="outline"
+                                              onClick={() =>
+                                                handleSubtractPoints(skill)
+                                              }
+                                            >
+                                              <IconMinus />
+                                            </ActionIcon>
+                                          </ActionIconGroup>
+                                        </Group>
                                       </Table.Td>
                                       <Table.Td ta="center">
                                         {customSkillValues[skill] +
@@ -841,11 +898,15 @@ export const Profession: React.FC<{
                       selectedProfession.numberOfOptionalSkills
                   }
                   onClick={confirmAdditionalSkills}
-                  color={"green"}
+                  variant="outline"
                 >
                   Confirm Professional Skills
                 </Button>
-                <Button bg="red" onClick={() => setConfirmedProfession(false)}>
+                <Button
+                  color="red"
+                  variant="outline"
+                  onClick={() => setConfirmedProfession(false)}
+                >
                   Change Profession
                 </Button>
               </Stack>
