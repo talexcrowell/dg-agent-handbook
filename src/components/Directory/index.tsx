@@ -29,7 +29,50 @@ export const Directory = () => {
     <Grid mt="sm">
       <Grid.Col>
         <Stack>
-          <Title>Agent Handbook Directory</Title>
+          <Title>Directory</Title>
+          <Center>
+            <Stack>
+              <Card
+                w={viewport.width >= 600 ? 500 : 360}
+                h={viewport.width >= 600 ? 315 : 198}
+                withBorder
+              >
+                <Stack gap={viewport.width >= 600 ? "md" : "xs"}>
+                  <Center>
+                    <Image
+                      src="https://i.imgur.com/M6abaUa.png"
+                      h="auto"
+                      w={viewport.width >= 600 ? 150 : 80}
+                    />
+                  </Center>
+                  <Text ta="center" size="xl">
+                    Delta Green Onboarding Video
+                  </Text>
+                  <Center>
+                    <Button
+                      variant="outline"
+                      leftSection={<IconPlayerPlayFilled />}
+                      w="200"
+                      onClick={() => setOpened(true)}
+                    >
+                      Watch
+                    </Button>
+                  </Center>
+                  <Text size="sm" c="dimmed" ta="center">
+                    All credit for this video belongs to{" "}
+                    <Anchor
+                      href={"https://www.youtube.com/@TheNubiS"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      @TheNubiS
+                    </Anchor>
+                    .
+                  </Text>
+                </Stack>
+              </Card>
+            </Stack>
+          </Center>
           <Text>
             This Handbook is a cornerstone of operational success for Agents in
             the field. Packed with essential guidance, tactical knowledge, and
@@ -46,73 +89,7 @@ export const Directory = () => {
           </Text>
         </Stack>
       </Grid.Col>
-      {/* <Grid.Col span={viewport.width >= 700 ? 6 : 12}>
-        <Stack>
-          <Title order={2}>Onboarding</Title>
-          <Stack gap="0">
-            <iframe
-              width={viewport.width >= 600 ? 500 : 360}
-              height={viewport.width >= 600 ? 315 : 198}
-              src="https://www.youtube.com/embed/Albop3XB8-o"
-            ></iframe>
-            <Text size="sm" c="dimmed">
-              All credit for this video belongs to{" "}
-              <Anchor
-                href={"https://www.youtube.com/@TheNubiS"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                @TheNubiS
-              </Anchor>
-              .
-            </Text>
-          </Stack>
-        </Stack>
-      </Grid.Col> */}
       <Grid.Col span={12}>
-        <Center>
-          <Stack>
-            <Card
-              w={viewport.width >= 600 ? 500 : 360}
-              h={viewport.width >= 600 ? 315 : 198}
-              withBorder
-            >
-              <Stack gap={viewport.width >= 600 ? "md" : "xs"}>
-                <Center>
-                  <Image
-                    src="https://i.imgur.com/M6abaUa.png"
-                    h="auto"
-                    w={viewport.width >= 600 ? 150 : 80}
-                  />
-                </Center>
-                <Text ta="center" size="xl">
-                  Delta Green Onboarding Video
-                </Text>
-                <Center>
-                  <Button
-                    variant="outline"
-                    leftSection={<IconPlayerPlayFilled />}
-                    w="200"
-                    onClick={() => setOpened(true)}
-                  >
-                    Watch
-                  </Button>
-                </Center>
-                <Text size="sm" c="dimmed" ta="center">
-                  All credit for this video belongs to{" "}
-                  <Anchor
-                    href={"https://www.youtube.com/@TheNubiS"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    @TheNubiS
-                  </Anchor>
-                  .
-                </Text>
-              </Stack>
-            </Card>
-          </Stack>
-        </Center>
         <Accordion transitionDuration={500}>
           <Accordion.Item value="getting-started">
             <Accordion.Control icon={<IconUserQuestion />}>

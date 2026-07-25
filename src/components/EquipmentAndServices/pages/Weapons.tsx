@@ -94,7 +94,7 @@ export const Weapons = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" id="weapons" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" id="weapons" style={{ scrollMarginTop: 100 }}>
               Weapons
             </Title>
             <Text>
@@ -108,7 +108,7 @@ export const Weapons = () => {
               td="underline"
               order={3}
               id="concealment"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Concealment
             </Title>
@@ -129,7 +129,7 @@ export const Weapons = () => {
               td="underline"
               order={3}
               id="bright-lights"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Bright Lights
             </Title>
@@ -147,7 +147,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="hand-to-hand-weapons"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Hand-to-Hand Weapons
             </Title>
@@ -256,7 +256,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="tear-gas-and-pepper-spray"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Tear Gas and Pepper Spray
             </Title>
@@ -370,7 +370,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="stun-grenades"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Stun Grenades
             </Title>
@@ -483,7 +483,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="electroshock-weapons"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Electroshock Weapons
             </Title>
@@ -593,7 +593,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="firearms"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Firearms
             </Title>
@@ -628,7 +628,7 @@ export const Weapons = () => {
             </Flex>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="pistols" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="pistols" style={{ scrollMarginTop: 100 }}>
               Pistols
             </Title>
             <Text>
@@ -644,7 +644,7 @@ export const Weapons = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="shotguns" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="shotguns" style={{ scrollMarginTop: 100 }}>
               Shotguns
             </Title>
             <Text>
@@ -678,7 +678,7 @@ export const Weapons = () => {
             <Title
               order={3}
               id="submachine-guns"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Submachine Guns
             </Title>
@@ -704,7 +704,7 @@ export const Weapons = () => {
             <Title
               order={3}
               id="rifles-and-carbines"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Rifles and Carbines
             </Title>
@@ -831,7 +831,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="heavy-weapons"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Heavy Weapons
             </Title>
@@ -960,7 +960,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="demolitions"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Demolitions
             </Title>
@@ -1075,7 +1075,7 @@ export const Weapons = () => {
               td="underline"
               order={2}
               id="artillery"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Artillery
             </Title>

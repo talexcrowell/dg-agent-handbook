@@ -54,7 +54,7 @@ export const EquipmentAndServices = () => {
   return (
     <Grid>
       <Grid.Col
-        span={viewport.width > 992 && tabValue !== "search" ? 10 : 12}
+        span={viewport.width > 760 && tabValue !== "search" ? 10 : 12}
         py="0"
       >
         <Tabs
@@ -62,10 +62,11 @@ export const EquipmentAndServices = () => {
           value={tabValue}
           onChange={(value) => navigate(`/equipment-and-services/${value}`)}
           keepMounted={false}
+          color="black"
         >
           {viewport.width > 760 && (
             <Tabs.List
-              style={{ position: "sticky", top: 45 }}
+              style={{ position: "sticky", top: 60 }}
               bg="var(--mantine-color-dark-7)"
             >
               <Tabs.Tab value={"overview"}>Overview</Tabs.Tab>
@@ -106,21 +107,21 @@ export const EquipmentAndServices = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {viewport.width > 992 && tabValue !== "search" && (
+      {viewport.width > 760 && tabValue !== "search" && (
         <Grid.Col span={2} py="0">
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 44 }}
+            style={{ position: "sticky", top: 60 }}
             justify="space-between"
           >
             <Stack gap="0">
-              <Button variant='transparent' leftSection={<IconList/>} ta='start' mx='0'>
-                  Table of Contents
-              </Button>
+              <Text ta="center" fw="600" my={5}>
+                Table of Contents
+              </Text>
               <Divider size="sm" />
               <TableOfContents
                 variant="light"
-                color="blue"
+                color="gray"
                 size="sm"
                 radius="sm"
                 reinitializeRef={reinitializeRef}
@@ -128,7 +129,10 @@ export const EquipmentAndServices = () => {
                   selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
                 }}
                 getControlProps={({ data }) => ({
-                  onClick: () => data.getNode().scrollIntoView(),
+                  onClick: () =>
+                    data
+                      .getNode()
+                      .scrollIntoView({ behavior: "smooth", block: "start" }),
                   children: data.value,
                 })}
               />

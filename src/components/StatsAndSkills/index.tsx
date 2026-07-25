@@ -117,7 +117,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="statistics"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Statistics
             </Title>
@@ -132,7 +132,13 @@ export const StatsAndSkills = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3}>Distinguishing Features</Title>
+            <Title
+              order={3}
+              style={{ scrollMarginTop: 60 }}
+              id="distinguishing-features"
+            >
+              Distinguishing Features
+            </Title>
             <Text>
               A stat below 9 or above 12 is exceptional. Spare a word or two to
               describe stats outside the average. These help give your Agent
@@ -144,7 +150,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="statistic-definitions"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Statistic Definitions
             </Title>
@@ -173,7 +179,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="attributes"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Attributes
             </Title>
@@ -186,7 +192,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="attribute-definitions"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Attribute Definitions
             </Title>
@@ -217,7 +223,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="skills"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Skills
             </Title>
@@ -233,7 +239,7 @@ export const StatsAndSkills = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="base-rating" style={{ scrollMarginTop: 50 }}>
+            <Title order={3} id="base-rating" style={{ scrollMarginTop: 60 }}>
               Base Rating
             </Title>
             <Text>
@@ -246,7 +252,7 @@ export const StatsAndSkills = () => {
             <Title
               order={3}
               id="how-skills-work"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               How Skills Work
             </Title>
@@ -280,7 +286,7 @@ export const StatsAndSkills = () => {
             <Title
               order={3}
               id="common-knowledge"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Common Knowledge
             </Title>
@@ -300,7 +306,7 @@ export const StatsAndSkills = () => {
             <Title
               order={3}
               id="using-libraries"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Using Libraries
             </Title>
@@ -316,7 +322,7 @@ export const StatsAndSkills = () => {
             <Title
               order={3}
               id="improving-skills"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Improving Skills
             </Title>
@@ -348,7 +354,7 @@ export const StatsAndSkills = () => {
             <Title
               order={3}
               id="special-training"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Special Training
             </Title>
@@ -396,7 +402,7 @@ export const StatsAndSkills = () => {
             </Stack>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="skill-(types)" style={{ scrollMarginTop: 50 }}>
+            <Title order={3} id="skill-(types)" style={{ scrollMarginTop: 60 }}>
               Skill (Types)
             </Title>
             <Text>
@@ -411,7 +417,7 @@ export const StatsAndSkills = () => {
               td="underline"
               order={2}
               id="skill-definitions"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Skill Definitions
             </Title>
@@ -470,7 +476,7 @@ export const StatsAndSkills = () => {
               >
                 Table of Contents
               </Button>
-              <Divider size="sm"/>
+              <Divider size="sm" />
               <TableOfContents
                 variant="light"
                 color="blue"
@@ -481,7 +487,10 @@ export const StatsAndSkills = () => {
                   selector: `#stats-and-skills :is(h2, h3, h4, h5, h6)`,
                 }}
                 getControlProps={({ data }) => ({
-                  onClick: () => data.getNode().scrollIntoView(),
+                  onClick: () =>
+                    data
+                      .getNode()
+                      .scrollIntoView({ behavior: "smooth", block: "start" }),
                   children: data.value,
                 })}
               />

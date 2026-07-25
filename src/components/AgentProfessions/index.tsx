@@ -38,14 +38,12 @@ export const AgentProfessions = () => {
 
   return (
     <Grid pb={0}>
-      <Grid.Col
-        span={viewport.width > 992 ? 10 : 12}
-        pb="0"
-      >
+      <Grid.Col span={viewport.width > 760 ? 10 : 12} pb="0">
         <Tabs
           defaultValue="overview"
           value={tabValue}
           onChange={(value) => navigate(`/training/professions/${value}`)}
+          color="black"
         >
           {viewport.width > 760 ? (
             <Tabs.List>
@@ -105,7 +103,9 @@ export const AgentProfessions = () => {
                   <NavLink
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      navigate("/training/professions/bonus-skill-package-list");
+                      navigate(
+                        "/training/professions/bonus-skill-package-list",
+                      );
                     }}
                     active={
                       location.pathname ===
@@ -119,19 +119,13 @@ export const AgentProfessions = () => {
             </Affix>
           )}
           <Tabs.Panel value="overview">
-            <ScrollArea h={"93vh"}>
-              <Overview />
-            </ScrollArea>
+            <Overview />
           </Tabs.Panel>
           <Tabs.Panel value="profession-list">
-            <ScrollArea h={"93vh"}>
-              <ProfessionList />
-            </ScrollArea>
+            <ProfessionList />
           </Tabs.Panel>
           <Tabs.Panel value="bonus-skill-package-list">
-            <ScrollArea h={"93vh"}>
-              <BonusSkillPackagesList />
-            </ScrollArea>
+            <BonusSkillPackagesList />
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
@@ -139,4 +133,3 @@ export const AgentProfessions = () => {
   );
 };
 export default AgentProfessions;
-

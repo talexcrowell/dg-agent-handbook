@@ -20,7 +20,7 @@ export const Fundamentals = () => {
             <Title
               td="underline"
               id="fundamentals"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               The Fundamentals
             </Title>
@@ -36,7 +36,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="investigation-and-uncertainty"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Investigation and Uncertainty
             </Title>
@@ -56,7 +56,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="suspense-and-horror"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Suspense and Horror
             </Title>
@@ -77,7 +77,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="violence-and-moral-choices"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Violence and Moral Choices
             </Title>
@@ -97,7 +97,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="sanity-and-comprehension"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Sanity and Comprehension
             </Title>
@@ -115,7 +115,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="keeping-secrets"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Keeping Secrets
             </Title>
@@ -132,7 +132,7 @@ export const Fundamentals = () => {
             <Title
               order={2}
               id="personal-and-professional-consequences"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Personal and Professional Consequences
             </Title>

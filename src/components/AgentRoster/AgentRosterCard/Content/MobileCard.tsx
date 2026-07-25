@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Button,
   ButtonGroup,
   Center,
@@ -11,6 +12,7 @@ import {
 } from "@mantine/core";
 import {
   IconFile,
+  IconFileSearch,
   IconShare,
   IconTrash,
   IconUserPlus,
@@ -67,9 +69,9 @@ export const MobileCard: React.FC<{
       </Grid.Col>
       <Grid.Col span={12}>
         <Group justify="space-around">
-          <Button
-            component={Link}
-            to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
+          <ActionIcon
+            size={"xl"}
+            variant="outline"
             onClick={() => {
               actions.changeCurrentCharacter({ ...agent });
               localStorage.setItem(
@@ -77,39 +79,39 @@ export const MobileCard: React.FC<{
                 JSON.stringify({ ...agent }),
               );
             }}
-            leftSection={<IconFile />}
-            variant="outline"
+            component={Link}
+            to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
           >
-            {handleGenerateCharacter ? "Preview" : "View"}
-          </Button>
-          {/* {handleExport && (
-            <Button
+            {handleGenerateCharacter ? <IconFileSearch /> : <IconFile />}
+          </ActionIcon>
+          {handleExport && (
+            <ActionIcon
+              size={50}
+              variant="outline"
               onClick={() => handleExport({ ...agent })}
-              leftSection={<IconShare />}
-              variant="outline"
             >
-              Export
-            </Button>
-          )} */}
-          {handleRemoveSavedCharacter && (
-            <Button
-              onClick={() => handleRemoveSavedCharacter(agent)}
-              color="red"
-              leftSection={<IconTrash />}
-              variant="outline"
-            >
-              Delete
-            </Button>
+              <IconShare />
+            </ActionIcon>
           )}
           {handleGenerateCharacter && (
-            <Button
-              onClick={() => handleGenerateCharacter(agent)}
-              leftSection={<IconUserPlus />}
+            <ActionIcon
+              size={"xl"}
               variant="outline"
               color="green"
+              onClick={() => handleGenerateCharacter(agent)}
             >
-              Add to Roster
-            </Button>
+              <IconUserPlus />
+            </ActionIcon>
+          )}
+          {handleRemoveSavedCharacter && (
+            <ActionIcon
+              size={"xl"}
+              variant="outline"
+              color="red"
+              onClick={() => handleRemoveSavedCharacter(agent)}
+            >
+              <IconTrash />
+            </ActionIcon>
           )}
         </Group>
       </Grid.Col>

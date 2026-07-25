@@ -20,7 +20,7 @@ export const WorldOfDeltaGreen = () => {
             <Title
               id="the-world-of-delta-green"
               td="underline"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               The World of Delta Green
             </Title>
@@ -51,7 +51,7 @@ export const WorldOfDeltaGreen = () => {
               order={2}
               td="underline"
               id="the-unnatural-in-the-modern-era"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               The Unnatural in the Modern Era
             </Title>

@@ -20,7 +20,7 @@ export const Home = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" id="home" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" id="home" style={{ scrollMarginTop: 100 }}>
               Home
             </Title>
             <Text>
@@ -42,7 +42,7 @@ export const Home = () => {
               order={2}
               td="underline"
               id="what-changed"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               What Changed
             </Title>
@@ -90,14 +90,14 @@ export const Home = () => {
               order={2}
               td="underline"
               id="personal-pursuits"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Personal Pursuits
             </Title>
             <Title
               order={3}
               id="fulfill-responsibilities"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Fulfill Responsibilities
             </Title>
@@ -116,7 +116,7 @@ export const Home = () => {
             <Title
               order={3}
               id="back-to-nature"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Back to Nature
             </Title>
@@ -136,7 +136,7 @@ export const Home = () => {
             <Title
               order={3}
               id="establish-a-new-bond"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Establish a New Bond
             </Title>
@@ -151,7 +151,7 @@ export const Home = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="go-to-therapy" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="go-to-therapy" style={{ scrollMarginTop: 100 }}>
               Go to Therapy
             </Title>
             <Text>
@@ -197,7 +197,7 @@ export const Home = () => {
             <Title
               order={3}
               id="improve-skills-or-stats"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Improve Skills or Stats
             </Title>
@@ -220,7 +220,7 @@ export const Home = () => {
             <Title
               order={3}
               id="personal-motivation"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Personal Motivation
             </Title>
@@ -236,7 +236,7 @@ export const Home = () => {
             <Title
               order={3}
               id="special-training"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Special Training
             </Title>
@@ -259,7 +259,7 @@ export const Home = () => {
             <Title
               order={3}
               id="stay-on-the-case"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Stay On the Case
             </Title>
@@ -281,7 +281,7 @@ export const Home = () => {
             <Title
               order={3}
               id="study-the-unnatural"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Study the Unnatural
             </Title>
@@ -300,7 +300,7 @@ export const Home = () => {
               order={2}
               td="underline"
               id="getting-fired"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Getting Fired
             </Title>
@@ -333,7 +333,7 @@ export const Home = () => {
               order={2}
               td="underline"
               id="prosecution"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Prosecution
             </Title>

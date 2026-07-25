@@ -46,17 +46,18 @@ export const Training = () => {
 
   return (
     <Grid type="container" py={0}>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} py="0">
+      <Grid.Col span={viewport.width > 760 ? 10 : 12} py="0">
         <Tabs
           defaultValue="introduction"
           value={tabValue}
           onChange={(value) => navigate(`/training/${value}`)}
           keepMounted={false}
           mt={0}
+          color="black"
         >
           {viewport.width > 760 && (
             <Tabs.List
-              style={{ position: "sticky", top: 45 }}
+              style={{ position: "sticky", top: 60 }}
               bg="var(--mantine-color-dark-7)"
             >
               <Tabs.Tab value="introduction">Introduction</Tabs.Tab>
@@ -87,11 +88,11 @@ export const Training = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {viewport.width > 992 && (
+      {viewport.width > 760 && (
         <Grid.Col span={2} py="0">
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 44 }}
+            style={{ position: "sticky", top: 60 }}
             justify="space-between"
             gap="0"
           >
@@ -104,10 +105,10 @@ export const Training = () => {
               >
                 Table of Contents
               </Button>
-              <Divider size="sm"/>
+              <Divider size="sm" />
               <TableOfContents
                 variant="light"
-                color="blue"
+                color="gray"
                 size="sm"
                 radius="sm"
                 reinitializeRef={reinitializeRef}

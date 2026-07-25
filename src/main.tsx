@@ -10,6 +10,7 @@ import "@mantine/notifications/styles.css";
 import App from "./App.tsx";
 import { AgentsLandingPage } from "./components/AgentsLandingPage.tsx";
 import { TrainingLandingPage } from "./components/TrainingLandingPage.tsx";
+import { HandlerResources } from "./components/HandlerResources/index.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const FormattedLoader = lazy(() => import("./components/FormattedLoader.tsx"));
@@ -104,6 +105,10 @@ const router = createHashRouter([
         path: "/agents/sheet/:codename",
         element: <CharacterSheet />,
       },
+      //  {
+      //   path: "/handler-resources",
+      //   element: <HandlerResources />,
+      // },
     ],
   },
 ]);

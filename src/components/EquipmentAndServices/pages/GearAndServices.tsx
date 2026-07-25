@@ -47,7 +47,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="transportation"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Transportation
           </Title>
@@ -107,7 +107,7 @@ export const GearsAndServices = () => {
                 })}
             </Table.Tbody>
           </Table>
-          <Title td="underline" id="lodgings" style={{ scrollMarginTop: 80 }}>
+          <Title td="underline" id="lodgings" style={{ scrollMarginTop: 100 }}>
             Lodgings
           </Title>
           <Table withTableBorder highlightOnHover striped>
@@ -169,7 +169,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="covers-and-legends"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Covers and Legends
           </Title>
@@ -231,7 +231,7 @@ export const GearsAndServices = () => {
                 })}
             </Table.Tbody>
           </Table>
-          <Title td="underline" id="storage" style={{ scrollMarginTop: 80 }}>
+          <Title td="underline" id="storage" style={{ scrollMarginTop: 100 }}>
             Storage
           </Title>
           <Table withTableBorder highlightOnHover striped>
@@ -290,7 +290,7 @@ export const GearsAndServices = () => {
                 })}
             </Table.Tbody>
           </Table>
-          <Title td="underline" id="restraints" style={{ scrollMarginTop: 80 }}>
+          <Title td="underline" id="restraints" style={{ scrollMarginTop: 100 }}>
             Restraints
           </Title>
           <Table withTableBorder highlightOnHover striped>
@@ -349,7 +349,7 @@ export const GearsAndServices = () => {
                 })}
             </Table.Tbody>
           </Table>
-          <Title td="underline" id="research" style={{ scrollMarginTop: 80 }}>
+          <Title td="underline" id="research" style={{ scrollMarginTop: 100 }}>
             Research
           </Title>
           <Table withTableBorder highlightOnHover striped>
@@ -411,7 +411,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="communications-and-computers"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Communications and Computers
           </Title>
@@ -477,7 +477,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="surveillance"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Surveillance
           </Title>
@@ -540,7 +540,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="lighting-and-vision"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Lighting and Vision
           </Title>
@@ -612,7 +612,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="breaking-and-entering"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Breaking and Entering
           </Title>
@@ -684,7 +684,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="emergency-and-survival"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Emergency and Survival
           </Title>
@@ -756,7 +756,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="off-the-books-medical-care"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Off-the-books Medical Care
           </Title>
@@ -826,7 +826,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="weapon-accessories"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Weapon Accessories
           </Title>
@@ -896,7 +896,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="law-enforcement-(official-requisition-only)"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Law Enforcement (Official Requisition Only)
           </Title>
@@ -966,7 +966,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="military-(official-requisition-only)"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Military (Official Requisition Only)
           </Title>
@@ -1036,7 +1036,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="intelligence-(official-requisition-only)"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Intelligence (Official Requisition Only)
           </Title>
@@ -1106,7 +1106,7 @@ export const GearsAndServices = () => {
           <Title
             td="underline"
             id="public-safety-(official-requisition-only)"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Public Safety (Official Requisition Only)
           </Title>

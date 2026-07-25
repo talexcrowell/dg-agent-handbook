@@ -24,10 +24,10 @@ export const Tradecraft = () => {
   useLayoutEffect(() => {}, []);
   return (
     <Grid type="container">
-      <Grid.Col span={viewport.width > 992 ? 10 : 12}>
+      <Grid.Col span={viewport.width > 760 ? 10 : 12}>
         <Stack id="tradecraft">
           <Stack gap="xs">
-            <Title td="underline" style={{ scrollMarginTop: 50 }}>
+            <Title td="underline" style={{ scrollMarginTop: 60 }}>
               Tradecraft
             </Title>
             <Text>
@@ -47,7 +47,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="going-unnoticed"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Going Unnoticed
             </Title>
@@ -121,7 +121,7 @@ export const Tradecraft = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title td="underline" order={2} style={{ scrollMarginTop: 50 }}>
+            <Title td="underline" order={2} style={{ scrollMarginTop: 60 }}>
               Surveillance
             </Title>
             <Text>
@@ -161,7 +161,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="pursuit"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Pursuit
             </Title>
@@ -179,7 +179,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="breaking-&-entering"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Breaking & Entering
             </Title>
@@ -203,7 +203,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="search-&-arrest"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Search & Arrest
             </Title>
@@ -235,7 +235,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="interrogation"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Interrogation
             </Title>
@@ -255,7 +255,7 @@ export const Tradecraft = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="torture" style={{ scrollMarginTop: 50 }}>
+            <Title order={3} id="torture" style={{ scrollMarginTop: 60 }}>
               Torture
             </Title>
             <Text>
@@ -278,7 +278,7 @@ export const Tradecraft = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="truth-drugs" style={{ scrollMarginTop: 50 }}>
+            <Title order={3} id="truth-drugs" style={{ scrollMarginTop: 60 }}>
               “Truth” Drugs
             </Title>
             <Text>
@@ -303,7 +303,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="human-assets"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Human Assets
             </Title>
@@ -324,7 +324,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="medical-treatment"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Medical Treatment
             </Title>
@@ -357,7 +357,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="evidence-tampering"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Evidence-Tampering
             </Title>
@@ -378,7 +378,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="disposing-of-a-body"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Disposing of a Body
             </Title>
@@ -444,7 +444,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="communictions"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Communications
             </Title>
@@ -495,7 +495,7 @@ export const Tradecraft = () => {
               td="underline"
               order={2}
               id="safe-houses-and-green-boxes"
-              style={{ scrollMarginTop: 50 }}
+              style={{ scrollMarginTop: 60 }}
             >
               Safe Houses and Green Boxes
             </Title>
@@ -526,11 +526,11 @@ export const Tradecraft = () => {
             Array.from({ length: 60 }, (_, i) => <Space />)}
         </Stack>
       </Grid.Col>
-      {viewport.width > 992 && (
+      {viewport.width > 760 && (
         <Grid.Col span={2}>
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 44 }}
+            style={{ position: "sticky", top: 60 }}
             justify="space-between"
           >
             <Stack gap="0">
@@ -545,7 +545,7 @@ export const Tradecraft = () => {
               <Divider size="sm"/>
               <TableOfContents
                 variant="light"
-                color="blue"
+                color="gray"
                 size="sm"
                 radius="0"
                 reinitializeRef={reinitializeRef}

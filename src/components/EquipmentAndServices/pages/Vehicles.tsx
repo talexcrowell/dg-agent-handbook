@@ -43,7 +43,7 @@ export const Vehicles = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" id="vehicles" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" id="vehicles" style={{ scrollMarginTop: 100 }}>
               Vehicles
             </Title>
             <Text>
@@ -67,7 +67,7 @@ export const Vehicles = () => {
           </Stack>
           <Divider />
           <Stack gap="xs">
-            <Title order={3} id="ramming" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="ramming" style={{ scrollMarginTop: 100 }}>
               Ramming
             </Title>
             <Text>The Handler decides how deadly a collision ought to be.</Text>
@@ -95,7 +95,7 @@ export const Vehicles = () => {
             order={2}
             id="ground-vehicles"
             td="underline"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Ground Vehicles
           </Title>
@@ -134,7 +134,7 @@ export const Vehicles = () => {
             order={2}
             id="water-vehicles"
             td="underline"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Water Vehicles
           </Title>
@@ -173,7 +173,7 @@ export const Vehicles = () => {
             order={2}
             id="air-vehicles"
             td="underline"
-            style={{ scrollMarginTop: 80 }}
+            style={{ scrollMarginTop: 100 }}
           >
             Air Vehicles
           </Title>

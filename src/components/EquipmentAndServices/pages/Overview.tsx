@@ -25,7 +25,7 @@ export const Overview = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" style={{ scrollMarginTop: 100 }}>
               Equipment and Services
             </Title>
             <Text>
@@ -183,7 +183,7 @@ export const Overview = () => {
             different ways:
           </Text>
           <Stack gap="xs">
-            <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title order={2} td="underline" style={{ scrollMarginTop: 100 }}>
               Official Requistion
             </Title>
             <Text>
@@ -208,7 +208,7 @@ export const Overview = () => {
           </Stack>
           <Divider />
           <Stack gap="xs">
-            <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title order={2} td="underline" style={{ scrollMarginTop: 100 }}>
               Spending Your Own Money
             </Title>
             <Text>
@@ -270,7 +270,7 @@ export const Overview = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} style={{ scrollMarginTop: 80 }}>
+            <Title order={3} style={{ scrollMarginTop: 100 }}>
               Limitations{" "}
             </Title>
             <Text>
@@ -282,7 +282,7 @@ export const Overview = () => {
           </Stack>
           <Divider />
           <Stack gap="xs">
-            <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title order={2} td="underline" style={{ scrollMarginTop: 100 }}>
               Using Illicit Money
             </Title>
             <Text>
@@ -297,7 +297,7 @@ export const Overview = () => {
           </Stack>
           <Divider />
           <Stack gap="xs">
-            <Title order={2} td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title order={2} td="underline" style={{ scrollMarginTop: 100 }}>
               Restricted Items
             </Title>
             <Text>
@@ -329,7 +329,7 @@ export const Overview = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} style={{ scrollMarginTop: 80 }}>
+            <Title order={3} style={{ scrollMarginTop: 100 }}>
               The Black Market
             </Title>
             <Text>

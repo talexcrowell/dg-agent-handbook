@@ -45,6 +45,13 @@ export const LandingPage = () => {
     localStorage.setItem("rememberDevice", val.toString());
   };
 
+  // useEffect(() => {
+  //   let rememberDevice = localStorage.getItem("rememberDevice")
+  //   if (rememberDevice) {
+  //     navigate('/directory')
+  //   }
+  // }, []);
+
   useEffect(() => {
     if (opened) {
       const timer = setTimeout(() => {
@@ -54,8 +61,8 @@ export const LandingPage = () => {
     }
   }, [opened]);
 
-  const handleSubmit = (e:any) => {
-    e.preventDefault()
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     if (username.length === 0 || password.length === 0) {
       setError(true);
     } else {
@@ -84,7 +91,7 @@ export const LandingPage = () => {
                 ) : (
                   <Space my="sm" />
                 )}
-                <form onSubmit={e => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSubmit(e)}>
                   <Stack>
                     <TextInput
                       label="Username"
@@ -95,6 +102,13 @@ export const LandingPage = () => {
                       label="Password"
                       onChange={(e) => handlePassword(e.currentTarget.value)}
                       value={password}
+                    />
+                    <Checkbox
+                      label="Remember this device"
+                      my="sm"
+                      onChange={(e) =>
+                        handleRememberDevice(e.currentTarget.checked)
+                      }
                     />
                     <Center>
                       <Button variant="outline" type="submit">

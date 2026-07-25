@@ -20,7 +20,7 @@ export const Sanity = () => {
             <Title
               td="underline"
               id="sanity-title"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Sanity
             </Title>
@@ -42,7 +42,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="rules-of-thumb-for-san-loss"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Rules of Thumb for SAN Loss
             </Title>
@@ -67,7 +67,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="threats-to-san"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Threats to SAN
             </Title>
@@ -77,7 +77,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="violence" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="violence" style={{ scrollMarginTop: 100 }}>
               Violence
             </Title>
             <Text>
@@ -94,7 +94,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="helplessness" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="helplessness" style={{ scrollMarginTop: 100 }}>
               Helplessness
             </Title>
             <Text>
@@ -107,7 +107,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="the-unnatural" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="the-unnatural" style={{ scrollMarginTop: 100 }}>
               The Unnatural
             </Title>
             <Text>
@@ -124,7 +124,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="insanity-and-disorders"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Insanity and Disorders
             </Title>
@@ -139,7 +139,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="temporary-insanity"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Temporary Insanity
             </Title>
@@ -158,7 +158,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="flee" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="flee" style={{ scrollMarginTop: 100 }}>
               Flee
             </Title>
             <Text>
@@ -171,7 +171,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="struggle" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="struggle" style={{ scrollMarginTop: 100 }}>
               Struggle
             </Title>
             <Text>
@@ -183,7 +183,7 @@ export const Sanity = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="submit" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="submit" style={{ scrollMarginTop: 100 }}>
               Submit
             </Title>
             <Text>
@@ -202,7 +202,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="disorders"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Disorders
             </Title>
@@ -218,7 +218,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="acute-episodes"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Acute Episodes
             </Title>
@@ -261,7 +261,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="permanent-insanity"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Permanent Insanity
             </Title>
@@ -280,7 +280,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="resisting-insanity"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Resisting Insanity
             </Title>
@@ -294,7 +294,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="adapting-to-sanity-loss"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Adapting to Sanity Loss
             </Title>
@@ -348,7 +348,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="projecting-onto-a-bond"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Projecting Onto a Bond
             </Title>
@@ -371,7 +371,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="repressing-insanity"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Repressing Insanity
             </Title>
@@ -398,7 +398,7 @@ export const Sanity = () => {
               order={2}
               td="underline"
               id="recovery"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Recovery
             </Title>
@@ -408,7 +408,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="therapy-or-home-life"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Therapy or Home Life
             </Title>
@@ -422,7 +422,7 @@ export const Sanity = () => {
             <Title
               order={3}
               id="destroying-the-unnatural"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Destroying the Unnatural
             </Title>

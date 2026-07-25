@@ -2,10 +2,8 @@ import {
   Center,
   Divider,
   Grid,
-  Group,
   List,
   ListItem,
-  ScrollArea,
   Space,
   Stack,
   Table,
@@ -25,7 +23,7 @@ export const HowToPlay = () => {
             <Title
               td="underline"
               id="how-to-play"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               How to Play
             </Title>
@@ -49,7 +47,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="using-skills"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Using Skills
             </Title>
@@ -69,7 +67,7 @@ export const HowToPlay = () => {
             <Title
               order={3}
               id="resolving-a-test-without-dice"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Resolving a Test Without Dice
             </Title>
@@ -155,7 +153,7 @@ export const HowToPlay = () => {
             <Title
               order={3}
               id="resolving-a-test-with-a-dice"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Resolving a Test With Dice
             </Title>
@@ -210,7 +208,7 @@ export const HowToPlay = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="using-a-stat" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="using-a-stat" style={{ scrollMarginTop: 100 }}>
               Using a Stat
             </Title>
             <Text>
@@ -297,7 +295,7 @@ export const HowToPlay = () => {
             <Title
               order={3}
               id="bonuses-and-penalties"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Bonuses & Penalties
             </Title>
@@ -383,7 +381,7 @@ export const HowToPlay = () => {
             </Center>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="group-rolls" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="group-rolls" style={{ scrollMarginTop: 100 }}>
               Group Rolls
             </Title>
             <Text>
@@ -405,7 +403,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="success-and-failure"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Success and Failure
             </Title>
@@ -434,7 +432,7 @@ export const HowToPlay = () => {
             <Title
               order={3}
               id="critical-success"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Critical Success
             </Title>
@@ -446,7 +444,7 @@ export const HowToPlay = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="success" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="success" style={{ scrollMarginTop: 100 }}>
               Success
             </Title>
             <Text>
@@ -456,7 +454,7 @@ export const HowToPlay = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="failure" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="failure" style={{ scrollMarginTop: 100 }}>
               Failure
             </Title>
             <Text>
@@ -469,7 +467,7 @@ export const HowToPlay = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="fumble" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="fumble" style={{ scrollMarginTop: 100 }}>
               Fumble
             </Title>
             <Text>
@@ -536,7 +534,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="luck-roll"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               The Luck Roll
             </Title>
@@ -553,7 +551,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="time-required"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Time Required
             </Title>
@@ -605,7 +603,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="opposed-tests"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Opposed Tests
             </Title>
@@ -623,7 +621,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="pursuit"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Pursuit
             </Title>
@@ -699,7 +697,7 @@ export const HowToPlay = () => {
               order={2}
               td="underline"
               id="willpower-points"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Willpower Points
             </Title>
@@ -712,7 +710,7 @@ export const HowToPlay = () => {
           </Stack>
 
           <Stack gap="xs">
-            <Title order={3} id="exhaustion" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="exhaustion" style={{ scrollMarginTop: 100 }}>
               Exhaustion
             </Title>
             <Text>
@@ -743,7 +741,7 @@ export const HowToPlay = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="sleeplessness" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="sleeplessness" style={{ scrollMarginTop: 100 }}>
               Sleeplessness
             </Title>
             <Text>

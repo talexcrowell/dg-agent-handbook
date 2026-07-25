@@ -1,23 +1,26 @@
 import {
+  ActionIcon,
   Box,
   Breadcrumbs,
+  Button,
   Card,
   Divider,
   Group,
   HoverCard,
+  Modal,
   NavLink,
   Popover,
   Stack,
   Text,
   TextInput,
 } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { IconArrowRight, IconSearch } from "@tabler/icons-react";
 import Fuse from "fuse.js";
 import { useState } from "react";
 import { searchList } from "./SearchList";
 import { Link } from "react-router-dom";
 import styles from "../../Element.module.css";
-import { useViewportSize } from "@mantine/hooks";
+import { useDisclosure, useViewportSize } from "@mantine/hooks";
 
 export const SearchBar = ({ setMobileMenuOpen }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -78,82 +81,180 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
   const handleSearchTerm = (val) => {
     return setSearchTerm(val);
   };
-
+  const [opened, { open, close }] = useDisclosure(false);
   return (
-    <Popover>
-      <Popover.Target>
+    <>
+      {width > 760 ? (
         <TextInput
           py={3}
-          mx={3}
+          mx={"sm"}
           leftSection={<IconSearch />}
-          onChange={(e) => handleSearchTerm(e.currentTarget.value)}
-          placeholder="Search Handbook"
-          maw={width < 600 ? "100%" : 200}
+          onClick={open}
+          placeholder="Search..."
         />
-      </Popover.Target>
-      <Popover.Dropdown p="0" maw={width < 600 ? "90%" : 200}>
-        {results.length > 0 ? (
-          <Stack gap="0" px="0">
-            <Group p="xs" styles={{ root: { backgroundColor: "#3b3b3b" } }}>
-              <Text size="xs" c="dimmed" td="italic">
-                Navigate to:{" "}
+      ) : (
+        <ActionIcon size="lg" variant="outline" color="gray" onClick={open}>
+          <IconSearch />
+        </ActionIcon>
+      )}
+      <Modal
+        opened={opened}
+        onClose={close}
+        withCloseButton={false}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 10,
+        }}
+      >
+        <Stack>
+          <TextInput
+            py={3}
+            mx={"sm"}
+            leftSection={<IconSearch />}
+            onChange={(e) => handleSearchTerm(e.currentTarget.value)}
+            placeholder="Search Handbook..."
+          />
+          {results.length > 0 ? (
+            <Stack>
+              {results.slice(0, 5).map((result: any) => {
+                return (
+                  <NavLink
+                    label={
+                      <Card>
+                        <Group justify="space-between">
+                          <Stack w={"80%"}>
+                            <Text>
+                              {result.item.subheader
+                                ? result.item.subheader
+                                : result.item.header
+                                  ? result.item.header
+                                  : result.item.section}
+                            </Text>
+                            <Divider />
+                            <Breadcrumbs>
+                              <Text size="xs">
+                                {result.item.chapter.length > 20
+                                  ? result.item.chapter.slice(0, 20) + "..."
+                                  : result.item.chapter}
+                              </Text>
+                              {result.item.section !== "" && (
+                                <Text size="xs">
+                                  {result.item.section.length > 20
+                                    ? result.item.section.slice(0, 19) + "..."
+                                    : result.item.section}
+                                </Text>
+                              )}
+                              {result.item.header && (
+                                <Text size="xs">{result.item.header}</Text>
+                              )}
+                            </Breadcrumbs>
+                          </Stack>
+                          <ActionIcon size='xl' variant="outline">
+                            <IconArrowRight />
+                          </ActionIcon>
+                        </Group>
+                      </Card>
+                    }
+                    component={Link}
+                    to={transformChaptersSectionsHeaders(
+                      result.item.chapter,
+                      result.item.section,
+                      result.item.header,
+                      result.item.subheader,
+                    )}
+                    className={styles.hoverElement}
+                    onClick={close}
+                  />
+                );
+              })}
+            </Stack>
+          ) : searchTerm.length > 0 ? (
+            <Stack gap="0" px="0">
+              <Text ta="center" c="dimmed">
+                No Results Found...
               </Text>
-            </Group>
-            <Divider />
-            {results.slice(0, 5).map((result: any) => {
-              return (
-                <NavLink
-                  mb="sm"
-                  label={
-                    <Breadcrumbs>
-                      <Text size="xs">
-                        {result.item.chapter.length > 20
-                          ? result.item.chapter.slice(0, 20) + "..."
-                          : result.item.chapter}
-                      </Text>
-                      {result.item.section !== "" && (
-                        <Text size="xs">
-                          {result.item.section.length > 20
-                            ? result.item.section.slice(0, 19) + "..."
-                            : result.item.section}
-                        </Text>
-                      )}
-                      {result.item.header && (
-                        <Text size="xs">{result.item.header}</Text>
-                      )}
-                      {result.item.subheader && (
-                        <Text size="xs">{result.item.subheader}</Text>
-                      )}
-                    </Breadcrumbs>
-                  }
-                  component={Link}
-                  to={transformChaptersSectionsHeaders(
-                    result.item.chapter,
-                    result.item.section,
-                    result.item.header,
-                    result.item.subheader,
-                  )}
-                  className={styles.hoverElement}
-                  onClick={() => setMobileMenuOpen(false)}
-                />
-              );
-            })}
-          </Stack>
-        ) : searchTerm.length > 0 ? (
-          <Stack gap="0" px="0">
-            <Box p="xs">
-              <Group>
-                <Text size="xs" c="dimmed" td="italic">
-                  Navigate to:{" "}
-                </Text>
-              </Group>
-            </Box>
-            <Text>No Results Found...</Text>
-          </Stack>
-        ) : (
-          ""
-        )}
-      </Popover.Dropdown>
-    </Popover>
+            </Stack>
+          ) : (
+            ""
+          )}
+        </Stack>
+      </Modal>
+    </>
   );
+  // return (
+  //   <Popover>
+  //     <Popover.Target>
+  //       <TextInput
+  //         py={3}
+  //         mx={"sm"}
+  //         leftSection={<IconSearch />}
+  //         onChange={(e) => handleSearchTerm(e.currentTarget.value)}
+  //         placeholder="Search..."
+  //       />
+  //     </Popover.Target>
+  //     <Popover.Dropdown p="0" maw={250}>
+  //       {results.length > 0 ? (
+  //         <Stack gap="0" px="0">
+  //           <Group p="xs" styles={{ root: { backgroundColor: "#3b3b3b" } }}>
+  //             <Text size="xs" c="dimmed" td="italic">
+  //               Navigate to:{" "}
+  //             </Text>
+  //           </Group>
+  //           <Divider />
+  //           {results.slice(0, 5).map((result: any) => {
+  //             return (
+  //               <NavLink
+  //                 mb="sm"
+  //                 label={
+  //                   <Breadcrumbs>
+  //                     <Text size="xs">
+  //                       {result.item.chapter.length > 20
+  //                         ? result.item.chapter.slice(0, 20) + "..."
+  //                         : result.item.chapter}
+  //                     </Text>
+  //                     {result.item.section !== "" && (
+  //                       <Text size="xs">
+  //                         {result.item.section.length > 20
+  //                           ? result.item.section.slice(0, 19) + "..."
+  //                           : result.item.section}
+  //                       </Text>
+  //                     )}
+  //                     {result.item.header && (
+  //                       <Text size="xs">{result.item.header}</Text>
+  //                     )}
+  //                     {result.item.subheader && (
+  //                       <Text size="xs">{result.item.subheader}</Text>
+  //                     )}
+  //                   </Breadcrumbs>
+  //                 }
+  //                 component={Link}
+  //                 to={transformChaptersSectionsHeaders(
+  //                   result.item.chapter,
+  //                   result.item.section,
+  //                   result.item.header,
+  //                   result.item.subheader,
+  //                 )}
+  //                 className={styles.hoverElement}
+  //                 onClick={() => setMobileMenuOpen(false)}
+  //               />
+  //             );
+  //           })}
+  //         </Stack>
+  //       ) : searchTerm.length > 0 ? (
+  //         <Stack gap="0" px="0">
+  //           <Box p="xs">
+  //             <Group>
+  //               <Text size="xs" c="dimmed" td="italic">
+  //                 Navigate to:{" "}
+  //               </Text>
+  //             </Group>
+  //           </Box>
+  //           <Text>No Results Found...</Text>
+  //         </Stack>
+  //       ) : (
+  //         ""
+  //       )}
+  //     </Popover.Dropdown>
+  //   </Popover>
+  // );
 };

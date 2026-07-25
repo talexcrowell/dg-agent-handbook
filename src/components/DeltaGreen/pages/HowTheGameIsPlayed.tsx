@@ -17,7 +17,7 @@ export const HowTheGameIsPlayed = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" style={{ scrollMarginTop: 100 }}>
               How The Game Is Played
             </Title>
             <Text>
@@ -36,7 +36,7 @@ export const HowTheGameIsPlayed = () => {
             <Title
               order={2}
               id="your-agent-in-the-game"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Your Agent In the Game
             </Title>
@@ -70,7 +70,7 @@ export const HowTheGameIsPlayed = () => {
           </Stack>
           <Divider />
           <Stack gap="xs">
-            <Title order={2} id="the-handler" style={{ scrollMarginTop: 80 }}>
+            <Title order={2} id="the-handler" style={{ scrollMarginTop: 100 }}>
               The Handler
             </Title>
             <Text>

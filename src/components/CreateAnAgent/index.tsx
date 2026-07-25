@@ -482,7 +482,7 @@ export const CreateAnAgent: React.FC = () => {
       {progressValue !== 0 && (
         <Grid.Col
           span={12}
-          style={{ position: "sticky", top: viewport.width < 600 ? 55 : 45 }}
+          style={{ position: "sticky", top: 60 }}
           bg="var(--mantine-color-dark-7)"
         >
           <Stack pt="sm">

@@ -34,7 +34,7 @@ export const BonusSkillPackagesList = () => {
         <Grid.Col span={viewport.width > 760 ? 5 : 12} pb="0">
           <Stack>
             <Title order={3}>Bonus Skill Package List</Title>
-            <ScrollArea h={"79vh"}>
+            <ScrollArea h={viewport.height - 175}>
               {skillPackages.map((skillPackage) => {
                 return (
                   <Card
@@ -80,10 +80,10 @@ export const BonusSkillPackagesList = () => {
                             w={250}
                             label={
                               skillsMasterList.filter(
-                                (item) => item.id === skill.id
+                                (item) => item.id === skill.id,
                               )[0]
                                 ? skillsMasterList.filter(
-                                    (item) => item.id === skill.id
+                                    (item) => item.id === skill.id,
                                   )[0].definition
                                 : ""
                             }

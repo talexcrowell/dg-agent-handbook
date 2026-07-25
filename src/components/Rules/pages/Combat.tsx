@@ -17,7 +17,7 @@ export const Combat = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" id="combat" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" id="combat" style={{ scrollMarginTop: 100 }}>
               Combat
             </Title>
             <Text>
@@ -40,7 +40,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="the-turn"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               The Turn
             </Title>
@@ -60,7 +60,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="aim" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="aim" style={{ scrollMarginTop: 100 }}>
               Aim
             </Title>
             <Text>
@@ -70,7 +70,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="attack" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="attack" style={{ scrollMarginTop: 100 }}>
               Attack
             </Title>
             <Text>
@@ -89,7 +89,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="called-shot" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="called-shot" style={{ scrollMarginTop: 100 }}>
               Called Shot
             </Title>
             <Text>
@@ -113,7 +113,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="disarm" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="disarm" style={{ scrollMarginTop: 100 }}>
               Disarm
             </Title>
             <Text>
@@ -124,7 +124,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="dodge" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="dodge" style={{ scrollMarginTop: 100 }}>
               Dodge
             </Title>
             <Text>
@@ -136,7 +136,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="escape" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="escape" style={{ scrollMarginTop: 100 }}>
               Escape
             </Title>
             <Text>
@@ -151,7 +151,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="fight-back" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="fight-back" style={{ scrollMarginTop: 100 }}>
               Fight Back
             </Title>
             <Text>
@@ -162,7 +162,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="move" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="move" style={{ scrollMarginTop: 100 }}>
               Move
             </Title>
             <Text>
@@ -185,7 +185,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="pin" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="pin" style={{ scrollMarginTop: 100 }}>
               Pin
             </Title>
             <Text>
@@ -205,7 +205,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="wait" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="wait" style={{ scrollMarginTop: 100 }}>
               Wait
             </Title>
             <Text>
@@ -218,7 +218,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="anything-else" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="anything-else" style={{ scrollMarginTop: 100 }}>
               Anything Else
             </Title>
             <Text>
@@ -232,7 +232,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="attack-rolls"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Attack Rolls
             </Title>
@@ -253,7 +253,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="surprise-attacks"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Surprise Attacks
             </Title>
@@ -280,7 +280,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="shooting-into-a-crowd"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Shooting into a Crowd
             </Title>
@@ -296,7 +296,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="defense-rolls"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Defense Rolls
             </Title>
@@ -310,7 +310,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="dodging-and-fighting-back"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Dodging and Fighting Back
             </Title>
@@ -348,7 +348,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="dodging-ranged-attacks"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Dodging Ranged Attacks
             </Title>
@@ -366,7 +366,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="defending-after-attacking"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Defending After Attacking
             </Title>
@@ -400,7 +400,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="damage"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Damage
             </Title>
@@ -453,7 +453,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="healing" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="healing" style={{ scrollMarginTop: 100 }}>
               Healing
             </Title>
             <Text>There are four types of healing:</Text>
@@ -503,7 +503,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="complicaitons" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="complicaitons" style={{ scrollMarginTop: 100 }}>
               Complications
             </Title>
             <Text>
@@ -517,7 +517,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="recovering-stat-points"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Recovering Stat Points
             </Title>
@@ -532,7 +532,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="lethality-rating"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Lethality Rating
             </Title>
@@ -553,7 +553,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="kill-radius" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="kill-radius" style={{ scrollMarginTop: 100 }}>
               Kill Radius
             </Title>
             <Text>
@@ -593,7 +593,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="suppression" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="suppression" style={{ scrollMarginTop: 100 }}>
               Suppression
             </Title>
             <Text>
@@ -620,7 +620,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="selective-fire"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Selective Fire
             </Title>
@@ -643,7 +643,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="blowing-things-up"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Blowing Things Up
             </Title>
@@ -661,7 +661,7 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="protection-in-combat"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Protection in Combat
             </Title>
@@ -672,7 +672,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="fragile" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="fragile" style={{ scrollMarginTop: 100 }}>
               Fragile
             </Title>
             <Text>
@@ -683,7 +683,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="exposed" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="exposed" style={{ scrollMarginTop: 100 }}>
               Exposed
             </Title>
             <Text>
@@ -694,7 +694,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="armored" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="armored" style={{ scrollMarginTop: 100 }}>
               Armored
             </Title>
             <Text>
@@ -733,7 +733,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="huge" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="huge" style={{ scrollMarginTop: 100 }}>
               Huge
             </Title>
             <Text>
@@ -744,7 +744,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="transcendent" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="transcendent" style={{ scrollMarginTop: 100 }}>
               Transcendent
             </Title>
             <Text>
@@ -762,7 +762,7 @@ export const Combat = () => {
             <Title
               order={3}
               id="armor-piercing-weapons"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Armor Piercing Weapons
             </Title>
@@ -779,14 +779,14 @@ export const Combat = () => {
               order={2}
               td="underline"
               id="other-threats"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Other Threats
             </Title>
             <Title
               order={3}
               id="poison-and-disease"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Poison and Disease
             </Title>
@@ -845,7 +845,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="falling" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="falling" style={{ scrollMarginTop: 100 }}>
               Falling
             </Title>
             <Text>
@@ -858,7 +858,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="impact" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="impact" style={{ scrollMarginTop: 100 }}>
               Impact
             </Title>
             <Text>
@@ -870,7 +870,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="suffocation" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="suffocation" style={{ scrollMarginTop: 100 }}>
               Suffocation
             </Title>
             <Text>
@@ -889,7 +889,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="fire" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="fire" style={{ scrollMarginTop: 100 }}>
               Fire
             </Title>
             <Text>
@@ -904,7 +904,7 @@ export const Combat = () => {
             </Text>
           </Stack>
           <Stack gap="xs">
-            <Title order={3} id="cold" style={{ scrollMarginTop: 80 }}>
+            <Title order={3} id="cold" style={{ scrollMarginTop: 100 }}>
               Cold
             </Title>
             <Text>

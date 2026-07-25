@@ -10,7 +10,14 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import { IconDots, IconFile, IconShare, IconTrash } from "@tabler/icons-react";
+import {
+  IconDots,
+  IconFile,
+  IconFileSearch,
+  IconShare,
+  IconTrash,
+  IconUserPlus,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { useCharacterContext } from "../../../../contexts/CharacterContext";
 
@@ -30,7 +37,7 @@ export const DesktopCard: React.FC<{
   return (
     <Grid justify="space-between">
       <Grid.Col span={2}>
-        <Stack gap="lg">
+        <Stack>
           <InputLabel fw={700} c="dimmed">
             Codename
           </InputLabel>
@@ -38,7 +45,7 @@ export const DesktopCard: React.FC<{
         </Stack>
       </Grid.Col>
       <Grid.Col span={2}>
-        <Stack gap="lg">
+        <Stack>
           <InputLabel fw={700} c="dimmed">
             Name
           </InputLabel>
@@ -46,7 +53,7 @@ export const DesktopCard: React.FC<{
         </Stack>
       </Grid.Col>
       <Grid.Col span={2}>
-        <Stack gap="lg">
+        <Stack>
           <InputLabel fw={700} c="dimmed">
             Profession
           </InputLabel>
@@ -54,18 +61,27 @@ export const DesktopCard: React.FC<{
         </Stack>
       </Grid.Col>
       <Grid.Col span={2}>
-        <Stack gap="lg">
-          <InputLabel c="dimmed">
-            <Text fw={700} size="sm" truncate="end">
-              Education/Occupation History
-            </Text>
-          </InputLabel>
-          <Text truncate="end">{agent.education}</Text>
-        </Stack>
+        <Group justify="space-between">
+          <Stack>
+            <InputLabel c="dimmed">
+              <Text fw={700} size="sm" truncate="end">
+                Sex
+              </Text>
+            </InputLabel>
+            <Text truncate="end">{agent.sex}</Text>
+          </Stack>
+          <Stack>
+            <InputLabel c="dimmed">
+              <Text fw={700} size="sm" truncate="end">
+                Age
+              </Text>
+            </InputLabel>
+            <Text truncate="end">{agent.age}</Text>
+          </Stack>
+        </Group>
       </Grid.Col>
-      <Divider orientation="vertical" />
       <Grid.Col span={2}>
-        <Stack>
+        <Stack gap="xs">
           <InputLabel c="dimmed">
             <Text fw={700} size="sm" truncate="end" ta="center">
               Actions
@@ -73,8 +89,9 @@ export const DesktopCard: React.FC<{
           </InputLabel>
           <Center>
             <Group>
-              <Button
-                leftSection={<IconFile />}
+              <ActionIcon
+                size={"lg"}
+                variant="outline"
                 onClick={() => {
                   actions.changeCurrentCharacter({ ...agent });
                   localStorage.setItem(
@@ -84,32 +101,38 @@ export const DesktopCard: React.FC<{
                 }}
                 component={Link}
                 to={`/agents/sheet/${agent?.codename.toUpperCase()}`}
-                variant="outline"
               >
-                View
-              </Button>
-              <Menu width={150}>
-                <Menu.Target>
-                  <ActionIcon variant="outline" size="lg">
-                    <IconDots />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item
-                    leftSection={<IconShare />}
-                    onClick={() => handleExport({ ...agent })}
-                  >
-                    Export
-                  </Menu.Item>
-                  <Menu.Item
-                    leftSection={<IconTrash />}
-                    onClick={() => handleRemoveSavedCharacter(agent)}
-                    color="red"
-                  >
-                    Delete
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
+                {handleGenerateCharacter ? <IconFileSearch /> : <IconFile />}
+              </ActionIcon>
+              {handleExport && (
+                <ActionIcon
+                  size={"lg"}
+                  variant="outline"
+                  onClick={() => handleExport({ ...agent })}
+                >
+                  <IconShare />
+                </ActionIcon>
+              )}
+              {handleGenerateCharacter && (
+                <ActionIcon
+                  size={"lg"}
+                  variant="outline"
+                  color="green"
+                  onClick={() => handleGenerateCharacter(agent)}
+                >
+                  <IconUserPlus />
+                </ActionIcon>
+              )}
+              {handleRemoveSavedCharacter && (
+                <ActionIcon
+                  size={"lg"}
+                  variant="outline"
+                  color="red"
+                  onClick={() => handleRemoveSavedCharacter(agent)}
+                >
+                  <IconTrash />
+                </ActionIcon>
+              )}
             </Group>
           </Center>
         </Stack>

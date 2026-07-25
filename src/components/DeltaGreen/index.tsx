@@ -48,16 +48,17 @@ export const DeltaGreen = () => {
 
   return (
     <Grid>
-      <Grid.Col span={viewport.width > 992 ? 10 : 12} py="0">
+      <Grid.Col span={viewport.width > 760 ? 10 : 12} py="0">
         <Tabs
           defaultValue="welcome"
           value={tabValue}
           onChange={(value) => navigate(`/delta-green/${value}`)}
           keepMounted={false}
+          color="black"
         >
           {viewport.width > 760 && (
             <Tabs.List
-              style={{ position: "sticky", top: 45 }}
+              style={{ position: "sticky", top: 60 }}
               bg="var(--mantine-color-dark-7)"
             >
               <Tabs.Tab value="welcome">Welcome</Tabs.Tab>
@@ -90,27 +91,22 @@ export const DeltaGreen = () => {
           </Tabs.Panel>
         </Tabs>
       </Grid.Col>
-      {tabValue !== "welcome" && viewport.width > 992 && (
+      {tabValue !== "welcome" && viewport.width > 760 && (
         <Grid.Col span={2} py="0">
           <Stack
             maw={200}
-            style={{ position: "sticky", top: 44 }}
+            style={{ position: "sticky", top: 60 }}
             justify="space-between"
           >
             <Stack gap="0">
-              <Button
-                variant="transparent"
-                leftSection={<IconList />}
-                ta="start"
-                mx="0"
-              >
+              <Text ta="center" fw="600" my={5}>
                 Table of Contents
-              </Button>
+              </Text>
               <Divider size="sm" />
               <ScrollArea h={viewport.height - 100} type="hover">
                 <TableOfContents
                   variant="light"
-                  color="blue"
+                  color="gray"
                   size="sm"
                   radius="sm"
                   reinitializeRef={reinitializeRef}
@@ -118,7 +114,10 @@ export const DeltaGreen = () => {
                     selector: `#${tabValue} :is(h1, h2, h3, h4, h5, h6)`,
                   }}
                   getControlProps={({ data }) => ({
-                    onClick: () => data.getNode().scrollIntoView(),
+                    onClick: () =>
+                      data
+                        .getNode()
+                        .scrollIntoView({ behavior: "smooth", block: "start" }),
                     children: data.value,
                   })}
                 />

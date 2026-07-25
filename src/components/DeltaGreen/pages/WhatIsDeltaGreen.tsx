@@ -17,7 +17,7 @@ export const WhatIsDeltaGreen = () => {
       <Grid.Col span={12}>
         <Stack>
           <Stack gap="xs">
-            <Title td="underline" style={{ scrollMarginTop: 80 }}>
+            <Title td="underline" style={{ scrollMarginTop: 100 }}>
               What Is Delta Green?
             </Title>
             <Text>
@@ -58,7 +58,7 @@ export const WhatIsDeltaGreen = () => {
               order={2}
               td="underline"
               id="potential-recruits"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Potential Recruits
             </Title>
@@ -87,7 +87,7 @@ export const WhatIsDeltaGreen = () => {
               order={2}
               td="underline"
               id="operational-briefing"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Operational Briefing
             </Title>
@@ -121,7 +121,7 @@ export const WhatIsDeltaGreen = () => {
               order={2}
               td="underline"
               id="on-the-ground"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               On the Ground
             </Title>
@@ -158,7 +158,7 @@ export const WhatIsDeltaGreen = () => {
               order={2}
               td="underline"
               id="retirement"
-              style={{ scrollMarginTop: 80 }}
+              style={{ scrollMarginTop: 100 }}
             >
               Retirement
             </Title>
