@@ -712,10 +712,10 @@ export const skillPackages = [
       { id: "computerScience", name: "Computer Science" },
       {
         id: "craft",
-        name: "Craft (Microelectronics)",
+        name: "Craft",
         type: "Microelectronics",
       },
-      { id: "science", name: "Science (Mathematics)", type: "Mathematics" },
+      { id: "science", name: "Science", type: "Mathematics" },
       { id: "sigint", name: "SIGINT" },
     ],
     personalSpecialty: 4,
@@ -894,7 +894,7 @@ export const skillPackages = [
     name: "Pilot or Sailor",
     professionalSkills: [
       { id: "alertness", name: "Alertness" },
-      { id: "craft", name: "Craft (Mechanic)", type: "" },
+      { id: "craft", name: "Craft", type: "Mechanic" },
       { id: "firstAid", name: "First Aid" },
       {
         id: "foreignLanguage",

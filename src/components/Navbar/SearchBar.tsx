@@ -9,10 +9,12 @@ import {
   HoverCard,
   Modal,
   NavLink,
+  Paper,
   Popover,
   Stack,
   Text,
   TextInput,
+  UnstyledButton,
 } from "@mantine/core";
 import { IconArrowRight, IconSearch } from "@tabler/icons-react";
 import Fuse from "fuse.js";
@@ -85,13 +87,14 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
   return (
     <>
       {width > 760 ? (
-        <TextInput
-          py={3}
-          mx={"sm"}
-          leftSection={<IconSearch />}
-          onClick={open}
-          placeholder="Search..."
-        />
+        <UnstyledButton onClick={open} type="button">
+          <Card withBorder py="5" w="200" px="xs">
+            <Group gap="10">
+              <IconSearch color="gray" size='18'/>
+              <Text c="dimmed" size='sm'>Search...</Text>
+            </Group>
+          </Card>
+        </UnstyledButton>
       ) : (
         <ActionIcon size="lg" variant="outline" color="gray" onClick={open}>
           <IconSearch />
@@ -122,7 +125,7 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
                     label={
                       <Card>
                         <Group justify="space-between">
-                          <Stack w={"80%"}>
+                          <Stack w={"75%"}>
                             <Text>
                               {result.item.subheader
                                 ? result.item.subheader
@@ -133,13 +136,13 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
                             <Divider />
                             <Breadcrumbs>
                               <Text size="xs">
-                                {result.item.chapter.length > 20
+                                {result.item.chapter.length > 15
                                   ? result.item.chapter.slice(0, 20) + "..."
                                   : result.item.chapter}
                               </Text>
                               {result.item.section !== "" && (
                                 <Text size="xs">
-                                  {result.item.section.length > 20
+                                  {result.item.section.length > 15
                                     ? result.item.section.slice(0, 19) + "..."
                                     : result.item.section}
                                 </Text>
@@ -149,7 +152,7 @@ export const SearchBar = ({ setMobileMenuOpen }: any) => {
                               )}
                             </Breadcrumbs>
                           </Stack>
-                          <ActionIcon size='xl' variant="outline">
+                          <ActionIcon size="xl" variant="outline">
                             <IconArrowRight />
                           </ActionIcon>
                         </Group>

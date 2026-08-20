@@ -45,12 +45,12 @@ export const LandingPage = () => {
     localStorage.setItem("rememberDevice", val.toString());
   };
 
-  // useEffect(() => {
-  //   let rememberDevice = localStorage.getItem("rememberDevice")
-  //   if (rememberDevice) {
-  //     navigate('/directory')
-  //   }
-  // }, []);
+  useEffect(() => {
+    let rememberDevice = localStorage.getItem("rememberDevice");
+    if (rememberDevice === "true") {
+      navigate("/directory");
+    }
+  }, []);
 
   useEffect(() => {
     if (opened) {
@@ -66,7 +66,7 @@ export const LandingPage = () => {
     if (username.length === 0 || password.length === 0) {
       setError(true);
     } else {
-      setOpened(true);
+      navigate("/introduction");
     }
   };
 

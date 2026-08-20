@@ -6,6 +6,7 @@ import {
   Badge,
   Box,
   Button,
+  Card,
   Center,
   Container,
   Divider,
@@ -20,6 +21,7 @@ import {
   NavLink,
   ScrollArea,
   Stack,
+  Switch,
   Text,
   TextInput,
   UnstyledButton,
@@ -33,8 +35,10 @@ import {
   IconBookFilled,
   IconBriefcase,
   IconChartGridDots,
+  IconCheck,
   IconChevronRight,
   IconClipboardData,
+  IconInfoCircleFilled,
   IconJacket,
   IconList,
   IconListDetails,
@@ -43,24 +47,62 @@ import {
   IconMenu2,
   IconNotebook,
   IconPackages,
+  IconQuestionMark,
   IconSearch,
+  IconSettings,
   IconSpy,
   IconStairs,
   IconSword,
   IconTank,
+  IconTrash,
   IconUserPlus,
   IconUsers,
   IconVocabulary,
   IconWorld,
+  IconX,
 } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
 import { useCharacterContext } from "../../contexts/CharacterContext";
+import { useEffect, useState } from "react";
+import FormattedLoader from "../FormattedLoader";
+import { Spinner } from "@gfazioli/mantine-spinner";
 
 export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
   const location = useLocation();
   const [{ currentCharacter, savedCharacters }] = useCharacterContext();
   const { width } = useViewportSize();
+  const [skipIntro, setSkipIntro] = useState(false);
+  const isDeviceRemembered = () => {
+    const state = localStorage.getItem("rememberDevice");
+    if (state === undefined || state === "false") {
+      setSkipIntro(false);
+    } else {
+      setSkipIntro(true);
+    }
+    // setSkipIntro(state !== undefined);
+  };
+
+  useEffect(() => {
+    isDeviceRemembered();
+  }, []);
+
+  const handleSkipIntro = () => {
+    const state = localStorage.getItem("rememberDevice");
+    if (state === undefined || state === "false") {
+      localStorage.setItem("rememberDevice", "true");
+      setSkipIntro(true);
+    } else {
+      localStorage.setItem("rememberDevice", "false");
+      setSkipIntro(false);
+    }
+  };
+  // return (
+  //   <Stack align="center" my='lg'>
+  //     <Spinner size="80" duration={1000} color="green"/>
+  //     <Text c="dimmed" ta='center'>Generating Navigation...</Text>
+  //   </Stack>
+  // );
   return (
     <>
       {width < 760 && (
@@ -348,6 +390,49 @@ export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
               color="gray"
             />
           </NavLink>
+          <NavLink
+            autoContrast
+            label="User Options"
+            leftSection={<IconSettings />}
+          >
+            <Group justify="space-between" pr='xs'>
+              <Text size="sm">Skip Introduction</Text>
+              <Switch py="md" checked={skipIntro} onClick={handleSkipIntro} />
+            </Group>
+            <Group justify="space-between" pr='xs'>
+              <Text size="sm">Clear Agent Roster</Text>{" "}
+              <ActionIcon color="red">
+                <IconTrash size="20" />
+              </ActionIcon>{" "}
+            </Group>
+          </NavLink>
+
+          {/* <NavLink
+            label="Extra"
+            active={location.pathname.includes("/agents")}
+            leftSection={<IconAddressBook />}
+            color="gray"
+          >
+            <NavLink
+              autoContrast
+              label="About"
+              component={Link}
+              to={`/agents/new`}
+              active={location.pathname.includes("/agents/new")}
+              leftSection={<IconInfoCircleFilled />}
+              onClick={toggleMobile}
+              color="gray"
+            />
+            <Box my="md">
+              <Switch
+                label="Skip Intro Animation"
+                offLabel={<IconX />}
+                onLabel={<IconCheck />}
+                variant="outline"
+                checked={isDeviceRemembered}
+              />
+            </Box>
+          </NavLink> */}
           {/* <NavLink
             component={Link}
             label="Handler Resources"
