@@ -68,7 +68,7 @@ import { useEffect, useState } from "react";
 import FormattedLoader from "../FormattedLoader";
 import { Spinner } from "@gfazioli/mantine-spinner";
 import { useUIContext } from "../../contexts/UIContext";
-import image from "../../assets/M6abaUa.png"
+import image from "../../assets/logo.png"
 export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
   const location = useLocation();
   const [{ currentCharacter, savedCharacters }] = useCharacterContext();

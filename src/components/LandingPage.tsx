@@ -19,7 +19,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUIContext } from "../contexts/UIContext";
-import image from "../assets/M6abaUa.png"
+import image from "../assets/logo.png"
 
 export const LandingPage = () => {
   const [opened, setOpened] = useState(false);

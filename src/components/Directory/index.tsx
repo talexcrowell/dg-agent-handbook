@@ -20,7 +20,7 @@ import {
 } from "@tabler/icons-react";
 import { Lightbox } from "@mantine-bites/lightbox";
 import { useState } from "react";
-import image from "../../assets/M6abaUa.png"
+import image from "../../assets/logo.png"
 
 export const Directory = () => {
   const [viewport] = useViewportContext();

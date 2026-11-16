@@ -1,6 +1,6 @@
 import { Burger, Container, Group, Image, Text } from "@mantine/core";
 import { SearchBar } from "../Navbar/SearchBar";
-import image from "../../assets/M6abaUa.png"
+import image from "../../assets/logo.png"
 
 export const Header: React.FC<{
   desktopOpened: boolean;
