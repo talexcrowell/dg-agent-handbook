@@ -10,8 +10,8 @@ import "@mantine/notifications/styles.css";
 import App from "./App.tsx";
 import { AgentsLandingPage } from "./components/AgentsLandingPage.tsx";
 import { TrainingLandingPage } from "./components/TrainingLandingPage.tsx";
-import { HandlerResources } from "./components/HandlerResources/index.tsx";
 import { IntroAnimation } from "./components/IntroAnimation.tsx";
+import { UIProvider } from "./contexts/UIContext.tsx";
 
 const LandingPage = lazy(() => import("./components/LandingPage.tsx"));
 const FormattedLoader = lazy(() => import("./components/FormattedLoader.tsx"));
@@ -119,14 +119,16 @@ const router = createHashRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ViewportProvider>
-    <CharacterProvider>
-      <MantineProvider defaultColorScheme="dark">
-        <Notifications />
-        <Suspense fallback={<FormattedLoader />}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </MantineProvider>
-    </CharacterProvider>
-  </ViewportProvider>,
+  <UIProvider>
+    <ViewportProvider>
+      <CharacterProvider>
+        <MantineProvider defaultColorScheme="dark">
+          <Notifications />
+          <Suspense fallback={<FormattedLoader />}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </MantineProvider>
+      </CharacterProvider>
+    </ViewportProvider>
+  </UIProvider>,
 );
