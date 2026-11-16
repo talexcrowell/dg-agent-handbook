@@ -59,7 +59,7 @@ function App() {
         <Navbar toggleMobile={toggleMobile} />
       </AppShell.Navbar>
       <AppShell.Main>
-        <Container size="xl" strategy="grid" px={width < 760 ? "md" : "lg"}>
+        <Container size="lg" strategy="grid" px={width < 760 ? "md" : "lg"}>
           <Outlet />
         </Container>
       </AppShell.Main>
