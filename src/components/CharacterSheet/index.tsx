@@ -218,7 +218,7 @@ export const CharacterSheet: React.FC = () => {
         color: "green",
         title: "In Person Mode Activated!",
         message: "Rolling enabled on your character sheet.",
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 2000,
       });
     } else {
@@ -226,7 +226,7 @@ export const CharacterSheet: React.FC = () => {
         color: "grey",
         title: "In Person Mode Deactivated!",
         message: "Rolling disabled on your character sheet.",
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 2000,
       });
     }
@@ -424,7 +424,7 @@ export const CharacterSheet: React.FC = () => {
       message: `You dealt ${diceRoll} damage to your target.`,
       autoClose: 3000,
       color: "green",
-      position: "bottom-center",
+      position: "top-center",
     });
   };
 
@@ -473,7 +473,7 @@ export const CharacterSheet: React.FC = () => {
           : `You dealt ${lethalityDamage} damage to your target.`,
       autoClose: 3000,
       color: "green",
-      position: "bottom-center",
+      position: "top-center",
     });
   };
 
@@ -555,7 +555,7 @@ export const CharacterSheet: React.FC = () => {
       } bond loss to ${selectedBond}.`,
       autoClose: 5000,
       color: "red",
-      position: "bottom-center",
+      position: "top-center",
     });
   };
 
@@ -591,7 +591,7 @@ export const CharacterSheet: React.FC = () => {
       )} sanity damage`,
       autoClose: 5000,
       color: "red",
-      position: "bottom-center",
+      position: "top-center",
     });
   };
 

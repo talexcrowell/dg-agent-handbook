@@ -1,5 +1,6 @@
 import { Burger, Container, Group, Image, Text } from "@mantine/core";
 import { SearchBar } from "../Navbar/SearchBar";
+import image from "../../assets/M6abaUa.png"
 
 export const Header: React.FC<{
   desktopOpened: boolean;
@@ -11,7 +12,7 @@ export const Header: React.FC<{
     <Container size="fluid" h={"100%"}>
       <Group justify="space-between">
         <Group h={60} visibleFrom="sm">
-          <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={45} onClick={toggleDesktop} style={{cursor: 'pointer'}} />
+          <Image src={image} h="auto" w={45} onClick={toggleDesktop} style={{cursor: 'pointer'}} />
           <Text>Agent Handbook</Text>
         </Group>
         <Group h={60} hiddenFrom="sm">

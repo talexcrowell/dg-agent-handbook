@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Button,
   Card,
   Checkbox,
@@ -21,7 +22,9 @@ import { useState } from "react";
 import {
   IconBoxAlignTop,
   IconCheckbox,
+  IconMinus,
   IconPencil,
+  IconPlus,
   IconSquare,
 } from "@tabler/icons-react";
 
@@ -504,6 +507,7 @@ export const Personal = ({
                           fullWidth
                           onClick={() => handleStandardRoll(stat.toLowerCase())}
                           variant="outline"
+                          disabled={editStats}
                         >
                           {stat}
                         </Button>
@@ -513,19 +517,33 @@ export const Personal = ({
                     </Table.Td>
                     <Table.Td ta="center">
                       {editStats ? (
-                        <NumberInput
-                          value={data?.stats[stat.toLowerCase()]}
-                          min={3}
-                          max={18}
-                          clampBehavior="strict"
-                          onChange={(val) =>
-                            handleUpdateCharacter(
-                              "stats",
-                              val,
-                              stat.toLowerCase(),
-                            )
-                          }
-                        />
+                        <Group justify="space-between" gap="0">
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() =>
+                              handleUpdateCharacter(
+                                "stats",
+                                data?.stats[stat.toLowerCase()] - 1,
+                                stat.toLowerCase(),
+                              )
+                            }
+                          >
+                            <IconMinus />
+                          </ActionIcon>
+                          {data?.stats[stat.toLowerCase()]}
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() =>
+                              handleUpdateCharacter(
+                                "stats",
+                                data?.stats[stat.toLowerCase()] + 1,
+                                stat.toLowerCase(),
+                              )
+                            }
+                          >
+                            <IconPlus />
+                          </ActionIcon>
+                        </Group>
                       ) : (
                         data?.stats[stat.toLowerCase()]
                       )}
@@ -579,6 +597,7 @@ export const Personal = ({
                           variant="outline"
                           fullWidth
                           onClick={() => handleStandardRoll(attribute)}
+                          disabled={editAttributes}
                         >
                           <Text size="sm" fw={600} truncate="end">
                             {calculateAttributesLabel(attribute)}
@@ -593,14 +612,47 @@ export const Personal = ({
                     </Table.Td>
                     <Table.Td ta="center" c={calculateLowValues(attribute)}>
                       {editAttributes ? (
-                        <NumberInput
-                          value={data?.attributes[attribute].current}
-                          max={data?.attributes[attribute].max}
-                          min={0}
-                          onChange={(val) =>
-                            handleUpdateCharacter("attributes", val, attribute)
-                          }
-                        />
+                        <Group justify="space-between" gap="0">
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() =>
+                              handleUpdateCharacter(
+                                "attributes",
+                                data?.attributes[attribute.toLowerCase()]
+                                  .current - 1,
+                                attribute.toLowerCase(),
+                              )
+                            }
+                            disabled={
+                              data?.attributes[attribute.toLowerCase()]
+                                .current === 0
+                            }
+                          >
+                            <IconMinus />
+                          </ActionIcon>
+                          <Text>
+                            {data?.attributes[attribute.toLowerCase()].current}
+                          </Text>
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() =>
+                              handleUpdateCharacter(
+                                "attributes",
+                                data?.attributes[attribute.toLowerCase()]
+                                  .current + 1,
+                                attribute.toLowerCase(),
+                              )
+                            }
+                            disabled={
+                              data?.attributes[attribute.toLowerCase()]
+                                .current +
+                                1 >
+                              data?.attributes[attribute.toLowerCase()].max
+                            }
+                          >
+                            <IconPlus />
+                          </ActionIcon>
+                        </Group>
                       ) : (
                         data?.attributes[attribute].current
                       )}
@@ -616,6 +668,7 @@ export const Personal = ({
                       variant="outline"
                       fullWidth
                       onClick={() => handleStandardRoll("luck")}
+                      disabled={editAttributes}
                     >
                       <Text size="sm" fw={600} truncate="end">
                         Luck
@@ -687,14 +740,35 @@ export const Personal = ({
                     <Table.Td>{bond.name}</Table.Td>
                     <Table.Td w={100} ta="center">
                       {editPsych ? (
-                        <NumberInput
-                          value={bond.value}
-                          max={data?.stats.charisma}
-                          min={0}
-                          onChange={(val) =>
-                            handleUpdateCharacter("bonds", val, index)
-                          }
-                        />
+                        <Group justify="space-between" gap="0">
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() =>
+                              handleUpdateCharacter(
+                                "bonds",
+                                bond.value - 1,
+                                index,
+                              )
+                            }
+                            disabled={bond.value === 0}
+                          >
+                            <IconMinus />
+                          </ActionIcon>
+                          <Text>{bond.value}</Text>
+                          <ActionIcon
+                            variant="outline"
+                            onClick={() => {
+                              handleUpdateCharacter(
+                                "bonds",
+                                bond.value + 1,
+                                index,
+                              );
+                            }}
+                            disabled={bond.value + 1 > data?.stats.charisma}
+                          >
+                            <IconPlus />
+                          </ActionIcon>
+                        </Group>
                       ) : (
                         bond.value
                       )}

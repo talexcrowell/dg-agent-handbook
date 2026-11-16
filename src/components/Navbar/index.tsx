@@ -67,34 +67,21 @@ import { useCharacterContext } from "../../contexts/CharacterContext";
 import { useEffect, useState } from "react";
 import FormattedLoader from "../FormattedLoader";
 import { Spinner } from "@gfazioli/mantine-spinner";
-
+import { useUIContext } from "../../contexts/UIContext";
+import image from "../../assets/M6abaUa.png"
 export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
   const location = useLocation();
   const [{ currentCharacter, savedCharacters }] = useCharacterContext();
   const { width } = useViewportSize();
-  const [skipIntro, setSkipIntro] = useState(false);
-  const isDeviceRemembered = () => {
-    const state = localStorage.getItem("rememberDevice");
-    if (state === undefined || state === "false") {
-      setSkipIntro(false);
-    } else {
-      setSkipIntro(true);
-    }
-    // setSkipIntro(state !== undefined);
-  };
-
-  useEffect(() => {
-    isDeviceRemembered();
-  }, []);
+  const [{ skipIntroduction }, uiActions] = useUIContext();
 
   const handleSkipIntro = () => {
-    const state = localStorage.getItem("rememberDevice");
-    if (state === undefined || state === "false") {
+    if (!skipIntroduction) {
       localStorage.setItem("rememberDevice", "true");
-      setSkipIntro(true);
+      uiActions.setSkipIntroduction(true);
     } else {
       localStorage.setItem("rememberDevice", "false");
-      setSkipIntro(false);
+      uiActions.setSkipIntroduction(false);
     }
   };
   // return (
@@ -109,7 +96,7 @@ export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
         <AppShell.Section>
           <Stack gap="xs" my="sm">
             <Center>
-              <Image src="https://i.imgur.com/M6abaUa.png" h="auto" w={100} />
+              <Image src={image} h="auto" w={100} />
             </Center>
           </Stack>
         </AppShell.Section>
@@ -395,11 +382,15 @@ export const Navbar: React.FC<{ toggleMobile: any }> = ({ toggleMobile }) => {
             label="User Options"
             leftSection={<IconSettings />}
           >
-            <Group justify="space-between" pr='xs'>
+            <Group justify="space-between" pr="xs">
               <Text size="sm">Skip Introduction</Text>
-              <Switch py="md" checked={skipIntro} onClick={handleSkipIntro} />
+              <Switch
+                py="md"
+                checked={skipIntroduction}
+                onClick={handleSkipIntro}
+              />
             </Group>
-            <Group justify="space-between" pr='xs'>
+            <Group justify="space-between" pr="xs">
               <Text size="sm">Clear Agent Roster</Text>{" "}
               <ActionIcon color="red">
                 <IconTrash size="20" />

@@ -16,17 +16,19 @@ import {
   Title,
   Transition,
 } from "@mantine/core";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUIContext } from "../contexts/UIContext";
+import image from "../assets/M6abaUa.png"
 
 export const LandingPage = () => {
   const [opened, setOpened] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const [{ skipIntroduction }, uiActions] = useUIContext();
 
   const handleUsername = (val: string) => {
     if (val.length < 15) {
@@ -41,13 +43,12 @@ export const LandingPage = () => {
   };
 
   const handleRememberDevice = (val: boolean) => {
-    setChecked(val);
     localStorage.setItem("rememberDevice", val.toString());
+    uiActions.setSkipIntroduction(val);
   };
 
   useEffect(() => {
-    let rememberDevice = localStorage.getItem("rememberDevice");
-    if (rememberDevice === "true") {
+    if (skipIntroduction) {
       navigate("/directory");
     }
   }, []);
@@ -79,7 +80,7 @@ export const LandingPage = () => {
               <Stack w="325" justify="center" gap="xs">
                 <Center>
                   <Image
-                    src="https://i.imgur.com/M6abaUa.png"
+                    src={image}
                     h="auto"
                     w={150}
                   />

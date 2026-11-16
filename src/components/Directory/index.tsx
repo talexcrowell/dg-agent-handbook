@@ -20,6 +20,7 @@ import {
 } from "@tabler/icons-react";
 import { Lightbox } from "@mantine-bites/lightbox";
 import { useState } from "react";
+import image from "../../assets/M6abaUa.png"
 
 export const Directory = () => {
   const [viewport] = useViewportContext();
@@ -40,7 +41,7 @@ export const Directory = () => {
                 <Stack gap={viewport.width >= 600 ? "md" : "xs"}>
                   <Center>
                     <Image
-                      src="https://i.imgur.com/M6abaUa.png"
+                      src={image}
                       h="auto"
                       w={viewport.width >= 600 ? 150 : 80}
                     />

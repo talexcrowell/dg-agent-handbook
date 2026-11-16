@@ -289,7 +289,7 @@ export const Glossary = () => {
               <Divider size="sm" />
               <TableOfContents
                 variant="light"
-                color="blue"
+                color="gray"
                 size="sm"
                 radius="0"
                 reinitializeRef={reinitializeRef}
