@@ -54,13 +54,19 @@ export const TrainingLandingPage = () => {
     return (
       <Card withBorder>
         <Group justify="space-between">
-          <Stack gap="lg" w={'80%'}>
-            <Title ta="center" order={2} ta="start">
+          <Stack gap="lg" w={"80%"}>
+            <Title order={2} ta="start">
               {item.title}
             </Title>
             <Text>{item.description}</Text>
           </Stack>
-          <Button variant="outline" component={Link} to={item.url} size="xl" w={'15%'}>
+          <Button
+            variant="outline"
+            component={Link}
+            to={item.url}
+            size="xl"
+            w={"15%"}
+          >
             View
           </Button>
         </Group>

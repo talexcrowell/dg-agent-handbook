@@ -41,7 +41,7 @@ export const AgentsLandingPage = () => {
       <Card withBorder>
         <Group justify="space-between">
           <Stack gap="lg" w={"80%"}>
-            <Title ta="center" order={2} ta="start">
+            <Title order={2} ta="start">
               {item.title}
             </Title>
             <Text>{item.description}</Text>
